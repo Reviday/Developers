@@ -6,7 +6,7 @@
 </jsp:include>
 
 <section id="content">
-
+	<p>테스트</p>
 </section>
 	
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

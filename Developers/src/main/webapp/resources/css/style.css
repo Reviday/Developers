@@ -1,0 +1,240 @@
+@charset "UTF-8";
+
+/********** reset **********/
+a {
+	text-decoration: inherit;
+    cursor: pointer;
+    background-color: transparent;
+    color: #444444;
+}
+
+ul, ol {
+	list-style: none;
+}
+
+button {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: pointer;
+}
+
+/********** reset End **********/
+
+
+
+
+
+
+
+
+/********** Option css **********/
+
+/* 크롬 자동완성(autofill) 기능으로 백경색이 흰색이 되어버리는 문제를 해결하기 위한 코드.
+입력란을 투명하게 만들기 위해서 전환 시간을 매우 길게 설정함. */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  transition: background-color 50000s ease-in-out 0s, color 5000s ease-in-out 0s;
+}
+/* IR 효과 */
+/* 의미있는 이미지의 대체 텍스트를 제공하는 경우 */
+.ir_pm {
+  display: block;
+  overflow: hidden;
+  font-size: 0;
+  line-height: 0;
+  text-indent: -9999px;
+}
+
+/* 의미있는 이미지의 대체 텍스트로 이미지가 없어도 대체 텍스트를 보여주고자 할 때 */
+.ir_wa {
+  display: block;
+  overflow: hidden;
+  position: relative;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+}
+
+/* 대체 텍스트가 아닌 접근성을 위한 숨김 텍스트를 제공할 때*/
+.ir_su {
+  overflow: hidden;
+  position: absolute;
+  width: 0;
+  height: 0;
+  line-height: 0;
+  text-indent: -9999px;
+}  
+  
+/********** Option css End **********/
+
+
+
+
+
+
+
+
+
+/********** header **********/
+
+header {
+	width: 100%;
+	position: fixed;
+	background-color: #fff;
+	-webkit-box-shadow: 0 1px 0 0 rgba(0, 0, 0, .1);
+	box-shadow: 0 1px 0 0 rgba(0, 0, 0, .1);
+	z-index: 100;
+	top:0;
+}
+
+.header_nav {
+    position: relative;
+    height: 50px;
+    max-width: 1060px;
+}
+
+@media ( min-width : 1200px) {
+	header .header_nav {
+		margin: 0 auto;
+	}
+	header .header_nav {
+		width: 87.72%;
+	}
+}
+@media (max-width: 1199px) and (min-width: 992px) {
+	header .header_nav {
+		margin: 0 auto;
+	}
+	header .header_nav {
+		width: 90%;
+	}
+}
+@media (max-width: 991px) and (min-width: 768px) {
+	header .header_nav {
+	    margin: 0 auto;
+	}
+	header .header_nav {
+	    width: 90%;
+	}
+}
+
+.header_nav .developersLogo {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.nav_items {
+    height: inherit;
+    text-align: center;
+}
+
+.header_nav li {
+    height: inherit;
+    display: inline-block;
+}
+
+.header_nav li:after {
+    height: 100%;
+    content: "";
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.header_nav li a {
+    vertical-align: middle;
+    font-size: 14px;
+    line-height: 1;
+    font-weight: 600;
+    padding: 17px 13px;
+    color: #333;
+}
+
+.header_nav .list_view {
+	position: fixed;
+    top: 50px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,.4);
+    height: 0;
+    opacity: 0;
+    overflow: hidden;
+    -webkit-transition: .5s;
+    transition: .5s;
+}
+
+.header_nav .list_view .show {
+    display: block;
+    height: auto;
+    opacity: 1;
+}
+
+.header_nav aside {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+}
+
+.aside_menu {
+    height: 100%;
+    padding: 9px 0;
+}
+
+.aside_menu ul {
+    height: 100%;
+    margin: 0;
+}
+
+.aside_menu ul li .signUpButton:before {
+    margin-right: 15px;
+    content: "";
+    height: 14px;
+    border-left: 1px solid #d1d1d1;
+}
+
+.aside_menu ul li .signUpButton {
+    padding: 0 10px 0 0;
+}
+
+.aside_menu ul li>* {
+    height: 100%;
+    padding: 0 10px;
+    font-size: 14px;
+    color: #333;
+    font-weight: 600;
+    line-height: 1;
+}
+
+.aside_menu ul li a {
+    display: inline-block;
+    vertical-align: bottom;
+    line-height: 32px;
+}
+
+/********** header End **********/
+
+
+
+
+
+/********** MainPage **********/
+
+
+/********** MainPage End **********/
+
+
+
+
+
+/********** footer **********/
+
+
+/********** footer End **********/
