@@ -146,7 +146,7 @@
 		
 		<!-- spring-loaded적용하기 -->
 		<!-- https://mvnrepository.com/artifact/org.springframework/springloaded -->
-		<!-- javaagent:C:\Users\user2\.m2\repository\org\springframework\springloaded\1.2.8.RELEASE\springloaded-1.2.8.RELEASE.jar (server-arguments 컴퓨터 저장 경로에 맞춰서 설정)-->
+		<!-- -javaagent:C:\Users\user2\.m2\repository\org\springframework\springloaded\1.2.8.RELEASE\springloaded-1.2.8.RELEASE.jar -noverify (server-arguments 컴퓨터 저장 경로에 맞춰서 설정)-->
 		<dependency>
 		    <groupId>org.springframework</groupId>
 		    <artifactId>springloaded</artifactId>
