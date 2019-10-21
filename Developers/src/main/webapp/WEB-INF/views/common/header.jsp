@@ -11,8 +11,6 @@
 	href="${pageContext.request.contextPath }/resources/css/bootstrap-grid.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/css/style.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/resources/css/style-cf.css">
 <!-- jQuery library -->
 <script type="text/javascript"
 	src="${pageContext.request.contextPath }/resources/js/jquery-3.4.1.min.js"></script>
@@ -53,10 +51,8 @@
 				</div>
 				<aside class="aside_menu">
 					<ul>
-						<li class="smMoreVi	sible">
-							<button class="searchButton" type="button">
-								<!-- 돋보기 아이콘 추가 필요 -->
-							</button>
+						<li class="smMoreVisible sible">
+							<button class="searchButton img_ico" type="button"></button>
 						</li>
 						<li>
 							<button class="signUpButton" type="button">회원가입/로그인</button>
