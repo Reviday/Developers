@@ -26,6 +26,14 @@ a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, bo
     border: 0;
 }
 
+[hidden], template {
+    display: none;
+}
+
+
+.img_ico {
+    background: url(//t1.daumcdn.net/brunch/static/img/help/pc/ico_view_cover.v4.png) no-repeat;
+}
 /********** reset css End **********/
 
 
@@ -304,10 +312,6 @@ header {
     height: 34px;
 }
 
-.aside_menu .img_ico {
-    background: url(//t1.daumcdn.net/brunch/static/img/help/pc/ico_view_cover.v4.png) no-repeat;
-}
-
 .aside_menu .searchButton{
 	width: 27px;
     height: 20px;
@@ -508,7 +512,9 @@ header {
 
 
 /********** MainPage css **********/
-
+#content {
+	height: 2000px;
+}
 
 /********** MainPage css End **********/
 
@@ -517,6 +523,198 @@ header {
 
 
 /********** footer css **********/
+.footer {
+    padding: 30px 0 70px;
+    background-color: #2b2d2e;
+}
+
+.footer_nav {
+    width: 90%;
+    max-width: 1060px;
+    margin: 0 auto 25px;
+}
+
+.footer_nav_items {
+    width: calc(100% - 250px);
+    float: left;
+}
+
+.footer_developers_icon {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    float: left;
+    height: 36px;
+    margin-right: 50px;
+}
+
+.footer_nav_item {
+    float: left;
+}
+
+.footer_nav_item a {
+    float: left;
+    margin-right: 50px;
+    font-size: 16px;
+    line-height: 36px;
+    font-weight: 400;
+    color: hsla(0,0%,100%,.8);
+}
+
+.footer_nav_item:after {
+    display: block;
+    content: "";
+    clear: both;
+}
+
+.footer_language {
+    position: relative;
+    width: 250px;
+    height: 36px;
+    float: left;
+}
+
+.footer_language img {
+    left: 15px;
+    width: 20px;
+    height: 14px;
+    z-index: 1;
+}
+
+.footer_language select {
+    width: 100%;
+    height: 36px;
+    background: #000;
+    border-radius: 0;
+    border: none;
+    font-size: 14px;
+    line-height: 36px;
+    color: hsla(0,0%,100%,.8);
+    padding: 0 45px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.footer_language img.countryIcon {
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.footer_language div.img_ico {
+	position: absolute;
+    top: 40%;
+    left: 85%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    border: none;
+    width: 9px;
+    height: 7px;
+    background-position: -209px -118px;
+    margin: 5px;
+}
+
+.footer_language:after {
+    display: block;
+    content: "";
+    clear: both;
+}
+
+.footer_int {
+    width: 90%;
+    max-width: 1060px;
+    margin: 0 auto 25px;
+}
+
+.footer_int .developers_int {
+    float: left;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.66667em;
+    color: hsla(0,0%,100%,.8);
+    width: calc(100% - 250px);
+}
+
+@media (max-width: 767px) {
+	.footer {
+	    padding: 30px 25px 50px;
+	}
+}
+
+@media (max-width: 767px) {
+	.footer_nav_items {
+	    float: none;
+	    width: 100%;
+	    height: auto;
+	    text-align: center;
+	    margin-bottom: 19px;
+	}
+}
+
+@media (max-width: 767px) {
+	.footer_developers_icon {
+	    float: none;
+	    margin: auto;
+	}
+}
+
+@media (max-width: 1024px) {
+	.footer_nav_item {
+	    width: 100%;
+	    margin-top: 23px;
+	}
+}
+
+
+@media (max-width: 767px) {
+	.footer_nav_item {
+	    float: none;
+	    margin-top: 9px;
+	}
+}
+
+@media (max-width: 767px) {
+	.footer_nav_item a {
+	    display: inline-block;
+	    float: none;
+	    margin: 0 8px;
+	    font-size: 14px;
+	}
+}
+
+@media (max-width: 767px) {
+	.footer_language {
+	    float: none;
+	    width: 100%;
+	    height: auto;
+	    text-align: center;
+	    margin-bottom: 10px;
+	}
+}
+
+@media (max-width: 767px) {
+	.footer_language select {
+	    text-align-last: center;
+	}
+}
+
+@media (max-width: 767px) {
+	.footer_int .developers_int {
+	    float: none;
+	    width: 100%;
+	    text-align: center;
+	    margin-bottom: 30px;
+	}
+}
+
 
 
 /********** footer css End **********/

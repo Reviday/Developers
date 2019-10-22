@@ -16,7 +16,7 @@
 	src="${pageContext.request.contextPath }/resources/js/jquery-3.4.1.min.js"></script>
 </head>
 <body>
-	<header class="row">
+	<header>
 		<div class="header_nav container">
 			<nav>
 				<a href="/" class="developersLogo">
