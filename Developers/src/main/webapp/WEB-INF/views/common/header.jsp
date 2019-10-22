@@ -16,7 +16,7 @@
 	src="${pageContext.request.contextPath }/resources/js/jquery-3.4.1.min.js"></script>
 </head>
 <body>
-	<header>
+	<header class="heaer_fm"> <!-- for Member -->
 		<div class="header_nav container">
 			<nav>
 				<a href="/" class="developersLogo">
@@ -106,9 +106,6 @@
 						    headerBarExit.onclick=function() {
 						        headerBar.style.display="none";
 						    }
-						    
-						    
-						    
 						}
 					</script>
 				</aside>
