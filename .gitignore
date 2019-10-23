@@ -11,8 +11,9 @@ META-INF/
 # Eclipse
 ######################
 
-.metadata
 *.class
+.metadata
+.project
 .classpath
 .settings/
 .loadpath

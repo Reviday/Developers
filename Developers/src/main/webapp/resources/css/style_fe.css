@@ -1,1 +1,359 @@
-@charset "EUC-KR";
+@charset "UTF-8";
+
+/********** reset css **********/
+html {
+    height: 100%;
+    font-size: 10px;
+    background: rgb(244, 244, 244);
+}
+
+html {
+    line-height: 1.15;
+    -webkit-text-size-adjust: 100%;
+}
+
+a {
+	text-decoration: inherit;
+    cursor: pointer;
+    background-color: transparent;
+    color: #444444;
+}
+
+ul, ol {
+	list-style: none;
+}
+
+button {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: pointer;
+}
+	
+a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, body, canvas, caption, center, cite, code, dd, del, details, dfn, div, dl, dt, em, embed, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, html, i, iframe, img, ins, kbd, label, legend, li, mark, menu, nav, object, ol, output, p, pre, q, ruby, s, samp, section, small, span, strike, strong, sub, summary, sup, table, tbody, td, tfoot, th, thead, time, tr, tt, u, ul, var, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+[hidden], template {
+    display: none;
+}
+
+a, button {
+    cursor: pointer;
+    outline: none !important;
+}
+
+.img_ico {
+    background: url(//t1.daumcdn.net/brunch/static/img/help/pc/ico_view_cover.v4.png) no-repeat;
+}
+/********** reset css End **********/
+
+
+
+
+
+
+
+
+/********** Option css **********/
+
+/* 크롬 자동완성(autofill) 기능으로 백경색이 흰색이 되어버리는 문제를 해결하기 위한 코드.
+입력란을 투명하게 만들기 위해서 전환 시간을 매우 길게 설정함. */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  transition: background-color 50000s ease-in-out 0s, color 5000s ease-in-out 0s;
+}
+/* IR 효과 */
+/* 의미있는 이미지의 대체 텍스트를 제공하는 경우 */
+.ir_pm {
+  display: block;
+  overflow: hidden;
+  font-size: 0;
+  line-height: 0;
+  text-indent: -9999px;
+}
+
+/* 의미있는 이미지의 대체 텍스트로 이미지가 없어도 대체 텍스트를 보여주고자 할 때 */
+.ir_wa {
+  display: block;
+  overflow: hidden;
+  position: relative;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+}
+
+/* 대체 텍스트가 아닌 접근성을 위한 숨김 텍스트를 제공할 때*/
+.ir_su {
+  overflow: hidden;
+  position: absolute;
+  width: 0;
+  height: 0;
+  line-height: 0;
+  text-indent: -9999px;
+}  
+  
+/********** Option css End **********/
+
+
+
+
+#content {
+	height:2000px;
+}
+
+
+
+
+/********** header css **********/
+header {
+	display: flex;
+}
+
+.header_fe {
+    min-height: 4.8rem;
+    background-color: rgb(28, 28, 28);
+    flex: 0 0 auto;
+}
+
+
+@media (max-width: 767px) {
+	.header_fe {
+	    position: fixed;
+	    z-index: 100;
+	    top: 0px;
+	    left: 0px;
+	    right: 0px;
+	}
+}
+
+.header_nav {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1060px;
+    width:100%
+}
+
+@media (min-width: 1200px){
+	.header_nav {
+	    width: 87.72%;
+	}
+}
+
+@media (max-width: 1199px) and (min-width: 992px) {
+	.header_nav {
+	    width: 90%;
+	}
+}
+
+@media (max-width: 991px) and (min-width: 768px) {
+	.header_nav {
+	    width: 90%;
+	}
+}
+
+@media (max-width: 767px) {
+	.header_nav {
+	    margin-left: 1.5rem;
+	    margin-right: 1.5rem;
+	}
+}
+
+.nav_style_l {
+    position: relative;
+    float: left;
+    margin: 0px;
+}
+
+@media (min-width: 992px) {
+	.nav_style_l {
+	    max-height: 5.4rem;
+	}
+}
+
+.nav_us {
+    white-space: nowrap;
+    padding: 0px;
+    margin: 0px;
+    list-style: none;
+}
+
+.nav_us::after {
+    clear: both;
+    content: "";
+    display: block;
+}
+
+.as1 {
+	display: block;
+    font-size: 1.6rem;
+}
+
+.as2 {
+    display: block;
+    font-size: 1.6rem;
+}
+
+.as2:hover {
+	color: rgb(181, 181, 181);
+}
+
+.as3:hover {
+	color: rgb(0, 104, 198);
+}
+
+.ls2 {
+    float: left;
+    user-select: none;
+}
+
+.ls2 a {
+    color: rgb(181, 181, 181);
+    padding: 1.5rem;
+}
+
+.ls2:first-child a {
+    padding-left: 0px;
+}
+
+.ls2:last-child a {
+    padding-right: 0px;
+}
+
+.ls1 a {
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    font-size: 1.4rem;
+    padding: 1.5rem;
+}
+
+
+
+.visible-xs {
+    display: none !important;
+}
+
+@media (max-width: 767px) {
+	.visible-xs {
+	    display: block !important;
+	}
+}
+
+@media (max-width: 767px) {
+	.hidden-xs {
+	    display: none !important;
+	}
+}
+
+.nav_style_r {
+	position: relative;
+    float: right;
+    margin: 0px;
+}
+
+@media (min-width: 992px) {
+	.nav_style_r {
+	    max-height: 5.4rem;
+	}
+}
+
+.ls3 {
+    float: left;
+    user-select: none;
+}
+
+.ls4 {
+    display: block;
+    font-size: 1.6rem;
+    font-weight: 400;
+    cursor: pointer;
+    color: rgb(255, 255, 255);
+    padding: 1.5rem 0px;
+    margin: 0px;
+}
+
+.ls4:first-child {
+    margin-top: 0px;
+}
+
+.ls4.active {
+    color: rgb(37, 139, 247);
+}
+
+.header_nav .hidden-xs nav li {
+    float: none;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.emp_Btn {
+    cursor: pointer;
+    color: rgb(255, 255, 255);
+    background-color: transparent;
+    font-size: 1.4rem;
+    font-weight: 600;
+    outline: none;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(255, 255, 255);
+    border-image: initial;
+    border-radius: 3px;
+    padding: 0.8rem 1.5rem;
+}
+
+.emp_Btn:hover {
+	color:rgb(181, 181, 181);
+}
+
+.header_fe .home_button {
+    margin: 7px 0px 0px 15px;
+}
+
+.menuButton {
+    width: 27px;
+    height: 20px;
+    background-position: 0 0;
+    margin: 14px 0;
+}
+
+.header_nav .menu-icon {
+    transition: transform 0.2s ease 0s;
+}
+
+.header_nav .mobile-menu {
+    color: rgb(255, 255, 255);
+    background-color: rgb(28, 28, 28);
+    padding: 1.2rem 1.5rem;
+}
+
+@media (max-width: 767px) {
+	.header_nav .mobile-menu {
+	    position: fixed;
+	    z-index: 100;
+	    top: 48px;
+	    left: 0px;
+	    right: 0px;
+	    transition: transform 0.2s ease 0s;
+	}
+}
+
+
+
+/********** header css End **********/
+
+
+
+
+
+
+/********** footer css **********/
+
+
+
+/********** footer css End **********/
