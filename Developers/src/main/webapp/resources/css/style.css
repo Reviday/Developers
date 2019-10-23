@@ -30,6 +30,21 @@ a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, bo
     display: none;
 }
 
+input, input:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+button, .btn-group, .open, .dropdown-toggle, .btn {
+    box-shadow: none !important;
+}
+
+button {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: none;
+}
 
 .img_ico {
     background: url(//t1.daumcdn.net/brunch/static/img/help/pc/ico_view_cover.v4.png) no-repeat;
@@ -503,6 +518,222 @@ header {
 	.xsMenuBar ul .microOnly {
 	    display: none;
 	}
+}
+
+.modal_login_enroll {
+	top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: fixed;
+    overflow: hidden;
+    z-index: 1001;
+}
+
+.login_enroll{
+	z-index: 5;
+    border-radius: 5px;
+    background-color: #fff;
+    position: absolute;
+    overflow: hidden;
+}
+
+@media (min-width: 1200px) {
+	.login_enroll {
+	    top: 50%;
+	    left: 50%;
+	    width: 100%;
+	    max-width: 500px;
+	    max-height: calc(100vh - 150px);
+	    -webkit-transform: translate(-50%,-50%);
+	    transform: translate(-50%,-50%);
+	    z-index: 5;
+	    overflow-y: auto;
+	}
+}
+
+@media (max-width: 1199px) and (min-width: 992px) {
+	.login_enroll {
+	    top: 50%;
+	    left: 50%;
+	    width: 100%;
+	    max-width: 500px;
+	    max-height: calc(100vh - 150px);
+	    -webkit-transform: translate(-50%,-50%);
+	    transform: translate(-50%,-50%);
+	    z-index: 5;
+	}
+}
+
+@media (max-width: 991px) and (min-width: 768px) {
+	.login_enroll {
+	    top: 50%;
+	    left: 50%;
+	    width: 100%;
+	    max-width: 500px;
+	    max-height: calc(100vh - 150px);
+	    -webkit-transform: translate(-50%,-50%);
+	    transform: translate(-50%,-50%);
+	    z-index: 5;
+	}
+}
+
+@media (max-width: 767px) {
+	.login_enroll {
+	    top: 0;
+	    left: 0;
+	    right: 0;
+	    bottom: 0;
+	    max-width: none;
+	    width: 100%!important;
+	    -webkit-transform: none;
+	    transform: none;
+	    border-radius: 0;
+	    max-height: none;
+	    overflow: visible;
+	}
+}
+
+.login_enroll_header {
+	height: 54px;
+    padding: 16px 20px;
+    position: relative;
+    border-bottom: 1px solid #eee;
+    color: #333;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+    word-wrap: break-word;
+}
+
+.login_enroll_header a, 
+.login_enroll_header button {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    padding: 15px;
+    line-height: 0;
+}
+
+.login_enroll_body {
+    padding: 20px;
+}
+
+.login_enroll_body .le_intro {
+	text-align: center;
+    word-break: break-word;
+    margin-bottom: 40px;
+}
+
+.login_enroll_body .le_intro h1 {
+    font-size: 26px;
+    color: #333;
+}
+
+.login_enroll_body .le_intro h2 {
+    font-size: 18px;
+    color: #777;
+}
+
+.login_enroll_body .le_intro h1, 
+.login_enroll_body .le_intro h2 {
+    line-height: 1.4;
+    margin: 20px 0 10px;
+    font-weight: 600;
+}
+
+.login_enroll_body .le_form {
+	position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.le_form p {
+    line-height: 1.4;
+    text-align: center;
+    margin: 20px 0 0;
+    font-size: 12px;
+    font-weight: 400;
+    color: #bbb;
+}
+
+.le_form button {
+    position: relative;
+    width: 100%;
+    outline: none;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    color: #fff;
+    padding: 13px 20px 13px 70px;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.le_form p .loginModalAnchor {
+    color: #258bf7;
+    text-decoration: underline;
+}
+
+.le_form .buttonDivider {
+    width: 100%;
+    height: 1px;
+    background-color: #eee;
+}
+
+.login_enroll_body .le_form .le_password {
+	position: absolute;
+    z-index: -1;
+    top: -10px;
+    left: 0;
+    padding: 0;
+    height: 0;
+    border: 1px solid transparent;
+}
+
+.login_enroll_body .le_form .le_email {
+	-webkit-box-shadow: none;
+    box-shadow: none;
+    outline: none;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    resize: none;
+    color: #333;
+    font-size: 16px;
+    margin-bottom: 0;
+    padding: 13px 15px;
+    border-radius: 3px;
+    border: 1px solid #dbdbdb;
+    width: 100%;
+}
+
+.login_enroll_body .le_form .le_password, 
+.login_enroll_body .le_form .le_email {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.le_form button.emailLoginButton {
+    background-color: #258bf7;
+    margin-bottom: 20px;
+}
+
+.le_form button.facebookLoginButton {
+    background-color: #395a9c;
+}
+
+._2OQakuZmFdVjmjiQz4QMbx {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 4;
+    background-color: rgba(0,0,0,.5);
 }
 
 /********** header css End **********/

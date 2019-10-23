@@ -113,3 +113,45 @@
 			</nav>
 		</div>
 	</header>
+	
+	<div class="modal_login_enroll">
+		<div class="login_enroll" style="width: 400px;">
+			<div class="login_enroll_header">
+				<i class="icon-logo_new"></i>
+				<a href="/" class="">
+					<i class="icon-close"></i>
+					<!-- x 나가기 버튼 -->
+				</a>
+				<button type="button">
+					<i class="icon-close"></i>
+					<!-- x 나가기 버튼 -->
+				</button>
+			</div>
+			<div id="MODAL_BODY" class="login_enroll_body">
+				<div class="le_intro">
+					<h1>친구에게 딱 맞는<br>회사를 추천해 주세요!</h1>
+					<h2>원티드는 친구에게 좋은 회사를 추천하고,<br>채용 성공시 보상 받을 수 있는 서비스입니다.</h2>
+				</div>
+				<div class="le_form">
+					<input class="le_password" type="password" autocomplete="password">
+					<input class="le_email" type="email" autocomplete="username" placeholder="이메일을 입력해 주세요." value="">
+					<button class="emailLoginButton" type="button">
+						<i class="icon-sms"></i>이메일로 시작하기
+					</button>
+					<div class="buttonDivider"></div>
+					<button class="facebookLoginButton" type="button">
+						<i class="icon-logo_facebook"></i>페이스북으로 시작하기
+					</button>
+					<p>걱정마세요! 여러분의 지원 활동은 SNS에 노출되지 않습니다.<br>회원가입 시 
+						<a class="loginModalAnchor" href="/privacy" target="_blank">개인정보 취급방침</a>과 
+						<a class="loginModalAnchor" href="/terms" target="_blank">이용약관</a>을 확인하였으며, 동의합니다.
+					</p>
+				</div>
+			</div>
+		</div>
+		<div role="presentation" class="_2OQakuZmFdVjmjiQz4QMbx false"></div> <!-- 얘 왜있는지 모르겠음. -->
+	</div>
+	
+	<script>
+		
+	</script>
