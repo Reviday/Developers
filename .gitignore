@@ -1,4 +1,24 @@
+# Directories #
+/target/
+classes/
+META-INF/
+/Server/
 /.metadata/
-*
-/target/*
-/Server/*
+
+
+
+######################
+# Eclipse
+######################
+
+.metadata
+*.class
+.classpath
+.settings/
+.loadpath
+
+
+
+# PDT-specific
+.buildpath
+
