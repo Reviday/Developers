@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<jsp:include page="/WEB-INF/views/employers/header.jsp">
+<jsp:include page="/WEB-INF/views/common/header.jsp">
 	<jsp:param name="pageTitle" value="메인 화면"/> 
 </jsp:include>
 
@@ -11,4 +11,4 @@
 	<p>테스트</p>
 </section>
 	
-<jsp:include page="/WEB-INF/views/employers/footer.jsp"/>
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/> 
