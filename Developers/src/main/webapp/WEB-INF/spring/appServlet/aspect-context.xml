@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+
+	<!-- 선언적 방식으로 AOP 적용하기 -->
+	<!-- aspect로 활용할 객체 bean 으로 등록  -->
+	<bean id="aspectTest" class="com.kh.spring.common.aspect.AspectTest"/>
+	
+	<!-- aop 설정하기 -->
+<!-- 	<aop:config>
+      <aop:aspect ref="aspectTest">
+      <aop:pointcut expression="execution(* com.kh.spring.memo..*(..))" id="test"/>
+         <aop:pointcut expression="execution(* com.kh.spring.memo..insert*(..))" id="test"/>
+         <aop:before method="beforeTest" pointcut-ref="test"/>
+         <aop:after method="afterTest" pointcut-ref="test"/>
+         <aop:around method="aroundTest" pointcut-ref="test"/>
+      </aop:aspect>
+   	</aop:config> -->
+
+	<aop:aspectj-autoproxy/>
+
+</beans>
