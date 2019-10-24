@@ -7,14 +7,25 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Developers Black</title>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/resources/css/bootstrap-3.3.7.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/css/bootstrap-grid.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/css/style_fe.css">
+
+	
 <!-- jQuery library -->
 <script type="text/javascript"
 	src="${pageContext.request.contextPath }/resources/js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath }/resources/js/popper.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath }/resources/js/bootstrap.min.js"></script>
+	
+	
+	
 </head>
 <body>
 	<header class="header_fe"><!-- for Employers -->
@@ -30,12 +41,12 @@
 				<nav class="nav_style_r">
 					<ul class="nav_us">
 						<li class="ls1 ls3">
-							<a class="as2" type="submit" 
-								data-toggle="modal" data-target="#busloginModal">채용담당자 로그인</a>
+							<a class="as2" data-toggle="modal" 
+							data-target="#empLoginModal">채용담당자 로그인</a>
 						</li>
 						<li class="ls1 ls3">
-							<a class="as2 as3" type="submit"
-							 data-toggle="modal" data-target="#enrollModal">관리자 가입</a>
+							<a class="as2 as3" data-toggle="modal" 
+							data-target="#empEnrollModal">관리자 가입</a>
 						</li>
 						<button class="home_button emp_Btn">
 							디벨로퍼 홈
@@ -55,8 +66,10 @@
 				</nav>
 				<div class="mobile-menu">
 					<ul class="nav_us uwQaB">
-						<li class="ls4">채용담당자 로그인</li>
-						<li class="ls4 active">관리자 가입</li>
+						<li class="ls4"><a class="as2" type="submit" 
+								data-toggle="modal" data-target="#empLoginModal">채용담당자 로그인</a></li>
+						<li class="ls4 active"><a class="as2 as3" type="submit"
+							 data-toggle="modal" data-target="#empEnrollModal">관리자 가입</a></li>
 					</ul>
 				</div>
 			</div>
@@ -64,7 +77,7 @@
 		
 		
 		<!-- 회원가입 모달 창 -->
-	<div class="modal fade" id="enrollModal" tabindex="-1" role="dialog" 
+	<div class="modal fade" id="empEnrollModal" tabindex="-1" role="dialog" 
 	aria-labelledby="exampleModalLabel" aria-hidden="true">
 	  <div class="modal-dialog" role="document">
 	    <div class="modal-content">
@@ -74,20 +87,20 @@
 	          <span aria-hidden="true">&times;</span>
 	        </button>
 	      </div>
-          <form action="${pageContext.request.contextPath}/business/busEnroll.do" method="post">
+          <form action="${pageContext.request.contextPath}/business/empEnroll.do" method="post">
 	      <div class="modal-body">
-			    <input type="text" class="form-control" name="chargeName" placeholder="담당자 성함" required>
+			    <input type="text" class="form-control" name="userName" placeholder="담당자 성함" required>
 			    <br />
-			    <input type="text" class="form-control" name="chargeDepartment" placeholder="직책(부서)" required>
+			    <input type="text" class="form-control" name="userDepartment" placeholder="직책(부서)" required>
 			    <br />
-			    <input type="text" class="form-control" name="chargePhone" placeholder="연락처" required>
+			    <input type="text" class="form-control" name="userPhone" placeholder="연락처" required>
 			    <hr>
-			    <input type="text" class="form-control" name="chargeEmail" placeholder="회사 이메일(로그인 아이디로 사용)" required>
+			    <input type="text" class="form-control" name="userEmail" placeholder="회사 이메일(로그인 아이디로 사용)" required>
 			    <br />
-			    <input type="password" class="form-control" name="chargePassword" placeholder="비밀번호" required>
+			    <input type="password" class="form-control" name="userPassword" placeholder="비밀번호" required>
 	      </div>
 	      <div class="modal-footer">
-	        <button type="submit" class="btn btn-outline-success" >관리자 계정 생성</button>
+	        <button type="submit" class="btn btn-outline-primary" >관리자 계정 생성</button>
 	      </div>
 		  </form>
 	     <div>
@@ -103,7 +116,7 @@
 	
 	
 	<!-- 로그인 창  -->
-		<div class="modal fade" id="busloginModal" tabindex="-1" role="dialog" 
+		<div class="modal fade" id="empLoginModal" tabindex="-1" role="dialog" 
 	aria-labelledby="exampleModalLabel" aria-hidden="true">
 	  <div class="modal-dialog" role="document">
 	    <div class="modal-content">
@@ -113,14 +126,14 @@
 	          <span aria-hidden="true">&times;</span>
 	        </button>
 	      </div>
-          <form action="${pageContext.request.contextPath}/business/busLogin.do" method="post">
+          <form action="${pageContext.request.contextPath}/business/empLogin.do" method="post">
 	      <div class="modal-body">
 			    <input type="text" class="form-control" name="chargeEmail" placeholder="회사 이메일(로그인 아이디로 사용)" required>
 			    <br />
 			    <input type="password" class="form-control" name="chargePassword" placeholder="비밀번호" required>
 	      </div>
 	      <div>
-	        <button type="submit" class="btn btn-outline-success" >로그인</button>
+	        <button type="submit" class="btn btn-outline-primary" >로그인</button>
 	        <div>
 	        	<p><a class="navbar-brand-small" href="#">비밀번호 초기화/변경</a><P>
 	        </div>
