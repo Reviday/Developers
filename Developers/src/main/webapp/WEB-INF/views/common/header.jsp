@@ -68,7 +68,7 @@
 							<a href="/newintro" class="">서비스 소개</a>
 						</li>
 						<li class="smMoreVisible">
-							<a class="dashboardButton" href="/dashboard">기업 서비스</a>
+							<a class="dashboardButton" href="${path }/business/employerIndex.do">기업 서비스</a>
 						</li>
 						<li class="xsOnly">
 							<button type="button" class="menuButton img_ico"></button>
@@ -118,11 +118,10 @@
 			</nav>
 		</div>
 	</header>
-	
+	<!-- 
 	<div class="modal_login_enroll">
 		<div class="login_enroll" style="width: 400px;">
 			<div class="login_enroll_header">
-				<!-- logo -->
 				<span>Developers</span>
 				<button type="button">
 					<i class="fas fa-times"></i>
@@ -150,9 +149,9 @@
 				</div>
 			</div>
 		</div>
-		<div role="presentation" class="_2OQakuZmFdVjmjiQz4QMbx false"></div> <!-- 얘 왜있는지 모르겠음. -->
+		<div role="presentation" class="_2OQakuZmFdVjmjiQz4QMbx false"></div>
 	</div>
-	
+	 -->
 	<script>
 		
 	</script>
