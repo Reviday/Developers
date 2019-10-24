@@ -22,7 +22,7 @@
 	src="${pageContext.request.contextPath }/resources/js/all.js"></script>
 </head>
 <body>
-	<header class="heaer_fm"> <!-- for Member -->
+	<header id="header" class="heaer_fm"> <!-- for Member -->
 		<div class="header_nav container">
 			<nav>
 				<a href="/" class="developersLogo">
@@ -98,13 +98,12 @@
 						</ul>
 					</div>
 					<script>
-						/* 메뉴 온/오프기능  온로드 함수를 사용 */
 						window.onload=function() {
+							/* 메뉴 온/오프기능  온로드 함수를 사용 */
 							var menuBar=document.getElementsByClassName('menuButton')[0];
 							menuBar.onclick=function() {
 						        headerBar.style.display="block";
 						    }
-							
 							
 						    var headerBarExit=document.getElementsByClassName('headerBar_exit')[0];
 						    var headerBar=document.getElementsByClassName('xsMenuBar')[0];
@@ -112,46 +111,57 @@
 						    headerBarExit.onclick=function() {
 						        headerBar.style.display="none";
 						    }
+						    
+						    /* 로그인/회원가입 모달창 */
+						    var signUpButton=document.getElementsByClassName('signUpButton')[0];
+						    var $div=$('<div class="modal_login_enroll"></div>');
+						    var innerTag='<div class="login_enroll" style="width: 400px;">';
+						    innerTag+='<div class="login_enroll_header">';
+						    innerTag+='<span>Developers</span>';
+						    innerTag+='<button id="modal_close" type="button">';
+						    innerTag+='<i class="fas fa-times"></i>';
+						    innerTag+='</button>';
+						    innerTag+='</div>';
+						    innerTag+='<div id="MODAL_BODY" class="login_enroll_body">';
+						    innerTag+='<div class="le_intro">';
+						    innerTag+='<h1>친구에게 딱 맞는<br>회사를 추천해 주세요!</h1>';
+						    innerTag+='<h2>디벨로퍼는 친구에게 좋은 회사를 추천하고,<br>채용 성공시 보상 받을 수 있는 서비스입니다.</h2>';
+						    innerTag+='</div>';
+						    innerTag+='<div class="le_form">';
+						    innerTag+='<input class="le_password" type="password" autocomplete="password">';
+						    innerTag+='<input class="le_email" type="email" autocomplete="username" placeholder="이메일을 입력해 주세요." value="">';
+						    innerTag+='<button class="emailLoginButton" type="button">';
+						    innerTag+='<i class="far fa-envelope"></i>이메일로 시작하기';
+						    innerTag+='</button>';
+						    innerTag+='<div class="buttonDivider"></div>';
+						    innerTag+='<button class="facebookLoginButton" type="button">';
+						    innerTag+='<i class="fab fa-facebook-square"></i>페이스북으로 시작하기';
+						    innerTag+='</button>';
+						    innerTag+='<p>걱정마세요! 여러분의 지원 활동은 SNS에 노출되지 않습니다.<br>회원가입 시 ';
+						    innerTag+='<a class="loginModalAnchor" href="/privacy" target="_blank">개인정보 취급방침</a>과 ';
+						    innerTag+='<a class="loginModalAnchor" href="/terms" target="_blank">이용약관</a>을 확인하였으며, 동의합니다.';
+						    innerTag+='</p>';
+						    innerTag+='</div>';
+						    innerTag+='</div>';
+						    innerTag+='</div>';
+						    innerTag+='<div role="presentation" class="modal_area"></div>';
+						    $($div).html(innerTag);
+						    
+						    signUpButton.onclick=function() {
+						    	$('#header').after($div);
+						    	
+						    	var modal=$('.modal_area').click(function() {
+						    		$('.le_email').val("");
+							    	$($div).remove();
+						    	});
+						    	var closeBtb=$('#modal_close').click(function() {
+						    		$('.le_email').val("");
+							    	$($div).remove();
+						    	});
+						    };
 						}
 					</script>
 				</aside>
 			</nav>
 		</div>
 	</header>
-	<!-- 
-	<div class="modal_login_enroll">
-		<div class="login_enroll" style="width: 400px;">
-			<div class="login_enroll_header">
-				<span>Developers</span>
-				<button type="button">
-					<i class="fas fa-times"></i>
-				</button>
-			</div>
-			<div id="MODAL_BODY" class="login_enroll_body">
-				<div class="le_intro">
-					<h1>친구에게 딱 맞는<br>회사를 추천해 주세요!</h1>
-					<h2>원티드는 친구에게 좋은 회사를 추천하고,<br>채용 성공시 보상 받을 수 있는 서비스입니다.</h2>
-				</div>
-				<div class="le_form">
-					<input class="le_password" type="password" autocomplete="password">
-					<input class="le_email" type="email" autocomplete="username" placeholder="이메일을 입력해 주세요." value="">
-					<button class="emailLoginButton" type="button">
-						<i class="far fa-envelope"></i>이메일로 시작하기
-					</button>
-					<div class="buttonDivider"></div>
-					<button class="facebookLoginButton" type="button">
-						<i class="fab fa-facebook-square"></i>페이스북으로 시작하기
-					</button>
-					<p>걱정마세요! 여러분의 지원 활동은 SNS에 노출되지 않습니다.<br>회원가입 시 
-						<a class="loginModalAnchor" href="/privacy" target="_blank">개인정보 취급방침</a>과 
-						<a class="loginModalAnchor" href="/terms" target="_blank">이용약관</a>을 확인하였으며, 동의합니다.
-					</p>
-				</div>
-			</div>
-		</div>
-		<div role="presentation" class="_2OQakuZmFdVjmjiQz4QMbx false"></div>
-	</div>
-	 -->
-	<script>
-		
-	</script>
