@@ -12,9 +12,14 @@
 	href="${pageContext.request.contextPath }/resources/css/bootstrap-grid.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/css/style.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/resources/css/all.css">
 <!-- jQuery library -->
 <script type="text/javascript"
 	src="${pageContext.request.contextPath }/resources/js/jquery-3.4.1.min.js"></script>
+<!-- FontAwesome -->
+<script type="text/javascript"
+	src="${pageContext.request.contextPath }/resources/js/all.js"></script>
 </head>
 <body>
 	<header class="heaer_fm"> <!-- for Member -->
@@ -117,14 +122,10 @@
 	<div class="modal_login_enroll">
 		<div class="login_enroll" style="width: 400px;">
 			<div class="login_enroll_header">
-				<i class="icon-logo_new"></i>
-				<a href="/" class="">
-					<i class="icon-close"></i>
-					<!-- x 나가기 버튼 -->
-				</a>
+				<!-- logo -->
+				<span>Developers</span>
 				<button type="button">
-					<i class="icon-close"></i>
-					<!-- x 나가기 버튼 -->
+					<i class="fas fa-times"></i>
 				</button>
 			</div>
 			<div id="MODAL_BODY" class="login_enroll_body">
@@ -136,11 +137,11 @@
 					<input class="le_password" type="password" autocomplete="password">
 					<input class="le_email" type="email" autocomplete="username" placeholder="이메일을 입력해 주세요." value="">
 					<button class="emailLoginButton" type="button">
-						<i class="icon-sms"></i>이메일로 시작하기
+						<i class="far fa-envelope"></i>이메일로 시작하기
 					</button>
 					<div class="buttonDivider"></div>
 					<button class="facebookLoginButton" type="button">
-						<i class="icon-logo_facebook"></i>페이스북으로 시작하기
+						<i class="fab fa-facebook-square"></i>페이스북으로 시작하기
 					</button>
 					<p>걱정마세요! 여러분의 지원 활동은 SNS에 노출되지 않습니다.<br>회원가입 시 
 						<a class="loginModalAnchor" href="/privacy" target="_blank">개인정보 취급방침</a>과 

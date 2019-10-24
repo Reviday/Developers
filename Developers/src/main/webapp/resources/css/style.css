@@ -44,6 +44,7 @@ button {
     padding: 0;
     border: 0;
     background: none;
+    outline: none;
 }
 
 .img_ico {
@@ -606,7 +607,11 @@ header {
     word-wrap: break-word;
 }
 
-.login_enroll_header a, 
+.login_enroll_header span {
+	font-weight: 900;
+	font-size: 20px;
+}
+
 .login_enroll_header button {
     position: absolute;
     top: 50%;
@@ -615,6 +620,12 @@ header {
     transform: translateY(-50%);
     padding: 15px;
     line-height: 0;
+    color: #777;
+}
+
+.login_enroll_header a:hover, 
+.login_enroll_header button:hover {
+    color: #333;
 }
 
 .login_enroll_body {
@@ -735,6 +746,20 @@ header {
     z-index: 4;
     background-color: rgba(0,0,0,.5);
 }
+
+.le_form button svg {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    max-width: .875em;
+    height: 100%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    font-size: 65px;
+    padding: 0 15px;
+    border-right: 1px solid rgba(0,0,0,.1);
+}
+
 
 /********** header css End **********/
 
