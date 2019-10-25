@@ -5,7 +5,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.developers.member.model.service.MemberService;
@@ -19,9 +18,11 @@ public class MemberController {
 	private static Logger logger=LoggerFactory.getLogger(MemberController.class);
 	
 	@RequestMapping("/member/emailCheck")
-	public ModelAndView emailCheck(Member m, @RequestParam(value="memEmail") String memEmail) {
+	public ModelAndView emailCheck(Member m) {
+		logger.debug("계정 값 잘 들어오는지 :" +m.toString());
 		ModelAndView mv=new ModelAndView();
 		Member result=service.selectMemberOne(m);
+		logger.debug(result!=null?result.toString():"");
 		boolean flag=result!=null?true:false;
 		String msg="";
 		if(result!=null&&!result.getMemStatus().equals("Y")) {

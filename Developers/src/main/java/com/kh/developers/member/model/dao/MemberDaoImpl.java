@@ -10,6 +10,8 @@ public class MemberDaoImpl implements MemberDao {
 
 	@Override
 	public Member selectMemberOne(SqlSessionTemplate session, Member m) {
+		String temp = session.selectOne("member.selectMemberOne", m);
+		System.out.println("결과 테스트:" +temp);
 		return session.selectOne("member.selectMemberOne", m);
 	}
 }
