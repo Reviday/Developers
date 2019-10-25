@@ -15,14 +15,16 @@
 		<!-- XMLLayout -->
 		<!-- <layout class="org.apache.log4j.xml.XMLLayout"/> -->
 	</appender>
+	<!-- 
 	<appender class="org.apache.log4j.DailyRollingFileAppender" name="fileLogger">
-		<param name="file" value="C://Users//user2//log//spring.log"/>
+		<param name="file" value="지정경로"/>
 		<param name="Append" value="true"/>
 		<param name="dataPattern" value=".yyyy-MM-dd"/>
 		<layout class="org.apache.log4j.PatternLayout">
 			<param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss}] %-5p %l - %m%n"/>
 		</layout>
 	</appender>
+	 -->
 	<!--  DB로그를 출력하기 위한 appender등록  -->
 	<appender name="sqlLogger" class="org.apache.log4j.ConsoleAppender">
 		<layout class="org.apache.log4j.PatternLayout">
