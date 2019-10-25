@@ -30,7 +30,8 @@
 	
 	<!-- jsonView 연결해주는 resolver 등록 -->
 	<beans:bean id="viewResolver" class="org.springframework.web.servlet.view.BeanNameViewResolver">
-		<beans:property name="order" value="1"/> <!-- resolver 우선순위 빠르게 -->
-	</beans:bean>
+      <beans:property name="order" value="1"/><!-- 리졸버 우선순위빠르게 -->
+   </beans:bean>
+   <beans:bean id="jsonView" class="net.sf.json.spring.web.servlet.view.JsonView"/>
 	
 </beans:beans>

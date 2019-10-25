@@ -190,11 +190,11 @@
 				    	        	});
 				    	        	
 				    	        	
-				    	        	$('.login_enroll_header span').text('비밀번호 입력');
+				    	        	/* $('.login_enroll_header span').text('비밀번호 입력');
 				    	        	$('.le_intro').remove();
 				    	        	$('.le_form').remove();
 				    	        	/* 패스워드 모달창 */
-								    var innerPwTag='<div class="le_pwForm">';
+								    /*var innerPwTag='<div class="le_pwForm">';
 				    	        	innerPwTag+='<input id="user-text-field" type="email" autocomplete="username" value="';
 				    	        	innerPwTag+=userEmail.val();
 				    	        	innerPwTag+='" style="display: none;">';
@@ -205,7 +205,7 @@
 				    	        	
 				    	        	$('#MODAL_BODY').html(innerPwTag);
 				    	        	
-				    	        	return true;
+				    	        	return true; */
 				    	        }
 						     });
 					    }
