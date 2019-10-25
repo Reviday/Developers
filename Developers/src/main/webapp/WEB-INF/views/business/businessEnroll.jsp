@@ -41,9 +41,9 @@
 			    <br/>
 			    웹사이트 주소 <input type="text" class="form-control" name="busWebsite" placeholder="URL 입력" required>
 			    <br/>
-			    뉴스 검색 키워드 (키워드는 최대 3개까지 입력 가능합니다.) <input type="text" class="form-control" name="searchKeywords" placeholder="서비스 명 혹은 브랜드 명 입력" required>
+			    뉴스 검색 키워드 (키워드는 최대 3개까지 입력 가능합니다.) <input type="text" class="form-control" name="searchKeywords" placeholder="서비스 명 혹은 브랜드 명 입력" >
 			    <br/>
-			  	가입 경로 (추천인 혹은 프로모션 코드 등을 입력해 주세요.) <input type="text" class="form-control" name="regPath" placeholder="코드/ 추천인 연락처 입력" required>
+			  	가입 경로 (추천인 혹은 프로모션 코드 등을 입력해 주세요.) <input type="text" class="form-control" name="regPath" placeholder="코드/ 추천인 연락처 입력" >
 	      </div>
 	      <div>
 	      	<hr>

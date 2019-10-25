@@ -22,6 +22,6 @@ public class Business {
 	private String busEmail;
 	private String busPhone;
 	private String busWebsite;
-	private String searchKeywords; 
-	private String[] regPath;
+	private String[] searchKeywords; 
+	private String regPath;
 }

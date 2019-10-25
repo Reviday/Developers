@@ -4,7 +4,7 @@
 	<insert id="insertEmployer" parameterType="map" >
 		INSERT INTO USERTEMP VALUES (#{userName}, #{userPhone}, #{userEmail}, #{userPassword}, DEFAULT)
 	</insert>
-	<insert id="insertBusiness" parameterType="com.kh.developers.business.model.vo.Business">
-		INSERT INTO BUSINESS_INFO VALUES (BUSSEQ.NEXTVAL,#{busName},#{busCountry},#{busArea},#{busAdress},#{busRegNum},#{busIncome},#{busIndustrial},#{busTotalEmp},#{busIntroduce},#{busEstablishment},#{busEmail},#{busPhone},#{busWebsite},#{searchKeywords},#{regPath},DEFAULT)
+	<insert id="insertBusiness" parameterType="bus">
+		INSERT INTO BUSINESS_INFO VALUES (BUSSEQ.NEXTVAL,#{busName},#{busCountry},#{busArea},#{busAdress},#{busRegNum},#{busIncome},#{busIndustrial},#{busTotalEmp},#{busIntroduce},#{busEstablishment},#{busEmail},#{busPhone},#{busWebsite},#{searchKeywords, typeHandler=strArray},#{regPath},DEFAULT)
 	</insert>
 </mapper>
