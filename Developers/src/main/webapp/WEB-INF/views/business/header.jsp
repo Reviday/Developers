@@ -39,7 +39,7 @@
 
 <body>
 	<header class="header_fe"><!-- for Employers -->
-		<c:if test="${empty loginMember}">
+		<c:if test="${not empty loginMember}">
 			<div class="header_nav">
 				<nav class="nav_style_l">
 					<ul class="nav_us">
@@ -59,7 +59,7 @@
 								<a class="as2 as3" data-toggle="modal" 
 								data-target="#empEnrollModal">관리자 가입</a>
 							</li>
-							<button class="home_button emp_Btn">
+							<button class="home_button emp_Btn" onclick="location.href='${path}'">
 								디벨로퍼 홈
 							</button>
 						</ul>
@@ -86,7 +86,7 @@
 				</div>
 			</div>
 		</c:if>
-		<c:if test="${not empty loginMember}">
+		<c:if test="${empty loginMember}">
 			<div class="header_nav">
 				<nav class="nav_style_l">
 					<ul class="nav_us">
@@ -140,24 +140,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="hidden-xs">
-				<nav class="navbar navbar-inverse">
-					<div class="container-fluid">
-						<div class="navbar-header">
-							<a class="navbar-brand" href="#">WebSiteName</a>
-						</div>
-						<ul class="nav navbar-nav">
-							<li class="active"><a href="#">Home</a></li>
-							<li><a href="#">Page 1</a></li>
-							<li><a href="#">Page 2</a></li>
-							<li><a href="#">Page 3</a></li>
-						</ul>
-					</div>
-				</nav>
-			</div>
 		</c:if>
-
-		
 		<!-- 회원가입 모달 창 -->
 	<div class="modal fade" id="empEnrollModal" tabindex="-1" role="dialog" 
 	aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -171,15 +154,15 @@
 	      </div>
           <form action="${pageContext.request.contextPath}/business/empEnroll.do" method="post">
 	      <div class="modal-body">
-			    <input type="text" class="form-control" name="userName" placeholder="담당자 성함" required>
+			    <input type="text" class="form-control" name="memName" placeholder="담당자 성함" required>
 			    <br />
-			    <input type="text" class="form-control" name="userDepartment" placeholder="직책(부서)" required>
+			    <input type="text" class="form-control" name="memDepartment" placeholder="직책(부서)">
 			    <br />
-			    <input type="text" class="form-control" name="userPhone" placeholder="연락처" required>
+			    <input type="text" class="form-control" name="memPhone" placeholder="연락처" required>
 			    <hr>
-			    <input type="text" class="form-control" name="userEmail" placeholder="회사 이메일(로그인 아이디로 사용)" required>
+			    <input type="text" class="form-control" name="memEmail" placeholder="회사 이메일(로그인 아이디로 사용)" required>
 			    <br />
-			    <input type="password" class="form-control" name="userPassword" placeholder="비밀번호" required>
+			    <input type="password" class="form-control" name="memPassword" placeholder="비밀번호" required>
 	      </div>
 	      <div class="modal-footer">
 	        <button type="submit" class="btn btn-outline-primary" >관리자 계정 생성</button>
@@ -210,9 +193,9 @@
 	      </div>
           <form action="${pageContext.request.contextPath}/business/empLogin.do" method="post">
 	      <div class="modal-body">
-			    <input type="text" class="form-control" name="chargeEmail" placeholder="회사 이메일(로그인 아이디로 사용)" required>
+			    <input type="text" class="form-control" name="memEmail" placeholder="회사 이메일(로그인 아이디로 사용)" required>
 			    <br />
-			    <input type="password" class="form-control" name="chargePassword" placeholder="비밀번호" required>
+			    <input type="password" class="form-control" name="memPassword" placeholder="비밀번호" required>
 	      </div>
 	      <div>
 	        <button type="submit" class="btn btn-outline-primary" >로그인</button>
