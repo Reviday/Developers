@@ -9,7 +9,7 @@ import com.kh.developers.member.model.service.MemberService;
 import com.kh.developers.member.model.vo.Member;
 
 @Controller
-public class MemberContoller {
+public class MemberController {
 
 	@Autowired
 	private MemberService service;
