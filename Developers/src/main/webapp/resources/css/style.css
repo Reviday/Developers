@@ -684,6 +684,35 @@ header {
     margin-top: 20px;
 }
 
+.le_pwForm {
+	text-align: center;
+}
+
+
+.le_pwForm button {
+   	width: 100%;
+    padding: 25px 20px;
+    border-radius: 3px;
+    margin-top: 20px;
+    line-height: 0;
+    color: #fff;
+    background-color: #258bf7;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.le_pwForm .forgetPasswordButton {
+    width: auto;
+    padding: 0;
+    margin: 15px 0 0;
+    line-height: 1;
+    color: #258bf7;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    background: none;
+}
+
 .le_form p .loginModalAnchor {
     color: #258bf7;
     text-decoration: underline;
@@ -705,7 +734,7 @@ header {
     border: 1px solid transparent;
 }
 
-.login_enroll_body .le_form .le_email {
+.login_enroll_body .le_form input {
 	-webkit-box-shadow: none;
     box-shadow: none;
     outline: none;
@@ -715,6 +744,23 @@ header {
     color: #333;
     font-size: 16px;
     margin-bottom: 0;
+    padding: 13px 15px;
+    border-radius: 3px;
+    border: 1px solid #dbdbdb;
+    width: 100%;
+}
+
+.login_enroll_body .le_pwForm input {
+	-webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    outline: none;
+    resize: none;
+    color: #333;
+    font-size: 16px;
+    margin-top: 0;
     padding: 13px 15px;
     border-radius: 3px;
     border: 1px solid #dbdbdb;
@@ -731,6 +777,16 @@ header {
 .le_form button.emailLoginButton {
     background-color: #258bf7;
     margin-bottom: 20px;
+}
+
+.le_form .errorMessage {
+    margin: 0;
+    padding: 5px;
+    line-height: 1;
+    font-size: 12px;
+    font-weight: 600;
+    color: #fe415c;
+    text-align: left;
 }
 
 .le_form button.facebookLoginButton {

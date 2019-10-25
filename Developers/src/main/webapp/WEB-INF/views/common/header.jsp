@@ -97,8 +97,11 @@
 								href="/logout">로그아웃</a></li>
 						</ul>
 					</div>
+					
 					<script>
+						var path='${path}';
 						window.onload=function() {
+							
 							/* 메뉴 온/오프기능  온로드 함수를 사용 */
 							var menuBar=document.getElementsByClassName('menuButton')[0];
 							menuBar.onclick=function() {
@@ -111,55 +114,104 @@
 						    headerBarExit.onclick=function() {
 						        headerBar.style.display="none";
 						    }
-						    
-						    /* 로그인/회원가입 모달창 */
-						    var signUpButton=document.getElementsByClassName('signUpButton')[0];
-						    var $div=$('<div class="modal_login_enroll"></div>');
-						    var innerTag='<div class="login_enroll" style="width: 400px;">';
-						    innerTag+='<div class="login_enroll_header">';
-						    innerTag+='<span>Developers</span>';
-						    innerTag+='<button id="modal_close" type="button">';
-						    innerTag+='<i class="fas fa-times"></i>';
-						    innerTag+='</button>';
-						    innerTag+='</div>';
-						    innerTag+='<div id="MODAL_BODY" class="login_enroll_body">';
-						    innerTag+='<div class="le_intro">';
-						    innerTag+='<h1>친구에게 딱 맞는<br>회사를 추천해 주세요!</h1>';
-						    innerTag+='<h2>디벨로퍼는 친구에게 좋은 회사를 추천하고,<br>채용 성공시 보상 받을 수 있는 서비스입니다.</h2>';
-						    innerTag+='</div>';
-						    innerTag+='<div class="le_form">';
-						    innerTag+='<input class="le_password" type="password" autocomplete="password">';
-						    innerTag+='<input class="le_email" type="email" autocomplete="username" placeholder="이메일을 입력해 주세요." value="">';
-						    innerTag+='<button class="emailLoginButton" type="button">';
-						    innerTag+='<i class="far fa-envelope"></i>이메일로 시작하기';
-						    innerTag+='</button>';
-						    innerTag+='<div class="buttonDivider"></div>';
-						    innerTag+='<button class="facebookLoginButton" type="button">';
-						    innerTag+='<i class="fab fa-facebook-square"></i>페이스북으로 시작하기';
-						    innerTag+='</button>';
-						    innerTag+='<p>걱정마세요! 여러분의 지원 활동은 SNS에 노출되지 않습니다.<br>회원가입 시 ';
-						    innerTag+='<a class="loginModalAnchor" href="/privacy" target="_blank">개인정보 취급방침</a>과 ';
-						    innerTag+='<a class="loginModalAnchor" href="/terms" target="_blank">이용약관</a>을 확인하였으며, 동의합니다.';
-						    innerTag+='</p>';
-						    innerTag+='</div>';
-						    innerTag+='</div>';
-						    innerTag+='</div>';
-						    innerTag+='<div role="presentation" class="modal_area"></div>';
-						    $($div).html(innerTag);
-						    
-						    signUpButton.onclick=function() {
-						    	$('#header').after($div);
 						    	
-						    	var modal=$('.modal_area').click(function() {
-						    		$('.le_email').val("");
-							    	$($div).remove();
-						    	});
-						    	var closeBtb=$('#modal_close').click(function() {
-						    		$('.le_email').val("");
-							    	$($div).remove();
-						    	});
-						    };
+						    
 						}
+						/* 로그인/회원가입 모달창 */
+					    var signUpButton=document.getElementsByClassName('signUpButton')[0];
+					    var $div=$('<div class="modal_login_enroll"></div>');
+					    var innerTag='<div class="login_enroll" style="width: 400px;">';
+					    innerTag+='<div class="login_enroll_header">';
+					    innerTag+='<span>Developers</span>';
+					    innerTag+='<button id="modal_close" type="button">';
+					    innerTag+='<i class="fas fa-times"></i>';
+					    innerTag+='</button>';
+					    innerTag+='</div>';
+					    innerTag+='<div id="MODAL_BODY" class="login_enroll_body">';
+					    innerTag+='<div class="le_intro">';
+					    innerTag+='<h1>친구에게 딱 맞는<br>회사를 추천해 주세요!</h1>';
+					    innerTag+='<h2>디벨로퍼는 친구에게 좋은 회사를 추천하고,<br>채용 성공시 보상 받을 수 있는 서비스입니다.</h2>';
+					    innerTag+='</div>';
+					    innerTag+='<div class="le_form">';
+					    innerTag+='<input class="le_password" type="password" autocomplete="password">';
+					    innerTag+='<input class="le_email" type="email" autocomplete="username" placeholder="이메일을 입력해 주세요." value="">';
+					    innerTag+='<button class="emailLoginButton" type="button">';
+					    innerTag+='<i class="far fa-envelope"></i>이메일로 시작하기';
+					    innerTag+='</button>';
+					    innerTag+='<div class="buttonDivider"></div>';
+					    innerTag+='<button class="facebookLoginButton" type="button">';
+					    innerTag+='<i class="fab fa-facebook-square"></i>페이스북으로 시작하기';
+					    innerTag+='</button>';
+					    innerTag+='<p>걱정마세요! 여러분의 지원 활동은 SNS에 노출되지 않습니다.<br>회원가입 시 ';
+					    innerTag+='<a class="loginModalAnchor" href="/privacy" target="_blank">개인정보 취급방침</a>과 ';
+					    innerTag+='<a class="loginModalAnchor" href="/terms" target="_blank">이용약관</a>을 확인하였으며, 동의합니다.';
+					    innerTag+='</p>';
+					    innerTag+='</div>';
+					    innerTag+='</div>';
+					    innerTag+='</div>';
+					    innerTag+='<div role="presentation" class="modal_area"></div>';
+					    
+					    var errorMessage='<p class="errorMessage">유효한 이메일을 적어주세요.</p>';
+					    signUpButton.onclick=function() {
+					    	$($div).html(innerTag);
+					    	$('#header').after($div);
+					    	var userEmail=$('.le_email');
+					    	
+					    	$('.modal_area').on('click',(function() {
+					    		userEmail.val("");
+					    		userEmail.css("border","1px solid #dbdbdb");
+					    		$('.errorMessage').remove();
+						    	$($div).remove();
+					    	}));
+					    	$('#modal_close').on('click',(function() {
+					    		userEmail.val("");
+					    		userEmail.css("border","1px solid #dbdbdb");
+					    		$('.errorMessage').remove();
+						    	$($div).remove();
+					    	}));
+					    	
+					    	var emailLoginButton=$('.emailLoginButton').click(function() {
+					    		 // 정규식 - 이메일 유효성 검사
+					            var regEmail = /([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+					    		
+					    		if( !userEmail.val() || !regEmail.test(userEmail.val())){
+					    			 userEmail.css('border','1px solid red');
+					    			 userEmail.after(errorMessage);
+					    			 userEmail.focus();
+				    	            return false;
+				    	        } else {
+				    	        	$.ajax({
+				    	        		url:path+'/member/emailCheck',
+				    	        		type:'POST',
+				    	        		data:{'memEmail':userEmail.val()},
+				    	        		success: function(result) {
+				    	        			console.log(result);
+				    	        		}
+				    	        	});
+				    	        	
+				    	        	
+				    	        	$('.login_enroll_header span').text('비밀번호 입력');
+				    	        	$('.le_intro').remove();
+				    	        	$('.le_form').remove();
+				    	        	/* 패스워드 모달창 */
+								    var innerPwTag='<div class="le_pwForm">';
+				    	        	innerPwTag+='<input id="user-text-field" type="email" autocomplete="username" value="';
+				    	        	innerPwTag+=userEmail.val();
+				    	        	innerPwTag+='" style="display: none;">';
+				    	        	innerPwTag+='<input id="password-text-field" type="password" autocomplete="current-password" placeholder="비밀번호" value="">';
+				    	        	innerPwTag+='<button type="button">로그인</button>';
+				    	        	innerPwTag+='<button type="button" class="forgetPasswordButton">비밀번호 초기화/변경</button>';
+				    	        	innerPwTag+='</div>';
+				    	        	
+				    	        	$('#MODAL_BODY').html(innerPwTag);
+				    	        	
+				    	        	return true;
+				    	        }
+						     });
+					    }
+					    	
+				    	
+				    	
 					</script>
 				</aside>
 			</nav>
