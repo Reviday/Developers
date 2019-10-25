@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.developers.business.model.dao.BusinessDao;
+import com.kh.developers.business.model.vo.Business;
 
 @Service
 public class BusinessServiceImpl implements BusinessService {
@@ -21,6 +22,12 @@ public class BusinessServiceImpl implements BusinessService {
 	public int insertEmployer(Map map) {
 		
 		return dao.insertEmployer(session, map);
+	}
+	
+	@Override
+	public int insertBusiness(Business bus) {
+
+		return dao.insertBusiness(session, bus);
 	}
 
 }

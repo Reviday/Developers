@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kh.developers.business.model.service.BusinessService;
+import com.kh.developers.business.model.vo.Business;
 
 @Controller
 public class BusinessController {
@@ -29,25 +30,27 @@ public class BusinessController {
 	}
 	
 	@RequestMapping("/business/empEnroll.do")
-	public String insertEmployer(
+	public String empEnroll(
 			@RequestParam Map map,
 			Model model
 			) {
 //		map.setChargePassword(pwEncoder.encode(map.getChargePassword()));
 		logger.debug(""+map);
-		logger.debug(""+map.get("busName"));
 		int result=service.insertEmployer(map);
 		logger.debug(""+result);
 		
 		return "business/businessEnroll";
 	}
-//	
-//	@RequestMapping("/business/AddiBusEnroll.do")
-//	public String addiInsertCharger() {
-//		
-//		
-//		return "/";
-//	}
+	
+	@RequestMapping("/business/businessEnroll.do")
+	public String businessEnroll(
+			@RequestParam Business bus
+			) {
+		logger.debug(""+bus);
+		int result=service.insertBusiness(bus);
+		
+		return "/business/businessCertify";
+	}
 	
 	
 
