@@ -2,7 +2,8 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
 <configuration>
 	<typeAliases>
-				<typeAlias type="com.kh.developers.common.type.StringArrayHandler" alias="strArray"/>
-				<typeAlias type="com.kh.developers.business.model.vo.Business" alias="bus"/>
+		<typeAlias type="com.kh.developers.member.model.vo.Member" alias="member"/>
+		<typeAlias type="com.kh.developers.common.type.StringArrayHandler" alias="strArray"/>
+		<typeAlias type="com.kh.developers.business.model.vo.Business" alias="bus"/>
 	</typeAliases>
 </configuration>
