@@ -1,7 +1,5 @@
 package com.kh.developers.business.controller;
 
-import java.util.Map;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kh.developers.business.model.service.BusinessService;
 import com.kh.developers.business.model.vo.Business;
+import com.kh.developers.member.model.vo.Member;
 
 @Controller
 public class BusinessController {
@@ -24,6 +23,9 @@ public class BusinessController {
 	@Autowired
 	private BusinessService service;
 	
+//	@Autowired
+//	private MemberService memService;
+	
 	@RequestMapping("/business/employerIndex.do")
 	public String empPage(){
 		return "business/employerIndex";
@@ -31,13 +33,14 @@ public class BusinessController {
 	
 	@RequestMapping("/business/empEnroll.do")
 	public String empEnroll(
-			@RequestParam Map map,
+//			@RequestParam Member m,
 			Model model
 			) {
-//		map.setChargePassword(pwEncoder.encode(map.getChargePassword()));
-		logger.debug(""+map);
-		int result=service.insertEmployer(map);
-		logger.debug(""+result);
+//		m.setMemPassword(pwEncoder.encode(m.getMemPassword()));
+//		logger.debug(""+m.getMemEmail());
+//		logger.debug(""+m);
+//		int result=m.insertEmployer(m);
+//		logger.debug(""+result);
 		
 		return "business/businessEnroll";
 	}
@@ -48,9 +51,19 @@ public class BusinessController {
 			) {
 		logger.debug(""+bus);
 		int result=service.insertBusiness(bus);
+		logger.debug("결과"+result);
 		
 		return "/business/businessCertify";
 	}
+	
+//	@RequestMapping("/business/empLogin.do")
+//	public String empLogin(
+//			@RequestParam Member m
+//			) {
+//		logger.debug(""+m);
+//		int result=memService.selectMemberOne(m)
+//	}
+	
 	
 	
 

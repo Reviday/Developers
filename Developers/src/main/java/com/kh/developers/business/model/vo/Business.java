@@ -1,5 +1,7 @@
 package com.kh.developers.business.model.vo;
 
+import java.sql.Date;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,12 +10,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class Business {
-
+	
+	private String busNo;
 	private String busName;
 	private String busCountry;
 	private String busArea;
 	private String busAddress;
-	private String busRegNum;
+	private String busRegNo;
 	private String busIncome;
 	private String busIndustrial;
 	private String busTotalEmp;
@@ -24,4 +27,14 @@ public class Business {
 	private String busWebsite;
 	private String[] searchKeywords; 
 	private String regPath;
+	private Date busEnrollDate;
+	
+	//logo & images
+	private String busLogo;
+	private String[] images;
+	
+	//관리자 승인 여부 
+	private String busStatus;
+	
+	
 }
