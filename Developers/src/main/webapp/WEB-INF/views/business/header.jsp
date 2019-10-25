@@ -27,54 +27,136 @@
 	
 	
 </head>
+
+<style>
+	#logoImg{
+		margin-top:6px;
+		width:35px;
+		height:35px;
+	}
+</style>
+
+
 <body>
 	<header class="header_fe"><!-- for Employers -->
-		<div class="header_nav">
-			<nav class="nav_style_l">
-				<ul class="nav_us">
-					<li class="ls1 ls2">
-						<a aria-current="page" class="as1" href="#">Developers for Employers</a>
-					</li>
-				</ul>
-			</nav>
-			<div class="hidden-xs">
-				<nav class="nav_style_r">
+		<c:if test="${empty loginMember}">
+			<div class="header_nav">
+				<nav class="nav_style_l">
 					<ul class="nav_us">
-						<li class="ls1 ls3">
-							<a class="as2" data-toggle="modal" 
-							data-target="#empLoginModal">채용담당자 로그인</a>
-						</li>
-						<li class="ls1 ls3">
-							<a class="as2 as3" data-toggle="modal" 
-							data-target="#empEnrollModal">관리자 가입</a>
-						</li>
-						<button class="home_button emp_Btn">
-							디벨로퍼 홈
-						</button>
-					</ul>
-				</nav>
-			</div>
-			<div class="visible-xs">
-				<nav class="nav_style_r">
-					<ul class="nav_us">
-						<li class="menu-icon bchIA">
-							<a class="NavItem__StyledA-sc-1731p8k-1 dbSkqw">
-								<button type="button" class="menuButton img_ico"></button>
-							</a>
+						<li class="ls1 ls2">
+							<a aria-current="page" class="as1" href="#">Developers Black for Employers</a>
 						</li>
 					</ul>
 				</nav>
-				<div class="mobile-menu">
-					<ul class="nav_us uwQaB">
-						<li class="ls4"><a class="as2" type="submit" 
-								data-toggle="modal" data-target="#empLoginModal">채용담당자 로그인</a></li>
-						<li class="ls4 active"><a class="as2 as3" type="submit"
-							 data-toggle="modal" data-target="#empEnrollModal">관리자 가입</a></li>
-					</ul>
+				<div class="hidden-xs">
+					<nav class="nav_style_r">
+						<ul class="nav_us">
+							<li class="ls1 ls3">
+								<a class="as2" data-toggle="modal" 
+								data-target="#empLoginModal">채용담당자 로그인</a>
+							</li>
+							<li class="ls1 ls3">
+								<a class="as2 as3" data-toggle="modal" 
+								data-target="#empEnrollModal">관리자 가입</a>
+							</li>
+							<button class="home_button emp_Btn">
+								디벨로퍼 홈
+							</button>
+						</ul>
+					</nav>
+				</div>
+				<div class="visible-xs">
+					<nav class="nav_style_r">
+						<ul class="nav_us">
+							<li class="menu-icon bchIA">
+								<a class="NavItem__StyledA-sc-1731p8k-1 dbSkqw">
+									<button type="button" class="menuButton img_ico"></button>
+								</a>
+							</li>
+						</ul>
+					</nav>
+					<div class="mobile-menu">
+						<ul class="nav_us uwQaB">
+							<li class="ls4"><a class="as2" type="submit" 
+									data-toggle="modal" data-target="#empLoginModal">채용담당자 로그인</a></li>
+							<li class="ls4 active"><a class="as2 as3" type="submit"
+								data-toggle="modal" data-target="#empEnrollModal">관리자 가입</a></li>
+						</ul>
+					</div>
 				</div>
 			</div>
-		</div>
-		
+		</c:if>
+		<c:if test="${not empty loginMember}">
+			<div class="header_nav">
+				<nav class="nav_style_l">
+					<ul class="nav_us">
+						<li class="ls1 ls2" id="logo">
+							<label for="logoFile" style="cursor: pointer;">
+								<img id="logoImg" src="https://images.fastcompany.net/image/upload/w_596,c_limit,q_auto:best,f_auto/fc/3034007-inline-i-applelogo.jpg"/>
+								<form id="logoFrm" name="logoFrm" enctype="multipart/form-data" method="POST">
+									<input type="file" accept="image/*" id="logoFile" name="logoFile" style="display:none"/>
+								</form>
+							</label>
+						</li>
+						<li class="ls1 ls2">
+							<a aria-current="page" class="as1" href="#">KH정보교육원</a>
+						</li>
+					</ul>
+				</nav>
+				<div class="hidden-xs">
+					<nav class="nav_style_r">
+						<ul class="nav_us">
+							<li class="ls1 ls3">
+								<a class="as2" data-toggle="modal" 
+								data-target="#empLoginModal">채용담당자 로그인</a>
+							</li>
+							<li class="ls1 ls3">
+								<a class="as2 as3" data-toggle="modal" 
+								data-target="#empEnrollModal">관리자 가입</a>
+							</li>
+							<button class="home_button emp_Btn" onclick="location.href='${path}'">
+								디벨로퍼 홈
+							</button>
+						</ul>
+					</nav>
+				</div>
+				<div class="visible-xs">
+					<nav class="nav_style_r">
+						<ul class="nav_us">
+							<li class="menu-icon bchIA">
+								<a class="NavItem__StyledA-sc-1731p8k-1 dbSkqw">
+									<button type="button" class="menuButton img_ico"></button>
+								</a>
+							</li>
+						</ul>
+					</nav>
+					<div class="mobile-menu">
+						<ul class="nav_us uwQaB">
+							<li class="ls4"><a class="as2" type="submit" 
+									data-toggle="modal" data-target="#empLoginModal">채용담당자 로그인</a></li>
+							<li class="ls4 active"><a class="as2 as3" type="submit"
+								data-toggle="modal" data-target="#empEnrollModal">관리자 가입</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="hidden-xs">
+				<nav class="navbar navbar-inverse">
+					<div class="container-fluid">
+						<div class="navbar-header">
+							<a class="navbar-brand" href="#">WebSiteName</a>
+						</div>
+						<ul class="nav navbar-nav">
+							<li class="active"><a href="#">Home</a></li>
+							<li><a href="#">Page 1</a></li>
+							<li><a href="#">Page 2</a></li>
+							<li><a href="#">Page 3</a></li>
+						</ul>
+					</div>
+				</nav>
+			</div>
+		</c:if>
+
 		
 		<!-- 회원가입 모달 창 -->
 	<div class="modal fade" id="empEnrollModal" tabindex="-1" role="dialog" 
@@ -166,4 +248,24 @@
 		    	}
 		    }
 		}
+
+		$(function(){
+			//로고 클릭 이벤트
+			$("#logoFile").on("change",function(){
+				var frm=new FormData($("#logoFrm")[0]);
+				$.ajax({
+					url:"${path}/business/logoChange",
+					data:frm,
+					type:"post",
+					processData:false,
+              	    contentType:false,
+					success:function(data){
+						console.log(data.logo);
+						$("#logoImg").attr("src","${path}"+data.logo);
+					}
+
+				})
+			});
+		
+		});
 	</script>
