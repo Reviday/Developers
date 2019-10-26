@@ -644,7 +644,7 @@ header {
 }
 
 .login_enroll_body .le_intro h2 {
-    font-size: 18px;
+    font-size: 15px;
     color: #777;
 }
 
@@ -684,12 +684,17 @@ header {
     margin-top: 20px;
 }
 
-.le_pwForm {
+.le_pwForm,
+.le_pcForm {
 	text-align: center;
 }
 
+.le_pcForm :first-child {
+    margin: 0;
+}
 
-.le_pwForm button {
+.le_pwForm button,
+.le_pcForm button {
    	width: 100%;
     padding: 25px 20px;
     border-radius: 3px;
@@ -767,6 +772,23 @@ header {
     width: 100%;
 }
 
+.login_enroll_body .le_pcForm input {
+	-webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    outline: none;
+    resize: none;
+    color: #333;
+    font-size: 16px;
+    margin-top: 20px;
+    padding: 13px 15px;
+    border-radius: 3px;
+    border: 1px solid #dbdbdb;
+    width: 100%;
+}
+
 .login_enroll_body .le_form .le_password, 
 .login_enroll_body .le_form .le_email {
     -webkit-appearance: none;
@@ -815,6 +837,7 @@ header {
     padding: 0 15px;
     border-right: 1px solid rgba(0,0,0,.1);
 }
+
 
 
 /********** header css End **********/

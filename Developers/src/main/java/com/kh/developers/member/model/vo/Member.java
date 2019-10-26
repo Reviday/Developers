@@ -18,10 +18,10 @@ public class Member {
 	
 	/*회원 가입 완료 단계*/
 	private String memPassword; // 회원 psssword
-	private String name; // 회원 이름
+	private String memName; // 회원 이름
 	
 	/*회원 인증*/
-	private String phone; // 회원 전화번호
+	private String memPhone; // 회원 전화번호
 	private int memPoint; // 회원 포인트
 	
 	//이하는 부가정보

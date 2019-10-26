@@ -17,14 +17,18 @@ public class MemberController {
 	private MemberService service;
 	private static Logger logger=LoggerFactory.getLogger(MemberController.class);
 	
+	@RequestMapping("/member/login.do") 
+	public String login(Member m) {
+		return null;
+	}
+	
 	@RequestMapping("/member/emailCheck")
 	public ModelAndView emailCheck(Member m) {
-		logger.debug("계정 값 잘 들어오는지 :" +m.toString());
 		ModelAndView mv=new ModelAndView();
 		Member result=service.selectMemberOne(m);
 		logger.debug(result!=null?result.toString():"");
 		boolean flag=result!=null?true:false;
-		String msg="";
+		String msg=""; 
 		if(result!=null&&!result.getMemStatus().equals("Y")) {
 			flag=false;
 			msg="현재 사용 불가능한 계정입니다. 관리자에게 문의바랍니다.";

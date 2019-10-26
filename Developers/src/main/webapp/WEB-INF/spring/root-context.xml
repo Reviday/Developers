@@ -1,19 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
-	
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xmlns:tx="http://www.springframework.org/schema/tx"
+   xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+      http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+      http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+   
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<!-- DB 설정하기! with mybatis -->	
-	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
-		<property name="url" value="jdbc:oracle:thin:@rclass.iptime.org:1521:xe"/>
-		<property name="username" value="developers"/>
-		<property name="password" value="developers"/>
-	</bean>
+	<bean id="realDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+      <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+      <property name="url" value="jdbc:oracle:thin:@rclass.iptime.org:1521:xe"/>
+      <property name="username" value="developers"/>
+      <property name="password" value="developers"/>
+   </bean>
 	
+	<!-- log를 출력하기 위한 proxy 객체를 등록 -->
+   <bean id="dataSource" class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
+      <constructor-arg ref="realDataSource"/>
+      <property name="logFormatter">
+         <bean class="net.sf.log4jdbc.tools.Log4JdbcCustomFormatter">
+            <property name="loggingType" value="MULTI_LINE"/>
+            <property name="sqlPrefix" value="[SQL]"/>
+         </bean>
+      </property>      
+   </bean>
 	
-		<!-- mybatis에서 이용하는 SessionFactory 만들기 -->
+	<!-- mybatis에서 이용하는 SessionFactory 만들기 -->
 	<bean id="sessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"/>
 		<property name="mapperLocations" value="classpath*:mapper/**/*.xml"/>
@@ -23,4 +36,22 @@
 	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg index="0" ref="sessionFactoryBean"/>
 	</bean>
+	
+	<!-- 트렌잭션 매니저 등록  -->
+    <bean id="transactionManager"
+      class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+      <property name="dataSource" ref="dataSource"/>
+    </bean>
+    <!-- <tx:annotation-driven transaction-manager="transactionManager"/> -->
+    
+    <!-- 선언적 방식의 트랜잭션 처리 -->
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+       <tx:attributes>
+          <tx:method name="insert*" rollback-for="Exception"/> <!-- insert로 시작하는 모든 메소드 -->
+          <tx:method name="update*"/>
+          <tx:method name="delete*"/>
+       </tx:attributes>
+    </tx:advice>
+	
+	
 </beans>
