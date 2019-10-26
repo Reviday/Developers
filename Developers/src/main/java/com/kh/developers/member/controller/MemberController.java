@@ -3,6 +3,7 @@ package com.kh.developers.member.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -15,11 +16,33 @@ public class MemberController {
 
 	@Autowired
 	private MemberService service;
+	@Autowired
+	private BCryptPasswordEncoder pwEncoder;
+	
 	private static Logger logger=LoggerFactory.getLogger(MemberController.class);
 	
 	@RequestMapping("/member/login.do") 
-	public String login(Member m) {
-		return null;
+	public ModelAndView login(Member m) {
+		ModelAndView mv=new ModelAndView();
+		Member result=service.selectMemberOne(m);
+		boolean flag=false;
+		if(result != null) {
+			if(pwEncoder.matches(m.getMemPassword(), result.getMemPassword())) {
+				logger.debug(result.getMemPassword());
+				mv.addObject("loginMember",result);
+				mv.setViewName("/");
+				flag=true;
+			} else {
+				mv.setViewName("jsonView");
+			}
+		} else {
+			mv.setViewName("jsonView");
+		}
+		if(!flag) {
+			mv.addObject("flag",flag);
+		}
+		logger.debug(m.getMemPassword());
+		return mv;
 	}
 	
 	@RequestMapping("/member/emailCheck")

@@ -7,7 +7,7 @@
 
 	<!-- 선언적 방식으로 AOP 적용하기 -->
 	<!-- aspect로 활용할 객체 bean 으로 등록  -->
-	<bean id="aspectTest" class="com.kh.spring.common.aspect.AspectTest"/>
+	<!-- <bean id="aspectTest" class="com.kh.spring.common.aspect.AspectTest"/> -->
 	
 	<!-- aop 설정하기 -->
 <!-- 	<aop:config>
