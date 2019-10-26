@@ -194,12 +194,28 @@ header {
 }
 
 .header_nav li a {
+	position:relative;
     vertical-align: middle;
     font-size: 14px;
     line-height: 1;
     font-weight: 600;
     padding: 17px 13px;
     color: #333;
+    overflow: hidden;
+}
+
+.nav_items li a:before {
+	content: '';
+    width: 60%;
+    position: absolute;
+    border-bottom: 2px solid #ccc;
+    bottom: 0%;
+    right: 150px;
+    transition: 0.7s all;
+}
+
+.nav_items li a:hover:before {
+	right:0;
 }
 
 .header_nav .list_view {
@@ -461,19 +477,19 @@ header {
 
 @media (min-width: 1200px) {
 	.xsMenuBar {
-	    display: none !important;
+	    display: none;
 	}
 }
 
 @media (max-width: 1199px) and (min-width: 992px) {
 	.xsMenuBar {
-	    display: none !important;
+	    display: none;
 	}
 }
 
 @media (max-width: 991px) and (min-width: 768px) {
 	.xsMenuBar {
-	    display: none !important;
+	    display: none;
 	}
 }
 
@@ -838,6 +854,44 @@ header {
     border-right: 1px solid rgba(0,0,0,.1);
 }
 
+.profileButton img#profile_img{
+	width: 32px;
+    height: 32px;
+    border-radius: 9999px;
+    border: 1px solid #d1d1d1;
+    background-color: #eee;
+    background-position: 50%;
+    background-size: cover;
+    transition: 0.5s all;
+}
+
+.profileButton img#profile_img.showMenuPopover {
+	box-shadow: 0px 0px 3px 2px #258bf7;
+}
+
+header #mouse_shadow {
+	position: absolute;
+	width:3%;
+	height:2px;
+	background-color: #258bf7;
+}
+
+@media (max-width: 767px) {
+	.xsMenuBar img#profile_img {
+	    position: absolute;
+	    right: 0;
+	    top: 50%;
+	    -webkit-transform: translateY(-50%);
+	    transform: translateY(-50%);
+	    width: 44px;
+	    height: 44px;
+	    border-radius: 50%;
+	    background-position: 50%;
+	    background-repeat: no-repeat;
+	    background-size: cover;
+	    background-color: #ddd;
+	}
+}
 
 
 /********** header css End **********/
@@ -1049,6 +1103,8 @@ header {
 	    margin-bottom: 30px;
 	}
 }
+
+
 
 
 

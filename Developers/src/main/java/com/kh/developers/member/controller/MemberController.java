@@ -5,12 +5,15 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.developers.member.model.service.MemberService;
 import com.kh.developers.member.model.vo.Member;
 
+@SessionAttributes(value= {"loginMember"})
 @Controller
 public class MemberController {
 
@@ -22,25 +25,26 @@ public class MemberController {
 	private static Logger logger=LoggerFactory.getLogger(MemberController.class);
 	
 	@RequestMapping("/member/login.do") 
-	public ModelAndView login(Member m) {
+	public ModelAndView login(Member m, Model model) {
+		ModelAndView mv=new ModelAndView();
+		Member result=service.selectMemberOne(m);
+		model.addAttribute("loginMember",result);
+		mv.setViewName("member/mainPage");
+		return mv;
+	}
+		
+	@RequestMapping("/member/passwordCheck") 
+	public ModelAndView passwordCheck(Member m) {
 		ModelAndView mv=new ModelAndView();
 		Member result=service.selectMemberOne(m);
 		boolean flag=false;
 		if(result != null) {
 			if(pwEncoder.matches(m.getMemPassword(), result.getMemPassword())) {
-				logger.debug(result.getMemPassword());
-				mv.addObject("loginMember",result);
-				mv.setViewName("/");
 				flag=true;
-			} else {
-				mv.setViewName("jsonView");
 			}
-		} else {
-			mv.setViewName("jsonView");
 		}
-		if(!flag) {
-			mv.addObject("flag",flag);
-		}
+		mv.addObject("flag",flag);
+		mv.setViewName("jsonView");
 		logger.debug(m.getMemPassword());
 		return mv;
 	}

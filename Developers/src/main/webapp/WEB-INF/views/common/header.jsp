@@ -23,6 +23,7 @@
 </head>
 <body>
 	<header id="header" class="heaer_fm"> <!-- for Member -->
+	<div id="mouse_shadow"></div>
 		<div class="header_nav container">
 			<nav>
 				<a href="/" class="developersLogo">
@@ -59,7 +60,9 @@
 					<aside class="aside_menu">
 						<ul>
 							<li class="smMoreVisible sible">
-								<button class="searchButton img_ico" type="button"></button>
+								<button class="searchButton" type="button">
+									<i class="fas fa-search"></i>
+								</button>
 							</li>
 							<li>
 								<button class="signUpButton" type="button">회원가입/로그인</button>
@@ -94,8 +97,6 @@
 								<div class="divider xsOnly"></div>
 								<li class="xsOnly"><a href="/dashboard">기업 서비스</a></li>
 								<li class="xsOnly"><a href="/newintro" class="">서비스 소개</a></li>
-								<li class="hideForAnonymous"><a class="logOutAnchor"
-									href="/logout">로그아웃</a></li>
 							</ul>
 						</div>
 						
@@ -191,6 +192,7 @@
 							    	        		alert(msg);
 							    	        		return false;
 							    	        	} else if(result.flag) {
+							    	        		var uemail=userEmail.val();
 							    	        		/*회원인 경우*/
 							    	        		$('.login_enroll_header span').text('비밀번호 입력');
 								    	        	$('.le_intro').remove();
@@ -198,7 +200,7 @@
 								    	        	/* 패스워드 모달창 */
 												    var innerPwTag='<div class="le_pwForm">';
 								    	        	innerPwTag+='<input id="user-text-field" type="email" autocomplete="username" value="';
-								    	        	innerPwTag+=userEmail.val();
+								    	        	innerPwTag+=uemail;
 								    	        	innerPwTag+='" style="display: none;">';
 								    	        	innerPwTag+='<input id="password-text-field" type="password" autocomplete="current-password" placeholder="비밀번호" value="">';
 								    	        	innerPwTag+='<button type="button" id="loginBtn">로그인</button>';
@@ -211,12 +213,14 @@
 								    	        	innerPwTag+="'; ";
 								    	        	innerPwTag+='$("#loginBtn").click(function() {';
 								    	        	innerPwTag+='$.ajax({';
-								    	        	innerPwTag+='url:path+"/member/login.do",'
+								    	        	innerPwTag+='url:path+"/member/passwordCheck",'
 								    	        	innerPwTag+='data:{"memEmail":$("#user-text-field").val(),';
 								    	        	innerPwTag+='"memPassword":$("#password-text-field").val()},';
 								    	        	innerPwTag+='success:function(result) {';
 								    	        	innerPwTag+='if(!result.flag) {';
 								    	        	innerPwTag+='$("#password-text-field").after(errorMessagePw);}';
+								    	        	innerPwTag+='else{location.href="${path}/member/login.do?memEmail=';
+								    	        	innerPwTag+=uemail+'"}';
 								    	        	innerPwTag+='}});})<';
 								    	        	innerPwTag+='/script>';
 								    	        	$('#MODAL_BODY').html(innerPwTag);
@@ -247,16 +251,23 @@
 					</aside>
 				</c:if>
 				<c:if test="${not empty loginMember }">
-					<aside class="_1_C3JjCbQiF2wpzdXK0i_Y">
+					<aside class="aside_menu">
 						<ul>
-							<li>
-								<button type="button" class="searchButton"><i class="icon-search"></i></button>
+							<li class="smMoreVisible sible">
+								<button class="searchButton" type="button">
+									<i class="fas fa-search"></i>
+								</button>
 							</li>
 							<li>
-								<button type="button" class="notiButton"><i class="icon-bell"></i></button>
+								<button type="button" class="notiButton">
+									<i class="far fa-bell">
+								</i></button>
 							</li>
 							<li class="smMoreVisible">
-								<button type="button" style="background-image:url(https://s3.ap-northeast-2.amazonaws.com/wanted-public/profile_default.png)" class="profileButton"></button>
+								<button type="button" class="profileButton">
+								 	<img src="${path}/resources/upload/profile/${loginMember.memPhoto!=null?loginMember.memPhoto:'no-profile-image.png' }" 
+								 	style="width:32px; height:32px;" id="profile_img"/>
+								 </button>
 							</li>
 							<li class="smMoreVisible">
 								<a class="dashboardButton" href="/dashboard">기업 서비스</a>
@@ -272,24 +283,58 @@
 								<button type="button" class="headerBar_exit img_ico"></button>
 							</div>
 							<ul>
-								<li>내 정보</li>
+								<li>
+									<a href="/profile/matching" class="">
+										내 정보
+										<img src="${path}/resources/upload/profile/${loginMember.memPhoto!=null?loginMember.memPhoto:'no-profile-image.png' }" 
+											class="xsOnly" id="profile_img"/>
+									</a>
+								</li>
 								<div class="divider xsOnly"></div>
-								<li class="xsOnly"><a href="/cv" class="">이력서</a></li>
-								<li class="xsOnly"><a href="/referral" class="">추천</a></li>
-								<li class="hideForAnonymous"><a href="/status/applications"
-									class="">지원 현황</a></li>
+								<li class="xsOnly">
+									<a href="/cv" class="">이력서</a>
+								</li>
+								<li class="xsOnly">
+									<a href="/referral" class="">추천</a>
+								</li>
+								<li class="">
+									<a href="/status/applications" class="">지원 현황</a>
+								</li>
 								<div class="divider xsOnly"></div>
-								<li class="microOnly"><a href="/salary" class="">직군별 연봉</a></li>
-								<li class="xsOnly"><a href="/events" class="">커리어/이벤트</a></li>
+								<li class="microOnly">
+									<a href="/salary" class="">직군별 연봉</a>
+								</li>
+								<li class="xsOnly">
+									<a href="/events" class="">커리어/이벤트</a>
+								</li>
 								<div class="divider xsOnly"></div>
-								<li class="xsOnly"><a href="/dashboard">기업 서비스</a></li>
-								<li class="xsOnly"><a href="/newintro" class="">서비스 소개</a></li>
-								<li class="hideForAnonymous"><a class="logOutAnchor"
-									href="/logout">로그아웃</a></li>
+								<li class="xsOnly">
+									<a href="/dashboard">기업 서비스</a>
+								</li>
+								<li class="xsOnly">
+									<a href="/newintro" class="">서비스 소개</a>
+								</li>
+								<li class="">
+									<a class="logOutAnchor" href="/logout">로그아웃</a>
+								</li>
 							</ul>
 						</div>
 					</aside>
 				</c:if>
 			</nav>
 		</div>
+		
+		<script>
+			jQuery(document).ready(function(){
+			   $(document).mousemove(function(e){
+			      $('#mouse_shadow').css("left",e.pageX-$('#mouse_shadow').width()/2);
+			   });
+			})
+			
+			$('#profile_img').click(function() {
+				$(this).toggleClass('showMenuPopover');
+				$('.xsMenuBar').toggle();
+			})
+		</script>
 	</header>
+	
