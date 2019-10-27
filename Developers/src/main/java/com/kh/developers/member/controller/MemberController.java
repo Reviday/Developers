@@ -1,5 +1,7 @@
 package com.kh.developers.member.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.developers.member.model.service.MemberService;
@@ -23,6 +26,22 @@ public class MemberController {
 	private BCryptPasswordEncoder pwEncoder;
 	
 	private static Logger logger=LoggerFactory.getLogger(MemberController.class);
+	
+	@RequestMapping("/member/myPage")
+	public ModelAndView myPage(Member m) {
+		ModelAndView mv=new ModelAndView();
+		mv.setViewName("member/myPage");
+		return mv;
+	}
+	
+	@RequestMapping("/member/logout.do")
+	public String logout(HttpSession session, SessionStatus s) {
+		if(!s.isComplete()) {
+			s.setComplete();//로그아웃
+			session.invalidate();
+		}
+		return "redirect:/";
+	}
 	
 	@RequestMapping("/member/login.do") 
 	public ModelAndView login(Member m, Model model) {
@@ -65,4 +84,11 @@ public class MemberController {
 		mv.setViewName("jsonView");
 		return mv;
 	}
+	/*
+	@RequestMapping("/member/enrollMember") 
+	public ModelAndView enrollMember(Member m) {
+		ModelAndView mv=new ModelAndView();
+		Member result=service.selectMemberOne(m);
+		
+	}*/
 }
