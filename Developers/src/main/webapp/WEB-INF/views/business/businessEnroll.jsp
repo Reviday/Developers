@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <jsp:include page="/WEB-INF/views/business/header.jsp">
 	<jsp:param name="pageTitle" value="메인 화면"/> 
 </jsp:include>
@@ -49,7 +49,7 @@ textarea.form-control{
 					   <div class="search-business" id="search-business">
 					   		<input id="busSearch" type="text" placeholder="회사 이름" 
 					   			class="form-control search-bar" name="busName"
-					   			onkeypress="bus_search()">
+					   			onkeypress="bus_search();">
 					   			<!-- <button type="button" class="search-cancle">
 					   			<i class="icon-close"></i>
 					   			</button> -->
@@ -75,7 +75,7 @@ textarea.form-control{
 						     <!-- ::after -->
 						 </div>
 						 <div>
-						  <select class="form-control" name="busArea"><option value="seoul">서울</option><option value="busan">부산</option><option value="daegu">대구</option><option value="incheon">인천</option><option value="gwangju">광주</option><option value="daejeon">대전</option><option value="ulsan">울산</option><option value="sejong">세종</option><option value="gyeonggi">경기</option><option value="gangwon">강원</option><option value="n-chungcheong">충북</option><option value="s-chungcheong">충남</option><option value="n-jeolla">전북</option><option value="s-jeolla">전남</option><option value="n-gyeongsang">경북</option><option value="s-gyeongsang">경남</option><option value="jeju">제주</option></select>
+						  <select class="form-control" id="city" name="busArea"><option value="seoul">서울</option><option value="busan">부산</option><option value="daegu">대구</option><option value="incheon">인천</option><option value="gwangju">광주</option><option value="daejeon">대전</option><option value="ulsan">울산</option><option value="sejong">세종</option><option value="gyeonggi">경기</option><option value="gangwon">강원</option><option value="n-chungcheong">충북</option><option value="s-chungcheong">충남</option><option value="n-jeolla">전북</option><option value="s-jeolla">전남</option><option value="n-gyeongsang">경북</option><option value="s-gyeongsang">경남</option><option value="jeju">제주</option></select>
 						    <!-- <input type="text" class="form-control" name="busArea" placeholder="서울" required> -->
 						</div>
 					</div>
@@ -87,7 +87,7 @@ textarea.form-control{
 				     <!-- ::after -->
 				   </div>
 				   <div>
-				      <input type="text" class="form-control" name="busAddress" placeholder="대표 주소 입력" value="" required>
+				      <input type="text" class="form-control" id="address" name="busAddress" placeholder="대표 주소 입력" value="" required>
 				   </div>
 			     </div>
 			     			     <br>
@@ -120,7 +120,7 @@ textarea.form-control{
 					     <!-- ::after -->
 					   </div>
 					   <div>
-					      <input type="text" class="form-control" name="busIndustrial" placeholder="IT" value="IT" readonly required>
+					      <input type="text" id="industry" class="form-control" name="busIndustrial" placeholder="IT" required>
 					   </div>
 					 </div>
 					 <div class="form-group col-md-6">  
@@ -183,7 +183,7 @@ textarea.form-control{
 						     웹사이트 주소  
 						   </div>
 						   <div>
-						      <input type="text" class="form-control" name="busWebsite" placeholder="URL 입력" required>
+						      <input type="text" id="website" class="form-control" name="busWebsite" placeholder="URL 입력" required>
 						   </div>
 				   	</div>
 			     </div>
@@ -227,58 +227,55 @@ textarea.form-control{
 			 url:"${path}/business/APISearch.do",
 			 data:{"input": input},
 			 success:function(data){
+				 console.log(data);
 				 var searchBus=document.getElementById('search-business');
-				 var listGroup=document.createElement('div')
+				 listGroup=document.createElement('div') 
 				 listGroup.id="list-group";
-				 searchBus.appendChild(listGroup);
-				 
-				 var resultArea=document.createElement('div');
-				 resultArea.className="result_area";
-				 
-				 /* 포문을 돌려야함 */ 
-				 /* listGroup에 스크롤바 넣어야함 */ 
-				 var btn=document.createElement('button');
-				 btn.className="result_button";
-				 var btnText=document.createTextNode(input);
-				 btn.appendChild(btnText);
-				 resultArea.appendChild(btn);
-				 listGroup.appendChild(resultArea);
+				 searchBus.append(listGroup);
+				
+			 	for(var i in data.items){
+					 var resultBtn=document.createElement('div');
+					 var hiddenA=document.createElement('input');
+					 var hiddenB=document.createElement('input');
+					 var hiddenC=document.createElement('input');
+					 hiddenA.type="hidden";
+					 hiddenB.type="hidden";
+					 hiddenC.type="hidden";
+					 resultBtn.className="result_button";
+					 hiddenA.className="address";
+					 hiddenB.className="industry";
+					 hiddenC.className="website";
+					 resultBtn.innerHTML=data.items[i].title; 
+					 hiddenA.value=data.items[i].roadAddress
+					 hiddenB.value=data.items[i].category
+					 hiddenC.value=data.items[i].link	
+					 resultBtn.append(hiddenA);
+					 resultBtn.append(hiddenB);
+					 resultBtn.append(hiddenC);
+					 listGroup.append(resultBtn);
 					 
-					var button=document.getElementsByClassName('result_button');
+		 		}
+			 	
+				 var resultBtn=document.createElement('div');
+				 resultBtn.className="result_button";
+				 resultBtn.innerHTML=input;
+				 listGroup.append(resultBtn);
+				 
+				var buttons=document.querySelectorAll('.result_button');
+				buttons.forEach(function(event){
+					event.addEventListener('click',function(){
+					 document.querySelector('#busSearch').value=this.innerText;	
+					 
+					 listGroup.remove();
+					})
+				})
 					
-					button[0].onclick=function(){
-					var	content=$(this).text();
-					$("#busSearch").value=content;			
-					$("#list-group").remove();
-					
-					}
 				}
-			 });
-		};	
-	
-		
-	
-	
-	
-	
-/* 	$("#bus-Search").keyup(function(event){
-		if(event.keycode==13){
-		console.log("pressed")
+				
+			});
 		}
-	});
 	
-	function inputSearch(){
-		console.log($("#bus-Search").value());
-			$.ajax({
-				 url:"${path}/business/APISearch.do",
-				 data:{"input":$("#busSearch").value()},
-				 success:function(data){
-				   console.log(data);
-				 }
-			});			
-		}	 */
-	
-	$("#startButton").click(function(){
+		$("#startButton").click(function(){
 		$("#businessForm").submit();
 	});
 </script>

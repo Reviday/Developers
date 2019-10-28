@@ -1,5 +1,9 @@
 package com.kh.developers.common.API;
 
+import java.io.IOException;
+
+import javax.servlet.http.HttpServletResponse;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -12,15 +16,13 @@ public class BusinessAPISearchController {
 	private static Logger logger = LoggerFactory.getLogger(BusinessAPISearchController.class);
 	
 	@RequestMapping("/business/APISearch.do")
-	public ModelAndView apiSearch(String input) {
+	public void apiSearch(String input, HttpServletResponse res) throws IOException {
 		System.out.println(input);
 		ModelAndView mv=new ModelAndView();
 		BusinessAPISearch bas=new BusinessAPISearch();
 		String result=bas.businessSearch(input);
-		logger.debug("데이터가 잘 넘어옴? :"+result);
-		mv.addObject("result", result);
-		mv.setViewName("jsonView");
-		return mv;
+		res.setContentType("application/json;charset=UTF-8");
+		res.getWriter().print(result);
 		
 	}
 
