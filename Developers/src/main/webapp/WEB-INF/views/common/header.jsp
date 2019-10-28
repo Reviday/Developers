@@ -18,7 +18,8 @@
 <script type="text/javascript"
    src="${pageContext.request.contextPath }/resources/js/jquery-3.4.1.min.js"></script>
 <!-- FontAwesome -->
-
+<script type="text/javascript"
+   src="${pageContext.request.contextPath }/resources/js/all.js"></script>
 <script>var path='${path}';</script>
 
 </head>

@@ -17,7 +17,7 @@
 	<jsp:param name="pageTitle" value="메인 화면"/> 
 </jsp:include>
 
-<section id="content">
+<section id="content" style="height: 1000px;">
 <div style="height: 70px;" ></div>
   <div class="section">
     <div id="app">
@@ -39,14 +39,12 @@
                                         직무 전문가와의
                                         1:1 이력서 코칭을 통해,
                                         완성된 이력서를 만들어보세요.</a></div>
-                                <div style="max-height:inherit;overflow-y:inherit;height:inherit;"
-                                    data-reactid=".0.0.0.0.0.0.2">
+                                <div style="max-height:inherit;overflow-y:inherit;height:inherit;">
                                     <div class="resume-list-content Row-ciskzD hmOcCM" >
                                         <div class="resume-item Column-cKhjSj ehaaKs" >
-                                            <div class="resume-box ResumeItemBox__Box-dRwtdQ jzITim"
-                                                data-reactid=".0.0.0.0.0.0.2.0.0.0"><button
-                                                    class="btn-add-resume btn btn-default" type="button"
-                                                    >
+                                            <div class="resume-box ResumeItemBox__Box-dRwtdQ jzITim">
+                                                <button class="btn-add-resume btn btn-default" 
+                                                type="button" onclick="location.href='${path }/resume/insertResumepage.do';">
                                                     <div class="wrapper" >
                                                         <div class="box blue" >
                                                             <i class="far fa-plus-square"></i></div>
@@ -61,8 +59,8 @@
                                                         <div class="box"">
                                                             <i class="fas fa-file-upload"></i></div>
                                                         <p>파일 업로드</p>
-                                                    </div><input type="file" style="display:none;" multiple=""
-                                                       >
+                                                    </div><input type="file" style="display:none;" multiple="">
+                                                       
                                                 </div>
                                             </div>
                                         </div>
@@ -73,7 +71,7 @@
                                                 <div class="resume-preview"
                                                     data-reactid=".0.0.0.0.0.0.2.0.3:$348290_resume.0.0">
                                                     <h3 class="writing"
-                                                        data-reactid=".0.0.0.0.0.0.2.0.3:$348290_resume.0.0.0">강병민 10
+                                                        data-reactid=".0.0.0.0.0.0.2.0.3:$348290_resume.0.0.0">강병민 1
                                                     </h3>
                                                     <p class="date"
                                                         data-reactid=".0.0.0.0.0.0.2.0.3:$348290_resume.0.0.1">
@@ -116,4 +114,12 @@
 
 </div>
 </section>
+
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/> 
+<script>
+
+
+
+
+</script>
 	
