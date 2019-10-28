@@ -32,7 +32,7 @@
             </a>
             <ul class="nav_items">
                <li class="xsHomeButton xsOnly"><a href="/" class="">홈</a></li>
-               <li class=""><a href="#" class="">탐색</a></li>
+               <li class=""><a href="${path }/search/mainSearch.do" class="">탐색</a></li>
                <li class="microMoreVisible"><a href="#" class="">직군별 연봉</a></li>
                <li class="smMoreVisible"><a href="${path }/resume/resumeList.do" class="">이력서</a></li>
                <li class="smMoreVisible selectedNav"><a href="#" class="">추천</a></li>
