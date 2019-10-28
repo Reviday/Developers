@@ -5,5 +5,11 @@
 		<typeAlias type="com.kh.developers.member.model.vo.Member" alias="member"/>
 		<typeAlias type="com.kh.developers.common.type.StringArrayHandler" alias="strArray"/>
 		<typeAlias type="com.kh.developers.business.model.vo.Business" alias="bus"/>
+		<typeAlias type="com.kh.developers.resume.model.vo.Resume" alias="resume"/>
+		<typeAlias type="com.kh.developers.resume.model.vo.Activitie" alias="activitie"/>
+		<typeAlias type="com.kh.developers.resume.model.vo.Career" alias="career"/>
+		<typeAlias type="com.kh.developers.resume.model.vo.Education" alias="education"/>
+		<typeAlias type="com.kh.developers.resume.model.vo.Lang" alias="lang"/>
+		<typeAlias type="com.kh.developers.resume.model.vo.Links" alias="links"/>
 	</typeAliases>
 </configuration>
