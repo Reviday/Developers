@@ -19,6 +19,10 @@ button {
     background: none;
 }
 
+.search-header {
+	margin-top: 50px;
+}
+
 #search-main {
     background: #fff;
 }
@@ -45,6 +49,7 @@ button {
         height: 60px;
     }
     .mid-type-content ul {
+    	left: 0;
         position: absolute;
         transition: left .5s;
     }
@@ -75,6 +80,12 @@ button {
 
 .mid-type.prev {
     left: -40px;
+    background-image: url(https://s3.ap-northeast-2.amazonaws.com/wanted-public/category_gradation_l_white2.png);
+}
+
+.mid-type.prev > i{
+    top: 16px;
+    left: 0;
 }
 
 .mid-type {
@@ -90,20 +101,23 @@ button {
 
 .mid-type.next {
     right: -40px;
+    background-image: url(https://s3.ap-northeast-2.amazonaws.com/wanted-public/category_gradation_r_white2.png);
 }
 
 .mid-type.next i {
     right: 0;
-    transform: rotate(90deg);
+    transform: rotate(180deg);
 }
 
 .mid-type i {
     position: absolute;
     -webkit-transform-origin: top;
     transform-origin: top;
+    font-size: 30px;
+    top: 45px;
 }
 
-[class^="icon-"], [class*=" icon-"] {
+/* [class^="fas"], [class*=" fa-"] {
     font-family: 'icomoon' !important;
     speak: none;
     font-style: normal;
@@ -113,7 +127,7 @@ button {
     line-height: 1;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-}
+} */
 
 .icon-home_menu_arrow:before {
     content: "\ea12";

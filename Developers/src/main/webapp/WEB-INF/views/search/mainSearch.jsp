@@ -18,14 +18,14 @@
                     </li>
                 </ul>
                 <div class="mid-content">
-                    <button class="mid-type prev">
-                        <i class="icon-home_menu_arrow"></i>
+                    <button class="mid-type prev hidden">
+                        <i class="fas fa-chevron-left"></i>
                     </button>
                     <button class="mid-type next">
-                        <i class="icon-home_menu_arrow"></i>
+                        <i class="fas fa-chevron-left"></i>
                     </button>
                     <div class="mid-type-content">
-                        <ul>
+                        <ul class="contentList">
                             <li class="type-content-li">
                                 <a href="">
                                     <div class="content-li-text">
@@ -202,7 +202,8 @@
                             <a href="">
                                 <div class="buttonHeader">
                                     <button class="likeButton">
-                                        <i class="icon-ic_favorite_black_24px"></i>
+                                        <i class="fas fa-heart"></i>
+                                        8
                                     </button>
                                 </div>
                                 <div class="body">
@@ -226,7 +227,8 @@
                             <a href="">
                                 <div class="buttonHeader">
                                     <button class="likeButton">
-                                        <i class="icon-ic_favorite_black_24px"></i>
+                                        <i class="fas fa-heart"></i>
+                                        8
                                     </button>
                                 </div>
                                 <div class="body">
@@ -250,7 +252,8 @@
                             <a href="">
                                 <div class="buttonHeader">
                                     <button class="likeButton">
-                                        <i class="icon-ic_favorite_black_24px"></i>
+                                        <i class="fas fa-heart"></i>
+                                        8
                                     </button>
                                 </div>
                                 <div class="body">
@@ -274,7 +277,8 @@
                             <a href="">
                                 <div class="buttonHeader">
                                     <button class="likeButton">
-                                        <i class="icon-ic_favorite_black_24px"></i>
+                                        <i class="fas fa-heart"></i>
+                                        8
                                     </button>
                                 </div>
                                 <div class="body">
@@ -297,3 +301,16 @@
             </div>
         </div>
     </section>
+
+<script>
+	$(".next").click(function(){
+		$(".prev").removeClass("hidden");
+		$(".next").addClass("hidden");
+		$(".contentList").css('left', '-530px');
+	})
+	$(".prev").click(function(){
+		$(".contentList").css('left', '530px');
+		$(".prev").addClass("hidden");
+		$(".next").removeClass("hidden");
+	})
+</script>
