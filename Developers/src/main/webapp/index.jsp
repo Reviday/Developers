@@ -18,7 +18,7 @@
 Developers에서 찾아보세요!</h1>
                     <h4>쉽고 빠르게 가입하고, 더 편리한 이직 서비스를 경험해보세요.</h4>
                 </div>
-                <div class="button-group"><button type="button">지금 시작하기</button></div>
+                <div class="button-group"><button type="button" class="suBtn">지금 시작하기</button></div>
             </div>
             <div class="block cards background-image">
                 <div class="cards-section">
@@ -66,7 +66,7 @@ Developers에서 찾아보세요!</h1>
                                     src="https://static.wanted.co.kr/images/home/logos/logo_facebook.png" alt=""></a>
                         </li>
                     </ul>
-                    <div class="button-group"><button type="button">지금 시작하기</button></div>
+                    <div class="button-group"><button type="button" class="suBtn">지금 시작하기</button></div>
                 </div>
             </div>
         </div>
