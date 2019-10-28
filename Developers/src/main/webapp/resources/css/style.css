@@ -902,7 +902,1518 @@ header #mouse_shadow {
 
 /********** MainPage css **********/
 #content {
-	height: 2000px;
+	
+}
+@charset "UTF-8";
+* {
+    box-sizing: border-box;
+}
+
+button {
+    border: 0;
+    background: none;
+}
+
+@media (max-width: 991px) and (min-width: 768px){
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies:first-of-type {
+    margin: 20px auto 0;
+}
+}
+
+._2BSYHDiCEVW0U-znbJ1IyD {
+    margin: 0;
+    padding: 0;
+    background: #fff;
+    word-break: keep-all;
+    word-wrap: break-word;
+}
+
+._2BSYHDiCEVW0U-znbJ1IyD .career.background-image {
+    background-image: url(https://static.wanted.co.kr/images/home/main_intro_01_20191008.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50%;
+}
+
+@media (max-width: 1100px){
+._2BSYHDiCEVW0U-znbJ1IyD .career {
+    margin-left: 40px;
+}
+}
+
+._2BSYHDiCEVW0U-znbJ1IyD .career {
+    height: 630px;
+    padding-left: calc(50% - 530px);
+}
+
+._2BSYHDiCEVW0U-znbJ1IyD .career>.content {
+    position: relative;
+    padding-top: 160px;
+    text-align: left;
+}
+
+._2BSYHDiCEVW0U-znbJ1IyD .career>.content>.go-image {
+    display: none;
+}
+
+._2BSYHDiCEVW0U-znbJ1IyD .career>.content>h1 {
+    white-space: pre-wrap;
+    letter-spacing: -.5px;
+}
+
+._2BSYHDiCEVW0U-znbJ1IyD .content h1 {
+    font-size: 55px;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+._2BSYHDiCEVW0U-znbJ1IyD .career>.content>h4 {
+    margin: 20px 0 70px;
+}
+
+._2BSYHDiCEVW0U-znbJ1IyD .content h4 {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.67;
+}
+
+._2BSYHDiCEVW0U-znbJ1IyD .content h4 {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.67;
+}
+
+._2BSYHDiCEVW0U-znbJ1IyD .content h4 {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.67;
+}
+
+._2BSYHDiCEVW0U-znbJ1IyD .cards {
+    min-height: 715px;
+    width: 100%;
+}
+
+@media (max-width: 1199px) and (min-width: 992px){
+._2BSYHDiCEVW0U-znbJ1IyD .cards>.cards-section {
+    padding-top: 115px;
+    display: -webkit-box;
+    display: flex;
+    display: -ms-flexbox;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    flex-direction: row;
+    -ms-flex-direction: row;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    text-align: center;
+}
+}
+
+@media (max-width: 1199px) and (min-width: 992px){
+._2BSYHDiCEVW0U-znbJ1IyD .cards>.cards-section>.card-content.card-1 {
+    background-image: url(https://static.wanted.co.kr/images/home/main_intro_02_001.png);
+}
+}
+
+._2BSYHDiCEVW0U-znbJ1IyD .content h2 {
+    font-size: 36px;
+    font-weight: 600;
+    line-height: .8;
+}
+
+@media (max-width: 1199px) and (min-width: 992px){
+._2BSYHDiCEVW0U-znbJ1IyD .cards>.cards-section>.card-content p {
+    margin: 25px auto 0;
+    font-size: 16px;
+    white-space: pre-wrap;
+}
+}
+
+@media (max-width: 1199px) and (min-width: 992px){
+._2BSYHDiCEVW0U-znbJ1IyD .cards>.cards-section>.card-content.card-1>a {
+    display: inline-block;
+    margin-top: 15px;
+    font-size: 16px;
+    color: #3a68f9;
+}
+}
+
+@media (max-width: 1199px) and (min-width: 992px){
+._2BSYHDiCEVW0U-znbJ1IyD .cards>.cards-section>.card-content.card-2 {
+    margin-left: 20px;
+    background-image: url(https://static.wanted.co.kr/images/home/main_intro_02_002.png);
+}
+}
+
+@media (max-width: 1199px) and (min-width: 992px){
+._2BSYHDiCEVW0U-znbJ1IyD .cards>.cards-section>.card-content {
+    padding: 60px 0 0;
+    width: 340px;
+    height: 480px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 50%;
+}
+}
+
+._2BSYHDiCEVW0U-znbJ1IyD .content {
+    text-align: center;
+}
+
+._2BSYHDiCEVW0U-znbJ1IyD .content h2 {
+    font-size: 36px;
+    font-weight: 600;
+    line-height: .8;
+}
+
+@media (max-width: 1199px) and (min-width: 992px){
+._2BSYHDiCEVW0U-znbJ1IyD .cards>.cards-section>.card-content p {
+    margin: 25px auto 0;
+    font-size: 16px;
+    white-space: pre-wrap;
+}
+}
+
+@media (max-width: 1199px) and (min-width: 992px){
+._2BSYHDiCEVW0U-znbJ1IyD .cards>.cards-section>.card-content.card-3 {
+    margin-left: 20px;
+    background-image: url(https://static.wanted.co.kr/images/home/main_intro_02_003.png);
+}
+}
+
+@media (max-width: 1199px) and (min-width: 992px){
+._2BSYHDiCEVW0U-znbJ1IyD .cards>.cards-section>.card-content {
+    padding: 60px 0 0;
+    width: 340px;
+    height: 480px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 50%;
+}
+}
+
+._2BSYHDiCEVW0U-znbJ1IyD .content {
+    text-align: center;
+}
+
+._2BSYHDiCEVW0U-znbJ1IyD .content h2 {
+    font-size: 36px;
+    font-weight: 600;
+    line-height: .8;
+}
+
+@media (max-width: 1199px) and (min-width: 992px){
+._2BSYHDiCEVW0U-znbJ1IyD .cards>.cards-section>.card-content p {
+    margin: 25px auto 0;
+    font-size: 16px;
+    white-space: pre-wrap;
+}
+}
+
+._2BSYHDiCEVW0U-znbJ1IyD .start {
+    height: 805px;
+    width: 100%;
+}
+
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content {
+    padding-top: 120px;
+}
+
+._2BSYHDiCEVW0U-znbJ1IyD .content {
+    text-align: center;
+}
+
+._2BSYHDiCEVW0U-znbJ1IyD .content h1 {
+    font-size: 55px;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>h4 {
+    margin-top: 10px;
+}
+
+._2BSYHDiCEVW0U-znbJ1IyD .content h4 {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.67;
+}
+
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies:first-of-type {
+    margin: 60px auto 0;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li:first-of-type {
+    margin-left: 0;
+}
+
+a, a:active, a:hover, a:visited {
+    color: inherit;
+}
+
+a {
+    text-decoration: inherit;
+    cursor: pointer;
+}
+
+@media (max-width: 1199px) and (min-width: 992px){
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li.logo-naver>a>img {
+    -webkit-transform: translate(3px,3px);
+    transform: translate(3px,3px);
+}
+}
+
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li>a>img {
+    width: 200px;
+}
+
+@media (max-width: 1199px) and (min-width: 992px){
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li {
+    margin-left: 40px;
+}
+}
+
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li {
+    display: inline-block;
+    list-style: none;
+    margin-left: 80px;
+}
+
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li>a>img {
+    width: 200px;
+}
+
+@media (max-width: 1199px) and (min-width: 992px){
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li {
+    margin-left: 40px;
+}
+}
+
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li {
+    display: inline-block;
+    list-style: none;
+    margin-left: 80px;
+}
+
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li>a>img {
+    width: 200px;
+}
+
+@media (max-width: 1199px) and (min-width: 992px){
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li {
+    margin-left: 40px;
+}
+}
+
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li {
+    display: inline-block;
+    list-style: none;
+    margin-left: 80px;
+}
+
+@media (max-width: 1199px) and (min-width: 992px){
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li.logo-coupang>a>img {
+    -webkit-transform: translateY(10px);
+    transform: translateY(10px);
+}
+}
+
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li>a>img {
+    width: 200px;
+}
+
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies:last-of-type {
+    margin: 30px auto 0;
+}
+
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li:first-of-type {
+    margin-left: 0;
+}
+
+@media (max-width: 1199px) and (min-width: 992px){
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li {
+    margin-left: 40px;
+}
+}
+
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li {
+    display: inline-block;
+    list-style: none;
+    margin-left: 80px;
+}
+
+@media (max-width: 1199px) and (min-width: 992px){
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li.logo-airbnb>a>img {
+    -webkit-transform: translateY(3px);
+    transform: translateY(3px);
+}
+}
+
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li>a>img {
+    width: 200px;
+}
+
+@media (max-width: 1199px) and (min-width: 992px){
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li {
+    margin-left: 40px;
+}
+}
+
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li {
+    display: inline-block;
+    list-style: none;
+    margin-left: 80px;
+}
+
+@media (max-width: 1199px) and (min-width: 992px){
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li.logo-wooahan>a>img {
+    -webkit-transform: translate(10px);
+    transform: translate(10px);
+}
+}
+
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li>a>img {
+    width: 200px;
+}
+
+@media (max-width: 1199px) and (min-width: 992px){
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li {
+    margin-left: 40px;
+}
+}
+
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li {
+    display: inline-block;
+    list-style: none;
+    margin-left: 80px;
+}
+
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li>a>img {
+    width: 200px;
+}
+
+@media (max-width: 1199px) and (min-width: 992px){
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li {
+    margin-left: 40px;
+}
+}
+
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li {
+    display: inline-block;
+    list-style: none;
+    margin-left: 80px;
+}
+
+@media (max-width: 1199px) and (min-width: 992px){
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li.logo-facebook>a>img {
+    -webkit-transform: translate(3px,10px);
+    transform: translate(3px,10px);
+}
+}
+
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li>a>img {
+    width: 200px;
+}
+
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>.button-group {
+    margin-top: 80px;
+}
+
+._2BSYHDiCEVW0U-znbJ1IyD .button-group>button {
+    margin: 0;
+    padding: 24px 80px 25px;
+    font-size: 28px;
+    font-weight: 600;
+    border-radius: 45px;
+    background-color: #3a68f9;
+    color: #fff;
+}
+
+._2BSYHDiCEVW0U-znbJ1IyD .cards.background-image {
+    background-image: url(https://static.wanted.co.kr/images/home/main_intro_02_bg.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50%;
+}
+
+._2BSYHDiCEVW0U-znbJ1IyD .cards {
+    min-height: 715px;
+    width: 100%;
+}
+
+@media (min-width: 1200px){
+._2BSYHDiCEVW0U-znbJ1IyD .cards>.cards-section>.card-content.card-1 {
+    background-image: url(https://static.wanted.co.kr/images/home/main_intro_02_001.png);
+}
+}
+
+@media (min-width: 1200px){
+._2BSYHDiCEVW0U-znbJ1IyD .cards>.cards-section>.card-content {
+    padding: 60px 0 0;
+    width: 340px;
+    height: 480px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 50%;
+}
+}
+
+@media (min-width: 1200px){
+._2BSYHDiCEVW0U-znbJ1IyD .cards>.cards-section {
+    padding-top: 115px;
+    display: -webkit-box;
+    display: flex;
+    display: -ms-flexbox;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    flex-direction: row;
+    -ms-flex-direction: row;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    text-align: center;
+}
+}
+
+@media (min-width: 1200px){
+._2BSYHDiCEVW0U-znbJ1IyD .cards>.cards-section>.card-content p {
+    margin: 25px auto 0;
+    font-size: 16px;
+    white-space: pre-wrap;
+}
+}
+
+@media (min-width: 1200px){
+._2BSYHDiCEVW0U-znbJ1IyD .cards>.cards-section>.card-content.card-1>a {
+    display: inline-block;
+    margin-top: 15px;
+    font-size: 16px;
+    color: #3a68f9;
+}
+}
+
+@media (min-width: 1200px){
+._2BSYHDiCEVW0U-znbJ1IyD .cards>.cards-section>.card-content.card-2 {
+    margin-left: 20px;
+    background-image: url(https://static.wanted.co.kr/images/home/main_intro_02_002.png);
+}
+}
+
+@media (min-width: 1200px){
+._2BSYHDiCEVW0U-znbJ1IyD .cards>.cards-section>.card-content {
+    padding: 60px 0 0;
+    width: 340px;
+    height: 480px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 50%;
+}
+}
+
+._2BSYHDiCEVW0U-znbJ1IyD .content {
+    text-align: center;
+}
+
+._2BSYHDiCEVW0U-znbJ1IyD .content h2 {
+    font-size: 36px;
+    font-weight: 600;
+    line-height: .8;
+}
+
+@media (min-width: 1200px){
+._2BSYHDiCEVW0U-znbJ1IyD .cards>.cards-section>.card-content p {
+    margin: 25px auto 0;
+    font-size: 16px;
+    white-space: pre-wrap;
+}
+}
+
+@media (min-width: 1200px){
+._2BSYHDiCEVW0U-znbJ1IyD .cards>.cards-section>.card-content.card-3 {
+    margin-left: 20px;
+    background-image: url(https://static.wanted.co.kr/images/home/main_intro_02_003.png);
+}
+}
+
+@media (min-width: 1200px){
+._2BSYHDiCEVW0U-znbJ1IyD .cards>.cards-section>.card-content {
+    padding: 60px 0 0;
+    width: 340px;
+    height: 480px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 50%;
+}
+}
+
+._2BSYHDiCEVW0U-znbJ1IyD .content {
+    text-align: center;
+}
+
+._2BSYHDiCEVW0U-znbJ1IyD .content h2 {
+    font-size: 36px;
+    font-weight: 600;
+    line-height: .8;
+}
+
+@media (min-width: 1200px){
+._2BSYHDiCEVW0U-znbJ1IyD .cards>.cards-section>.card-content p {
+    margin: 25px auto 0;
+    font-size: 16px;
+    white-space: pre-wrap;
+}
+}
+
+._2BSYHDiCEVW0U-znbJ1IyD {
+    margin: 0;
+    padding: 0;
+    background: #fff;
+    word-break: keep-all;
+    word-wrap: break-word;
+}
+
+@media (max-width: 991px) and (min-width: 768px){
+._2BSYHDiCEVW0U-znbJ1IyD .career.background-image {
+    background-image: url(https://static.wanted.co.kr/images/home/mobile/main_intro_01.png);
+    background-size: contain;
+    background-position: bottom;
+}
+}
+
+@media (max-width: 991px) and (min-width: 768px){
+._2BSYHDiCEVW0U-znbJ1IyD .career>.content {
+    text-align: center;
+    padding-top: 90px;
+}
+}
+
+@media (max-width: 991px) and (min-width: 768px){
+._2BSYHDiCEVW0U-znbJ1IyD .career>.content>.go-image {
+    position: absolute;
+    display: inline-block;
+    top: 70px;
+    left: 50%;
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    width: 72px;
+    height: 72px;
+    background-image: url(https://static.wanted.co.kr/images/home/mobile/go.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 50%;
+}
+}
+
+._2BSYHDiCEVW0U-znbJ1IyD .career>.content>h1 {
+    white-space: pre-wrap;
+    letter-spacing: -.5px;
+}
+
+@media (max-width: 991px) and (min-width: 768px){
+._2BSYHDiCEVW0U-znbJ1IyD .content h1 {
+    font-size: 32px;
+    line-height: 1.25;
+}
+}
+
+._2BSYHDiCEVW0U-znbJ1IyD .content h1 {
+    font-size: 60px;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+@media (max-width: 991px) and (min-width: 768px){
+._2BSYHDiCEVW0U-znbJ1IyD .career>.content>h4 {
+    margin: 10px auto 16px;
+}
+}
+
+@media (max-width: 991px) and (min-width: 768px){
+._2BSYHDiCEVW0U-znbJ1IyD .content h4 {
+    font-size: 12px;
+    line-height: 1.6;
+}
+}
+
+._2BSYHDiCEVW0U-znbJ1IyD .content h4 {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.67;
+}
+
+@media (max-width: 991px) and (min-width: 768px){
+._2BSYHDiCEVW0U-znbJ1IyD .button-group>button {
+    font-size: 17px;
+    padding: 17px 45px;
+    line-height: 1.15;
+    min-width: 170px;
+}
+}
+
+._2BSYHDiCEVW0U-znbJ1IyD .button-group>button {
+    margin: 0;
+    padding: 24px 80px 25px;
+    font-size: 28px;
+    font-weight: 600;
+    border-radius: 45px;
+    background-color: #3a68f9;
+    color: #fff;
+}
+
+@media (max-width: 991px) and (min-width: 768px){
+._2BSYHDiCEVW0U-znbJ1IyD .cards.background-image {
+    background-image: url(https://static.wanted.co.kr/images/home/mobile/main_intro_02_bg.png);
+}
+}
+
+._2BSYHDiCEVW0U-znbJ1IyD .cards.background-image {
+    background-image: url(https://static.wanted.co.kr/images/home/main_intro_02_bg.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50%;
+}
+
+@media (max-width: 991px) and (min-width: 768px){
+._2BSYHDiCEVW0U-znbJ1IyD .cards {
+    min-height: 1155px;
+}
+}
+
+._2BSYHDiCEVW0U-znbJ1IyD .cards {
+    min-height: 715px;
+    width: 100%;
+}
+
+@media (max-width: 991px) and (min-width: 768px){
+._2BSYHDiCEVW0U-znbJ1IyD .cards>.cards-section {
+    padding: 20px;
+}
+}
+
+@media (max-width: 991px) and (min-width: 768px){
+._2BSYHDiCEVW0U-znbJ1IyD .cards>.cards-section {
+    padding: 25px 24px;
+    text-align: center;
+}
+}
+
+@media (max-width: 991px) and (min-width: 768px){
+._2BSYHDiCEVW0U-znbJ1IyD .cards>.cards-section>.card-content.card-1 {
+    background-image: url(https://static.wanted.co.kr/images/home/mobile/main_intro_02_01.png);
+}
+}
+
+@media (max-width: 991px) and (min-width: 768px){
+._2BSYHDiCEVW0U-znbJ1IyD .content h2 {
+    font-size: 30px;
+}
+}
+
+@media (max-width: 991px) and (min-width: 768px){
+._2BSYHDiCEVW0U-znbJ1IyD .content h2 {
+    font-size: 25px;
+    line-height: 1;
+}
+}
+
+@media (max-width: 991px) and (min-width: 768px){
+._2BSYHDiCEVW0U-znbJ1IyD .cards>.cards-section>.card-content p {
+    font-size: 18px;
+}
+}
+
+@media (max-width: 991px) and (min-width: 768px){
+._2BSYHDiCEVW0U-znbJ1IyD .cards>.cards-section>.card-content p {
+    margin-top: 20px;
+    font-size: 15px;
+    white-space: pre-wrap;
+}
+}
+
+@media (max-width: 991px) and (min-width: 768px){
+._2BSYHDiCEVW0U-znbJ1IyD .cards>.cards-section>.card-content.card-1>a {
+    font-size: 18px;
+}
+}
+
+@media (max-width: 991px) and (min-width: 768px){
+._2BSYHDiCEVW0U-znbJ1IyD .cards>.cards-section>.card-content.card-1>a {
+    display: inline-block;
+    display: -ms-inline-flexbox;
+    margin-top: 20px;
+    font-size: 15px;
+    color: #3a68f9;
+}
+}
+
+@media (max-width: 991px) and (min-width: 768px){
+._2BSYHDiCEVW0U-znbJ1IyD .cards>.cards-section>.card-content.card-2 {
+    margin-top: 20px;
+    background-image: url(https://static.wanted.co.kr/images/home/mobile/main_intro_02_02.png);
+}
+}
+
+@media (max-width: 991px) and (min-width: 768px){
+._2BSYHDiCEVW0U-znbJ1IyD .cards>.cards-section>.card-content {
+    padding: 60px 60px 0;
+    min-height: 570px;
+    background-position: bottom;
+}
+}
+
+@media (max-width: 991px) and (min-width: 768px){
+._2BSYHDiCEVW0U-znbJ1IyD .cards>.cards-section>.card-content {
+    padding: 40px 30px 0;
+    height: 50vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 10px;
+}
+}
+
+._2BSYHDiCEVW0U-znbJ1IyD .content {
+    text-align: center;
+}
+
+@media (max-width: 991px) and (min-width: 768px){
+._2BSYHDiCEVW0U-znbJ1IyD .content h2 {
+    font-size: 30px;
+}
+}
+
+@media (max-width: 991px) and (min-width: 768px){
+._2BSYHDiCEVW0U-znbJ1IyD .content h2 {
+    font-size: 25px;
+    line-height: 1;
+}
+}
+
+._2BSYHDiCEVW0U-znbJ1IyD .content h2 {
+    font-size: 36px;
+    font-weight: 600;
+    line-height: .8;
+}
+
+@media (max-width: 991px) and (min-width: 768px){
+._2BSYHDiCEVW0U-znbJ1IyD .cards>.cards-section>.card-content p {
+    font-size: 18px;
+}
+}
+
+@media (max-width: 991px) and (min-width: 768px){
+._2BSYHDiCEVW0U-znbJ1IyD .cards>.cards-section>.card-content p {
+    margin-top: 20px;
+    font-size: 15px;
+    white-space: pre-wrap;
+}
+}
+
+@media (max-width: 991px) and (min-width: 768px){
+._2BSYHDiCEVW0U-znbJ1IyD .cards>.cards-section>.card-content.card-3 {
+    margin-top: 20px;
+    background-image: url(https://static.wanted.co.kr/images/home/mobile/main_intro_02_03.png);
+}
+}
+
+@media (max-width: 991px) and (min-width: 768px){
+._2BSYHDiCEVW0U-znbJ1IyD .cards>.cards-section>.card-content {
+    padding: 60px 60px 0;
+    min-height: 570px;
+    background-position: bottom;
+}
+}
+
+@media (max-width: 991px) and (min-width: 768px){
+._2BSYHDiCEVW0U-znbJ1IyD .cards>.cards-section>.card-content {
+    padding: 40px 30px 0;
+    height: 50vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 10px;
+}
+}
+
+._2BSYHDiCEVW0U-znbJ1IyD .content {
+    text-align: center;
+}
+
+@media (max-width: 991px) and (min-width: 768px){
+._2BSYHDiCEVW0U-znbJ1IyD .content h2 {
+    font-size: 30px;
+}
+}
+
+@media (max-width: 991px) and (min-width: 768px){
+._2BSYHDiCEVW0U-znbJ1IyD .content h2 {
+    font-size: 25px;
+    line-height: 1;
+}
+}
+
+._2BSYHDiCEVW0U-znbJ1IyD .content h2 {
+    font-size: 36px;
+    font-weight: 600;
+    line-height: .8;
+}
+
+@media (max-width: 991px) and (min-width: 768px){
+._2BSYHDiCEVW0U-znbJ1IyD .cards>.cards-section>.card-content p {
+    font-size: 18px;
+}
+}
+
+@media (max-width: 991px) and (min-width: 768px){
+._2BSYHDiCEVW0U-znbJ1IyD .cards>.cards-section>.card-content p {
+    margin-top: 20px;
+    font-size: 15px;
+    white-space: pre-wrap;
+}
+}
+
+@media (max-width: 991px) and (min-width: 768px){
+._2BSYHDiCEVW0U-znbJ1IyD .start {
+    height: 520px;
+}
+}
+
+._2BSYHDiCEVW0U-znbJ1IyD .start {
+    height: 805px;
+    width: 100%;
+}
+
+@media (max-width: 991px) and (min-width: 768px){
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content {
+    margin: 0 auto;
+    padding-top: 65px;
+}
+}
+
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content {
+    padding-top: 120px;
+}
+
+._2BSYHDiCEVW0U-znbJ1IyD .content {
+    text-align: center;
+}
+
+@media (max-width: 991px) and (min-width: 768px){
+._2BSYHDiCEVW0U-znbJ1IyD .content h1 {
+    font-size: 32px;
+    line-height: 1.25;
+}
+}
+
+._2BSYHDiCEVW0U-znbJ1IyD .content h1 {
+    font-size: 55px;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+@media (max-width: 991px) and (min-width: 768px){
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>h4 {
+    margin-top: 10px;
+}
+}
+
+@media (max-width: 991px) and (min-width: 768px){
+._2BSYHDiCEVW0U-znbJ1IyD .content h4 {
+    font-size: 12px;
+    line-height: 1.6;
+}
+}
+
+._2BSYHDiCEVW0U-znbJ1IyD .content h4 {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.67;
+}
+
+@media (max-width: 991px) and (min-width: 768px){
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies:first-of-type {
+    margin: 20px auto 0;
+}
+}
+
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies:first-of-type {
+    margin: 60px auto 0;
+}
+
+@media (max-width: 991px) and (min-width: 768px){
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li:nth-child(odd) {
+    text-align: right;
+    padding-right: 25px;
+}
+}
+
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li:first-of-type {
+    margin-left: 0;
+}
+
+@media (max-width: 991px) and (min-width: 768px){
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li {
+    display: inline-block;
+    width: 50%;
+    margin-bottom: 20px;
+    margin-left: 0;
+}
+}
+
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li {
+    display: inline-block;
+    list-style: none;
+    margin-left: 80px;
+}
+
+@media (max-width: 991px) and (min-width: 768px){
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li.logo-naver>a>img {
+    -webkit-transform: translateY(3px);
+    transform: translateY(3px);
+}
+}
+
+@media (max-width: 991px) and (min-width: 768px){
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li>a>img {
+    width: 100px;
+}
+}
+
+@media (max-width: 991px) and (min-width: 768px){
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li:nth-child(2n) {
+    text-align: left;
+    padding-left: 25px;
+}
+}
+
+@media (max-width: 991px) and (min-width: 768px){
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li {
+    display: inline-block;
+    width: 50%;
+    margin-bottom: 20px;
+    margin-left: 0;
+}
+}
+
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li {
+    display: inline-block;
+    list-style: none;
+    margin-left: 80px;
+}
+
+@media (max-width: 991px) and (min-width: 768px){
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li>a>img {
+    width: 100px;
+}
+}
+
+@media (max-width: 991px) and (min-width: 768px){
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li:nth-child(odd) {
+    text-align: right;
+    padding-right: 25px;
+}
+}
+
+@media (max-width: 991px) and (min-width: 768px){
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li {
+    display: inline-block;
+    width: 50%;
+    margin-bottom: 20px;
+    margin-left: 0;
+}
+}
+
+@media (max-width: 991px) and (min-width: 768px){
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li.logo-kakao>a>img {
+    -webkit-transform: translateY(-4px);
+    transform: translateY(-4px);
+}
+}
+
+@media (max-width: 991px) and (min-width: 768px){
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li>a>img {
+    width: 100px;
+}
+}
+
+@media (max-width: 991px) and (min-width: 768px){
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li:nth-child(2n) {
+    text-align: left;
+    padding-left: 25px;
+}
+}
+
+@media (max-width: 991px) and (min-width: 768px){
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li {
+    display: inline-block;
+    width: 50%;
+    margin-bottom: 20px;
+    margin-left: 0;
+}
+}
+
+@media (max-width: 991px) and (min-width: 768px){
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li>a>img {
+    width: 100px;
+}
+}
+
+@media (max-width: 991px) and (min-width: 768px){
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies:last-of-type {
+    margin: 0;
+}
+}
+
+@media (max-width: 991px) and (min-width: 768px){
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li:nth-child(odd) {
+    text-align: right;
+    padding-right: 25px;
+}
+}
+
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li:first-of-type {
+    margin-left: 0;
+}
+
+@media (max-width: 991px) and (min-width: 768px){
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li {
+    display: inline-block;
+    width: 50%;
+    margin-bottom: 20px;
+    margin-left: 0;
+}
+}
+
+@media (max-width: 991px) and (min-width: 768px){
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li>a>img {
+    width: 100px;
+}
+}
+
+@media (max-width: 991px) and (min-width: 768px){
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li:nth-child(2n) {
+    text-align: left;
+    padding-left: 25px;
+}
+}
+
+@media (max-width: 991px) and (min-width: 768px){
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li {
+    display: inline-block;
+    width: 50%;
+    margin-bottom: 20px;
+    margin-left: 0;
+}
+}
+
+@media (max-width: 991px) and (min-width: 768px){
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li>a>img {
+    width: 100px;
+}
+}
+
+@media (max-width: 991px) and (min-width: 768px){
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li:nth-child(odd) {
+    text-align: right;
+    padding-right: 25px;
+}
+}
+
+@media (max-width: 991px) and (min-width: 768px){
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li {
+    display: inline-block;
+    width: 50%;
+    margin-bottom: 20px;
+    margin-left: 0;
+}
+}
+
+@media (max-width: 991px) and (min-width: 768px){
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li.logo-skt>a>img {
+    -webkit-transform: translateY(-10px);
+    transform: translateY(-10px);
+}
+}
+
+@media (max-width: 991px) and (min-width: 768px){
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li>a>img {
+    width: 100px;
+}
+}
+
+@media (max-width: 991px) and (min-width: 768px){
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li:nth-child(2n) {
+    text-align: left;
+    padding-left: 25px;
+}
+}
+
+@media (max-width: 991px) and (min-width: 768px){
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li {
+    display: inline-block;
+    width: 50%;
+    margin-bottom: 20px;
+    margin-left: 0;
+}
+}
+
+@media (max-width: 991px) and (min-width: 768px){
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li>a>img {
+    width: 100px;
+}
+}
+
+@media (max-width: 991px) and (min-width: 768px){
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>.button-group {
+    margin-top: 10px;
+}
+}
+
+@media (max-width: 991px) and (min-width: 768px){
+._2BSYHDiCEVW0U-znbJ1IyD .button-group>button {
+    font-size: 17px;
+    padding: 17px 45px;
+    line-height: 1.15;
+    min-width: 170px;
+}
+}
+
+._2BSYHDiCEVW0U-znbJ1IyD .button-group>button {
+    margin: 0;
+    padding: 24px 80px 25px;
+    font-size: 28px;
+    font-weight: 600;
+    border-radius: 45px;
+    background-color: #3a68f9;
+    color: #fff;
+}
+
+@media (max-width: 991px) and (min-width: 768px){
+._2BSYHDiCEVW0U-znbJ1IyD .content h1 {
+    font-size: 32px;
+    line-height: 1.25;
+}
+}
+
+@media (max-width: 991px) and (min-width: 768px){
+._2BSYHDiCEVW0U-znbJ1IyD .content h4 {
+    font-size: 12px;
+    line-height: 1.6;
+}
+}
+
+@media (max-width: 991px) and (min-width: 768px){
+._2BSYHDiCEVW0U-znbJ1IyD .button-group>button {
+    font-size: 17px;
+    padding: 17px 45px;
+    line-height: 1.15;
+    min-width: 170px;
+}
+}
+
+@media (max-width: 991px) and (min-width: 768px){
+._2BSYHDiCEVW0U-znbJ1IyD .career {
+    height: 540px;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+}
+
+@media (max-width: 991px) and (min-width: 768px){
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content {
+    margin: 0 auto;
+    padding-top: 65px;
+}
+}
+
+@media (max-width: 767px){
+._2BSYHDiCEVW0U-znbJ1IyD {
+	margin-bottom: 300px;
+}
+._2BSYHDiCEVW0U-znbJ1IyD .career.background-image {
+    background-image: url(https://static.wanted.co.kr/images/home/mobile/main_intro_01.png);
+    background-size: contain;
+    background-position: bottom;
+}
+._2BSYHDiCEVW0U-znbJ1IyD .career {
+    height: 540px;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+._2BSYHDiCEVW0U-znbJ1IyD .career>.content {
+    text-align: center;
+    padding-top: 90px;
+}
+._2BSYHDiCEVW0U-znbJ1IyD .career>.content>.go-image {
+    position: absolute;
+    display: inline-block;
+    top: 70px;
+    left: 50%;
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    width: 72px;
+    height: 72px;
+    background-image: url(https://static.wanted.co.kr/images/home/mobile/go.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 50%;
+}
+._2BSYHDiCEVW0U-znbJ1IyD .content h1 {
+    font-size: 32px;
+    line-height: 1.25;
+}
+._2BSYHDiCEVW0U-znbJ1IyD .career>.content>h4 {
+    margin: 10px auto 16px;
+}
+._2BSYHDiCEVW0U-znbJ1IyD .content h4 {
+    font-size: 12px;
+    line-height: 1.6;
+}
+._2BSYHDiCEVW0U-znbJ1IyD .career {
+    height: 540px;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+._2BSYHDiCEVW0U-znbJ1IyD .button-group>button {
+    font-size: 17px;
+    padding: 17px 45px;
+    line-height: 1.15;
+    min-width: 170px;
+}._2BSYHDiCEVW0U-znbJ1IyD .cards.background-image {
+    background-image: url(https://static.wanted.co.kr/images/home/mobile/main_intro_02_bg.png);
+}
+._2BSYHDiCEVW0U-znbJ1IyD .cards {
+    min-height: 1155px;
+}
+._2BSYHDiCEVW0U-znbJ1IyD .cards>.cards-section {
+    padding: 25px 24px;
+    text-align: center;
+}
+._2BSYHDiCEVW0U-znbJ1IyD .cards>.cards-section>.card-content.card-1 {
+    background-image: url(https://static.wanted.co.kr/images/home/mobile/main_intro_02_01.png);
+}
+._2BSYHDiCEVW0U-znbJ1IyD .cards>.cards-section>.card-content {
+    background-position: 50%;
+}
+._2BSYHDiCEVW0U-znbJ1IyD .cards>.cards-section>.card-content {
+    padding: 40px 30px 0;
+    height: 50vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 10px;
+}
+._2BSYHDiCEVW0U-znbJ1IyD .content h2 {
+    font-size: 25px;
+    line-height: 1;
+}
+._2BSYHDiCEVW0U-znbJ1IyD .cards>.cards-section>.card-content p {
+    margin-top: 20px;
+    font-size: 15px;
+    white-space: pre-wrap;
+}
+._2BSYHDiCEVW0U-znbJ1IyD .cards>.cards-section>.card-content.card-1>a {
+    display: inline-block;
+    display: -ms-inline-flexbox;
+    margin-top: 20px;
+    font-size: 15px;
+    color: #3a68f9;
+}
+._2BSYHDiCEVW0U-znbJ1IyD .cards>.cards-section>.card-content.card-2 {
+    margin-top: 20px;
+    background-image: url(https://static.wanted.co.kr/images/home/mobile/main_intro_02_02.png);
+}
+._2BSYHDiCEVW0U-znbJ1IyD .cards>.cards-section>.card-content {
+    background-position: 50%;
+}
+._2BSYHDiCEVW0U-znbJ1IyD .cards>.cards-section>.card-content {
+    padding: 40px 30px 0;
+    height: 50vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 10px;
+}
+._2BSYHDiCEVW0U-znbJ1IyD .content h2 {
+    font-size: 25px;
+    line-height: 1;
+}
+._2BSYHDiCEVW0U-znbJ1IyD .cards>.cards-section>.card-content p {
+    margin-top: 20px;
+    font-size: 15px;
+    white-space: pre-wrap;
+}
+._2BSYHDiCEVW0U-znbJ1IyD .cards>.cards-section>.card-content.card-3 {
+    margin-top: 20px;
+    background-image: url(https://static.wanted.co.kr/images/home/mobile/main_intro_02_03.png);
+}
+._2BSYHDiCEVW0U-znbJ1IyD .cards>.cards-section>.card-content {
+    background-position: 50%;
+}
+._2BSYHDiCEVW0U-znbJ1IyD .cards>.cards-section>.card-content {
+    padding: 40px 30px 0;
+    height: 50vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 10px;
+}
+._2BSYHDiCEVW0U-znbJ1IyD .content h2 {
+    font-size: 25px;
+    line-height: 1;
+}
+._2BSYHDiCEVW0U-znbJ1IyD .cards>.cards-section>.card-content p {
+    margin-top: 20px;
+    font-size: 15px;
+    white-space: pre-wrap;
+}
+._2BSYHDiCEVW0U-znbJ1IyD .start {
+    height: 520px;
+}
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content {
+    margin: 0 auto;
+    padding-top: 65px;
+}
+._2BSYHDiCEVW0U-znbJ1IyD .content h1 {
+    font-size: 32px;
+    line-height: 1.25;
+}
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>h4 {
+    margin-top: 10px;
+}
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies:first-of-type {
+    margin: 20px auto 0;
+}
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li:nth-child(odd) {
+    text-align: right;
+    padding-right: 25px;
+}
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li {
+    display: inline-block;
+    width: 50%;
+    margin-bottom: 20px;
+    margin-left: 0;
+}
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li.logo-naver>a>img {
+    -webkit-transform: translateY(3px);
+    transform: translateY(3px);
+}
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li>a>img {
+    width: 100px;
+}
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li:nth-child(2n) {
+    text-align: left;
+    padding-left: 25px;
+}
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li {
+    display: inline-block;
+    width: 50%;
+    margin-bottom: 20px;
+    margin-left: 0;
+}
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li>a>img {
+    width: 100px;
+}
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li:nth-child(odd) {
+    text-align: right;
+    padding-right: 25px;
+}
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li {
+    display: inline-block;
+    width: 50%;
+    margin-bottom: 20px;
+    margin-left: 0;
+}
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li.logo-kakao>a>img {
+    -webkit-transform: translateY(-4px);
+    transform: translateY(-4px);
+}
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li>a>img {
+    width: 100px;
+}
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li:nth-child(2n) {
+    text-align: left;
+    padding-left: 25px;
+}
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li {
+    display: inline-block;
+    width: 50%;
+    margin-bottom: 20px;
+    margin-left: 0;
+}
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li>a>img {
+    width: 100px;
+}
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies:last-of-type {
+    margin: 0;
+}
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li:nth-child(odd) {
+    text-align: right;
+    padding-right: 25px;
+}
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li {
+    display: inline-block;
+    width: 50%;
+    margin-bottom: 20px;
+    margin-left: 0;
+}
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li>a>img {
+    width: 100px;
+}
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li:nth-child(2n) {
+    text-align: left;
+    padding-left: 25px;
+}
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li {
+    display: inline-block;
+    width: 50%;
+    margin-bottom: 20px;
+    margin-left: 0;
+}
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li>a>img {
+    width: 100px;
+}
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li:nth-child(odd) {
+    text-align: right;
+    padding-right: 25px;
+}
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li {
+    display: inline-block;
+    width: 50%;
+    margin-bottom: 20px;
+    margin-left: 0;
+}
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li.logo-skt>a>img {
+    -webkit-transform: translateY(-10px);
+    transform: translateY(-10px);
+}
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li>a>img {
+    width: 100px;
+}._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li:nth-child(2n) {
+    text-align: left;
+    padding-left: 25px;
+}
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li {
+    display: inline-block;
+    width: 50%;
+    margin-bottom: 20px;
+    margin-left: 0;
+}
+._2BSYHDiCEVW0U-znbJ1IyD .start>.content>ul.favorite-companies>li>a>img {
+    width: 100px;
+}._2BSYHDiCEVW0U-znbJ1IyD .start>.content>.button-group {
+    margin-top: 10px;
+}
+._2BSYHDiCEVW0U-znbJ1IyD .button-group>button {
+    font-size: 17px;
+    padding: 17px 45px;
+    line-height: 1.15;
+    min-width: 170px;
+}
 }
 
 /********** MainPage css End **********/
