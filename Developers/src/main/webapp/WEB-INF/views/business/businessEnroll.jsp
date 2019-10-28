@@ -7,7 +7,7 @@
 	<jsp:param name="pageTitle" value="메인 화면"/> 
 </jsp:include>
 <style>
-	.subtitles::after {
+.subtitles::after {
     content: "*";
     color: red;
     margin-left: 2px;
@@ -21,13 +21,16 @@ textarea.form-control{
 } 
 
 
-	
 </style>
+
+
+
+
 
 <section id="content-enroll">
  <div class="container">
  <br>
- 	<form action="${pageContext.request.contextPath}/business/businessEnroll.do" method="post">
+ 	<form id="businessForm" action="${pageContext.request.contextPath}/business/businessEnroll.do" method="post">
 	 <div>
 		<div><h3>회사정보를 등록해주세요.</h3></div>
 		<br>
@@ -43,11 +46,14 @@ textarea.form-control{
 				     <!-- ::after -->
 				   </div>
 				   <div>
-					   <div class="search-business">
-					   		<input type="text" placeholder="회사 이름" class="form-control search-bar" name="busName" value="">
-					   			<button type="button" class="search-cancle">
+					   <div class="search-business" id="search-business">
+					   		<input id="busSearch" type="text" placeholder="회사 이름" 
+					   			class="form-control search-bar" name="busName"
+					   			onkeypress="bus_search()">
+					   			<!-- <button type="button" class="search-cancle">
 					   			<i class="icon-close"></i>
-					   		</button>
+					   			</button> -->
+					   		<!-- <div class="list-group" id="list-group"></div> -->
 					   	</div>
 				     <!-- <input type="text" class="form-control" name="busName" placeholder="회사 이름" required> -->
 				   </div>
@@ -198,21 +204,87 @@ textarea.form-control{
 				   <div>
 				      <input type="text" class="form-control" name="regPath" placeholder="코드/ 추천인 연락처 입력" >
 				   </div>
-			     </div>
-	      	</div>	      	
+			     </div>    	
+	      	</div>
  		</form>
  		<br>
 	</div>
 </section>
  		<div class="fixed-bottom position-sticky">
-		    <div>
-		       <button color="#258BF7" type="submit" class="btn btn-outline-primary" >시작하기</button>
+		    <div class="sticky-button">
+		       <button id="startButton" color="#258BF7" class="btn btn-outline-primary" >시작하기</button>
 		    </div>
 	    </div> 
 
+
+<script>
+	
+	function bus_search(){
+		var input=$("#busSearch").val()
+		console.log(input)
+		$.ajax({
+			type: "post",
+			 url:"${path}/business/APISearch.do",
+			 data:{"input": input},
+			 success:function(data){
+				 var searchBus=document.getElementById('search-business');
+				 var listGroup=document.createElement('div')
+				 listGroup.id="list-group";
+				 searchBus.appendChild(listGroup);
+				 
+				 var resultArea=document.createElement('div');
+				 resultArea.className="result_area";
+				 
+				 /* 포문을 돌려야함 */ 
+				 /* listGroup에 스크롤바 넣어야함 */ 
+				 var btn=document.createElement('button');
+				 btn.className="result_button";
+				 var btnText=document.createTextNode(input);
+				 btn.appendChild(btnText);
+				 resultArea.appendChild(btn);
+				 listGroup.appendChild(resultArea);
+					 
+					var button=document.getElementsByClassName('result_button');
+					
+					button[0].onclick=function(){
+					var	content=$(this).text();
+					$("#busSearch").value=content;			
+					$("#list-group").remove();
+					
+					}
+				}
+			 });
+		};	
+	
+		
+	
+	
+	
+	
+/* 	$("#bus-Search").keyup(function(event){
+		if(event.keycode==13){
+		console.log("pressed")
+		}
+	});
+	
+	function inputSearch(){
+		console.log($("#bus-Search").value());
+			$.ajax({
+				 url:"${path}/business/APISearch.do",
+				 data:{"input":$("#busSearch").value()},
+				 success:function(data){
+				   console.log(data);
+				 }
+			});			
+		}	 */
+	
+	$("#startButton").click(function(){
+		$("#businessForm").submit();
+	});
+</script>
 
 
 <!-- 접속자 통계 API 네이버 애널리스트 -->
 <!-- <script type="text/javascript" id="" src="//wcs.naver.net/wcslog.js"></script> -->
 
-<jsp:include page="/WEB-INF/views/business/footer.jsp"/>
+<%-- <jsp:include page="/WEB-INF/views/business/footer.jsp"/> --%>

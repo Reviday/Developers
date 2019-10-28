@@ -687,6 +687,10 @@ small,
   background-color: #ffffff;
   width: 100%;
 }
+.sticky-button>.btn{
+	margin-top: 0.8em;
+	margin-left: 86%;
+}
 
 
 
