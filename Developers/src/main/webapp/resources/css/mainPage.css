@@ -1,0 +1,1271 @@
+@charset "UTF-8";
+#loginMain {
+    background: #fff;
+}
+
+.fictureintro {
+    height: 300px;
+    overflow: hidden;
+    background: #f2f2f2;
+}
+
+.fictureintro>.slick-slider {
+    margin-bottom: 0;
+}
+
+.slick-slider {
+    margin-bottom: 30px;
+    position: relative;
+    display: block;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -ms-touch-action: pan-y;
+    touch-action: pan-y;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.slided-btn.prev {
+    right: calc((100% - 1060px)/2 + 52px);
+}
+
+.slided-btn {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: hsla(0,0%,100%,.7);
+    position: absolute;
+    bottom: 25px;
+    z-index: 10;
+}
+
+@media (max-width: 1199px) and (min-width: 992px){
+    .slided-btn.prev {
+        right: calc(5% + 52px);
+    }
+}
+
+@media (max-width: 991px) and (min-width: 768px){
+    .slided-btn.prev {
+        right: calc(5% + 52px);
+    }
+}
+
+@media (max-width: 767px){
+    .slided-btn.prev {
+        right: 72px;
+    }
+}
+
+.slided-btn>i {
+    font-size: 20px;
+    line-height: 42px;
+    color: #333;
+}
+
+.slick-list {
+    position: relative;
+    overflow: hidden;
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+
+.slick-slider .slick-track {
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+}
+
+.slick-track {
+    position: relative;
+    left: 0;
+    top: 0;
+    display: block;
+}
+
+.slick-initialized .slick-slide {
+    display: block;
+}
+
+.slick-slide {
+    float: left;
+    height: 100%;
+    min-height: 1px;
+    display: none;
+    outline: none;
+}
+
+a, a:active, a:hover, a:visited {
+    color: inherit;
+}
+
+a {
+    text-decoration: inherit;
+    cursor: pointer;
+}
+
+.slide-ficture {
+    background-image: url(https://static.wanted.co.kr/images/banners/web/834/web_title_img_1570180070.jpg);
+    position: relative;
+    height: 300px;
+    background-position: 50%;
+    background-size: cover;
+    width: 1509px;
+    opacity: 1;
+}
+
+@media (max-width: 500px){
+    .slide-ficture {
+        height: 160px;
+        border-radius: 3px 3px 0 0;
+    }
+}
+
+.slide-ficture-msg.showDesc {
+    -webkit-animation: _2wSFtDZ4j-z2vhvtdJ6GhE .4s ease-in-out;
+    animation: _2wSFtDZ4j-z2vhvtdJ6GhE .4s ease-in-out;
+}
+
+.slide-ficture-msg {
+    position: absolute;
+    bottom: 20px;
+    left: calc((100% - 1060px)/2);
+    width: 340px;
+    height: auto;
+    border-radius: 3px;
+    background: #fff;
+    padding: 20px 30px 14px;
+    box-sizing: border-box;
+}
+
+@media (max-width: 991px) and (min-width: 768px){
+    .slide-ficture-msg {
+        left: 5%;
+    }
+}
+
+@media (max-width: 767px){
+    .slide-ficture-msg {
+        left: 20px;
+    }
+}
+
+@media (max-width: 500px){
+    .slide-ficture-msg.showDesc {
+        -webkit-animation: none;
+        animation: none;
+    }
+    .slide-ficture-msg>div {
+        height: calc(100% - 15px);
+    }
+    .slide-ficture-msg>div>h2 {
+        font-size: 18px;
+    }
+    .slide-ficture-msg>div>h3 {
+        font-size: 13px;
+        max-height: 38px;
+        margin-bottom: 0;
+    }
+    .slide-ficture-msg>hr {
+        display: none;
+    }
+    .slide-ficture-msg button {
+        position: absolute;
+        bottom: 20px;
+        width: calc(100% - 40px);
+    }
+    .slide-ficture-msg button>i, .slide-ficture-msg button>span {
+        float: left;
+    }
+    .slide-ficture-msg button>i {
+        top: 1px;
+    }
+}
+
+.slide-ficture-msg>div>h2 {
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.4;
+    letter-spacing: normal;
+    word-break: keep-all;
+    text-align: left;
+    color: #333;
+    margin-bottom: 5px;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.slide-ficture-msg>div>h3 {
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.4;
+    word-break: keep-all;
+    text-align: left;
+    color: #666;
+    margin-bottom: 20px;
+    overflow: hidden;
+    max-height: 42px;
+    position: relative;
+}
+
+.slide-ficture-msg>hr {
+    margin: 0 -30px 14px;
+}
+
+hr {
+    box-sizing: content-box;
+    height: 0;
+    border: 0;
+    border-top: 1px solid #eee;
+}
+
+.slide-ficture-msg button {
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: normal;
+    text-align: left;
+    color: #258bf7;
+    width: 100%;
+    cursor: pointer;
+    height: 24px;
+}
+
+.slide-ficture-msg button>span {
+    top: -1px;
+}
+
+.slide-ficture-msg button>i, .slide-ficture-msg button>span {
+    position: relative;
+}
+
+.slide-ficture-msg button>i {
+    top: 3px;
+    font-size: 20px;
+    margin-left: 4px;
+}
+
+.slided-btn.next {
+    right: calc((100% - 1060px)/2);
+}
+
+.slided-btn {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: hsla(0,0%,100%,.7);
+    position: absolute;
+    bottom: 25px;
+    z-index: 10;
+}
+
+@media (max-width: 1199px) and (min-width: 992px){
+    .slided-btn.next {
+        right: 5%;
+    }
+}
+
+@media (max-width: 991px) and (min-width: 768px){
+    .slided-btn.next {
+        right: 5%;
+    }
+}
+
+@media (max-width: 767px){
+    .slided-btn.next {
+        right: 20px;
+    }
+}
+
+button {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: none;
+}   
+
+.resumematching {
+    height: 90px;
+    display: block;
+    position: relative;
+    padding-right: 30px;
+    padding-left: 30px;
+    max-width: 1060px;
+    background: #258bf7;
+    border-radius: 3px;
+}
+
+@media (min-width: 1200px){
+    .resumematching {
+        margin: 80px auto;
+        width: 87.72%;
+    }
+}
+
+@media (max-width: 1199px) and (min-width: 992px) {
+    .resumematching {
+        margin: 80px auto;
+        width: 90%;
+    }
+}
+
+@media (max-width: 991px) and (min-width: 768px){
+    .resumematching {
+        margin: 80px auto;
+        width: 90%;
+    }
+}
+
+@media (max-width: 767px) {
+    .resumematching {
+        height: 140px;
+        margin: 20px;
+        padding: 10px;
+    }
+}
+
+.resumeIcon {
+    min-width: 62px;
+    height: 62px;
+    margin: 0 20px 0 0;
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    -webkit-transform-origin: center;
+    transform-origin: center;
+    background-color: transparent;
+    border: 4px solid #0161d1;
+    border-radius: 100%;
+}
+
+.resumeIconBorder {
+    display: inline-block;
+    background-image: none!important;
+    border-left-color: #fff;
+    border-right-color: #fff;
+    border-bottom-color: #fff;
+}
+
+@media (max-width: 767px){
+    .resumeIcon {
+        top: 50%;
+        left: 24px;
+        min-width: 44px;
+        height: 44px;
+        position: absolute;
+        -webkit-transform: translateY(-50%) rotate(-45deg);
+        transform: translateY(-50%) rotate(-45deg);
+    }
+}
+
+.resumePercent {
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+    -webkit-transform: translate(-50%,-50%) rotate(45deg);
+    transform: translate(-50%,-50%) rotate(45deg);
+}
+
+@media (max-width: 767px){
+    .resumePercent {
+        font-size: 12px;
+    }
+}
+
+.resumeP {
+    display: inline-block;
+    line-height: 1.4;
+    word-wrap: break-word;
+}
+
+@media (max-width: 767px){
+    .resumeA {
+        text-align: left;
+        padding-left: 94px;
+    }
+    .resumeP {
+        padding: 14px 24px;
+        padding-left: 94px;
+        font-size: 15px;
+    }
+}
+
+.resumematching button {
+    right: 30px;
+    color: #258bf7;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 10px 40px;
+    border-radius: 3px;
+    background-color: #fff;
+    top: 50%;
+    position: absolute;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+@media (max-width: 767px){
+    .resumematching button {
+        width: 96%;
+        right: auto;
+        margin-top: 36px;
+    }
+}
+
+.resumematching h3 {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding-right: 225px;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 400;
+    top: 50%;
+    position: absolute;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+@media (max-width: 767px) {
+    .resumematching h3 {
+        padding-right: 0;
+        font-size: 15px;
+        top: 0;
+        position: relative;
+        -webkit-transform: none;
+        transform: none;
+    }
+}
+
+.choochun {
+    position: relative;
+    max-width: 1060px;
+}
+
+@media (min-width: 1200px) {
+    .choochun {
+        margin: 80px auto;
+        width: 87.72%;
+    }
+}
+
+@media (max-width: 1199px) and (min-width: 992px) {
+    .choochun {
+        margin: 80px auto;
+        width: 90%;
+    }
+}
+
+@media (max-width: 991px) and (min-width: 768px) {
+    .choochun {
+        margin: 80px auto;
+        width: 90%;
+    }
+}
+
+@media (max-width: 767px) {
+    .choochun {
+        margin: 40px 20px;
+    }
+}
+
+.choochun-title {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 767px) {
+    .choochun-title {
+        margin-bottom: 15px;
+    }
+}
+
+.choochun-title-text {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.05;
+    letter-spacing: normal;
+    text-align: left;
+    color: #333;
+}
+
+@media (max-width: 767px) {
+    .choochun-title-text {
+        font-size: 18px;
+    }
+}
+
+.topni {
+    font-size: 21px;
+    color: #9d9d9d;
+    margin-left: 14px;
+    cursor: pointer;
+    position: relative;
+    top: 1px;
+}
+
+@media (max-width: 767px) {
+    .topni {
+        font-size: 16px;
+    }   
+}
+
+.choochun-content {
+    position: relative;
+    margin: 0;
+    padding: 0 80px;
+    border-radius: 3px;
+    border: 1px solid #e0e0e0;
+    overflow: hidden;
+    height: 90px;
+}
+
+@media (max-width: 767px) {
+    .choochun-content {
+        height: auto;
+        padding: 10px;
+        text-align: center;
+    }
+}
+
+.choochun-content-content {
+    position: absolute;
+    left: 80px;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    width: calc(100% - 340px);
+    font-size: 20px;
+    line-height: 100%;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+@media (max-width: 767px) {
+    .choochun-content-content {
+        position: relative;
+        left: auto;
+        top: auto;
+        -webkit-transform: none;
+        transform: none;
+        width: auto;
+        padding: 5px 10px 15px;
+        text-align: center;
+        font-size: 15px;
+        font-weight: 500;
+        line-height: 1.33;
+    }
+}
+
+.choochun-content-btn {
+    position: absolute;
+    display: inline-block;
+    right: 30px;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    border-radius: 3px;
+    border: 1px solid #39f;
+    cursor: pointer;
+    padding: 12px 40px;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1;
+    color: #258bf7;
+}
+
+@media (max-width: 767px) {
+    .choochun-content-btn {
+        position: relative;
+        right: auto;
+        top: auto;
+        left: auto;
+        bottom: auto;
+        -webkit-transform: none;
+        transform: none;
+        margin: 0;
+        width: 100%;
+        font-size: 16px;
+        padding: 11px 28px;
+    }
+}
+
+.position {
+    position: relative;
+    max-width: 1060px;
+}
+
+@media (min-width: 1200px) {
+    .position {
+        margin: 60px auto;
+        width: 87.72%;
+    }
+}
+
+@media (max-width: 1199px) and (min-width: 992px) {
+    .position {
+        margin: 60px auto;
+        width: 90%;
+    }
+}
+
+@media (max-width: 991px) and (min-width: 768px) {
+    .position {
+        margin: 60px auto;
+        width: 90%;
+    }
+}
+
+@media (max-width: 767px) {
+    .position {
+        margin: 40px 0;
+    }
+}
+
+.position-title {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 767px) {
+    .position-title {
+        margin-left: 20px;
+        margin-right: 20px;
+        margin-bottom: 15px;
+    }
+}
+
+.position-title-text {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.05;
+    letter-spacing: normal;
+    text-align: left;
+    color: #333;
+}
+
+@media (max-width: 767px) {
+    .position-title-text {
+        font-size: 18px;
+    }
+}
+
+.position-title a {
+    color: #999;
+}
+
+.topniba {
+    font-size: 21px;
+    color: #9d9d9d;
+    margin-left: 14px;
+    cursor: pointer;
+    position: relative;
+    top: 1px;
+}
+
+@media (max-width: 767px) {
+    .topniba {
+        font-size: 16px;
+    }
+}
+
+.position-title-a {
+    position: absolute;
+    right: 0;
+    top: 4px;
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1;
+    color: #999;
+}
+
+@media (max-width: 767px) {
+    .position-title-a {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 767px) {
+    .position-content {
+        margin: 20px;
+    }
+}
+
+.position-content>ul {
+    margin: -10px;
+    padding: 0;
+}
+
+.position-content>ul li {
+    width: 22%;
+    padding: 10px;
+    list-style: none;
+    display: inline-block;
+    vertical-align: top;
+}
+
+@media (max-width: 991px) and (min-width: 768px) {
+    .position-content>ul li {
+        width: 45%;
+    }
+}
+
+@media (max-width: 767px) {
+    .position-content>ul li {
+        width: 45%;
+    }
+}
+
+.position-company-header {
+    background-image: url(https://static.wanted.co.kr/images/company/4281/fdpjbwqw8ygvzagc__400_400.jpg);
+    padding-bottom: 75%;
+    position: relative;
+    background-size: cover;
+    background-position: 50%;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 0 0 1px rgba(0,0,0,.1);
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,.1);
+}
+
+.likeButton {
+    right: 10px;
+    top: 10px;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+}
+
+.position-content-company .position-company-header button {
+    width: 60px;
+    height: 30px;
+    border-radius: 3px;
+    position: absolute;
+    background: rgba(0,0,0,.3);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 400;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+@media (max-width: 767px) {
+    .likeButton {
+        top: 5px;
+        right: 5px;
+    }
+}
+
+@media (max-width: 767px) {
+    .position-content-company .position-company-header button {
+        width: 52px;
+        height: 25px;
+    }
+}
+
+.likeButton i {
+    margin-right: 5px;
+    color: hsla(0,0%,100%,.3);
+}
+
+.position-content-company .body {
+    padding: 14px 10px;
+    height: 12.5em;
+}
+
+@media (max-width: 767px) {
+    .position-content-company .body {
+        padding: 10px 5px;
+        height: 9.7em;
+    }
+}
+
+.position-content-company .body dl {
+    margin: 0;
+}
+
+.position-content-company .body dl dt {
+    text-align: left;
+    word-break: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    position: relative;
+    color: #333;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.4;
+    max-height: 2.8em;
+}
+
+@media (max-width: 767px) {
+    .position-content-company .body dl dt {
+        font-size: 15px;
+        line-height: 1.5;
+        max-height: 3em;
+    }
+}
+
+.position-content-company .body dl dd {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: left;
+    word-break: break-word;
+    overflow: hidden;
+    margin-top: 8px;
+    color: #999;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.6;
+}
+
+@media (max-width: 767px) {
+    .position-content-company .body dl dd {
+        font-size: 13px;
+        line-height: 1.5;
+    }
+}
+
+.position-content-company .body .addressDot {
+    margin: 0 3px;
+    top: -4px;
+    position: relative;
+}
+
+.position-content-company .body .reward {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: left;
+    word-break: break-word;
+    overflow: hidden;
+    margin-top: 10px;
+    color: #666;
+    font-size: 13px;
+    font-weight: 400;
+}
+
+.newCompany {
+    position: relative;
+    max-width: 1060px;
+}
+
+@media (min-width: 1200px) {
+    .newCompany {
+        margin: 80px auto;
+        width: 87.72%;
+    }
+}
+
+@media (max-width: 1199px) and (min-width: 992px) {
+    .newCompany {
+        margin: 80px auto;
+        width: 90%;
+    }
+}
+
+@media (max-width: 991px) and (min-width: 768px) {
+    .newCompany {
+        margin: 80px auto;
+        width: 90%;
+    }
+}
+
+@media (max-width: 767px) {
+    .newCompany {
+        margin: 40px 0;
+    }
+}
+
+.newCompany-title {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 767px) {
+    .newCompany-title {
+        margin-left: 20px;
+        margin-right: 20px;
+        margin-bottom: 15px;
+    }
+}
+
+.newCompany-title-text {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.05;
+    letter-spacing: normal;
+    text-align: left;
+    color: #333;
+}
+
+@media (max-width: 767px) {
+    .newCompany-title-textZ {
+        font-size: 18px;
+    }
+}
+.newCompany-content>ul {
+    margin: -10px;
+    padding: 0;
+}
+
+.newCompany-content>ul li {
+    width: 22%;
+    padding: 10px;
+    list-style: none;
+    display: inline-block;
+    vertical-align: top;
+}
+
+@media (max-width: 991px) and (min-width: 768px) {
+    .newCompany-content>ul li {
+        width: 45%;
+    }
+}
+
+@media (max-width: 767px) {
+    .newCompany-content>ul li {
+        width: 45%;
+    }
+}
+
+.newCompany-company .company-header{
+    background-image: url(https://static.wanted.co.kr/images/company/35/cvvgkmytmhmfz9hd__400_400.jpg);
+    padding-bottom: 69%;
+    position: relative;
+    background-size: cover;
+    background-position: 50%;
+    border-radius: 3px;
+    -webkit-box-shadow: inset 0 0 0 1px rgba(0,0,0,.1);
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,.1);
+}
+
+.company-content {
+    padding: 14px 10px;
+}
+
+@media (max-width: 767px) {
+    .company-content {
+        padding: 10px 5px;
+    }
+}
+
+.company-content dl {
+    margin: 0;
+}
+
+.company-content dl dt {
+    text-align: left;
+    word-break: break-all;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    position: relative;
+    color: #333;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.4;
+    max-height: 2.8em;
+}
+
+@media (max-width: 767px) {
+    .company-content dl dt {
+        font-size: 15px;
+        line-height: 1.5;
+        max-height: 3em;
+    }
+}
+
+.company-content dl dd {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: left;
+    word-break: break-all;
+    overflow: hidden;
+    margin-top: 8px;
+    color: #999;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.6;
+}
+
+@media (max-width: 767px) {
+    .company-content dl dd {
+        font-size: 12px;
+        line-height: 1.5;
+    }
+}
+
+.weekchoochun {
+    position: relative;
+    max-width: 1060px;
+}
+
+@media (min-width: 1200px) {
+    .weekchoochun {
+        margin: 80px auto 90px;
+        width: 87.72%;
+    }
+}
+
+@media (max-width: 1199px) and (min-width: 992px) {
+    .weekchoochun {
+        margin: 80px auto 90px;
+        width: 90%;
+    }
+}
+
+@media (max-width: 991px) and (min-width: 768px) {
+    .weekchoochun {
+        margin: 80px auto 90px;
+        width: 90%;
+    }
+}
+
+@media (max-width: 767px) {
+    .weekchoochun {
+        margin: 50px 0;
+    }
+}
+
+.weekchoochun-title {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 767px) {
+    .weekchoochun-title {
+        margin-left: 20px;
+        margin-right: 20px;
+        margin-bottom: 15px;
+    }
+}
+
+.weekchoochun-title-text {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.05;
+    letter-spacing: normal;
+    text-align: left;
+    color: #333;
+}
+
+@media (max-width: 767px) {
+    .weekchoochun-title-text {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 767px) {
+    .weekchoochun-content {
+        margin: 20px;
+    }
+}
+
+.weekchoochun-content>ul {
+    margin: -10px;
+    padding: 0;
+}
+
+.weekchoochun-content>ul li {
+    width: 22%;
+    padding: 10px;
+    list-style: none;
+    display: inline-block;
+    vertical-align: top;
+}
+
+@media (max-width: 991px) and (min-width: 768px) {
+    .weekchoochun-content>ul li {
+        width: 45%;
+    }
+}
+
+@media (max-width: 767px) {
+    .weekchoochun-content>ul li {
+        width: 45%;
+    }
+}
+
+.weekchoochun-company .weekchoochun-company-header {
+    background-image: url(https://static.wanted.co.kr/images/company/157/suhnhvskccm3qiv8__400_400.jpg);
+    padding-bottom: 75%;
+    position: relative;
+    background-size: cover;
+    background-position: 50%;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 0 0 1px rgba(0,0,0,.1);
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,.1);
+}
+
+.weekchoochun-company .weekchoochun-company-header .likeButton {
+    right: 10px;
+    top: 10px;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+}
+
+.weekchoochun-company .weekchoochun-company-header button {
+    width: 60px;
+    height: 30px;
+    border-radius: 3px;
+    position: absolute;
+    background: rgba(0,0,0,.3);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 400;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+@media (max-width: 767px) {
+    .weekchoochun-company .weekchoochun-company-header .likeButton {
+        top: 5px;
+        right: 5px;
+    }
+}
+
+@media (max-width: 767px) {
+    .weekchoochun-company .weekchoochun-company-header button {
+        width: 52px;
+        height: 25px;
+    }
+}
+
+.weekchoochun-company .weekchoochun-company-header .likeButton i {
+    margin-right: 5px;
+    color: hsla(0,0%,100%,.3);
+}
+
+.weekchoochun-company .body {
+    padding: 14px 10px;
+    height: 12.5em;
+}
+
+@media (max-width: 767px) {
+    .weekchoochun-company .body {
+        padding: 10px 5px;
+        height: 9.7em;
+    }
+}
+
+.weekchoochun-company .body dl {
+    margin: 0;
+}
+
+.weekchoochun-company .body .reward, .weekchoochun-company .body dl dd, .weekchoochun-company .body dl dt {
+    text-align: left;
+    word-break: break-word;
+    overflow: hidden;
+}
+
+.weekchoochun-company .body dl dt {
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    position: relative;
+    color: #333;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.4;
+    max-height: 2.8em;
+}
+
+@media (max-width: 767px) {
+    .weekchoochun-company .body dl dt {
+        font-size: 15px;
+        line-height: 1.5;
+        max-height: 3em;
+    }
+}
+
+.weekchoochun-company .body .reward, .weekchoochun-company .body dl dd {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.weekchoochun-company .body dl dd {
+    margin-top: 8px;
+    color: #999;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.6;
+}
+
+@media (max-width: 767px) {
+    .weekchoochun-company .body dl dd {
+        font-size: 13px;
+        line-height: 1.5;
+    }
+}
+
+.weekchoochun-company .body .addressDot {
+    margin: 0 3px;
+    top: -4px;
+    position: relative;
+}
+
+.weekchoochun-company .body .reward {
+    margin-top: 10px;
+    color: #666;
+    font-size: 13px;
+    font-weight: 400;
+}
