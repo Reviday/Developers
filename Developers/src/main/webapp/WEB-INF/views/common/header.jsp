@@ -33,7 +33,7 @@
    <div id="mouse_shadow"></div>
       <div class="header_nav container">
          <nav>
-            <a href="/" class="developersLogo">
+            <a href="${path }" class="developersLogo">
                <h2 class="ir_pm">Developers</h2>
                <img src="${path }/resources/images/Developers_logo.png" style="height:40px"/>
             </a>
