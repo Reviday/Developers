@@ -49,12 +49,26 @@ public class MemberServiceImpl implements MemberService {
 		MailHandler sendMail = new MailHandler(mailSender);
 		sendMail.setSubject("[Developers] 서비스 이메일 인증");
         sendMail.setText(
-                new StringBuffer().append("<h1>메일인증</h1>")
-                .append("<a href='"+url+"developers/member/emailConfirm?memNo=")
+                new StringBuffer().append("<div style=\"font-family: 'Apple SD Gothic Neo', 'sans-serif' !important; width: 540px; height: 600px; border-top: 4px solid rgb(67,138,255); margin: 100px auto; padding: 30px 0; box-sizing: border-box;\">")
+                .append("<h1 style=\"margin: 0; padding: 0 5px; font-size: 28px; font-weight: 400;\">")
+                .append("<span style=\"font-size: 15px; margin: 0 0 10px 3px;\"><img src=\""+url+"developers/resources/images/Developers_logo.png"+"\" style=\"height:40px;\"/></span><br />")
+                .append("<span style=\"color: rgb(67,138,255);\">메일인증</span> 안내입니다.</h1>")
+                .append("<p style=\"font-size: 16px; line-height: 26px; margin-top: 50px; padding: 0 5px;\">")
+                .append("안녕하세요.<br />")
+                .append("디벨로퍼스에 가입해 주셔서 진심으로 감사드립니다.<br />")
+                .append("아래 <b style=\"color: rgb(67,138,255);\">'메일 인증'</b> 버튼을 클릭하여 회원가입을 완료해 주세요.<br />")
+                .append("감사합니다.</p>")
+                .append("<a style=\"color: #FFF; text-decoration: none; text-align: center;\" href=\"")
+                .append(url+"developers/member/emailConfirm?memNo=")
                 .append(m.getMemNo())
+                .append("&memEmail=")
+                .append(m.getMemEmail())
                 .append("&memberAuthKey=")
                 .append(key)
-                .append("' target='_blank'>이메일 인증 확인</a>").toString());
+                .append("\" target=\"_blank\">")
+                .append("<span style=\"display: inline-block; width: 210px; height: 45px; margin: 30px 5px 40px; background-color: rgb(67,138,255); line-height: 45px; vertical-align: middle; font-size: 16px;\">메일 인증</span></a>")
+                .append("<div style=\"border-top: 1px solid #DDD; padding: 5px;\"></div>")
+                .toString());
         sendMail.setFrom("ysk.testacc@gmail.com", "디벨로퍼스 ");
         sendMail.setTo(m.getMemEmail());
         sendMail.send();

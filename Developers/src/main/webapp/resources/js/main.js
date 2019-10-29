@@ -186,8 +186,8 @@ $('.suBtn').on('click',function() {
 					    innerPcTag+='", "memPassword": $("#new-password-text-field").val(),},';
 					    innerPcTag+='success:function(result){';
 					    innerPcTag+='console.log(result);';
-					    innerPcTag+='';
-					    innerPcTag+='';
+					    innerPcTag+='alert(result.msg);';
+					    innerPcTag+='$($div).remove();';
 					    innerPcTag+='}})}});';
 					    innerPcTag+='</script>';
 	    	        	$('#MODAL_BODY').html(innerPcTag);

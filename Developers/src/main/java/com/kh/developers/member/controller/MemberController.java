@@ -130,7 +130,7 @@ public class MemberController {
     @RequestMapping(value = "/member/emailConfirm", method = RequestMethod.GET)
     public String emailConfirm(Member m,Model model,RedirectAttributes rttr) throws Exception { 
         int result=service.checkAuth(m);
-        if(result > 0) {
+        if(result <= 0) {
             rttr.addFlashAttribute("msg" , "비정상적인 접근 입니다. 다시 인증해 주세요");
             return "redirect:/";
         }
