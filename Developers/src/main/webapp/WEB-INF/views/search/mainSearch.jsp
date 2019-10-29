@@ -122,7 +122,7 @@
                         <div class="filter">
                             <button class="filter-btn">
                                 <span class="filter-btn-1">
-                                    <i class="icon-filter-bar"></i>
+                                    <i class="fas fa-sliders-h"></i>
                                 </span>
                                 <span class="filter-btn-2">
                                     <span style="color: rgb(37, 139, 247);">필터</span>
