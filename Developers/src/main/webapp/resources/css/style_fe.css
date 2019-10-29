@@ -611,7 +611,7 @@ small,
   font-size: 80%;
   font-weight: 400;
 }
-
+/* 
 .btn {
   display: inline-block;
   font-weight: 400;
@@ -667,7 +667,7 @@ small,
   color: #fff;
   background-color: #007bff;
   border-color: #007bff;
-}
+} */
 
 .position-fixed {
   position: fixed !important;
@@ -685,6 +685,8 @@ small,
   z-index: 1030;
   height:40px;
   background-color: #ffffff;
+  border-top: solid 1px;;
+  border-top-color: #E6E6E6;
   width: 100%;
 }
 .sticky-button>.btn{

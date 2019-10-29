@@ -7,13 +7,13 @@
 	<jsp:param name="pageTitle" value="메인 화면"/> 
 </jsp:include>
 <style>
-.main_subtitles::after {
+.main_sub::after {
     content: "*";
     color: red;
     margin-left: 2px;
 }
 
-.subtitles::after {
+.subtitles.star::after {
     content: "*";
     color: red;
     margin-left: 2px;
@@ -25,10 +25,37 @@ textarea.form-control{
 	height: 14em;
 	/* rows: 3 !important; */
 } 
-
 .dis::placeholder {
 	color: #A4A4A4;
 }
+#customeSize{
+	height: 100px;
+	text-align: center;
+	vertical-align:middle;
+}
+#customeSize>h3{
+	margin-top: 30px;
+}
+/* .modal {
+    text-align: center;
+}
+ 
+@media screen and (min-width: 768px) { 
+.modal:before {
+    display: inline-block;
+    vertical-align: middle;
+    content: " ";
+    height: 90%;
+     }
+}
+ 
+.modal-dialog {
+    display: inline-block;
+    text-align: left; 
+    vertical-align: middle; 
+} */
+
+
 
 
 </style>
@@ -51,15 +78,15 @@ textarea.form-control{
 	 	<br>
 	      <div class="">
 				<div>
-				   <div class="main_subtitles">
+				   <div class="main_sub">
 				     회사 이름
 				     <!-- ::after -->
 				   </div>
 				   <div>
 					   <div class="search-business" id="search-business">
 					   		<input id="busSearch" type="text" placeholder="회사 이름" 
-					   			class="form-control search-bar" name="busName"
-					   			onkeypress="bus_search();" autofocus>
+								   class="form-control search-bar" name="busName" 
+								   onclick="bus_reset();" onkeypress="bus_search();" autofocus>
 								<div class="list-area" id="list-area"></div>					   			
 					   			<!-- <button type="button" class="search-cancle">
 					   			<i class="icon-close"></i>
@@ -72,7 +99,7 @@ textarea.form-control{
 			    				 <br>
 			    <div class="row">
 			    	<div class="form-group col-md-6">
-					   <div class="subtitles">
+					   <div class="subtitles star">
 					     국가
 					     <!-- ::after -->
 					   </div>
@@ -81,7 +108,7 @@ textarea.form-control{
 					   </div>
 					</div>
 					<div class="form-group col-md-6">
-						<div class="subtitles">
+						<div class="subtitles star">
 						   	지역
 						     <!-- ::after -->
 						 </div>
@@ -93,7 +120,7 @@ textarea.form-control{
 			     </div>
 			     			     <br>
 			    <div>
-				   <div class="subtitles">
+				   <div class="subtitles star">
 				      대표주소
 				     <!-- ::after -->
 				   </div>
@@ -104,7 +131,7 @@ textarea.form-control{
 			     			     <br>
 			    <div class="row">
 			    	<div class="form-group col-md-6">
-					   <div class="subtitles">
+					   <div class="subtitles star">
 					     사업자 등록번호 
 					     <!-- ::after -->
 					   </div>
@@ -113,7 +140,7 @@ textarea.form-control{
 					   </div>
 					 </div>
 			    	<div class="form-group col-md-6"> 
-					   <div class="subtitles">
+					   <div class="subtitles star">
 					     매출액/투자금액 <small>(승인기준 매출액/투자금액 5억원 이상)</small> 
 					     <!-- ::after -->
 					   </div>
@@ -126,7 +153,7 @@ textarea.form-control{
 	 			     			     
 			    <div class="row">
 			     	<div class="form-group col-md-6">
-					   <div class="subtitles">
+					   <div class="subtitles star">
 					     산업군 
 					     <!-- ::after -->
 					   </div>
@@ -135,7 +162,7 @@ textarea.form-control{
 					   </div>
 					 </div>
 					 <div class="form-group col-md-6">  
-					   <div class="subtitles">
+					   <div class="subtitles star">
 					     직원수 <small>(승인기준 팀원 10명 이상)</small> 
 					     <!-- ::after -->
 					   </div>
@@ -159,7 +186,7 @@ textarea.form-control{
 			     			     			     <br>
 			    <div class="row">
 			    	<div class="form-group col-md-6">
-						   <div class="subtitles">
+						   <div class="subtitles star">
 						     설립연도  
 						     <!-- ::after -->
 						   </div>
@@ -169,7 +196,7 @@ textarea.form-control{
 						   </div>
 					</div>
 					<div class="form-group col-md-6">						   
-						   <div class="subtitles">
+						   <div class="subtitles star">
 						     정보 수신 이메일  
 						     <!-- ::after -->
 						   </div>
@@ -181,7 +208,7 @@ textarea.form-control{
 			     			     			     <br>
 			    <div class="row">
 			    	<div class="form-group col-md-6">
-						   <div class="subtitles">
+						   <div class="subtitles star">
 						     담당자 연락처  
 						     <!-- ::after -->
 						   </div>
@@ -190,7 +217,7 @@ textarea.form-control{
 						   </div>
 					</div>	   
 					<div class="form-group col-md-6">	   
-						   <div class="subtitles">
+						   <div class="subtitles star">
 						     웹사이트 주소  
 						   </div>
 						   <div>
@@ -226,26 +253,83 @@ textarea.form-control{
 		       <button type="button" id="startButton" color="#258BF7" class="btn btn-outline-primary">시작하기</button>
 		    </div>
 	    </div> 
+	    
+	<div class="modal fade" id="confirmModal" aria-hidden="true">
+	  <div class="modal-dialog modal-dialog-centered">
+	    <div class="modal-content">
+	      <div class="modal-header" style="background-color: #151515;">
+	      	  <img src="${path }/resources/images/Developers_logo.png" style="height:40px"/>
+	      </div>
+	      <div class="modal-body" id="customeSize">
+	        <h3> 회사이름 수정 시 입력 한 회사 정보가 초기화 됩니다.</h3>
+	      </div>
+	      <div class="modal-footer">
+	      	<button type="button" class="btn btn-outline-secondary btn-lg col-md-6" onclick="modalClose()">취소</button>
+	      	<button type="button" class="btn btn-primary btn-lg col-md-6" onclick="modalClose(),disabledOn(),openSearch()">초기화</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
 
 
 <script>
-
 	$(function(){
 		disabledOn();
 	});
 	
+	var titles=document.getElementsByClassName('subtitles');
+	var bars=document.getElementsByClassName('dis');
+	var bnt=document.querySelector('#startButton');
+	
+	function openSearch(){
+		var searchBar=document.querySelector('#busSearch');
+		searchBar.value="";
+		searchBar.style.borderColor="";
+		searchBar.style.color="";
+		searchBar.style.backgroundColor="";
+		searchBar.removeAttribute('readonly');	
+		//autofocus 가 안먹힘
+	}
 	
 	function disabledOn(){
-		var titles=document.querySelectorAll('.subtitles');
-		var bars=document.querySelectorAll('.dis');
-		console.log(document.querySelectorAll('.dis'));
-		console.log(document.querySelectorAll('.subtitles'));
-		for(var i in bars){
-			titles[i].style.color="#A4A4A4";
-			bars[i].style.borderColor="#F2F2F2";
-			bars[i].style.color="#A4A4A4";
-			bars[i].style.backgroundColor="#FFFFFF";
-			bars[i].setAttribute("disabled", true);
+		allInfo=$('.dis');
+		allInfo[1].value="seoul";
+		allInfo[2].value="";
+		allInfo[3].value="";
+		allInfo[4].value="";
+		allInfo[5].value="";
+		allInfo[6].value="";
+		allInfo[7].value="";
+		allInfo[8].value="";
+		allInfo[9].value="";
+		allInfo[10].value="";
+		allInfo[11].value="";
+		allInfo[11].value="";
+		allInfo[11].value="";
+		
+		bnt.setAttribute("disabled", true);
+		bnt.style.color="#A4A4A4";
+		bnt.style.borderColor="#A4A4A4";
+		for(var i in titles){
+			if(titles[i].style!=undefined){
+				titles[i].style.color="#A4A4A4"; 					
+			}
+		}
+		for(var ba in bars){
+			if(bars[ba].style!=undefined){
+				bars[ba].style.borderColor="#E6E6E6";
+				bars[ba].style.color="#A4A4A4";
+				bars[ba].style.backgroundColor="#FFFFFF";
+				bars[ba].setAttribute("disabled", true);			
+			}
+		}
+	}
+	
+	function bus_reset(){
+		var searchBar=document.querySelector('#busSearch');
+		if(searchBar.getAttribute('readonly')=='true'){
+
+			$('#confirmModal').modal('show');
 		}
 	}
 	
@@ -268,18 +352,20 @@ textarea.form-control{
 			 success:function(data){
 				 console.log(data);
 				
+				
 			 	for(var i in data.items){
 					 var resultBtn=document.createElement('div');
+					 resultBtn.className="result_button";
 					 var hiddenA=document.createElement('input');
 					 var hiddenB=document.createElement('input');
 					 var hiddenC=document.createElement('input');
 					 hiddenA.type="hidden";
 					 hiddenB.type="hidden";
 					 hiddenC.type="hidden";
-					 resultBtn.className="result_button";
 					 hiddenA.id="address";
 					 hiddenB.id="industry";
 					 hiddenC.id="website";
+					 //api로 가져온 값 출력하는 로직
 					 resultBtn.innerHTML=data.items[i].title; 
 					 hiddenA.value=data.items[i].roadAddress
 					 hiddenB.value=data.items[i].category
@@ -290,7 +376,6 @@ textarea.form-control{
 					 listGroup.append(resultBtn);
 					 
 		 		}
-			 	
 				 var resultBtn=document.createElement('div');
 				 resultBtn.className="result_button";
 				 resultBtn.innerHTML=input;
@@ -299,27 +384,53 @@ textarea.form-control{
 				var buttons=document.querySelectorAll('.result_button');
 				buttons.forEach(function(event){
 					event.addEventListener('click',function(){
-					document.querySelector('#busSearch').value=this.innerText;			
-					var cityChoice=($($(this).children("#address")).val()).substring(0,2); 
-					var options=$('#city>option');
+					document.querySelector('#busSearch').value=this.innerText;	
+					if($(this).children().length>0){
+						var cityChoice=($($(this).children("#address")).val()).substring(0,2); 
+						var options=$('#city>option');
+						
+						for(var o in options){
+	 						if(options[o].innerText==cityChoice){
+	 							options[o].setAttribute('selected',true);
+							}
+						} 
+						document.querySelector('#busAddress').value=$($(this).children("#address")).val();
+						document.querySelector('#category').value=$($(this).children('#industry')).val();
+						document.querySelector('#busSite').value=$($(this).children('#website')).val();
+					}
 					
-					for(var o in options){
- 						if(options[o].innerText==cityChoice){
- 							options[o].setAttribute('selected',true);
+					bnt.removeAttribute("disabled");
+					bnt.style.color="";
+					bnt.style.borderColor="";
+					for(var i in titles){
+						if(titles[i].style!=undefined){
+							titles[i].style.color=""; 					
 						}
-					} 
-					console.log($($(this).children("#address")).val());
-					document.querySelector('#busAddress').value=$($(this).children("#address")).val();
-					document.querySelector('#category').value=$($(this).children('#industry')).val();
-					document.querySelector('#busSite').value=$($(this).children('#website')).val();
+					}
+					for(var ba in bars){
+						if(bars[ba].style!=undefined){
+							bars[ba].style.borderColor="";
+							bars[ba].style.color="";
+							bars[ba].style.backgroundColor="";
+							bars[ba].removeAttribute("disabled");			
+						}
+					}
 					
-					 listGroup.remove();
+					listGroup.remove();
+					var searchBar=document.querySelector('#busSearch');
+					searchBar.style.borderColor="#E6E6E6";
+					searchBar.style.color="#A4A4A4";
+					searchBar.style.backgroundColor="#FFFFFF";
+					searchBar.setAttribute('readonly',true);
 					})
 				})
 				}
 			});
 		}
 		
+		function modalClose(){
+			$(".modal").modal('hide');			
+		};
 		
 	
 		$("#startButton").click(function(){
