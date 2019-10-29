@@ -132,59 +132,65 @@ $('.suBtn').on('click',function() {
 					    innerPcTag+='<input id="user-text-field" type="email" autocomplete="username" value="';
 					    innerPcTag+=userEmail.val();
 					    innerPcTag+='" style="display: none;">';
-					    innerPcTag+='<input id="new-password-text-field" type="password" autocomplete="new-password" placeholder="비밀번호" value=""><span id="valckMsg"></span>';
-					    innerPcTag+='<input id="confirm-password-text-field" type="password" autocomplete="new-password" placeholder="비밀번호 재입력" value=""><span id="checkMsg"></span>';
+					    innerPcTag+='<input id="new-password-text-field" type="password" autocomplete="new-password" placeholder="비밀번호"></span>';
+					    innerPcTag+='<input id="confirm-password-text-field" type="password" autocomplete="new-password" placeholder="비밀번호 재입력"><span id="checkMsg"></span>';
 					    innerPcTag+='<button type="button" id="enrollBtn">회원가입</button></div></div>';
 					    innerPcTag+='</div></div>';
 					    innerPcTag+='<script>';
 					    innerPcTag+='var pwFlag=false;';
 					    innerPcTag+='$("#confirm-password-text-field").keyup(function() {';
+					    innerPcTag+='if(pwValidate($("#new-password-text-field").val())){';
 					    innerPcTag+='if($("#new-password-text-field").val()!=$(this).val()) {';
-					    innerPcTag+='$(this).css("border", "1px solid red");';
+					    innerPcTag+='$("input").css("border", "1px solid red");';
 					    innerPcTag+='$("#checkMsg").text("비밀번호가 일치하지 않습니다.");';
 					    innerPcTag+='$("#checkMsg").css("color","red");';
 					    innerPcTag+='pwFlag=false;';
-					    innerPcTag+='} else {$(this).css("border", "1px solid rgb(65,210,107)");';
-					    innerPcTag+='pwFlag=true;}})';
+					    innerPcTag+='} else {$("input").css("border", "1px solid rgb(65,210,107)");';
+					    innerPcTag+='$("#checkMsg").text("비밀번호가 일치합니다.");';
+					    innerPcTag+='$("#checkMsg").css("color","rgb(65,210,107)");'
+					    innerPcTag+='pwFlag=true;}}});';
 					    innerPcTag+='$("#new-password-text-field").keyup(function() {';
-					    innerPcTag+='if($("#confirm-password-text-field").val()!=null || $("#confirm-password-text-field").val()!="") {';
+					    innerPcTag+='if(pwValidate($("#new-password-text-field").val())){';
+					    innerPcTag+='if($("#confirm-password-text-field").val()==null || $("#confirm-password-text-field").val()=="") {';
+					    innerPcTag+='}else {';
 					    innerPcTag+='if($("#confirm-password-text-field").val()!=$(this).val()) {';
-					    innerPcTag+='$(this).css("border", "1px solid red");';
+					    innerPcTag+='$("input").css("border", "1px solid red");';
 					    innerPcTag+='$("#checkMsg").text("비밀번호가 일치하지 않습니다.");';
 					    innerPcTag+='$("#checkMsg").css("color","red");';
 					    innerPcTag+='pwFlag=false;';
-					    innerPcTag+='} else {$(this).css("border", "1px solid rgb(65,210,107)");';
-					    innerPcTag+='pwFlag=true;}})';
+					    innerPcTag+='} else {$("#checkMsg").text("비밀번호가 일치합니다.");';
+					    innerPcTag+='$("input").css("border", "1px solid rgb(65,210,107)");';
+					    innerPcTag+='$("#checkMsg").css("color","rgb(65,210,107)");';
+					    innerPcTag+='pwFlag=true;}';
+					    innerPcTag+='}}});';
+					    innerPcTag+='function pwValidate(data) {';
+					    innerPcTag+='var regPw =/^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;';
+					    innerPcTag+='var str = "특수문자 /문자 /숫자 포함 형태의 8~15자리 이내의 암호로 설정해주세요.";';
+					    innerPcTag+='if(!data|| !regPw.test(data)) {';
+					    innerPcTag+='$("#checkMsg").text(str);';
+					    innerPcTag+='$("#checkMsg").css("color","red");';
+					    innerPcTag+='$("#new-password-text-field").css("border", "1px solid red");';
+					    innerPcTag+='return false;';
+					    innerPcTag+='} else {';
+					    innerPcTag+='$("#checkMsg").text("");';
+					    innerPcTag+='$("#new-password-text-field").css("border", "1px solid #dbdbdb");';
+					    innerPcTag+='return true;';
+					    innerPcTag+='}}';
+					    innerPcTag+='$("#enrollBtn").on("click",function() {';
+					    innerPcTag+='if(pwFlag) {';
+					    innerPcTag+='$.ajax({';
+					    innerPcTag+='url:"${path}/member/enrollMember",';
+					    innerPcTag+='type:"POST",';
+					    innerPcTag+='data:{"memEmail":"';
+					    innerPcTag+=userEmail.val();
+					    innerPcTag+='", "memPassword":$("new-password-text-field").val()},';
+					    innerPcTag+='success:function(result){';
+					    innerPcTag+='console.log(resuslt);';
+					    innerPcTag+='';
+					    innerPcTag+='';
+					    innerPcTag+='}})}});';
 					    innerPcTag+='</script>';
-					    
 	    	        	$('#MODAL_BODY').html(innerPcTag);
-    	        		return true;
-    	        		/*
-    	        		var pwFlag=false;
-    	        		$('#confirm-password-text-field').keyup(function() {
-    	        			if($('#new-password-text-field').val()!=$(this).val()) {
-    	        				$(this).css('border', '1px solid red');
-    	        				$('#checkMsg').text('비밀번호가 일치하지 않습니다.');
-    	        				$('#checkMsg').css('color','red');
-    	        				pwFlag=false;
-    	        			} else {
-    	        				$(this).css('border', '1px solid rgb(65,210,107)');
-    	        				pwFlag=true;
-    	        			}
-    	        		})
-    	        		$('#new-password-text-field').keyup(function() {
-    	        			if($('#confirm-password-text-field').val()!=null || $('#confirm-password-text-field').val()!="") {
-    	        				if($('#confirm-password-text-field').val()!=$(this).val()) {
-    	        					$(this).css('border', '1px solid red');
-    	        					$('#checkMsg').text('비밀번호가 일치하지 않습니다.');
-    	        					$('#checkMsg').css('color','red');
-    	        					pwFlag=false;
-    	        				} else {
-    	        					$(this).css('border', '1px solid rgb(65,210,107)');
-    	        					pwFlag=true;
-    	        				}
-    	        			}
-    	        		})*/
     	        	}
         		}
         	});

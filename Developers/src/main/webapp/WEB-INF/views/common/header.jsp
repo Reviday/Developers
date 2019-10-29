@@ -8,19 +8,24 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="shortcut icon" href="${path }/resources/images/Developers_logo_favicon.png">
 <link rel="stylesheet"
-   href="${pageContext.request.contextPath }/resources/css/bootstrap-grid.css">
+   href="${path }/resources/css/bootstrap-grid.css">
 <link rel="stylesheet"
-   href="${pageContext.request.contextPath }/resources/css/style.css">
+   href="${path }/resources/css/style.css">
 <link rel="stylesheet"
-   href="${pageContext.request.contextPath }/resources/css/all.css">
+   href="${path }/resources/css/all.css">
 <!-- jQuery library -->
 <script type="text/javascript"
-   src="${pageContext.request.contextPath }/resources/js/jquery-3.4.1.min.js"></script>
+   src="${path }/resources/js/jquery-3.4.1.min.js"></script>
 <!-- FontAwesome -->
 <script type="text/javascript"
    src="${pageContext.request.contextPath }/resources/js/all.js"></script>
-<script>var path='${path}';</script>
+<script>
+	var path='${path}';
+	var result = '${msg}';
+    if (result!=null && result!="") {alert(result);}		
+</script>
 
 </head>
 <body>
@@ -29,7 +34,8 @@
       <div class="header_nav container">
          <nav>
             <a href="/" class="developersLogo">
-               <h2 class="">Developers</h2>
+               <h2 class="ir_pm">Developers</h2>
+               <img src="${path }/resources/images/Developers_logo.png" style="height:40px"/>
             </a>
             <ul class="nav_items">
                <li class="xsHomeButton xsOnly"><a href="/" class="">홈</a></li>

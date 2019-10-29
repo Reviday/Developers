@@ -8,7 +8,7 @@
 		<div class="footer_nav">
 			<div class="footer_nav_items">
 				<div class="footer_developers_icon">
-					<img src="https://s3.ap-northeast-2.amazonaws.com/static.wanted.co.kr/images/logo_wanted.png" alt="" width="100">
+					<img src="${path }/resources/images/Developers_logo.png" style="height:32px"/>
 				</div>
 				<div class="footer_nav_item">
 					<a href="/newintro" class="">서비스 소개</a>
