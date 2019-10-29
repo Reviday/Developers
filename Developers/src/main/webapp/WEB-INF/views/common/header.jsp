@@ -12,6 +12,8 @@
 <link rel="stylesheet"
    href="${path }/resources/css/bootstrap-grid.css">
 <link rel="stylesheet"
+   href="${path }/resources/css/bootstrap.min.css">
+<link rel="stylesheet"
    href="${path }/resources/css/style.css">
 <link rel="stylesheet"
    href="${path }/resources/css/all.css">

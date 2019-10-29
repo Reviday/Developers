@@ -817,13 +817,13 @@ header {
     margin-bottom: 20px;
 }
 
-.le_form .errorMessage {
+.errorMessage {
     margin: 0;
     padding: 5px;
     line-height: 1;
     font-size: 12px;
     font-weight: 600;
-    color: #fe415c;
+    color: red;
     text-align: left;
 }
 
@@ -893,7 +893,96 @@ header #mouse_shadow {
 	}
 }
 
+.login_enroll_header .modal-header h3 {
+    font-size: 18px;
+    font-weight: 500;
+    margin: 0;
+}
 
+.modal-body h4 {
+    color: #999999;
+    font-size: 18px;
+    margin: 0;
+    padding: 15px 0px 0px;
+}
+
+.login_enroll .form-group {
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.login_enroll .form-group .control-label {
+    position: absolute;
+    bottom: -23px;
+    color: red;
+    font-weight: normal;
+    left: 0;
+    text-align: left;
+    right: 0;
+    white-space: nowrap;
+}
+
+.login_enroll .form-group input[type="text"] {
+    height: 48px;
+    font-size: 18px;
+    border-radius: 0;
+    border: 0;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 6px 0px;
+}
+
+.checkbox {
+    margin: 0;
+}
+
+.checkbox label {
+    padding: 0;
+}
+
+.login_enroll .form-group .checkbox {
+    color: #999999;
+    font-size: 15px;
+}
+
+.login_enroll .form-group .checkbox input[type="checkbox"] {
+    margin-right: 10px;
+    height: 20px;
+    width: 20px;
+}
+
+.checkbox input[type="checkbox"] {
+    top: 2px;
+    width: 14px;
+    height: 14px;
+    margin: 0;
+    margin-right: 5px;
+    position: relative;
+    border: 0;
+    background-image: url(https://s3.ap-northeast-2.amazonaws.com/wanted-public/checkbox.svg);
+    background-size: cover;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+}
+
+.checkbox input[type="checkbox"]:checked {
+    background-image: url(https://s3.ap-northeast-2.amazonaws.com/wanted-public/checkbox_.svg);
+}
+
+.policy-checkbox + span {
+    position: relative;
+    top: 10px;
+}
+
+.login_enroll .btn {
+    height: 48px;
+    font-size: 18px;
+}
+
+.login_enroll .btn.gray-button {
+    border: 0;
+    background: #999999;
+    color: rgba(255, 255, 255, 0.5);
+}
 /********** header css End **********/
 
 

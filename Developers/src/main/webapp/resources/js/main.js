@@ -14,7 +14,55 @@ window.onload=function() {
         headerBar.style.display="none";
     }
     	
-    
+    var $ldcDiv=$('<div class="modal_login_enroll"></div>');
+    if(ldc==null||ldc=="") {
+    	/*정상 로그인?*/
+    } else {
+    	console.log(ldc);
+    	if(ldc=="noemailcert") {
+    		if(confirm("이메일 인증이 이루어지지 않았습니다.\n재전송을 원하실 경우 확인 버튼을 눌러주시기 바랍니다.")) {
+    			$.ajax ({
+    				url: path+"/member/reSendMail",
+    				type:"POST",
+    				data:{"memNo":$('#memNo').val(),
+    					  "memEmail":$('#memEmail').val()},
+    				success: function(result) {
+    					alert(result.msg);
+    					location.href=path+"/";
+    				}
+    			});
+    		} else {
+    			location.href=path+"/";
+    		}
+    	} else if(ldc=="noname") {
+    		console.log(ldc+"if in");
+    		var nameTag='<div class="login_enroll" style="width: 400px;">';
+    		nameTag+='<div class="login_enroll_header">';
+    		nameTag+='<span>회원가입</span>';
+    		nameTag+='<button id="modal_close" type="button">';
+    		nameTag+='<i class="fas fa-times"></i>';
+    		nameTag+='</button>';
+    		nameTag+='</div>';
+    		nameTag+='<div class="modal-body">';
+    		nameTag+='<div>';
+    		nameTag+='<h4>이름</h4>';
+    		nameTag+='<div class="form-group">';
+    		nameTag+='<label class="control-label">';
+    		nameTag+='<span>이름은 필수정보 입니다.</span>';
+    		nameTag+='</label>';
+    		nameTag+='<input type="text" class="form-control"></div>';
+    		nameTag+='<div class="checkbox" >';
+    		nameTag+='<label class="">';
+    		nameTag+='<input type="checkbox" class="policy-checkbox" style="top:15px;" checked="" label="맞춤 추천 등의 중요한 정보 받기">';
+    		nameTag+='<span>맞춤 추천 등의 중요한 정보 받기</span>';
+    		nameTag+='</label></div>';
+    		nameTag+='<div class="modal-footer">';
+    		nameTag+='<button id="signUpCompleteButton" class="gray-button btn-block btn btn-default" type="button">완료</button></div></div></div></div>';
+    		nameTag+='<div role="presentation" class="modal_area"></div>';
+    		$div.html(nameTag);
+    		$('#header').after($div);
+    	}
+    }
 }
 /* 로그인/회원가입 모달창 */
 var $div=$('<div class="modal_login_enroll"></div>');
@@ -115,9 +163,10 @@ $('.suBtn').on('click',function() {
 	    	        	innerPwTag+='"memPassword":$("#password-text-field").val()},';
 	    	        	innerPwTag+='success:function(result) {';
 	    	        	innerPwTag+='if(!result.flag) {';
-	    	        	innerPwTag+='$("#password-text-field").after(errorMessagePw);}';
+	    	        	innerPwTag+='$("#password-text-field").after(errorMessagePw);';
+	    	        	innerPwTag+='$("#password-text-field").css("border", "1px solid red")}';
 	    	        	innerPwTag+='else{location.href=path+"/member/login.do?memEmail=';
-	    	        	innerPwTag+=uemail+'"}';
+	    	        	innerPwTag+=uemail+'";}';
 	    	        	innerPwTag+='}});})<';
 	    	        	innerPwTag+='/script>';
 	    	        	$('#MODAL_BODY').html(innerPwTag);
