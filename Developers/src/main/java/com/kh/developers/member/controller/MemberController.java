@@ -127,7 +127,7 @@ public class MemberController {
 	}
 	
 	//이메일 인증 코드 검증
-    @RequestMapping(value = "/emailConfirm", method = RequestMethod.GET)
+    @RequestMapping(value = "/member/emailConfirm", method = RequestMethod.GET)
     public String emailConfirm(Member m,Model model,RedirectAttributes rttr) throws Exception { 
         int result=service.checkAuth(m);
         if(result > 0) {

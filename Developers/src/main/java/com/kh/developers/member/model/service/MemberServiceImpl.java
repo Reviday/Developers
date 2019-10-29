@@ -50,7 +50,7 @@ public class MemberServiceImpl implements MemberService {
 		sendMail.setSubject("[Developers] 서비스 이메일 인증");
         sendMail.setText(
                 new StringBuffer().append("<h1>메일인증</h1>")
-                .append("<a href='"+url+"/developer/member/emailConfirm?memNo=")
+                .append("<a href='"+url+"developers/member/emailConfirm?memNo=")
                 .append(m.getMemNo())
                 .append("&memberAuthKey=")
                 .append(key)
