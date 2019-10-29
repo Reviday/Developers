@@ -9,10 +9,8 @@
 <meta charset="UTF-8">
 <title>Developers Black</title>
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath }/resources/css/bootstrap-3.3.7.css">
+	href="${pageContext.request.contextPath }/resources/css/bootstrap.min.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/css/bootstrap-grid.css">
 <link rel="stylesheet"
