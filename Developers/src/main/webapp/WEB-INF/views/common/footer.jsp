@@ -35,6 +35,10 @@
 			서비스 및 기업문의 02-539-7118<br>
 			© Wantedlab, Inc.</p>
 		</div>
+		<c:if test="${not empty loginMember}">
+			<input type="hidden" id="memNo" value="${loginMember.memNo }">
+			<input type="hidden" id="memEmail" value="${loginMember.memEmail }">
+		</c:if>
 	</footer>
 </body>
 <script type="text/javascript"

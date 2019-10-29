@@ -22,7 +22,6 @@
 <script type="text/javascript"
    src="${pageContext.request.contextPath }/resources/js/all.js"></script>
 <script>
-
 	var path='${path}';
 	var ldc='${ldc}';
 </script>

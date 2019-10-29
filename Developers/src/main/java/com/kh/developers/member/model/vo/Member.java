@@ -27,6 +27,7 @@ public class Member {
 	//이하는 부가정보
 	private String memDenied; // 해당 회원 차단 여부(기본값 N/ 영구정지 P) 
 	private String memEmailCert; // 이메일 인증 여부(기본값 N)
+	private String memReceiveEmail; // 이메일 수신 동의 여부(기본값 N)
 	private Date memEnrollDatetime; // 회원 가입일(시간 포함)
 	private String memEnrollIp; // 회원 가입 ip
 	private Date memLastloginDatetime; // 마지막 접속일 
