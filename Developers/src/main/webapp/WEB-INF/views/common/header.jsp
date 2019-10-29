@@ -21,10 +21,12 @@
 <!-- FontAwesome -->
 <script type="text/javascript"
    src="${pageContext.request.contextPath }/resources/js/all.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath }/resources/js/main.js"></script>
 <script>
+
 	var path='${path}';
-	var result = '${msg}';
-    if (result!=null && result!="") {alert(result);}		
+	var ldc='${ldc}';
 </script>
 
 </head>
@@ -40,7 +42,7 @@
             <ul class="nav_items">
                <li class="xsHomeButton xsOnly"><a href="/" class="">홈</a></li>
                <li class=""><a href="${path }/search/mainSearch.do" class="">탐색</a></li>
-               <li class="microMoreVisible"><a href="#" class="">직군별 연봉</a></li>
+               <li class="microMoreVisible"><a href="${path }/salary/salaryView.do" class="">직군별 연봉</a></li>
                 <c:if test="${loginMember!=null }">  
                <li class="smMoreVisible"><a href="${path }/resume/resumeList.do?memEmail=${loginMember.memEmail }" class="">이력서</a></li>
                </c:if>
@@ -105,7 +107,7 @@
                         <li class="hideForAnonymous"><a href="/status/applications"
                            class="">지원 현황</a></li>
                         <div class="divider xsOnly"></div>
-                        <li class="microOnly"><a href="/salary" class="">직군별 연봉</a></li>
+                        <li class="microOnly"><a href="${path }/salary/salaryView.do" class="">직군별 연봉</a></li>
                         <li class="xsOnly"><a href="/events" class="">커리어/이벤트</a></li>
                         <div class="divider xsOnly"></div>
                         <li class="xsOnly"><a href="/dashboard">기업 서비스</a></li>
@@ -166,7 +168,7 @@
                         </li>
                         <div class="divider xsOnly"></div>
                         <li class="microOnly">
-                           <a href="/salary" class="">직군별 연봉</a>
+                           <a href="${path }/salary/salaryView.do" class="">직군별 연봉</a>
                         </li>
                         <li class="xsOnly">
                            <a href="/events" class="">커리어/이벤트</a>

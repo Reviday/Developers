@@ -51,7 +51,12 @@ public class MemberController {
 	public ModelAndView login(Member m, Model model) {
 		ModelAndView mv=new ModelAndView();
 		Member result=service.selectMemberOne(m);
-		model.addAttribute("loginMember",result);
+		if(result!=null&&result.getMemEmailCert().equals("N")) {
+			model.addAttribute("ldc", "noemailcert"); // ldc : login Deny Code
+		} else if(result!=null&&result.getMemName()==null) {
+			model.addAttribute("ldc", "noname"); // ldc : login Deny Code
+		}
+		model.addAttribute("loginMember",result); 
 		mv.setViewName("member/mainPage");
 		return mv;
 	}
