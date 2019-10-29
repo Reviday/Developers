@@ -7,6 +7,12 @@
 	<jsp:param name="pageTitle" value="메인 화면"/> 
 </jsp:include>
 <style>
+.main_subtitles::after {
+    content: "*";
+    color: red;
+    margin-left: 2px;
+}
+
 .subtitles::after {
     content: "*";
     color: red;
@@ -19,6 +25,10 @@ textarea.form-control{
 	height: 14em;
 	/* rows: 3 !important; */
 } 
+
+.dis::placeholder {
+	color: #A4A4A4;
+}
 
 
 </style>
@@ -41,7 +51,7 @@ textarea.form-control{
 	 	<br>
 	      <div class="">
 				<div>
-				   <div class="subtitles">
+				   <div class="main_subtitles">
 				     회사 이름
 				     <!-- ::after -->
 				   </div>
@@ -49,7 +59,7 @@ textarea.form-control{
 					   <div class="search-business" id="search-business">
 					   		<input id="busSearch" type="text" placeholder="회사 이름" 
 					   			class="form-control search-bar" name="busName"
-					   			onkeypress="bus_search();">
+					   			onkeypress="bus_search();" autofocus>
 								<div class="list-area" id="list-area"></div>					   			
 					   			<!-- <button type="button" class="search-cancle">
 					   			<i class="icon-close"></i>
@@ -67,7 +77,7 @@ textarea.form-control{
 					     <!-- ::after -->
 					   </div>
 					   <div>
-					      <input type="text" class="form-control" name="busCountry" placeholder="한국" value="한국" readonly required disabled>
+					      <input type="text" class="form-control dis" name="busCountry" placeholder="한국" value="한국" required>
 					   </div>
 					</div>
 					<div class="form-group col-md-6">
@@ -76,7 +86,7 @@ textarea.form-control{
 						     <!-- ::after -->
 						 </div>
 						 <div>
-						  <select class="form-control" id="city" name="busArea" disabled><option value="seoul">서울</option><option value="busan">부산</option><option value="daegu">대구</option><option value="incheon">인천</option><option value="gwangju">광주</option><option value="daejeon">대전</option><option value="ulsan">울산</option><option value="sejong">세종</option><option value="gyeonggi">경기</option><option value="gangwon">강원</option><option value="n-chungcheong">충북</option><option value="s-chungcheong">충남</option><option value="n-jeolla">전북</option><option value="s-jeolla">전남</option><option value="n-gyeongsang">경북</option><option value="s-gyeongsang">경남</option><option value="jeju">제주</option></select>
+						  <select class="form-control dis" id="city" name="busArea"><option value="seoul">서울</option><option value="busan">부산</option><option value="daegu">대구</option><option value="incheon">인천</option><option value="gwangju">광주</option><option value="daejeon">대전</option><option value="ulsan">울산</option><option value="sejong">세종</option><option value="gyeonggi">경기</option><option value="gangwon">강원</option><option value="n-chungcheong">충북</option><option value="s-chungcheong">충남</option><option value="n-jeolla">전북</option><option value="s-jeolla">전남</option><option value="n-gyeongsang">경북</option><option value="s-gyeongsang">경남</option><option value="jeju">제주</option></select>
 						    <!-- <input type="text" class="form-control" name="busArea" placeholder="서울" required> -->
 						</div>
 					</div>
@@ -88,7 +98,7 @@ textarea.form-control{
 				     <!-- ::after -->
 				   </div>
 				   <div>
-				      <input type="text" class="form-control" id="busAddress" name="busAddress" placeholder="대표 주소 입력" required disabled>
+				      <input type="text" class="form-control dis" id="busAddress" name="busAddress" placeholder="대표 주소 입력" required>
 				   </div>
 			     </div>
 			     			     <br>
@@ -99,7 +109,7 @@ textarea.form-control{
 					     <!-- ::after -->
 					   </div>
 					   <div>
-					      <input type="text" class="form-control" name="busRegNo" placeholder="'-'제외 10자" required disabled>
+					      <input type="text" class="form-control dis" name="busRegNo" placeholder="'-'제외 10자" required>
 					   </div>
 					 </div>
 			    	<div class="form-group col-md-6"> 
@@ -108,7 +118,7 @@ textarea.form-control{
 					     <!-- ::after -->
 					   </div>
 					   <div>
-					      <input type="text" class="form-control" name="busIncome" placeholder="매출액/투자금액 입력 (단위 : 억원)" required disabled>
+					      <input type="text" class="form-control dis" name="busIncome" placeholder="매출액/투자금액 입력 (단위 : 억원)" required>
 					   </div>
 					 </div> 
 			     </div>
@@ -121,7 +131,7 @@ textarea.form-control{
 					     <!-- ::after -->
 					   </div>
 					   <div>
-					      <input type="text" id="category" class="form-control" name="busIndustrial" placeholder="IT" required disabled>
+					      <input type="text" id="category" class="form-control dis" name="busIndustrial" placeholder="IT" required>
 					   </div>
 					 </div>
 					 <div class="form-group col-md-6">  
@@ -130,7 +140,7 @@ textarea.form-control{
 					     <!-- ::after -->
 					   </div>
 					   <div>
-					   	  <select class="form-control" name="busTotalEmp" disabled><option value="">회사규모</option><option value="1~4">1~4명</option><option value="5~10">5~10명</option><option value="11~50">11~50명</option><option value="51~200">51~200명</option><option value="201~500">201~500명</option><option value="501~1000">501~1000명</option><option value="1001~5000">1001~5000명</option><option value="5001~10000">5001~10000명</option><option value="10001~">10000명 이상</option></select>
+					   	  <select class="form-control dis" name="busTotalEmp"><option value="">회사규모</option><option value="1~4">1~4명</option><option value="5~10">5~10명</option><option value="11~50">11~50명</option><option value="51~200">51~200명</option><option value="201~500">201~500명</option><option value="501~1000">501~1000명</option><option value="1001~5000">1001~5000명</option><option value="5001~10000">5001~10000명</option><option value="10001~">10000명 이상</option></select>
 					      <!-- <input type="text" class="form-control" name="busTotalEmp" placeholder="회사규모" required> -->
 					   </div>
 					 </div>  
@@ -142,7 +152,7 @@ textarea.form-control{
 				     <!-- ::after -->
 				   </div>
 				   <div>
-				      <textarea class="form-control" name="busIntroduce" placeholder="회사 정보 입력" rows="60" disabled></textarea>
+				      <textarea class="form-control dis" name="busIntroduce" placeholder="회사 정보 입력" rows="60"></textarea>
 				      <!-- <input type="text" class="form-control" name="busIntroduce" placeholder="회사 정보 입력" required> -->
 				   </div>
 			     </div>
@@ -154,7 +164,7 @@ textarea.form-control{
 						     <!-- ::after -->
 						   </div>
 						   <div>
-						 	  <select class="form-control" disabled><option value="">ex) 2012년</option><option value="2019">2019년</option><option value="2018">2018년</option><option value="2017">2017년</option><option value="2016">2016년</option><option value="2015">2015년</option><option value="2014">2014년</option><option value="2013">2013년</option><option value="2012">2012년</option><option value="2011">2011년</option><option value="2010">2010년</option><option value="2009">2009년</option><option value="2008">2008년</option><option value="2007">2007년</option><option value="2006">2006년</option><option value="2005">2005년</option><option value="2004">2004년</option><option value="2003">2003년</option><option value="2002">2002년</option><option value="2001">2001년</option><option value="2000">2000년</option><option value="1999">1999년</option><option value="1998">1998년</option><option value="1997">1997년</option><option value="1996">1996년</option><option value="1995">1995년</option><option value="1994">1994년</option><option value="1993">1993년</option><option value="1992">1992년</option><option value="1991">1991년</option><option value="1990">1990년</option><option value="1989">1989년</option><option value="1988">1988년</option><option value="1987">1987년</option><option value="1986">1986년</option><option value="1985">1985년</option><option value="1984">1984년</option><option value="1983">1983년</option><option value="1982">1982년</option><option value="1981">1981년</option><option value="1980">1980년</option><option value="1979">1979년</option><option value="1978">1978년</option><option value="1977">1977년</option><option value="1976">1976년</option><option value="1975">1975년</option><option value="1974">1974년</option><option value="1973">1973년</option><option value="1972">1972년</option><option value="1971">1971년</option><option value="1970">1970년</option><option value="1969">1969년</option><option value="1968">1968년</option><option value="1967">1967년</option><option value="1966">1966년</option><option value="1965">1965년</option><option value="1964">1964년</option><option value="1963">1963년</option><option value="1962">1962년</option><option value="1961">1961년</option><option value="1960">1960년</option><option value="1959">1959년</option><option value="1958">1958년</option><option value="1957">1957년</option><option value="1956">1956년</option><option value="1955">1955년</option><option value="1954">1954년</option><option value="1953">1953년</option><option value="1952">1952년</option><option value="1951">1951년</option><option value="1950">1950년</option><option value="1949">1949년</option><option value="1948">1948년</option><option value="1947">1947년</option><option value="1946">1946년</option><option value="1945">1945년</option><option value="1944">1944년</option><option value="1943">1943년</option><option value="1942">1942년</option><option value="1941">1941년</option><option value="1940">1940년</option><option value="1939">1939년</option><option value="1938">1938년</option><option value="1937">1937년</option><option value="1936">1936년</option><option value="1935">1935년</option><option value="1934">1934년</option><option value="1933">1933년</option><option value="1932">1932년</option><option value="1931">1931년</option><option value="1930">1930년</option><option value="1929">1929년</option><option value="1928">1928년</option><option value="1927">1927년</option><option value="1926">1926년</option><option value="1925">1925년</option><option value="1924">1924년</option><option value="1923">1923년</option><option value="1922">1922년</option><option value="1921">1921년</option><option value="1920">1920년</option><option value="1919">1919년</option><option value="1918">1918년</option><option value="1917">1917년</option><option value="1916">1916년</option><option value="1915">1915년</option><option value="1914">1914년</option><option value="1913">1913년</option><option value="1912">1912년</option><option value="1911">1911년</option><option value="1910">1910년</option><option value="1909">1909년</option><option value="1908">1908년</option><option value="1907">1907년</option><option value="1906">1906년</option><option value="1905">1905년</option><option value="1904">1904년</option><option value="1903">1903년</option><option value="1902">1902년</option><option value="1901">1901년</option><option value="1900">1900년</option></select>
+						 	  <select class="form-control dis"><option value="">ex) 2012년</option><option value="2019">2019년</option><option value="2018">2018년</option><option value="2017">2017년</option><option value="2016">2016년</option><option value="2015">2015년</option><option value="2014">2014년</option><option value="2013">2013년</option><option value="2012">2012년</option><option value="2011">2011년</option><option value="2010">2010년</option><option value="2009">2009년</option><option value="2008">2008년</option><option value="2007">2007년</option><option value="2006">2006년</option><option value="2005">2005년</option><option value="2004">2004년</option><option value="2003">2003년</option><option value="2002">2002년</option><option value="2001">2001년</option><option value="2000">2000년</option><option value="1999">1999년</option><option value="1998">1998년</option><option value="1997">1997년</option><option value="1996">1996년</option><option value="1995">1995년</option><option value="1994">1994년</option><option value="1993">1993년</option><option value="1992">1992년</option><option value="1991">1991년</option><option value="1990">1990년</option><option value="1989">1989년</option><option value="1988">1988년</option><option value="1987">1987년</option><option value="1986">1986년</option><option value="1985">1985년</option><option value="1984">1984년</option><option value="1983">1983년</option><option value="1982">1982년</option><option value="1981">1981년</option><option value="1980">1980년</option><option value="1979">1979년</option><option value="1978">1978년</option><option value="1977">1977년</option><option value="1976">1976년</option><option value="1975">1975년</option><option value="1974">1974년</option><option value="1973">1973년</option><option value="1972">1972년</option><option value="1971">1971년</option><option value="1970">1970년</option><option value="1969">1969년</option><option value="1968">1968년</option><option value="1967">1967년</option><option value="1966">1966년</option><option value="1965">1965년</option><option value="1964">1964년</option><option value="1963">1963년</option><option value="1962">1962년</option><option value="1961">1961년</option><option value="1960">1960년</option><option value="1959">1959년</option><option value="1958">1958년</option><option value="1957">1957년</option><option value="1956">1956년</option><option value="1955">1955년</option><option value="1954">1954년</option><option value="1953">1953년</option><option value="1952">1952년</option><option value="1951">1951년</option><option value="1950">1950년</option><option value="1949">1949년</option><option value="1948">1948년</option><option value="1947">1947년</option><option value="1946">1946년</option><option value="1945">1945년</option><option value="1944">1944년</option><option value="1943">1943년</option><option value="1942">1942년</option><option value="1941">1941년</option><option value="1940">1940년</option><option value="1939">1939년</option><option value="1938">1938년</option><option value="1937">1937년</option><option value="1936">1936년</option><option value="1935">1935년</option><option value="1934">1934년</option><option value="1933">1933년</option><option value="1932">1932년</option><option value="1931">1931년</option><option value="1930">1930년</option><option value="1929">1929년</option><option value="1928">1928년</option><option value="1927">1927년</option><option value="1926">1926년</option><option value="1925">1925년</option><option value="1924">1924년</option><option value="1923">1923년</option><option value="1922">1922년</option><option value="1921">1921년</option><option value="1920">1920년</option><option value="1919">1919년</option><option value="1918">1918년</option><option value="1917">1917년</option><option value="1916">1916년</option><option value="1915">1915년</option><option value="1914">1914년</option><option value="1913">1913년</option><option value="1912">1912년</option><option value="1911">1911년</option><option value="1910">1910년</option><option value="1909">1909년</option><option value="1908">1908년</option><option value="1907">1907년</option><option value="1906">1906년</option><option value="1905">1905년</option><option value="1904">1904년</option><option value="1903">1903년</option><option value="1902">1902년</option><option value="1901">1901년</option><option value="1900">1900년</option></select>
 						      <!-- <input type="text" class="form-control" name="busEstablishment" placeholder="ex) 2012년" required> -->
 						   </div>
 					</div>
@@ -164,7 +174,7 @@ textarea.form-control{
 						     <!-- ::after -->
 						   </div>
 						   <div>
-						      <input type="text" class="form-control" name="busEmail" placeholder="기존에 적었던 이메일 primary key 불러오기" required disabled>
+						      <input type="text" class="form-control dis" name="busEmail" placeholder="기존에 적었던 이메일 primary key 불러오기" required>
 						   </div>
 					</div>	   
 			     </div>
@@ -176,34 +186,34 @@ textarea.form-control{
 						     <!-- ::after -->
 						   </div>
 						   <div>
-						      <input type="text" class="form-control" name="busPhone" placeholder="기존에 적었던 전화번호 불러오기" required disabled>
+						      <input type="text" class="form-control dis" name="busPhone" placeholder="기존에 적었던 전화번호 불러오기" required>
 						   </div>
 					</div>	   
 					<div class="form-group col-md-6">	   
-						   <div class="subsubtitles">
+						   <div class="subtitles">
 						     웹사이트 주소  
 						   </div>
 						   <div>
-						      <input type="text" id="busSite" class="form-control" name="busWebsite" placeholder="URL 입력" required>
+						      <input type="text" id="busSite" class="form-control dis" name="busWebsite" placeholder="URL 입력" required>
 						   </div>
 				   	</div>
 			     </div>
 			     			     			     <br>
 			    <div>
-				   <div class="subsubtitles">
+				   <div class="subtitles">
 				     뉴스 검색 키워드 <small>(키워드는 최대 3개까지 입력 가능합니다.)</small>  
 				   </div>
 				   <div>
-				      <input type="text" class="form-control" name="searchKeywords" placeholder="서비스 명 혹은 브랜드 명 입력" disabled>
+				      <input type="text" class="form-control dis" name="searchKeywords" placeholder="서비스 명 혹은 브랜드 명 입력">
 				   </div>
 			     </div>
 			     			     			     <br>
 			    <div>
-				   <div class="subsubtitles">
+				   <div class="subtitles">
 				     가입 경로 <small>(추천인 혹은 프로모션 코드 등을 입력해 주세요.)</small>  
 				   </div>
 				   <div>
-				      <input type="text" class="form-control" name="regPath" placeholder="코드/ 추천인 연락처 입력" disabled>
+				      <input type="text" class="form-control dis" name="regPath" placeholder="코드/ 추천인 연락처 입력">
 				   </div>
 			     </div>    	
 	      	</div>
@@ -213,7 +223,7 @@ textarea.form-control{
 </section>
  		<div class="fixed-bottom position-sticky">
 		    <div class="sticky-button">
-		       <button disabled type="button" id="startButton" color="#258BF7" class="btn btn-outline-primary">시작하기</button>
+		       <button type="button" id="startButton" color="#258BF7" class="btn btn-outline-primary">시작하기</button>
 		    </div>
 	    </div> 
 
@@ -221,8 +231,23 @@ textarea.form-control{
 <script>
 
 	$(function(){
-		
+		disabledOn();
 	});
+	
+	
+	function disabledOn(){
+		var titles=document.querySelectorAll('.subtitles');
+		var bars=document.querySelectorAll('.dis');
+		console.log(document.querySelectorAll('.dis'));
+		console.log(document.querySelectorAll('.subtitles'));
+		for(var i in bars){
+			titles[i].style.color="#A4A4A4";
+			bars[i].style.borderColor="#F2F2F2";
+			bars[i].style.color="#A4A4A4";
+			bars[i].style.backgroundColor="#FFFFFF";
+			bars[i].setAttribute("disabled", true);
+		}
+	}
 	
 	
 	
