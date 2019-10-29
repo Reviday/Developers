@@ -37,4 +37,8 @@ public class BusinessController2 {
 		mv.setViewName("jsonView");
 		return mv;
 	}
+	@RequestMapping("/business/applications.do")
+	public String applications() {
+		return "business/dashboard";
+	}
 }

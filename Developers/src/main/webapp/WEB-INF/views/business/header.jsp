@@ -8,12 +8,17 @@
 <head>
 <meta charset="UTF-8">
 <title>Developers Black</title>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/css/bootstrap-3.3.7.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/css/bootstrap-grid.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/css/style_fe.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/resources/css/all.css">
 
 	
 <!-- jQuery library -->
@@ -23,9 +28,11 @@
 	src="${pageContext.request.contextPath }/resources/js/popper.js"></script>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath }/resources/js/bootstrap.min.js"></script>
-	
-	
-	
+<script type="text/javascript"
+	src="${pageContext.request.contextPath }/resources/js/all.js"></script>	
+
+
+
 </head>
 
 <style>
@@ -33,6 +40,24 @@
 		margin-top:6px;
 		width:35px;
 		height:35px;
+	}
+	.re180{
+		transform: rotate(180deg);
+		transition:all 2s;
+	}
+	.nav_rr>*{
+		position: relative;
+		display: inline-block !important;
+	}
+	/* .nav_rr{
+		width:300px;
+	} */
+	.bl_1{
+		color:white !important;
+    	font-weight: 900 !important;
+	}
+	.rotate{
+		transform: rotate(180deg);
 	}
 </style>
 
@@ -59,6 +84,7 @@
 								<a class="as2 as3" data-toggle="modal" 
 								data-target="#empEnrollModal">관리자 가입</a>
 							</li>
+							
 							<button class="home_button emp_Btn" onclick="location.href='${path}'">
 								디벨로퍼 홈
 							</button>
@@ -105,19 +131,20 @@
 				</nav>
 				<div class="hidden-xs">
 					<nav class="nav_style_r">
-						<ul class="nav_us">
-							<li class="ls1 ls3">
-								<a class="as2" data-toggle="modal" 
-								data-target="#empLoginModal">채용담당자 로그인</a>
-							</li>
-							<li class="ls1 ls3">
-								<a class="as2 as3" data-toggle="modal" 
-								data-target="#empEnrollModal">관리자 가입</a>
-							</li>
+						<div class="nav_rr">
+							<div class="dropdown">
+								<button class="bl_1"
+									type="button" data-toggle="dropdown">
+									로그인아이디&nbsp;<i class="fas fa-angle-down"></i></button>
+								<ul class="dropdown-menu">
+									<li><a href="#">내 프로필</a></li>
+									<li><a href="#">로그아웃</a></li>
+								</ul>
+							</div>
 							<button class="home_button emp_Btn" onclick="location.href='${path}'">
 								디벨로퍼 홈
 							</button>
-						</ul>
+						</div>
 					</nav>
 				</div>
 				<div class="visible-xs">
@@ -132,10 +159,15 @@
 					</nav>
 					<div class="mobile-menu">
 						<ul class="nav_us uwQaB">
-							<li class="ls4"><a class="as2" type="submit" 
-									data-toggle="modal" data-target="#empLoginModal">채용담당자 로그인</a></li>
-							<li class="ls4 active"><a class="as2 as3" type="submit"
-								data-toggle="modal" data-target="#empEnrollModal">관리자 가입</a></li>
+							<li class="ls4"><a class="as2">지원자</a></li>
+							<li class="ls4"><a class="as2">매치업</a></li>
+							<li class="ls4"><a class="as2">포지션</a></li>
+							<li class="ls4"><a class="as2">채용광고</a></li>
+							<li class="ls4"><a class="as2">회사정보</a></li>
+							<li class="ls4"><a class="as2">계정 관리</a></li>
+							<li class="ls4"><a class="as2">로그아웃</a></li>
+							<li class="ls4"><a class="as2">디벨로퍼스 홈</a></li>
+
 						</ul>
 					</div>
 				</div>
@@ -249,6 +281,13 @@
 
 				})
 			});
-		
+			$(".bl_1").on("click", function(){
+				if($(".bl_1>svg").hasClass("rotate")){
+					$(".bl_1>svg").removeClass("rotate");
+				}else{
+					$(".bl_1>svg").addClass("rotate");
+				};
+			});
+			
 		});
 	</script>
