@@ -60,6 +60,8 @@ public class MemberController {
 	public ModelAndView passwordCheck(Member m) {
 		ModelAndView mv=new ModelAndView();
 		Member result=service.selectMemberOne(m);
+		logger.debug("passwordCheck : "+m);
+		System.out.println("passwordCheck : "+m);
 		boolean flag=false;
 		if(result != null) {
 			if(pwEncoder.matches(m.getMemPassword(), result.getMemPassword())) {
@@ -99,21 +101,25 @@ public class MemberController {
 		String url=req.getRequestURL().toString();
 		int target=url.indexOf("developers");
 		String frontUrl=url.substring(0,target);
-		int no=0;
+		int result=0;
 		String msg="";
 		try {
-			no=service.insertMember(m, frontUrl);
+			result=service.insertMember(m, frontUrl);
 		} catch (Exception e) {
 			msg="회원가입에 실패하였습니다. 다시 확인해주시기 바랍니다.";
 			rttr.addFlashAttribute("msg",msg);
 			mv.setViewName("redirect:/");
 		}
-		if(no>0) {
+		if(result>0) {
 			msg="기입된 이메일로 인증 메일이 전송되었습니다.";
 			mv.addObject("msg",msg);
 			mv.setViewName("jsonView");
-		} else {
+		} else if(result<0) {
 			msg="인증메일 전송에 실패하였습니다. 다시 시도해 주시기 바랍니다.";
+			rttr.addFlashAttribute("msg",msg);
+			mv.setViewName("redirect:/");
+		} else {
+			msg="회원가입 도중 에러가 발생하였습니다.";
 			rttr.addFlashAttribute("msg",msg);
 			mv.setViewName("redirect:/");
 		}

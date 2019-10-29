@@ -132,7 +132,7 @@ $('.suBtn').on('click',function() {
 					    innerPcTag+='<input id="user-text-field" type="email" autocomplete="username" value="';
 					    innerPcTag+=userEmail.val();
 					    innerPcTag+='" style="display: none;">';
-					    innerPcTag+='<input id="new-password-text-field" type="password" autocomplete="new-password" placeholder="비밀번호"></span>';
+					    innerPcTag+='<input id="new-password-text-field" type="password" autocomplete="new-password" placeholder="비밀번호">';
 					    innerPcTag+='<input id="confirm-password-text-field" type="password" autocomplete="new-password" placeholder="비밀번호 재입력"><span id="checkMsg"></span>';
 					    innerPcTag+='<button type="button" id="enrollBtn">회원가입</button></div></div>';
 					    innerPcTag+='</div></div>';
@@ -179,13 +179,13 @@ $('.suBtn').on('click',function() {
 					    innerPcTag+='$("#enrollBtn").on("click",function() {';
 					    innerPcTag+='if(pwFlag) {';
 					    innerPcTag+='$.ajax({';
-					    innerPcTag+='url:"${path}/member/enrollMember",';
+					    innerPcTag+='url:path+"/member/enrollMember",';
 					    innerPcTag+='type:"POST",';
 					    innerPcTag+='data:{"memEmail":"';
 					    innerPcTag+=userEmail.val();
-					    innerPcTag+='", "memPassword":$("new-password-text-field").val()},';
+					    innerPcTag+='", "memPassword": $("#new-password-text-field").val(),},';
 					    innerPcTag+='success:function(result){';
-					    innerPcTag+='console.log(resuslt);';
+					    innerPcTag+='console.log(result);';
 					    innerPcTag+='';
 					    innerPcTag+='';
 					    innerPcTag+='}})}});';

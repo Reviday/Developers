@@ -28,10 +28,13 @@ public class MemberServiceImpl implements MemberService {
 	
 	@Override
 	public int insertMember(Member m, String url) throws Exception{
-		int no=dao.insertMember(session, m);
-		m.setMemNo(no);
-		sendMail(m, url);
-		return no;
+		int result=dao.insertMember(session, m);
+		if(result>0) {
+			sendMail(m, url);
+		} else {
+			result=-1;
+		}
+		return result;
 	}
 	
 	@Override
