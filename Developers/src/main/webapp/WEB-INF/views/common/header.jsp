@@ -21,8 +21,6 @@
 <!-- FontAwesome -->
 <script type="text/javascript"
    src="${pageContext.request.contextPath }/resources/js/all.js"></script>
-<script type="text/javascript"
-	src="${pageContext.request.contextPath }/resources/js/main.js"></script>
 <script>
 
 	var path='${path}';

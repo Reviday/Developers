@@ -37,4 +37,6 @@
 		</div>
 	</footer>
 </body>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath }/resources/js/main.js"></script>
 </html>
