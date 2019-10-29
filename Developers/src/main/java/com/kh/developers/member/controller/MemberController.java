@@ -38,6 +38,33 @@ public class MemberController {
 		return mv;
 	}
 	
+	@RequestMapping("/member/reSendMail")
+	public ModelAndView reSendMail(Member m, HttpServletRequest req) {
+		ModelAndView mv=new ModelAndView();
+		
+		String url=req.getRequestURL().toString();
+		int target=url.indexOf("developers");
+		String frontUrl=url.substring(0,target);
+		
+		int result=1;
+		String msg="";
+		try {
+			service.sendMail(m,frontUrl);
+		} catch (Exception e) {
+			result=-1;
+		}
+		
+		if(result>0) {
+			msg="기입된 이메일로 인증 메일이 전송되었습니다.";
+			mv.addObject("msg",msg);
+		} else {
+			msg="이메일 전송에 실패하였습니다.\n다시 확인하여 주시기 바랍니다.";
+			mv.addObject("msg",msg);
+		}
+		mv.setViewName("jsonView");
+		return mv;
+	}
+	
 	@RequestMapping("/member/logout.do")
 	public String logout(HttpSession session, SessionStatus s) {
 		if(!s.isComplete()) {
