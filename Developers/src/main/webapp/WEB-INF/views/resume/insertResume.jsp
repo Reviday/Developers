@@ -63,13 +63,19 @@
                                 <div class="resume-basic-info" data-reactid=".0.0.0.0.0.0.1">
                                     <div class="resume-input-form-group" data-reactid=".0.0.0.0.0.0.1.0"><input
                                             class="resume-input name" type="text" maxlength="100" placeholder="이름"
-                                            value="강병민" data-reactid=".0.0.0.0.0.0.1.0.0"></div>
+                                            value="${resumeMem.memName }" data-reactid=".0.0.0.0.0.0.1.0.0"></div>
                                     <div class="resume-input-form-group" data-reactid=".0.0.0.0.0.0.1.1"><input
                                             class="resume-input email" type="text" maxlength="120" placeholder="이메일(필수)"
-                                            value="cay9506@naver.com" data-reactid=".0.0.0.0.0.0.1.1.0"></div>
-                                    <div class="resume-input-form-group" data-reactid=".0.0.0.0.0.0.1.2"><input
-                                            class="resume-input mobile" type="text" maxlength="200"
-                                            placeholder="연락처(필수) ex) 010-0000-0000" data-reactid=".0.0.0.0.0.0.1.2.0">
+                                            value="${resumeMem.memEmail }" data-reactid=".0.0.0.0.0.0.1.1.0"></div>
+                                    <div class="resume-input-form-group" data-reactid=".0.0.0.0.0.0.1.2">
+                                    <c:if test="${resumeMem.memPhone==null }">
+                                    <input class="resume-input mobile" type="text" maxlength="200"
+                                            placeholder="연락처(필수) ex) 010-0000-0000" >
+                                    </c:if>
+                                    <c:if test="${resumeMem.memPhone!=null }">
+                                     <input class="resume-input mobile" type="text" maxlength="200"
+                                         value="${resumeMem.memPhone }"   placeholder="연락처(필수) ex) 010-0000-0000" >
+                                    </c:if>
                                     </div>
                                     <div class="resume-input-form-group" data-reactid=".0.0.0.0.0.0.1.3">
                                         <div class="dynamic-textarea" data-reactid=".0.0.0.0.0.0.1.3.0"><textarea

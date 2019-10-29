@@ -41,7 +41,12 @@
                <li class="xsHomeButton xsOnly"><a href="/" class="">홈</a></li>
                <li class=""><a href="${path }/search/mainSearch.do" class="">탐색</a></li>
                <li class="microMoreVisible"><a href="#" class="">직군별 연봉</a></li>
+                <c:if test="${loginMember!=null }">  
                <li class="smMoreVisible"><a href="${path }/resume/resumeList.do" class="">이력서</a></li>
+               </c:if>
+               <c:if test="${loginMember==null }">  
+               <li class="smMoreVisible"><a href="${path }/resume/resumeIntro.do" class="">이력서</a></li>
+               </c:if>
                <li class="smMoreVisible selectedNav"><a href="#" class="">추천</a></li>
             </ul>
             <div role="presentation" class="list_view">

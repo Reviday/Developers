@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class Resume {
+	private int resumeNo;
 	private String memEmail;
 	private String memName;
 	private String memPhone;

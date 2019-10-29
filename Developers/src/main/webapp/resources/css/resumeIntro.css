@@ -1,0 +1,705 @@
+#resume-intro .block {
+    text-align: center;
+    overflow: hidden;
+}
+
+#resume-intro .block.background-image {
+    color: white;
+}
+
+#resume-intro .block.background-white {
+    background-color: white;
+    color: #333;
+}
+
+#resume-intro .block .content {
+    width: 60%;
+    margin: 0 auto;
+    padding: 80px 0 55px;
+    word-break: keep-all;
+    word-wrap: break-word;
+    /* Landscape phones and down */
+}
+
+@media (max-width: 767px) {
+    #resume-intro .block .content {
+        width: 100%;
+        padding: 50px 25px 60px;
+    }
+}
+
+#resume-intro .block .content h1 {
+    font-weight: 600;
+    font-size: 40px;
+    margin: 0;
+    /* Landscape phones and down */
+}
+
+@media (max-width: 767px) {
+    #resume-intro .block .content h1 {
+        font-size: 24px;
+    }
+}
+
+#resume-intro .block .content h2 {
+    font-size: 18px;
+    font-weight: 400;
+    margin: 20px 0 0;
+    line-height: 1.5;
+    /* Landscape phones and down */
+}
+
+@media (max-width: 767px) {
+    #resume-intro .block .content h2 {
+        font-size: 15px;
+        line-height: 1.6;
+    }
+}
+
+#resume-intro .block .content .button-block {
+    padding-top: 30px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    /* Landscape phones and down */
+}
+
+#resume-intro .block .content .button-block button,
+#resume-intro .block .content .button-block a {
+    margin: 0 5px;
+    padding: 15px 50px;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 30px;
+    /* Landscape phones and down */
+}
+
+@media (max-width: 767px) {
+
+    #resume-intro .block .content .button-block button,
+    #resume-intro .block .content .button-block a {
+        min-width: 194px;
+        padding: 15px 30px;
+        margin: 0 auto 10px;
+    }
+
+    #resume-intro .block .content .button-block button.long-text,
+    #resume-intro .block .content .button-block a.long-text {
+        padding: 15px 20px;
+    }
+}
+
+#resume-intro .block .content .button-block button.btn-default,
+#resume-intro .block .content .button-block a.btn-default {
+    background-color: white;
+    color: #3a68f9;
+    border-width: 1px;
+}
+
+#resume-intro .block .content .button-block button.btn-primary,
+#resume-intro .block .content .button-block a.btn-primary {
+    background-color: #3a68f9;
+    border-color: #3a68f9;
+    border-width: 1px;
+}
+
+#resume-intro .block .content .button-block button.btn-default {
+    border-color: #3a68f9;
+}
+
+#resume-intro .block .content .button-block a.btn-default {
+    border-color: white;
+}
+
+@media (max-width: 767px) {
+    #resume-intro .block .content .button-block {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: reverse;
+        -ms-flex-direction: column-reverse;
+        flex-direction: column-reverse;
+    }
+}
+
+#resume-intro .block:first-child .content {
+    /* Landscape phones and down */
+}
+
+@media (min-width: 768px) {
+    #resume-intro .block:first-child .content {
+        padding: 100px 0 20px;
+    }
+
+    #resume-intro .block:first-child .content h1 {
+        font-size: 56px;
+    }
+}
+
+@media (max-width: 767px) {
+    #resume-intro .block:first-child .content {
+        width: 100%;
+        padding: 70px 25px 0;
+    }
+
+    #resume-intro .block:first-child .content h1 {
+        font-size: 34px;
+    }
+}
+
+#resume-intro .background-image {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-bottom: 20%;
+    /* Landscape phones and down */
+}
+
+#resume-intro .background-image.bg-edit {
+    background-image: url("https://s3.ap-northeast-2.amazonaws.com/wanted-public/resume_intro/resume_01_en.png");
+}
+
+#resume-intro .background-image.bg-edit.ja {
+    background-image: url("https://s3.ap-northeast-2.amazonaws.com/wanted-public/resume_intro/resume_01_ja.png");
+}
+
+#resume-intro .background-image.bg-advantage {
+    background-image: url("https://s3.ap-northeast-2.amazonaws.com/wanted-public/resume_intro/resume_02.jpg");
+}
+
+#resume-intro .background-image.bg-career {
+    background-image: url("https://s3.ap-northeast-2.amazonaws.com/wanted-public/resume_intro/resume_03_en.png");
+}
+
+#resume-intro .background-image.bg-career.ko {
+    background-image: url("https://s3.ap-northeast-2.amazonaws.com/wanted-public/resume_intro/resume_03_ko.png") !important;
+}
+
+#resume-intro .background-image.bg-career.ja {
+    background-image: url("https://s3.ap-northeast-2.amazonaws.com/wanted-public/resume_intro/resume_03_ja.png") !important;
+}
+
+#resume-intro .background-image.bg-download {
+    background-image: url("https://s3.ap-northeast-2.amazonaws.com/wanted-public/resume_intro/resume_04.jpg");
+}
+
+@media (max-width: 767px) {
+    #resume-intro .background-image {
+        padding-bottom: 50%;
+    }
+
+    #resume-intro .background-image.bg-edit {
+        background-image: url("https://s3.ap-northeast-2.amazonaws.com/wanted-public/resume_intro/m_resume_01_en.png");
+        margin: 24px 0 0;
+    }
+
+    #resume-intro .background-image.bg-edit.ja {
+        background-image: url("https://s3.ap-northeast-2.amazonaws.com/wanted-public/resume_intro/m_resume_01_ja.png");
+    }
+
+    #resume-intro .background-image.bg-advantage {
+        background-image: url("https://s3.ap-northeast-2.amazonaws.com/wanted-public/resume_intro/m_resume_02.jpg");
+    }
+
+    #resume-intro .background-image.bg-career {
+        background-image: url("https://s3.ap-northeast-2.amazonaws.com/wanted-public/resume_intro/m_resume_03_en.jpg");
+    }
+
+    #resume-intro .background-image.bg-career.ko {
+        background-image: url("https://s3.ap-northeast-2.amazonaws.com/wanted-public/resume_intro/m_resume_03_kr.jpg") !important;
+    }
+
+    #resume-intro .background-image.bg-career.ja {
+        background-image: url("https://s3.ap-northeast-2.amazonaws.com/wanted-public/resume_intro/m_resume_03_jp.jpg") !important;
+    }
+
+    #resume-intro .background-image.bg-download {
+        background-image: url("https://s3.ap-northeast-2.amazonaws.com/wanted-public/resume_intro/m_resume_04.png");
+    }
+}
+
+@media (min-width: 1200px) {
+    #resume-intro .background-image.bg-edit {
+        padding-bottom: 284px;
+    }
+}
+
+
+
+
+
+#resume-intro .block {
+    text-align: center;
+    overflow: hidden;
+}
+
+#resume-intro .block.background-image {
+    color: white;
+}
+
+#resume-intro .block.background-white {
+    background-color: white;
+    color: #333;
+}
+
+#resume-intro .block .content {
+    width: 60%;
+    margin: 0 auto;
+    padding: 80px 0 55px;
+    word-break: keep-all;
+    word-wrap: break-word;
+    /* Landscape phones and down */
+}
+
+@media (max-width: 767px) {
+    #resume-intro .block .content {
+        width: 100%;
+        padding: 50px 25px 60px;
+    }
+}
+
+#resume-intro .block .content h1 {
+    font-weight: 600;
+    font-size: 40px;
+    margin: 0;
+    /* Landscape phones and down */
+}
+
+@media (max-width: 767px) {
+    #resume-intro .block .content h1 {
+        font-size: 24px;
+    }
+}
+
+#resume-intro .block .content h2 {
+    font-size: 18px;
+    font-weight: 400;
+    margin: 20px 0 0;
+    line-height: 1.5;
+    /* Landscape phones and down */
+}
+
+@media (max-width: 767px) {
+    #resume-intro .block .content h2 {
+        font-size: 15px;
+        line-height: 1.6;
+    }
+}
+
+#resume-intro .block .content .button-block {
+    padding-top: 30px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    /* Landscape phones and down */
+}
+
+#resume-intro .block .content .button-block button,
+#resume-intro .block .content .button-block a {
+    margin: 0 5px;
+    padding: 15px 50px;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 30px;
+    /* Landscape phones and down */
+}
+
+@media (max-width: 767px) {
+
+    #resume-intro .block .content .button-block button,
+    #resume-intro .block .content .button-block a {
+        min-width: 194px;
+        padding: 15px 30px;
+        margin: 0 auto 10px;
+    }
+
+    #resume-intro .block .content .button-block button.long-text,
+    #resume-intro .block .content .button-block a.long-text {
+        padding: 15px 20px;
+    }
+}
+
+#resume-intro .block .content .button-block button.btn-default,
+#resume-intro .block .content .button-block a.btn-default {
+    background-color: white;
+    color: #3a68f9;
+    border-width: 1px;
+}
+
+#resume-intro .block .content .button-block button.btn-primary,
+#resume-intro .block .content .button-block a.btn-primary {
+    background-color: #3a68f9;
+    border-color: #3a68f9;
+    border-width: 1px;
+}
+
+#resume-intro .block .content .button-block button.btn-default {
+    border-color: #3a68f9;
+}
+
+#resume-intro .block .content .button-block a.btn-default {
+    border-color: white;
+}
+
+@media (max-width: 767px) {
+    #resume-intro .block .content .button-block {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: reverse;
+        -ms-flex-direction: column-reverse;
+        flex-direction: column-reverse;
+    }
+}
+
+#resume-intro .block:first-child .content {
+    /* Landscape phones and down */
+}
+
+@media (min-width: 768px) {
+    #resume-intro .block:first-child .content {
+        padding: 100px 0 20px;
+    }
+
+    #resume-intro .block:first-child .content h1 {
+        font-size: 56px;
+    }
+}
+
+@media (max-width: 767px) {
+    #resume-intro .block:first-child .content {
+        width: 100%;
+        padding: 70px 25px 0;
+    }
+
+    #resume-intro .block:first-child .content h1 {
+        font-size: 34px;
+    }
+}
+
+#resume-intro .background-image {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-bottom: 20%;
+    /* Landscape phones and down */
+}
+
+#resume-intro .background-image.bg-edit {
+    background-image: url("https://s3.ap-northeast-2.amazonaws.com/wanted-public/resume_intro/resume_01_en.png");
+}
+
+#resume-intro .background-image.bg-edit.ja {
+    background-image: url("https://s3.ap-northeast-2.amazonaws.com/wanted-public/resume_intro/resume_01_ja.png");
+}
+
+#resume-intro .background-image.bg-advantage {
+    background-image: url("https://s3.ap-northeast-2.amazonaws.com/wanted-public/resume_intro/resume_02.jpg");
+}
+
+#resume-intro .background-image.bg-career {
+    background-image: url("https://s3.ap-northeast-2.amazonaws.com/wanted-public/resume_intro/resume_03_en.png");
+}
+
+#resume-intro .background-image.bg-career.ko {
+    background-image: url("https://s3.ap-northeast-2.amazonaws.com/wanted-public/resume_intro/resume_03_ko.png") !important;
+}
+
+#resume-intro .background-image.bg-career.ja {
+    background-image: url("https://s3.ap-northeast-2.amazonaws.com/wanted-public/resume_intro/resume_03_ja.png") !important;
+}
+
+#resume-intro .background-image.bg-download {
+    background-image: url("https://s3.ap-northeast-2.amazonaws.com/wanted-public/resume_intro/resume_04.jpg");
+}
+
+@media (max-width: 767px) {
+    #resume-intro .background-image {
+        padding-bottom: 50%;
+    }
+
+    #resume-intro .background-image.bg-edit {
+        background-image: url("https://s3.ap-northeast-2.amazonaws.com/wanted-public/resume_intro/m_resume_01_en.png");
+        margin: 24px 0 0;
+    }
+
+    #resume-intro .background-image.bg-edit.ja {
+        background-image: url("https://s3.ap-northeast-2.amazonaws.com/wanted-public/resume_intro/m_resume_01_ja.png");
+    }
+
+    #resume-intro .background-image.bg-advantage {
+        background-image: url("https://s3.ap-northeast-2.amazonaws.com/wanted-public/resume_intro/m_resume_02.jpg");
+    }
+
+    #resume-intro .background-image.bg-career {
+        background-image: url("https://s3.ap-northeast-2.amazonaws.com/wanted-public/resume_intro/m_resume_03_en.jpg");
+    }
+
+    #resume-intro .background-image.bg-career.ko {
+        background-image: url("https://s3.ap-northeast-2.amazonaws.com/wanted-public/resume_intro/m_resume_03_kr.jpg") !important;
+    }
+
+    #resume-intro .background-image.bg-career.ja {
+        background-image: url("https://s3.ap-northeast-2.amazonaws.com/wanted-public/resume_intro/m_resume_03_jp.jpg") !important;
+    }
+
+    #resume-intro .background-image.bg-download {
+        background-image: url("https://s3.ap-northeast-2.amazonaws.com/wanted-public/resume_intro/m_resume_04.png");
+    }
+}
+
+@media (min-width: 1200px) {
+    #resume-intro .background-image.bg-edit {
+        padding-bottom: 284px;
+    }
+}
+
+._1EdPNj8ueEaeOAqqWEOyrM {
+    padding: 30px 0 70px;
+    background-color: #2b2d2e;
+}
+
+@media screen and (max-width: 767px) {
+    ._1EdPNj8ueEaeOAqqWEOyrM {
+        padding: 30px 25px 50px;
+    }
+}
+
+._1EdPNj8ueEaeOAqqWEOyrM .innerWrapper {
+    position: relative;
+    width: 87.72%;
+    margin: 0 auto 25px;
+    max-width: 1060px;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1199px) {
+    ._1EdPNj8ueEaeOAqqWEOyrM .innerWrapper {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    ._1EdPNj8ueEaeOAqqWEOyrM .innerWrapper {
+        width: 100%;
+        margin: 0;
+    }
+}
+
+._1EdPNj8ueEaeOAqqWEOyrM .innerWrapper .innerHeader,
+._1EdPNj8ueEaeOAqqWEOyrM .innerWrapper .innerFooter {
+    overflow: hidden;
+}
+
+._1EdPNj8ueEaeOAqqWEOyrM .innerWrapper .innerHeader {
+    margin-bottom: 20px;
+}
+
+@media screen and (max-width: 767px) {
+    ._1EdPNj8ueEaeOAqqWEOyrM .innerWrapper .innerHeader {
+        margin-bottom: 10px;
+    }
+}
+
+._1EdPNj8ueEaeOAqqWEOyrM .innerWrapper .innerHeader .footerNav,
+._1EdPNj8ueEaeOAqqWEOyrM .innerWrapper .innerHeader .countrySelector {
+    float: left;
+}
+
+._1EdPNj8ueEaeOAqqWEOyrM .innerWrapper .innerHeader .footerLogo {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    float: left;
+    height: 36px;
+    margin-right: 50px;
+}
+
+@media screen and (max-width: 767px) {
+    ._1EdPNj8ueEaeOAqqWEOyrM .innerWrapper .innerHeader .footerLogo {
+        float: none;
+        margin: auto;
+    }
+}
+
+._1EdPNj8ueEaeOAqqWEOyrM .innerWrapper .innerHeader .footerNavGroup {
+    float: left;
+    width: calc(100% - 250px);
+}
+
+@media screen and (max-width: 767px) {
+    ._1EdPNj8ueEaeOAqqWEOyrM .innerWrapper .innerHeader .footerNavGroup {
+        width: 100%;
+    }
+}
+
+._1EdPNj8ueEaeOAqqWEOyrM .innerWrapper .innerHeader .footerNav {
+    float: left;
+    margin-right: 20px;
+    padding-left: 0;
+    overflow: hidden;
+    line-height: 36px;
+}
+
+@media screen and (max-width: 767px) {
+    ._1EdPNj8ueEaeOAqqWEOyrM .innerWrapper .innerHeader .footerNav {
+        float: none;
+        text-align: center;
+        width: 100%;
+        margin-top: 9px;
+        margin-right: 0;
+        margin-bottom: 19px;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    ._1EdPNj8ueEaeOAqqWEOyrM .innerWrapper .innerHeader .footerNav {
+        width: 100%;
+        margin-top: 23px;
+    }
+}
+
+._1EdPNj8ueEaeOAqqWEOyrM .innerWrapper .innerHeader .footerNav li {
+    float: left;
+    margin-right: 50px;
+    font-size: 16px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+._1EdPNj8ueEaeOAqqWEOyrM .innerWrapper .innerHeader .footerNav li:last-of-type {
+    margin-right: 0;
+}
+
+@media screen and (max-width: 767px) {
+    ._1EdPNj8ueEaeOAqqWEOyrM .innerWrapper .innerHeader .footerNav li {
+        font-size: 14px;
+        margin: 0 8px;
+        float: unset;
+        display: inline-block;
+    }
+
+    ._1EdPNj8ueEaeOAqqWEOyrM .innerWrapper .innerHeader .footerNav li:last-of-type {
+        margin-right: 8px;
+    }
+}
+
+._1EdPNj8ueEaeOAqqWEOyrM .innerWrapper .innerHeader .footerNav p {
+    display: inline-block;
+    margin: 9px 50px 9px 0;
+    padding: 0;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1;
+    color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+}
+
+@media screen and (max-width: 767px) {
+    ._1EdPNj8ueEaeOAqqWEOyrM .innerWrapper .innerHeader .footerNav p {
+        font-size: 14px;
+        margin-right: 15px;
+    }
+}
+
+._1EdPNj8ueEaeOAqqWEOyrM .innerWrapper .innerHeader .footerNav p :last-child {
+    margin-right: 0;
+}
+
+._1EdPNj8ueEaeOAqqWEOyrM .innerWrapper .innerHeader .countrySelector {
+    width: 250px;
+}
+
+@media screen and (max-width: 767px) {
+    ._1EdPNj8ueEaeOAqqWEOyrM .innerWrapper .innerHeader .countrySelector {
+        width: 100%;
+    }
+}
+
+._1EdPNj8ueEaeOAqqWEOyrM .innerWrapper .innerHeader .countrySelector .selectWrapper {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+}
+
+._1EdPNj8ueEaeOAqqWEOyrM .innerWrapper .innerHeader .countrySelector .selectWrapper .countryIcon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    -webkit-transform: translate(0, -50%);
+    transform: translate(0, -50%);
+    width: 20px;
+    height: 14px;
+    z-index: 1;
+}
+
+._1EdPNj8ueEaeOAqqWEOyrM .innerWrapper .innerHeader .countrySelector .selectWrapper select {
+    width: 100%;
+    background: black;
+    border-radius: 0;
+    border: none;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.8);
+    padding: 8px 45px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+@media screen and (max-width: 767px) {
+    ._1EdPNj8ueEaeOAqqWEOyrM .innerWrapper .innerHeader .countrySelector .selectWrapper select {
+        text-align-last: center;
+    }
+}
+
+._1EdPNj8ueEaeOAqqWEOyrM .innerWrapper .innerHeader .countrySelector .selectWrapper select ::-ms-expand {
+    display: none;
+}
+
+._1EdPNj8ueEaeOAqqWEOyrM .innerWrapper .innerHeader .countrySelector .selectWrapper .icon-arrow_bottom_fill {
+    width: 10px;
+    height: 10px;
+    font-size: 10px;
+    line-height: 1;
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    -webkit-transform: translate(0, -50%);
+    transform: translate(0, -50%);
+}
+
+._1EdPNj8ueEaeOAqqWEOyrM .innerWrapper .innerFooter {
+    overflow: hidden;
+}
+
+._1EdPNj8ueEaeOAqqWEOyrM .innerWrapper .innerFooter .bottomText {
+    float: left;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.66667em;
+    color: rgba(255, 255, 255, 0.8);
+    width: calc(100% - 270px);
+    margin-right: 20px;
+}
+
+@media screen and (max-width: 767px) {
+    ._1EdPNj8ueEaeOAqqWEOyrM .innerWrapper .innerFooter .bottomText {
+        text-align: center;
+        padding: 10px;
+        width: 100%;
+        margin-right: 0;
+    }
+}

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="resume">
+
+<insert id="insertResume" parameterType="member">
+INSERT INTO RESUME VALUES (SEQ_RESUME.NEXTVAL,#{memEmail},#{memName},default,default,default)
+</insert>
+
+
+<resultMap type="resume" id="resumeMap">
+	<result property="resumeNo" column="resume_no"/>
+	<result property="memEmail" column="mem_email"/>
+	<result property="memName" column="mem_name"/>
+	<result property="memPhone" column="mem_phone"/>
+	<result property="Intro" column="intro"/>
+	<result property="resumeDate" column="resume_date"/>
+</resultMap>
+
+</mapper>

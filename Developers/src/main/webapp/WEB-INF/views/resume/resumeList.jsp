@@ -43,8 +43,9 @@
                                     <div class="resume-list-content Row-ciskzD hmOcCM" >
                                         <div class="resume-item Column-cKhjSj ehaaKs" >
                                             <div class="resume-box ResumeItemBox__Box-dRwtdQ jzITim">
+                                      
                                                 <button class="btn-add-resume btn btn-default" 
-                                                type="button" onclick="location.href='${path }/resume/insertResumepage.do';">
+                                                type="button" onclick="location.href='${path }/resume/insertResumepage.do?memEmail=${loginMember.memEmail }';">
                                                     <div class="wrapper" >
                                                         <div class="box blue" >
                                                             <i class="far fa-plus-square"></i></div>
@@ -116,10 +117,4 @@
 </section>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/> 
-<script>
 
-
-
-
-</script>
-	
