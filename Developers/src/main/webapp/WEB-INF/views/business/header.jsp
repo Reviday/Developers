@@ -64,7 +64,7 @@
 
 <body>
 	<header class="header_fe"><!-- for Employers -->
-		<c:if test="${not empty loginMember}">
+		<c:if test="${empty loginMember}">
 			<div class="header_nav">
 				<nav class="nav_style_l">
 					<ul class="nav_us">
@@ -112,7 +112,7 @@
 				</div>
 			</div>
 		</c:if>
-		<c:if test="${empty loginMember}">
+		<c:if test="${not empty loginMember}">
 			<div class="header_nav">
 				<nav class="nav_style_l">
 					<ul class="nav_us">

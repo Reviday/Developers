@@ -39,17 +39,22 @@
 	</div>
 	<div id="db-container" class="db-container">
 		<div id="db-leftside" class="db-leftside">
-			<div class="db-side-nav">
-				<h5>채용중</h5>
-				<hr/>
-				<ul>
-					<li>포지션 전체</li>
-					<li>매치업</li>
-				</ul>
-				<h5>마감된 포지션</h5>
-				<hr/>
-				<ul></ul>
-			</div>
+			<h5>
+				채용중
+				<i class="fas fa-angle-down"></i>
+			</h5>
+			<hr/>
+			<ul>
+				<li>포지션 전체</li>
+				<li>매치업</li>
+			</ul>
+			<br/>
+			<h5>
+				마감된 포지션
+				<i class="fas fa-angle-down"></i>
+			</h5>
+			<hr/>
+			<ul></ul>
 		</div>
 		<div id="db-main" class="db-main">
 			<div id="db-main-top" class="db-main-top">
@@ -116,13 +121,18 @@
 	}
 	.db-container>div{
 		position: relative;
-		display: inline-block;
+		display: inline-grid;
 	}
 	.db-main{
 		margin: 0 10px;
 	}
 	.db-leftside{
-		height:500px;
+		top:-40px;
+		padding:0 13px;
+	}
+	.db-leftside>h5>svg{
+		display: none;
+		float:right;
 	}
 	.db-main-top{
 		width:100%;
@@ -241,12 +251,18 @@
 	@media (max-width: 767px){
 		.db-container{
 			width:100%;
+			margin-top:50px;
 		}
 		.db-leftside{
 			width:100%;
+			top:10px;
 		}
 		.db-main{
-			width:100%;
+			width:100% -25px;
+			top:20px;
+		}
+		.db-leftside>h5>svg{
+			display: block;
 		}
 
 	}
