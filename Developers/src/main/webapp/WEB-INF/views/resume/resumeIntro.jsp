@@ -32,7 +32,7 @@
                                         <h2 data-reactid=".0.0.0.0.0.0.0.0.1"><span
                                                 data-reactid=".0.0.0.0.0.0.0.0.1.0">채용 전문가들의 조언을 얻어, 이력서를 잘 쓸 수 있는 도구를
                                                 만들었습니다. <br>
-                                                서류 통과가 잘 되는 원티드 이력서를 쉽고 빠르게 작성해 보세요.</span></h2>
+                                                서류 통과가 잘 되는 디벨로퍼 이력서를 쉽고 빠르게 작성해 보세요.</span></h2>
                                         <div class="button-block" data-reactid=".0.0.0.0.0.0.0.0.2">
                                         
                                       <c:if test="${loginMember==null }">  
