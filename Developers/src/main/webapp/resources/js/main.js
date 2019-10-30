@@ -13,6 +13,8 @@ window.onload=function() {
     headerBarExit.onclick=function() {
         headerBar.style.display="none";
     }
+    
+
     	
     var $ldcDiv=$('<div class="modal_login_enroll"></div>');
     if(ldc==null||ldc=="") {
@@ -138,6 +140,7 @@ $('.suBtn').on('click',function() {
     	        		return false;
     	        	} else if(result.flag) {
     	        		var uemail=userEmail.val();
+    	        		
     	        		/*회원인 경우*/
     	        		$('.login_enroll_header span').text('비밀번호 입력');
 	    	        	$('.le_intro').remove();
@@ -154,23 +157,29 @@ $('.suBtn').on('click',function() {
 	    	        	innerPwTag+='<script>';
 	    	        	innerPwTag+='var errorMessagePw=';
 	    	        	innerPwTag+="'<p class=";
-	    	        	innerPwTag+='"errorMessage">비밀번호가 일치하지 않습니다.</p>';
-	    	        	innerPwTag+="'; ";
+	    	        	innerPwTag+='"errorMessage" style="display:none">비밀번호가 일치하지 않습니다.</p>';
+	    	        	innerPwTag+="';";
+	    	        	innerPwTag+='$("#password-text-field").after(errorMessagePw);';
 	    	        	innerPwTag+='$("#loginBtn").click(function() {';
 	    	        	innerPwTag+='$.ajax({';
-	    	        	innerPwTag+='url:path+"/member/passwordCheck",'
+	    	        	innerPwTag+='url:path+"/member/passwordCheck",';
+	    	        	innerPwTag+='type:"POST",';
 	    	        	innerPwTag+='data:{"memEmail":$("#user-text-field").val(),';
 	    	        	innerPwTag+='"memPassword":$("#password-text-field").val()},';
 	    	        	innerPwTag+='success:function(result) {';
 	    	        	innerPwTag+='if(!result.flag) {';
-	    	        	innerPwTag+='$("#password-text-field").after(errorMessagePw);';
+	    	        	innerPwTag+='$(".errorMessage").css("display","block");';
 	    	        	innerPwTag+='$("#password-text-field").css("border", "1px solid red")}';
-	    	        	innerPwTag+='else{location.href=path+"/member/login.do?memEmail=';
-	    	        	innerPwTag+=uemail+'";}';
-	    	        	innerPwTag+='}});})<';
+	    	        	innerPwTag+='else {';
+	    	        	innerPwTag+='var param={"memEmail":"'+uemail+'", ';
+	    	        	innerPwTag+='"memPassword":$("#password-text-field").val()};';
+	    	        	innerPwTag+="post_to_url(path+'";
+	    	        	innerPwTag+="/member/login.do',param,'POST')";
+	    	        	innerPwTag+=';}}});})<';
 	    	        	innerPwTag+='/script>';
 	    	        	$('#MODAL_BODY').html(innerPwTag);
-	    	        	return true; 
+	    	        	
+	    	        	
     	        	} else {
     	        		/*비회원인 경우*/
     	        		$('.login_enroll_header span').text('비밀번호 설정');
@@ -261,5 +270,26 @@ $('#profile_img').click(function() {
 $('.headerBar_exit').click(function() {
 	$('.xsMenuBar').toggle();
 })
+
+function post_to_url(path, params, method) {
+    method = method || "post"; // 전송 방식 기본값을 POST로
+    
+    var form = document.createElement("form");
+    form.setAttribute("method", method);
+    form.setAttribute("action", path);
+ 
+    //히든으로 값을 주입시킨다.
+    for(var key in params) {
+        var hiddenField = document.createElement("input");
+        hiddenField.setAttribute("type", "hidden");
+        hiddenField.setAttribute("name", key);
+        hiddenField.setAttribute("value", params[key]);
+ 
+        form.appendChild(hiddenField);
+    }
+ 
+    document.body.appendChild(form);
+    form.submit();
+}
 
 /* header js End*/

@@ -2,10 +2,11 @@
 
 /********** reset css **********/
 a {
-	text-decoration: inherit;
+	text-decoration: none !important;
     cursor: pointer;
     background-color: transparent;
     color: #444444;
+    
 }
 
 ul, ol {
@@ -44,7 +45,7 @@ button {
     padding: 0;
     border: 0;
     background: none;
-    outline: none;
+    outline: none !important;
 }
 
 .img_ico {

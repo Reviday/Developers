@@ -14,9 +14,9 @@
 <link rel="stylesheet"
    href="${path }/resources/css/bootstrap.min.css">
 <link rel="stylesheet"
-   href="${path }/resources/css/style.css">
-<link rel="stylesheet"
    href="${path }/resources/css/all.css">
+<link rel="stylesheet"
+   href="${path }/resources/css/style.css">
 <!-- jQuery library -->
 <script type="text/javascript"
    src="${path }/resources/js/jquery-3.4.1.min.js"></script>
