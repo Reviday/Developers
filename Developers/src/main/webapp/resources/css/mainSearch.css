@@ -4,6 +4,10 @@
     margin: 0;
 }
 
+svg {
+	margin-right: 10px;
+}
+
 ol, ul {
     list-style: none;
 }
@@ -97,6 +101,7 @@ button {
     background-color: transparent;
     color: rgba(0,0,0,.4);
     z-index: 3;
+    font-size: 26px;
 }
 
 .mid-type.next {
@@ -145,6 +150,7 @@ button {
 .type-content-li {
     display: table-cell;
     padding: 0 4px;
+    position: absolute;
 }
 
 .content-li-text {
@@ -296,15 +302,6 @@ button {
     max-width: 80%;
 }
 
-@media (max-width: 767px){
-    .hidden-xs {
-        display: none !important;
-    }
-    .visible-xs {
-        display: block !important;
-    }
-}
-
 .menu-mid-1.visible-xs {
     color: #999;
     font-size: 13px;
@@ -314,6 +311,15 @@ button {
 
 .visible-xs, .visible-sm, .visible-md, .visible-lg {
     display: none !important;
+}
+
+@media (max-width: 767px){
+    .hidden-xs {
+        display: none !important;
+    }
+    .visible-xs {
+        display: block !important;
+    }
 }
 
 .filter {

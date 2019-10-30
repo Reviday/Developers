@@ -13,7 +13,7 @@
         <div class="fictureintro">
             <div class="slick-slider slick-initialized" dir="ltr">
                 <button type="button" class="slided-btn prev">
-                    <i class="icon-arrow_left_line"></i>
+                    <i class="fas fa-chevron-left" style="margin-right: 0px"></i>
                 </button>
                 <div class="slick-list">
                     <div class="slick-track">
@@ -29,7 +29,7 @@
                                             <hr>
                                             <button type="button">
                                                 <span>바로가기</span>
-                                                <i class="icon-arrow_right"></i>
+                                                <i class="fas fa-chevron-right"></i>
                                             </button>
                                         </div>
                                     </div>
@@ -39,7 +39,7 @@
                     </div>
                 </div>
                 <button type="button" class="slided-btn next">
-                    <i class="icon-arrow_right"></i>
+                    <i class="fas fa-chevron-right" style="margin-right: 0px"></i>
                 </button>
             </div>
         </div>
@@ -62,7 +62,7 @@
                     <h2 class="choochun-title-text">
                         추천할만한 사람
                         <a href="">
-                            <i class="icon-setting topni"></i>
+                            <i class="fas fa-cog"></i>
                         </a>
                     </h2>
                 </div>
@@ -79,7 +79,7 @@
                 <h2 class="position-title-text">
                     나에게 딱 맞는 포지션
                     <a href="">
-                        <i class="icon-setting topniba"></i>
+                        <i class="fas fa-cog"></i>
                     </a>
                 </h2>
                 <a href="" class="position-title-a">더 보기</a>
@@ -91,7 +91,7 @@
                             <a href="">
                                 <div class="position-company-header">
                                     <button type="button" class="likeButton">
-                                        <i class="icon-ic_favorite_black_24px"></i>
+                                        <i class="fas fa-heart"></i>
                                         0
                                     </button>
                                 </div>
@@ -116,7 +116,7 @@
                             <a href="">
                                 <div class="position-company-header">
                                     <button type="button" class="likeButton">
-                                        <i class="icon-ic_favorite_black_24px"></i>
+                                        <i class="fas fa-heart"></i>
                                         0
                                     </button>
                                 </div>
@@ -141,7 +141,7 @@
                             <a href="">
                                 <div class="position-company-header">
                                     <button type="button" class="likeButton">
-                                        <i class="icon-ic_favorite_black_24px"></i>
+                                        <i class="fas fa-heart"></i>
                                         0
                                     </button>
                                 </div>
@@ -166,7 +166,7 @@
                             <a href="">
                                 <div class="position-company-header">
                                     <button type="button" class="likeButton">
-                                        <i class="icon-ic_favorite_black_24px"></i>
+                                        <i class="fas fa-heart"></i>
                                         0
                                     </button>
                                 </div>
@@ -269,7 +269,7 @@
                             <a href="">
                                 <div class="weekchoochun-company-header">
                                     <button type="button" class="likeButton">
-                                        <i class="icon-ic_favorite_black_24px"></i>
+                                        <i class="fas fa-heart"></i>
                                         156
                                     </button>
                                 </div>
@@ -296,7 +296,7 @@
                             <a href="">
                                 <div class="weekchoochun-company-header">
                                     <button type="button" class="likeButton">
-                                        <i class="icon-ic_favorite_black_24px"></i>
+                                        <i class="fas fa-heart"></i>
                                         156
                                     </button>
                                 </div>
@@ -323,7 +323,7 @@
                             <a href="">
                                 <div class="weekchoochun-company-header">
                                     <button type="button" class="likeButton">
-                                        <i class="icon-ic_favorite_black_24px"></i>
+                                        <i class="fas fa-heart"></i>
                                         156
                                     </button>
                                 </div>
@@ -350,7 +350,7 @@
                             <a href="">
                                 <div class="weekchoochun-company-header">
                                     <button type="button" class="likeButton">
-                                        <i class="icon-ic_favorite_black_24px"></i>
+                                        <i class="fas fa-heart"></i>
                                         156
                                     </button>
                                 </div>

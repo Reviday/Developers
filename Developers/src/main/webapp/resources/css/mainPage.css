@@ -1,6 +1,11 @@
 @charset "UTF-8";
 #loginMain {
     background: #fff;
+    margin-top: 50px;
+}
+
+svg {
+	margin-right: 10px;
 }
 
 .fictureintro {
