@@ -16,7 +16,7 @@ window.onload=function() {
     
 
     	
-    var $ldcDiv=$('<div class="modal_login_enroll"></div>');
+    var $ldcDiv=$('<div id="config-modal" style="display: block; padding-left: 15px;" class="blur info in modal"></div>');
     if(ldc==null||ldc=="") {
     	/*정상 로그인?*/
     } else {
@@ -44,34 +44,25 @@ window.onload=function() {
     		} else {
     			location.href=path+"/member/logout.do";
     		}
-    	} else if(ldc=="noname") {
-    		console.log(ldc+"if in");
-    		var nameTag='<div class="login_enroll" style="width: 400px;">';
-    		nameTag+='<div class="login_enroll_header">';
-    		nameTag+='<span>회원가입</span>';
-    		nameTag+='<button id="modal_close" type="button">';
-    		nameTag+='<i class="fas fa-times"></i>';
-    		nameTag+='</button>';
-    		nameTag+='</div>';
-    		nameTag+='<div class="modal-body">';
-    		nameTag+='<div>';
-    		nameTag+='<h4>이름</h4>';
-    		nameTag+='<div class="form-group">';
-    		nameTag+='<label class="control-label">';
-    		nameTag+='<span>이름은 필수정보 입니다.</span>';
-    		nameTag+='</label>';
-    		nameTag+='<input type="text" class="form-control"></div>';
-    		nameTag+='<div class="checkbox" >';
-    		nameTag+='<label class="">';
-    		nameTag+='<input type="checkbox" class="policy-checkbox" style="top:15px;" checked="" label="맞춤 추천 등의 중요한 정보 받기">';
-    		nameTag+='<span>맞춤 추천 등의 중요한 정보 받기</span>';
-    		nameTag+='</label></div>';
-    		nameTag+='<div class="modal-footer">';
-    		nameTag+='<button id="signUpCompleteButton" class="gray-button btn-block btn btn-default" type="button">완료</button></div></div></div></div>';
-    		nameTag+='<div role="presentation" class="modal_area"></div>';
-    		$div.html(nameTag);
-    		$('#header').after($div);
-    	}
+    	} 
+    	
+    	var btnFlag=false;
+    	$(".form-controll").keyup(function() {
+    		if($(this).val()==null && $(this).val()=="") {
+    			$(".form-controll span").show();
+    			$("#signUpCompleteButton").removeClass("blue-button");
+    			$("signUpCompleteButton").addClass("gray-button");
+    			btnFlag=false;
+    		} else {
+    			$(".form-controll span").hide();
+    			$("#signUpCompleteButton").removeClass("gray-button");
+    			$("#signUpCompleteButton").addClass("blue-button");
+    			btnFlag=true;
+    		}
+    	});
+    	$("#signUpCompleteButton").on("click", function() {
+    		
+    	});
     }
 }
 /* 로그인/회원가입 모달창 */

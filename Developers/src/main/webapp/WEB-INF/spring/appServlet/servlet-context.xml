@@ -26,6 +26,12 @@
 	<!-- 인터셉터 등록하기 -->
 	<interceptors>
 		<interceptor>
+			<mapping path="/*/login.do"/>
+			<mapping path="/*/*.lmc"/>
+			<mapping path="/*/*.lbc"/>
+			<beans:bean class="com.kh.developers.common.interceptor.MemberNameCheck"/>
+		</interceptor>
+		<interceptor>
 			<mapping path="/*/*.lmc"/>
 			<beans:bean class="com.kh.developers.common.interceptor.LoginMemberCheck"/>
 		</interceptor>

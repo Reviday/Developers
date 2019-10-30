@@ -14,8 +14,10 @@ public class MemberMailCertCheck extends HandlerInterceptorAdapter {
 			throws Exception {
 		if(request.getSession().getAttribute("loginMember")!=null 
 				&& ((Member)request.getSession().getAttribute("loginMember")).getMemEmailCert().equals("N")) {
-			request.setAttribute("msg", "S");
+			String script="";
+			
 			request.setAttribute("loc", "/");
+			request.setAttribute("script", script);
 			request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp").forward(request, response);
 			return false;
 		}  else {

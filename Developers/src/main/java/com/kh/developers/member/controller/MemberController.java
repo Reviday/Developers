@@ -89,7 +89,7 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/member/login.do") 
-	public ModelAndView login(Member m, Model model) {
+	public ModelAndView login(Member m, Model model, HttpServletRequest req) {
 		ModelAndView mv=new ModelAndView();
 		Member result=service.selectMemberOne(m);
 		boolean flag=false;
@@ -97,7 +97,7 @@ public class MemberController {
 			if(pwEncoder.matches(m.getMemPassword(), result.getMemPassword())) {
 				flag=true;
 			}
-		}
+		} 
 		if(flag) {
 			if(result!=null&&result.getMemEmailCert().equals("N")) {
 				model.addAttribute("ldc", "noemailcert"); // ldc : login Deny Code
@@ -119,7 +119,6 @@ public class MemberController {
 	public ModelAndView passwordCheck(Member m) {
 		ModelAndView mv=new ModelAndView();
 		Member result=service.selectMemberOne(m);
-		logger.debug("passwordCheck : "+m);
 		System.out.println("passwordCheck : "+m);
 		boolean flag=false;
 		if(result != null) {
@@ -129,7 +128,6 @@ public class MemberController {
 		}
 		mv.addObject("flag",flag);
 		mv.setViewName("jsonView");
-		logger.debug(m.getMemPassword());
 		return mv;
 	}
 	

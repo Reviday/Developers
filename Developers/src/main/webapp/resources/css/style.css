@@ -957,8 +957,8 @@ header #mouse_shadow {
 
 .checkbox input[type="checkbox"] {
     top: 2px;
-    width: 14px;
-    height: 14px;
+    width: 20px;
+    height: 20px;
     margin: 0;
     margin-right: 5px;
     position: relative;
@@ -987,6 +987,17 @@ header #mouse_shadow {
     border: 0;
     background: #999999;
     color: rgba(255, 255, 255, 0.5);
+}
+
+#config-modal {
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1080;
+}
+
+#config-modal .modal-content .btn.blue-button {
+    border: 0;
+    background: #258bf7;
+    color: white;
 }
 /********** header css End **********/
 

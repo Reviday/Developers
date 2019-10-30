@@ -27,7 +27,9 @@
 	var path='${path}';
 	var ldc='${ldc}';
 </script>
-
+<c:if test="${script ne null}">
+	${script }
+</c:if>
 </head>
 <body>
    <header id="header" class="heaer_fm"> <!-- for Member -->
@@ -99,7 +101,7 @@
                         <a href="/newintro" class="">서비스 소개</a>
                      </li>
                      <li class="smMoreVisible">
-                        <a class="dashboardButton" href="${path }/business/employerIndex.do">기업 서비스</a>
+                        <a class="dashboardButton" href="${path }/business.do">기업 서비스</a>
                      </li>
                      <li class="xsOnly">
                         <button type="button" class="menuButton img_ico"></button>
@@ -132,7 +134,7 @@
                         <li class="microOnly"><a href="${path }/salary/salaryView.do" class="">직군별 연봉</a></li>
                         <li class="xsOnly"><a href="/events" class="">커리어/이벤트</a></li>
                         <div class="divider xsOnly"></div>
-                        <li class="xsOnly"><a href="/dashboard">기업 서비스</a></li>
+                        <li class="xsOnly"><a href="${path }/business.do">기업 서비스</a></li>
                         <li class="xsOnly"><a href="/newintro" class="">서비스 소개</a></li>
                      </ul>
                   </div>
@@ -158,7 +160,7 @@
                          </button>
                      </li>
                      <li class="smMoreVisible">
-                        <a class="dashboardButton" href="${path }/business/employerIndex.do">기업 서비스</a>
+                        <a class="dashboardButton" href="${path }/business.do">기업 서비스</a>
                      </li>
                      <li class="xsOnly">
                         <button type="button" class="menuButton img_ico"></button>
@@ -207,7 +209,7 @@
                         </li>
                         <div class="divider xsOnly"></div>
                         <li class="xsOnly">
-                           <a href="${path }/business/employerIndex.do">기업 서비스</a>
+                           <a href="${path }/business.do">기업 서비스</a>
                         </li>
                         <li class="xsOnly">
                            <a href="/newintro" class="">서비스 소개</a>
