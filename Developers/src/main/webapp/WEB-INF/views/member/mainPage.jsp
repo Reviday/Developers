@@ -13,7 +13,7 @@
         <div class="fictureintro">
             <div class="slick-slider slick-initialized" dir="ltr">
                 <button type="button" class="slided-btn prev">
-                    <i class="fas fa-chevron-left" style="margin-right: 0px"></i>
+                    <i class="fas fa-chevron-left" style="margin-right: 0px;font-size: 14px;"></i>
                 </button>
                 <div class="slick-list">
                     <div class="slick-track">
@@ -36,10 +36,48 @@
                                 </a>
                             </div>
                         </div>
+                        <div class="slick-slide">
+                            <div>
+                                <a href="">
+                                    <div class="slide-ficture">
+                                        <div class="slide-ficture-msg showDesc">
+                                            <div>
+                                                <h2>이건 다른거야</h2>
+                                                <h3>프로필 등록하기</h3>
+                                            </div>
+                                            <hr>
+                                            <button type="button">
+                                                <span>바로가기</span>
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="slick-slide">
+                            <div>
+                                <a href="">
+                                    <div class="slide-ficture">
+                                        <div class="slide-ficture-msg showDesc">
+                                            <div>
+                                                <h2>이것도!</h2>
+                                                <h3>프로필 등록하기</h3>
+                                            </div>
+                                            <hr>
+                                            <button type="button">
+                                                <span>바로가기</span>
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <button type="button" class="slided-btn next">
-                    <i class="fas fa-chevron-right" style="margin-right: 0px"></i>
+                    <i class="fas fa-chevron-right" style="margin-right: 0px;font-size: 14px;"></i>
                 </button>
             </div>
         </div>
@@ -377,3 +415,67 @@
         </div>
     </section>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+
+<script>
+        var sliderWrapper = document.getElementsByClassName("slick-list"),
+            sliderContainer = document.getElementsByClassName("slick-track"),
+            slides = document.getElementsByClassName("slick-slide"),
+            slideCount = slides.length,
+            currentIndex = 0,
+            topHeight = 0,
+            navPrev = document.getElementsByClassName("prev"),
+            navNext = document.getElementsByClassName("next");
+        function calculateTallestSlide() {
+            for (var i = 0; i < slideCount; i++) {
+                if (slides[i].offsetHeight > topHeight) {
+                    topHeight = slides[i].offsetHeight;
+                }
+            }
+            sliderWrapper[0].style.width = slideCount * $( window ).width() + "px";
+            sliderWrapper[0].style.height = '300px';
+            sliderContainer[0].style.height = '300px';
+        }
+        calculateTallestSlide();
+
+        for (var i = 0; i < slideCount; i++) {
+            slides[i].style.left = i * 100 + '%';
+        }
+
+        function goToSlide(idx) {
+            sliderContainer[0].style.left = idx * -100 + '%';
+            currentIndex = idx;
+            // updateNav();
+        }
+
+        $(navPrev).click(function (e) {
+            e.preventDefault();
+            if (currentIndex > 0) {
+                goToSlide(currentIndex - 1);
+            } else {
+                goToSlide(slideCount - 1);
+            }
+        });
+
+        $(navNext).click(function (e) {
+            e.preventDefault();
+            if (currentIndex < slideCount - 1) {
+                goToSlide(currentIndex + 1);
+            } else {
+                goToSlide(0);
+            }
+        });
+
+        function updateNav() {
+            if (currentIndex == 0) {
+                $(navPrev).addClass('disabled');
+            } else {
+                $(navPrev).removeClass('disabled');
+            }
+            if (currentIndex == slideCount - 1) {
+                $(navNext).addClass('disabled');
+            } else {
+                $(navNext).removeClass('disabled');
+            }
+        }
+        goToSlide(0);
+    </script>
