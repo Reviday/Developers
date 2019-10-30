@@ -8,6 +8,11 @@ svg {
 	margin-right: 10px;
 }
 
+.slided-btn:hover {
+	background: hsla(0,0%,100%,.9);
+}
+
+
 .fictureintro {
     height: 300px;
     overflow: hidden;
@@ -106,6 +111,7 @@ svg {
     min-height: 1px;
     display: none;
     outline: none;
+    position: absolute;
 }
 
 a, a:active, a:hover, a:visited {
