@@ -19,7 +19,7 @@
 	</c:if>
 	<c:if test="${msg eq null }" >
 		<!-- script -->
-		<c:if test="${script nq null }">
+		<c:if test="${script ne null }">
 			${script }
 		</c:if>
 	</c:if>

@@ -13,4 +13,5 @@ public interface MemberDao {
 	void createAuthKey(SqlSessionTemplate session, Map<String, Object> map);
 	int checkAuth(SqlSessionTemplate session, Member m);
 	int successAuth(SqlSessionTemplate session, Member m);
+	int lastStepEnrollEnd(SqlSessionTemplate session, Member m);
 }

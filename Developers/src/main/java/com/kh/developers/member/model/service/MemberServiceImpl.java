@@ -27,6 +27,16 @@ public class MemberServiceImpl implements MemberService {
     private JavaMailSender mailSender;
 	
 	@Override
+	public Member lastStepEnrollEnd(Member m) {
+		int result=dao.lastStepEnrollEnd(session, m);
+		Member member=null;
+		if(result>0) {
+			member=dao.selectMemberOne(session, m);
+		}
+		return member;
+	}
+	
+	@Override
 	public int insertMember(Member m, String url) throws Exception{
 		int result=dao.insertMember(session, m);
 		if(result>0) {

@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="member">
+	<update id="lastStepEnrollEnd" parameterType="member">
+		UPDATE TA_MEMBER SET MEM_NAME=#{memName}, MEM_RECEIVE_EMAIL=#{memReceiveEmail} WHERE MEM_NO=#{memNo}
+	</update>
 	<update id="successAuth" parameterType="member">
 		UPDATE TA_MEMBER SET MEM_LEVEL=1, MEM_EMAIL_CERT='Y' WHERE MEM_NO=#{memNo}
 	</update>

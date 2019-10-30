@@ -11,6 +11,11 @@ import com.kh.developers.member.model.vo.Member;
 public class MemberDaoImpl implements MemberDao {
 	
 	@Override
+	public int lastStepEnrollEnd(SqlSessionTemplate session, Member m) {
+		return session.update("member.lastStepEnrollEnd", m);
+	}
+	
+	@Override
 	public int successAuth(SqlSessionTemplate session, Member m) {
 		return session.update("member.successAuth", m);
 	}

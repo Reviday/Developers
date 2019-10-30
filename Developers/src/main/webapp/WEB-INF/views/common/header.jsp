@@ -27,9 +27,6 @@
 	var path='${path}';
 	var ldc='${ldc}';
 </script>
-<c:if test="${script ne null}">
-	${script }
-</c:if>
 </head>
 <body>
    <header id="header" class="heaer_fm"> <!-- for Member -->
@@ -92,6 +89,7 @@
                         <button class="searchButton" type="button">
                            <i class="fas fa-search"></i>
                         </button>
+                        
                      </li>
                      <li>
                         <button class="signUpButton suBtn" type="button">회원가입/로그인</button>
@@ -184,7 +182,7 @@
                      </div>
                      <ul>
                         <li>
-                           <a href="${path }/member/myPage" class="">
+                           <a href="${path }/member/myPage.lmc" class="">
                               내 정보
                               <img src="${path}/resources/upload/profile/${loginMember.memPhoto!=null?loginMember.memPhoto:'no-profile-image.png' }" 
                                  class="xsOnly" id="profile_img"/>
@@ -224,4 +222,7 @@
          </nav>
       </div>
    </header>
+   <c:if test="${script ne null}">
+	${script }
+	</c:if>
    

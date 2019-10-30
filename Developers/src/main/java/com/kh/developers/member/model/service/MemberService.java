@@ -8,4 +8,5 @@ public interface MemberService {
 	int insertMember(Member m, String url) throws Exception;
 	int checkAuth(Member m);
 	void sendMail(Member m, String url) throws Exception;
+	Member lastStepEnrollEnd(Member m);
 }

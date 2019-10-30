@@ -16,22 +16,45 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.kh.developers.business.model.service.BusinessService;
+import com.kh.developers.business.model.vo.Business;
 import com.kh.developers.common.encrypt.MyEncrypt;
 import com.kh.developers.member.model.service.MemberService;
 import com.kh.developers.member.model.vo.Member;
 
-@SessionAttributes(value= {"loginMember"})
+@SessionAttributes(value= {"loginMember","busInfo"})
 @Controller
 public class MemberController {
 
 	@Autowired
 	private MemberService service;
 	@Autowired
+	private BusinessService bService;
+	@Autowired
 	private BCryptPasswordEncoder pwEncoder;
 	@Autowired
 	private MyEncrypt enc;
 	
 	private static Logger logger=LoggerFactory.getLogger(MemberController.class);
+	
+	@RequestMapping("/member/lastStepEnrollEnd.lmc") 
+	public ModelAndView lastStepEnrollEnd(Member m, Model model) {
+		ModelAndView mv=new ModelAndView();
+		m.setMemReceiveEmail(m.getMemReceiveEmail().equals("true")?"Y":"N");
+		System.out.println(m);
+		Member result=service.lastStepEnrollEnd(m);
+		if(result==null) {
+			String msg="에러가 발생하였습니다. \n다시 시도해 주기시 바랍니다.";
+			String loc="/";
+			mv.addObject("msg", msg);
+			mv.addObject("loc", loc);
+			mv.setViewName("common/msg");
+		} else {
+			model.addAttribute("loginMember", result);
+			mv.setViewName("member/mainPage");
+		}
+		return mv;
+	}
 	
 	@RequestMapping("/member/main.lmc")
 	public ModelAndView memberMainPage(Member m) {
@@ -103,6 +126,11 @@ public class MemberController {
 				model.addAttribute("ldc", "noemailcert"); // ldc : login Deny Code
 			} else if(result!=null&&result.getMemName()==null) {
 				model.addAttribute("ldc", "noname"); // ldc : login Deny Code
+			} else if(result!=null&&result.getMemLevel()>=3 && result.getMemLevel()<5){
+				// businessEnroll 마친 회원
+				int memberNo=result.getMemNo();
+				Business bus=bService.selectBusInfo(memberNo); //사업장 정보 불러오는 로직 
+				model.addAttribute("busInfo",bus);
 			}
 			model.addAttribute("loginMember",result); 
 			mv.setViewName("member/mainPage");

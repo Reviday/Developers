@@ -45,24 +45,6 @@ window.onload=function() {
     			location.href=path+"/member/logout.do";
     		}
     	} 
-    	
-    	var btnFlag=false;
-    	$(".form-controll").keyup(function() {
-    		if($(this).val()==null && $(this).val()=="") {
-    			$(".form-controll span").show();
-    			$("#signUpCompleteButton").removeClass("blue-button");
-    			$("signUpCompleteButton").addClass("gray-button");
-    			btnFlag=false;
-    		} else {
-    			$(".form-controll span").hide();
-    			$("#signUpCompleteButton").removeClass("gray-button");
-    			$("#signUpCompleteButton").addClass("blue-button");
-    			btnFlag=true;
-    		}
-    	});
-    	$("#signUpCompleteButton").on("click", function() {
-    		
-    	});
     }
 }
 /* 로그인/회원가입 모달창 */
@@ -289,4 +271,27 @@ function post_to_url(path, params, method) {
     form.submit();
 }
 
+
+$(".form-controll").keyup(function () {
+    if ($(this).val() == null && $(this).val() == "") {
+        $(".form-controll span").show();
+        $("#signUpCompleteButton").removeClass("blue-button");
+        $("signUpCompleteButton").addClass("gray-button");
+        btnFlag = false;
+    } else {
+        $(".form-controll span").hide();
+        $("#signUpCompleteButton").removeClass("gray-button");
+        $("#signUpCompleteButton").addClass("blue-button");
+        btnFlag = true;
+    }
+});
+$("#signUpCompleteButton").on("click", function () {
+    if (btnFlag) {
+        var param = {
+            "memName": $(".form-controll").val(),
+            "memReceiveEmail": $('input:checkbox').is(":checked")
+        };
+        post_to_url(path + "/member/lastStepEnrollEnd.lmc", param, "POST");
+    }
+});
 /* header js End*/

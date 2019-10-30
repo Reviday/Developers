@@ -994,7 +994,7 @@ header #mouse_shadow {
     z-index: 1080;
 }
 
-#config-modal .modal-content .btn.blue-button {
+#config-modal .btn.blue-button {
     border: 0;
     background: #258bf7;
     color: white;
