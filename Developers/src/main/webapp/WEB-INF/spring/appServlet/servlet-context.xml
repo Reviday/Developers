@@ -25,13 +25,6 @@
 	
 	<!-- 인터셉터 등록하기 -->
 	<interceptors>
-	<!-- 
-		<interceptor>
-			<mapping path="/memo/*"/>
-			<mapping path="/board/*"/>
-			<exclude-mapping path="/member/*"/>
-			<beans:bean class="com.kh.spring.common.interceptor.LoggerInterceptor"/>
-		</interceptor> -->
 		<interceptor>
 			<mapping path="/*/*.lmc"/>
 			<beans:bean class="com.kh.developers.common.interceptor.LoginMemberCheck"/>
