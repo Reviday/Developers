@@ -124,7 +124,7 @@
                      <ul>
                         <li><button type="button">로그인</button></li>
                         <div class="divider xsOnly"></div>
-                        <li class="xsOnly"><a href="/cv" class="">이력서</a></li>
+                        <li class="xsOnly"><a href="${path }/resume/resumeIntro.do" class="">이력서</a></li>
                         <li class="xsOnly"><a href="/referral" class="">추천</a></li>
                         <li class="hideForAnonymous"><a href="/status/applications"
                            class="">지원 현황</a></li>
@@ -190,7 +190,7 @@
                         </li>
                         <div class="divider xsOnly"></div>
                         <li class="xsOnly">
-                           <a href="/cv" class="">이력서</a>
+                           <a href="${path }/resume/resumeList.lmc?memEmail=${loginMember.memEmail }" class="">이력서</a>
                         </li>
                         <li class="xsOnly">
                            <a href="/referral" class="">추천</a>
