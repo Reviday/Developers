@@ -23,6 +23,7 @@ window.onload=function() {
     	console.log(ldc);
     	if(ldc=="noemailcert") {
     		if(confirm("이메일 인증이 이루어지지 않았습니다.\n재전송을 원하실 경우 확인 버튼을 눌러주시기 바랍니다.")) {
+    			
     			$.ajax ({
     				url: path+"/member/reSendMail",
     				type:"POST",
@@ -30,11 +31,18 @@ window.onload=function() {
     					  "memEmail":$('#memEmail').val()},
     				success: function(result) {
     					alert(result.msg);
-    					location.href=path+"/";
+    					location.href=path+"/member/logout.do";
     				}
     			});
+    			/* ajax 안되서 돌리는 함수
+    			var param = {
+    					"memNo":$('#memNo').val(),
+                        "memEmail": "admin@developer.com",
+                    };
+                post_to_url(path + '/member/reSendMail', param  , 'POST');
+                */
     		} else {
-    			location.href=path+"/";
+    			location.href=path+"/member/logout.do";
     		}
     	} else if(ldc=="noname") {
     		console.log(ldc+"if in");
@@ -178,8 +186,6 @@ $('.suBtn').on('click',function() {
 	    	        	innerPwTag+=';}}});})<';
 	    	        	innerPwTag+='/script>';
 	    	        	$('#MODAL_BODY').html(innerPwTag);
-	    	        	
-	    	        	
     	        	} else {
     	        		/*비회원인 경우*/
     	        		$('.login_enroll_header span').text('비밀번호 설정');

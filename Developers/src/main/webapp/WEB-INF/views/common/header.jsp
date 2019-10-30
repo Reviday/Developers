@@ -34,12 +34,25 @@
    <div id="mouse_shadow"></div>
       <div class="header_nav container">
          <nav>
+         	<c:if test="${empty loginMember }">
             <a href="${path }" class="developersLogo">
                <h2 class="ir_pm">Developers</h2>
                <img src="${path }/resources/images/Developers_logo.png" style="height:40px"/>
             </a>
+            </c:if>
+            <c:if test="${not empty loginMember }">
+             <a href="${path }/member/main.lmc" class="developersLogo">
+               <h2 class="ir_pm">Developers</h2>
+               <img src="${path }/resources/images/Developers_logo.png" style="height:40px"/>
+            </a>
+            </c:if>
             <ul class="nav_items">
-               <li class="xsHomeButton xsOnly"><a href="/" class="">홈</a></li>
+               <c:if test="${empty loginMember }">
+               <li class="xsHomeButton xsOnly"><a href="${path }" class="">홈</a></li>
+               </c:if>
+               <c:if test="${not empty loginMember }">
+               <li class="xsHomeButton xsOnly"><a href="${path }/member/main.lmc" class="">홈</a></li>
+               </c:if>
                <li class=""><a href="${path }/search/mainSearch.do" class="">탐색</a></li>
                <li class="microMoreVisible"><a href="${path }/salary/salaryView.do" class="">직군별 연봉</a></li>
                 <c:if test="${loginMember!=null }">  
@@ -94,8 +107,18 @@
                   </ul>
                   <div class="xsMenuBar" style="display:none">
                      <div class="headerBar">
-                        <!-- 로고넣읍시다. -->
-                        <span style="font-weight: 600; font-size: 24px">Developers</span>
+                        <c:if test="${empty loginMember }">
+			            <a href="${path }" class="developersLogo">
+			               <h2 class="ir_pm">Developers</h2>
+			               <img src="${path }/resources/images/Developers_logo.png" style="height:40px"/>
+			            </a>
+			            </c:if>
+			            <c:if test="${not empty loginMember }">
+			             <a href="${path }/member/main.lmc" class="developersLogo">
+			               <h2 class="ir_pm">Developers</h2>
+			               <img src="${path }/resources/images/Developers_logo.png" style="height:40px"/>
+			            </a>
+			            </c:if>
                         <button type="button" class="headerBar_exit img_ico"></button>
                      </div>
                      <ul>
@@ -138,13 +161,23 @@
                         <a class="dashboardButton" href="${path }/business/employerIndex.do">기업 서비스</a>
                      </li>
                      <li class="xsOnly">
-                        <button class="menuButton" type="button"><i class="icon-menu"></i></button>
+                        <button type="button" class="menuButton img_ico"></button>
                      </li>
                   </ul>
                   <div class="xsMenuBar" style="display:none">
                      <div class="headerBar">
-                        <!-- 로고넣읍시다. -->
-                        <span style="font-weight: 600; font-size: 24px">Developers</span>
+                        <c:if test="${empty loginMember }">
+			            <a href="${path }" class="developersLogo">
+			               <h2 class="ir_pm">Developers</h2>
+			               <img src="${path }/resources/images/Developers_logo.png" style="height:40px"/>
+			            </a>
+			            </c:if>
+			            <c:if test="${not empty loginMember }">
+			             <a href="${path }/member/main.lmc" class="developersLogo">
+			               <h2 class="ir_pm">Developers</h2>
+			               <img src="${path }/resources/images/Developers_logo.png" style="height:40px"/>
+			            </a>
+			            </c:if>
                         <button type="button" class="headerBar_exit img_ico"></button>
                      </div>
                      <ul>

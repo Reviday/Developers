@@ -171,6 +171,9 @@ header {
 	.header_nav .developersLogo {
 	    display: none;
 	}
+	.headerBar .developersLogo {
+	    display: block;
+	}
 }
 
 .nav_items {
@@ -380,6 +383,7 @@ header {
 }
 
 .xsMenuBar .headerBar {
+	position: relative;
     display: none;
     height: 50px;
     width: 100%;

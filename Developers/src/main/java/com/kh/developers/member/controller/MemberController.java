@@ -16,7 +16,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.kh.developers.common.authentication.TempKey;
+import com.kh.developers.common.encrypt.MyEncrypt;
 import com.kh.developers.member.model.service.MemberService;
 import com.kh.developers.member.model.vo.Member;
 
@@ -28,10 +28,19 @@ public class MemberController {
 	private MemberService service;
 	@Autowired
 	private BCryptPasswordEncoder pwEncoder;
+	@Autowired
+	private MyEncrypt enc;
 	
 	private static Logger logger=LoggerFactory.getLogger(MemberController.class);
 	
-	@RequestMapping("/member/myPage")
+	@RequestMapping("/member/main.lmc")
+	public ModelAndView memberMainPage(Member m) {
+		ModelAndView mv=new ModelAndView();
+		mv.setViewName("member/mainPage");
+		return mv;
+	}
+	
+	@RequestMapping("/member/myPage.lmc")
 	public ModelAndView myPage(Member m) {
 		ModelAndView mv=new ModelAndView();
 		mv.setViewName("member/myPage");
@@ -53,7 +62,7 @@ public class MemberController {
 		} catch (Exception e) {
 			result=-1;
 		}
-		
+		logger.debug("여기까지 확인 가능");
 		if(result>0) {
 			msg="기입된 이메일로 인증 메일이 전송되었습니다.";
 			mv.addObject("msg",msg);
@@ -61,6 +70,11 @@ public class MemberController {
 			msg="이메일 전송에 실패하였습니다.\n다시 확인하여 주시기 바랍니다.";
 			mv.addObject("msg",msg);
 		}
+		logger.debug("저장된 메세지 : " + msg);
+		/*
+		mv.addObject("loc","/member/logout.do");
+		mv.setViewName("common/msg");
+		*/
 		mv.setViewName("jsonView");
 		return mv;
 	}
@@ -78,13 +92,26 @@ public class MemberController {
 	public ModelAndView login(Member m, Model model) {
 		ModelAndView mv=new ModelAndView();
 		Member result=service.selectMemberOne(m);
-		if(result!=null&&result.getMemEmailCert().equals("N")) {
-			model.addAttribute("ldc", "noemailcert"); // ldc : login Deny Code
-		} else if(result!=null&&result.getMemName()==null) {
-			model.addAttribute("ldc", "noname"); // ldc : login Deny Code
+		boolean flag=false;
+		if(result != null) {
+			if(pwEncoder.matches(m.getMemPassword(), result.getMemPassword())) {
+				flag=true;
+			}
 		}
-		model.addAttribute("loginMember",result); 
-		mv.setViewName("member/mainPage");
+		if(flag) {
+			if(result!=null&&result.getMemEmailCert().equals("N")) {
+				model.addAttribute("ldc", "noemailcert"); // ldc : login Deny Code
+			} else if(result!=null&&result.getMemName()==null) {
+				model.addAttribute("ldc", "noname"); // ldc : login Deny Code
+			}
+			model.addAttribute("loginMember",result); 
+			mv.setViewName("member/mainPage");
+		} else {
+			/*로그인 로직 상, login.do를 실행할떄 비밀번호가 틀릴 수가 없기 때문*/
+			mv.addObject("msg","잘못된 경로입니다.");
+			mv.addObject("loc","/");
+			mv.setViewName("common/msg");
+		}
 		return mv;
 	}
 		

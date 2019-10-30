@@ -23,6 +23,21 @@
 	
 	<context:component-scan base-package="com.kh.developers" />
 	
+	<!-- 인터셉터 등록하기 -->
+	<interceptors>
+	<!-- 
+		<interceptor>
+			<mapping path="/memo/*"/>
+			<mapping path="/board/*"/>
+			<exclude-mapping path="/member/*"/>
+			<beans:bean class="com.kh.spring.common.interceptor.LoggerInterceptor"/>
+		</interceptor> -->
+		<interceptor>
+			<mapping path="/**/*.lmc"/>
+			<beans:bean class="com.kh.developers.common.interceptor.LoginMembercheck"/>
+		</interceptor>
+	</interceptors>
+	
 	<!-- 파일업로드처리 resolver등록 -->
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<beans:property name="maxUploadSize" value="10485760"/><!-- 10MB -->
