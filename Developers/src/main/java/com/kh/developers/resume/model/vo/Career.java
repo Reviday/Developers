@@ -2,6 +2,8 @@ package com.kh.developers.resume.model.vo;
 
 import java.util.Date;
 
+import javax.servlet.http.HttpServlet;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,10 +13,10 @@ import lombok.NoArgsConstructor;
 public class Career {
 	private int careerNo;
 	private String memEmail;
-	private Date startCareer;
-	private Date endCareer;
+	private String startCareer;
+	private String endCareer;
 	private String empName;
 	private String depName;
 	private Date careerDate;
-
+	private int resumeNo;
 }

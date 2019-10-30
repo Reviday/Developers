@@ -5,36 +5,52 @@
 INSERT INTO RESUME VALUES (SEQ_RESUME.NEXTVAL,#{memEmail},#{memName},default,default,default)
 </insert>
 <select id="selectResume" parameterType="member" resultMap="resumeMap">
-SELECT * FROM RESUME WHERE MEM_EMAIL=#{memEmail} order by RESUME_DATE DESC
+SELECT * FROM RESUME WHERE MEM_EMAIL=#{memEmail} ORDER BY RESUME_DATE DESC
 </select>
 <select id="selectCareer" parameterType="resume" resultMap="careerMap">
-SELECT * FROM CAREER WHERE MEM_EMAIL=#{memEmail} order by CAREER_DATE DESC
+SELECT * FROM CAREER WHERE MEM_EMAIL=#{memEmail} AND RESUME_NO=${resumeNo} ORDER BY CAREER_DATE DESC
 </select>
-<select id="selectAct" parameterType="resume" resultMap="actMap">
-SELECT * FROM ACTIVITIE WHERE MEM_EMAIL=#{memEmail} order by ACT_DATE DESC
+<select id="selectAc" parameterType="resume" resultMap="actMap">
+SELECT * FROM ACTIVITIE WHERE MEM_EMAIL=#{memEmail} AND RESUME_NO=${resumeNo} ORDER BY ACT_DATE DESC
 </select>
-<select id="selectEdu" parameterType="resume" resultMap="edMap">
-SELECT * FROM EDUCATION WHERE MEM_EMAIL=#{memEmail} order by ED_DATE DESC
+<select id="selectEd" parameterType="resume" resultMap="edMap">
+SELECT * FROM EDUCATION WHERE MEM_EMAIL=#{memEmail} AND RESUME_NO=${resumeNo} ORDER BY ED_DATE DESC
 </select>
 <select id="selectLang" parameterType="resume" resultMap="laMap">
-SELECT * FROM LANG WHERE MEM_EMAIL=#{memEmail} order by	LANG_DATE DESC
+SELECT * FROM LANG WHERE MEM_EMAIL=#{memEmail} AND RESUME_NO=${resumeNo} ORDER BY LANG_DATE DESC
 </select>
 <select id="selectLinks" parameterType="resume" resultMap="linksMap">
-SELECT * FROM LINKS WHERE MEM_EMAIL=#{memEmail} order by LINKS_DATE DESC
+SELECT * FROM LINKS WHERE MEM_EMAIL=#{memEmail} AND RESUME_NO=${resumeNo} ORDER BY LINKS_DATE DESC
 </select>
-
-<insert id="insertCareer" parameterType="member">
-	INSERT INTO CAREER VALUES(SEQ_CAREER.NEXTVAL,#{memEmail},default,default,default,default,default)
+<select id="selectResumeViewOne" parameterType="resume" resultMap="resumeMap">
+SELECT * FROM RESUME WHERE MEM_EMAIL=#{memEmail} and RESUME_NO=#{resumeNo}
+</select>
+<insert id="insertCareer" parameterType="resume">
+	INSERT INTO CAREER VALUES(SEQ_CAREER.NEXTVAL,#{memEmail},default,default,default,default,default,#{resumeNo})
+</insert>
+<insert id="insertEd" parameterType="resume">
+	INSERT INTO EDUCATION VALUES(seq_education.NEXTVAL,#{memEmail},default,default,default,default,default,default,#{resumeNo})
+</insert>
+<insert id="insertAct" parameterType="resume">
+	INSERT INTO ACTIVITIE VALUES(seq_activitie.NEXTVAL,#{memEmail},default,default,default,default,#{resumeNo})
+</insert>
+<insert id="insertLang" parameterType="resume">
+	INSERT INTO LANG VALUES(seq_lang.NEXTVAL,#{memEmail},default,default,default,#{resumeNo})
+</insert>
+<insert id="insertLink" parameterType="resume">
+	INSERT INTO LINKS VALUES(seq_links.NEXTVAL,#{memEmail},default,default,#{resumeNo})
 </insert>
 <select id="selectResumeOne" parameterType="resume" resultMap="resumeMap">
 	SELECT * FROM RESUME WHERE resume_no=#{resumeNo}
 </select>
+
 <resultMap type="lang" id="laMap">
 	<result property="langNo" column="lang_no"/>
 	<result property="memEmail" column="mem_email"/>
 	<result property="langName" column="lang_name"/>
 	<result property="langLevel" column="lang_level"/>
 	<result property="langDate" column="lang_date"/>
+	<result property="resumeNo" column="resume_no"/>
 </resultMap>
 <resultMap type="education" id="edMap">
 	<result property="edNo" column="ed_no"/>
@@ -45,12 +61,14 @@ SELECT * FROM LINKS WHERE MEM_EMAIL=#{memEmail} order by LINKS_DATE DESC
 	<result property="majorName" column="major_name"/>
 	<result property="subjectName" column="subject_name"/>
 	<result property="edDate" column="ed_date"/>
+	<result property="resumeNo" column="resume_no"/>
 </resultMap>
 <resultMap type="links" id="linksMap">
 	<result property="linksNo" column="links_no"/>
 	<result property="memEmail" column="mem_email"/>
 	<result property="linksAddr" column="links_addr"/>
 	<result property="linksDate" column="links_date"/>
+	<result property="resumeNo" column="resume_no"/>
 </resultMap>
 <resultMap type="activitie" id="actMap">
 	<result property="actNo" column="act_no"/>
@@ -59,6 +77,7 @@ SELECT * FROM LINKS WHERE MEM_EMAIL=#{memEmail} order by LINKS_DATE DESC
 	<result property="actName" column="act_name"/>
 	<result property="actDetail" column="act_detail"/>
 	<result property="actDate" column="act_date"/>
+	<result property="resumeNo" column="resume_no"/>
 </resultMap>
 <resultMap type="career" id="careerMap">
 	<result property="careerNo" column="career_no"/>
@@ -68,6 +87,7 @@ SELECT * FROM LINKS WHERE MEM_EMAIL=#{memEmail} order by LINKS_DATE DESC
 	<result property="empName" column="emp_name"/>
 	<result property="depName" column="dep_name"/>
 	<result property="careerDate" column="career_date"/>
+	<result property="resumeNo" column="resume_no"/>
 </resultMap>
 <resultMap type="resume" id="resumeMap">
 	<result property="resumeNo" column="resume_no"/>

@@ -19,7 +19,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kh.developers.member.model.service.MemberService;
 import com.kh.developers.member.model.vo.Member;
 import com.kh.developers.resume.model.service.ResumeService;
+import com.kh.developers.resume.model.vo.Activitie;
 import com.kh.developers.resume.model.vo.Career;
+import com.kh.developers.resume.model.vo.Education;
+import com.kh.developers.resume.model.vo.Lang;
+import com.kh.developers.resume.model.vo.Links;
 import com.kh.developers.resume.model.vo.Resume;
 
 
@@ -46,6 +50,14 @@ public class ResumeController {
 		ModelAndView mv= new ModelAndView();
 		Resume resume=service.selectResumeOne(r);
 		List<Career> career=service.selectCareer(resume);
+		List<Education> ed=service.selectEd(resume);
+		List<Activitie> ac=service.selectAc(resume);
+		List<Lang> Lang=service.selectLang(resume);
+		List<Links> links=service.selectLinks(resume);
+		mv.addObject("ed",ed);
+		mv.addObject("ac",ac);
+		mv.addObject("Lang",Lang);
+		mv.addObject("links",links);
 		mv.addObject("resume", resume);
 		mv.addObject("career", career);
 		mv.setViewName("resume/resumeView");
@@ -68,11 +80,12 @@ public class ResumeController {
 	
 	@RequestMapping("resume/insertCareer.lmc")
 	@ResponseBody
-	public String insertCareer(Member m,HttpServletResponse res) {
+	public String insertCareer(Resume r,HttpServletResponse res) {
 		/*@ReponseBody이용*/
 		ObjectMapper mapper=new ObjectMapper();
 		//잭슨이 제공하는 객체 자바클래스하고 json자바스크립트 객체 매핑 시켜줌 
-		int result=service.insertCareer(m);
+		Resume r2=service.selectResumeViewOne(r);
+		int result=service.insertCareer(r2);
 		String jsonStr="";
 		try {
 			jsonStr=mapper.writeValueAsString(result);
@@ -83,5 +96,77 @@ public class ResumeController {
 		 res.setContentType("application/json;charset=utf-8");
 		return jsonStr;
 	}
-	
+	@RequestMapping("resume/insertEd.lmc")
+	@ResponseBody
+	public String insertEd(Resume r,HttpServletResponse res) {
+		System.out.println(r);
+		ObjectMapper mapper=new ObjectMapper();
+		//잭슨이 제공하는 객체 자바클래스하고 json자바스크립트 객체 매핑 시켜줌 
+		Resume r2=service.selectResumeViewOne(r);
+		int result=service.insertEd(r2);
+		String jsonStr="";
+		try {
+			jsonStr=mapper.writeValueAsString(result);
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 res.setContentType("application/json;charset=utf-8");
+		return jsonStr;
+	}
+	@RequestMapping("resume/insertAct.lmc")
+	@ResponseBody
+	public String insertAct(Resume r,HttpServletResponse res) {
+		/*@ReponseBody이용*/
+		ObjectMapper mapper=new ObjectMapper();
+		//잭슨이 제공하는 객체 자바클래스하고 json자바스크립트 객체 매핑 시켜줌 
+		Resume r2=service.selectResumeViewOne(r);
+		int result=service.insertAct(r2);
+		String jsonStr="";
+		try {
+			jsonStr=mapper.writeValueAsString(result);
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 res.setContentType("application/json;charset=utf-8");
+		return jsonStr;
+	}
+	@RequestMapping("resume/insertLang.lmc")
+	@ResponseBody
+	public String insertLang(Resume r,HttpServletResponse res) {
+		/*@ReponseBody이용*/
+		ObjectMapper mapper=new ObjectMapper();
+		//잭슨이 제공하는 객체 자바클래스하고 json자바스크립트 객체 매핑 시켜줌 
+		Resume r2=service.selectResumeViewOne(r);
+		int result=service.insertLang(r2);
+		String jsonStr="";
+		try {
+			jsonStr=mapper.writeValueAsString(result);
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 res.setContentType("application/json;charset=utf-8");
+		return jsonStr;
+	}
+	@RequestMapping("resume/insertLink.lmc")
+	@ResponseBody
+	public String insertLink(Resume r,HttpServletResponse res) {
+		/*@ReponseBody이용*/
+		ObjectMapper mapper=new ObjectMapper();
+		//잭슨이 제공하는 객체 자바클래스하고 json자바스크립트 객체 매핑 시켜줌 
+		Resume r2=service.selectResumeViewOne(r);
+		int result=service.insertLink(r2);
+		String jsonStr="";
+		try {
+			jsonStr=mapper.writeValueAsString(result);
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 res.setContentType("application/json;charset=utf-8");
+		return jsonStr;
+	}
+
 }

@@ -8,7 +8,11 @@ import org.springframework.stereotype.Service;
 
 import com.kh.developers.member.model.vo.Member;
 import com.kh.developers.resume.model.dao.ResumeDao;
+import com.kh.developers.resume.model.vo.Activitie;
 import com.kh.developers.resume.model.vo.Career;
+import com.kh.developers.resume.model.vo.Education;
+import com.kh.developers.resume.model.vo.Lang;
+import com.kh.developers.resume.model.vo.Links;
 import com.kh.developers.resume.model.vo.Resume;
 
 @Service
@@ -18,6 +22,61 @@ public class ResumeServiceImpl implements ResumeService {
 	@Autowired
 	private SqlSessionTemplate session;
 	
+	
+	
+	@Override
+	public int insertEd(Resume r2) {
+		// TODO Auto-generated method stub
+		return dao.insertEd(session,r2);
+	}
+
+	@Override
+	public int insertAct(Resume r2) {
+		// TODO Auto-generated method stub
+		return dao.insertAct(session,r2);
+	}
+	@Override
+	public int insertLang(Resume r2) {
+		// TODO Auto-generated method stub
+		return dao.insertLang(session,r2);
+	}
+
+	@Override
+	public int insertLink(Resume r2) {
+		// TODO Auto-generated method stub
+		return dao.insertLink(session,r2);
+	}
+
+	@Override
+	public List<Education> selectEd(Resume r) {
+		// TODO Auto-generated method stub
+		return dao.selectEd(session,r);
+	}
+
+	@Override
+	public List<Activitie> selectAc(Resume r) {
+		// TODO Auto-generated method stub
+		return dao.selectAc(session,r);
+	}
+
+	@Override
+	public List<Lang> selectLang(Resume r) {
+		// TODO Auto-generated method stub
+		return dao.selectLang(session,r);
+	}
+
+	@Override
+	public List<Links> selectLinks(Resume r) {
+		// TODO Auto-generated method stub
+		return dao.selectLinks(session,r);
+	}
+
+	@Override
+	public Resume selectResumeViewOne(Resume r) {
+		// TODO Auto-generated method stub
+		return dao.selectResumeViewOne(session,r);
+	}
+
 	@Override
 	public List<Career> selectCareer(Resume r) {
 		// TODO Auto-generated method stub
@@ -31,9 +90,9 @@ public class ResumeServiceImpl implements ResumeService {
 	}
 
 	@Override
-	public int insertCareer(Member m) {
+	public int insertCareer(Resume r2) {
 		// TODO Auto-generated method stub
-		return dao.insertCareer(session,m);
+		return dao.insertCareer(session,r2);
 	}
 
 	@Override

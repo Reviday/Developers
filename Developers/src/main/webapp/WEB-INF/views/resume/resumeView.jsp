@@ -84,13 +84,14 @@
      <div class="resume-list careers">
          <div class="resume-list-header"><span>경력</span></div>
          <div class="resume-list-body">
-             <c:set value="${resume.memEmail }" var="memEmail"></c:set>
+             <c:set value="${resume.memEmail }" var="memEmail"/>
+             <c:set value="${resume.resumeNo }" var="resumeNo"/>
              <button class="btn-add btn btn-default" type="button"
-                 onclick="careersplus('${memEmail }');">+ 추가</button>
+                 onclick="careersplus('${memEmail }','${resumeNo }');">+ 추가</button>
                <div id="careerslist">
-                   <c:if test="${career!=null }">
-                       <ul class="list-group sortable-list careers">
-                           <c:forEach var="c" items="${career }">
+               <ul class="list-group sortable-list careers">
+                   <c:if test="${not empty career}">
+                           <c:forEach var="c" items="${career }" >
                                <li class="list-group-item sortable-item careers">
                                    <div class="portlet-handler">
                                        <div class="handler"></div>
@@ -177,11 +178,11 @@
                                            <i class="fas fa-times"></i></button>
                                    </div>
                                </li>
-
                            </c:forEach>
-                       </ul>
                    </c:if>
-
+                     <c:if test="${career==null }">
+                              </c:if>
+					 </ul>
 
                        </div>
 
@@ -190,40 +191,288 @@
                <div class="resume-list educations">
                    <div class="resume-list-header"><span>학력</span></div>
                    <div class="resume-list-body"><button class="btn-add btn btn-default"
-                           type="button" onclick="educationsplus();">+ 추가</button>
+                           type="button" onclick="educationsplus('${memEmail }','${resumeNo }');">+ 추가</button>
                        <div id="educationslist">
+						<ul class="list-group sortable-list educations" >
+						<c:if test="${not empty ed }">
+							<c:forEach items="${ed }" var="e"></c:forEach>
+							 <li class="list-group-item sortable-item educations">
+     <div class="portlet-handler">
 
+         <div class="handler"></div>
+     </div>
+     <div class="education-item clearfix">
+         <div class="col-sm-3">
+             <div class="period">
+                 <div class="datetime">
+                     <div class="start-time">
+                         <div class="form-group">
+								<c:if test="${e.startEd==null }">
+                             <input type="text" maxlength="6" class="year form-control" placeholder="YYYYMM" 
+                              onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" />
+                              </c:if>
+                              <c:if test="${e.startEd!=null }">
+                             <input type="text" maxlength="6" class="year form-control" placeholder="YYYYMM" 
+                              onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" value="${e.startEd }" />
+                              </c:if>
+                             </div>
+                         <div class="form-group">
 
+                             </div>
+                         <div class="end-time"><span class="delimiter">-</span>
+                             <div class="form-group">
 
+                                 <c:if test="${e.endEd==null }">
+                             <input type="text" maxlength="6" class="year form-control" placeholder="YYYYMM" 
+                              onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" />
+                              </c:if>
+                              <c:if test="${e.endEd!=null }">
+                             <input type="text" maxlength="6" class="year form-control" placeholder="YYYYMM" 
+                              onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" value="${e.endEd }" />
+                              </c:if>
+                              <c:if test="${empty ed }">
+                              
+                              </c:if>
+                             </div>
+                             <div class="form-group"></div></span>
+                         </div>
+                     </div>
+                     <div class="form-group"></div>
+                 </div>
+             </div>
+         </div>
+         <div class="col-sm-9">
+             <div class="search-input-box resume-input-form-group">
+                 <c:if test="${e.schoolName==null }">
+                 <input type="text" class="resume-input school_name"
+                  placeholder="학교명">
+                 </c:if>
+                 <c:if test="${e.schoolName!=null }">
+                 <input type="text" class="resume-input school_name"
+                  placeholder="학교명" value="${e.schoolName }">
+                 </c:if>
+             </div>
+             <div class="search-input-box resume-input-form-group">
+              <c:if test="${e.majorName==null }">
+                 <input type="text" class="resume-input major"
+                  placeholder="전공 및 학위 (ex: 경영학과 학사)">
+               </c:if>
+               <c:if test="${e.majorName!=null }">
+                <input type="text" class="resume-input major"
+                  placeholder="전공 및 학위 (ex: 경영학과 학사)" value="${e.majorName }">
+               </c:if>  
+             </div>
+             <div class="resume-input-form-group">
+                 <div class="dynamic-textarea">
+                 <c:if test="${e.subjectName==null }">
+                 <textarea style="height:34px;" class="resume-input description"
+                         maxlength="1000" placeholder="이수과목 또는 연구내용"></textarea>
+                  </c:if>
+                  <c:if test="${e.subjectName!=null }">
+                 <textarea style="height:34px;" class="resume-input description"
+                         maxlength="1000" placeholder="이수과목 또는 연구내용">
+                         ${e.subjectName }
+                         </textarea>
+                  </c:if>
+                         <textarea class="textarea-clone"
+                         readonly=""
+                         style="top: 0px; left: 0px; width: 750px; padding: 0px; font-size: 14px; line-height: 22.4px; font-weight: 400; position: absolute; visibility: hidden; z-index: -9999; height: 0px;">
+                         이수과목 또는 연구내용
+                         </textarea>
+                 </div>
+             </div>
+         </div>
+
+         <button class="btn-delete btn btn-default" type="button" onclick="deleteModal('+1+');">
+            <i class="fas fa-times"></i></button>
+     </div>
+ </li>			
+						</c:if>
+						</ul>
                        </div>
                    </div>
                </div>
                <div class="resume-list activities">
                    <div class="resume-list-header"><span>수상 및 기타</span></div>
                    <div class="resume-list-body"><button class="btn-add btn btn-default"
-                           type="button" onclick="activetiesplus();">+ 추가</button>
+                           type="button" onclick="activetiesplus('${memEmail }','${resumeNo }');">+ 추가</button>
                        <div id="activitieslist">
-
-
-
+						<ul class="list-group sortable-list activities">
+						<c:if test="${not empty ac }">
+							<c:forEach items="${ac }" var="ac">			
+<li class="list-group-item sortable-item activities">
+    <div class="portlet-handler">
+        <div class="handler"></div>
+    </div>
+    <div class="activity-item clearfix">
+        <div class="col-sm-3">
+            <div class="period">
+                <div class="datetime">
+                    <div class="start-time">
+                        <div class="form-group">
+                        	<c:if test="${ac.startAct==null }">
+                            <input type="text" maxlength="6" class="year form-control" placeholder="YYYYMM" 
+                            onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" />
+                            </c:if>
+                            <c:if test="${ac.startAct!=null }">
+                            <input type="text" maxlength="6" class="year form-control" placeholder="YYYYMM" 
+                            onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" value="${ac.startAct }" />
+                            </c:if>
+                            </div>
+                        <div class="form-group"></div></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-9">
+            <div class="resume-input-form-group">
+            	<c:if test="${ac.actName==null }">
+            <input class="resume-input title" type="text" maxlength="255"
+                    placeholder="활동명">
+                </c:if> 
+                <c:if test="${ac.actName!=null }">
+            <input class="resume-input title" type="text" maxlength="255"
+                    placeholder="활동명" value="${ac.actName }">
+                </c:if>     
+                    </div>
+            <div class="resume-input-form-group">
+                <div class="dynamic-textarea">
+                <c:if test="${ac.actDetail==null }">
+                <textarea style="height:34px;" class="resume-input description"
+                        maxlength="1000" placeholder="세부사항"></textarea>
+                 </c:if>   
+                   <c:if test="${ac.actDetail!=null }">
+                <textarea style="height:34px;" class="resume-input description"
+                        maxlength="1000" placeholder="세부사항">${ac.actDetail }</textarea>
+                 </c:if>     
+                        
+               <textarea class="textarea-clone" readonly=""
+                        style="top: 0px; left: 0px; width: 576px; padding: 0px; font-size: 14px; line-height: 22.4px; font-weight: 400; position: absolute; visibility: hidden; z-index: -9999; height: 0px;">세부사항</textarea>
+                </div>
+            </div>
+        </div>
+        
+        <button class="btn-delete btn btn-default" type="button" onclick="deleteModal('+1+');"><i
+                class="fas fa-times"></i></button>
+    </div>
+</li>
+							</c:forEach>
+						</c:if>
+						   <c:if test="${empty ac }">
+                              </c:if>
+						</ul>
                        </div>
                    </div>
                </div>
                <div class="resume-list language_certs">
                    <div class="resume-list-header"><span>외국어</span></div>
                    <div class="resume-list-body"><button class="btn-add btn btn-default"
-                           type="button" onclick="languageplus();">+ 추가</button>
+                           type="button" onclick="languageplus('${memEmail }','${resumeNo }');">+ 추가</button>
                        <div id="languagelist">
-
+						<ul class="list-group sortable-list languages">
+						<c:if test="${not empty Lang }">
+						<c:forEach items="${Lang }" var="la">
+						<li class="list-group-item sortable-item languages">
+						    <div class="portlet-handler">
+						        <div class="handler"></div>
+						    </div>
+						    <div class="lang-item clearfix">
+						        <div class="col-sm-9 col-sm-offset-3">
+						
+						            <div class="dropdown custom-dropdown i18n_language resume-dropdown">
+						            <c:if test="${la.langName==null }">
+						                <select class="mdb-select md-form colorful-select dropdown-primary">
+						                    <option selected="selected" disabled>언어</option>
+						                    <option value="영어">영어</option>
+						                    <option value="독일어">독일어</option>
+						                    <option value="스페인어">스페인어</option>
+						                    <option value="중국어">중국어</option>
+						                    <option value="한국어">한국어</option>
+						                    <option value="불어">불어</option>
+						                </select>
+									</c:if>
+									 <c:if test="${la.langName!=null }">
+						                <select class="mdb-select md-form colorful-select dropdown-primary">
+						                    <option selected="selected" >${la.langName }</option>
+						                    <option value="영어">영어</option>
+						                    <option value="독일어">독일어</option>
+						                    <option value="스페인어">스페인어</option>
+						                    <option value="중국어">중국어</option>
+						                    <option value="한국어">한국어</option>
+						                    <option value="불어">불어</option>
+						                </select>
+									</c:if>
+						            </div>
+						            <div class="dropdown custom-dropdown i18n_level resume-dropdown">
+						            <c:if test="${langs.langLevel==null }">
+						                <select class="browser-default custom-select">
+						                    <option selected="selected" disabled>수준</option>
+						                    <option value="유창함">유창함</option>
+						                    <option value="비지니스회화">비지니스회화</option>
+						                    <option value="일상대화">일상대화</option>
+						                </select>
+									</c:if>
+									<c:if test="${la.langLevel!=null }">
+						                <select class="browser-default custom-select">
+						                    <option selected="selected" >${la.langLevel }</option>
+						                    <option value="유창함">유창함</option>
+						                    <option value="비지니스회화">비지니스회화</option>
+						                    <option value="일상대화">일상대화</option>
+						                </select>
+									</c:if>
+						            </div>
+						            <div class="resume-list exams">
+						                <div class="resume-list-body"></div>
+						            </div>
+						        </div>
+						
+						        <button class="btn-delete btn btn-default" type="button" onclick="deleteModal('+1+')"><i
+						                class="fas fa-times"></i></button>
+						    </div>
+						</li>
+</c:forEach>
+						</c:if>
+		
+						</ul>
                        </div>
                    </div>
                </div>
                <div class="resume-list links">
                    <div class="resume-list-header"><span>링크</span></div>
                    <div class="resume-list-body"><button class="btn-add btn btn-default"
-                           type="button" onclick="linkplus();">+ 추가</button>
+                           type="button" onclick="linkplus('${memEmail }','${resumeNo }');">+ 추가</button>
                                         <div id="linklist">
+                                        <ul class="list-group sortable-list links" >
+                                        <c:if test="${not empty links}">
+                                        <c:forEach var="link" items="${links }"> 
+                                        <li class="list-group-item sortable-item links">
+    <div class="portlet-handler">
+        <div class="handler"></div>
+    </div>
+    <div class="link-item clearfix">
+        <div class="resume-input-form-group">
+        <c:if test="${link.linksAddr==null }">
+        <input class="resume-input url" type="text" maxlength="300"
+                placeholder="http://">
+             
+          </c:if>    
+          <c:if test="${link.linksAddr!=null }">
+        <input class="resume-input url" type="text" maxlength="300"
+                placeholder="http://" value="${link.linksAddr }">
+             
+          </c:if>     
+                </div>
+        <button class="btn-delete btn btn-default" type="button" onclick="deleteModal('+1+');"><i
+                class="fas fa-times"></i></button>
+    </div>
+</li>
 
+                                        </c:forEach>
+
+                                        </c:if>
+                                        <c:if test="${empty links }">
+											</c:if>
+										</ul>
                                         </div>
                                     </div>
                                 </div>
@@ -249,11 +498,11 @@
 
 <script>
     var i=1;
-    function careersplus(memEmail) {
+    function careersplus(memEmail,resumeNo) {
         $.ajax({
-            url: "${path}/resume/insertCareer.do",
+            url: "${path}/resume/insertCareer.lmc",
             type: "POST",
-            data: {"memEmail":memEmail},
+            data: {"memEmail":memEmail,"resumeNo":resumeNo},
             success: function(data){
         var careers = document.createElement('ul');
         var plus = '';
@@ -288,11 +537,16 @@
         });
         
     }
-    function educationsplus() {
+    function educationsplus(memEmail,resumeNo) {
+    	        $.ajax({
+    	            url: "${path}/resume/insertEd.lmc",
+    	            type: "POST",
+    	            data: {"memEmail":memEmail,"resumeNo":resumeNo},
+    	            success: function(data){
         var educations = document.createElement('ul');
         var plus = '';
         plus +=
-            '<ul class="list-group sortable-list educations" ><li class="list-group-item sortable-item educations"><div class="portlet-handler">';
+            '<li class="list-group-item sortable-item educations"><div class="portlet-handler">';
         plus +=
             '<div class="handler"></div></div><div class="education-item clearfix" ><div class="col-sm-3"><div class="period"><div class="datetime"><div class="start-time"><div class="form-group">';
         plus +=
@@ -307,30 +561,55 @@
         plus +=
             '</div><div class="form-group" ></div></span></div></div><div class="form-group"></div></div></div></div><div class="col-sm-9"><div class="search-input-box resume-input-form-group"><form action="."><input type="search" class="resume-input school_name" placeholder="학교명"></form></div><div class="search-input-box resume-input-form-group"><form action="."><input type="search" class="resume-input major" placeholder="전공 및 학위 (ex: 경영학과 학사)"></form></div><div class="resume-input-form-group"><div class="dynamic-textarea"><textarea style="height:34px;" class="resume-input description" maxlength="1000" placeholder="이수과목 또는 연구내용"></textarea><textarea class="textarea-clone" readonly="" style="top: 0px; left: 0px; width: 750px; padding: 0px; font-size: 14px; line-height: 22.4px; font-weight: 400; position: absolute; visibility: hidden; z-index: -9999; height: 0px;">이수과목 또는 연구내용</textarea></div></div></div>';
         plus +=
-            '<button class="btn-delete btn btn-default" type="button" onclick="deleteModal('+1+');"><i class="fas fa-times"></i></button></div></li></ul>';
+            '<button class="btn-delete btn btn-default" type="button" onclick="deleteModal('+1+');"><i class="fas fa-times"></i></button></div></li>';
         educations.innerHTML = plus;
         document.getElementById('educationslist').append(educations);
+    	            },
+    	            error: function(data){
+    	                alert(data);
+    	                console.log(data);
+    	            }
+    	        });
     }
-    function activetiesplus() {
+    function activetiesplus(memEmail,resumeNo) {
+	        $.ajax({
+	            url: "${path}/resume/insertAct.lmc",
+	            type: "POST",
+	            data: {"memEmail":memEmail,"resumeNo":resumeNo},
+	            success: function(data){
+    
         var activities = document.createElement('ul');
         var plus = '';
         plus +=
-            '<ul class="list-group sortable-list activities"><li class="list-group-item sortable-item activities" ><div class="portlet-handler"><div class="handler" ></div></div><div class="activity-item clearfix"><div class="col-sm-3"><div class="period"><div class="datetime"><div class="start-time"><div class="form-group">';
+            '<li class="list-group-item sortable-item activities" ><div class="portlet-handler"><div class="handler" ></div></div><div class="activity-item clearfix"><div class="col-sm-3"><div class="period"><div class="datetime"><div class="start-time"><div class="form-group">';
         plus +=
             '<input type="text" maxlength="6" class="year form-control" placeholder="YYYYMM" onKeyup="this.value=this.value.replace(/[^0-9]/g,' +
             "''" + ');"/>';
         plus +=
             '</div><div class="form-group"></div></span></div></div></div></div><div class="col-sm-9"><div class="resume-input-form-group"><input class="resume-input title" type="text" maxlength="255" placeholder="활동명"></div><div class="resume-input-form-group"><div class="dynamic-textarea"><textarea style="height:34px;" class="resume-input description" maxlength="1000" placeholder="세부사항"></textarea><textarea class="textarea-clone" readonly="" style="top: 0px; left: 0px; width: 576px; padding: 0px; font-size: 14px; line-height: 22.4px; font-weight: 400; position: absolute; visibility: hidden; z-index: -9999; height: 0px;">세부사항</textarea></div></div></div>';
         plus +=
-            '<button class="btn-delete btn btn-default" type="button" onclick="deleteModal('+1+');"><i class="fas fa-times"></i></button></div></li></ul>';
+            '<button class="btn-delete btn btn-default" type="button" onclick="deleteModal('+1+');"><i class="fas fa-times"></i></button></div></li>';
         activities.innerHTML = plus;
         document.getElementById('activitieslist').append(activities);
+	            },
+	            error: function(data){
+	                alert(data);
+	                console.log(data);
+	            }
+	        });
     }
-    function languageplus() {
+    function languageplus(memEmail,resumeNo) {
+    	
+	        $.ajax({
+	            url: "${path}/resume/insertLang.lmc",
+	            type: "POST",
+	            data: {"memEmail":memEmail,"resumeNo":resumeNo},
+	            success: function(data){
+    
         var languages = document.createElement('ul');
         var plus = '';
         plus +=
-            '<ul class="list-group sortable-list languages"><li class="list-group-item sortable-item languages"><div class="portlet-handler"><div class="handler"></div></div><div class="lang-item clearfix"><div class="col-sm-9 col-sm-offset-3">';
+            '<li class="list-group-item sortable-item languages"><div class="portlet-handler"><div class="handler"></div></div><div class="lang-item clearfix"><div class="col-sm-9 col-sm-offset-3">';
         plus +=
             '<div class="dropdown custom-dropdown i18n_language resume-dropdown">';
         plus += '<select class="mdb-select md-form colorful-select dropdown-primary">';
@@ -353,20 +632,37 @@
         plus +=
             '</div><div class="resume-list exams" ><div class="resume-list-body"></div></div></div>';
         plus +=
-            '<button class="btn-delete btn btn-default" type="button" onclick="deleteModal('+1+');"><i class="fas fa-times"></i></button></div></li></ul>';
+            '<button class="btn-delete btn btn-default" type="button" onclick="deleteModal('+1+');"><i class="fas fa-times"></i></button></div></li>';
         languages.innerHTML = plus;
         document.getElementById('languagelist').append(languages);
+	            },
+	            error: function(data){
+	                alert(data);
+	                console.log(data);
+	            }
+	        });
     }
 
-    function linkplus() {
+    function linkplus(memEmail,resumeNo) {
+	        $.ajax({
+	            url: "${path}/resume/insertLink.lmc",
+	            type: "POST",
+	            data: {"memEmail":memEmail,"resumeNo":resumeNo},
+	            success: function(data){
         var links = document.createElement('ul');
         var plus = '';
         plus +=
-            '<ul class="list-group sortable-list links" ><li class="list-group-item sortable-item links"><div class="portlet-handler"><div class="handler"></div></div><div class="link-item clearfix"><div class="resume-input-form-group"><input class="resume-input url" type="text" maxlength="300" placeholder="http://" ></div>';
+            '<li class="list-group-item sortable-item links"><div class="portlet-handler"><div class="handler"></div></div><div class="link-item clearfix"><div class="resume-input-form-group"><input class="resume-input url" type="text" maxlength="300" placeholder="http://" ></div>';
         plus +=
-            '<button class="btn-delete btn btn-default" type="button" onclick="deleteModal('+1+');"><i class="fas fa-times"></i></button></div></li></ul>';
+            '<button class="btn-delete btn btn-default" type="button" onclick="deleteModal('+1+');"><i class="fas fa-times"></i></button></div></li>';
         links.innerHTML = plus;
         document.getElementById('linklist').append(links);
+	            },
+	            error: function(data){
+	                alert(data);
+	                console.log(data);
+	            }
+	        });
 
     }
     function deleteModal(i){
