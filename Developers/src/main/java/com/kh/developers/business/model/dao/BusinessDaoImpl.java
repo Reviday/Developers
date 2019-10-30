@@ -21,5 +21,11 @@ public class BusinessDaoImpl implements BusinessDao {
 		
 		return session.insert("business.insertBusiness",bus);
 	}
+	
+	@Override
+	public Business selectBusInfo(SqlSessionTemplate session, int memNo) {
+		
+		return session.selectOne("business.selectBusInfo",memNo);
+	}
 
 }

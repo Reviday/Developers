@@ -29,5 +29,11 @@ public class BusinessServiceImpl implements BusinessService {
 
 		return dao.insertBusiness(session, bus);
 	}
+	
+	@Override
+	public Business selectBusInfo(int memNo) {
+		
+		return dao.selectBusInfo(session, memNo);
+	}
 
 }

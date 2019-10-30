@@ -188,7 +188,7 @@
 			</div>
 		</c:if>
 		<!-- 회원가입 모달 창 -->
-	<div class="modal" id="empEnrollModal" tabindex="-1" role="dialog" 
+	<div class="modal fade" id="empEnrollModal" tabindex="-1" role="dialog" 
 	aria-labelledby="exampleModalLabel" aria-hidden="true">
 	  <div class="modal-dialog" role="document">
 	    <div class="modal-content">
@@ -227,7 +227,7 @@
 	
 	
 	<!-- 로그인 창  -->
-		<div class="modal" id="empLoginModal" tabindex="-1" role="dialog" 
+		<div class="modal fade" id="empLoginModal" tabindex="-1" role="dialog" 
 	aria-labelledby="exampleModalLabel" aria-hidden="true">
 	  <div class="modal-dialog" role="document">
 	    <div class="modal-content">

@@ -11,5 +11,7 @@ public interface BusinessDao {
 	int insertEmployer (SqlSessionTemplate session, Map map);
 	
 	int insertBusiness (SqlSessionTemplate session, Business bus);
+	
+	Business selectBusInfo (SqlSessionTemplate session, int memNo);
 
 }

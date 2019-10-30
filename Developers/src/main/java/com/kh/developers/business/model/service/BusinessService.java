@@ -9,4 +9,6 @@ public interface BusinessService {
 	int insertEmployer(Map map);
 	
 	int insertBusiness(Business bus);
+	
+	Business selectBusInfo(int memNo);
 }
