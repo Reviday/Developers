@@ -31,9 +31,9 @@ public class BusinessServiceImpl implements BusinessService {
 	}
 	
 	@Override
-	public Business selectBusInfo(int memNo) {
+	public Business selectBusInfo(int memberNo) {
 		
-		return dao.selectBusInfo(session, memNo);
+		return dao.selectBusInfo(session, memberNo);
 	}
 
 }

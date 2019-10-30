@@ -10,5 +10,5 @@ public interface BusinessService {
 	
 	int insertBusiness(Business bus);
 	
-	Business selectBusInfo(int memNo);
+	Business selectBusInfo(int memberNo);
 }

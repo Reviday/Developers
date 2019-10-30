@@ -7,7 +7,30 @@
 	<insert id="insertBusiness" parameterType="bus">
 		INSERT INTO BUSINESS_INFO VALUES (SEQ_BUS_NO.NEXTVAL,#{busName},#{busCountry},#{busArea},#{busAdress},#{busRegNo},#{busIncome},#{busIndustrial},#{busTotalEmp},#{busIntroduce},#{busEstablishment},#{busEmail},#{busPhone},#{busWebsite},#{searchKeywords, typeHandler=strArray},#{regPath},DEFAULT,NULL,NULL,DEFAULT)
 	</insert>
-	<select id="selectBusInfo" parameterType="integer" resultType="bus">
-		SELECT * FROM BUSINESS_INFO WHERE BUS_NO=(SELECT BUS_NO FROM MEM_BUS_CONNECTION WHERE MEM_NO=#{memNo))
+	<select id="selectBusInfo" parameterType="integer" resultMap="busMap">
+		SELECT * FROM BUSINESS_INFO WHERE BUS_NO=(SELECT BUS_NO FROM MEM_BUS_CONNECTION WHERE MEM_NO=#{memberNo})
 	</select>
+	
+	<resultMap type="bus" id="busMap">
+		<result property="busNo" column="BUS_NO"></result>
+		<result property="busName" column="BUS_NAME"></result>
+		<result property="busCountry" column="BUS_COUNTRY"></result>
+		<result property="busArea" column="BUS_AREA"></result>
+		<result property="busAddress" column="BUS_ADDRESS"></result>
+		<result property="busRegNo" column="BUS_REG_NO"></result>
+		<result property="busIncome" column="BUS_INCOME"></result>
+		<result property="busIndustrial" column="BUS_INDUSTRIAL"></result>
+		<result property="busTotalEmp" column="BUS_TOTAL_EMP"></result>
+		<result property="busIntroduce" column="BUS_INTRODUCE"></result>
+		<result property="busEstablishment" column="BUS_ESTABLISHMENT"></result>
+		<result property="busEmail" column="BUS_EMAIL"></result>
+		<result property="busPhone" column="BUS_PHONE"></result>
+		<result property="busWebsite" column="BUS_WEBSITE"></result>
+		<result property="searchKeywords" column="BU_SEARCH_KEYWORDS" typeHandler="strArray"></result>
+		<result property="RegPath" column="Reg_PATH"></result>
+		<result property="busEnrollDate" column="BUS_ENROLLDATE"></result>
+		<result property="busLogo" column="BUS_LOGO"></result>
+		<result property="busIamges" column="BUS_IMAGES" typeHandler="strArray"></result>
+		<result property="busStatus" column="BUS_STATUS"></result>
+	</resultMap>
 </mapper>

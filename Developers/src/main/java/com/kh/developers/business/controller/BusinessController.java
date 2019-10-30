@@ -67,7 +67,7 @@ public class BusinessController {
 		int result=bService.insertBusiness(bus);
 		logger.debug("결과"+result);
 		
-		return "/business/businessCertify";
+		return "/business/confirming";
 	}
 	
 	@RequestMapping("/business/empLogin.do")
@@ -84,6 +84,7 @@ public class BusinessController {
 				if(result!=null&&result.getMemEmailCert().equals("N")) {
 					model.addAttribute("ldc", "noemailcert"); // ldc : login Deny Code 
 				}else if(result!=null&&result.getMemLevel()<3) {
+
 					 // 아직 bussinessEnroll 안한 회원 
 					model.addAttribute("loginMember",result); 
 					mv.setViewName("business/businessEnroll");
@@ -94,7 +95,7 @@ public class BusinessController {
 					logger.debug(""+bus);
 					model.addAttribute("loginMember",result); 
 					model.addAttribute("busInfo",bus);
-					mv.setViewName("business/employerIndex");					
+					mv.setViewName("business/dashboard");					
 			} else {
 				/*로그인 로직 상, login.do를 실행할떄 비밀번호가 틀릴 수가 없기 때문*/
 				mv.addObject("msg","잘못된 경로입니다.");
