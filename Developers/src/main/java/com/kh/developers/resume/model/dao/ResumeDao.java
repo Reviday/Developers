@@ -27,4 +27,5 @@ public interface ResumeDao {
 	int insertAct(SqlSessionTemplate session,Resume r2);
 	int insertLang(SqlSessionTemplate session,Resume r2);
 	int insertLink(SqlSessionTemplate session,Resume r2);
+	int deleteCareer(SqlSessionTemplate session,int deleteNo);
 }

@@ -34,7 +34,7 @@
                                         <option value="en">English
                                         </option>
                                     </select><i class="icon-arrow_bottom_fill"
-                                        data-reactid=".0.0.0.0.0.0.0.0.2"></i></div>
+                                       ></i></div>
 
                                 <div class="other-btns"><button class="border-primary hidden-xs btn btn-default"
                                         type="button">임시 저장</button><button class="hidden-xs btn btn-primary"
@@ -43,15 +43,19 @@
                                 </div>
                             </div>
                             <div class="Box-cwadsP iKzpWM" id="deleteModal">
+                            <input type="hidden" id="deleteIndex" value=""/>
+                           			 <input type="hidden" id="deleteNo" value=""/>
                                 <div width="40" class="Content-zwkXZ dzZUIS" id="deleteModal2">
                                     <div class="Div-hTZHGu fEVoGZ" id=".0.3.0.$/=11">
+                                    
                                         <p class="Confirm__ConfirmMessage-fNOBqL cHGGot" id=".0.3.0.$/=11.0">
                                             삭제하시겠습니까?</p>
                                     </div>
                                     <div class="Div-hTZHGu dXKeOh"><button color="#B5B5B5"
-                                            class="Button-kDSBcD hzWWar" onclick="madalclose();">닫기</button><button
+                                            class="Button-kDSBcD hzWWar" onclick="madalclose();">닫기</button>
+                                            <button
                  color="#258BF7" class="Button-kDSBcD ebVQvc"
-                 id="deleteList(1);">확인</button>
+                 onclick="deleteList();">확인</button>
          </div>
      </div>
      <div class="Overlay-iWuiZb gMLFic" id="deleteModal3"></div>
@@ -92,7 +96,8 @@
                <ul class="list-group sortable-list careers">
                    <c:if test="${not empty career}">
                            <c:forEach var="c" items="${career }" >
-                               <li class="list-group-item sortable-item careers">
+                           	<input type="hidden" class="${c.careerNo }" value="${c.careerNo }"/>
+                               <li class="list-group-item sortable-item careers" id="${c.careerNo }">
                                    <div class="portlet-handler">
                                        <div class="handler"></div>
                                    </div>
@@ -173,14 +178,15 @@
                                                <div class="resume-list-body"></div>
                                            </div>
                                        </div>
+                                       <c:set value="${c.careerNo }" var="careerNo"/>
                                        <button class="btn-delete btn"
-                                           onclick="deleteModal('+1+');">
+                                           onclick="deleteModal('${careerNo}','c');">
                                            <i class="fas fa-times"></i></button>
                                    </div>
                                </li>
                            </c:forEach>
                    </c:if>
-                     <c:if test="${career==null }">
+                     <c:if test="${empty career }">
                               </c:if>
 					 </ul>
 
@@ -497,7 +503,7 @@
 </div>
 
 <script>
-    var i=1;
+    
     function careersplus(memEmail,resumeNo) {
         $.ajax({
             url: "${path}/resume/insertCareer.lmc",
@@ -665,13 +671,17 @@
 	        });
 
     }
-    function deleteModal(i){
+    function deleteModal(no,index){
     $("#deleteModal").removeClass('iKzpWM');
     $("#deleteModal3").removeClass('gMLFic'); 
     $("#deleteModal").addClass('bLaSri');
     $("#deleteModal2").addClass('grXykz');
     $("#deleteModal3").addClass('emhpxA');
     $("body").addClass('stop-scrolling');
+    var deleteNo=no;
+    var deleteIndex= index;
+    $('#deleteNo').val(deleteNo);
+    $('#deleteIndex').val(deleteIndex);
     
     } 
     function  madalclose() {
@@ -683,8 +693,29 @@
     $("#deleteModal2").addClass('dzZUIS');
     $("#deleteModal3").addClass('gMLFic'); 
     }
-    function deleteList(i){
-        
+    function deleteList(){
+    	var deleteNo= $('#deleteNo').val();
+    	var deleteIndex = $('#deleteIndex').val();
+    	var deletecareer =${'${c.careerNo }'}.val();
+    	 $.ajax({
+	            url: "${path}/resume/deleteIndex.lmc",
+	            type: "POST",
+	            data: {"deleteNo":deleteNo,"deleteIndex":deleteIndex},
+	            success: function(data){
+	            	  $("#deleteModal").removeClass('bLaSri');
+	            	    $("#deleteModal2").removeClass('grXykz');
+	            	    $("#deleteModal3").removeClass('emhpxA');
+	            	    $("body").removeClass('stop-scrolling'); 
+	            	    $("#deleteModal").addClass('iKzpWM');
+	            	    $("#deleteModal2").addClass('dzZUIS');
+	            	    $("#deleteModal3").addClass('gMLFic'); 
+						$("#deletecareer").remove();
+    	 },
+         error: function(data){
+             alert(data);
+             console.log(data);
+         }
+     });
     }
 </script>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/> 

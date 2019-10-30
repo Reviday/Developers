@@ -2,6 +2,7 @@ package com.kh.developers.resume.controller;
 
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -78,7 +79,7 @@ public class ResumeController {
 		return "resume/insertResume";
 	}
 	
-	@RequestMapping("resume/insertCareer.lmc")
+	@RequestMapping("/resume/insertCareer.lmc")
 	@ResponseBody
 	public String insertCareer(Resume r,HttpServletResponse res) {
 		/*@ReponseBody이용*/
@@ -96,7 +97,7 @@ public class ResumeController {
 		 res.setContentType("application/json;charset=utf-8");
 		return jsonStr;
 	}
-	@RequestMapping("resume/insertEd.lmc")
+	@RequestMapping("/resume/insertEd.lmc")
 	@ResponseBody
 	public String insertEd(Resume r,HttpServletResponse res) {
 		System.out.println(r);
@@ -114,7 +115,7 @@ public class ResumeController {
 		 res.setContentType("application/json;charset=utf-8");
 		return jsonStr;
 	}
-	@RequestMapping("resume/insertAct.lmc")
+	@RequestMapping("/resume/insertAct.lmc")
 	@ResponseBody
 	public String insertAct(Resume r,HttpServletResponse res) {
 		/*@ReponseBody이용*/
@@ -132,7 +133,7 @@ public class ResumeController {
 		 res.setContentType("application/json;charset=utf-8");
 		return jsonStr;
 	}
-	@RequestMapping("resume/insertLang.lmc")
+	@RequestMapping("/resume/insertLang.lmc")
 	@ResponseBody
 	public String insertLang(Resume r,HttpServletResponse res) {
 		/*@ReponseBody이용*/
@@ -150,7 +151,7 @@ public class ResumeController {
 		 res.setContentType("application/json;charset=utf-8");
 		return jsonStr;
 	}
-	@RequestMapping("resume/insertLink.lmc")
+	@RequestMapping("/resume/insertLink.lmc")
 	@ResponseBody
 	public String insertLink(Resume r,HttpServletResponse res) {
 		/*@ReponseBody이용*/
@@ -158,6 +159,25 @@ public class ResumeController {
 		//잭슨이 제공하는 객체 자바클래스하고 json자바스크립트 객체 매핑 시켜줌 
 		Resume r2=service.selectResumeViewOne(r);
 		int result=service.insertLink(r2);
+		String jsonStr="";
+		try {
+			jsonStr=mapper.writeValueAsString(result);
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 res.setContentType("application/json;charset=utf-8");
+		return jsonStr;
+	}
+	@RequestMapping("/resume/deleteIndex.lmc")
+	@ResponseBody
+	public String deleteIndex(int deleteNo,String deleteIndex,HttpServletResponse res) {
+		ObjectMapper mapper=new ObjectMapper();
+		int result=0;
+		if(deleteIndex.equals("c")) {
+		result=service.deleteCareer(deleteNo);
+		}
+		
 		String jsonStr="";
 		try {
 			jsonStr=mapper.writeValueAsString(result);
