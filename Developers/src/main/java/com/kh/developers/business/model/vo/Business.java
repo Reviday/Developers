@@ -31,7 +31,7 @@ public class Business {
 	
 	//logo & images
 	private String busLogo;
-	private String[] images;
+	private String[] busImages;
 	
 	//관리자 승인 여부 
 	private String busStatus;

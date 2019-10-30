@@ -26,11 +26,12 @@
 		<result property="busEmail" column="BUS_EMAIL"></result>
 		<result property="busPhone" column="BUS_PHONE"></result>
 		<result property="busWebsite" column="BUS_WEBSITE"></result>
-		<result property="searchKeywords" column="BU_SEARCH_KEYWORDS" typeHandler="strArray"></result>
+		<result property="searchKeywords" column="BUS_SEARCH_KEYWORDS" typeHandler="strArray"></result>
 		<result property="RegPath" column="Reg_PATH"></result>
 		<result property="busEnrollDate" column="BUS_ENROLLDATE"></result>
 		<result property="busLogo" column="BUS_LOGO"></result>
-		<result property="busIamges" column="BUS_IMAGES" typeHandler="strArray"></result>
+		<result property="busImages" column="BUS_IMAGES" typeHandler="strArray"></result>
 		<result property="busStatus" column="BUS_STATUS"></result>
 	</resultMap>
+	
 </mapper>

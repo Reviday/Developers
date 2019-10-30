@@ -198,7 +198,7 @@
 	          <span aria-hidden="true">&times;</span>
 	        </button>
 	      </div>
-          <form action="${pageContext.request.contextPath}/business/empEnroll.do" method="post">
+          <form action="${pageContext.request.contextPath}/business/empEnroll" method="post">
 	      <div class="modal-body">
 			    <input type="text" class="form-control" name="memName" placeholder="담당자 성함" required>
 			    <br />
@@ -237,7 +237,7 @@
 	          <span aria-hidden="true">&times;</span>
 	        </button>
 	      </div>
-          <form action="${pageContext.request.contextPath}/business/empLogin.do" method="post">
+          <form action="${pageContext.request.contextPath}/business/empLogin" method="post">
 	      <div class="modal-body">
 			    <input type="text" class="form-control" name="memEmail" placeholder="회사 이메일(로그인 아이디로 사용)" required>
 			    <br />

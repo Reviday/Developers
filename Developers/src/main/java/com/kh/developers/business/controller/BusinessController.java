@@ -35,17 +35,19 @@ public class BusinessController {
 	@Autowired
 	private MemberService service;
 	
-	@RequestMapping("/business.do")
+	@RequestMapping("/business")
 	public String empPage(HttpSession session){
 		//redirect 로 매핑값 서블릿으로
-		if(session.getAttribute("loginMember")!=null) {
+		if(session.getAttribute("loginMember")!=null&&session.getAttribute("busInfo")!=null) {
 			return "redirect:/business/dashboard.lbc";			
+		}else if(session.getAttribute("loginMember")!=null&&session.getAttribute("busInfo")==null) {
+			return "business/businessEnroll";
 		}else {
 			return "business/welcome";			
 		}
 	}
 	
-	@RequestMapping("/business/empEnroll.do")
+	@RequestMapping("/business/empEnroll")
 	public String empEnroll(
 //			@RequestParam Member m,
 			Model model
@@ -59,7 +61,7 @@ public class BusinessController {
 		return "business/businessEnroll";
 	}
 	
-	@RequestMapping("/business/businessEnroll.do")
+	@RequestMapping("/business/businessEnroll")
 	public String businessEnroll(
 			@RequestParam Business bus
 			) {
@@ -70,7 +72,7 @@ public class BusinessController {
 		return "/business/confirming";
 	}
 	
-	@RequestMapping("/business/empLogin.do")
+	@RequestMapping("/business/empLogin")
 	public ModelAndView empLogin(Member m, Model model) {
 			ModelAndView mv=new ModelAndView();
 			Member result=service.selectMemberOne(m);
@@ -88,7 +90,7 @@ public class BusinessController {
 					 // 아직 bussinessEnroll 안한 회원 
 					model.addAttribute("loginMember",result); 
 					mv.setViewName("business/businessEnroll");
-				}else if(result!=null&&result.getMemLevel()>=3){
+				}else if(result!=null&&result.getMemLevel()>=3 && result.getMemLevel()<5){
 					// businessEnroll 마친 회원
 					int memberNo=result.getMemNo();
 					Business bus=bService.selectBusInfo(memberNo); //사업장 정보 불러오는 로직 
