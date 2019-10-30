@@ -22,8 +22,8 @@
   <div class="section">
     <div id="app">
         <main class="App-iEDHGk UeTOO" data-reactid=".0">
-            <div data-reactid=".0.0">
-                <div data-reactid=".0.0.0">
+            <div>
+                <div>
                     <div id="resume-app" class="react-container">
                         <div class="resume-list-container" >
                             <div id="resume-list">
@@ -45,7 +45,7 @@
                                             <div class="resume-box ResumeItemBox__Box-dRwtdQ jzITim">
                                       
                                                 <button class="btn-add-resume btn btn-default" 
-                                                type="button" onclick="location.href='${path }/resume/insertResumepage.do?memEmail=${loginMember.memEmail }';">
+                                                type="button" onclick="location.href='${path }/resume/insertResumepage.lmc?memEmail=${loginMember.memEmail }';">
                                                     <div class="wrapper" >
                                                         <div class="box blue" >
                                                             <i class="far fa-plus-square"></i></div>
@@ -65,30 +65,25 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <c:if test="${list !=null  }">
+                                        <c:forEach items="${list }" var="r">
                                         <div class="resume-item Column-cKhjSj ehaaKs"
-                                            data-reactid=".0.0.0.0.0.0.2.0.3:$348290_resume" style="">
-                                            <div class="resume-box ResumeItemBox__Box-dRwtdQ dhPSzh"
-                                                data-reactid=".0.0.0.0.0.0.2.0.3:$348290_resume.0">
-                                                <div class="resume-preview"
-                                                    data-reactid=".0.0.0.0.0.0.2.0.3:$348290_resume.0.0">
-                                                    <h3 class="writing"
-                                                        data-reactid=".0.0.0.0.0.0.2.0.3:$348290_resume.0.0.0">강병민 1
+                                             style="">
+                                            <div class="resume-box ResumeItemBox__Box-dRwtdQ dhPSzh">
+                                                <div class="resume-preview" 
+                                                    onclick="location.href ='${path }/resume/resumeView.lmc?resumeNo=${r.resumeNo }'">
+                                                    <h3 class="writing">
+                                                        ${r.memName }
                                                     </h3>
-                                                    <p class="date"
-                                                        data-reactid=".0.0.0.0.0.0.2.0.3:$348290_resume.0.0.1">
-                                                        2019.10.24</p>
+                                                    <p class="date">
+                                                        
+                                                       <fmt:formatDate value="${r.resumeDate }" pattern="yyyy.MM.dd"/>  </p>
                                                 </div>
 
-                                                <div class="resume-info"
-                                                    data-reactid=".0.0.0.0.0.0.2.0.3:$348290_resume.0.1">
-                                                    <div class="resume-icon writing"
-                                                        data-reactid=".0.0.0.0.0.0.2.0.3:$348290_resume.0.1.0">한</div>
-                                                    <div class="resume-status"
-                                                        data-reactid=".0.0.0.0.0.0.2.0.3:$348290_resume.0.1.1"><span
-                                                            class="writing"
-                                                            data-reactid=".0.0.0.0.0.0.2.0.3:$348290_resume.0.1.1.0">작성
-                                                            중</span></div>
-
+                                                <div class="resume-info">
+                                                    <div class="resume-icon writing">한</div>
+                                                    <div class="resume-status"><span
+                                                            class="writing">작성 중</span></div>
                                                     <div class="dropdown">
                                                             <button class=""
                                                                 type="button" data-toggle="dropdown">
@@ -102,13 +97,15 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        </c:forEach>
+                                        </c:if>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    <div class="Overlay-iWuiZb gMLFic" data-reactid=".0.9.3"></div>
+	
+                    <div class="Overlay-iWuiZb gMLFic"></div>
                 </div>
         </main>
     </div>

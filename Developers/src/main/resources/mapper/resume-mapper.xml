@@ -1,12 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="resume">
-
 <insert id="insertResume" parameterType="member">
 INSERT INTO RESUME VALUES (SEQ_RESUME.NEXTVAL,#{memEmail},#{memName},default,default,default)
 </insert>
+<select id="selectResume" parameterType="member" resultMap="resumeMap">
+SELECT * FROM RESUME WHERE MEM_EMAIL=#{memEmail} order by RESUME_DATE DESC
+</select>
+<select id="selectCareer" parameterType="resume" resultMap="careerMap">
+SELECT * FROM CAREER WHERE MEM_EMAIL=#{memEmail} order by CAREER_DATE DESC
+</select>
+<select id="selectAct" parameterType="resume" resultMap="actMap">
+SELECT * FROM ACTIVITIE WHERE MEM_EMAIL=#{memEmail} order by ACT_DATE DESC
+</select>
+<select id="selectEdu" parameterType="resume" resultMap="edMap">
+SELECT * FROM EDUCATION WHERE MEM_EMAIL=#{memEmail} order by ED_DATE DESC
+</select>
+<select id="selectLang" parameterType="resume" resultMap="laMap">
+SELECT * FROM LANG WHERE MEM_EMAIL=#{memEmail} order by	LANG_DATE DESC
+</select>
+<select id="selectLinks" parameterType="resume" resultMap="linksMap">
+SELECT * FROM LINKS WHERE MEM_EMAIL=#{memEmail} order by LINKS_DATE DESC
+</select>
 
-
+<insert id="insertCareer" parameterType="member">
+	INSERT INTO CAREER VALUES(SEQ_CAREER.NEXTVAL,#{memEmail},default,default,default,default,default)
+</insert>
+<select id="selectResumeOne" parameterType="resume" resultMap="resumeMap">
+	SELECT * FROM RESUME WHERE resume_no=#{resumeNo}
+</select>
+<resultMap type="lang" id="laMap">
+	<result property="langNo" column="lang_no"/>
+	<result property="memEmail" column="mem_email"/>
+	<result property="langName" column="lang_name"/>
+	<result property="langLevel" column="lang_level"/>
+	<result property="langDate" column="lang_date"/>
+</resultMap>
+<resultMap type="education" id="edMap">
+	<result property="edNo" column="ed_no"/>
+	<result property="memEmail" column="mem_email"/>
+	<result property="startEd" column="start_ed"/>
+	<result property="endEd" column="end_ed"/>
+	<result property="schoolName" column="school_name"/>
+	<result property="majorName" column="major_name"/>
+	<result property="subjectName" column="subject_name"/>
+	<result property="edDate" column="ed_date"/>
+</resultMap>
+<resultMap type="links" id="linksMap">
+	<result property="linksNo" column="links_no"/>
+	<result property="memEmail" column="mem_email"/>
+	<result property="linksAddr" column="links_addr"/>
+	<result property="linksDate" column="links_date"/>
+</resultMap>
+<resultMap type="activitie" id="actMap">
+	<result property="actNo" column="act_no"/>
+	<result property="memEmail" column="mem_email"/>
+	<result property="startAct" column="start_act"/>
+	<result property="actName" column="act_name"/>
+	<result property="actDetail" column="act_detail"/>
+	<result property="actDate" column="act_date"/>
+</resultMap>
+<resultMap type="career" id="careerMap">
+	<result property="careerNo" column="career_no"/>
+	<result property="memEmail" column="mem_email"/>
+	<result property="startCareer" column="start_career"/>
+	<result property="endCareer" column="end_career"/>
+	<result property="empName" column="emp_name"/>
+	<result property="depName" column="dep_name"/>
+	<result property="careerDate" column="career_date"/>
+</resultMap>
 <resultMap type="resume" id="resumeMap">
 	<result property="resumeNo" column="resume_no"/>
 	<result property="memEmail" column="mem_email"/>
@@ -15,5 +77,4 @@ INSERT INTO RESUME VALUES (SEQ_RESUME.NEXTVAL,#{memEmail},#{memName},default,def
 	<result property="Intro" column="intro"/>
 	<result property="resumeDate" column="resume_date"/>
 </resultMap>
-
 </mapper>

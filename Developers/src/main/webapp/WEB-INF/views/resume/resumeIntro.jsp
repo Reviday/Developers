@@ -20,78 +20,78 @@
 <section id="content" >
   <div class="section">
    <div id="app">
-        <main class="App-iEDHGk UeTOO" data-reactid=".0">
-            <div data-reactid=".0.0">
-                <div data-reactid=".0.0.0">
-                    <div id="resume-app" class="react-container" data-reactid=".0.0.0.0">
-                        <div data-reactid=".0.0.0.0.0">
-                            <div id="resume-intro" data-reactid=".0.0.0.0.0.0">
-                                <div class="block background-white" data-reactid=".0.0.0.0.0.0.0">
-                                    <div class="content" data-reactid=".0.0.0.0.0.0.0.0">
-                                        <h1 data-reactid=".0.0.0.0.0.0.0.0.0">이력서 양식, 그 이상</h1>
-                                        <h2 data-reactid=".0.0.0.0.0.0.0.0.1"><span
-                                                data-reactid=".0.0.0.0.0.0.0.0.1.0">채용 전문가들의 조언을 얻어, 이력서를 잘 쓸 수 있는 도구를
+        <main class="App-iEDHGk UeTOO">
+            <div >
+                <div >
+                    <div id="resume-app" class="react-container" >
+                        <div >
+                            <div id="resume-intro" >
+                                <div class="block background-white" >
+                                    <div class="content" >
+                                        <h1 >이력서 양식, 그 이상</h1>
+                                        <h2 ><span
+                                                >채용 전문가들의 조언을 얻어, 이력서를 잘 쓸 수 있는 도구를
                                                 만들었습니다. <br>
                                                 서류 통과가 잘 되는 디벨로퍼 이력서를 쉽고 빠르게 작성해 보세요.</span></h2>
-                                        <div class="button-block" data-reactid=".0.0.0.0.0.0.0.0.2">
+                                        <div class="button-block" >
                                         
                                       <c:if test="${loginMember==null }">  
                                         <button
-                                                class="btn btn-default" data-reactid=".0.0.0.0.0.0.0.0.2.0">
+                                                class="btn btn-default suBtn">
                                                 	이력서 관리</button><button class="btn btn-primary suBtn"
                                                 >새 이력서 작성</button>
                                          </c:if>       
                                           <c:if test="${loginMember!=null }">  
                                         <button
-                                                class="btn btn-default" onclick="location.href='${path }/resume/resumeList.do'">이력서
-                                                관리</button><button class="btn btn-primary" onclick="location.href='${path }/resume/insertResumepage.do?memEmail=${loginMember.memEmail }';"
+                                                class="btn btn-default" onclick="location.href='${path }/resume/resumeList.lmc'">이력서
+                                                관리</button><button class="btn btn-primary" onclick="location.href='${path }/resume/insertResumepage.lmc?memEmail=${loginMember.memEmail }';"
                                                 >새 이력서 작성</button>
                                          </c:if>           
                                                 </div>
                                     </div>
-                                    <div class="background-image bg-edit ko" data-reactid=".0.0.0.0.0.0.0.1"></div>
+                                    <div class="background-image bg-edit ko" ></div>
                                 </div>
-                                <div class="block background-image bg-advantage" data-reactid=".0.0.0.0.0.0.1">
-                                    <div class="content" data-reactid=".0.0.0.0.0.0.1.0">
-                                        <h1 data-reactid=".0.0.0.0.0.0.1.0.0">지원에 유리한</h1>
-                                        <h2 data-reactid=".0.0.0.0.0.0.1.0.1"><span
-                                                data-reactid=".0.0.0.0.0.0.1.0.1.0">글로벌 기업에 보편적이고, 성별이나 가족관계 등 차별 금지 정책에
+                                <div class="block background-image bg-advantage" >
+                                    <div class="content" >
+                                        <h1 >지원에 유리한</h1>
+                                        <h2 ><span>
+                                              글로벌 기업에 보편적이고, 성별이나 가족관계 등 차별 금지 정책에
                                                 맞춰서 제작하였습니다. <br>
                                                 군더더기 없이, 당신의 진짜 경쟁력을 드러 내 보세요.</span></h2>
                                     </div>
                                 </div>
-                                <div class="block background-white" data-reactid=".0.0.0.0.0.0.2">
-                                    <div class="content" data-reactid=".0.0.0.0.0.0.2.0">
-                                        <h1 data-reactid=".0.0.0.0.0.0.2.0.0">본질에 집중한</h1>
-                                        <h2 data-reactid=".0.0.0.0.0.0.2.0.1"><span
-                                                data-reactid=".0.0.0.0.0.0.2.0.1.0">보다 명확한 정보 설계로 당신의 커리어를 돋보이게 만들어
+                                <div class="block background-white" >
+                                    <div class="content" >
+                                        <h1 >본질에 집중한</h1>
+                                        <h2 ><span
+                                                >보다 명확한 정보 설계로 당신의 커리어를 돋보이게 만들어
                                                 드립니다. <br>
                                                 불필요한 정보 입력을 최소화하고 이력서 작성에 방해가 되는 UI 요소들을 제거하였습니다.</span></h2>
                                     </div>
-                                    <div class="background-image bg-career ko" data-reactid=".0.0.0.0.0.0.2.1"></div>
+                                    <div class="background-image bg-career ko" ></div>
                                 </div>
-                                <div class="block background-image bg-download" data-reactid=".0.0.0.0.0.0.3">
-                                    <div class="content" data-reactid=".0.0.0.0.0.0.3.0">
-                                        <h1 data-reactid=".0.0.0.0.0.0.3.0.0">활용이 자유로운</h1>
-                                        <h2 data-reactid=".0.0.0.0.0.0.3.0.1"><span
-                                                data-reactid=".0.0.0.0.0.0.3.0.1.0">PC/모바일 어디에서나 작성할 수 있고, PDF 파일로 저장과
+                                <div class="block background-image bg-download" >
+                                    <div class="content" >
+                                        <h1 >활용이 자유로운</h1>
+                                        <h2 ><span
+                                                >PC/모바일 어디에서나 작성할 수 있고, PDF 파일로 저장과
                                                 활용이 쉽습니다. <br>
                                                 가독성에 중점을 두고 설계하여, 파일 저장/출력시에도 돋보이는 결과물을 얻을 수 있습니다.</span></h2>
-                                        <div class="button-block" data-reactid=".0.0.0.0.0.0.3.0.2"><a
+                                        <div class="button-block" ><a
                                                 class="btn btn-default false"
                                                 href="https://s3.ap-northeast-2.amazonaws.com/wanted-public/sample_resume_ko.pdf"
                                                 target="_blank" rel="noopener noreferrer"
-                                                data-reactid=".0.0.0.0.0.0.3.0.2.0">샘플 다운로드</a>
+                                                >샘플 다운로드</a>
                                                 <c:if test="${loginMember==null }">  
                                         <button
-                                                class="btn btn-default" data-reactid=".0.0.0.0.0.0.0.0.2.0">이력서
+                                                class="btn btn-default" >이력서
                                                 관리</button><button class="btn btn-primary suBtn"
                                                 >새 이력서 작성</button>
                                          </c:if>       
                                           <c:if test="${loginMember!=null }">  
                                         <button
-                                                class="btn btn-default" data-reactid=".0.0.0.0.0.0.0.0.2.0">이력서
-                                                관리</button><button class="btn btn-primary"  onclick="location.href='${path }/resume/insertResumepage.do?memEmail=${loginMember.memEmail }';"
+                                                class="btn btn-default" >이력서
+                                                관리</button><button class="btn btn-primary"  onclick="location.href='${path }/resume/insertResumepage.lmc?memEmail=${loginMember.memEmail }';"
                                                 >새 이력서 작성</button>
                                          </c:if>
                                                 
@@ -102,8 +102,8 @@
                             
                         </div>
                     </div>
-                    <div class="Notice-iRWNro bdALza" data-reactid=".0.0.0.1"><span class="icon"
-                            data-reactid=".0.0.0.1.0"><i class="icon-check" data-reactid=".0.0.0.1.0.0"></i></span>
+                    <div class="Notice-iRWNro bdALza" ><span class="icon"
+                           ><i class="icon-check" ></i></span>
                     </div>
                 </div>
             </div>

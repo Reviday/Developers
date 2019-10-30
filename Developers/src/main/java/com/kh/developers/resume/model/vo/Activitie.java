@@ -15,5 +15,4 @@ public class Activitie {
 	private String actName;
 	private String actDetail;
 	private Date actDate;
-
 }

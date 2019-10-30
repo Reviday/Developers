@@ -18,5 +18,4 @@ public class Education {
 	private String majorName;
 	private String subjectName;
 	private Date edDate;
-
 }

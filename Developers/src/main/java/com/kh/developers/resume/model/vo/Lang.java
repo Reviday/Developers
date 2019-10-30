@@ -15,6 +15,4 @@ public class Lang {
 	private String langName;
 	private String langLevel;
 	private Date langDate;
-	
-
 }
