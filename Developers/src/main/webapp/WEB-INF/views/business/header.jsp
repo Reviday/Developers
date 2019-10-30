@@ -51,12 +51,27 @@
 		width:300px;
 	} */
 	.bl_1{
-		color:white !important;
-    	font-weight: 900 !important;
+		color:white;
+		font-weight: 900 !important;
+		font-size:1.4rem;
 	}
 	.rotate{
 		transform: rotate(180deg);
 	}
+	.ddm-log{
+		font-size:1.3rem;
+	}
+
+	.bl_1:hover{
+		color:silver !important;
+	}
+	.bus-user-profile{
+		width:32px;
+		height:32px;
+		border-radius: 16px;
+	}
+
+
 </style>
 
 
@@ -84,7 +99,7 @@
 							</li>
 							
 							<button class="home_button emp_Btn" onclick="location.href='${path}'">
-								디벨로퍼 홈
+								디벨로퍼스 홈
 							</button>
 						</ul>
 					</nav>
@@ -130,17 +145,18 @@
 				<div class="hidden-xs">
 					<nav class="nav_style_r">
 						<div class="nav_rr">
-							<div class="dropdown">
+							<div class="dropdown bus-user-info">
 								<button class="bl_1"
 									type="button" data-toggle="dropdown">
-									로그인아이디&nbsp;<i class="fas fa-angle-down"></i></button>
-								<ul class="dropdown-menu">
-									<li><a href="#">내 프로필</a></li>
-									<li><a href="#">로그아웃</a></li>
-								</ul>
+									<img class="bus-user-profile" src="${path}/resources/upload/profile/no-profile-image.png"/>
+									&nbsp;이태영&nbsp;<i class="fas fa-angle-down"></i></button>
+								<div class="dropdown-menu ddm-log">
+									<a class="dropdown-item" href="#">내 프로필</a>
+									<a class="dropdown-item" href="#">로그아웃</a>
+								</div>
 							</div>
 							<button class="home_button emp_Btn" onclick="location.href='${path}'">
-								디벨로퍼 홈
+								디벨로퍼스 홈
 							</button>
 						</div>
 					</nav>

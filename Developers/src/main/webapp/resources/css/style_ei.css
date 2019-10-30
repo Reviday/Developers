@@ -29,7 +29,7 @@
     text-decoration: none !important;
     margin:10px 0;
     padding:0 20px;
-    border-bottom: 2px solid rgb(244, 244, 244);
+    border-bottom: 2px solid #f8f8f8;
 }
 
 .ei_a2:hover{
@@ -47,5 +47,5 @@
 }
 
 .dropdown-menu{
-    min-width: 100px;
+    min-width: 105px;
 }
