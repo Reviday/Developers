@@ -9,18 +9,23 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import com.kh.developers.member.model.vo.Member;
 
 public class MemberNameCheck extends HandlerInterceptorAdapter {
+	private int memNo;
+	private String memEmail;
 	
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
 		if(request.getSession().getAttribute("loginMember")!=null 
+				&& ((Member)request.getSession().getAttribute("loginMember")).getMemEmailCert().equals("Y")
 				&& ((Member)request.getSession().getAttribute("loginMember")).getMemName()==null) {
-			modelAndView.addObject("script", createScripte());
+			memNo=((Member)request.getSession().getAttribute("loginMember")).getMemNo();
+			memEmail=((Member)request.getSession().getAttribute("loginMember")).getMemEmail();
+			modelAndView.addObject("script", createScript());
 		}
 		super.postHandle(request, response, handler, modelAndView);
 	}
 
-	private String createScripte() {
+	private String createScript() {
 		String script="<script>";
 		script+="var $ldcDiv=$('<div id=\"config-modal\" style=\"display: block; padding-left: 15px;\" class=\"blur info in modal\"></div>');";
 		script+="var nameTag='<div class=\"modal_login_enroll\">';";
@@ -38,13 +43,13 @@ public class MemberNameCheck extends HandlerInterceptorAdapter {
 		script+="nameTag+='<label class=\"control-label\">';";
 		script+="nameTag+='<span class=\"errorMsg\" style=\"display:none\">이름은 필수정보 입니다.</span>';";
 		script+="nameTag+='</label>';";
-		script+="nameTag+='<input type=\"text\" class=\"form-control\"></div>';";
+		script+="nameTag+='<input type=\"text\" class=\"form-control\" id=\"inputName\"></div>';";
 		script+="nameTag+='<div class=\"checkbox\" >';";
 		script+="nameTag+='<label class=\"\">';";
 		script+="nameTag+='<input type=\"checkbox\" class=\"policy-checkbox\" style=\"top:15px;\" checked=\"\" label=\"맞춤 추천 등의 중요한 정보 받기\">';";
 		script+="nameTag+='<span>맞춤 추천 등의 중요한 정보 받기</span>';";
 		script+="nameTag+='</label></div>';";
-		script+="nameTag+='<div class=\"modal-footer\">';";
+		script+="nameTag+='<div class=\"modal-footer\" style=\"margin-top: 20px;\">';";
 		script+="nameTag+='<button id=\"signUpCompleteButton\" class=\"gray-button btn-block btn btn-default\" type=\"button\">완료</button></div></div></div></div>';";
 		script+="nameTag+='<div role=\"presentation\" class=\"modal_area\"></div></div>';";
 		script+="nameTag+='<script>';";
@@ -53,18 +58,20 @@ public class MemberNameCheck extends HandlerInterceptorAdapter {
 		script+="nameTag+='if($(this).val()==null || $(this).val()==\"\") {';";
 		script+="nameTag+='$(\".errorMsg\").show();';";
 		script+="nameTag+='$(\"#signUpCompleteButton\").removeClass(\"blue-button\");';";
-		script+="nameTag+='$(\"signUpCompleteButton\").addClass(\"gray-button\");';";
+		script+="nameTag+='$(\"#signUpCompleteButton\").addClass(\"gray-button\");';";
 		script+="nameTag+='btnFlag=false;';";
 		script+="nameTag+='} else {';";
 		script+="nameTag+='$(\".errorMsg\").hide();';";
-		script+="nameTag+='$(\"#signUpCompleteButton\").removeClass(\"gray-button\");';";
 		script+="nameTag+='$(\"#signUpCompleteButton\").addClass(\"blue-button\");';";
+		script+="nameTag+='$(\"#signUpCompleteButton\").removeClass(\"gray-button\");';";
 		script+="nameTag+='btnFlag=true;}});';";
 		script+="nameTag+='$(\"#signUpCompleteButton\").on(\"click\", function() {';";
 		script+="nameTag+='if(btnFlag) {';";
-		script+="nameTag+='var param={\"memName\":$(\".form-controll\").val(),';";
+		script+="nameTag+='var pData={\"memName\":$(\"#inputName\").val(),';";
+		script+="nameTag+='\"memNo\":"+memNo+",';";
+		script+="nameTag+='\"memEmail\":\""+memEmail+"\",';";
 		script+="nameTag+='\"memReceiveEmail\":$(\"input:checkbox\").is(\":checked\") };';";
-		script+="nameTag+='post_to_url(path+\"/member/lastStepEnrollEnd.lmc\", param, \"POST\");';";
+		script+="nameTag+='post_to_url(path+\"/member/lastStepEnrollEnd.lmc\", pData, \"POST\");';";
 		script+="nameTag+='}});<';";
 		script+="nameTag+='/script>';";
 		script+="$ldcDiv.html(nameTag);";

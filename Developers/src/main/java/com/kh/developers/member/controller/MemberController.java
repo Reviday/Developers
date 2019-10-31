@@ -1,6 +1,9 @@
 package com.kh.developers.member.controller;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -43,6 +46,7 @@ public class MemberController {
 		m.setMemReceiveEmail(m.getMemReceiveEmail().equals("true")?"Y":"N");
 		System.out.println(m);
 		Member result=service.lastStepEnrollEnd(m);
+		System.out.println("result :" +result);
 		if(result==null) {
 			String msg="에러가 발생하였습니다. \n다시 시도해 주기시 바랍니다.";
 			String loc="/";
@@ -70,10 +74,8 @@ public class MemberController {
 		return mv;
 	}
 	
-	@RequestMapping("/member/reSendMail")
-	public ModelAndView reSendMail(Member m, HttpServletRequest req) {
-		ModelAndView mv=new ModelAndView();
-		
+	@RequestMapping("/member/reSendMail.lmc")
+	public void reSendMail(Member m, HttpServletRequest req, HttpServletResponse res) throws IOException {
 		String url=req.getRequestURL().toString();
 		int target=url.indexOf("developers");
 		String frontUrl=url.substring(0,target);
@@ -85,21 +87,13 @@ public class MemberController {
 		} catch (Exception e) {
 			result=-1;
 		}
-		logger.debug("여기까지 확인 가능");
 		if(result>0) {
 			msg="기입된 이메일로 인증 메일이 전송되었습니다.";
-			mv.addObject("msg",msg);
 		} else {
 			msg="이메일 전송에 실패하였습니다.\n다시 확인하여 주시기 바랍니다.";
-			mv.addObject("msg",msg);
 		}
-		logger.debug("저장된 메세지 : " + msg);
-		/*
-		mv.addObject("loc","/member/logout.do");
-		mv.setViewName("common/msg");
-		*/
-		mv.setViewName("jsonView");
-		return mv;
+		res.setContentType("text/html;charset=UTF-8");
+		res.getWriter().print(msg);
 	}
 	
 	@RequestMapping("/member/logout.do")

@@ -26,9 +26,15 @@
 	<!-- 인터셉터 등록하기 -->
 	<interceptors>
 		<interceptor>
-			<mapping path="/*/login.do"/>
-			<mapping path="/*/*.lmc"/>
-			<mapping path="/*/*.lbc"/>
+			<mapping path="/*"/>
+			<mapping path="/*/*"/>
+			<exclude-mapping path="/member/reSendMail.lmc"/>
+			<beans:bean class="com.kh.developers.common.interceptor.MemberMailCertCheck"/>
+		</interceptor>
+		<interceptor>
+			<mapping path="/*"/>
+			<mapping path="/*/*"/>
+			<exclude-mapping path="/member/lastStepEnrollEnd.lmc"/>
 			<beans:bean class="com.kh.developers.common.interceptor.MemberNameCheck"/>
 		</interceptor>
 		<interceptor>

@@ -16,31 +16,21 @@ window.onload=function() {
     
 
     	
-    var $ldcDiv=$('<div id="config-modal" style="display: block; padding-left: 15px;" class="blur info in modal"></div>');
     if(ldc==null||ldc=="") {
     	/*정상 로그인?*/
     } else {
-    	console.log(ldc);
     	if(ldc=="noemailcert") {
     		if(confirm("이메일 인증이 이루어지지 않았습니다.\n재전송을 원하실 경우 확인 버튼을 눌러주시기 바랍니다.")) {
-    			
     			$.ajax ({
-    				url: path+"/member/reSendMail",
+    				url: path+"/member/reSendMail.lmc",
     				type:"POST",
     				data:{"memNo":$('#memNo').val(),
     					  "memEmail":$('#memEmail').val()},
     				success: function(result) {
-    					alert(result.msg);
+    					alert(result);
     					location.href=path+"/member/logout.do";
     				}
     			});
-    			/* ajax 안되서 돌리는 함수
-    			var param = {
-    					"memNo":$('#memNo').val(),
-                        "memEmail": "admin@developer.com",
-                    };
-                post_to_url(path + '/member/reSendMail', param  , 'POST');
-                */
     		} else {
     			location.href=path+"/member/logout.do";
     		}
@@ -246,7 +236,7 @@ $('#profile_img').click(function() {
 	$('.xsMenuBar').toggle();
 })
 
-$('.headerBar_exit').click(function() {
+$('.headerBar_exit').click(function() {S
 	$('.xsMenuBar').toggle();
 })
 
@@ -270,28 +260,4 @@ function post_to_url(path, params, method) {
     document.body.appendChild(form);
     form.submit();
 }
-
-
-$(".form-controll").keyup(function () {
-    if ($(this).val() == null && $(this).val() == "") {
-        $(".form-controll span").show();
-        $("#signUpCompleteButton").removeClass("blue-button");
-        $("signUpCompleteButton").addClass("gray-button");
-        btnFlag = false;
-    } else {
-        $(".form-controll span").hide();
-        $("#signUpCompleteButton").removeClass("gray-button");
-        $("#signUpCompleteButton").addClass("blue-button");
-        btnFlag = true;
-    }
-});
-$("#signUpCompleteButton").on("click", function () {
-    if (btnFlag) {
-        var param = {
-            "memName": $(".form-controll").val(),
-            "memReceiveEmail": $('input:checkbox').is(":checked")
-        };
-        post_to_url(path + "/member/lastStepEnrollEnd.lmc", param, "POST");
-    }
-});
 /* header js End*/
