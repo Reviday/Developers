@@ -169,24 +169,53 @@ public class ResumeController {
 		 res.setContentType("application/json;charset=utf-8");
 		return jsonStr;
 	}
+
+	/*
+	 * @RequestMapping("/resume/deleteIndex.lmc")
+	 * 
+	 * @ResponseBody public String deleteIndex(int deleteNo,String
+	 * deleteIndex,HttpServletResponse res) { ObjectMapper mapper=new
+	 * ObjectMapper(); int result=0; if(deleteIndex.equals("c")) {
+	 * result=service.deleteCareer(deleteNo); }
+	 * 
+	 * String jsonStr=""; try { jsonStr=mapper.writeValueAsString(result); } catch
+	 * (JsonProcessingException e) { // TODO Auto-generated catch block
+	 * e.printStackTrace(); } res.setContentType("application/json;charset=utf-8");
+	 * return jsonStr; }
+	 */
 	@RequestMapping("/resume/deleteIndex.lmc")
-	@ResponseBody
-	public String deleteIndex(int deleteNo,String deleteIndex,HttpServletResponse res) {
-		ObjectMapper mapper=new ObjectMapper();
-		int result=0;
+	public ModelAndView checkId(int deleteNo,String deleteIndex,int resumeNo,HttpServletResponse res) {
+		ModelAndView mv=new ModelAndView();
+		
 		if(deleteIndex.equals("c")) {
-		result=service.deleteCareer(deleteNo);
+		int result=service.deleteCareer(deleteNo);
+		}else if(deleteIndex.equals("e")) {
+		int result=service.deleteEd(deleteNo);
+		}else if(deleteIndex.equals("ac")) {
+		int result=service.deleteAc(deleteNo);	
+		}else if(deleteIndex.equals("la")) {
+		int result=service.deleteLa(deleteNo);	
+		}else if(deleteIndex.equals("li")) {
+		int result=service.deleteLi(deleteNo);		
 		}
 		
-		String jsonStr="";
-		try {
-			jsonStr=mapper.writeValueAsString(result);
-		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		 res.setContentType("application/json;charset=utf-8");
-		return jsonStr;
+		//mv.addObject("member", result);//객체 못넣는다
+		Resume r= new Resume();
+		r.setResumeNo(resumeNo);
+		Resume resume=service.selectResumeOne(r);
+		List<Career> career=service.selectCareer(resume);
+		List<Education> ed=service.selectEd(resume);
+		List<Activitie> ac=service.selectAc(resume);
+		List<Lang> Lang=service.selectLang(resume);
+		List<Links> links=service.selectLinks(resume);
+		mv.addObject("ed",ed);
+		mv.addObject("ac",ac);
+		mv.addObject("Lang",Lang);
+		mv.addObject("links",links);
+		mv.addObject("resume", resume);
+		mv.addObject("career", career);
+		mv.setViewName("resume/resumeView");
+		return mv;
 	}
-
+	
 }

@@ -26,5 +26,9 @@ public interface ResumeService {
 	int insertLang(Resume r2);
 	int insertLink(Resume r2);
 	int deleteCareer(int deleteNo);
+	int deleteEd(int deleteNo);
+	int deleteAc(int deleteNo);	
+	int deleteLa(int deleteNo);	
+	int deleteLi(int deleteNo);		
 	
 }

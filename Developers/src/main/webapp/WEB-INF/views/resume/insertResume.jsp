@@ -181,7 +181,6 @@
 <script>
     var i=1;
     function careersplus(memEmail) {
-    	console.log("여기오니?");
         $.ajax({
         	url: "${path}/resume/insertCareer.do",
             type: "POST",

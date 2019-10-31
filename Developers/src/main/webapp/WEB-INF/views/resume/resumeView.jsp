@@ -11,7 +11,7 @@
     <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
 <jsp:include page="/WEB-INF/views/common/header.jsp">
 	<jsp:param name="pageTitle" value="메인 화면"/> 
 </jsp:include>
@@ -45,6 +45,8 @@
                             <div class="Box-cwadsP iKzpWM" id="deleteModal">
                             <input type="hidden" id="deleteIndex" value=""/>
                            			 <input type="hidden" id="deleteNo" value=""/>
+                           			  <c:set value="${resume.resumeNo }" var="resumeNo"/>
+                           			 <input type="hidden" id="resumeNo" value="${resume.resumeNo }"/>
                                 <div width="40" class="Content-zwkXZ dzZUIS" id="deleteModal2">
                                     <div class="Div-hTZHGu fEVoGZ" id=".0.3.0.$/=11">
                                     
@@ -55,7 +57,7 @@
                                             class="Button-kDSBcD hzWWar" onclick="madalclose();">닫기</button>
                                             <button
                  color="#258BF7" class="Button-kDSBcD ebVQvc"
-                 onclick="deleteList();">확인</button>
+                 onclick="deleteList('${resumeNo }');">확인</button>
          </div>
      </div>
      <div class="Overlay-iWuiZb gMLFic" id="deleteModal3"></div>
@@ -89,15 +91,15 @@
          <div class="resume-list-header"><span>경력</span></div>
          <div class="resume-list-body">
              <c:set value="${resume.memEmail }" var="memEmail"/>
-             <c:set value="${resume.resumeNo }" var="resumeNo"/>
+            
              <button class="btn-add btn btn-default" type="button"
                  onclick="careersplus('${memEmail }','${resumeNo }');">+ 추가</button>
                <div id="careerslist">
                <ul class="list-group sortable-list careers">
                    <c:if test="${not empty career}">
                            <c:forEach var="c" items="${career }" >
-                           	<input type="hidden" class="${c.careerNo }" value="${c.careerNo }"/>
-                               <li class="list-group-item sortable-item careers" id="${c.careerNo }">
+                           	
+                               <li class="list-group-item sortable-item careers">
                                    <div class="portlet-handler">
                                        <div class="handler"></div>
                                    </div>
@@ -201,7 +203,7 @@
                        <div id="educationslist">
 						<ul class="list-group sortable-list educations" >
 						<c:if test="${not empty ed }">
-							<c:forEach items="${ed }" var="e"></c:forEach>
+							<c:forEach items="${ed }" var="e">
 							 <li class="list-group-item sortable-item educations">
      <div class="portlet-handler">
 
@@ -288,11 +290,12 @@
                  </div>
              </div>
          </div>
-
-         <button class="btn-delete btn btn-default" type="button" onclick="deleteModal('+1+');">
+		 <c:set value="${e.edNo }" var="edNo"/>
+         <button class="btn-delete btn btn-default" type="button" onclick="deleteModal('${edNo}','e');">
             <i class="fas fa-times"></i></button>
      </div>
  </li>			
+ </c:forEach>
 						</c:if>
 						</ul>
                        </div>
@@ -357,8 +360,9 @@
                 </div>
             </div>
         </div>
-        
-        <button class="btn-delete btn btn-default" type="button" onclick="deleteModal('+1+');"><i
+         <c:set value="${ac.actNo }" var="acNo"/>
+        <button class="btn-delete btn btn-default" type="button" 
+        onclick="deleteModal('${acNo}','ac');"><i
                 class="fas fa-times"></i></button>
     </div>
 </li>
@@ -431,8 +435,9 @@
 						                <div class="resume-list-body"></div>
 						            </div>
 						        </div>
-						
-						        <button class="btn-delete btn btn-default" type="button" onclick="deleteModal('+1+')"><i
+									<c:set value="${la.langNo }" var="laNo"/>
+						        <button class="btn-delete btn btn-default" type="button"
+						         onclick="deleteModal('${laNo}','la')"><i
 						                class="fas fa-times"></i></button>
 						    </div>
 						</li>
@@ -468,7 +473,9 @@
              
           </c:if>     
                 </div>
-        <button class="btn-delete btn btn-default" type="button" onclick="deleteModal('+1+');"><i
+                <c:set value="${link.linksNo }" var="linksNo"/>
+        <button class="btn-delete btn btn-default" type="button"
+         onclick="deleteModal('${linksNo}','li');"><i
                 class="fas fa-times"></i></button>
     </div>
 </li>
@@ -693,29 +700,10 @@
     $("#deleteModal2").addClass('dzZUIS');
     $("#deleteModal3").addClass('gMLFic'); 
     }
-    function deleteList(){
+    function deleteList(resumeNo){
     	var deleteNo= $('#deleteNo').val();
     	var deleteIndex = $('#deleteIndex').val();
-    	var deletecareer =${'${c.careerNo }'}.val();
-    	 $.ajax({
-	            url: "${path}/resume/deleteIndex.lmc",
-	            type: "POST",
-	            data: {"deleteNo":deleteNo,"deleteIndex":deleteIndex},
-	            success: function(data){
-	            	  $("#deleteModal").removeClass('bLaSri');
-	            	    $("#deleteModal2").removeClass('grXykz');
-	            	    $("#deleteModal3").removeClass('emhpxA');
-	            	    $("body").removeClass('stop-scrolling'); 
-	            	    $("#deleteModal").addClass('iKzpWM');
-	            	    $("#deleteModal2").addClass('dzZUIS');
-	            	    $("#deleteModal3").addClass('gMLFic'); 
-						$("#deletecareer").remove();
-    	 },
-         error: function(data){
-             alert(data);
-             console.log(data);
-         }
-     });
+    	location.href ="${path }/resume/deleteIndex.lmc?deleteNo="+deleteNo+"&deleteIndex="+deleteIndex+"&resumeNo="+resumeNo;
     }
 </script>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/> 

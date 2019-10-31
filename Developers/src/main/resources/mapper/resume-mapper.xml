@@ -1,10 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="resume">
-	
-	<delete id="deleteCareer" parameterType="_int">
-	DELETE FROM CAREER WHERE CAREER_NO=#{deleteNo}
-	</delete>
+
+<delete id="deleteEd" parameterType="_int">
+DELETE FROM EDUCATION WHERE ed_no=#{deleteNo}
+</delete>
+<delete id="deleteAc" parameterType="_int">
+DELETE FROM ACTIVITIE WHERE act_no=#{deleteNo}
+</delete>
+<delete id="deleteLa" parameterType="_int">
+DELETE FROM LANG WHERE lang_no=#{deleteNo}
+</delete>
+<delete id="deleteLi" parameterType="_int">
+DELETE FROM LINKS WHERE links_no=#{deleteNo}
+</delete>
+<delete id="deleteCareer" parameterType="_int">
+DELETE FROM CAREER WHERE CAREER_NO=#{deleteNo}
+</delete>
 
 <insert id="insertResume" parameterType="member">
 INSERT INTO RESUME VALUES (SEQ_RESUME.NEXTVAL,#{memEmail},#{memName},default,default,default)

@@ -28,4 +28,8 @@ public interface ResumeDao {
 	int insertLang(SqlSessionTemplate session,Resume r2);
 	int insertLink(SqlSessionTemplate session,Resume r2);
 	int deleteCareer(SqlSessionTemplate session,int deleteNo);
+	int deleteEd(SqlSessionTemplate session,int deleteNo);
+	int deleteAc(SqlSessionTemplate session,int deleteNo);	
+	int deleteLa(SqlSessionTemplate session,int deleteNo);	
+	int deleteLi(SqlSessionTemplate session,int deleteNo);		
 }
