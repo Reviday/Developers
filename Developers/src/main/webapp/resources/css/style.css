@@ -1445,6 +1445,7 @@ a {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: 50%;
+    background-attachment: fixed;
 }
 
 ._2BSYHDiCEVW0U-znbJ1IyD .cards {
@@ -1682,6 +1683,7 @@ a {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: 50%;
+    background-attachment: fixed;
 }
 
 @media (max-width: 991px) and (min-width: 768px){
