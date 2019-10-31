@@ -18,7 +18,6 @@ public class StringArrayHandler implements TypeHandler<String[]>{
 		}else {
 			ps.setString(i,"");
 		}
-		
 	}
 
 	@Override

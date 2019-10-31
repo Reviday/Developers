@@ -68,7 +68,7 @@ public class BusinessController {
 		logger.debug(""+bus);
 		int result=bService.insertBusiness(bus);
 		logger.debug("결과"+result);
-		
+		//관리자 한테도 보내줘야함
 		return "/business/confirming";
 	}
 	
@@ -96,8 +96,12 @@ public class BusinessController {
 					Business bus=bService.selectBusInfo(memberNo); //사업장 정보 불러오는 로직 
 					logger.debug(""+bus);
 					model.addAttribute("loginMember",result); 
-					model.addAttribute("busInfo",bus);
-					mv.setViewName("business/dashboard");					
+					if(bus.getBusStatus()!="Y") {
+						mv.setViewName("business/confirming");
+					}else {
+						model.addAttribute("busInfo",bus);
+						mv.setViewName("business/dashboard");											
+					}
 			} else {
 				/*로그인 로직 상, login.do를 실행할떄 비밀번호가 틀릴 수가 없기 때문*/
 				mv.addObject("msg","잘못된 경로입니다.");
