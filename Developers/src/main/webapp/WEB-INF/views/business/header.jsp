@@ -98,7 +98,7 @@
 							</li>
 							<li class="ls1 ls3">
 								<a class="as2 as3" data-toggle="modal" 
-								data-target="#empEnrollModal">관리자 가입</a>
+								data-target="#empEnrollModal">채용담당자 가입</a>
 							</li>
 							
 							<button class="home_button emp_Btn" onclick="location.href='${path}'">
@@ -122,7 +122,7 @@
 							<li class="ls4"><a class="as2" type="submit" 
 									data-toggle="modal" data-target="#empLoginModal">채용담당자 로그인</a></li>
 							<li class="ls4 active"><a class="as2 as3" type="submit"
-								data-toggle="modal" data-target="#empEnrollModal">관리자 가입</a></li>
+								data-toggle="modal" data-target="#empEnrollModal">채용담당자 가입</a></li>
 						</ul>
 					</div>
 				</div>
@@ -214,7 +214,7 @@
 			    <input type="password" class="form-control" name="memPassword" placeholder="비밀번호" required>
 	      </div>
 	      <div class="modal-footer">
-	        <button type="submit" class="btn btn-outline-primary" >관리자 계정 생성</button>
+	        <button type="submit" class="btn btn-outline-primary" >채용담당자 계정 생성</button>
 	      </div>
 		  </form>
 	     <div>
@@ -235,7 +235,7 @@
 	  <div class="modal-dialog" role="document">
 	    <div class="modal-content">
 	      <div class="modal-header">
-	        <h5 class="modal-title" id="exampleModalLabel">관리자 계정 로그인</h5>
+	        <h5 class="modal-title" id="exampleModalLabel">채용담당자 계정 로그인</h5>
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 	          <span aria-hidden="true">&times;</span>
 	        </button>
@@ -255,7 +255,7 @@
 	      </div>
 		  </form>
 	     	<div class="modal-footer">
-		  		<p>계정이 없으신가요?<a class="navbar-brand-small" href="#">관리자 계정 만들기</a></p>
+		  		<p>계정이 없으신가요?<a class="navbar-brand-small" href="#">채용담당자 계정 만들기</a></p>
 		  	</div>
 	    </div>
 	  </div>

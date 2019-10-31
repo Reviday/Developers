@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.developers.business.model.service.BusinessService;
@@ -106,6 +107,15 @@ public class BusinessController {
 				}
 			}
 			return mv;
+	}
+	
+	@RequestMapping("/business/logout")
+	public String logout(HttpSession session, SessionStatus s) {
+		if(!s.isComplete()) {
+			s.setComplete();//로그아웃
+			session.invalidate();
+		}
+		return "redirect:/business";
 	}
 
 }
