@@ -24,7 +24,7 @@ public class BusinessDaoImpl implements BusinessDao {
 	
 	@Override
 	public Business selectBusInfo(SqlSessionTemplate session, int memberNo) {
-		System.out.println("MemNO"+memberNo);
+
 		return session.selectOne("business.selectBusInfo",memberNo);
 	}
 
