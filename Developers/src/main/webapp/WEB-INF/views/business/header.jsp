@@ -82,7 +82,10 @@
 				<nav class="nav_style_l">
 					<ul class="nav_us">
 						<li class="ls1 ls2">
-							<a aria-current="page" class="as1" href="#">Developers Black for Employers</a>
+							<a aria-current="page" class="as1" href="#">
+								<img src="${path}/resources/images/Developers_logo_favicon.png" widht="34px" height="34px"/>
+								&nbsp;Developers Black for Employers
+							</a>
 						</li>
 					</ul>
 				</nav>
@@ -152,7 +155,7 @@
 									&nbsp;<c:out value="${loginMember.memName}"/>&nbsp;<i class="fas fa-angle-down"></i></button>
 								<div class="dropdown-menu ddm-log">
 									<a class="dropdown-item" href="#">내 프로필</a>
-									<a class="dropdown-item" href="#">로그아웃</a>
+									<a class="dropdown-item" href="${path}/business/logout">로그아웃</a>
 								</div>
 							</div>
 							<button class="home_button emp_Btn" onclick="location.href='${path}'">
@@ -179,7 +182,7 @@
 							<li class="ls4"><a class="as2">채용광고</a></li>
 							<li class="ls4"><a class="as2">회사정보</a></li>
 							<li class="ls4"><a class="as2">계정 관리</a></li>
-							<li class="ls4"><a class="as2">로그아웃</a></li>
+							<li class="ls4"><a class="as2" href="${path}/business/logout">로그아웃</a></li>
 							<li class="ls4"><a class="as2">디벨로퍼스 홈</a></li>
 
 						</ul>
