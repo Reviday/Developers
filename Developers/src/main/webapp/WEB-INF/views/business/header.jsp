@@ -138,7 +138,7 @@
 							</label>
 						</li>
 						<li class="ls1 ls2">
-							<a aria-current="page" class="as1" href="#">KH정보교육원</a>
+							<a aria-current="page" class="as1" href="#"><c:out value="${busInfo.busName}"/></a>
 						</li>
 					</ul>
 				</nav>
@@ -149,7 +149,7 @@
 								<button class="bl_1"
 									type="button" data-toggle="dropdown">
 									<img class="bus-user-profile" src="${path}/resources/upload/profile/no-profile-image.png"/>
-									&nbsp;이태영&nbsp;<i class="fas fa-angle-down"></i></button>
+									&nbsp;<c:out value="${loginMember.memName}"/>&nbsp;<i class="fas fa-angle-down"></i></button>
 								<div class="dropdown-menu ddm-log">
 									<a class="dropdown-item" href="#">내 프로필</a>
 									<a class="dropdown-item" href="#">로그아웃</a>

@@ -5,11 +5,17 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.kh.developers.business.model.vo.Business;
+import com.kh.developers.member.model.vo.Member;
 
 @Controller
 public class BusinessController2 {
@@ -37,8 +43,23 @@ public class BusinessController2 {
 		mv.setViewName("jsonView");
 		return mv;
 	}
-	@RequestMapping("/business/applications.do")
-	public String applications() {
-		return "business/dashboard";
+	
+	
+	@RequestMapping("/business/dashboard.lbc")
+	public ModelAndView dashboard(HttpSession session) {
+		ModelAndView mv=new ModelAndView();
+		String view="";
+		Member loginMember=(Member)session.getAttribute("loginMember");
+		Business bus=(Business)session.getAttribute("bus");
+		if(loginMember!=null && loginMember.getMemLevel()>=3 && bus!=null) {
+			if(bus.getBusStatus().charAt(0)=='Y') {
+				view="business/dashboard";
+			}else {
+				view="business/confirming";
+			}
+		}
+		view="business/dashboard";
+		mv.setViewName(view);
+		return mv;
 	}
 }

@@ -24,8 +24,8 @@
 
 .ei_a2{
     display: block;
-    font-size: 1.6rem;
-    color: silver;
+    font-size: 1.4rem;
+    color: silver !important;
     text-decoration: none !important;
     margin:10px 0;
     padding:0 20px;
@@ -34,16 +34,16 @@
 
 .ei_a2:hover{
     color:black !important;
-    font-weight: 900;
+    
 }
 .ca2{
-    color:black;
+    color:black !important;
     border-bottom: 2px solid black;
-    font-weight: 900 !important;
+    
 }
 .ca4{
     border-bottom: 2px solid black;
-    font-weight: 900 !important;
+    
 }
 
 .dropdown-menu{
