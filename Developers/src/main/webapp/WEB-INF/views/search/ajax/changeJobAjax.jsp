@@ -2,20 +2,16 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<c:set var="path" value="${pageContext.request.contextPath}"/>
-
-<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/resources/css/mainSearch.css">
-
-<section id="search-main">
         <div class="search-header">
             <div class="search-header-mid">
                 <ul class="mid-menuBar">
                     <li>
-                        <a href="">전체</a>
+                        <a href="" style="color: gray;">
+                        	전체
+                        	<i class="fas fa-chevron-right" style="margin-left: 10px;"></i>
+                        </a>
                     </li>
+                    <li>${jobName }</li>
                 </ul>
                 <div class="mid-content">
                     <button class="mid-type prev hidden">
@@ -246,8 +242,7 @@
                 </ul>
             </div>
         </div>
-    </section>
-<jsp:include page="/WEB-INF/views/common/footer.jsp"/> 
+
 <!-- 슬라이드용 스크립트 -->
 <script>
     var sliderWrapper = document.getElementsByClassName("mid-type-content"),
@@ -323,7 +318,7 @@
 		$.ajax({
 			url: path + "/search/changeJobAjax",
 			type: "POST",
-			data: {jobName : jobName},	
+			data: {jobName : jobName},
 			success: function(data){
 				$("#search-main").html("");
 				$("#search-main").html(data);
