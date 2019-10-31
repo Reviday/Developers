@@ -30,5 +30,6 @@ public interface ResumeService {
 	int deleteAc(int deleteNo);	
 	int deleteLa(int deleteNo);	
 	int deleteLi(int deleteNo);		
+	int updateCareer(Career c);
 	
 }

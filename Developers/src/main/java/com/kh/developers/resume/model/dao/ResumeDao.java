@@ -31,5 +31,6 @@ public interface ResumeDao {
 	int deleteEd(SqlSessionTemplate session,int deleteNo);
 	int deleteAc(SqlSessionTemplate session,int deleteNo);	
 	int deleteLa(SqlSessionTemplate session,int deleteNo);	
-	int deleteLi(SqlSessionTemplate session,int deleteNo);		
+	int deleteLi(SqlSessionTemplate session,int deleteNo);	
+	int updateCareer(SqlSessionTemplate session,Career c);
 }

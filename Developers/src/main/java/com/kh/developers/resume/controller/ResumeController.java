@@ -2,8 +2,8 @@ package com.kh.developers.resume.controller;
 
 
 import java.util.List;
-import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
@@ -87,6 +87,7 @@ public class ResumeController {
 		//잭슨이 제공하는 객체 자바클래스하고 json자바스크립트 객체 매핑 시켜줌 
 		Resume r2=service.selectResumeViewOne(r);
 		int result=service.insertCareer(r2);
+		System.out.println(result);
 		String jsonStr="";
 		try {
 			jsonStr=mapper.writeValueAsString(result);
@@ -202,6 +203,33 @@ public class ResumeController {
 		//mv.addObject("member", result);//객체 못넣는다
 		Resume r= new Resume();
 		r.setResumeNo(resumeNo);
+		Resume resume=service.selectResumeOne(r);
+		List<Career> career=service.selectCareer(resume);
+		List<Education> ed=service.selectEd(resume);
+		List<Activitie> ac=service.selectAc(resume);
+		List<Lang> Lang=service.selectLang(resume);
+		List<Links> links=service.selectLinks(resume);
+		mv.addObject("ed",ed);
+		mv.addObject("ac",ac);
+		mv.addObject("Lang",Lang);
+		mv.addObject("links",links);
+		mv.addObject("resume", resume);
+		mv.addObject("career", career);
+		mv.setViewName("resume/resumeView");
+		return mv;
+	}
+	@RequestMapping("/resume/updateCareer.lmc")
+	public ModelAndView updateCareer(Career c) {
+		ModelAndView mv=new ModelAndView();
+		int resumeNo=c.getResumeNo();
+		String memEmail=c.getMemEmail();
+		int result=service.updateCareer(c);
+		System.out.println(result+"그거모냐 업데이트 된거니 ?");
+		System.out.println(c);
+		Resume r= new Resume();
+		r.setResumeNo(resumeNo);
+		r.setMemEmail(memEmail);
+		System.out.println(r);
 		Resume resume=service.selectResumeOne(r);
 		List<Career> career=service.selectCareer(resume);
 		List<Education> ed=service.selectEd(resume);

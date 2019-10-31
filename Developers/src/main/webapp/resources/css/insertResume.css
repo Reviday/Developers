@@ -1715,6 +1715,23 @@
     /* Landscape phones and down */
 }
 
+.btn-save {
+    top: 60px;
+    right: 20px;
+    position: absolute;
+    color: #d1d1d1 !important;
+    font-size: 10px;
+    padding: 15px;
+    z-index: 2;
+    /* Landscape phones and down */
+}
+.btn-save:hover {
+	
+    color: #6BEC62 !important;
+    font-size: 13px !important;
+    /* Landscape phones and down */
+}
+
 @media (max-width: 767px) {
     .smart-list .list-group-item .btn-delete {
         top: 10px;

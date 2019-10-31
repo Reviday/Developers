@@ -98,27 +98,28 @@
                <ul class="list-group sortable-list careers">
                    <c:if test="${not empty career}">
                            <c:forEach var="c" items="${career }" >
-                           	
+                           	 <form action="${path }/resume/updateCareer.lmc" method="post" >
                                <li class="list-group-item sortable-item careers">
                                    <div class="portlet-handler">
                                        <div class="handler"></div>
                                    </div>
+                                    
                                    <div class="career-item clearfix">
                                        <div class="col-sm-3">
                                            <div class="period">
                                                <div class="datetime">
                                                    <div class="start-time">
                                                        <div class="form-group">
-                                                       
+                                                    
                                                        <c:if test="${c.startCareer==null }">
                                                            <input type="text" maxlength="6"
-                                                               class="year form-control" 
+                                                               class="year form-control" name="startCareer"
                                                                placeholder="YYYYMM"
                                                                onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" />
                                                        </c:if>
                                                        <c:if test="${c.startCareer!=null }">
                                                            <input type="text" maxlength="6"
-                                                               class="year form-control" 
+                                                               class="year form-control" name="startCareer"
                                                                placeholder="YYYYMM" value="${c.startCareer }"
                                                                onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" />
                                                        </c:if>
@@ -132,12 +133,12 @@
                                                            <c:if test="${c.endCareer==null }">
                                                            <input type="text" maxlength="6"
                                                                class="year form-control" 
-                                                               placeholder="YYYYMM"
+                                                               placeholder="YYYYMM"  name="endCareer"
                                                                onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" />
                                                        </c:if>
                                                        <c:if test="${c.endCareer!=null }">
                                                            <input type="text" maxlength="6"
-                                                               class="year form-control" 
+                                                               class="year form-control" name="endCareer"
                                                                placeholder="YYYYMM" value="${c.endCareer }"
                                                                onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" />
                                                        </c:if>
@@ -155,11 +156,11 @@
                                                
                                                <c:if test="${c.empName==null }">
                                                <input type="text" class="resume-input company_name"
-                                                       placeholder="회사명">
+                                                  name="empName"     placeholder="회사명">
                                                 </c:if>
                                                 <c:if test="${c.empName!=null }">
                                                <input type="text" class="resume-input company_name"
-                                                       placeholder="회사명" value="${c.empName }">
+                                                 name="empName" placeholder="회사명" value="${c.empName }">
                                                 </c:if>
                                                 
                                            </div>
@@ -167,11 +168,13 @@
                                            <c:if test="${c.depName==null }">
                                                <input class="resume-input title"
                                                    type="text" maxlength="255"
+                                                    name="depName"
                                                    placeholder="부서명/직책">
                                                 </c:if>
                                              <c:if test="${c.depName!=null }">
                                                <input class="resume-input title"
                                                    type="text" maxlength="255" value="${c.depName }"
+                                                    name="depName"
                                                    placeholder="부서명/직책">
                                                 </c:if>    
                                                 
@@ -180,12 +183,24 @@
                                                <div class="resume-list-body"></div>
                                            </div>
                                        </div>
+                                        <c:set value="${resume.memEmail }" var="memEmail"/>
                                        <c:set value="${c.careerNo }" var="careerNo"/>
-                                       <button class="btn-delete btn"
+                                       <input type="hidden" value="${c.careerNo }" name="careerNo"/>
+                                        <input type="hidden" value="${resumeNo }" name="resumeNo"/> 
+                                         <input type="hidden" value="${memEmail }" name="memEmail"/> 
+                                       
+                                       <button class="btn-delete btn" type="button"
                                            onclick="deleteModal('${careerNo}','c');">
-                                           <i class="fas fa-times"></i></button>
+                                           <i class="fas fa-times"></i>
+                                           </button>
+                                        <button class="btn-save btn" type="submit">
+                                         <i class="far fa-save"></i>
+                                        
+                                         </button>   
+                                          
                                    </div>
                                </li>
+                         </form>
                            </c:forEach>
                    </c:if>
                      <c:if test="${empty career }">
@@ -193,7 +208,7 @@
 					 </ul>
 
                        </div>
-
+				
                    </div>
                </div>
                <div class="resume-list educations">
@@ -519,26 +534,24 @@
             success: function(data){
         var careers = document.createElement('ul');
         var plus = '';
-        plus +=
-            '<li class="list-group-item sortable-item careers"><div class="portlet-handler"><div class="handler" ></div></div><div class="career-item clearfix">';
-        plus +=
-            '<div class="col-sm-3"><div class="period" >';
-        plus +=
-            '<div class="datetime"><div class="start-time" ><div class="form-group">';
-        plus +=
-            '<input type="text" maxlength="6" class="year form-control" placeholder="YYYYMM" onKeyup="this.value=this.value.replace(/[^0-9]/g,' +
-            "''" + ');"/>';
-        plus += '</div><div class="form-group" >';
-        plus += '</div></span></div>';
-        plus +=
-            '<div class="end-time" ><span class="delimiter" >-</span><div class="form-group">';
-        plus +=
-            '<input type="text" maxlength="6" class="year form-control" placeholder="YYYYMM"  onKeyup="this.value=this.value.replace(/[^0-9]/g,' +
-            "''" +
-            ');/></div><div class="form-group" ></div></span></div></div><div class="form-group" ></div></div></div><div class="col-sm-9"><div class="search-input-box resume-input-form-group"><form action="." ><input type="search" class="resume-input company_name" placeholder="회사명" ></form></div><div class="resume-input-form-group"><input class="resume-input title" type="text" maxlength="255" placeholder="부서명/직책" ></div>';
-        plus +=
-            '<div class="resume-list projects" ><div class="resume-list-body"></div></div></div>';
-        plus += '<button class="btn-delete btn"  onclick="deleteModal('+1+');">';
+        plus +='<li class="list-group-item sortable-item careers">';
+        plus +='<div class="portlet-handler"><div class="handler" ></div></div><div class="career-item clearfix">';
+        plus +='<div class="col-sm-3"><div class="period" >';
+        plus +='<div class="datetime"><div class="start-time" ><div class="form-group">';
+        plus +='<input type="text" maxlength="6" class="year form-control" placeholder="YYYYMM"';
+        plus +='onKeyup="this.value=this.value.replace(/[^0-9]/g,' +"''" + ');"/>';
+        plus +='</div><div class="form-group" >';
+        plus +='</div></span></div>';
+        plus +='<div class="end-time" ><span class="delimiter" >-</span><div class="form-group">';
+        plus +='<input type="text" maxlength="6" class="year form-control" placeholder="YYYYMM"';
+        plus +='onKeyup="this.value=this.value.replace(/[^0-9]/g,' +"''" +');/>';
+        plus +='</div><div class="form-group" ></div></span></div></div><div class="form-group" >';
+        plus +='</div></div></div><div class="col-sm-9"><div class="search-input-box resume-input-form-group">';
+        plus +='<form action="." ><input type="search" class="resume-input company_name" placeholder="회사명" ></form>';
+        plus +='</div><div class="resume-input-form-group">';
+        plus +='<input class="resume-input title" type="text" maxlength="255" placeholder="부서명/직책" ></div>';
+        plus +='<div class="resume-list projects" ><div class="resume-list-body"></div></div></div>';
+        plus += '<button class="btn-delete btn"  onclick="deleteModal();">';
         plus += '<i class="fas fa-times"></i></button></div></li>';
         careers.innerHTML = plus;
         document.getElementById('careerslist').append(careers);
@@ -704,6 +717,20 @@
     	var deleteNo= $('#deleteNo').val();
     	var deleteIndex = $('#deleteIndex').val();
     	location.href ="${path }/resume/deleteIndex.lmc?deleteNo="+deleteNo+"&deleteIndex="+deleteIndex+"&resumeNo="+resumeNo;
+    }
+    function updateCareer(careerNo){
+    	$.ajax({
+    		url:"${path }/resume/updateCareer",
+    		type:"POST",
+    		data: { },
+    		success: { 
+    			
+    		},
+    		error: {
+    			
+    		}
+    		
+    	});
     }
 </script>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/> 
