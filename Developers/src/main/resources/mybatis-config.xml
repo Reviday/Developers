@@ -11,5 +11,6 @@
 		<typeAlias type="com.kh.developers.resume.model.vo.Education" alias="education"/>
 		<typeAlias type="com.kh.developers.resume.model.vo.Lang" alias="lang"/>
 		<typeAlias type="com.kh.developers.resume.model.vo.Links" alias="links"/>
+		<typeAlias type="com.kh.developers.search.model.vo.JobField" alias="jobfield"/>
 	</typeAliases>
 </configuration>
