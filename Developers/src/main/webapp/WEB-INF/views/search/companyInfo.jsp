@@ -241,7 +241,7 @@ Option)보상<br>• 성과에 따른 직무보상금/인센티브/Annual Bonus 
                                     <span class="header">근무지역</span>
                                     <span class="body">마포구 백범로 31길 21 (서울창업허브) 814호</span>
                                 </div>
-                                <div class="company-map-api">이건 맵api로 쓸거임</div>
+                                <div id="map">이건 맵api로 쓸거임</div>
                             </section>
                         </div>
                         <section class="companyicon">
@@ -585,12 +585,20 @@ Option)보상<br>• 성과에 따른 직무보상금/인센티브/Annual Bonus 
             //     }
             // });
 
+	function initMap(){
+	    var latitude = 37.566536;
+	    var longitude = 126.97797;
+	
+	    var seoul = {lat: latitude, lng: longitude};
+	    var map = new google.maps.Map(document.getElementById('map'),{
+	                zoom : 15,
+	                center : seoul});
+	    var marker = new google.maps.Marker({
+	        position : seoul,
+	        title : "Hello Marker"
+	    });
+	    marker.setMap(map);
+	}
 
-
-
-
-
-
-
-
-    </script>
+</script>
+<script async defer  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXNeoRZYBee7rZgjb0jWpmVUMsx-DPZUg&callback=initMap"></script>

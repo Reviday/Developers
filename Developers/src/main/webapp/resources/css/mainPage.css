@@ -92,6 +92,12 @@ svg {
     -ms-transform: translate3d(0, 0, 0);
     -o-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
+    transition: left .9s;
+}
+
+@keyframes animation {
+	0% {opacity: 0;}
+	100% {opacity: 1;}
 }
 
 .slick-track {
@@ -141,8 +147,8 @@ a {
 }
 
 .slide-ficture-msg.showDesc {
-    -webkit-animation: _2wSFtDZ4j-z2vhvtdJ6GhE .4s ease-in-out;
-    animation: _2wSFtDZ4j-z2vhvtdJ6GhE .4s ease-in-out;
+    -webkit-animation: animation 1.4s ease-in-out;
+    animation: animation 1.4s ease-in-out;
 }
 
 .slide-ficture-msg {
