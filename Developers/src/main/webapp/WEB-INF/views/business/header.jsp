@@ -31,6 +31,8 @@
 
 
 
+
+
 </head>
 
 <style>
@@ -203,15 +205,17 @@
 	      </div>
           <form action="${pageContext.request.contextPath}/business/empEnroll" method="post">
 	      <div class="modal-body">
-			    <input type="text" class="form-control " name="memName" placeholder="담당자 성함" required>
+			    <input type="text" class="form-control name" name="memName" placeholder="담당자 성함" required>
 			    <br />
 			    <input type="text" class="form-control"  placeholder="직책(부서)">
 			    <br />
-			    <input type="text" class="form-control" name="memPhone" placeholder="연락처" required>
+			    <input type="text" class="form-control phone" name="memPhone" placeholder="연락처" required>
 			    <hr>
-			    <input type="text" class="form-control" name="memEmail" placeholder="회사 이메일(로그인 아이디로 사용)" required>
+			    <input type="text" class="form-control email" name="memEmail" placeholder="회사 이메일(로그인 아이디로 사용)" required>
 			    <br />
-			    <input type="password" class="form-control" name="memPassword" placeholder="비밀번호" required>
+				<input type="password" class="form-control password" name="memPassword" placeholder="비밀번호" required>
+				<br />
+				<input type="password" class="form-control confirm-password"  placeholder="비밀번호" required>
 	      </div>
 	      <div class="modal-footer">
 	        <button type="submit" class="btn btn-outline-primary" >채용담당자 계정 생성</button>
@@ -240,14 +244,18 @@
 	          <span aria-hidden="true">&times;</span>
 	        </button>
 	      </div>
-          <form action="${pageContext.request.contextPath}/business/empLogin" method="post">
+          <form action="${pageContext.request.contextPath}/business/login" method="post">
 	      <div class="modal-body">
-			    <input type="text" class="form-control" name="memEmail" placeholder="회사 이메일(로그인 아이디로 사용)" required>
+			    <input type="text" class="form-control login-email" name="memEmail" placeholder="회사 이메일(로그인 아이디로 사용)" required>
 			    <br />
-			    <input type="password" class="form-control" name="memPassword" placeholder="비밀번호" required>
-	      </div>
+			    <input type="password" id="login-password" class="form-control login-password" name="memPassword" placeholder="비밀번호" required>
+		  </div>
+		  <div class="access-denied">
+			<p style="display: none;">이메일 혹은 비밀번호가 틀렸습니다</p>
+		  </div>
 	      <div>
-	        <button type="submit" class="btn btn-outline-primary" >로그인</button>
+			<button type="submit" id="loginBtn" class="btn btn-outline-primary" 
+			style="border-color: #D0D3D4; color:#D0D3D4" disabled>로그인</button>
 	        <div>
 	        	<p><a class="navbar-brand-small" href="#">비밀번호 초기화/변경</a><P>
 	        </div>
@@ -297,7 +305,7 @@
 					processData:false,
               	    contentType:false,
 					success:function(data){
-						$("#logoImg").attr("src","${path}"+data.logo);
+						$("#logoImg").attr("src",data.logo);
 					}
 
 				})
@@ -311,6 +319,12 @@
 			});
 			
 		});
+
+		// var logPw=document.querySelector("input#login-password");
+		// console.log(logPw);
 		
 		
 	</script>
+	<!-- custom js -->
+<script type="text/javascript"
+src="${pageContext.request.contextPath }/resources/js/business-main.js"></script>	

@@ -95,9 +95,10 @@ public class BusinessController {
 		return "/business/confirming";
 	}
 	
-	@RequestMapping("/business/empLogin")
+	@RequestMapping("/business/login")
 	public ModelAndView empLogin(Member m, Model model) {
 			ModelAndView mv=new ModelAndView();
+			logger.debug(""+m);
 			Member result=service.selectMemberOne(m);
 			boolean flag=false;
 			if(result != null) {
