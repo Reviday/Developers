@@ -50,7 +50,7 @@ public class BusinessController {
 	
 	@RequestMapping("/business/empEnroll")
 	public String empEnroll(
-//			@RequestParam Member m,
+			
 			Model model
 			) {
 //		m.setMemPassword(pwEncoder.encode(m.getMemPassword()));
@@ -64,7 +64,7 @@ public class BusinessController {
 	
 	@RequestMapping("/business/businessEnroll")
 	public String businessEnroll(
-			@RequestParam Business bus
+			Business bus
 			) {
 		logger.debug(""+bus);
 		int result=bService.insertBusiness(bus);
