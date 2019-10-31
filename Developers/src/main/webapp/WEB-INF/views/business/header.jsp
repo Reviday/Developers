@@ -134,7 +134,7 @@
 					<ul class="nav_us">
 						<li class="ls1 ls2" id="logo">
 							<label for="logoFile" style="cursor: pointer;">
-								<img id="logoImg" src="${busInfo.busLogo}"/>
+								<img id="logoImg" src=""/>
 								<form id="logoFrm" name="logoFrm" enctype="multipart/form-data" method="POST">
 									<input type="file" accept="image/*" id="logoFile" name="logoFile" style="display:none"/>
 								</form>
@@ -279,6 +279,11 @@
 		    		menuBar.style.display="block";
 		    	}
 		    }
+			if("${not empty busInfo}"){
+				var logoPath="${path}"+"${busInfo.busLogo}";
+				
+				$("#logoImg").attr("src", logoPath );
+			}
 		}
 
 		$(function(){
@@ -292,7 +297,6 @@
 					processData:false,
               	    contentType:false,
 					success:function(data){
-						console.log(data.logo);
 						$("#logoImg").attr("src","${path}"+data.logo);
 					}
 

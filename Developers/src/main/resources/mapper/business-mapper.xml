@@ -10,7 +10,7 @@
 	<select id="selectBusInfo" parameterType="integer" resultMap="busMap">
 		SELECT * FROM BUSINESS_INFO WHERE BUS_NO=(SELECT BUS_NO FROM MEM_BUS_CONNECTION WHERE MEM_NO=#{memberNo})
 	</select>
-	<update id="busLogoChange">
+	<update id="busLogoChange" parameterType="bus">
 		UPDATE BUSINESS_INFO SET BUS_LOGO=#{busLogo} WHERE BUS_NO=#{busNo}
 	</update>
 	
