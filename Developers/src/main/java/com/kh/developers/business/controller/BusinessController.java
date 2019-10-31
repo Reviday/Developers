@@ -1,5 +1,6 @@
 package com.kh.developers.business.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.developers.business.model.service.BusinessService;
 import com.kh.developers.business.model.vo.Business;
@@ -49,26 +51,46 @@ public class BusinessController {
 	}
 	
 	@RequestMapping("/business/empEnroll")
-	public String empEnroll(
-			
-			Model model
+	public ModelAndView empEnroll(
+			Member m, HttpServletRequest req, RedirectAttributes rttr
 			) {
-//		m.setMemPassword(pwEncoder.encode(m.getMemPassword()));
-//		logger.debug(""+m.getMemEmail());
-//		logger.debug(""+m);
-//		int result=m.insertEmployer(m);
-//		logger.debug(""+result);
-		
-		return "business/businessEnroll";
+		ModelAndView mv=new ModelAndView();
+		logger.debug(""+m);
+		m.setMemPassword(pwEncoder.encode(m.getMemPassword()));
+
+		String url=req.getRequestURL().toString();
+		int target=url.indexOf("developers");
+		String frontUrl=url.substring(0,target);
+		int result=0;
+		String msg="";
+		try {
+			result=service.insertMember(m, frontUrl);
+		} catch (Exception e) {
+			msg="회원가입에 실패하였습니다. 다시 확인해주시기 바랍니다.";
+			rttr.addFlashAttribute("msg",msg);
+			mv.setViewName("redirect:/");
+		}
+		if(result>0) {
+			msg="기입된 이메일로 인증 메일이 전송되었습니다.";
+			mv.addObject("msg",msg);
+			mv.setViewName("jsonView");
+		} else if(result<0) {
+			msg="인증메일 전송에 실패하였습니다. 다시 시도해 주시기 바랍니다.";
+			rttr.addFlashAttribute("msg",msg);
+			mv.setViewName("redirect:/");
+		} else {
+			msg="회원가입 도중 에러가 발생하였습니다.";
+			rttr.addFlashAttribute("msg",msg);
+			mv.setViewName("redirect:/");
+		}
+		return mv;
 	}
 	
 	@RequestMapping("/business/businessEnroll")
 	public String businessEnroll(
 			Business bus
 			) {
-		logger.debug(""+bus);
 		int result=bService.insertBusiness(bus);
-		logger.debug("결과"+result);
 		//관리자 한테도 보내줘야함
 		return "/business/confirming";
 	}

@@ -134,7 +134,7 @@
 					<ul class="nav_us">
 						<li class="ls1 ls2" id="logo">
 							<label for="logoFile" style="cursor: pointer;">
-								<img id="logoImg" src=""/>
+								<img id="logoImg" src="${busInfo.busLogo}"/>
 								<form id="logoFrm" name="logoFrm" enctype="multipart/form-data" method="POST">
 									<input type="file" accept="image/*" id="logoFile" name="logoFile" style="display:none"/>
 								</form>
@@ -203,9 +203,9 @@
 	      </div>
           <form action="${pageContext.request.contextPath}/business/empEnroll" method="post">
 	      <div class="modal-body">
-			    <input type="text" class="form-control" name="memName" placeholder="담당자 성함" required>
+			    <input type="text" class="form-control " name="memName" placeholder="담당자 성함" required>
 			    <br />
-			    <input type="text" class="form-control" name="memDepartment" placeholder="직책(부서)">
+			    <input type="text" class="form-control"  placeholder="직책(부서)">
 			    <br />
 			    <input type="text" class="form-control" name="memPhone" placeholder="연락처" required>
 			    <hr>
@@ -279,11 +279,11 @@
 		    		menuBar.style.display="block";
 		    	}
 		    }
-			if("${not empty busInfo}"){
-				var logoPath="${path}"+"${busInfo.busLogo}";
+			// if("${not empty busInfo}"){
+			// 	var logoPath="${path}"+"${busInfo.busLogo}";
 				
-				$("#logoImg").attr("src", logoPath );
-			}
+			// 	$("#logoImg").attr("src", logoPath );
+			// }
 		}
 
 		$(function(){
@@ -311,4 +311,6 @@
 			});
 			
 		});
+		
+		
 	</script>
