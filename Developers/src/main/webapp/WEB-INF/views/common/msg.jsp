@@ -10,7 +10,7 @@
 <title>메세지페이지</title>
 </head>
 <body>
-	<c:if test="${msg ne null} }">
+	<c:if test="${msg ne null}">
 		<!-- msg -->
 		<script>
 			alert("${msg}");
