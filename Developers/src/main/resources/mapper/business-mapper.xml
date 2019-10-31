@@ -10,6 +10,9 @@
 	<select id="selectBusInfo" parameterType="integer" resultMap="busMap">
 		SELECT * FROM BUSINESS_INFO WHERE BUS_NO=(SELECT BUS_NO FROM MEM_BUS_CONNECTION WHERE MEM_NO=#{memberNo})
 	</select>
+	<update id="busLogoChange">
+		UPDATE BUSINESS_INFO SET BUS_LOGO=#{busLogo} WHERE BUS_NO=#{busNo}
+	</update>
 	
 	<resultMap type="bus" id="busMap">
 		<result property="busNo" column="BUS_NO"></result>

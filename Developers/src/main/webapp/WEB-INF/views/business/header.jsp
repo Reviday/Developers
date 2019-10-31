@@ -131,7 +131,7 @@
 					<ul class="nav_us">
 						<li class="ls1 ls2" id="logo">
 							<label for="logoFile" style="cursor: pointer;">
-								<img id="logoImg" src="https://images.fastcompany.net/image/upload/w_596,c_limit,q_auto:best,f_auto/fc/3034007-inline-i-applelogo.jpg"/>
+								<img id="logoImg" src="${busInfo.busLogo}"/>
 								<form id="logoFrm" name="logoFrm" enctype="multipart/form-data" method="POST">
 									<input type="file" accept="image/*" id="logoFile" name="logoFile" style="display:none"/>
 								</form>
