@@ -2,7 +2,8 @@
 var logEml=document.querySelector("input.login-email");
 var logPw=document.querySelector("input#login-password");
 var logBtn=document.querySelector("button#loginBtn");
-var accDe=document.querySelector("div#access-denied>p");
+var warning=document.getElementById("warning");
+
 
 logPw.addEventListener('keyup',function(e){
     if(e.target.selectionEnd>3){
@@ -16,25 +17,44 @@ logPw.addEventListener('keyup',function(e){
     }
 });
 
-
-logBtn.addEventListener('click',function(){
+function loginValidate(){
+	var temp="";
     $.ajax({
-        url: "${path}/member/passwordCheck",
+        url: path+"/member/passwordCheck",
         type:"post",
+        async:false,
         data:{"memEmail":logEml.value,
-        	"memPassword":logPw.value},
+            "memPassword":logPw.value},
         success:function(result){
             if(!result.flag){
-                console.log("비번틀림");
-                accDe.setAttribute("display",block);
-                logPw.style.borderColor='red';
+                warning.style.display='block';
+                logPw.style.borderColor='#E53935';
+                logEml.style.borderColor='#E53935';
+                temp= false;
             }else{
-                console.log("성공적으로 에젝스");
-           
+                temp= true;
             }
         }
     });
+    return temp;
+}
+
+logEml.addEventListener('keyup',function(e){
+    if(e.target.style.borderColor!=""){
+        e.target.style.borderColor="";
+        document.querySelector("input#login-password").style.borderColor="";
+        warning.style.display='none';
+    }
 });
+logPw.addEventListener('keyup',function(e){
+    if(e.target.style.borderColor!=""){
+        e.target.style.borderColor="";
+        document.querySelector("input.login-email").style.borderColor="";
+        warning.style.display='none';
+    }
+});
+
+
 
 
 

@@ -29,9 +29,10 @@
 <script type="text/javascript"
 	src="${pageContext.request.contextPath }/resources/js/all.js"></script>	
 
-
-
-
+<script>
+	var path='${path}';
+	var lbc='${lbc}';
+</script>
 
 </head>
 
@@ -244,24 +245,27 @@
 	          <span aria-hidden="true">&times;</span>
 	        </button>
 	      </div>
-          <form action="${pageContext.request.contextPath}/business/login" method="post">
+          <form id="login" action="${pageContext.request.contextPath}/business/login" onsubmit="return loginValidate()" method="post">
 	      <div class="modal-body">
-			    <input type="text" class="form-control login-email" name="memEmail" placeholder="회사 이메일(로그인 아이디로 사용)" required>
-			    <br />
-			    <input type="password" id="login-password" class="form-control login-password" name="memPassword" placeholder="비밀번호" required>
+			<input type="text" class="form-control login-email" name="memEmail" placeholder="회사 이메일(로그인 아이디로 사용)" required>
+			<br>
+			<input type="password" id="login-password" class="form-control login-password" name="memPassword" placeholder="비밀번호" required>
+			<br>
+			<div>
+				<button type="submit" id="loginBtn" class="btn btn-outline-primary" 
+				style="border-color: #D0D3D4; color:#D0D3D4" disabled>로그인</button>
+			</div>	
+			</form>
+				<div>
+					<p><a class="navbar-brand-small" href="#">비밀번호 초기화/변경</a><P>
+				</div>
+				<div>
+					<button class="btn btn-outline-success" > 페이스북으로 시작하기</button>
+				</div>
+				<div class="access-denied">
+					<p id="warning" style="display: none; color:#E53935">이메일 혹은 비밀번호가 틀렸습니다</p>
+				</div>
 		  </div>
-		  <div class="access-denied">
-			<p style="display: none;">이메일 혹은 비밀번호가 틀렸습니다</p>
-		  </div>
-	      <div>
-			<button type="submit" id="loginBtn" class="btn btn-outline-primary" 
-			style="border-color: #D0D3D4; color:#D0D3D4" disabled>로그인</button>
-	        <div>
-	        	<p><a class="navbar-brand-small" href="#">비밀번호 초기화/변경</a><P>
-	        </div>
-	        <button type="submit" class="btn btn-outline-success" > 페이스북으로 시작하기</button>
-	      </div>
-		  </form>
 	     	<div class="modal-footer">
 		  		<p>계정이 없으신가요?<a class="navbar-brand-small" href="#">채용담당자 계정 만들기</a></p>
 		  	</div>
