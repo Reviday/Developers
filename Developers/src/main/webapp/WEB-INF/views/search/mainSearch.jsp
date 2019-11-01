@@ -77,6 +77,102 @@
                         </div>
                     </div>
                 </div>
+                
+                
+                <div id="modalTool">
+                    <div class="modalchang">
+                        <div class="modalchang-1">
+                            <div class="modalHeader">
+                                <button type="button" class="modalHeader-btn">
+                                    <i class="fas fa-redo-alt"></i>
+                                    초기화
+                                </button>
+                                <span>필터</span>
+                                <button type="button" id="chobtn">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                            <div class="modalBody">
+                                <div id="MODAL_BODY" class="modalBody-body">
+                                    <div class="modaljung">
+                                        <h6 class="jungHea">정렬</h6>
+                                        <div class="jungbody">
+                                            <select name="" id="">
+                                                <option value="">최신순</option>
+                                                <option value="">보상금순</option>
+                                                <option value="">인기순</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="modalnara">
+                                        <h6 class="narahea">국가</h6>
+                                        <div class="narabody">
+                                            <button type="button" class="naraBtn">전세계</button>
+                                            <button type="button" class="naraBtn">대만</button>
+                                            <button type="button" class="naraBtn">싱가폴</button>
+                                            <button type="button" class="naraBtn">일본</button>
+                                            <button type="button" class="naraBtn narabody-btn">한국</button>
+                                            <button type="button" class="naraBtn">홍콩</button>
+                                            <button type="button" class="naraBtn">기타</button>
+                                        </div>
+                                    </div>
+                                    <div class="modaljiuk">
+                                        <h6 class="jiukhea">지역</h6>
+                                        <div class="jiukbody">
+                                            <button type="button" class="jiukBtn jiuk-btn">전국</button>
+                                            <button type="button" class="jiukBtn">서울</button>
+                                            <button type="button" class="jiukBtn">부산</button>
+                                            <button type="button" class="jiukBtn">대구</button>
+                                            <button type="button" class="jiukBtn">인천</button>
+                                            <button type="button" class="jiukBtn">광주</button>
+                                            <button type="button" class="jiukBtn">대전</button>
+                                            <button type="button" class="jiukBtn">울산</button>
+                                            <button type="button" class="jiukBtn">세종</button>
+                                            <button type="button" class="jiukBtn">경기</button>
+                                            <button type="button" class="jiukBtn">강원</button>
+                                            <button type="button" class="jiukBtn">충북</button>
+                                            <button type="button" class="jiukBtn">충남</button>
+                                            <button type="button" class="jiukBtn">전북</button>
+                                            <button type="button" class="jiukBtn">전남</button>
+                                            <button type="button" class="jiukBtn">경북</button>
+                                            <button type="button" class="jiukBtn">경남</button>
+                                            <button type="button" class="jiukBtn">제주</button>
+                                        </div>
+                                    </div>
+                                    <div class="modalgung">
+                                        <h6 class="gunghae">경력</h6>
+                                        <div class="gungbody">
+                                            <select name="" id="">
+                                                <option value="">전체</option>
+                                                <option value="">신입</option>
+                                                <option value="">1년</option>
+                                                <option value="">2년</option>
+                                                <option value="">3년</option>
+                                                <option value="">4년</option>
+                                                <option value="">5년</option>
+                                                <option value="">6년</option>
+                                                <option value="">7년</option>
+                                                <option value="">8년</option>
+                                                <option value="">9년</option>
+                                                <option value="">10년 이상</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="modalfilter">
+                                        <input type="checkbox" name="" id="">
+                                        적용된 필터를 저장하고 유지합니다.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modalsubmit">
+                                <button type="submit">적용</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div role="presentation" class="modalBig"></div>
+                </div>
+                
+                
                 <h3 class="firstCompany">적극 채용 중인 회사</h3>
                 <div class="firstCompany-list">
                     <ul>
@@ -307,18 +403,6 @@
 </script>
 <!-- 화면전환용 Ajax 스크립트 -->
 <script>
-/* 	function changeJobAjax(jobName) {
-		$.ajax({
-			url: path + "/search/changeJobAjax",
-			type: "POST",
-			data: {jobName : jobName},
-			success: function(data){
-				$(".mid-menuBar").html("");
-				var dd = "<li><a href=''>전체<i class='fas fa-chevron-right'></i></a></li><li><p style='font-size:18px;color:black;''>" + data + "</p></li>";
-				$(".mid-menuBar").html(dd);
-			}
-		})
-	} */
 	function changeJobAjax(jobName) {
 		$.ajax({
 			url: path + "/search/changeJobAjax",
@@ -330,4 +414,33 @@
 			}
 		})
 	}
+</script>
+<!-- 모달창 스크립트 -->
+<script>
+
+	var modal = document.getElementById('modalTool');                                         
+	$("#chobtn").click(function() {
+	    $("#modalTool").css("display","none");
+	}); 
+	$(".modalBig").on("click",function() {
+	    $("#modalTool").css("display","none");
+	});
+	$(".menu-mid-menu").click(function(){
+		$("#modalTool").css("display","block");
+	})
+	$(".filter-btn").click(function(){
+		$("#modalTool").css("display","block");
+	})
+	$(".naraBtn").click(function(e) {
+		var classVal = e.target.className;
+		$(".naraBtn").next().removeClass('narabody-btn');
+		$(".naraBtn").prev().removeClass('narabody-btn');
+		$(this).addClass('narabody-btn');
+	})
+	$(".jiukBtn").click(function(e) {
+		var classVal = e.target.className;
+		$(".jiukBtn").next().removeClass('jiuk-btn');
+		$(".jiukBtn").prev().removeClass('jiuk-btn');
+		$(this).addClass('jiuk-btn');
+	})
 </script>
