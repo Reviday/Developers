@@ -9,4 +9,22 @@
 	<select id="jobfieldAjaxList" resultType="jobfield" parameterType="string">
 		SELECT * FROM JOB_FIELD WHERE JOB_NAME NOT IN (#{jobName})
 	</select>
+	<!-- 탐색페이지(포지션리스트) -->
+	<select id="positionList" resultType="position">
+		SELECT P.*, BUS_LOGO, BUS_IMAGES, BUS_ADDRESS, BUS_INDUSTRIAL, BUS_AREA, BUS_COUNTRY,(SELECT COUNT(*) FROM PO_LIKE WHERE LIKE_ID = P.LIKE_ID) AS LIKE_COUNT FROM ENROLL_POSITION P JOIN BUSINESS_INFO B ON P.BUS_NO = B.BUS_NO 
+	</select>
+	<!-- 포지션정보페이지(포지션정보 -->
+	<select id="companyInfoList" resultType="position" parameterType="_int" resultMap="positionArray">
+		SELECT P.*, BUS_LOGO, BUS_IMAGES, BUS_ADDRESS, BUS_INDUSTRIAL, BUS_AREA, BUS_COUNTRY,(SELECT COUNT(*) FROM PO_LIKE WHERE LIKE_ID = P.LIKE_ID) AS LIKE_COUNT FROM ENROLL_POSITION P JOIN BUSINESS_INFO B ON P.BUS_NO = B.BUS_NO WHERE POSITION_NO = #{positionNo} 
+	</select>
+	<!-- 포지션정보페이지(좋아요정보) -->
+	<select id="likeMemberList" resultType="likemember" parameterType="_int">
+		SELECT P.*, MEM_NAME, MEM_PHOTO FROM PO_LIKE P JOIN TA_MEMBER M ON P.MEM_NO = M.MEM_NO WHERE LIKE_ID = #{likeNo}
+	</select>
+	
+	<resultMap type="position" id="positionArray">
+		<result column="job_type" property="job_type" typeHandler="StrArray"/>
+		<result column="tag" property="tag" typeHandler="StrArray"/>
+		<result column="bus_images" property="bus_images" typeHandler="StrArray"/>
+	</resultMap>
 </mapper>

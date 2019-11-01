@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kh.developers.resume.controller.ResumeController;
 import com.kh.developers.search.model.service.SearchService;
 import com.kh.developers.search.model.vo.JobField;
+import com.kh.developers.search.model.vo.LikeMember;
 import com.kh.developers.search.model.vo.Position;
 
 @Controller
@@ -30,24 +31,21 @@ public class SearchController {
 		List<JobField> list = service.jobfieldList();
 		List<Position> psList = service.positionList();
 		model.addAttribute("list", list);
+		model.addAttribute("psList", psList);
 		return "search/mainSearch";
 	}
 	
 	//회사를 눌렀을 때의 회사 개인 정보 페이지(비로그인)
 	@RequestMapping("/search/companyInfo.do")
-	public String companyInfoList() {
-		
-//		List<Position> list = service.companyInfoList();
+	public String companyInfoList(int positionNo, Model model) {
+
+		Position p = service.companyInfoList(positionNo);
+		int likeNo = p.getLike_no();
+		List<LikeMember> list = service.likeMemberList(likeNo);
+		model.addAttribute("p", p);
+		model.addAttribute("list", list);
 		return "search/companyInfo";
 	}
-	
-
-//	@RequestMapping(value="/search/changeJobAjax", produces = "application/text; charset=utf8")
-//	@ResponseBody
-//	public String changeJobAjax(String jobName, HttpServletResponse res) {
-//		res.setContentType("application/json;charset=utf-8");
-//		return jobName;
-//	}
 	
 	@RequestMapping(value="/search/changeJobAjax", produces = "application/text; charset=utf8")
 	public ModelAndView changeJobAjax(String jobName, ModelAndView mv) {

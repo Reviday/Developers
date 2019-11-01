@@ -29,6 +29,9 @@ public class Position {
 	private String preference; //우대사항(선택)(enroll_position/preference), 
 	private String benefit; //혜택 및 복지(enroll_position/benefit),
 	private String[] bus_images; //bus_회사 사진(business_info/bus_images),
-	private String bus_logo; //회사 로고(business_info/bus_logo)  
+	private String bus_logo; //회사 로고(business_info/bus_logo)
+	private int like_no; //좋아요ID(po_like/like_no)
+	private int like_count; //좋아요개수(SELECT COUNT(*) FROM PO_LIKE WHERE LIKE_ID = P.LIKE_ID)
+	private String bus_industrial; //회사 산업군
 	
 }

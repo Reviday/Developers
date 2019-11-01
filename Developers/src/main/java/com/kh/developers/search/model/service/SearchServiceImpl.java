@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.developers.search.model.dao.SearchDao;
 import com.kh.developers.search.model.vo.JobField;
+import com.kh.developers.search.model.vo.LikeMember;
 import com.kh.developers.search.model.vo.Position;
 
 @Service
@@ -37,7 +38,21 @@ public class SearchServiceImpl implements SearchService {
 	@Override
 	public List<Position> positionList() {
 		List<Position> psList = dao.positionList(session);
-		return null;
+		return psList;
 	}
+
+	@Override
+	public Position companyInfoList(int positionNo) {
+		Position p = dao.companyInfoList(session, positionNo);
+		return p;
+	}
+
+	@Override
+	public List<LikeMember> likeMemberList(int likeNo) {
+		List<LikeMember> list = dao.likeMemberList(session, likeNo);
+		return list;
+	}
+	
+	
 	
 }

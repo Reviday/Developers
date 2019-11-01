@@ -239,106 +239,35 @@
                     </ul>
                 </div>
                 <ul class="clearfix">
-                    <li>
-                        <div class="company-list">
-                            <a href="${path }/search/companyInfo.do">
-                                <div class="buttonHeader">
-                                    <button class="likeButton">
-                                        <i class="fas fa-heart"></i>
-                                        8
-                                    </button>
-                                </div>
-                                <div class="body">
-                                    <dl>
-                                        <dt>Web Front-end Developer(웹 프론트엔드 개발자)</dt>
-                                        <dd>
-                                            같다(gatda Corp)
-                                            <br>
-                                            <span>서울</span>
-                                            <span class="addressDot">.</span>
-                                            <span>한국</span>
-                                        </dd>
-                                    </dl>
-                                    <div class="reward">채용보상금 1,000,000원</div>
-                                </div>
-                            </a>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="company-list">
-                            <a href="${path }/search/companyInfo.do">
-                                <div class="buttonHeader">
-                                    <button class="likeButton">
-                                        <i class="fas fa-heart"></i>
-                                        8
-                                    </button>
-                                </div>
-                                <div class="body">
-                                    <dl>
-                                        <dt>Web Front-end Developer(웹 프론트엔드 개발자)</dt>
-                                        <dd>
-                                            같다(gatda Corp)
-                                            <br>
-                                            <span>서울</span>
-                                            <span class="addressDot">.</span>
-                                            <span>한국</span>
-                                        </dd>
-                                    </dl>
-                                    <div class="reward">채용보상금 1,000,000원</div>
-                                </div>
-                            </a>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="company-list">
-                            <a href="${path }/search/companyInfo.do">
-                                <div class="buttonHeader">
-                                    <button class="likeButton">
-                                        <i class="fas fa-heart"></i>
-                                        8
-                                    </button>
-                                </div>
-                                <div class="body">
-                                    <dl>
-                                        <dt>Web Front-end Developer(웹 프론트엔드 개발자)</dt>
-                                        <dd>
-                                            같다(gatda Corp)
-                                            <br>
-                                            <span>서울</span>
-                                            <span class="addressDot">.</span>
-                                            <span>한국</span>
-                                        </dd>
-                                    </dl>
-                                    <div class="reward">채용보상금 1,000,000원</div>
-                                </div>
-                            </a>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="company-list">
-                            <a href="${path }/search/companyInfo.do">
-                                <div class="buttonHeader">
-                                    <button class="likeButton">
-                                        <i class="fas fa-heart"></i>
-                                        8
-                                    </button>
-                                </div>
-                                <div class="body">
-                                    <dl>
-                                        <dt>Web Front-end Developer(웹 프론트엔드 개발자)</dt>
-                                        <dd>
-                                            같다(gatda Corp)
-                                            <br>
-                                            <span>서울</span>
-                                            <span class="addressDot">.</span>
-                                            <span>한국</span>
-                                        </dd>
-                                    </dl>
-                                    <div class="reward">채용보상금 1,000,000원</div>
-                                </div>
-                            </a>
-                        </div>
-                    </li>
+                	<c:if test="${not empty psList }">
+	                	<c:forEach var="p" items="${psList }">
+		                    <li>
+		                        <div class="company-list">
+		                            <a href="${path }/search/companyInfo.do?positionNo=${p.position_no }">
+		                                <div class="buttonHeader">
+		                                    <button class="likeButton">
+		                                        <i class="fas fa-heart"></i>
+		                                        <c:out value="${p.like_count }"/>
+		                                    </button>
+		                                </div>
+		                                <div class="body">
+		                                    <dl>
+		                                        <dt><c:out value="${p.position }"/></dt>
+		                                        <dd>
+		                                            <c:out value="${p.bus_name }"/>
+		                                            <br>
+		                                            <span><c:out value="${p.bus_area }"/></span>
+		                                            <span class="addressDot">.</span>
+		                                            <span><c:out value="${p.bus_country }"/></span>
+		                                        </dd>
+		                                    </dl>
+		                                    <div class="reward">채용보상금 1,000,000원</div>
+		                                </div>
+		                            </a>
+		                        </div>
+		                    </li>
+	                    </c:forEach>
+                    </c:if>
                 </ul>
             </div>
         </div>

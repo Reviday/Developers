@@ -13,5 +13,6 @@
 		<typeAlias type="com.kh.developers.resume.model.vo.Links" alias="links"/>
 		<typeAlias type="com.kh.developers.search.model.vo.JobField" alias="jobfield"/>
 		<typeAlias type="com.kh.developers.search.model.vo.Position" alias="position"/>
+		<typeAlias type="com.kh.developers.search.model.vo.LikeMember" alias="likemember"/>
 	</typeAliases>
 </configuration>
