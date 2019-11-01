@@ -68,7 +68,7 @@ public class BusinessController {
 		} catch (Exception e) {
 			msg="회원가입에 실패하였습니다. 다시 확인해주시기 바랍니다.";
 			rttr.addFlashAttribute("msg",msg);
-			mv.setViewName("redirect:/");
+			mv.setViewName("redirect:/business");
 		}
 		if(result>0) {
 			msg="기입된 이메일로 인증 메일이 전송되었습니다.";
@@ -77,11 +77,11 @@ public class BusinessController {
 		} else if(result<0) {
 			msg="인증메일 전송에 실패하였습니다. 다시 시도해 주시기 바랍니다.";
 			rttr.addFlashAttribute("msg",msg);
-			mv.setViewName("redirect:/");
+			mv.setViewName("redirect:/business");
 		} else {
 			msg="회원가입 도중 에러가 발생하였습니다.";
 			rttr.addFlashAttribute("msg",msg);
-			mv.setViewName("redirect:/");
+			mv.setViewName("redirect:/business");
 		}
 		return mv;
 	}

@@ -258,7 +258,7 @@ textarea.form-control{
 	  <div class="modal-dialog modal-dialog-centered">
 	    <div class="modal-content">
 	      <div class="modal-header" style="background-color: #151515;">
-	      	  <img src="${path }/resources/images/Developers_black_logo.png" style="height:30px; width:35%; margin-left:10px;"/>
+	      	  <img src="${path }/resources/images/Developers_black_logo.png" style="height:20px; width:35%; margin-left:5px;"/>
 	      </div>
 	      <div class="modal-body" id="customeSize">
 	        <h3> 회사이름 수정 시 입력 한 회사 정보가 초기화 됩니다.</h3>
@@ -441,6 +441,9 @@ textarea.form-control{
 					if(mendatory[i].style.borderColor!="#FF0000"){
 						mendatory[i].style.borderColor="#FF0000";
 						mendatory[i].addEventListener('change',function(e){
+							e.target.style.borderColor="";
+						});
+						mendatory[i].addEventListener('keyup',function(e){
 							e.target.style.borderColor="";
 						});
 					}	
