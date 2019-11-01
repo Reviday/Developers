@@ -86,8 +86,8 @@
 					<ul class="nav_us">
 						<li class="ls1 ls2">
 							<a aria-current="page" class="as1" href="#">
-								<img src="${path}/resources/images/Developers_logo_favicon.png" widht="34px" height="34px"/>
-								&nbsp;Developers Black for Employers
+								<img src="${path}/resources/images/Developers_black_logo_favicon.png" widht="30px" height="30px"/>
+								&nbsp;Developers Black for Recruiters
 							</a>
 						</li>
 					</ul>
@@ -196,12 +196,13 @@
 		<!-- 회원가입 모달 창 -->
 	<div class="modal fade" id="empEnrollModal" tabindex="-1" role="dialog" 
 	aria-labelledby="exampleModalLabel" aria-hidden="true">
-	  <div class="modal-dialog" role="document">
+	  <div class="modal-dialog modal-dialog-centered" role="document">
 	    <div class="modal-content">
-	      <div class="modal-header">
-	        <h5 class="modal-title" id="exampleModalLabel">Recruiting Developers </h5>
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-	          <span aria-hidden="true">&times;</span>
+		  <div class="modal-header" style="background-color: #151515;">
+			<img src="${path }/resources/images/Developers_black_logo.png" style="height:30px; margin-left:10px;"/>
+	        <h5 class="modal-title" style="color: #ffffff; margin: auto auto;" id="exampleModalLabel">Recruiting Developers</h5>
+	        <button type="button" style="color:#ffffff; padding-top: 15px;" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">X</span>
 	        </button>
 	      </div>
           <form action="${pageContext.request.contextPath}/business/empEnroll" method="post">
@@ -222,6 +223,7 @@
 	        <button type="submit" class="btn btn-outline-primary" >채용담당자 계정 생성</button>
 	      </div>
 		  </form>
+		  <div id="warning-area"></div>
 	     <div>
 	     	 <p>회원가입시 개인정보 <a class="navbar-brand-small" href="#">취급방침</a>을 읽었으며, <br> <a class="navbar-brand-small" href="#">이용약관</a>에 동의하신 것으로 간주합니다.</p>
 	     </div>
@@ -237,12 +239,13 @@
 	<!-- 로그인 창  -->
 		<div class="modal fade" id="empLoginModal" tabindex="-1" role="dialog" 
 	aria-labelledby="exampleModalLabel" aria-hidden="true">
-	  <div class="modal-dialog" role="document">
+	  <div class="modal-dialog modal-dialog-centered" role="document">
 	    <div class="modal-content">
-	      <div class="modal-header">
-	        <h5 class="modal-title" id="exampleModalLabel">채용담당자 계정 로그인</h5>
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-	          <span aria-hidden="true">&times;</span>
+		  <div class="modal-header" style="background-color: #151515;" >
+			<img src="${path }/resources/images/Developers_black_logo.png" style="height:30px; margin-left:10px;"/>
+	        <h5 class="modal-title" style="color: #ffffff; margin: auto auto;"  id="exampleModalLabel">Recruiting Developers</h5>
+	        <button type="button" class="close" style="color:#ffffff; padding-top: 15px;" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">X</span>
 	        </button>
 	      </div>
           <form id="login" action="${pageContext.request.contextPath}/business/login" onsubmit="return loginValidate()" method="post">
