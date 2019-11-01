@@ -232,6 +232,7 @@ header {
     font-weight: bold;
     font-size: 1.4rem;
     padding: 1.5rem;
+    padding-top: 1rem;
 }
 
 
@@ -314,6 +315,14 @@ header {
 
 .header_fe .home_button {
     margin: 7px 0px 0px 15px;
+}
+
+.header_fe #header_logo {
+	margin-bottom: 7px;
+}
+
+.nav_us #header_title {
+	padding: 1.0rem 0;
 }
 
 .menuButton {
