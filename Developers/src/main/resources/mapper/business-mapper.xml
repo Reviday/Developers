@@ -14,6 +14,10 @@
 		UPDATE BUSINESS_INFO SET BUS_LOGO=#{busLogo} WHERE BUS_NO=#{busNo}
 	</update>
 	
+	<select id="selectBusApplNew" resultMap="memberMap">
+		SELECT * FROM TA_MEMBER
+	</select>
+	
 	<resultMap type="bus" id="busMap">
 		<result property="busNo" column="BUS_NO"></result>
 		<result property="busName" column="BUS_NAME"></result>
@@ -35,6 +39,30 @@
 		<result property="busLogo" column="BUS_LOGO"></result>
 		<result property="busImages" column="BUS_IMAGES" typeHandler="strArray"></result>
 		<result property="busStatus" column="BUS_STATUS"></result>
+	</resultMap>
+	
+	<resultMap type="member" id="memberMap">
+		<result property="memNo" column="mem_no"/>
+		<result property="memEmail" column="mem_email"/>
+		<result property="memLevel" column="mem_level"/>
+		<result property="memPassword" column="mem_password"/>
+		<result property="memName" column="mem_name"/>
+		<result property="memPhone" column="mem_phone"/>
+		<result property="memPoint" column="mem_point"/>
+		<result property="memDenied" column="mem_denied"/>
+		<result property="memEmailCert" column="mem_email_cert"/>
+		<result property="memReceiveEmail" column="mem_receive_email"/>
+		<result property="memEnrollDatetime" column="mem_enroll_datetime"/>
+		<result property="memEnrollIp" column="mem_enroll_ip"/>
+		<result property="memLastloginDatetime" column="mem_lastlogin_datetime"/>
+		<result property="memLastloginIp" column="mem_lastlogin_ip"/>
+		<result property="memProgileContent" column="mem_profile_content"/>
+		<result property="memAdminmemo" column="mem_adminmemo"/>
+		<result property="memIcon" column="mem_icon"/>
+		<result property="memPhoto" column="mem_photo"/>
+		<result property="memStatus" column="mem_status"/>
+		<result property="memWithdrawalDate" column="mem_withdrawal_date"/>
+		<result property="memDeniedDate" column="mem_denied_date"/>
 	</resultMap>
 	
 </mapper>

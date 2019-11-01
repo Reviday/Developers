@@ -1,0 +1,245 @@
+section{
+    background-color: #f8f8f8 !important;
+}
+.db-container{
+    margin:20px auto;
+    height: 1000px;
+}
+.db-container>div{
+    position: relative;
+    display: inline-grid;
+}
+.appl-main{
+    margin: 0 10px;
+}
+.appl-leftside{
+    top:-40px;
+    padding:0 13px;
+}
+.appl-leftside>h5{
+    font-size: 1.4rem;
+}
+.appl-leftside>ul>li{
+    font-size: 1.5rem;
+    padding: 3px 0;
+    cursor: pointer;
+}
+.appl-leftside>hr{
+    width:100%;
+    color:silver;
+}
+.appl-leftside>h5>svg{
+    display: none;
+    float:right;
+}
+.aList-count{
+    background-color:rgb(233, 233, 233);
+    border-radius: 3px;
+    border:1px solid darkgray;
+    padding:0px 2px;
+    font-size: 1.3rem;
+    float:right;
+}
+.aList-click>.aList-type{
+    color:coral;
+    font-weight: 900;
+}
+
+
+
+.appl-main-top{
+    width:100%;
+    border:1px solid rgb(226, 224, 224);
+    height:60px;
+    text-align: center;
+    background-color: white;
+}
+.appl-main-top>div{
+    width:47%;
+    background-color:white ;
+    position: relative;
+    display: inline-block;
+    /* border:1px solid black; */
+    margin:20px auto;
+}
+.appl-main-top>div>h4{
+    margin:0 auto;
+    position: relative;
+    display: inline-block;
+    padding:0 10px;
+}
+.h-left{
+    float:left;
+    
+}
+.h-right{
+    float:right;
+}
+.appl-main-nav>ul>li{
+    padding:5px 0px
+}
+.appl-main-top-left{
+    border-right: 1px solid rgb(226, 224, 224);
+}
+.appl-main-nav>ul{
+    width:100%;
+}
+.li_input{
+    margin:7px auto;
+    float: right;
+    
+}
+.li_input>label>svg{
+    position: relative;
+    color:silver;
+    font-size: 1.2rem;
+    margin-left:-15px;
+    cursor: pointer;
+}
+input[name='search_em']{
+    border:0.5px solid silver;
+    background-color: #f8f8f8;
+    margin: 3px 0;
+    outline: none;
+    font-size: 1.4rem;
+    padding:1px 2px;
+    
+
+}
+input[name="search_em"]::placeholder{
+    color:silver;
+    font-size: 1.4rem;
+}
+
+.appl-like-check{
+    width:100%;
+    text-align: right;
+    padding:10px 0px;
+    margin-top:-20px;
+    
+    
+}
+.appl-like-check>input[type="checkbox"]{
+    width: 1.7rem;
+    height: 1.7rem;
+}
+.appl-like-check>label{
+    padding:3px;
+    margin:0 auto;
+    color:rgb(136, 136, 136);
+    font-size: 1.4rem;
+}
+.appl-like-check>*{
+    vertical-align: middle;
+    cursor: pointer;
+}
+.appl-applicant-list{
+    text-align: center;
+}
+.appl-aList{
+    width:100%;
+    height:60px;
+    background-color: white;
+    border-radius: 3px;
+}
+.aList-like-btn{
+    margin:22px 20px;
+    margin-left: 40px;
+
+}
+.aList-like-btn>svg{
+    color:silver;
+    font-size: 1.5rem;
+}
+.aList-left>div{
+    position: relative;
+    display: inline-grid;
+    float:left;
+    
+}
+.aList-info-no{
+    font-size: 1.5rem;
+    text-align: left;
+    margin: 3px 2px;
+    color:rgb(156, 156, 156);
+    
+}
+.aList-info-name{
+    font-size: 1.6rem;
+    font-weight: bold;
+    margin: 3px auto;
+}
+.aList-type>span{
+    font-size:1rem;
+    padding:2px 3px;
+    margin:20px 15px;
+    border:1px solid silver;
+    border-radius: 2px;
+}
+
+.aList-right>div{
+    position: relative;
+    display: inline-grid;
+    float:right;
+}
+
+.aList-del-btn{
+    margin:16px 20px;
+}
+
+.del-btn{
+    border:1px solid #900020;
+    color:#900020;
+    border-radius: 3px;
+    padding:3px 7px;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+.del-btn:hover{
+    background-color:#900020;
+    color:white;
+}
+
+
+@media (min-width: 1200px){
+    .db-container{
+        width:1024px;
+    }
+    .appl-leftside{
+        width:200px;
+    }
+    .appl-main{
+        width:790px;
+    }
+
+}
+@media (max-width: 1199px) and (min-width: 768px){
+    .db-container{
+        width:85%;
+    }
+    .appl-leftside{
+        width:19%;
+    }
+    .appl-main{
+        width:75%;
+    }
+    
+}
+@media (max-width: 767px){
+    .db-container{
+        width:100%;
+        margin-top:50px;
+    }
+    .appl-leftside{
+        width:100%;
+        top:10px;
+    }
+    .appl-main{
+        width:100% -25px;
+        top:20px;
+    }
+    .appl-leftside>h5>svg{
+        display: block;
+    }
+
+}
