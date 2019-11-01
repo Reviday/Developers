@@ -338,6 +338,7 @@ a {
 
 .hiddenview>.hiddenviewHeader {
     border-radius: 3px;
+    display: none;
 }
 
 @media (min-width: 1200px) {

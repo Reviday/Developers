@@ -269,13 +269,35 @@ Option)보상<br>• 성과에 따른 직무보상금/인센티브/Annual Bonus 
                                             <p>500,000원</p>
                                         </li>
                                     </ul>
-                                    <button class="sharebtn">공유하기</button>
+                                    <c:if test="${empty loginMember }">
+                                    	<button class="sharebtn suBtn">공유하기</button>
+                                    </c:if>
+                                    <c:if test="${not empty loginMember }">
+                                    	<button class="sharebtn">공유하기</button>
+                                    </c:if>
                                 </div>
                                 <hr class="divider">
                                 <div class="sharepeople">
-                                    <button type="button" class="likes">
-                                        <i class="far fa-heart"></i>
-                                        <span>12</span>
+                                	<c:if test="${empty loginMember }">
+                                    	<button type="button" class="likes suBtn">
+                                        	<i class="far fa-heart"></i>
+                                        	<span>12</span>
+                                    </button>
+                                    <button type="button" class="people suBtn">
+                                        <ul>
+                                            <li></li>
+                                            <li></li>
+                                            <li></li>
+                                        </ul>
+                                    </button>
+                                    <button type="button" class="share-btn suBtn">
+                                        <i class="fas fa-bookmark"></i>
+                                    </button>
+                                    </c:if>
+                                    <c:if test="${not empty loginMember }">
+                                    	<button type="button" class="likes">
+                                        	<i class="far fa-heart"></i>
+                                        	<span>12</span>
                                     </button>
                                     <button type="button" class="people">
                                         <ul>
@@ -287,10 +309,16 @@ Option)보상<br>• 성과에 따른 직무보상금/인센티브/Annual Bonus 
                                     <button type="button" class="share-btn">
                                         <i class="fas fa-bookmark"></i>
                                     </button>
+                                    </c:if>
                                 </div>
                             </div>
                             <div class="rightFooter">
-                                <button type="button" class="footerbtn">지원하기</button>
+                            	<c:if test="${empty loginMember }">
+                                    <button type="button" class="footerbtn suBtn">지원하기</button>
+                                </c:if>
+                                <c:if test="${not empty loginMember }">
+                                    <button type="button" class="footerbtn">지원하기</button>
+                                </c:if>
                             </div>
                         </div>
                     </aside>
@@ -506,6 +534,7 @@ Option)보상<br>• 성과에 따른 직무보상금/인센티브/Annual Bonus 
         </div>
     </section>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/> 
+	<!-- 사진 슬라이드 script -->
     <script>
     
     var sliderWrapper = document.getElementsByClassName("companyficture"),
@@ -569,7 +598,9 @@ Option)보상<br>• 성과에 따른 직무보상금/인센티브/Annual Bonus 
         }
     }
     goToSlide(0);
-
+    </script>
+    <!-- 구글맵 api 스크립트 -->
+    <script>
             // var asideBottom = $('.rightaside').offset().top;
             // var companyiconBottom = $('.companyicon').offset().top;
 
