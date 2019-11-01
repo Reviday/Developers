@@ -58,22 +58,27 @@ logPw.addEventListener('keyup',function(e){
 
 // 회원가입 창 
 var email=document.querySelector("input.email");
+var regEmail = /([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
 
 email.addEventListener('keyup',function(e){
-    $.ajax({
-        url: path+"/member/emailCheck",
-        type:"post",
-        async:false,
-        data:{ "memEmail":email.value },
-        success:function(result){
-            if(!result.flag){
-                $('#warning-area').append("<p>사용가능한 이메일입니다.</p>");
-            }else{
-                $('#warning-area').append("<p style='color:#E53935'>이미 사용중인 이메일입니다.</p>")
+    if(e.keyCode==13){
+        $.ajax({
+            url: path+"/member/emailCheck",
+            type:"post",
+            async:false,
+            data:{ "memEmail":email.value },
+            success:function(result){
+                if(!result.flag&&regEmail.test(email.value)){
+                    $('#warning-area').append("<p>사용가능한 이메일입니다.</p>");
+                }else if(result.flag&&!regEmail.test(email.value)){
+                    $('#warning-area').append("<p style='color:#E53935'>이미 사용중인 이메일입니다.</p>")
+                }else if(!result.flag&&!regEmail.test(email.value)){
+
+                }
             }
-        }
-    })
-})
+        });
+    }
+});
 
 
 

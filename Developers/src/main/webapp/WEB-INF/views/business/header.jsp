@@ -85,8 +85,8 @@
 				<nav class="nav_style_l">
 					<ul class="nav_us">
 						<li class="ls1 ls2">
-							<a aria-current="page" class="as1" href="#">
-								<img src="${path}/resources/images/Developers_black_logo_favicon.png" widht="30px" height="30px"/>
+							<a id="header_title" aria-current="page" class="as1" href="#">
+								<img id="header_logo" src="${path}/resources/images/Developers_black_logo_favicon.png" widht="30px" height="30px"/>
 								&nbsp;Developers Black for Recruiters
 							</a>
 						</li>
@@ -218,11 +218,11 @@
 				<input type="password" class="form-control password" name="memPassword" placeholder="비밀번호" required>
 				<br />
 				<input type="password" class="form-control confirm-password"  placeholder="비밀번호" required>
-	      </div>
+			</div>
+		  </form>
 	      <div class="modal-footer">
 	        <button type="submit" class="btn btn-outline-primary" >채용담당자 계정 생성</button>
 	      </div>
-		  </form>
 		  <div id="warning-area"></div>
 	     <div>
 	     	 <p>회원가입시 개인정보 <a class="navbar-brand-small" href="#">취급방침</a>을 읽었으며, <br> <a class="navbar-brand-small" href="#">이용약관</a>에 동의하신 것으로 간주합니다.</p>
