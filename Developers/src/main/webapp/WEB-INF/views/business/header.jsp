@@ -73,6 +73,13 @@
 		height:32px;
 		border-radius: 16px;
 	}
+	input.remov::placeholder{
+		color:#A4A4A4
+	}
+	input.removed::placeholder{
+		color:"";
+	}
+
 
 
 </style>
@@ -205,24 +212,24 @@
 	          <span aria-hidden="true">X</span>
 	        </button>
 	      </div>
-          <form action="${pageContext.request.contextPath}/business/empEnroll" method="post">
+          <form id="registerForm" action="${pageContext.request.contextPath}/business/register" onsubmit="return registerValidate()" method="post">
 	      <div class="modal-body">
-			    <input type="text" class="form-control name" name="memName" placeholder="담당자 성함" required>
+			    <input type="text" id="regname" class="form-control must" name="memName" placeholder="담당자 성함" required>
+			    <!-- <br />
+			    <input type="text" class="form-control" placeholder="직책(부서)"> -->
 			    <br />
-			    <input type="text" class="form-control"  placeholder="직책(부서)">
-			    <br />
-			    <input type="text" class="form-control phone" name="memPhone" placeholder="연락처" required>
+			    <input type="text" id="phone" class="form-control must" name="memPhone" placeholder="연락처 (-)없이" required>
 			    <hr>
-			    <input type="text" class="form-control email" name="memEmail" placeholder="회사 이메일(로그인 아이디로 사용)" required>
+			    <input type="text" id='reg-email' class="form-control must" name="memEmail" placeholder="회사 이메일(로그인 아이디로 사용)" required>
 			    <br />
-				<input type="password" class="form-control password" name="memPassword" placeholder="비밀번호" required>
+				<input type="password" id="pswd" class="form-control must" name="memPassword" placeholder="특수문자 /문자 /숫자 포함 형태의 8~15자리 이내의 암호로 설정해주세요." required>
 				<br />
-				<input type="password" class="form-control confirm-password"  placeholder="비밀번호" required>
+				<input type="password" id="pswd2" class="form-control must remov" placeholder="암호를 확인하세요." style="border-color: #E6E6E6; color: #A4A4A4; background-color: #FFFFFF;" disabled required>
 			</div>
-		  </form>
-	      <div class="modal-footer">
-	        <button type="submit" class="btn btn-outline-primary" >채용담당자 계정 생성</button>
-	      </div>
+		</form>
+			<div class="modal-footer">
+				<button type="submit" id="registerBtn" class="btn btn-outline-primary" >채용담당자 계정 생성</button>
+			</div>
 		  <div id="warning-area"></div>
 	     <div>
 	     	 <p>회원가입시 개인정보 <a class="navbar-brand-small" href="#">취급방침</a>을 읽었으며, <br> <a class="navbar-brand-small" href="#">이용약관</a>에 동의하신 것으로 간주합니다.</p>

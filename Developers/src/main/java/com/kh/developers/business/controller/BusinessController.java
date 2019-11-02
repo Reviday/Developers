@@ -50,8 +50,8 @@ public class BusinessController {
 		}
 	}
 	
-	@RequestMapping("/business/empEnroll")
-	public ModelAndView empEnroll(
+	@RequestMapping("/business/register")
+	public ModelAndView register(
 			Member m, HttpServletRequest req, RedirectAttributes rttr
 			) {
 		ModelAndView mv=new ModelAndView();
