@@ -42,7 +42,7 @@ public class SearchController {
 		return "search/mainSearch";
 	}
 
-	// 회사를 눌렀을 때의 회사 개인 정보 페이지
+	// 회사를 눌렀을 때의 회사 개인 정보 페이지(로그인시)
 	@RequestMapping("/search/companyInfo.do")
 	public String companyInfoList(int positionNo, int memNo, Model model) {
 
@@ -51,6 +51,17 @@ public class SearchController {
 		List<LikeMember> list = service.likeMemberList(likeId);
 		LikeMember lm = service.selectLikeMemberOne(memNo, likeId);
 		model.addAttribute("lm", lm);
+		model.addAttribute("p", p);
+		model.addAttribute("list", list);
+		return "search/companyInfo";
+	}
+	// 회사를 눌렀을 때의 회사 개인 정보 페이지(비로그인시)
+	@RequestMapping("/search/companyInfo1.do")
+	public String companyInfoList(int positionNo, Model model) {
+
+		Position p = service.companyInfoList(positionNo);
+		int likeId = p.getLike_id();
+		List<LikeMember> list = service.likeMemberList(likeId);
 		model.addAttribute("p", p);
 		model.addAttribute("list", list);
 		return "search/companyInfo";
@@ -65,25 +76,7 @@ public class SearchController {
 		mv.addObject("list", list);
 		return mv;
 	}
-
-
-//	//회사정보 -> 좋아요버튼 클릭 시의 Ajax
-//	@RequestMapping("/search/changeLikeAjax")
-//	@ResponseBody public String changeLikeAjax(int positionNo, int memNo, int likeId) { 
-//		LikeMember lm = service.selectLikeMemberOne(memNo, likeId);
-//		String result = ""; 
-//		if(lm == null) { 
-//			int insert = service.insertLikeButton(memNo, likeId); 
-//			int likeCount = service.selectLikeCount(likeId); 
-//			result = "<i class='fas fa-heart'></i><span>" + likeCount + "</span>"; 
-//		}else { 
-//			int delete = service.deleteLikeButton(memNo, likeId); 
-//			int likeCount = service.selectLikeCount(likeId); 
-//			result = "<i class='far fa-heart'></i><span>" + likeCount + "</span>"; 
-//		} 
-//		return result; 
-//	}
-
+	//좋아요버튼 눌렀을 때의 Ajax
 	@RequestMapping(value = "/search/changeLikeAjax", produces = "application/text; charset=utf8")
 	public ModelAndView changeLikeAjax(int positionNo, int memNo, int likeId, ModelAndView mv) {
 		LikeMember lm1 = service.selectLikeMemberOne(memNo, likeId);

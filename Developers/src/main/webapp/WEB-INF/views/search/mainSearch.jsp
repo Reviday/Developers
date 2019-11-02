@@ -200,7 +200,12 @@
 	                	<c:forEach var="p" items="${psList }">
 		                    <li>
 		                        <div class="company-list">
+		                        	<c:if test="${not empty loginMember }">
 		                            <a href="${path }/search/companyInfo.do?positionNo=${p.position_no }&memNo=${loginMember.memNo}">
+		                            </c:if>
+		                            <c:if test="${empty loginMember }">
+		                            <a href="${path }/search/companyInfo1.do?positionNo=${p.position_no }">
+		                            </c:if>
 		                                <div class="buttonHeader">
 		                                    <button class="likeButton">
 		                                        <i class="fas fa-heart"></i>

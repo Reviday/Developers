@@ -12,12 +12,12 @@
                             	<i class="fas fa-chevron-right"></i>
                             </button>
                             <ul class="fictureUl">
-                                <li class="ficturelist"></li>
-                                <li class="ficturelist"></li>
-                                <li class="ficturelist"></li>
-                                <li class="ficturelist"></li>
+                            	<c:if test="${not empty p.bus_images }">
+	                            	<c:forEach var="p" items="${p.bus_images }">
+	                                	<li class="ficturelist" style="background-image:url(${p})"></li>
+	                            	</c:forEach>
+                            	</c:if>
                             </ul>
-                            <div class="ficturecount">1 / 11</div>
                         </section>
                         <section class="companytype">
                             <h2><c:out value="${p.position }"/></h2>
