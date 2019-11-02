@@ -26,7 +26,7 @@ Email : samson3d@gmail.com
 
         // Initilizing        
         $aceMenu.find('ul').addClass("sub-menu");
-        $aceMenu.find('ul').siblings('a').append('<i class="fas fa-sort-down"></i>');
+        $aceMenu.find('ul').siblings('a').append('<i class="fas fa-sort-down" style="float:right"></i>');
         if ($menuStyle == 'accordion') { $(this).addClass('collapse'); }
 
         // Window resize on menu breakpoint 

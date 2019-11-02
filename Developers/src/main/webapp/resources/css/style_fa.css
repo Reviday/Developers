@@ -150,7 +150,6 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
 
 /********** Option css End **********/
 #content {
-	height: 2000px;
 	background: linear-gradient( to bottom, #000428, #004e92) no-repeat;
 }
 
@@ -159,6 +158,7 @@ header {
 	display: fixed;
 	whith: 100%;
 	font: normal 14px/100% 'NanumBarunGothic', 'nanumsquare', sans-serif;
+	z-index: 1;
 }
 
 .header_fa {
@@ -398,6 +398,7 @@ header {
 }
 
 #header_title {
+	font-family: sans-serif;
 	padding: 1.0rem 0;
 }
 

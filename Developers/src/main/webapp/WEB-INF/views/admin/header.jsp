@@ -72,7 +72,7 @@
 	            <!--Note: declare the Menu style in the data-menu-style="horizontal" (options: horizontal, vertical, accordion) -->
 	            <ul id="respMenu" class="ace-responsive-menu" data-menu-style="horizontal">
 	                  <li>
-	                    <a href="javascript:;">
+	                    <a href="${path}/">
 	                        <i class="fa fa-home" aria-hidden="true"></i>
 	                        <span class="title">Developers</span>
 	                    </a>
@@ -86,7 +86,7 @@
 	                    <!-- Level Two-->
 	                    <ul>
 	                        <li>
-	                            <a href="#">Sub Item One</a>
+	                            <a href="${path }/admin/memberList">회원목록</a>
 	                        </li>
 	                        <li>
 	                            <a href="#">Sub Item Two</a>

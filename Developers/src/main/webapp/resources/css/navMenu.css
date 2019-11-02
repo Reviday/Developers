@@ -130,6 +130,11 @@ ul {
     border-bottom: 1px dotted #e4e4e4;
 }
 
+.ace-responsive-menu li ul.sub-menu a:hover  {
+	margin-left: 25px;
+	transition: 0.5s all;
+}
+
 .ace-responsive-menu li ul.sub-menu li.menu-active a:hover  {
 	margin-left: 25px;
 	transition: 0.5s all;
