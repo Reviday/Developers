@@ -158,7 +158,12 @@
                          </button>
                      </li>
                      <li class="smMoreVisible">
-                        <a class="dashboardButton" href="${path }/business">기업 서비스</a>
+                     	<c:if test="${loginMember.memLevel>=5 }">
+                     		<a class="dashboardButton" href="${path }/admin/adminPage">관리자 페이지el</a>
+                     	</c:if>
+                     	<c:if test="${loginMember.memLevel<5 }">
+	                        <a class="dashboardButton" href="${path }/business">기업 서비스</a>
+                     	</c:if>
                      </li>
                      <li class="xsOnly">
                         <button type="button" class="menuButton img_ico"></button>
@@ -207,7 +212,12 @@
                         </li>
                         <div class="divider xsOnly"></div>
                         <li class="xsOnly">
-                           <a href="${path }/business">기업 서비스</a>
+                           <c:if test="${loginMember.memLevel>=5 }">
+                     		<a class="dashboardButton" href="${path }/admin/adminPage">관리자 페이지</a>
+                     	</c:if>
+                     	<c:if test="${loginMember.memLevel<5 }">
+	                        <a class="dashboardButton" href="${path }/business">기업 서비스</a>
+                     	</c:if>
                         </li>
                         <li class="xsOnly">
                            <a href="/newintro" class="">서비스 소개</a>

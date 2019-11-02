@@ -115,8 +115,13 @@ public class MemberController {
 				flag=true;
 			}
 		} 
+		
 		if(flag) {
-			if(result!=null&&result.getMemEmailCert().equals("N")) {
+			if(result!=null&&result.getMemLevel()>=5) {
+				model.addAttribute("loginMember",result); 
+				mv.setViewName("admin/mainPage");
+				return mv;
+			} else if(result!=null&&result.getMemEmailCert().equals("N")) {
 				model.addAttribute("ldc", "noemailcert"); // ldc : login Deny Code
 			} else if(result!=null&&result.getMemName()==null) {
 				model.addAttribute("ldc", "noname"); // ldc : login Deny Code
