@@ -8,9 +8,6 @@
 	<jsp:param name="pageTitle" value="메인 화면"/> 
 </jsp:include>
 <style>
-	#content {
-		background-color: #ccc;
-	}
 </style>
 
 <section id="content">
