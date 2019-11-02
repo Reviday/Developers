@@ -976,6 +976,7 @@ a {
     color: #333;
     position: relative;
     top: -1px;
+    margin-left: 15px;
 }
 
 .people>ul {
@@ -999,7 +1000,6 @@ a {
     background-position: 50%;
     background-size: cover;
     background-repeat: no-repeat;
-    background-image: url(https://s3.ap-northeast-2.amazonaws.com/wanted-public/profile_default.png), url(https://s3.ap-northeast-2.amazonaws.com/wanted-public/profile_default.png);
 }
 
 .people>ul>li:last-of-type {
@@ -1240,4 +1240,193 @@ a {
     color: #666;
     font-size: 13px;
     font-weight: 400;
+}
+
+#modalTool {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: fixed;
+    overflow: hidden;
+    z-index: 1001;
+    display: none;
+}
+
+.modalmain {
+    z-index: 5;
+    border-radius: 5px;
+    background-color: #fff;
+    position: absolute;
+    overflow: hidden;
+}
+
+@media (min-width: 1200px) {
+    .modalmain {
+        top: 50%;
+        left: 50%;
+        width: 100%;
+        max-width: 500px;
+        max-height: calc(100vh - 150px);
+        -webkit-transform: translate(-50%,-50%);
+        transform: translate(-50%,-50%);
+        z-index: 5;
+        overflow-y: auto;
+    }
+}
+
+@media (max-width: 1199px) and (min-width: 992px) {
+    .modalmain {
+        top: 50%;
+        left: 50%;
+        width: 100%;
+        max-width: 500px;
+        max-height: calc(100vh - 150px);
+        -webkit-transform: translate(-50%,-50%);
+        transform: translate(-50%,-50%);
+        z-index: 5;
+    }
+}
+
+@media (max-width: 991px) and (min-width: 768px) {
+    .modalmain {
+        top: 50%;
+        left: 50%;
+        width: 100%;
+        max-width: 500px;
+        max-height: calc(100vh - 150px);
+        -webkit-transform: translate(-50%,-50%);
+        transform: translate(-50%,-50%);
+        z-index: 5;
+    }
+}
+
+@media (max-width: 767px) {
+    .modalmain {
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        max-width: none;
+        width: 100%!important;
+        -webkit-transform: none;
+        transform: none;
+        border-radius: 0;
+        max-height: none;
+        overflow: visible;
+    }
+}
+
+.modalHeader {
+    height: 54px;
+    padding: 16px 20px;
+    position: relative;
+    border-bottom: 1px solid #eee;
+    color: #333;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+    word-wrap: break-word;
+}
+
+@media (max-width: 991px) and (min-width: 768px) {
+    .modalHeader {
+        font-weight: 400;
+    }
+}
+
+@media (max-width: 767px) {
+    .modalHeader {
+        font-weight: 400;
+    }
+}
+
+.modalHeader a, .modalHeader button {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    padding: 15px;
+    line-height: 0;
+}
+
+.modalHeader a i, .modalHeader button i {
+    color: #bbb;
+    line-height: 1;
+    font-size: 13px;
+}
+
+.modalBody {
+    padding: 20px;
+}
+
+.likeList {
+    margin: -20px;
+    overflow-y: auto;
+    height: calc(100vh - 54px);
+}
+
+@media (min-width: 1200px) {
+    .likeList {
+        height: 440px;
+    }
+}
+
+@media (max-width: 1199px) and (min-width: 992px) {
+    .likeList {
+        height: 440px;
+    }
+}
+
+@media (max-width: 991px) and (min-width: 768px) {
+    .likeList {
+        height: 440px;
+    }
+}
+
+.likeList>li:first-of-type, .likeList>li:last-of-type {
+    border-bottom: none;
+}
+
+.likeList>li:first-of-type {
+    height: 54px;
+    line-height: 28px;
+    background: #f8f8fa;
+    color: #333;
+    font-size: 14px;
+    font-weight: 400;
+    color: #b5b5b5;
+}
+
+.likeList>li {
+    padding: 13px 20px;
+    border-bottom: 1px solid #eee;
+    height: 77px;
+    line-height: 50px;
+    word-wrap: break-word;
+    color: #757575;
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.likeList>li>div {
+    float: left;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+    background-size: cover;
+    background-position: 50%;
+}
+
+.modalchang {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 4;
+    background-color: rgba(0,0,0,.5);
 }

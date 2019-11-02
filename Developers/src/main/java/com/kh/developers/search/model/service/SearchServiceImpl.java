@@ -53,6 +53,34 @@ public class SearchServiceImpl implements SearchService {
 		return list;
 	}
 	
+	@Override
+	public List<Position> firstPsList() {
+		List<Position> firstPsList = dao.firstPsList(session);
+		return firstPsList;
+	}
 	
+	@Override
+	public LikeMember selectLikeMemberOne(int memNo, int likeId) {
+		LikeMember lm = dao.selectLikeMemberOne(session, memNo, likeId);
+		return lm;
+	}
+	
+	@Override
+	public int insertLikeButton(int memNo, int likeId) {
+		int result = dao.insertLikeButton(session, memNo, likeId);
+		return result;
+	}
+	
+	@Override
+	public int selectLikeCount(int likeId) {
+		int likeCount = dao.selectLikeCount(session, likeId);
+		return likeCount;
+	}
+	
+	@Override
+	public int deleteLikeButton(int memNo, int likeId) {
+		int result = dao.deleteLikeButton(session, memNo, likeId);
+		return result;
+	}
 	
 }
