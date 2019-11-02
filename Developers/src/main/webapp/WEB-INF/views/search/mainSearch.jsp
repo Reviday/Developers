@@ -176,66 +176,23 @@
                 <h3 class="firstCompany">적극 채용 중인 회사</h3>
                 <div class="firstCompany-list">
                     <ul>
-                        <a href="">
-                            <li>
-                                <div class="searchHeader">
-                                    <div class="companyBg"></div>
-                                </div>
-                                <footer>
-                                    <div class="logoCircle"></div>
-                                    <h4>마켓보로</h4>
-                                    <h5>8개 포지션</h5>
-                                </footer>
-                            </li>
-                        </a>
-                        <a href="">
-                            <li>
-                                <div class="searchHeader">
-                                    <div class="companyBg"></div>
-                                </div>
-                                <footer>
-                                    <div class="logoCircle"></div>
-                                    <h4>마켓보로</h4>
-                                    <h5>8개 포지션</h5>
-                                </footer>
-                            </li>
-                        </a>
-                        <a href="">
-                            <li>
-                                <div class="searchHeader">
-                                    <div class="companyBg"></div>
-                                </div>
-                                <footer>
-                                    <div class="logoCircle"></div>
-                                    <h4>마켓보로</h4>
-                                    <h5>8개 포지션</h5>
-                                </footer>
-                            </li>
-                        </a>
-                        <a href="">
-                            <li>
-                                <div class="searchHeader">
-                                    <div class="companyBg"></div>
-                                </div>
-                                <footer>
-                                    <div class="logoCircle"></div>
-                                    <h4>마켓보로</h4>
-                                    <h5>8개 포지션</h5>
-                                </footer>
-                            </li>
-                        </a>
-                        <a href="">
-                            <li>
-                                <div class="searchHeader">
-                                    <div class="companyBg"></div>
-                                </div>
-                                <footer>
-                                    <div class="logoCircle"></div>
-                                    <h4>마켓보로</h4>
-                                    <h5>8개 포지션</h5>
-                                </footer>
-                            </li>
-                        </a>
+                    	<c:if test="${not empty firstPsList }">
+                    		<c:forEach var="f" items="${firstPsList }">
+                        		<a href="">
+                            		<li>
+                                		<div class="searchHeader">
+                                			
+                                    		<div class="companyBg"></div>
+                                		</div>
+		                                <footer>
+		                                    <div class="logoCircle" style="background-image: url(${f.bus_logo})"></div>
+		                                    <h4><c:out value="${f.bus_name }"/></h4>
+		                                    <h5><c:out value="${f.po_count }"/>개 포지션</h5>
+		                                </footer>
+                            		</li>
+                        		</a>
+                        	</c:forEach>
+                        </c:if>
                     </ul>
                 </div>
                 <ul class="clearfix">
@@ -243,7 +200,7 @@
 	                	<c:forEach var="p" items="${psList }">
 		                    <li>
 		                        <div class="company-list">
-		                            <a href="${path }/search/companyInfo.do?positionNo=${p.position_no }">
+		                            <a href="${path }/search/companyInfo.do?positionNo=${p.position_no }&memNo=${loginMember.memNo}">
 		                                <div class="buttonHeader">
 		                                    <button class="likeButton">
 		                                        <i class="fas fa-heart"></i>

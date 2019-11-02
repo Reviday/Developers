@@ -19,8 +19,32 @@
 	</select>
 	<!-- 포지션정보페이지(좋아요정보) -->
 	<select id="likeMemberList" resultType="likemember" parameterType="_int">
-		SELECT P.*, MEM_NAME, MEM_PHOTO FROM PO_LIKE P JOIN TA_MEMBER M ON P.MEM_NO = M.MEM_NO WHERE LIKE_ID = #{likeNo}
+		SELECT P.*, MEM_NAME, MEM_PHOTO FROM PO_LIKE P JOIN TA_MEMBER M ON P.MEM_NO = M.MEM_NO WHERE LIKE_ID = #{likeNo} ORDER BY LIKE_NO DESC
 	</select>
+	<!-- 적극채용중인 회사 리스트 -->
+	<select id="firstPsList" resultType="position" resultMap="positionArray">
+		SELECT * FROM (SELECT ROWNUM AS RNUM, A.* FROM (SELECT (SELECT COUNT(BUS_NO) FROM ENROLL_POSITION) AS PO_COUNT, P.*, BUS_LOGO, BUS_IMAGES, BUS_ADDRESS, BUS_INDUSTRIAL, BUS_AREA, BUS_COUNTRY,(SELECT COUNT(*) FROM PO_LIKE WHERE LIKE_ID = P.LIKE_ID) AS LIKE_COUNT FROM ENROLL_POSITION P JOIN BUSINESS_INFO B ON P.BUS_NO = B.BUS_NO ORDER BY 1)A) WHERE RNUM BETWEEN 1 AND 5
+	</select>
+	<!-- 회원의 좋아요 여부 -->
+	<select id="selectLikeMemberOne" resultType="likemember" parameterType="map">
+		SELECT P.*, M.MEM_NAME AS MEM_NAME, M.MEM_PHOTO AS MEM_PHOTO FROM PO_LIKE P JOIN TA_MEMBER M ON P.MEM_NO = M.MEM_NO WHERE P.LIKE_ID = #{likeId} AND P.MEM_NO = #{memNo}
+	</select>
+	<!-- 포지션 글 좋아요 회원 추가 -->
+	<insert id="insertLikeButton" parameterType="map">
+		INSERT INTO PO_LIKE VALUES(PO_LIKE_SEQ.NEXTVAL, #{likeId}, #{memNo})
+	</insert>
+	<!-- 포지션 글 좋아요 갯수 -->
+	<select id="selectLikeCount" parameterType="_int" resultType="_int">
+		SELECT COUNT(LIKE_ID) FROM PO_LIKE WHERE LIKE_ID = #{likeId}
+	</select>
+	<!-- 포지션 글 좋아요 회원 삭제 -->
+	<delete id="deleteLikeButton" parameterType="map">
+		DELETE FROM PO_LIKE WHERE MEM_NO = #{memNo} AND LIKE_ID = #{likeId}
+	</delete>
+	
+	
+	
+	
 	
 	<resultMap type="position" id="positionArray">
 		<result column="job_type" property="job_type" typeHandler="StrArray"/>
