@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Developers Black</title>
+<title>Developers Black - Admin</title>
 
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/css/bootstrap.min.css">
@@ -88,6 +88,26 @@
 	                        <li>
 	                            <a href="${path }/admin/memberList">회원목록</a>
 	                        </li>
+	                        <li>
+	                           <a href="javascript:;">
+	                               	회원목록							
+	                           </a>
+	                           <!-- Level Three-->
+	                           <ul>
+	                               <li><a href="${path }/admin/memberList">
+	                               		<i class="fa fa-user" aria-hidden="true"></i>
+	                               		기본정보</a>
+	                               	</li>
+	                               <li>
+	                                   <a href="${path }/admin/memberList">
+	                                       <i class="fa fa-diamond" aria-hidden="true"></i>부가정보</a>
+	                               </li>
+	                               <li>
+	                                   <a href="${path }/admin/memberList">
+	                                       <i class="fa fa-diamond" aria-hidden="true"></i>상세정보</a>
+	                               </li>
+	                           </ul>
+	                       </li>
 	                        <li>
 	                            <a href="#">Sub Item Two</a>
 	                        </li>

@@ -149,9 +149,7 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
 }
 
 /********** Option css End **********/
-#content {
-	background: linear-gradient( to bottom, #000428, #004e92) no-repeat;
-}
+
 
 /********** header css **********/
 header {
@@ -787,6 +785,33 @@ small, .small {
 
 /********** header css End **********/
 
+/********** section css **********/
+#content {
+	background: linear-gradient( to bottom, #000428, #004e92) no-repeat;
+	height: 100vh;
+}
+
+#content .mainContent {
+	maring: 0 1em;	
+}
+
+#content h1.title {
+	display:block;
+	font-size:30px;
+	font-weight:900;
+	color: white;
+	margin: 1em 1.5em;
+} 
+
+#content h1.title:before {
+	content: '';
+    position: absolute;
+    width: 2px;
+    height: 1em;
+    margin: 0.2em -0.5em;
+    background-color: white;
+} 
+/********** section css **********/
 
 /********** footer css **********/
 

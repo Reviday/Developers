@@ -10,9 +10,6 @@
 <style>
 	body {overflow-y: hidden; overflow-x: hidden;}
 
-	#content {
-		height: 100vh;	
-	}
 	#content svg {
 		width: 100%;
 		height: 100%;
