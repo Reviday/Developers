@@ -7,6 +7,7 @@ import java.util.Map;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.kh.developers.search.model.vo.Filter;
 import com.kh.developers.search.model.vo.JobField;
 import com.kh.developers.search.model.vo.LikeMember;
 import com.kh.developers.search.model.vo.Position;
@@ -85,6 +86,26 @@ public class SearchDaoImpl implements SearchDao {
 	public List<Position> positionAjaxList(SqlSessionTemplate session, String jobName) {
 		// TODO Auto-generated method stub
 		return session.selectList("search.positionAjaxList", jobName);
+	}
+	
+	@Override
+	public Filter SelectMemberFilter(SqlSessionTemplate session, int memNo) {
+		// TODO Auto-generated method stub
+		return session.selectOne("search.SelectMemberFilter", memNo);
+	}
+	
+	@Override
+	public List<Position> positionLoginList(SqlSessionTemplate session, Filter filter) {
+		// TODO Auto-generated method stub
+		return session.selectList("search.positionLoginList", filter);
+	}
+	
+	@Override
+	public List<Position> positionAjaxLoginList(SqlSessionTemplate session, String jobName, Filter filter) {
+		Map map = new HashMap();
+		map.put("jobName", jobName);
+		map.put("filter", filter);
+		return session.selectList("search.positionAjaxLoginList", map);
 	}
 	
 }

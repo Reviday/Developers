@@ -2,6 +2,7 @@ package com.kh.developers.search.model.service;
 
 import java.util.List;
 
+import com.kh.developers.search.model.vo.Filter;
 import com.kh.developers.search.model.vo.JobField;
 import com.kh.developers.search.model.vo.LikeMember;
 import com.kh.developers.search.model.vo.Position;
@@ -27,6 +28,12 @@ public interface SearchService {
 	int selectLikeCount(int likeId);
 	//포지션 좋아요 회원 삭제
 	int deleteLikeButton(int memNo, int likeId);
-	//직무분야 검색했을 때의 포지션 리스트
+	//직무분야 검색했을 때의 포지션 리스트(비로그인)
 	List<Position> positionAjaxList(String jobName);
+	//회원 필터 검색
+	Filter SelectMemberFilter(int memNo);
+	//필터 적용한 포지션리스트
+	List<Position> positionLoginList(Filter filter);
+	//직무분야 검색했을 때의 포지션 리스트(로그인)
+	List<Position> positionAjaxLoginList(String jobName, Filter filter);
 }

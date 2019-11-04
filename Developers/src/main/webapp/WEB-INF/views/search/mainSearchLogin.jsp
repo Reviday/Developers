@@ -14,7 +14,7 @@
             <div class="search-header-mid">
                 <ul class="mid-menuBar">
                     <li>
-                        <a href="${path }/search/mainSearch.do">전체</a>
+                        <a href="${path }/search/mainSearch.lmc?memNo=${loginMember.memNo}">전체</a>
                     </li>
                 </ul>
                 <div class="mid-content">
@@ -28,7 +28,7 @@
                         <ul class="contentList">
                         	<c:forEach var="j" items="${list }">
 	                            <li class="type-content-li">
-	                                <a href="javascript:void(0);" onclick="changeJobAjax('${j.job_name}');">
+	                                <a href="javascript:void(0);" onclick="changeJobLoginAjax('${j.job_name}', '${loginMember.memNo }');">
 	                                    <div class="content-li-text">
 	                                        <span><c:out value="${j.job_name }"/></span>
 	                                    </div>
@@ -64,19 +64,19 @@
                             </c:if>
                             <c:if test="${not empty loginMember }">
                             	<button class="menu-mid-menu">
-	                                <span class="fontweight fontcolor">최신순</span>
+	                                <span class="fontweight fontcolor"><c:out value="${filter.job_sort }"/></span>
 	                            </button>
 	                            <button class="menu-mid-menu">
 	                                <span class="native">국가</span>
-	                                <span class="fontweight fontcolor">한국</span>
+	                                <span class="fontweight fontcolor"><c:out value="${filter.country }"/></span>
 	                            </button>
 	                            <button class="menu-mid-menu">
 	                                <span class="native">지역</span>
-	                                <span class="fontweight fontcolor1">전국</span>
+	                                <span class="fontweight fontcolor1"><c:out value="${filter.location }"/></span>
 	                            </button>
 	                            <button class="menu-mid-menu">
 	                                <span class="native">경력</span>
-	                                <span class="fontweight fontcolor1">전체</span>
+	                                <span class="fontweight fontcolor1"><c:out value="${filter.career }"/></span>
 	                            </button>
                             </c:if>
                         </div>
@@ -129,63 +129,63 @@
                                         <h6 class="jungHea">정렬</h6>
                                         <div class="jungbody">
                                             <select name="order" id="">
-                                                <option value="time" class="time">최신순</option>
-                                                <option value="money">보상금순</option>
-                                                <option value="like">인기순</option>
+                                                <option value="time" class="time" <c:if test="${filter.job_sort =='최신순'}">selected</c:if>>최신순</option>
+                                                <option value="money" <c:if test="${filter.job_sort =='보상금순'}">selected</c:if>>보상금순</option>
+                                                <option value="like" <c:if test="${filter.job_sort =='인기순'}">selected</c:if>>인기순</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="modalnara">
                                         <h6 class="narahea">국가</h6>
                                         <div class="narabody">
-                                            <button type="button" class="naraBtn">전세계</button>
-                                            <button type="button" class="naraBtn">대만</button>
-                                            <button type="button" class="naraBtn">싱가폴</button>
-                                            <button type="button" class="naraBtn">일본</button>
-                                            <button type="button" class="naraBtn ko narabody-btn">한국</button>
-                                            <button type="button" class="naraBtn">홍콩</button>
-                                            <button type="button" class="naraBtn">기타</button>
+                                            <button type="button" class="naraBtn <c:if test="${filter.country =='전세계'}">narabody-btn</c:if>" >전세계</button>
+                                            <button type="button" class="naraBtn <c:if test="${filter.country =='대만'}">narabody-btn</c:if>">대만</button>
+                                            <button type="button" class="naraBtn <c:if test="${filter.country =='싱가폴'}">narabody-btn</c:if>">싱가폴</button>
+                                            <button type="button" class="naraBtn <c:if test="${filter.country =='일본'}">narabody-btn</c:if>">일본</button>
+                                            <button type="button" class="naraBtn ko <c:if test="${filter.country =='한국'}">narabody-btn</c:if>">한국</button>
+                                            <button type="button" class="naraBtn <c:if test="${filter.country =='홍콩'}">narabody-btn</c:if>">홍콩</button>
+                                            <button type="button" class="naraBtn <c:if test="${filter.country =='기타'}">narabody-btn</c:if>">기타</button>
                                         </div>
                                     </div>
                                     <div class="modaljiuk">
                                         <h6 class="jiukhea">지역</h6>
                                         <div class="jiukbody">
-                                            <button type="button" class="jiukBtn junguk jiuk-btn">전국</button>
-                                            <button type="button" class="jiukBtn">서울</button>
-                                            <button type="button" class="jiukBtn">부산</button>
-                                            <button type="button" class="jiukBtn">대구</button>
-                                            <button type="button" class="jiukBtn">인천</button>
-                                            <button type="button" class="jiukBtn">광주</button>
-                                            <button type="button" class="jiukBtn">대전</button>
-                                            <button type="button" class="jiukBtn">울산</button>
-                                            <button type="button" class="jiukBtn">세종</button>
-                                            <button type="button" class="jiukBtn">경기</button>
-                                            <button type="button" class="jiukBtn">강원</button>
-                                            <button type="button" class="jiukBtn">충북</button>
-                                            <button type="button" class="jiukBtn">충남</button>
-                                            <button type="button" class="jiukBtn">전북</button>
-                                            <button type="button" class="jiukBtn">전남</button>
-                                            <button type="button" class="jiukBtn">경북</button>
-                                            <button type="button" class="jiukBtn">경남</button>
-                                            <button type="button" class="jiukBtn">제주</button>
+                                            <button type="button" class="jiukBtn junguk <c:if test="${filter.location =='전국'}">jiuk-btn</c:if>">전국</button>
+                                            <button type="button" class="jiukBtn <c:if test="${filter.location =='서울'}">jiuk-btn</c:if>">서울</button>
+                                            <button type="button" class="jiukBtn <c:if test="${filter.location =='부산'}">jiuk-btn</c:if>">부산</button>
+                                            <button type="button" class="jiukBtn <c:if test="${filter.location =='대구'}">jiuk-btn</c:if>">대구</button>
+                                            <button type="button" class="jiukBtn <c:if test="${filter.location =='인천'}">jiuk-btn</c:if>">인천</button>
+                                            <button type="button" class="jiukBtn <c:if test="${filter.location =='광주'}">jiuk-btn</c:if>">광주</button>
+                                            <button type="button" class="jiukBtn <c:if test="${filter.location =='대전'}">jiuk-btn</c:if>">대전</button>
+                                            <button type="button" class="jiukBtn <c:if test="${filter.location =='울산'}">jiuk-btn</c:if>">울산</button>
+                                            <button type="button" class="jiukBtn <c:if test="${filter.location =='세종'}">jiuk-btn</c:if>">세종</button>
+                                            <button type="button" class="jiukBtn <c:if test="${filter.location =='경기'}">jiuk-btn</c:if>">경기</button>
+                                            <button type="button" class="jiukBtn <c:if test="${filter.location =='강원'}">jiuk-btn</c:if>">강원</button>
+                                            <button type="button" class="jiukBtn <c:if test="${filter.location =='충북'}">jiuk-btn</c:if>">충북</button>
+                                            <button type="button" class="jiukBtn <c:if test="${filter.location =='충남'}">jiuk-btn</c:if>">충남</button>
+                                            <button type="button" class="jiukBtn <c:if test="${filter.location =='전북'}">jiuk-btn</c:if>">전북</button>
+                                            <button type="button" class="jiukBtn <c:if test="${filter.location =='전남'}">jiuk-btn</c:if>">전남</button>
+                                            <button type="button" class="jiukBtn <c:if test="${filter.location =='경북'}">jiuk-btn</c:if>">경북</button>
+                                            <button type="button" class="jiukBtn <c:if test="${filter.location =='경남'}">jiuk-btn</c:if>">경남</button>
+                                            <button type="button" class="jiukBtn <c:if test="${filter.location =='제주'}">jiuk-btn</c:if>">제주</button>
                                         </div>
                                     </div>
                                     <div class="modalgung">
                                         <h6 class="gunghae">경력</h6>
                                         <div class="gungbody">
                                             <select name="cureer" id="">
-                                                <option value="all" class="all">전체</option>
-                                                <option value="new">신입</option>
-                                                <option value="one">1년</option>
-                                                <option value="two">2년</option>
-                                                <option value="three">3년</option>
-                                                <option value="four">4년</option>
-                                                <option value="five">5년</option>
-                                                <option value="six">6년</option>
-                                                <option value="seven">7년</option>
-                                                <option value="eight">8년</option>
-                                                <option value="nine">9년</option>
-                                                <option value="tenup">10년 이상</option>
+                                                <option value="all" class="all" <c:if test="${filter.career =='전체'}">selected</c:if>>전체</option>
+                                                <option value="new" <c:if test="${filter.career =='신입'}">selected</c:if>>신입</option>
+                                                <option value="one" <c:if test="${filter.career =='1년'}">selected</c:if>>1년</option>
+                                                <option value="two" <c:if test="${filter.career =='2년'}">selected</c:if>>2년</option>
+                                                <option value="three" <c:if test="${filter.career =='3년'}">selected</c:if>>3년</option>
+                                                <option value="four" <c:if test="${filter.career =='4년'}">selected</c:if>>4년</option>
+                                                <option value="five" <c:if test="${filter.career =='5년'}">selected</c:if>>5년</option>
+                                                <option value="six" <c:if test="${filter.career =='6년'}">selected</c:if>>6년</option>
+                                                <option value="seven" <c:if test="${filter.career =='7년'}">selected</c:if>>7년</option>
+                                                <option value="eight" <c:if test="${filter.career =='8년'}">selected</c:if>>8년</option>
+                                                <option value="nine" <c:if test="${filter.career =='9년'}">selected</c:if>>9년</option>
+                                                <option value="tenup" <c:if test="${filter.career =='10년 이상'}">selected</c:if>>10년 이상</option>
                                             </select>
                                         </div>
                                     </div>
@@ -325,11 +325,14 @@
 </script>
 <!-- 화면전환용 Ajax 스크립트 -->
 <script>
-	function changeJobAjax(jobName) {
+	function changeJobLoginAjax(jobName, memNo) {
 		$.ajax({
-			url: path + "/search/changeJobAjax",
+			url: path + "/search/changeJobLoginAjax",
 			type: "POST",
-			data: {jobName : jobName},	
+			data: {
+					jobName : jobName,
+					memNo : memNo					
+					},	
 			success: function(data){
 				$("#search-main").html("");
 				$("#search-main").html(data);

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
+import com.kh.developers.search.model.vo.Filter;
 import com.kh.developers.search.model.vo.JobField;
 import com.kh.developers.search.model.vo.LikeMember;
 import com.kh.developers.search.model.vo.Position;
@@ -21,4 +22,7 @@ public interface SearchDao {
 	int selectLikeCount(SqlSessionTemplate session, int likeId);
 	int deleteLikeButton(SqlSessionTemplate session, int memNo, int likeId);
 	List<Position> positionAjaxList(SqlSessionTemplate session, String jobName);
+	Filter SelectMemberFilter(SqlSessionTemplate session, int memNo);
+	List<Position> positionLoginList(SqlSessionTemplate session, Filter filter);
+	List<Position> positionAjaxLoginList(SqlSessionTemplate session, String jobName, Filter filter);
 }

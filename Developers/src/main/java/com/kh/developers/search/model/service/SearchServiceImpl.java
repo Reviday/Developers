@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.developers.search.model.dao.SearchDao;
+import com.kh.developers.search.model.vo.Filter;
 import com.kh.developers.search.model.vo.JobField;
 import com.kh.developers.search.model.vo.LikeMember;
 import com.kh.developers.search.model.vo.Position;
@@ -86,6 +87,24 @@ public class SearchServiceImpl implements SearchService {
 	@Override
 	public List<Position> positionAjaxList(String jobName) {
 		List<Position> psList = dao.positionAjaxList(session, jobName);
+		return psList;
+	}
+	
+	@Override
+	public Filter SelectMemberFilter(int memNo) {
+		Filter filter = dao.SelectMemberFilter(session, memNo);
+		return filter;
+	}
+	
+	@Override
+	public List<Position> positionLoginList(Filter filter) {
+		List<Position> psList = dao.positionLoginList(session, filter);
+		return psList;
+	}
+	
+	@Override
+	public List<Position> positionAjaxLoginList(String jobName, Filter filter) {
+		List<Position> psList = dao.positionAjaxLoginList(session, jobName, filter);
 		return psList;
 	}
 	

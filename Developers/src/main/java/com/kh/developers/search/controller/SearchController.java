@@ -2,20 +2,17 @@ package com.kh.developers.search.controller;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletResponse;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kh.developers.resume.controller.ResumeController;
 import com.kh.developers.search.model.service.SearchService;
+import com.kh.developers.search.model.vo.Filter;
 import com.kh.developers.search.model.vo.JobField;
 import com.kh.developers.search.model.vo.LikeMember;
 import com.kh.developers.search.model.vo.Position;
@@ -47,12 +44,16 @@ public class SearchController {
 		// 적극채용중인 회사
 		List<Position> firstPsList = service.firstPsList();
 		model.addAttribute("firstPsList", firstPsList);
-		// 일반 리스트
+		// 직무 리스트
 		List<JobField> list = service.jobfieldList();
-		List<Position> psList = service.positionLoginList(memNo);
 		model.addAttribute("list", list);
+		// 필터  정보
+		Filter filter = service.SelectMemberFilter(memNo);
+		model.addAttribute("filter", filter);
+		// 필터 적용한 포지션리스트
+		List<Position> psList = service.positionLoginList(filter);
 		model.addAttribute("psList", psList);
-		return "search/mainSearch";
+		return "search/mainSearchLogin";
 	}
 
 	// 회사를 눌렀을 때의 회사 개인 정보 페이지(로그인시)
@@ -90,6 +91,22 @@ public class SearchController {
 		mv.addObject("psList", psList);
 		mv.addObject("firstPsList", firstPsList);
 		mv.setViewName("search/ajax/changeJobAjax");
+		mv.addObject("jobName", jobName);
+		mv.addObject("list", list);
+		return mv;
+	}
+	// 탐색 -> 직무클릭했을 때의 페이지 전환(로그인)
+	@RequestMapping(value = "/search/changeJobLoginAjax", produces = "application/text; charset=utf8")
+	public ModelAndView changeJobLoginAjax(String jobName, int memNo, ModelAndView mv) {
+		List<Position> firstPsList = service.firstPsList();
+		List<JobField> list = service.jobfieldAjaxList(jobName);
+		Filter filter = service.SelectMemberFilter(memNo);
+		List<Position> psList = service.positionAjaxLoginList(jobName, filter);
+		
+		mv.addObject("psList", psList);
+		mv.addObject("filter", filter);
+		mv.addObject("firstPsList", firstPsList);
+		mv.setViewName("search/ajax/changeJobLoginAjax");
 		mv.addObject("jobName", jobName);
 		mv.addObject("list", list);
 		return mv;

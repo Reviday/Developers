@@ -11,7 +11,7 @@
 	</select>
 	<!-- 탐색페이지(포지션리스트) -->
 	<select id="positionList" resultType="position">
-		SELECT P.*, BUS_LOGO, BUS_IMAGES, BUS_ADDRESS, BUS_INDUSTRIAL, BUS_AREA, BUS_COUNTRY,(SELECT COUNT(*) FROM PO_LIKE WHERE LIKE_ID = P.LIKE_ID) AS LIKE_COUNT FROM ENROLL_POSITION P JOIN BUSINESS_INFO B ON P.BUS_NO = B.BUS_NO ORDER BY POSITION_NO DESC
+		SELECT P.*, BUS_LOGO, BUS_IMAGES, BUS_ADDRESS, BUS_INDUSTRIAL, BUS_AREA, BUS_COUNTRY, (SELECT COUNT(*) FROM PO_LIKE WHERE LIKE_ID = P.LIKE_ID) AS LIKE_COUNT FROM ENROLL_POSITION P JOIN BUSINESS_INFO B ON P.BUS_NO = B.BUS_NO WHERE SYSDATE <![CDATA[<]]> DEAD_DATE ORDER BY POSITION_NO DESC
 	</select>
 	<!-- 포지션정보페이지(포지션정보 -->
 	<select id="companyInfoList" resultType="position" parameterType="_int" resultMap="positionArray">
@@ -23,7 +23,7 @@
 	</select>
 	<!-- 적극채용중인 회사 리스트 -->
 	<select id="firstPsList" resultType="position" resultMap="positionArray">
-		SELECT * FROM (SELECT ROWNUM AS RNUM, A.* FROM (SELECT (SELECT COUNT(BUS_NO) FROM ENROLL_POSITION) AS PO_COUNT, P.*, BUS_LOGO, BUS_IMAGES, BUS_ADDRESS, BUS_INDUSTRIAL, BUS_AREA, BUS_COUNTRY,(SELECT COUNT(*) FROM PO_LIKE WHERE LIKE_ID = P.LIKE_ID) AS LIKE_COUNT FROM ENROLL_POSITION P JOIN BUSINESS_INFO B ON P.BUS_NO = B.BUS_NO ORDER BY 1)A) WHERE RNUM BETWEEN 1 AND 5
+		SELECT * FROM (SELECT ROWNUM AS RNUM, A.* FROM (SELECT (SELECT COUNT(BUS_NO) FROM ENROLL_POSITION) AS PO_COUNT, P.*, BUS_LOGO, BUS_IMAGES, BUS_ADDRESS, BUS_INDUSTRIAL, BUS_AREA, BUS_COUNTRY,(SELECT COUNT(*) FROM PO_LIKE WHERE LIKE_ID = P.LIKE_ID) AS LIKE_COUNT FROM ENROLL_POSITION P JOIN BUSINESS_INFO B ON P.BUS_NO = B.BUS_NO WHERE SYSDATE <![CDATA[<]]> DEAD_DATE ORDER BY 1)A) WHERE RNUM BETWEEN 1 AND 5
 	</select>
 	<!-- 회원의 좋아요 여부 -->
 	<select id="selectLikeMemberOne" resultType="likemember" parameterType="map">
@@ -43,11 +43,78 @@
 	</delete>
 	<!-- 직무분야검색했을 때의 포지션 리스트 -->
 	<select id="positionAjaxList" parameterType="string" resultType="position">
-		SELECT P.*, BUS_LOGO, BUS_IMAGES, BUS_ADDRESS, BUS_INDUSTRIAL, BUS_AREA, BUS_COUNTRY,(SELECT COUNT(*) FROM PO_LIKE WHERE LIKE_ID = P.LIKE_ID) AS LIKE_COUNT FROM ENROLL_POSITION P JOIN BUSINESS_INFO B ON P.BUS_NO = B.BUS_NO WHERE JOB_TYPE IN (#{jobName}) ORDER BY POSITION_NO DESC
+		SELECT P.*, BUS_LOGO, BUS_IMAGES, BUS_ADDRESS, BUS_INDUSTRIAL, BUS_AREA, BUS_COUNTRY,(SELECT COUNT(*) FROM PO_LIKE WHERE LIKE_ID = P.LIKE_ID) AS LIKE_COUNT FROM ENROLL_POSITION P JOIN BUSINESS_INFO B ON P.BUS_NO = B.BUS_NO WHERE JOB_TYPE IN (#{jobName}) AND SYSDATE <![CDATA[<]]> DEAD_DATE ORDER BY POSITION_NO DESC
 	</select>
-	
-	
-	
+	<!-- 회원 필터검색 -->
+	<select id="SelectMemberFilter" parameterType="_int" resultType="filter">
+		SELECT F.* FROM TA_MEMBER T JOIN MEM_FILTER F ON T.FILTER_ID = F.FILTER_ID WHERE MEM_NO = #{memNo}
+	</select>
+	<!-- 필터 적용한 포지션리스트 -->
+	<select id="positionLoginList" parameterType="filter" resultType="position">
+		SELECT P.*, BUS_LOGO, BUS_IMAGES, BUS_ADDRESS, BUS_INDUSTRIAL, BUS_AREA, BUS_COUNTRY,(SELECT COUNT(*) FROM PO_LIKE WHERE LIKE_ID = P.LIKE_ID) AS LIKE_COUNT FROM ENROLL_POSITION P JOIN BUSINESS_INFO B ON P.BUS_NO = B.BUS_NO WHERE SYSDATE <![CDATA[<]]> DEAD_DATE 
+		<choose>
+			<when test="country.equals('한국')">
+				AND BUS_COUNTRY = #{country} 
+				<choose>
+					<when test="location.equals('전국')"></when>
+					<otherwise>
+						AND BUS_AREA = #{location}
+					</otherwise>
+				</choose>
+			</when>
+			<otherwise>
+				AND BUS_COUNTRY = #{country}
+			</otherwise>
+		</choose>
+		<choose>
+			<when test="career.equals('전체')"></when>
+			<otherwise>
+				AND CAREER = #{career}
+			</otherwise>
+		</choose>
+		<if test="job_sort.equals('최신순')">
+			ORDER BY POSITION_NO DESC	
+		</if>
+		<if test="job_sort.equals('보상금순')">
+			ORDER BY POSITION_NO DESC	
+		</if>
+		<if test="job_sort.equals('인기순')">
+			ORDER BY LIKE_COUNT DESC	
+		</if>
+	</select>
+	<!-- 직무분야 검색 시의 포지션리스트(로그인)필터조건까지 -->
+	<select id="positionAjaxLoginList" resultType="position" parameterType="map">
+		SELECT P.*, BUS_LOGO, BUS_IMAGES, BUS_ADDRESS, BUS_INDUSTRIAL, BUS_AREA, BUS_COUNTRY,(SELECT COUNT(*) FROM PO_LIKE WHERE LIKE_ID = P.LIKE_ID) AS LIKE_COUNT FROM ENROLL_POSITION P JOIN BUSINESS_INFO B ON P.BUS_NO = B.BUS_NO WHERE SYSDATE <![CDATA[<]]> DEAD_DATE AND JOB_TYPE IN (#{jobName})
+		<choose>
+			<when test="(filter.country).equals('한국')">
+				AND BUS_COUNTRY = #{filter.country} 
+				<choose>
+					<when test="(filter.location).equals('전국')"></when>
+					<otherwise>
+						AND BUS_AREA = #{filter.location}
+					</otherwise>
+				</choose>
+			</when>
+			<otherwise>
+				AND BUS_COUNTRY = #{filter.country}
+			</otherwise>
+		</choose>
+		<choose>
+			<when test="(filter.career).equals('전체')"></when>
+			<otherwise>
+				AND CAREER = #{career}
+			</otherwise>
+		</choose>
+		<if test="(filter.job_sort).equals('최신순')">
+			ORDER BY POSITION_NO DESC	
+		</if>
+		<if test="(filter.job_sort).equals('보상금순')">
+			ORDER BY POSITION_NO DESC	
+		</if>
+		<if test="(filter.job_sort).equals('인기순')">
+			ORDER BY LIKE_COUNT DESC	
+		</if>
+	</select>
 	
 	
 	<resultMap type="position" id="positionArray">
