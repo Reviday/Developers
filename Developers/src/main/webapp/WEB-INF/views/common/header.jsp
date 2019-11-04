@@ -52,7 +52,12 @@
                <c:if test="${not empty loginMember }">
                <li class="xsHomeButton xsOnly"><a href="${path }/member/main.lmc" class="">홈</a></li>
                </c:if>
+               <c:if test="${empty loginMember }">
                <li class=""><a href="${path }/search/mainSearch.do" class="">탐색</a></li>
+               </c:if>
+               <c:if test="${not empty loginMember }">
+               <li class=""><a href="${path }/search/mainSearch.lmc" class="">탐색</a></li>
+               </c:if>
                <li class="microMoreVisible"><a href="${path }/salary/salaryView.do" class="">직군별 연봉</a></li>
                 <c:if test="${loginMember!=null }">  
                <li class="smMoreVisible"><a href="${path }/resume/resumeList.lmc?memEmail=${loginMember.memEmail }" class="">이력서</a></li>

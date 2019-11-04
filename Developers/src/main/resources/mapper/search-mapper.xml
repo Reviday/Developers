@@ -11,7 +11,7 @@
 	</select>
 	<!-- 탐색페이지(포지션리스트) -->
 	<select id="positionList" resultType="position">
-		SELECT P.*, BUS_LOGO, BUS_IMAGES, BUS_ADDRESS, BUS_INDUSTRIAL, BUS_AREA, BUS_COUNTRY,(SELECT COUNT(*) FROM PO_LIKE WHERE LIKE_ID = P.LIKE_ID) AS LIKE_COUNT FROM ENROLL_POSITION P JOIN BUSINESS_INFO B ON P.BUS_NO = B.BUS_NO 
+		SELECT P.*, BUS_LOGO, BUS_IMAGES, BUS_ADDRESS, BUS_INDUSTRIAL, BUS_AREA, BUS_COUNTRY,(SELECT COUNT(*) FROM PO_LIKE WHERE LIKE_ID = P.LIKE_ID) AS LIKE_COUNT FROM ENROLL_POSITION P JOIN BUSINESS_INFO B ON P.BUS_NO = B.BUS_NO ORDER BY POSITION_NO DESC
 	</select>
 	<!-- 포지션정보페이지(포지션정보 -->
 	<select id="companyInfoList" resultType="position" parameterType="_int" resultMap="positionArray">
@@ -41,6 +41,10 @@
 	<delete id="deleteLikeButton" parameterType="map">
 		DELETE FROM PO_LIKE WHERE MEM_NO = #{memNo} AND LIKE_ID = #{likeId}
 	</delete>
+	<!-- 직무분야검색했을 때의 포지션 리스트 -->
+	<select id="positionAjaxList" parameterType="string" resultType="position">
+		SELECT P.*, BUS_LOGO, BUS_IMAGES, BUS_ADDRESS, BUS_INDUSTRIAL, BUS_AREA, BUS_COUNTRY,(SELECT COUNT(*) FROM PO_LIKE WHERE LIKE_ID = P.LIKE_ID) AS LIKE_COUNT FROM ENROLL_POSITION P JOIN BUSINESS_INFO B ON P.BUS_NO = B.BUS_NO WHERE JOB_TYPE IN (#{jobName}) ORDER BY POSITION_NO DESC
+	</select>
 	
 	
 	

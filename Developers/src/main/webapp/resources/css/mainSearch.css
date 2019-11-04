@@ -336,8 +336,24 @@ button {
     padding: 9px 15px;
 }
 
+.menu-mid-menu1 {
+    border-radius: 2px;
+    border: 1px solid #e1e2e3;
+    background: #fff;
+    color: #333;
+    font-size: 13px;
+    font-weight: 400;
+    padding: 9px 15px;
+}
+
 @media (min-width: 1200px){
     .menu-mid-menu {
+        margin-bottom: 10px;
+    }
+}
+
+@media (min-width: 1200px){
+    .menu-mid-menu1 {
         margin-bottom: 10px;
     }
 }
@@ -348,13 +364,29 @@ button {
     }
 }
 
+@media (max-width: 1199px) and (min-width: 992px){
+    .menu-mid-menu1 {
+        margin-bottom: 10px;
+    }
+}
+
 @media (max-width: 991px) and (min-width: 768px){
     .menu-mid-menu {
         margin-bottom: 10px;
     }
 }
 
+@media (max-width: 991px) and (min-width: 768px){
+    .menu-mid-menu1 {
+        margin-bottom: 10px;
+    }
+}
+
 .menu-mid-menu+button {
+    margin-left: 10px;
+}
+
+.menu-mid-menu1+button {
     margin-left: 10px;
 }
 
@@ -399,7 +431,23 @@ button {
     }
 }
 
+@media (min-width: 1200px){
+    .filter-btn1 {
+        margin-bottom: 10px;
+    }
+}
+
 .filter-btn {
+    border-radius: 2px;
+    border: 1px solid #e1e2e3;
+    background: #fff;
+    color: #333;
+    font-size: 13px;
+    font-weight: 400;
+    padding: 9px 15px;
+}
+
+.filter-btn1 {
     border-radius: 2px;
     border: 1px solid #e1e2e3;
     background: #fff;
@@ -415,8 +463,21 @@ button {
     }
 }
 
+@media (max-width: 1199px) and (min-width: 992px){
+    .filter-btn1 {
+        margin-bottom: 10px;
+    }
+}
+
+
 @media (max-width: 991px) and (min-width: 768px){
     .filter-btn {
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 991px) and (min-width: 768px){
+    .filter-btn1 {
         margin-bottom: 10px;
     }
 }
@@ -427,6 +488,12 @@ button {
 }
 
 .filter-btn i {
+    margin-right: 5px;
+    vertical-align: middle;
+    color: #2886fa;
+}
+
+.filter-btn1 i {
     margin-right: 5px;
     vertical-align: middle;
     color: #2886fa;

@@ -14,7 +14,7 @@
             <div class="search-header-mid">
                 <ul class="mid-menuBar">
                     <li>
-                        <a href="">전체</a>
+                        <a href="${path }/search/mainSearch.do">전체</a>
                     </li>
                 </ul>
                 <div class="mid-content">
@@ -45,35 +45,66 @@
                 <div class="main-mid-menu">
                     <div class="menu-mid">
                         <div class="menu-mid-1 hidden-xs">
-                            <button class="menu-mid-menu">
-                                <span class="fontweight fontcolor">최신순</span>
-                            </button>
-                            <button class="menu-mid-menu">
-                                <span class="native">국가</span>
-                                <span class="fontweight fontcolor">한국</span>
-                            </button>
-                            <button class="menu-mid-menu">
-                                <span class="native">지역</span>
-                                <span class="fontweight fontcolor1">전국</span>
-                            </button>
-                            <button class="menu-mid-menu">
-                                <span class="native">경력</span>
-                                <span class="fontweight fontcolor1">전체</span>
-                            </button>
+                        	<c:if test="${empty loginMember }">
+	                            <button class="menu-mid-menu1 suBtn">
+	                                <span class="fontweight fontcolor">최신순</span>
+	                            </button>
+	                            <button class="menu-mid-menu1 suBtn">
+	                                <span class="native">국가</span>
+	                                <span class="fontweight fontcolor">한국</span>
+	                            </button>
+	                            <button class="menu-mid-menu1 suBtn">
+	                                <span class="native">지역</span>
+	                                <span class="fontweight fontcolor1">전국</span>
+	                            </button>
+	                            <button class="menu-mid-menu1 suBtn">
+	                                <span class="native">경력</span>
+	                                <span class="fontweight fontcolor1">전체</span>
+	                            </button>
+                            </c:if>
+                            <c:if test="${not empty loginMember }">
+                            	<button class="menu-mid-menu">
+	                                <span class="fontweight fontcolor">최신순</span>
+	                            </button>
+	                            <button class="menu-mid-menu">
+	                                <span class="native">국가</span>
+	                                <span class="fontweight fontcolor">한국</span>
+	                            </button>
+	                            <button class="menu-mid-menu">
+	                                <span class="native">지역</span>
+	                                <span class="fontweight fontcolor1">전국</span>
+	                            </button>
+	                            <button class="menu-mid-menu">
+	                                <span class="native">경력</span>
+	                                <span class="fontweight fontcolor1">전체</span>
+	                            </button>
+                            </c:if>
                         </div>
                         <div class="menu-mid-1 visible-xs">
                             적용 중 필터
                             <p>2</p>
                         </div>
                         <div class="filter">
-                            <button class="filter-btn">
-                                <span class="filter-btn-1">
-                                    <i class="fas fa-sliders-h"></i>
-                                </span>
-                                <span class="filter-btn-2">
-                                    <span style="color: rgb(37, 139, 247);">필터</span>
-                                </span>
-                            </button>
+                        	<c:if test="${not empty loginMember }">
+	                            <button class="filter-btn">
+	                                <span class="filter-btn-1">
+	                                    <i class="fas fa-sliders-h"></i>
+	                                </span>
+	                                <span class="filter-btn-2">
+	                                    <span style="color: rgb(37, 139, 247);">필터</span>
+	                                </span>
+	                            </button>
+                            </c:if>
+                            <c:if test="${empty loginMember }">
+	                            <button class="filter-btn1 suBtn">
+	                                <span class="filter-btn-1">
+	                                    <i class="fas fa-sliders-h"></i>
+	                                </span>
+	                                <span class="filter-btn-2">
+	                                    <span style="color: rgb(37, 139, 247);">필터</span>
+	                                </span>
+	                            </button>
+                            </c:if>
                         </div>
                     </div>
                 </div>
@@ -97,10 +128,10 @@
                                     <div class="modaljung">
                                         <h6 class="jungHea">정렬</h6>
                                         <div class="jungbody">
-                                            <select name="" id="">
-                                                <option value="">최신순</option>
-                                                <option value="">보상금순</option>
-                                                <option value="">인기순</option>
+                                            <select name="order" id="">
+                                                <option value="time" class="time">최신순</option>
+                                                <option value="money">보상금순</option>
+                                                <option value="like">인기순</option>
                                             </select>
                                         </div>
                                     </div>
@@ -111,7 +142,7 @@
                                             <button type="button" class="naraBtn">대만</button>
                                             <button type="button" class="naraBtn">싱가폴</button>
                                             <button type="button" class="naraBtn">일본</button>
-                                            <button type="button" class="naraBtn narabody-btn">한국</button>
+                                            <button type="button" class="naraBtn ko narabody-btn">한국</button>
                                             <button type="button" class="naraBtn">홍콩</button>
                                             <button type="button" class="naraBtn">기타</button>
                                         </div>
@@ -119,7 +150,7 @@
                                     <div class="modaljiuk">
                                         <h6 class="jiukhea">지역</h6>
                                         <div class="jiukbody">
-                                            <button type="button" class="jiukBtn jiuk-btn">전국</button>
+                                            <button type="button" class="jiukBtn junguk jiuk-btn">전국</button>
                                             <button type="button" class="jiukBtn">서울</button>
                                             <button type="button" class="jiukBtn">부산</button>
                                             <button type="button" class="jiukBtn">대구</button>
@@ -142,24 +173,24 @@
                                     <div class="modalgung">
                                         <h6 class="gunghae">경력</h6>
                                         <div class="gungbody">
-                                            <select name="" id="">
-                                                <option value="">전체</option>
-                                                <option value="">신입</option>
-                                                <option value="">1년</option>
-                                                <option value="">2년</option>
-                                                <option value="">3년</option>
-                                                <option value="">4년</option>
-                                                <option value="">5년</option>
-                                                <option value="">6년</option>
-                                                <option value="">7년</option>
-                                                <option value="">8년</option>
-                                                <option value="">9년</option>
-                                                <option value="">10년 이상</option>
+                                            <select name="cureer" id="">
+                                                <option value="all" class="all">전체</option>
+                                                <option value="new">신입</option>
+                                                <option value="one">1년</option>
+                                                <option value="two">2년</option>
+                                                <option value="three">3년</option>
+                                                <option value="four">4년</option>
+                                                <option value="five">5년</option>
+                                                <option value="six">6년</option>
+                                                <option value="seven">7년</option>
+                                                <option value="eight">8년</option>
+                                                <option value="nine">9년</option>
+                                                <option value="tenup">10년 이상</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="modalfilter">
-                                        <input type="checkbox" name="" id="">
+                                        <input type="checkbox" name="filtersave" id="">
                                         적용된 필터를 저장하고 유지합니다.
                                     </div>
                                 </div>
@@ -300,6 +331,7 @@
 			type: "POST",
 			data: {jobName : jobName},	
 			success: function(data){
+				console.log(data);
 				$("#search-main").html("");
 				$("#search-main").html(data);
 			}
@@ -338,6 +370,17 @@
 		$(".jiukBtn").next().removeClass('jiuk-btn');
 		$(".jiukBtn").prev().removeClass('jiuk-btn');
 		$(this).addClass('jiuk-btn');
+	})
+	$(".modalHeader-btn").click(function(){
+		$(".time").prop("selected", true);
+		$(".all").prop("selected", true);
+		$(".naraBtn").next().removeClass('narabody-btn');
+		$(".naraBtn").prev().removeClass('narabody-btn');
+		$(".ko").addClass("narabody-btn");
+		$(".jiukBtn").next().removeClass('jiuk-btn');
+		$(".jiukBtn").prev().removeClass('jiuk-btn');
+		$(".junguk").addClass('jiuk-btn');
+		$(".modaljiuk").css("display", "block");
 	})
 
 </script>

@@ -81,4 +81,10 @@ public class SearchDaoImpl implements SearchDao {
 		return session.delete("search.deleteLikeButton", map);
 	}
 	
+	@Override
+	public List<Position> positionAjaxList(SqlSessionTemplate session, String jobName) {
+		// TODO Auto-generated method stub
+		return session.selectList("search.positionAjaxList", jobName);
+	}
+	
 }

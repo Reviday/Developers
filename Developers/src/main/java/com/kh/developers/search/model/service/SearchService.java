@@ -27,4 +27,6 @@ public interface SearchService {
 	int selectLikeCount(int likeId);
 	//포지션 좋아요 회원 삭제
 	int deleteLikeButton(int memNo, int likeId);
+	//직무분야 검색했을 때의 포지션 리스트
+	List<Position> positionAjaxList(String jobName);
 }

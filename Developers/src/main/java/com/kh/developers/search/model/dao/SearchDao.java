@@ -20,4 +20,5 @@ public interface SearchDao {
 	int insertLikeButton(SqlSessionTemplate session, int memNo, int likeId);
 	int selectLikeCount(SqlSessionTemplate session, int likeId);
 	int deleteLikeButton(SqlSessionTemplate session, int memNo, int likeId);
+	List<Position> positionAjaxList(SqlSessionTemplate session, String jobName);
 }

@@ -67,10 +67,15 @@ public class SearchController {
 		return "search/companyInfo";
 	}
 
-	// 탐색 -> 직무클릭했을 때의 페이지 전환
+	// 탐색 -> 직무클릭했을 때의 페이지 전환(비로그인)
 	@RequestMapping(value = "/search/changeJobAjax", produces = "application/text; charset=utf8")
 	public ModelAndView changeJobAjax(String jobName, ModelAndView mv) {
-		List<JobField> list = service.jobfieldAjaxList(jobName);
+		List<Position> firstPsList = service.firstPsList();
+		List<JobField> list = service.jobfieldAjaxList(jobName);	
+		List<Position> psList = service.positionAjaxList(jobName);
+	
+		mv.addObject("psList", psList);
+		mv.addObject("firstPsList", firstPsList);
 		mv.setViewName("search/ajax/changeJobAjax");
 		mv.addObject("jobName", jobName);
 		mv.addObject("list", list);

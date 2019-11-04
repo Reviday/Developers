@@ -83,4 +83,10 @@ public class SearchServiceImpl implements SearchService {
 		return result;
 	}
 	
+	@Override
+	public List<Position> positionAjaxList(String jobName) {
+		List<Position> psList = dao.positionAjaxList(session, jobName);
+		return psList;
+	}
+	
 }
