@@ -212,7 +212,7 @@
 	          <span aria-hidden="true">X</span>
 	        </button>
 	      </div>
-          <form id="registerForm" action="${pageContext.request.contextPath}/business/register" onsubmit="return registerValidate()" method="post">
+          <!-- <form id="registerForm" action="${pageContext.request.contextPath}/business/register" onsubmit="return registerValidate()" method="post"> -->
 	      <div class="modal-body">
 			    <input type="text" id="regname" class="form-control must" name="memName" placeholder="담당자 성함" required>
 			    <!-- <br />
@@ -226,7 +226,7 @@
 				<br />
 				<input type="password" id="pswd2" class="form-control must remov" placeholder="암호를 확인하세요." style="border-color: #E6E6E6; color: #A4A4A4; background-color: #FFFFFF;" disabled required>
 			</div>
-		</form>
+		<!-- </form> -->
 			<div class="modal-footer">
 				<button type="submit" id="registerBtn" class="btn btn-outline-primary" >채용담당자 계정 생성</button>
 			</div>
@@ -279,6 +279,40 @@
 	     	<div class="modal-footer">
 		  		<p>계정이 없으신가요?<a class="navbar-brand-small" href="#">채용담당자 계정 만들기</a></p>
 		  	</div>
+	    </div>
+	  </div>
+	</div>
+
+
+	<!-- 이메일 인증 창 -->
+	<div class="modal fade" id="emailConfirmModal" tabindex="-1" role="dialog" 
+	aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-dialog-centered" role="document">
+	    <div class="modal-content">
+		  <div class="modal-header" style="background-color: #151515;" >
+			<img src="${path }/resources/images/Developers_black_logo.png" style="height:30px; margin-left:10px;"/>
+	        <h5 class="modal-title" style="color: #ffffff; margin: auto auto;"  id="exampleModalLabel">Recruiting Developers</h5>
+	        <button type="button" class="close" style="color:#ffffff; padding-top: 15px;" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">X</span>
+	        </button>
+	      </div>
+          <!-- <form id="loginEnd" action="${pageContext.request.contextPath}/business/login" onsubmit="return loginValidate()" method="post"> -->
+	      <div class="modal-body">
+			<div>
+				<!-- 여기에 이메일 출력해주기. -->
+				<p id="emailTitle"></p>
+			</div> 
+			<input type="text" class="form-control confirmation" name="confirmationNo" placeholder="인증번호 입력" required>
+			<br>
+			<button type="submit" id="confirm" class="btn btn-outline-primary" >인증번호 확인</button>
+			<!-- </form> -->
+				<div>
+					<p><a class="navbar-brand-small" href="#" onclick="resendEmail(); return false">인증번호 재발송</a><P>
+				</div>
+				<div class="access-denied">
+					<p id="warning" style="display: none; color:#E53935">인증번호가 맞지 않습니다.</p>
+				</div>
+		  </div>
 	    </div>
 	  </div>
 	</div>

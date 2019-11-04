@@ -1,9 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="business">
-	<insert id="insertEmployer" parameterType="map" >
-		INSERT INTO USERTEMP VALUES (#{userName}, #{userPhone}, #{userEmail}, #{userPassword}, DEFAULT)
+	<update id="successAuth" parameterType="member">
+		UPDATE TA_MEMBER SET MEM_LEVEL=1, MEM_EMAIL_CERT='Y' WHERE MEM_NO=#{memNo}
+	</update>
+	<update id="checkAuth" parameterType="member">
+		UPDATE MEMBER_AUTH_EMAIL SET MAE_USE_DATETIME=SYSDATE, MAE_EXPIRED='Y' WHERE MEM_NO=#{memNo}
+	</update>
+	<insert id="insertMember" parameterType="member">
+		INSERT INTO TA_MEMBER VALUES(MEM_SEQ.NEXTVAL, #{memEmail} , #{memPassword}, #{memName}, #{memPhone}, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT) 
+		<selectKey keyProperty="memNo" resultType="_int" order="AFTER">
+			SELECT MEM_SEQ.CURRVAL FROM DUAL
+		</selectKey>
 	</insert>
+	<insert id="createAuthKey" parameterType="map">
+		INSERT INTO MEMBER_AUTH_EMAIL VALUES(MAE_SEQ.NEXTVAL, #{memNo}, #{key}, 'E', DEFAULT, DEFAULT, DEFAULT)
+	</insert>
+	
+	
+	
 	<insert id="insertBusiness" parameterType="bus">
 		INSERT INTO BUSINESS_INFO VALUES (SEQ_BUS_NO.NEXTVAL,#{busName},#{busCountry},#{busArea},#{busAddress},#{busRegNo},#{busIncome},#{busIndustrial},#{busTotalEmp},#{busIntroduce},#{busEstablishment},#{busEmail},#{busPhone},#{busWebsite},#{searchKeywords, typeHandler=strArray},#{regPath},DEFAULT,NULL,NULL,DEFAULT)
 	</insert>

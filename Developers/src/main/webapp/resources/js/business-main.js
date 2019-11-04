@@ -57,6 +57,7 @@ logPw.addEventListener('keyup',function(e){
 
 
 // 회원가입 창 
+var memName=document.querySelector("input#regname");
 var phone=document.querySelector("input#phone");
 var email=document.querySelector("input#reg-email");
 var pswd=document.querySelector("input#pswd");
@@ -110,7 +111,7 @@ pswd.addEventListener('change',function(e){
     }
 });
 
-pswd2.addEventListener('change',function(e){
+pswd2.addEventListener('keyup',function(e){
     pswd2.borderColor!=""?pswd2.borderColor="":pswd2.borderColor="";
     if(document.getElementById("warning-area").children.length>0){
         $("#warning-area p").remove();
@@ -165,7 +166,25 @@ email.addEventListener('change',function(e){
 
 $('#registerBtn').click(function(){
     if(registerValidate()){
-        $('form#registerForm').submit();
+        // $('form#registerForm').submit();
+        $.ajax({
+            url:path+"/business/register",
+            type:"post",
+            async:false,
+            data:{
+                "memName":memName.value,
+                "memPhone":phone.value,
+                "memEmail":email.value,
+                "memPassword":pswd.value
+            },
+            success:function(data){
+                console.log(data);
+                // 이메일 값 보내주기 
+                // 예: document.querySelector("#emailTitle").innerHTML(email.value);
+                $("#empEnrollModal").modal('hide');
+                $("#emailConfirmModal").modal('show');
+            }
+        });
     }
 });
 
@@ -242,7 +261,9 @@ function registerValidate(){
 }
 
 
+function resendEmail(){
 
+}
 
 
 

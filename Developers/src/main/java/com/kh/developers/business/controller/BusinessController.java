@@ -52,7 +52,7 @@ public class BusinessController {
 	
 	@RequestMapping("/business/register")
 	public ModelAndView register(
-			Member m, HttpServletRequest req, RedirectAttributes rttr
+			Member m, Model model, HttpServletRequest req, RedirectAttributes rttr
 			) {
 		ModelAndView mv=new ModelAndView();
 		logger.debug(""+m);
@@ -64,13 +64,17 @@ public class BusinessController {
 		int result=0;
 		String msg="";
 		try {
-			result=service.insertMember(m, frontUrl);
+			result=bService.insertMember(m, frontUrl);
+			logger.debug("결과는 "+result);
 		} catch (Exception e) {
 			msg="회원가입에 실패하였습니다. 다시 확인해주시기 바랍니다.";
 			rttr.addFlashAttribute("msg",msg);
 			mv.setViewName("redirect:/business");
 		}
 		if(result>0) {
+//			Member mem=service.selectMemberOne(m);
+//			mv.addObject("mem",mem);
+//			model.addAttribute("loginMember",mem);
 			msg="기입된 이메일로 인증 메일이 전송되었습니다.";
 			mv.addObject("msg",msg);
 			mv.setViewName("jsonView");
@@ -83,6 +87,7 @@ public class BusinessController {
 			rttr.addFlashAttribute("msg",msg);
 			mv.setViewName("redirect:/business");
 		}
+		logger.debug("과연??"+result);
 		return mv;
 	}
 	
