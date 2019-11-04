@@ -7,6 +7,7 @@
 <jsp:include page="/WEB-INF/views/admin/header.jsp">
 	<jsp:param name="pageTitle" value=""/>
 </jsp:include>
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <style>
 @import "https://fonts.googleapis.com/css?family=Montserrat:300,400,700";
 .rwd-table {
@@ -96,8 +97,76 @@ h1 {
 .rwd-table td:before {
   color: #dd5;
 }
+.pagination>li>a, .pagination>li>span { border-radius: 50% !important;margin: 0 5px;}
+.text-align-center {
+	text-align: center;
+}
+td {
+	border-top: none !important;
+	vertical-align: middle !important;
+}
+</style>
+
+<style>
+.select,
+.download-target {
+  width: 8em;
+}
+.select {
+  position: relative;
+  display: block;
+  height: 3em;
+  line-height: 3;
+  background: #2c3e50;
+  overflow: hidden;
+  border-radius: .25em;
+  display: inline-block;
+  display: -webkit-inline-box;
+  border: 1px solid #667780;
+  margin: 1em 0;
+}
+select {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0 0 0 .5em;
+  color: #fff;
+  cursor: pointer;
+}
+select::-ms-expand {
+  display: none;
+}
+.select::after {
+  content: '\25BC';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0 1em;
+  background: #34495e;
+  pointer-events: none;
+}
+.select:hover::after {
+  color: #f39c12;
+}
+.select::after {
+  -webkit-transition: .25s all ease;
+  -o-transition: .25s all ease;
+  transition: .25s all ease;
+}
 
 </style>
+<script>
+$('.dropdown-select-version').on('change', function() {
+    if (this.value == 'x86') {
+        $('.download-target').attr({ 'href': 'http://dl.dracos-linux.org/download.php?file=i686/dracOs-i686-2.0.iso' });
+    }else if (this.value == 'x64') {
+        $('.download-target').attr({ 'href': 'http://dl.dracos-linux.org/download.php?file=x86_64/dracOs-x86_64-2.0.iso' });
+    }else {
+        $('.download-target').attr({'href': '#'}); 
+    } 
+});
+</script>
 <section id="content">
 	<div class="container" style="height: 60px"></div>
 	<div class="container mainContent">
@@ -126,43 +195,50 @@ h1 {
 						<th>이름</th>
 						<th>전화번호</th>
 						<th>포인트</th>
-						<!-- <th>이메일인증여부</th>
-						<th>수신동의</th>
-						<th>차단여부</th>
-						<th>가입일</th>
-						<th>가입ip</th>
-						<th>마지막 접속일</th>
-						<th>마지막 접속 ip</th>
-						<th></th> -->
+						<th>수정/탈퇴</th>
 					</tr>
 				</thead>
-				<tbody>
-					<tr>
-						<td data-th="Entry">Sample</td>
-						<td data-th="Entry">Filter</td>
-						<td data-th="Entry">12-11-2011 11:11</td>
-						<td data-th="Entry">OK</td>
-						<td data-th="Entry">123</td>
-						<td data-th="Entry">Do some other</td>
-					</tr>
-					<tr>
-						<td data-th="Entry">Try</td>
-						<td data-th="Entry">It</td>
-						<td data-th="Entry">11-20-2013 08:56</td>
-						<td data-th="Entry">It</td>
-						<td data-th="Entry">Works</td>
-						<td data-th="Entry">Do some FILTERME</td>
-					</tr>
-					<tr>
-						<td data-th="Entry">§</td>
-						<td data-th="Entry">$</td>
-						<td data-th="Entry">%</td>
-						<td data-th="Entry">&</td>
-						<td data-th="Entry">/</td>
-						<td data-th="Entry">!</td>
-					</tr>
-				</tbody>
+				<c:if test="${not empty memList}">
+					<tbody>
+						<c:forEach items="${memList }" var="m">
+						<tr>
+							<td data-th="회원번호">${m.memNo }</td>
+							<td data-th="이메일">${m.memEmail }</td>
+							<td data-th="등급">
+								<div class="dropdown" style="display: inline-block;">
+							        <select class="dropdown-select-version select" name="memLevel">
+							        	<option value="5" <c:if test="${m.memLevel eq 5}">selected</c:if>>관리자</option>
+									    <option value="4" <c:if test="${m.memLevel eq 4}">selected</c:if>>기업관리자</option>
+									    <option value="3" <c:if test="${m.memLevel eq 3}">selected</c:if>>기업매니저</option>
+									    <!--<option value="2">-미정-</option> -->
+									    <option value="1" <c:if test="${m.memLevel eq 1}">selected</c:if>>정회원</option>
+									    <option value="0" <c:if test="${m.memLevel eq 0}">selected</c:if>>가입미완료</option> <!-- 회원가입 미완료 상태 -->
+							        </select>
+							    </div>
+							</td>
+							<td data-th="이름">
+								<c:if test="${m.memName eq null}"><span style="color:rgb(91, 91, 91);">#미기입</span></c:if>
+								<c:if test="${m.memName ne null}">${m.memName}</c:if>
+							</td>
+							<td data-th="전화번호">
+								<c:if test="${m.memPhone eq null}"><span style="color:rgb(91, 91, 91);">#미기입</span></c:if>
+								<c:if test="${m.memPhone ne null}">${m.memPhone}</c:if>
+							</td>
+							<td data-th="포인트">${m.memPoint }</td>
+							<td data-th="수정/탈퇴"> 
+								<button type="button" class="btn btn-primary btn-sm" onclick="">수정</button>
+								<button type="button" class="btn btn-danger btn-sm">탈퇴</button>
+							</td>
+						</tr>
+						</c:forEach>
+					</tbody>
+				</c:if>
 			</table>
+		</div>
+		<div class="container text-align-center">
+			<c:if test="${pageBar ne null }">
+				${pageBar}
+			</c:if>
 		</div>
 	</div>
 

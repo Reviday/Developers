@@ -26,7 +26,7 @@
 		INSERT INTO MEMBER_AUTH_EMAIL VALUES(MAE_SEQ.NEXTVAL, #{memNo}, #{key}, 'E', DEFAULT, DEFAULT, DEFAULT)
 	</insert>
 	<select id="selectMemberList" parameterType="member" resultMap="memberMap">
-		SELECT * FROM TA_MEMBER ORDER BY MEM_ENROLL_DATATIME
+		SELECT * FROM TA_MEMBER WHERE MEM_STATUS='Y' ORDER BY MEM_ENROLL_DATETIME 
 	</select>
 	<select id="selectMemberOne" parameterType="member" resultMap="memberMap">
 		SELECT * FROM TA_MEMBER WHERE MEM_EMAIL = #{memEmail}

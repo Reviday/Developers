@@ -6,5 +6,6 @@ import com.kh.developers.member.model.vo.Member;
 
 public interface AdminDao {
 
-	List<Member> selectMemberList(SqlSessionTemplate sessionint, int cPage, int numPerPage);
+	List<Member> selectMemberList(SqlSessionTemplate session, int cPage, int numPerPage);
+	int selectMemberCount(SqlSessionTemplate session);
 }

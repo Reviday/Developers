@@ -86,24 +86,21 @@
 	                    <!-- Level Two-->
 	                    <ul>
 	                        <li>
-	                            <a href="${path }/admin/memberList">회원목록</a>
-	                        </li>
-	                        <li>
 	                           <a href="javascript:;">
 	                               	회원목록							
 	                           </a>
 	                           <!-- Level Three-->
 	                           <ul>
-	                               <li><a href="${path }/admin/memberList">
+	                               <li><a href="${path }/admin/memberList.lac">
 	                               		<i class="fa fa-user" aria-hidden="true"></i>
 	                               		기본정보</a>
 	                               	</li>
 	                               <li>
-	                                   <a href="${path }/admin/memberList">
+	                                   <a href="${path }/admin/memberList.lac">
 	                                       <i class="fa fa-diamond" aria-hidden="true"></i>부가정보</a>
 	                               </li>
 	                               <li>
-	                                   <a href="${path }/admin/memberList">
+	                                   <a href="${path }/admin/memberList.lac">
 	                                       <i class="fa fa-diamond" aria-hidden="true"></i>상세정보</a>
 	                               </li>
 	                           </ul>

@@ -21,4 +21,9 @@ public class AdminServiceImpl implements AdminService {
 	public List<Member> selectMemberList(int cPage, int numPerPage) {
 		return dao.selectMemberList(session, cPage, numPerPage);
 	}
+	
+	@Override
+	public int selectMemberCount() {
+		return dao.selectMemberCount(session);
+	}
 }
