@@ -1,11 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="resume">
+<update id="updateLinks" parameterType="links">
+UPDATE links SET links_addr=#{linksAddr} WHERE links_no=#{linksNo}
+</update>
+<update id="updateLang" parameterType="lang">
+UPDATE lang SET lang_name=#{langName},lang_level=#{langLevel} WHERE lang_no=#{langNo}
+</update>
+<update id="updateAct" parameterType="activitie">
+UPDATE activitie SET start_act=#{startAct},act_name=#{actName},act_detail=#{actDetail} WHERE act_no=#{actNo}
+</update>
+<update id="updateEd" parameterType="education">
+UPDATE EDUCATION SET start_ed=#{startEd},end_ed=#{endEd},school_name=#{schoolName},major_name=#{majorName},subject_name=#{subjectName} WHERE ed_no=#{edNo}
+</update>
 <update id="updateCareer" parameterType="career">
 UPDATE CAREER SET start_career=#{startCareer},end_career=#{endCareer},emp_name=#{empName},dep_name=#{depName} WHERE career_no=#{careerNo}
 </update>
-
-
 <delete id="deleteEd" parameterType="_int">
 DELETE FROM EDUCATION WHERE ed_no=#{deleteNo}
 </delete>
@@ -49,19 +59,31 @@ SELECT * FROM RESUME WHERE MEM_EMAIL=#{memEmail} and RESUME_NO=#{resumeNo}
 	INSERT INTO CAREER VALUES(SEQ_CAREER.NEXTVAL,#{memEmail},default,default,default,default,default,#{resumeNo})
 <selectKey keyProperty="resumeNo" resultType="_int" order="AFTER">
  	SELECT SEQ_CAREER.CURRVAL FROM DUAL
- 	</selectKey>
+ </selectKey>
 </insert>
 <insert id="insertEd" parameterType="resume">
 	INSERT INTO EDUCATION VALUES(seq_education.NEXTVAL,#{memEmail},default,default,default,default,default,default,#{resumeNo})
+	<selectKey keyProperty="resumeNo" resultType="_int" order="AFTER">
+	SELECT SEQ_EDUCATION.CURRVAL FROM DUAL
+	</selectKey>
 </insert>
 <insert id="insertAct" parameterType="resume">
 	INSERT INTO ACTIVITIE VALUES(seq_activitie.NEXTVAL,#{memEmail},default,default,default,default,#{resumeNo})
+	<selectKey keyProperty="resumeNo" resultType="_int" order="AFTER">
+	SELECT SEQ_ACTIVITIES.CURRVAL FROM DUAL
+	</selectKey>
 </insert>
 <insert id="insertLang" parameterType="resume">
 	INSERT INTO LANG VALUES(seq_lang.NEXTVAL,#{memEmail},default,default,default,#{resumeNo})
+	<selectKey keyProperty="resumeNo" resultType="_int" order="AFTER">
+	SELECT SEQ_LANG.CURRVAL FROM DUAL
+	</selectKey>
 </insert>
 <insert id="insertLink" parameterType="resume">
 	INSERT INTO LINKS VALUES(seq_links.NEXTVAL,#{memEmail},default,default,#{resumeNo})
+	<selectKey keyProperty="resumeNo" resultType="_int" order="AFTER">
+	SELECT SEQ_LINKS.CURRVAL FROM DUAL
+	</selectKey>
 </insert>
 <select id="selectResumeOne" parameterType="resume" resultMap="resumeMap">
 	SELECT * FROM RESUME WHERE resume_no=#{resumeNo}

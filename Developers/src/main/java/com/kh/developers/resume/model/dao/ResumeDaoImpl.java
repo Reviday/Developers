@@ -20,6 +20,30 @@ public class ResumeDaoImpl implements ResumeDao {
 	
 
 	@Override
+	public int updateAct(SqlSessionTemplate session, Activitie a) {
+		// TODO Auto-generated method stub
+		return session.update("resume.updateAct",a);
+	}
+
+	@Override
+	public int updateLang(SqlSessionTemplate session, Lang l) {
+		// TODO Auto-generated method stub
+		return session.update("resume.updateLang",l);
+	}
+
+	@Override
+	public int updateLinks(SqlSessionTemplate session, Links l) {
+		// TODO Auto-generated method stub
+		return session.update("resume.updateLinks",l);
+	}
+
+	@Override
+	public int updateEd(SqlSessionTemplate session, Education e) {
+		// TODO Auto-generated method stub
+		return session.update("resume.updateEd",e);
+	}
+
+	@Override
 	public int updateCareer(SqlSessionTemplate session, Career c) {
 		// TODO Auto-generated method stub
 		return session.update("resume.updateCareer",c);
@@ -78,6 +102,14 @@ public class ResumeDaoImpl implements ResumeDao {
 		// TODO Auto-generated method stub
 		return session.insert("resume.insertLink",r2);
 	}
+	@Override
+	public int insertCareer(SqlSessionTemplate session, Resume r2) {
+		// TODO Auto-generated method stub
+		
+		return session.insert("resume.insertCareer",r2);
+		
+	}
+
 
 	@Override
 	public List<Education> selectEd(SqlSessionTemplate session, Resume r) {
@@ -121,11 +153,6 @@ public class ResumeDaoImpl implements ResumeDao {
 		return session.selectOne("resume.selectResumeOne",r);
 	}
 
-	@Override
-	public int insertCareer(SqlSessionTemplate session, Resume r2) {
-		// TODO Auto-generated method stub
-		return session.insert("resume.insertCareer",r2);
-	}
 
 	@Override
 	public List<Resume> selectResume(SqlSessionTemplate session, Member m2) {

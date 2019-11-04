@@ -33,4 +33,8 @@ public interface ResumeDao {
 	int deleteLa(SqlSessionTemplate session,int deleteNo);	
 	int deleteLi(SqlSessionTemplate session,int deleteNo);	
 	int updateCareer(SqlSessionTemplate session,Career c);
+	int updateEd(SqlSessionTemplate session,Education e);
+	int updateAct(SqlSessionTemplate session,Activitie a);
+	int updateLang(SqlSessionTemplate session,Lang l);
+	int updateLinks(SqlSessionTemplate session,Links l);
 }

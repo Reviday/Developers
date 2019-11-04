@@ -85,12 +85,12 @@ public class ResumeController {
 		/*@ReponseBody이용*/
 		ObjectMapper mapper=new ObjectMapper();
 		//잭슨이 제공하는 객체 자바클래스하고 json자바스크립트 객체 매핑 시켜줌 
+		
 		Resume r2=service.selectResumeViewOne(r);
 		int result=service.insertCareer(r2);
-		System.out.println(result);
 		String jsonStr="";
 		try {
-			jsonStr=mapper.writeValueAsString(result);
+			jsonStr=mapper.writeValueAsString(r2.getResumeNo());
 		} catch (JsonProcessingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -101,14 +101,13 @@ public class ResumeController {
 	@RequestMapping("/resume/insertEd.lmc")
 	@ResponseBody
 	public String insertEd(Resume r,HttpServletResponse res) {
-		System.out.println(r);
 		ObjectMapper mapper=new ObjectMapper();
 		//잭슨이 제공하는 객체 자바클래스하고 json자바스크립트 객체 매핑 시켜줌 
 		Resume r2=service.selectResumeViewOne(r);
 		int result=service.insertEd(r2);
 		String jsonStr="";
 		try {
-			jsonStr=mapper.writeValueAsString(result);
+			jsonStr=mapper.writeValueAsString(r2.getResumeNo());
 		} catch (JsonProcessingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -126,7 +125,7 @@ public class ResumeController {
 		int result=service.insertAct(r2);
 		String jsonStr="";
 		try {
-			jsonStr=mapper.writeValueAsString(result);
+			jsonStr=mapper.writeValueAsString(r2.getResumeNo());
 		} catch (JsonProcessingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -144,7 +143,7 @@ public class ResumeController {
 		int result=service.insertLang(r2);
 		String jsonStr="";
 		try {
-			jsonStr=mapper.writeValueAsString(result);
+			jsonStr=mapper.writeValueAsString(r2.getResumeNo());
 		} catch (JsonProcessingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -162,7 +161,7 @@ public class ResumeController {
 		int result=service.insertLink(r2);
 		String jsonStr="";
 		try {
-			jsonStr=mapper.writeValueAsString(result);
+			jsonStr=mapper.writeValueAsString(r2.getResumeNo());
 		} catch (JsonProcessingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -185,18 +184,17 @@ public class ResumeController {
 	 * return jsonStr; }
 	 */
 	@RequestMapping("/resume/deleteIndex.lmc")
-	public ModelAndView checkId(int deleteNo,String deleteIndex,int resumeNo,HttpServletResponse res) {
+	public ModelAndView checkId(int deleteNo,int deleteIndex,int resumeNo,HttpServletResponse res) {
 		ModelAndView mv=new ModelAndView();
-		
-		if(deleteIndex.equals("c")) {
+		if(deleteIndex==1) {
 		int result=service.deleteCareer(deleteNo);
-		}else if(deleteIndex.equals("e")) {
+		}else if(deleteIndex==2) {
 		int result=service.deleteEd(deleteNo);
-		}else if(deleteIndex.equals("ac")) {
+		}else if(deleteIndex==3) {
 		int result=service.deleteAc(deleteNo);	
-		}else if(deleteIndex.equals("la")) {
+		}else if(deleteIndex==4) {
 		int result=service.deleteLa(deleteNo);	
-		}else if(deleteIndex.equals("li")) {
+		}else if(deleteIndex==5) {
 		int result=service.deleteLi(deleteNo);		
 		}
 		
@@ -224,12 +222,105 @@ public class ResumeController {
 		int resumeNo=c.getResumeNo();
 		String memEmail=c.getMemEmail();
 		int result=service.updateCareer(c);
-		System.out.println(result+"그거모냐 업데이트 된거니 ?");
-		System.out.println(c);
 		Resume r= new Resume();
 		r.setResumeNo(resumeNo);
 		r.setMemEmail(memEmail);
-		System.out.println(r);
+		Resume resume=service.selectResumeOne(r);
+		List<Career> career=service.selectCareer(resume);
+		List<Education> ed=service.selectEd(resume);
+		List<Activitie> ac=service.selectAc(resume);
+		List<Lang> Lang=service.selectLang(resume);
+		List<Links> links=service.selectLinks(resume);
+		mv.addObject("ed",ed);
+		mv.addObject("ac",ac);
+		mv.addObject("Lang",Lang);
+		mv.addObject("links",links);
+		mv.addObject("resume", resume);
+		mv.addObject("career", career);
+		mv.setViewName("resume/resumeView");
+		return mv;
+	}
+	@RequestMapping("/resume/updateEd.lmc")
+	public ModelAndView updateEd(Education e) {
+		ModelAndView mv=new ModelAndView();
+		int resumeNo=e.getResumeNo();
+		String memEmail=e.getMemEmail();
+		int result=service.updateEd(e);
+		Resume r= new Resume();
+		r.setResumeNo(resumeNo);
+		r.setMemEmail(memEmail);
+		Resume resume=service.selectResumeOne(r);
+		List<Career> career=service.selectCareer(resume);
+		List<Education> ed=service.selectEd(resume);
+		List<Activitie> ac=service.selectAc(resume);
+		List<Lang> Lang=service.selectLang(resume);
+		List<Links> links=service.selectLinks(resume);
+		mv.addObject("ed",ed);
+		mv.addObject("ac",ac);
+		mv.addObject("Lang",Lang);
+		mv.addObject("links",links);
+		mv.addObject("resume", resume);
+		mv.addObject("career", career);
+		mv.setViewName("resume/resumeView");
+		return mv;
+	}
+	@RequestMapping("/resume/updateAct.lmc")
+	public ModelAndView updateAct(Activitie a) {
+		ModelAndView mv=new ModelAndView();
+		int resumeNo=a.getResumeNo();
+		String memEmail=a.getMemEmail();
+		int result=service.updateAct(a);
+		Resume r= new Resume();
+		r.setResumeNo(resumeNo);
+		r.setMemEmail(memEmail);
+		Resume resume=service.selectResumeOne(r);
+		List<Career> career=service.selectCareer(resume);
+		List<Education> ed=service.selectEd(resume);
+		List<Activitie> ac=service.selectAc(resume);
+		List<Lang> Lang=service.selectLang(resume);
+		List<Links> links=service.selectLinks(resume);
+		mv.addObject("ed",ed);
+		mv.addObject("ac",ac);
+		mv.addObject("Lang",Lang);
+		mv.addObject("links",links);
+		mv.addObject("resume", resume);
+		mv.addObject("career", career);
+		mv.setViewName("resume/resumeView");
+		return mv;
+	}
+	@RequestMapping("/resume/updateLang.lmc")
+	public ModelAndView updateLang(Lang l) {
+		ModelAndView mv=new ModelAndView();
+		int resumeNo=l.getResumeNo();
+		String memEmail=l.getMemEmail();
+		int result=service.updateLang(l);
+		Resume r= new Resume();
+		r.setResumeNo(resumeNo);
+		r.setMemEmail(memEmail);
+		Resume resume=service.selectResumeOne(r);
+		List<Career> career=service.selectCareer(resume);
+		List<Education> ed=service.selectEd(resume);
+		List<Activitie> ac=service.selectAc(resume);
+		List<Lang> Lang=service.selectLang(resume);
+		List<Links> links=service.selectLinks(resume);
+		mv.addObject("ed",ed);
+		mv.addObject("ac",ac);
+		mv.addObject("Lang",Lang);
+		mv.addObject("links",links);
+		mv.addObject("resume", resume);
+		mv.addObject("career", career);
+		mv.setViewName("resume/resumeView");
+		return mv;
+	}
+	@RequestMapping("/resume/updateLinks.lmc")
+	public ModelAndView updateLinks(Links l) {
+		ModelAndView mv=new ModelAndView();
+		int resumeNo=l.getResumeNo();
+		String memEmail=l.getMemEmail();
+		int result=service.updateLinks(l);
+		Resume r= new Resume();
+		r.setResumeNo(resumeNo);
+		r.setMemEmail(memEmail);
 		Resume resume=service.selectResumeOne(r);
 		List<Career> career=service.selectCareer(resume);
 		List<Education> ed=service.selectEd(resume);

@@ -31,5 +31,9 @@ public interface ResumeService {
 	int deleteLa(int deleteNo);	
 	int deleteLi(int deleteNo);		
 	int updateCareer(Career c);
+	int updateEd(Education e);
+	int updateAct(Activitie a);
+	int updateLang(Lang l);
+	int updateLinks(Links l);
 	
 }

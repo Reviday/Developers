@@ -190,7 +190,7 @@
                                          <input type="hidden" value="${memEmail }" name="memEmail"/> 
                                        
                                        <button class="btn-delete btn" type="button"
-                                           onclick="deleteModal('${careerNo}','c');">
+                                           onclick="deleteModal('${careerNo}',1);">
                                            <i class="fas fa-times"></i>
                                            </button>
                                         <button class="btn-save btn" type="submit">
@@ -534,6 +534,7 @@
             success: function(data){
         var careers = document.createElement('ul');
         var plus = '';
+        plus +='<form action="${path }/resume/updateCareer.lmc" method="post" >';
         plus +='<li class="list-group-item sortable-item careers">';
         plus +='<div class="portlet-handler"><div class="handler" ></div></div><div class="career-item clearfix">';
         plus +='<div class="col-sm-3"><div class="period" >';
@@ -551,8 +552,10 @@
         plus +='</div><div class="resume-input-form-group">';
         plus +='<input class="resume-input title" type="text" maxlength="255" placeholder="부서명/직책" ></div>';
         plus +='<div class="resume-list projects" ><div class="resume-list-body"></div></div></div>';
-        plus += '<button class="btn-delete btn"  onclick="deleteModal();">';
-        plus += '<i class="fas fa-times"></i></button></div></li>';
+        plus += "<button class='btn-delete btn' type='button'  onclick='deleteModal("+data+",1);'>";
+        plus += '<i class="fas fa-times"></i></button>';
+        plus += '<button class="btn-save btn" type="submit"><i class="far fa-save"></i></button></div></li>';
+        plus += '</form>';
         careers.innerHTML = plus;
         document.getElementById('careerslist').append(careers);
         },
@@ -571,23 +574,18 @@
     	            success: function(data){
         var educations = document.createElement('ul');
         var plus = '';
-        plus +=
-            '<li class="list-group-item sortable-item educations"><div class="portlet-handler">';
-        plus +=
-            '<div class="handler"></div></div><div class="education-item clearfix" ><div class="col-sm-3"><div class="period"><div class="datetime"><div class="start-time"><div class="form-group">';
-        plus +=
-            '<input type="text" maxlength="6" class="year form-control" placeholder="YYYYMM" onKeyup="this.value=this.value.replace(/[^0-9]/g,' +
-            "''" + ');"/>';
-        plus += '</div><div class="form-group" >';
-        plus +=
-            '</div><div class="end-time" ><span class="delimiter" >-</span><div class="form-group" >';
-        plus +=
-            '<input type="text" maxlength="6" value="" class="year form-control" placeholder="YYYYMM" onKeyup="this.value=this.value.replace(/[^0-9]/g,' +
-            "''" + ');"/>';
-        plus +=
-            '</div><div class="form-group" ></div></span></div></div><div class="form-group"></div></div></div></div><div class="col-sm-9"><div class="search-input-box resume-input-form-group"><form action="."><input type="search" class="resume-input school_name" placeholder="학교명"></form></div><div class="search-input-box resume-input-form-group"><form action="."><input type="search" class="resume-input major" placeholder="전공 및 학위 (ex: 경영학과 학사)"></form></div><div class="resume-input-form-group"><div class="dynamic-textarea"><textarea style="height:34px;" class="resume-input description" maxlength="1000" placeholder="이수과목 또는 연구내용"></textarea><textarea class="textarea-clone" readonly="" style="top: 0px; left: 0px; width: 750px; padding: 0px; font-size: 14px; line-height: 22.4px; font-weight: 400; position: absolute; visibility: hidden; z-index: -9999; height: 0px;">이수과목 또는 연구내용</textarea></div></div></div>';
-        plus +=
-            '<button class="btn-delete btn btn-default" type="button" onclick="deleteModal('+1+');"><i class="fas fa-times"></i></button></div></li>';
+        plus +='<form action="${path }/resume/updateEd.lmc" method="post" >';
+        plus +='<li class="list-group-item sortable-item educations"><div class="portlet-handler">';
+        plus +='<div class="handler"></div></div><div class="education-item clearfix" ><div class="col-sm-3"><div class="period"><div class="datetime"><div class="start-time"><div class="form-group">';
+        plus +='<input type="text" maxlength="6" class="year form-control" placeholder="YYYYMM" onKeyup="this.value=this.value.replace(/[^0-9]/g,' +"''" + ');"/>';
+        plus +='</div><div class="form-group" >';
+        plus +='</div><div class="end-time" ><span class="delimiter" >-</span><div class="form-group" >';
+        plus +='<input type="text" maxlength="6" value="" class="year form-control" placeholder="YYYYMM" onKeyup="this.value=this.value.replace(/[^0-9]/g,' +"''" + ');"/>';
+        plus +='</div><div class="form-group" ></div></span></div></div><div class="form-group"></div></div></div></div><div class="col-sm-9"><div class="search-input-box resume-input-form-group"><form action="."><input type="search" class="resume-input school_name" placeholder="학교명"></form></div><div class="search-input-box resume-input-form-group"><form action="."><input type="search" class="resume-input major" placeholder="전공 및 학위 (ex: 경영학과 학사)"></form></div><div class="resume-input-form-group"><div class="dynamic-textarea"><textarea style="height:34px;" class="resume-input description" maxlength="1000" placeholder="이수과목 또는 연구내용"></textarea><textarea class="textarea-clone" readonly="" style="top: 0px; left: 0px; width: 750px; padding: 0px; font-size: 14px; line-height: 22.4px; font-weight: 400; position: absolute; visibility: hidden; z-index: -9999; height: 0px;">이수과목 또는 연구내용</textarea></div></div></div>';
+        plus +='<button class="btn-delete btn btn-default" type="button" onclick="deleteModal('+data+',2);">';
+        plus +='<i class="fas fa-times"></i></button>';
+        plus +='<button class="btn-save btn" type="submit"><i class="far fa-save"></i></button></div></li>';
+        plus +='</form>';
         educations.innerHTML = plus;
         document.getElementById('educationslist').append(educations);
     	            },
@@ -606,15 +604,14 @@
     
         var activities = document.createElement('ul');
         var plus = '';
-        plus +=
-            '<li class="list-group-item sortable-item activities" ><div class="portlet-handler"><div class="handler" ></div></div><div class="activity-item clearfix"><div class="col-sm-3"><div class="period"><div class="datetime"><div class="start-time"><div class="form-group">';
-        plus +=
-            '<input type="text" maxlength="6" class="year form-control" placeholder="YYYYMM" onKeyup="this.value=this.value.replace(/[^0-9]/g,' +
-            "''" + ');"/>';
-        plus +=
-            '</div><div class="form-group"></div></span></div></div></div></div><div class="col-sm-9"><div class="resume-input-form-group"><input class="resume-input title" type="text" maxlength="255" placeholder="활동명"></div><div class="resume-input-form-group"><div class="dynamic-textarea"><textarea style="height:34px;" class="resume-input description" maxlength="1000" placeholder="세부사항"></textarea><textarea class="textarea-clone" readonly="" style="top: 0px; left: 0px; width: 576px; padding: 0px; font-size: 14px; line-height: 22.4px; font-weight: 400; position: absolute; visibility: hidden; z-index: -9999; height: 0px;">세부사항</textarea></div></div></div>';
-        plus +=
-            '<button class="btn-delete btn btn-default" type="button" onclick="deleteModal('+1+');"><i class="fas fa-times"></i></button></div></li>';
+        plus +='<form action="${path }/resume/updateAct.lmc" method="post" >';
+        plus +='<li class="list-group-item sortable-item activities" ><div class="portlet-handler"><div class="handler" ></div></div><div class="activity-item clearfix"><div class="col-sm-3"><div class="period"><div class="datetime"><div class="start-time"><div class="form-group">';
+        plus +='<input type="text" maxlength="6" class="year form-control" placeholder="YYYYMM" onKeyup="this.value=this.value.replace(/[^0-9]/g,' +"''" + ');"/>';
+        plus +='</div><div class="form-group"></div></span></div></div></div></div><div class="col-sm-9"><div class="resume-input-form-group"><input class="resume-input title" type="text" maxlength="255" placeholder="활동명"></div><div class="resume-input-form-group"><div class="dynamic-textarea"><textarea style="height:34px;" class="resume-input description" maxlength="1000" placeholder="세부사항"></textarea><textarea class="textarea-clone" readonly="" style="top: 0px; left: 0px; width: 576px; padding: 0px; font-size: 14px; line-height: 22.4px; font-weight: 400; position: absolute; visibility: hidden; z-index: -9999; height: 0px;">세부사항</textarea></div></div></div>';
+        plus +='<button class="btn-delete btn btn-default" type="button" onclick="deleteModal('+data+',3);">';
+        plus +='<i class="fas fa-times"></i></button>';
+        plus +='<button class="btn-save btn" type="submit"><i class="far fa-save"></i></button></div></li>';
+        plus +='</form>';
         activities.innerHTML = plus;
         document.getElementById('activitieslist').append(activities);
 	            },
@@ -634,6 +631,7 @@
     
         var languages = document.createElement('ul');
         var plus = '';
+        plus +='<form action="${path }/resume/updateLang.lmc" method="post" >';
         plus +=
             '<li class="list-group-item sortable-item languages"><div class="portlet-handler"><div class="handler"></div></div><div class="lang-item clearfix"><div class="col-sm-9 col-sm-offset-3">';
         plus +=
@@ -658,7 +656,9 @@
         plus +=
             '</div><div class="resume-list exams" ><div class="resume-list-body"></div></div></div>';
         plus +=
-            '<button class="btn-delete btn btn-default" type="button" onclick="deleteModal('+1+');"><i class="fas fa-times"></i></button></div></li>';
+            '<button class="btn-delete btn btn-default" type="button" onclick="deleteModal('+data+',4);"><i class="fas fa-times"></i></button>';
+        plus +='<button class="btn-save btn" type="submit"><i class="far fa-save"></i></button></div></li>';
+        plus +='</form>';
         languages.innerHTML = plus;
         document.getElementById('languagelist').append(languages);
 	            },
@@ -677,10 +677,13 @@
 	            success: function(data){
         var links = document.createElement('ul');
         var plus = '';
+        plus +='<form action="${path }/resume/updateLinks.lmc" method="post" >';
         plus +=
             '<li class="list-group-item sortable-item links"><div class="portlet-handler"><div class="handler"></div></div><div class="link-item clearfix"><div class="resume-input-form-group"><input class="resume-input url" type="text" maxlength="300" placeholder="http://" ></div>';
         plus +=
-            '<button class="btn-delete btn btn-default" type="button" onclick="deleteModal('+1+');"><i class="fas fa-times"></i></button></div></li>';
+            '<button class="btn-delete btn btn-default" type="button" onclick="deleteModal('+data+',5);"><i class="fas fa-times"></i></button>';
+        plus +='<button class="btn-save btn" type="submit"><i class="far fa-save"></i></button></div></li>';
+        plus +='</form>';
         links.innerHTML = plus;
         document.getElementById('linklist').append(links);
 	            },
@@ -692,6 +695,7 @@
 
     }
     function deleteModal(no,index){
+    console.log("여긴오니?");
     $("#deleteModal").removeClass('iKzpWM');
     $("#deleteModal3").removeClass('gMLFic'); 
     $("#deleteModal").addClass('bLaSri');
@@ -699,7 +703,7 @@
     $("#deleteModal3").addClass('emhpxA');
     $("body").addClass('stop-scrolling');
     var deleteNo=no;
-    var deleteIndex= index;
+    var deleteIndex=index;
     $('#deleteNo').val(deleteNo);
     $('#deleteIndex').val(deleteIndex);
     
