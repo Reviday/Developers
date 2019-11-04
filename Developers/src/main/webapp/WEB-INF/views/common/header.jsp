@@ -56,7 +56,7 @@
                <li class=""><a href="${path }/search/mainSearch.do" class="">탐색</a></li>
                </c:if>
                <c:if test="${not empty loginMember }">
-               <li class=""><a href="${path }/search/mainSearch.lmc" class="">탐색</a></li>
+               <li class=""><a href="${path }/search/mainSearch.lmc?memNo=${loginMember.memNo}" class="">탐색</a></li>
                </c:if>
                <li class="microMoreVisible"><a href="${path }/salary/salaryView.do" class="">직군별 연봉</a></li>
                 <c:if test="${loginMember!=null }">  

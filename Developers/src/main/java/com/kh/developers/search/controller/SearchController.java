@@ -30,13 +30,26 @@ public class SearchController {
 
 	// 탐색메뉴 눌렀을 때의 첫 회사리스트페이지(비로그인)
 	@RequestMapping("/search/mainSearch.do")
-	public String mainSearchList(Model model, String jobName) {
+	public String mainSearchList(Model model) {
 		// 적극채용중인 회사
 		List<Position> firstPsList = service.firstPsList();
 		model.addAttribute("firstPsList", firstPsList);
 		// 일반 리스트
 		List<JobField> list = service.jobfieldList();
 		List<Position> psList = service.positionList();
+		model.addAttribute("list", list);
+		model.addAttribute("psList", psList);
+		return "search/mainSearch";
+	}
+	// 탐색메뉴 눌렀을 때의 첫 회사리스트페이지(로그인)
+	@RequestMapping("/search/mainSearch.lmc")
+	public String mainSearchLoginList(Model model, int memNo) {
+		// 적극채용중인 회사
+		List<Position> firstPsList = service.firstPsList();
+		model.addAttribute("firstPsList", firstPsList);
+		// 일반 리스트
+		List<JobField> list = service.jobfieldList();
+		List<Position> psList = service.positionLoginList(memNo);
 		model.addAttribute("list", list);
 		model.addAttribute("psList", psList);
 		return "search/mainSearch";
