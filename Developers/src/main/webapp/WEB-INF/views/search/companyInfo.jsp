@@ -530,6 +530,7 @@
 	        title : "Hello Marker"
 	    });
 	    marker.setMap(map); 
+	    	
 	} 
 </script>
 <script async defer  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXNeoRZYBee7rZgjb0jWpmVUMsx-DPZUg&callback=initMap"></script>

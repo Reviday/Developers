@@ -11,10 +11,13 @@
 		UPDATE MEMBER_AUTH_EMAIL SET MAE_USE_DATETIME=SYSDATE, MAE_EXPIRED='Y' WHERE MEM_NO=#{memNo}
 	</update>
 	<insert id="insertMember" parameterType="member">
-		INSERT INTO TA_MEMBER VALUES(MEM_SEQ.NEXTVAL, #{memEmail}, #{memPassword}, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT) 
+		INSERT INTO TA_MEMBER VALUES(MEM_SEQ.NEXTVAL, #{memEmail}, #{memPassword}, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, MEM_FILTER_ID_SEQ.NEXTVAL) 
 		<selectKey keyProperty="memNo" resultType="_int" order="AFTER">
 			SELECT MEM_SEQ.CURRVAL FROM DUAL
 		</selectKey>
+	</insert>
+	<insert id="insertFilter">
+		INSERT INTO MEM_FILTER VALUES(MEM_FILTER_SEQ.NEXTVAL, MEM_FILTER_ID_SEQ.CURRVAL, DEFAULT, DEFAULT, DEFAULT, DEFAULT)
 	</insert>
 	<insert id="createAuthKey" parameterType="map">
 		INSERT INTO MEMBER_AUTH_EMAIL VALUES(MAE_SEQ.NEXTVAL, #{memNo}, #{key}, 'E', DEFAULT, DEFAULT, DEFAULT)
@@ -47,5 +50,6 @@
 		<result property="memStatus" column="mem_status"/>
 		<result property="memWithdrawalDate" column="mem_withdrawal_date"/>
 		<result property="memDeniedDate" column="mem_denied_date"/>
+		<result property="filter_id" column="filter_id"/>
 	</resultMap>
 </mapper>

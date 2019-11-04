@@ -14,4 +14,5 @@ public interface MemberDao {
 	int checkAuth(SqlSessionTemplate session, Member m);
 	int successAuth(SqlSessionTemplate session, Member m);
 	int lastStepEnrollEnd(SqlSessionTemplate session, Member m);
+	int insertFilter(SqlSessionTemplate session);
 }

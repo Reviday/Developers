@@ -182,7 +182,7 @@
                             		<li>
                                 		<div class="searchHeader">
                                 			
-                                    		<div class="companyBg"></div>
+                                    		<div class="companyBg" style="background-image: url(${f.bus_images[0]})"></div>
                                 		</div>
 		                                <footer>
 		                                    <div class="logoCircle" style="background-image: url(${f.bus_logo})"></div>
@@ -206,7 +206,7 @@
 		                            <c:if test="${empty loginMember }">
 		                            <a href="${path }/search/companyInfo1.do?positionNo=${p.position_no }">
 		                            </c:if>
-		                                <div class="buttonHeader">
+		                                <div class="buttonHeader" style="background-image: url(${p.bus_images[0]})">
 		                                    <button class="likeButton">
 		                                        <i class="fas fa-heart"></i>
 		                                        <c:out value="${p.like_count }"/>
@@ -327,6 +327,11 @@
 		$(".naraBtn").next().removeClass('narabody-btn');
 		$(".naraBtn").prev().removeClass('narabody-btn');
 		$(this).addClass('narabody-btn');
+		if($(this).text() != "한국") {
+			$(".modaljiuk").css("display", "none");
+		}else{
+			$(".modaljiuk").css("display", "block");
+		}
 	})
 	$(".jiukBtn").click(function(e) {
 		var classVal = e.target.className;
@@ -334,4 +339,5 @@
 		$(".jiukBtn").prev().removeClass('jiuk-btn');
 		$(this).addClass('jiuk-btn');
 	})
+
 </script>

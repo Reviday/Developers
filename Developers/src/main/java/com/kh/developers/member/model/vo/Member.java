@@ -39,4 +39,5 @@ public class Member {
 	private String memStatus; // 회원 계정 상태
 	private Date memWithdrawalDate; // 회원 탈퇴 일시
 	private Date memDeniedDate; //회원 차단 일시
+	private int filter_id; //회원 필터id
 }

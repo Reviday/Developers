@@ -100,4 +100,10 @@ public class MemberServiceImpl implements MemberService {
 	public Member selectMemberOne(Member m) {
 		return dao.selectMemberOne(session, m);
 	}
+	//멤버생성 시 필터테이블 추가
+	@Override
+	public int insertFilter() {
+		// TODO Auto-generated method stub
+		return dao.insertFilter(session);
+	}
 }

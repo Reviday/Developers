@@ -186,9 +186,11 @@ public class MemberController {
 		int target=url.indexOf("developers");
 		String frontUrl=url.substring(0,target);
 		int result=0;
+		int result1=0;
 		String msg="";
 		try {
 			result=service.insertMember(m, frontUrl);
+			result1 = service.insertFilter();
 		} catch (Exception e) {
 			msg="회원가입에 실패하였습니다. 다시 확인해주시기 바랍니다.";
 			rttr.addFlashAttribute("msg",msg);

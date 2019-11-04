@@ -9,4 +9,5 @@ public interface MemberService {
 	int checkAuth(Member m);
 	void sendMail(Member m, String url) throws Exception;
 	Member lastStepEnrollEnd(Member m);
+	int insertFilter();
 }

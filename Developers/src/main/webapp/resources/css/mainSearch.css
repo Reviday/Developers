@@ -523,7 +523,6 @@ a, a:active, a:hover, a:visited {
 }
 
 .firstCompany-list>ul>a>li>.searchHeader>.companyBg {
-    background-image: url(https://static.wanted.co.kr/images/company/6788/dewawgsbb8od0gcr__1080_790.jpg);
     height: calc(100% + 1px);
     border-radius: 3px 3px 0 0;
     background-position: 50%;
@@ -546,7 +545,6 @@ a, a:active, a:hover, a:visited {
 }
 
 .firstCompany-list>ul>a>li>footer>.logoCircle {
-    background-image: url(https://static.wanted.co.kr/images/wdes/0_5.15dba21f.jpg);
     position: absolute;
     top: -25px;
     left: 16px;
@@ -610,7 +608,6 @@ a, a:active, a:hover, a:visited {
 }
 
 .company-list .buttonHeader {
-    background-image: url(https://static.wanted.co.kr/images/company/6817/rjmnqz8mznybrn47__400_400.jpg);
     padding-bottom: 75%;
     position: relative;
     background-size: cover;

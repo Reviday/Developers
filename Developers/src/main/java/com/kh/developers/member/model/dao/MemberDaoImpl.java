@@ -39,4 +39,10 @@ public class MemberDaoImpl implements MemberDao {
 	public Member selectMemberOne(SqlSessionTemplate session, Member m) {
 		return session.selectOne("member.selectMemberOne", m);
 	}
+	
+	@Override
+	public int insertFilter(SqlSessionTemplate session) {
+		// TODO Auto-generated method stub
+		return session.insert("member.insertFilter");
+	}
 }
