@@ -49,6 +49,11 @@
 			<mapping path="/*/*.lac"/>
 			<beans:bean class="com.kh.developers.common.interceptor.LoginAdminCheck"/>
 		</interceptor>
+		<interceptor>
+			<mapping path="/besiness"/>
+			<mapping path="/besiness/*"/>
+			<beans:bean class="com.kh.developers.common.interceptor.BusinessIndexReset"/>
+		</interceptor>
 	</interceptors>
 	
 	<!-- 파일업로드처리 resolver등록 -->

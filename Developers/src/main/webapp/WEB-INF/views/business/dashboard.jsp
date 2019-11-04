@@ -24,7 +24,7 @@
 							<a class="ei_a1" href="${path}/business/applications.lbc">지원자</a>
 						</li>
 						<li class="ls1 ls3">
-							<a class="ei_a1" href="${path}/business/machup.lbc">매치업</a>
+							<a class="ei_a1" href="${path}/business/matchup.lbc">매치업</a>
 						</li>
 						<li class="ls1 ls3">
 							<a class="ei_a1" href="${path}/business/position.lbc">포지션</a>
@@ -130,6 +130,8 @@
 				</c:if>
 			</div>
 		</div> -->
+
+		
 	</div>
 </section>
 <script>
@@ -137,10 +139,18 @@
 	var db_index="${dbIndex}";
 	var db_html="${dbHtml}";
 	var appl_index="${applIndex}";
+
 	
 </script>
 <script src="${path}/resources/js/db-main.js"></script>
-<c:if test="${dbIndex eq 1}">
+<c:if test="${dbIndex eq 1}">	
 	<script src="${path}/resources/js/db-applications.js"></script>
+</c:if>
+<c:if test="${dbIndex eq 2}">	
+	<!-- <script src="${path}/resources/js/db-matchup.js"></script> -->
+</c:if>
+
+<c:if test="${dbIndex eq 5}">	
+	<!-- <script src="${path}/resources/js/db-businfo.js"></script> -->
 </c:if>
 <jsp:include page="/WEB-INF/views/business/footer.jsp"/> 

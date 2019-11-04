@@ -42,14 +42,13 @@ $(function(){
 });
   
 function fn_appl_nav(index){
-    appl_index=index;
+    appl_index=index==""?0:index;
+    $(".appl-applicant-list").html("<img src='"+path+"/resources/images/Developers_black_loading.gif' width='30px;'/>");
     $.ajax({
         url:path+"/business/applChange",
         data:{"applIndex":appl_index, "like":$("#like_check").prop("checked"),"search":$("[name='search_em']").val()},
         success:function(data){
             $(".appl-applicant-list").html(data.applInnerHtml);
-            console.log(data.likeCh);
-            console.log(data.search);
         }
     });
 }

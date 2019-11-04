@@ -94,7 +94,7 @@ public class BusinessController2 {
 	}
 	
 	@RequestMapping("/business/applications.lbc")
-	public ModelAndView dashboardApplications(Model model,HttpServletRequest req) {
+	public ModelAndView dbApplications(Model model,HttpServletRequest req) {
 		ModelAndView mv=new ModelAndView();
 		System.out.println(req.getHeader("referer"));
 		System.out.println(req.getRequestURI());
@@ -241,5 +241,20 @@ public class BusinessController2 {
 		mv.addObject("applInnerHtml", html);
 		mv.setViewName("jsonView");
 		return mv; 
+	}
+	
+	
+	@RequestMapping("/business/busInfo.lbc")
+	public ModelAndView dbMatchup() {
+		ModelAndView mv=new ModelAndView();
+		String biHtml="";
+		biHtml+="<div id='mu-top'>";
+		biHtml+="<h3>개발자 전체</h3>";
+		biHtml+="</div>";
+		
+		mv.addObject("dbHtml", biHtml);
+		mv.addObject("dbIndex",5	);
+		mv.setViewName("business/dashboard");
+		return mv;
 	}
 }
