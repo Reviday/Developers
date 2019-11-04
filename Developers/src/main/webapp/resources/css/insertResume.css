@@ -6557,3 +6557,6 @@ body.stop-scrolling {
     z-index: -999;
     overflow-x: hidden;
 }
+.custom-select{
+	width: 100px !important;
+}
