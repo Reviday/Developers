@@ -164,7 +164,7 @@
                      </li>
                      <li class="smMoreVisible">
                      	<c:if test="${loginMember.memLevel>=5 }">
-                     		<a class="dashboardButton" href="${path }/admin/adminPage">관리자 페이지</a>
+                     		<a class="dashboardButton" href="${path }/admin/adminPage.lac">관리자 페이지</a>
                      	</c:if>
                      	<c:if test="${loginMember.memLevel<5 }">
 	                        <a class="dashboardButton" href="${path }/business">기업 서비스</a>
@@ -218,7 +218,7 @@
                         <div class="divider xsOnly"></div>
                         <li class="xsOnly">
                            <c:if test="${loginMember.memLevel>=5 }">
-                     		<a class="dashboardButton" href="${path }/admin/adminPage">관리자 페이지</a>
+                     		<a class="dashboardButton" href="${path }/admin/adminPage.lac">관리자 페이지</a>
                      	</c:if>
                      	<c:if test="${loginMember.memLevel<5 }">
 	                        <a class="dashboardButton" href="${path }/business">기업 서비스</a>
