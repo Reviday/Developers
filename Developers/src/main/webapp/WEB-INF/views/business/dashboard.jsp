@@ -21,7 +21,7 @@
 				<nav class="nav">
 					<ul class="ei_nav nav_us">
 						<li class="ls1 ls3" >
-							<a class="ei_a1" href="${path}/business/applications.lbc">지원자</a>
+							<a class="ei_a1" href="${path}/business/applicants.lbc">지원자</a>
 						</li>
 						<li class="ls1 ls3">
 							<a class="ei_a1" href="${path}/business/matchup.lbc">매치업</a>
@@ -144,7 +144,7 @@
 </script>
 <script src="${path}/resources/js/db-main.js"></script>
 <c:if test="${dbIndex eq 1}">	
-	<script src="${path}/resources/js/db-applications.js"></script>
+	<script src="${path}/resources/js/db-applicants.js"></script>
 </c:if>
 <c:if test="${dbIndex eq 2}">	
 	<!-- <script src="${path}/resources/js/db-matchup.js"></script> -->

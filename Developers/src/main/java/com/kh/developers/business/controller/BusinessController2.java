@@ -93,11 +93,9 @@ public class BusinessController2 {
 		return mv;
 	}
 	
-	@RequestMapping("/business/applications.lbc")
+	@RequestMapping("/business/applicants.lbc")
 	public ModelAndView dbApplications(Model model,HttpServletRequest req) {
 		ModelAndView mv=new ModelAndView();
-		System.out.println(req.getHeader("referer"));
-		System.out.println(req.getRequestURI());
 		String applHtml="";
 		applHtml+="<div id='appl-leftside' class='appl-leftside'>";
 		applHtml+="<h5>채용중<i class='fas fa-angle-up'></i></h5>";
@@ -153,6 +151,7 @@ public class BusinessController2 {
 		applHtml+="<input type='checkbox' class='' id='like_check' name='like_check'/><label for='like_check'>별표한 지원자만 보기</label>";
 		applHtml+="</div>";
 		applHtml+="<div class='appl-applicant-list'>";
+		
 		applHtml+="</div>";
 /*<div class='appl-applicant-list'>
 				<c:if test='${empty aList}'>
@@ -248,12 +247,12 @@ public class BusinessController2 {
 	public ModelAndView dbMatchup() {
 		ModelAndView mv=new ModelAndView();
 		String biHtml="";
-		biHtml+="<div id='mu-top'>";
-		biHtml+="<h3>개발자 전체</h3>";
+		biHtml+="<div id='bi-top'>";
+		biHtml+="<nav></nav>";
 		biHtml+="</div>";
 		
 		mv.addObject("dbHtml", biHtml);
-		mv.addObject("dbIndex",5	);
+		mv.addObject("dbIndex",5);
 		mv.setViewName("business/dashboard");
 		return mv;
 	}

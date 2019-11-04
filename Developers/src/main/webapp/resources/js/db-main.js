@@ -6,7 +6,7 @@ $(window).ready(function(){
         $($(".ei_nav>li>a")[db_index-1]).addClass("ca1");
         
     }else{
-        location.href=path+"/business/applications.lbc";
+        location.href=path+"/business/applicants.lbc";
     }
 });
 
