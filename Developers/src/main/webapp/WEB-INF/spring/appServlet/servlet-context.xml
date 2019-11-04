@@ -50,8 +50,7 @@
 			<beans:bean class="com.kh.developers.common.interceptor.LoginAdminCheck"/>
 		</interceptor>
 		<interceptor>
-			<mapping path="/besiness"/>
-			<mapping path="/besiness/*"/>
+			<mapping path="/business/*"/>
 			<beans:bean class="com.kh.developers.common.interceptor.BusinessIndexReset"/>
 		</interceptor>
 	</interceptors>

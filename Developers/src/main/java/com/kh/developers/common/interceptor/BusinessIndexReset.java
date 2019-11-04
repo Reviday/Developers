@@ -11,24 +11,15 @@ import com.kh.developers.member.model.vo.Member;
 public class BusinessIndexReset extends HandlerInterceptorAdapter {
 
 	@Override
-	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
-			throws Exception {
-		System.out.println(request.getHeader("referer").indexOf("business"));
-		if(request.getHeader("referer").indexOf("business")<0) {
-			System.out.println("dd");
-			request.getSession().setAttribute("applIndex",0);
-		}
-		return super.preHandle(request, response, handler);
-	}
-	
-	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
-		if(request.getHeader("referer").indexOf("business")<0) {
-			System.out.println("dd");
+		if(request.getHeader("referer")==null) {
+			request.getSession().setAttribute("applIndex",0);
+		}else if(request.getHeader("referer")!=null&&request.getRequestURL().indexOf("appl")<0) {
 			request.getSession().setAttribute("applIndex",0);
 		}
 		super.postHandle(request, response, handler, modelAndView);
 	}
-
+	
+	
 }
