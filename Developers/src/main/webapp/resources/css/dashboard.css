@@ -9,6 +9,8 @@ section{
     position: relative;
     display: inline-grid;
 }
+
+/*applicants*/
 .appl-main{
     margin: 0 10px;
 }
@@ -44,9 +46,6 @@ section{
     color:coral;
     font-weight: 900;
 }
-
-
-
 .appl-main-top{
     width:100%;
     border:1px solid rgb(226, 224, 224);
@@ -103,21 +102,16 @@ input[name='search_em']{
     outline: none;
     font-size: 1.4rem;
     padding:1px 2px;
-    
-
 }
 input[name="search_em"]::placeholder{
     color:silver;
     font-size: 1.4rem;
 }
-
 .appl-like-check{
     width:100%;
     text-align: right;
     padding:10px 0px;
-    margin-top:-20px;
-    
-    
+    margin-top:-20px;   
 }
 .appl-like-check>input[type="checkbox"]{
     width: 1.7rem;
@@ -145,7 +139,6 @@ input[name="search_em"]::placeholder{
 .aList-like-btn{
     margin:22px 20px;
     margin-left: 40px;
-
 }
 .aList-like-btn>svg{
     color:silver;
@@ -161,8 +154,7 @@ input[name="search_em"]::placeholder{
     font-size: 1.5rem;
     text-align: left;
     margin: 3px 2px;
-    color:rgb(156, 156, 156);
-    
+    color:rgb(156, 156, 156);   
 }
 .aList-info-name{
     font-size: 1.6rem;
@@ -176,7 +168,6 @@ input[name="search_em"]::placeholder{
     border:1px solid silver;
     border-radius: 2px;
 }
-
 .aList-right>div{
     position: relative;
     display: inline-grid;
@@ -186,7 +177,6 @@ input[name="search_em"]::placeholder{
 .aList-del-btn{
     margin:16px 20px;
 }
-
 .del-btn{
     border:1px solid #900020;
     color:#900020;
@@ -200,7 +190,41 @@ input[name="search_em"]::placeholder{
     color:white;
 }
 
+/*matchup*/
+.mu-top{
+    background-color: black;
+    color:white;
+    margin:0 auto;
+}
+.mu-top>form{
+    background-color: white;
+    display : flex;
+    align-content: center;
+    justify-content: center;
+    height: 50px;
+    width:100%;
+}
+.mu-input{
+    width:100% -40px;
+    height:32px;
+    border: none;
+}
+.mu-search{
+    border:2px solid black;
+    border-radius: 3px;
+    background-color:white;
+    padding:3px 2px;
+    font-weight: 900;
+    font-size: 1.5rem;
+    margin-left: 3px;
+    height:30px;
+}
 
+
+
+
+
+/*반응형/크기 */
 @media (min-width: 1200px){
     .db-container{
         width:1024px;
@@ -209,6 +233,10 @@ input[name="search_em"]::placeholder{
         width:200px;
     }
     .appl-main{
+        width:790px;
+    }
+
+    .mu-top{
         width:790px;
     }
 
@@ -221,6 +249,10 @@ input[name="search_em"]::placeholder{
         width:19%;
     }
     .appl-main{
+        width:75%;
+    }
+
+    .mu-top{
         width:75%;
     }
     
@@ -240,6 +272,11 @@ input[name="search_em"]::placeholder{
     }
     .appl-leftside>h5>svg{
         display: block;
+    }
+
+    .mu-top{
+        width:100% -25px;
+        top:20px;
     }
 
 }
