@@ -64,25 +64,25 @@ SELECT * FROM RESUME WHERE MEM_EMAIL=#{memEmail} and RESUME_NO=#{resumeNo}
 <insert id="insertEd" parameterType="resume">
 	INSERT INTO EDUCATION VALUES(seq_education.NEXTVAL,#{memEmail},default,default,default,default,default,default,#{resumeNo})
 	<selectKey keyProperty="resumeNo" resultType="_int" order="AFTER">
-	SELECT SEQ_EDUCATION.CURRVAL FROM DUAL
+	SELECT seq_education.CURRVAL FROM DUAL
 	</selectKey>
 </insert>
 <insert id="insertAct" parameterType="resume">
 	INSERT INTO ACTIVITIE VALUES(seq_activitie.NEXTVAL,#{memEmail},default,default,default,default,#{resumeNo})
 	<selectKey keyProperty="resumeNo" resultType="_int" order="AFTER">
-	SELECT SEQ_ACTIVITIES.CURRVAL FROM DUAL
+	SELECT seq_activitie.CURRVAL FROM DUAL
 	</selectKey>
 </insert>
 <insert id="insertLang" parameterType="resume">
 	INSERT INTO LANG VALUES(seq_lang.NEXTVAL,#{memEmail},default,default,default,#{resumeNo})
 	<selectKey keyProperty="resumeNo" resultType="_int" order="AFTER">
-	SELECT SEQ_LANG.CURRVAL FROM DUAL
+	SELECT seq_lang.CURRVAL FROM DUAL
 	</selectKey>
 </insert>
 <insert id="insertLink" parameterType="resume">
 	INSERT INTO LINKS VALUES(seq_links.NEXTVAL,#{memEmail},default,default,#{resumeNo})
 	<selectKey keyProperty="resumeNo" resultType="_int" order="AFTER">
-	SELECT SEQ_LINKS.CURRVAL FROM DUAL
+	SELECT seq_links.CURRVAL FROM DUAL
 	</selectKey>
 </insert>
 <select id="selectResumeOne" parameterType="resume" resultMap="resumeMap">

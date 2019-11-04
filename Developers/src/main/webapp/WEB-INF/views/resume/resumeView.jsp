@@ -46,6 +46,7 @@
                             <input type="hidden" id="deleteIndex" value=""/>
                            			 <input type="hidden" id="deleteNo" value=""/>
                            			  <c:set value="${resume.resumeNo }" var="resumeNo"/>
+                           			  
                            			 <input type="hidden" id="resumeNo" value="${resume.resumeNo }"/>
                                 <div width="40" class="Content-zwkXZ dzZUIS" id="deleteModal2">
                                     <div class="Div-hTZHGu fEVoGZ" id=".0.3.0.$/=11">
@@ -90,8 +91,8 @@
      <div class="resume-list careers">
          <div class="resume-list-header"><span>경력</span></div>
          <div class="resume-list-body">
-             <c:set value="${resume.memEmail }" var="memEmail"/>
-            
+             <c:set value="${resume.memEmail }" var="memEmail"  />
+             <c:set value="${resume.resumeNo }" var="resumeNo" />
              <button class="btn-add btn btn-default" type="button"
                  onclick="careersplus('${memEmail }','${resumeNo }');">+ 추가</button>
                <div id="careerslist">
@@ -153,7 +154,6 @@
                                        <div class="col-sm-9">
                                            <div
                                                class="search-input-box resume-input-form-group">
-                                               
                                                <c:if test="${c.empName==null }">
                                                <input type="text" class="resume-input company_name"
                                                   name="empName"     placeholder="회사명">
@@ -162,7 +162,6 @@
                                                <input type="text" class="resume-input company_name"
                                                  name="empName" placeholder="회사명" value="${c.empName }">
                                                 </c:if>
-                                                
                                            </div>
                                            <div class="resume-input-form-group">
                                            <c:if test="${c.depName==null }">
@@ -186,8 +185,8 @@
                                         <c:set value="${resume.memEmail }" var="memEmail"/>
                                        <c:set value="${c.careerNo }" var="careerNo"/>
                                        <input type="hidden" value="${c.careerNo }" name="careerNo"/>
-                                        <input type="hidden" value="${resumeNo }" name="resumeNo"/> 
-                                         <input type="hidden" value="${memEmail }" name="memEmail"/> 
+                                       <input type="hidden" value="${resumeNo }" name="resumeNo"/> 
+                                       <input type="hidden" value="${memEmail }" name="memEmail"/> 
                                        
                                        <button class="btn-delete btn" type="button"
                                            onclick="deleteModal('${careerNo}',1);">
@@ -195,7 +194,6 @@
                                            </button>
                                         <button class="btn-save btn" type="submit">
                                          <i class="far fa-save"></i>
-                                        
                                          </button>   
                                           
                                    </div>
@@ -219,6 +217,7 @@
 						<ul class="list-group sortable-list educations" >
 						<c:if test="${not empty ed }">
 							<c:forEach items="${ed }" var="e">
+							 <form action="${path }/resume/updateEd.lmc" method="post" >
 							 <li class="list-group-item sortable-item educations">
      <div class="portlet-handler">
 
@@ -231,11 +230,11 @@
                      <div class="start-time">
                          <div class="form-group">
 								<c:if test="${e.startEd==null }">
-                             <input type="text" maxlength="6" class="year form-control" placeholder="YYYYMM" 
+                             <input type="text" maxlength="6" class="year form-control" name="startEd" placeholder="YYYYMM" 
                               onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" />
                               </c:if>
                               <c:if test="${e.startEd!=null }">
-                             <input type="text" maxlength="6" class="year form-control" placeholder="YYYYMM" 
+                             <input type="text" maxlength="6" class="year form-control" name="startEd" placeholder="YYYYMM" 
                               onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" value="${e.startEd }" />
                               </c:if>
                              </div>
@@ -246,15 +245,12 @@
                              <div class="form-group">
 
                                  <c:if test="${e.endEd==null }">
-                             <input type="text" maxlength="6" class="year form-control" placeholder="YYYYMM" 
+                             <input type="text" maxlength="6" class="year form-control" name="endEd" placeholder="YYYYMM" 
                               onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" />
                               </c:if>
                               <c:if test="${e.endEd!=null }">
-                             <input type="text" maxlength="6" class="year form-control" placeholder="YYYYMM" 
+                             <input type="text" maxlength="6" class="year form-control" name="endEd" placeholder="YYYYMM" 
                               onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" value="${e.endEd }" />
-                              </c:if>
-                              <c:if test="${empty ed }">
-                              
                               </c:if>
                              </div>
                              <div class="form-group"></div></span>
@@ -267,29 +263,29 @@
          <div class="col-sm-9">
              <div class="search-input-box resume-input-form-group">
                  <c:if test="${e.schoolName==null }">
-                 <input type="text" class="resume-input school_name"
+                 <input type="text" class="resume-input school_name" name="schoolName"
                   placeholder="학교명">
                  </c:if>
                  <c:if test="${e.schoolName!=null }">
-                 <input type="text" class="resume-input school_name"
+                 <input type="text" class="resume-input school_name" name="schoolName"
                   placeholder="학교명" value="${e.schoolName }">
                  </c:if>
              </div>
              <div class="search-input-box resume-input-form-group">
               <c:if test="${e.majorName==null }">
-                 <input type="text" class="resume-input major"
-                  placeholder="전공 및 학위 (ex: 경영학과 학사)">
+                 <input type="text" class="resume-input major" name="majorName"
+                  placeholder="전공 및 학위 (ex: 컴퓨터 공학과 학사)">
                </c:if>
                <c:if test="${e.majorName!=null }">
-                <input type="text" class="resume-input major"
-                  placeholder="전공 및 학위 (ex: 경영학과 학사)" value="${e.majorName }">
+                <input type="text" class="resume-input major" name="majorName"
+                  placeholder="전공 및 학위 (ex: 컴퓨터 공학과 학사)" value="${e.majorName }">
                </c:if>  
              </div>
              <div class="resume-input-form-group">
                  <div class="dynamic-textarea">
                  <c:if test="${e.subjectName==null }">
                  <textarea style="height:34px;" class="resume-input description"
-                         maxlength="1000" placeholder="이수과목 또는 연구내용"></textarea>
+                   name="subjectName" maxlength="1000" placeholder="이수과목 또는 연구내용"></textarea>
                   </c:if>
                   <c:if test="${e.subjectName!=null }">
                  <textarea style="height:34px;" class="resume-input description"
@@ -306,10 +302,17 @@
              </div>
          </div>
 		 <c:set value="${e.edNo }" var="edNo"/>
-         <button class="btn-delete btn btn-default" type="button" onclick="deleteModal('${edNo}','e');">
+         <button class="btn-delete btn btn-default" type="button" onclick="deleteModal('${edNo}',2);">
             <i class="fas fa-times"></i></button>
+             <input type="hidden" value="${e.edNo }" name="edNo"/>
+            <input type="hidden" value="${resumeNo }" name="resumeNo"/> 
+             <input type="hidden" value="${memEmail }" name="memEmail"/> 
+            <button class="btn-save btn" type="submit">
+              <i class="far fa-save"></i>
+              </button> 
      </div>
- </li>			
+ </li>	
+ </form>		
  </c:forEach>
 						</c:if>
 						</ul>
@@ -377,7 +380,7 @@
         </div>
          <c:set value="${ac.actNo }" var="acNo"/>
         <button class="btn-delete btn btn-default" type="button" 
-        onclick="deleteModal('${acNo}','ac');"><i
+        onclick="deleteModal('${acNo}',3);"><i
                 class="fas fa-times"></i></button>
     </div>
 </li>
@@ -452,7 +455,7 @@
 						        </div>
 									<c:set value="${la.langNo }" var="laNo"/>
 						        <button class="btn-delete btn btn-default" type="button"
-						         onclick="deleteModal('${laNo}','la')"><i
+						         onclick="deleteModal('${laNo}',4)"><i
 						                class="fas fa-times"></i></button>
 						    </div>
 						</li>
@@ -490,7 +493,7 @@
                 </div>
                 <c:set value="${link.linksNo }" var="linksNo"/>
         <button class="btn-delete btn btn-default" type="button"
-         onclick="deleteModal('${linksNo}','li');"><i
+         onclick="deleteModal('${linksNo}',5);"><i
                 class="fas fa-times"></i></button>
     </div>
 </li>
@@ -525,7 +528,7 @@
 </div>
 
 <script>
-    
+
     function careersplus(memEmail,resumeNo) {
         $.ajax({
             url: "${path}/resume/insertCareer.lmc",
@@ -534,26 +537,29 @@
             success: function(data){
         var careers = document.createElement('ul');
         var plus = '';
-        plus +='<form action="${path }/resume/updateCareer.lmc" method="post" >';
+        plus +='<form action="${path }/resume/updateCareer.lmc" method="post">';
         plus +='<li class="list-group-item sortable-item careers">';
         plus +='<div class="portlet-handler"><div class="handler" ></div></div><div class="career-item clearfix">';
         plus +='<div class="col-sm-3"><div class="period" >';
         plus +='<div class="datetime"><div class="start-time" ><div class="form-group">';
-        plus +='<input type="text" maxlength="6" class="year form-control" placeholder="YYYYMM"';
+        plus +='<input type="text" maxlength="6"  name="startCareer" class="year form-control" placeholder="YYYYMM"';
         plus +='onKeyup="this.value=this.value.replace(/[^0-9]/g,' +"''" + ');"/>';
         plus +='</div><div class="form-group" >';
         plus +='</div></span></div>';
         plus +='<div class="end-time" ><span class="delimiter" >-</span><div class="form-group">';
-        plus +='<input type="text" maxlength="6" class="year form-control" placeholder="YYYYMM"';
+        plus +='<input type="text" maxlength="6"  name="endCareer" class="year form-control" placeholder="YYYYMM"';
         plus +='onKeyup="this.value=this.value.replace(/[^0-9]/g,' +"''" +');/>';
         plus +='</div><div class="form-group" ></div></span></div></div><div class="form-group" >';
         plus +='</div></div></div><div class="col-sm-9"><div class="search-input-box resume-input-form-group">';
-        plus +='<form action="." ><input type="search" class="resume-input company_name" placeholder="회사명" ></form>';
+        plus +='<input type="text" class="resume-input company_name" placeholder="회사명" name="empName">';
         plus +='</div><div class="resume-input-form-group">';
-        plus +='<input class="resume-input title" type="text" maxlength="255" placeholder="부서명/직책" ></div>';
+        plus +='<input class="resume-input title" type="text" maxlength="255" placeholder="부서명/직책" name="depName" ></div>';
         plus +='<div class="resume-list projects" ><div class="resume-list-body"></div></div></div>';
         plus += "<button class='btn-delete btn' type='button'  onclick='deleteModal("+data+",1);'>";
         plus += '<i class="fas fa-times"></i></button>';
+        plus += '<input type="hidden" value="'+data+'" name="careerNo"/>';
+        plus += '<input type="hidden" value="'+memEmail+'" name="resumeNo"/>';
+        plus += '<input type="hidden" value="'+resumeNo+'" name="memEmail"/>';
         plus += '<button class="btn-save btn" type="submit"><i class="far fa-save"></i></button></div></li>';
         plus += '</form>';
         careers.innerHTML = plus;
@@ -574,16 +580,28 @@
     	            success: function(data){
         var educations = document.createElement('ul');
         var plus = '';
-        plus +='<form action="${path }/resume/updateEd.lmc" method="post" >';
+        plus +='<form action="${path }/resume/updateEd.lmc" method="post">';
         plus +='<li class="list-group-item sortable-item educations"><div class="portlet-handler">';
         plus +='<div class="handler"></div></div><div class="education-item clearfix" ><div class="col-sm-3"><div class="period"><div class="datetime"><div class="start-time"><div class="form-group">';
-        plus +='<input type="text" maxlength="6" class="year form-control" placeholder="YYYYMM" onKeyup="this.value=this.value.replace(/[^0-9]/g,' +"''" + ');"/>';
+        plus +='<input type="text" maxlength="6" class="year form-control" name="startEd" placeholder="YYYYMM" onKeyup="this.value=this.value.replace(/[^0-9]/g,' +"''" + ');"/>';
         plus +='</div><div class="form-group" >';
         plus +='</div><div class="end-time" ><span class="delimiter" >-</span><div class="form-group" >';
-        plus +='<input type="text" maxlength="6" value="" class="year form-control" placeholder="YYYYMM" onKeyup="this.value=this.value.replace(/[^0-9]/g,' +"''" + ');"/>';
-        plus +='</div><div class="form-group" ></div></span></div></div><div class="form-group"></div></div></div></div><div class="col-sm-9"><div class="search-input-box resume-input-form-group"><form action="."><input type="search" class="resume-input school_name" placeholder="학교명"></form></div><div class="search-input-box resume-input-form-group"><form action="."><input type="search" class="resume-input major" placeholder="전공 및 학위 (ex: 경영학과 학사)"></form></div><div class="resume-input-form-group"><div class="dynamic-textarea"><textarea style="height:34px;" class="resume-input description" maxlength="1000" placeholder="이수과목 또는 연구내용"></textarea><textarea class="textarea-clone" readonly="" style="top: 0px; left: 0px; width: 750px; padding: 0px; font-size: 14px; line-height: 22.4px; font-weight: 400; position: absolute; visibility: hidden; z-index: -9999; height: 0px;">이수과목 또는 연구내용</textarea></div></div></div>';
+        plus +='<input type="text" maxlength="6" name="endEd" class="year form-control" placeholder="YYYYMM" onKeyup="this.value=this.value.replace(/[^0-9]/g,' +"''" + ');"/>';
+        plus +='</div><div class="form-group"></div></span></div></div><div class="form-group">';
+        plus +='</div></div></div></div><div class="col-sm-9"><div class="search-input-box resume-input-form-group">';
+        plus +='<input type="text" class="resume-input school_name" name="schoolName" placeholder="학교명"></div>';
+        plus +='<div class="search-input-box resume-input-form-group">';
+        plus +='<input type="text" class="resume-input major" name="majorName" placeholder="전공 및 학위 (ex: 컴퓨터 공학과 학사)"></div>';
+        plus +='<div class="resume-input-form-group">';
+        plus +='<div class="dynamic-textarea">';
+        plus +='<textarea style="height:34px;" class="resume-input description" maxlength="1000" name="subjectName" placeholder="이수과목 또는 연구내용">';
+        plus +='</textarea>';
+        plus +='</div></div></div>';
         plus +='<button class="btn-delete btn btn-default" type="button" onclick="deleteModal('+data+',2);">';
         plus +='<i class="fas fa-times"></i></button>';
+        plus +='<input type="text" value="'+data+'" name="edNo"/>';
+        plus +='<input type="text" value="'+memEmail+'" name="resumeNo"/>';
+        plus +='<input type="text" value="'+resumeNo+'" name="memEmail"/>';
         plus +='<button class="btn-save btn" type="submit"><i class="far fa-save"></i></button></div></li>';
         plus +='</form>';
         educations.innerHTML = plus;
