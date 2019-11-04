@@ -236,7 +236,7 @@
 	     </div>
 	     	<div>
 	     		<hr>
-		  		<p>이미 가입되어 있으신가요?<a class="navbar-brand-small" href="#">로그인하기</a></p>
+		  		<p>이미 가입되어 있으신가요?<a class="navbar-brand-small" href="#" onclick="changeModal('toLogin'); return false">로그인하기</a></p>
 		  	</div>
 	    </div>
 	  </div>
@@ -277,7 +277,7 @@
 				</div>
 		  </div>
 	     	<div class="modal-footer">
-		  		<p>계정이 없으신가요?<a class="navbar-brand-small" href="#">채용담당자 계정 만들기</a></p>
+		  		<p>계정이 없으신가요?<a class="navbar-brand-small" href="#" onclick="changeModal('toReg'); return false">채용담당자 계정 만들기</a></p>
 		  	</div>
 	    </div>
 	  </div>

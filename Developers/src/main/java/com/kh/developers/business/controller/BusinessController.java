@@ -10,7 +10,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
@@ -145,5 +144,23 @@ public class BusinessController {
 		}
 		return "redirect:/business";
 	}
-
+	
+	@RequestMapping("/business/matchup.lbc")
+	public ModelAndView matchup(Business bus) {
+		ModelAndView mv= new ModelAndView();
+		String matchHTML="";
+		matchHTML+="<div class='matchupArea tagHeader'>";
+		matchHTML+="</div>";
+		matchHTML+="<div class='matchupArea searchBar>";
+		matchHTML+="</div>";
+		matchHTML+="<div class='matchupArea resumeList>";
+		matchHTML+="</div>";
+//		matchHTML+="<script src='${path}/resources/js/db-matchup.js'></script>";
+		
+		mv.addObject("dbIndex",2);
+		mv.addObject("dbHtml",matchHTML);
+		mv.setViewName("business/temporaryPage");
+		return mv;
+	}
+	
 }

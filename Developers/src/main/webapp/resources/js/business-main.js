@@ -261,10 +261,19 @@ function registerValidate(){
 }
 
 
-function resendEmail(){
+// function resendEmail(){
 
+// }
+
+function changeModal(a){
+    if (a !='toLogin'){
+        $('#empLoginModal').modal('hide');
+        $('#empEnrollModal').modal('show');
+    }else{
+        $('#empEnrollModal').modal('hide');
+        $('#empLoginModal').modal('show');
+    }
 }
-
 
 
 
