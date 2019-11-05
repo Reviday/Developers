@@ -49,7 +49,7 @@
                            			  
                            			 <input type="hidden" id="resumeNo" value="${resume.resumeNo }"/>
                                 <div width="40" class="Content-zwkXZ dzZUIS" id="deleteModal2">
-                                    <div class="Div-hTZHGu fEVoGZ" id=".0.3.0.$/=11">
+                                    <div class="Div-hTZHGu fEVoGZ">
                                     
                                         <p class="Confirm__ConfirmMessage-fNOBqL cHGGot" id=".0.3.0.$/=11.0">
                                             삭제하시겠습니까?</p>
@@ -363,7 +363,7 @@
             <input class="resume-input title" type="text" maxlength="255" name="actName"
                     placeholder="활동명" value="${ac.actName }">
                 </c:if>     
-                    </div>
+                    </div>ㄷ
             <div class="resume-input-form-group">
                 <div class="dynamic-textarea">
                 <c:if test="${ac.actDetail==null }">
@@ -749,7 +749,6 @@
 
     }
     function deleteModal(no,index){
-    console.log("여긴오니?");
     $("#deleteModal").removeClass('iKzpWM');
     $("#deleteModal3").removeClass('gMLFic'); 
     $("#deleteModal").addClass('bLaSri');
