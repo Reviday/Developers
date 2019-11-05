@@ -29,19 +29,25 @@
 		UPDATE BUSINESS_INFO SET BUS_LOGO=#{busLogo} WHERE BUS_NO=#{busNo}
 	</update>
 	
-	<select id="selectBusApplNew" resultMap="memberMap">
+	<select id="selectBusAppl" parameterType="map" resultMap="memberMap">
 		SELECT * FROM TA_MEMBER ORDER BY MEM_NO DESC
 	</select>
 	
-	
-	
-	
-	
-	
-	
-	<select id="selectBusApplNewCount" resultType="_int">
-		SELECT COUNT(*) FROM TA_MEMBER
+	<select id="selectBusApplNewCount" parameterType="map" resultType="_int">
+		SELECT COUNT(*) FROM TA_MEMBER 
+			where 2=2
+  	<if test="type!=null and type!=''">
+	  	and ${type} like '%'||#{key}||'%'	
+  	</if>
+  	<if test="gender!=null and gender!=''">
+  		 and gender=#{gender}
+  	</if>
 	</select>
+	
+	<insert id="insertApplLike" parameterType="map">
+		INSERT INTO TA_APPL_LIKE VALUES(#{busNo}, #{memNo})
+	</insert>
+	
 	
 	<resultMap type="bus" id="busMap">
 		<result property="busNo" column="BUS_NO"></result>
