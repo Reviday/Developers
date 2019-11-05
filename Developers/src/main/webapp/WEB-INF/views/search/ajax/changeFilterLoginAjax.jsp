@@ -3,14 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
-
-<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/resources/css/mainSearch.css">
-
-<section id="search-main">
-        <div class="search-header">
+<div class="search-header">
             <div class="search-header-mid">
                 <ul class="mid-menuBar">
                     <li>
@@ -64,19 +57,19 @@
                             </c:if>
                             <c:if test="${not empty loginMember }">
                             	<button class="menu-mid-menu">
-	                                <span class="fontweight fontcolor"><c:out value="${filter.job_sort }"/></span>
+	                                <span class="fontweight fontcolor"><c:out value="${order }"/></span>
 	                            </button>
 	                            <button class="menu-mid-menu">
 	                                <span class="native">국가</span>
-	                                <span class="fontweight fontcolor"><c:out value="${filter.country }"/></span>
+	                                <span class="fontweight fontcolor"><c:out value="${country }"/></span>
 	                            </button>
 	                            <button class="menu-mid-menu">
 	                                <span class="native">지역</span>
-	                                <span class="fontweight fontcolor1"><c:out value="${filter.location }"/></span>
+	                                <span class="fontweight fontcolor1"><c:out value="${location }"/></span>
 	                            </button>
 	                            <button class="menu-mid-menu">
 	                                <span class="native">경력</span>
-	                                <span class="fontweight fontcolor1"><c:out value="${filter.career }"/></span>
+	                                <span class="fontweight fontcolor1"><c:out value="${career }"/></span>
 	                            </button>
                             </c:if>
                         </div>
@@ -115,7 +108,7 @@
                             <div class="modalHeader">
                                 <button type="button" class="modalHeader-btn" onclick="chogihwa();">
                                     <i class="fas fa-redo-alt"></i>
-                                   	 초기화
+                                                                               초기화
                                 </button>
                                 <span>필터</span>
                                 <button type="button" id="chobtn">
@@ -128,63 +121,63 @@
                                         <h6 class="jungHea">정렬</h6>
                                         <div class="jungbody">
                                             <select name="order" id="">
-                                                <option value="최신순" class="time" <c:if test="${filter.job_sort =='최신순'}">selected</c:if>><c:forEach var="f" items="${fot }" varStatus="s"><c:if test="${s.count == 1}"><c:out value="${f.order_type }"/></c:if></c:forEach></option>
-                                                <option value="보상금순" <c:if test="${filter.job_sort =='보상금순'}">selected</c:if>><c:forEach var="f" items="${fot }" varStatus="s"><c:if test="${s.count == 2}"><c:out value="${f.order_type }"/></c:if></c:forEach></option>
-                                                <option value="인기순" <c:if test="${filter.job_sort =='인기순'}">selected</c:if>><c:forEach var="f" items="${fot }" varStatus="s"><c:if test="${s.count == 3}"><c:out value="${f.order_type }"/></c:if></c:forEach></option>
+                                                <option value="최신순" class="time" <c:if test="${order =='최신순'}">selected</c:if>><c:forEach var="f" items="${fot }" varStatus="s"><c:if test="${s.count == 1}"><c:out value="${f.order_type }"/></c:if></c:forEach></option>
+                                                <option value="보상금순" <c:if test="${order =='보상금순'}">selected</c:if>><c:forEach var="f" items="${fot }" varStatus="s"><c:if test="${s.count == 2}"><c:out value="${f.order_type }"/></c:if></c:forEach></option>
+                                                <option value="인기순" <c:if test="${order =='인기순'}">selected</c:if>><c:forEach var="f" items="${fot }" varStatus="s"><c:if test="${s.count == 3}"><c:out value="${f.order_type }"/></c:if></c:forEach></option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="modalnara">
                                         <h6 class="narahea">국가</h6>
                                         <div class="narabody">
-                                            <button type="button" class="naraBtn <c:if test="${filter.country =='전세계'}">narabody-btn</c:if>" ><c:forEach var="f" items="${fCountry }" varStatus="s"><c:if test="${s.count == 1}"><c:out value="${f.country }"/></c:if></c:forEach></button>
-                                            <button type="button" class="naraBtn <c:if test="${filter.country =='대만'}">narabody-btn</c:if>"><c:forEach var="f" items="${fCountry }" varStatus="s"><c:if test="${s.count == 2}"><c:out value="${f.country }"/></c:if></c:forEach></button>
-                                            <button type="button" class="naraBtn <c:if test="${filter.country =='싱가폴'}">narabody-btn</c:if>"><c:forEach var="f" items="${fCountry }" varStatus="s"><c:if test="${s.count == 3}"><c:out value="${f.country }"/></c:if></c:forEach></button>
-                                            <button type="button" class="naraBtn <c:if test="${filter.country =='일본'}">narabody-btn</c:if>"><c:forEach var="f" items="${fCountry }" varStatus="s"><c:if test="${s.count == 4}"><c:out value="${f.country }"/></c:if></c:forEach></button>
-                                            <button type="button" class="naraBtn ko <c:if test="${filter.country =='한국'}">narabody-btn</c:if>"><c:forEach var="f" items="${fCountry }" varStatus="s"><c:if test="${s.count == 5}"><c:out value="${f.country }"/></c:if></c:forEach></button>
-                                            <button type="button" class="naraBtn <c:if test="${filter.country =='홍콩'}">narabody-btn</c:if>"><c:forEach var="f" items="${fCountry }" varStatus="s"><c:if test="${s.count == 6}"><c:out value="${f.country }"/></c:if></c:forEach></button>
-                                            <button type="button" class="naraBtn <c:if test="${filter.country =='기타'}">narabody-btn</c:if>"><c:forEach var="f" items="${fCountry }" varStatus="s"><c:if test="${s.count == 7}"><c:out value="${f.country }"/></c:if></c:forEach></button>
+                                            <button type="button" class="naraBtn <c:if test="${country =='전세계'}">narabody-btn</c:if>" ><c:forEach var="f" items="${fCountry }" varStatus="s"><c:if test="${s.count == 1}"><c:out value="${f.country }"/></c:if></c:forEach></button>
+                                            <button type="button" class="naraBtn <c:if test="${country =='대만'}">narabody-btn</c:if>"><c:forEach var="f" items="${fCountry }" varStatus="s"><c:if test="${s.count == 2}"><c:out value="${f.country }"/></c:if></c:forEach></button>
+                                            <button type="button" class="naraBtn <c:if test="${country =='싱가폴'}">narabody-btn</c:if>"><c:forEach var="f" items="${fCountry }" varStatus="s"><c:if test="${s.count == 3}"><c:out value="${f.country }"/></c:if></c:forEach></button>
+                                            <button type="button" class="naraBtn <c:if test="${country =='일본'}">narabody-btn</c:if>"><c:forEach var="f" items="${fCountry }" varStatus="s"><c:if test="${s.count == 4}"><c:out value="${f.country }"/></c:if></c:forEach></button>
+                                            <button type="button" class="naraBtn ko <c:if test="${country =='한국'}">narabody-btn</c:if>"><c:forEach var="f" items="${fCountry }" varStatus="s"><c:if test="${s.count == 5}"><c:out value="${f.country }"/></c:if></c:forEach></button>
+                                            <button type="button" class="naraBtn <c:if test="${country =='홍콩'}">narabody-btn</c:if>"><c:forEach var="f" items="${fCountry }" varStatus="s"><c:if test="${s.count == 6}"><c:out value="${f.country }"/></c:if></c:forEach></button>
+                                            <button type="button" class="naraBtn <c:if test="${country =='기타'}">narabody-btn</c:if>"><c:forEach var="f" items="${fCountry }" varStatus="s"><c:if test="${s.count == 7}"><c:out value="${f.country }"/></c:if></c:forEach></button>
                                         </div>
                                     </div>
                                     <div class="modaljiuk">
                                         <h6 class="jiukhea">지역</h6>
                                         <div class="jiukbody">
-                                            <button type="button" class="jiukBtn junguk <c:if test="${filter.location =='전국'}">jiuk-btn</c:if>"><c:forEach var="f" items="${fl }" varStatus="s"><c:if test="${s.count == 1}"><c:out value="${f.location }"/></c:if></c:forEach></button>
-                                            <button type="button" class="jiukBtn <c:if test="${filter.location =='서울'}">jiuk-btn</c:if>"><c:forEach var="f" items="${fl }" varStatus="s"><c:if test="${s.count == 2}"><c:out value="${f.location }"/></c:if></c:forEach></button>
-                                            <button type="button" class="jiukBtn <c:if test="${filter.location =='부산'}">jiuk-btn</c:if>"><c:forEach var="f" items="${fl }" varStatus="s"><c:if test="${s.count == 3}"><c:out value="${f.location }"/></c:if></c:forEach></button>
-                                            <button type="button" class="jiukBtn <c:if test="${filter.location =='대구'}">jiuk-btn</c:if>"><c:forEach var="f" items="${fl }" varStatus="s"><c:if test="${s.count == 4}"><c:out value="${f.location }"/></c:if></c:forEach></button>
-                                            <button type="button" class="jiukBtn <c:if test="${filter.location =='인천'}">jiuk-btn</c:if>"><c:forEach var="f" items="${fl }" varStatus="s"><c:if test="${s.count == 5}"><c:out value="${f.location }"/></c:if></c:forEach></button>
-                                            <button type="button" class="jiukBtn <c:if test="${filter.location =='광주'}">jiuk-btn</c:if>"><c:forEach var="f" items="${fl }" varStatus="s"><c:if test="${s.count == 6}"><c:out value="${f.location }"/></c:if></c:forEach></button>
-                                            <button type="button" class="jiukBtn <c:if test="${filter.location =='대전'}">jiuk-btn</c:if>"><c:forEach var="f" items="${fl }" varStatus="s"><c:if test="${s.count == 7}"><c:out value="${f.location }"/></c:if></c:forEach></button>
-                                            <button type="button" class="jiukBtn <c:if test="${filter.location =='울산'}">jiuk-btn</c:if>"><c:forEach var="f" items="${fl }" varStatus="s"><c:if test="${s.count == 8}"><c:out value="${f.location }"/></c:if></c:forEach></button>
-                                            <button type="button" class="jiukBtn <c:if test="${filter.location =='세종'}">jiuk-btn</c:if>"><c:forEach var="f" items="${fl }" varStatus="s"><c:if test="${s.count == 9}"><c:out value="${f.location }"/></c:if></c:forEach></button>
-                                            <button type="button" class="jiukBtn <c:if test="${filter.location =='경기'}">jiuk-btn</c:if>"><c:forEach var="f" items="${fl }" varStatus="s"><c:if test="${s.count == 10}"><c:out value="${f.location }"/></c:if></c:forEach></button>
-                                            <button type="button" class="jiukBtn <c:if test="${filter.location =='강원'}">jiuk-btn</c:if>"><c:forEach var="f" items="${fl }" varStatus="s"><c:if test="${s.count == 11}"><c:out value="${f.location }"/></c:if></c:forEach></button>
-                                            <button type="button" class="jiukBtn <c:if test="${filter.location =='충북'}">jiuk-btn</c:if>"><c:forEach var="f" items="${fl }" varStatus="s"><c:if test="${s.count == 12}"><c:out value="${f.location }"/></c:if></c:forEach></button>
-                                            <button type="button" class="jiukBtn <c:if test="${filter.location =='충남'}">jiuk-btn</c:if>"><c:forEach var="f" items="${fl }" varStatus="s"><c:if test="${s.count == 13}"><c:out value="${f.location }"/></c:if></c:forEach></button>
-                                            <button type="button" class="jiukBtn <c:if test="${filter.location =='전북'}">jiuk-btn</c:if>"><c:forEach var="f" items="${fl }" varStatus="s"><c:if test="${s.count == 14}"><c:out value="${f.location }"/></c:if></c:forEach></button>
-                                            <button type="button" class="jiukBtn <c:if test="${filter.location =='전남'}">jiuk-btn</c:if>"><c:forEach var="f" items="${fl }" varStatus="s"><c:if test="${s.count == 15}"><c:out value="${f.location }"/></c:if></c:forEach></button>
-                                            <button type="button" class="jiukBtn <c:if test="${filter.location =='경북'}">jiuk-btn</c:if>"><c:forEach var="f" items="${fl }" varStatus="s"><c:if test="${s.count == 16}"><c:out value="${f.location }"/></c:if></c:forEach></button>
-                                            <button type="button" class="jiukBtn <c:if test="${filter.location =='경남'}">jiuk-btn</c:if>"><c:forEach var="f" items="${fl }" varStatus="s"><c:if test="${s.count == 17}"><c:out value="${f.location }"/></c:if></c:forEach></button>
-                                            <button type="button" class="jiukBtn <c:if test="${filter.location =='제주'}">jiuk-btn</c:if>"><c:forEach var="f" items="${fl }" varStatus="s"><c:if test="${s.count == 18}"><c:out value="${f.location }"/></c:if></c:forEach></button>
+                                            <button type="button" class="jiukBtn junguk <c:if test="${location =='전국'}">jiuk-btn</c:if>"><c:forEach var="f" items="${fl }" varStatus="s"><c:if test="${s.count == 1}"><c:out value="${f.location }"/></c:if></c:forEach></button>
+                                            <button type="button" class="jiukBtn <c:if test="${location =='서울'}">jiuk-btn</c:if>"><c:forEach var="f" items="${fl }" varStatus="s"><c:if test="${s.count == 2}"><c:out value="${f.location }"/></c:if></c:forEach></button>
+                                            <button type="button" class="jiukBtn <c:if test="${location =='부산'}">jiuk-btn</c:if>"><c:forEach var="f" items="${fl }" varStatus="s"><c:if test="${s.count == 3}"><c:out value="${f.location }"/></c:if></c:forEach></button>
+                                            <button type="button" class="jiukBtn <c:if test="${location =='대구'}">jiuk-btn</c:if>"><c:forEach var="f" items="${fl }" varStatus="s"><c:if test="${s.count == 4}"><c:out value="${f.location }"/></c:if></c:forEach></button>
+                                            <button type="button" class="jiukBtn <c:if test="${location =='인천'}">jiuk-btn</c:if>"><c:forEach var="f" items="${fl }" varStatus="s"><c:if test="${s.count == 5}"><c:out value="${f.location }"/></c:if></c:forEach></button>
+                                            <button type="button" class="jiukBtn <c:if test="${location =='광주'}">jiuk-btn</c:if>"><c:forEach var="f" items="${fl }" varStatus="s"><c:if test="${s.count == 6}"><c:out value="${f.location }"/></c:if></c:forEach></button>
+                                            <button type="button" class="jiukBtn <c:if test="${location =='대전'}">jiuk-btn</c:if>"><c:forEach var="f" items="${fl }" varStatus="s"><c:if test="${s.count == 7}"><c:out value="${f.location }"/></c:if></c:forEach></button>
+                                            <button type="button" class="jiukBtn <c:if test="${location =='울산'}">jiuk-btn</c:if>"><c:forEach var="f" items="${fl }" varStatus="s"><c:if test="${s.count == 8}"><c:out value="${f.location }"/></c:if></c:forEach></button>
+                                            <button type="button" class="jiukBtn <c:if test="${location =='세종'}">jiuk-btn</c:if>"><c:forEach var="f" items="${fl }" varStatus="s"><c:if test="${s.count == 9}"><c:out value="${f.location }"/></c:if></c:forEach></button>
+                                            <button type="button" class="jiukBtn <c:if test="${location =='경기'}">jiuk-btn</c:if>"><c:forEach var="f" items="${fl }" varStatus="s"><c:if test="${s.count == 10}"><c:out value="${f.location }"/></c:if></c:forEach></button>
+                                            <button type="button" class="jiukBtn <c:if test="${location =='강원'}">jiuk-btn</c:if>"><c:forEach var="f" items="${fl }" varStatus="s"><c:if test="${s.count == 11}"><c:out value="${f.location }"/></c:if></c:forEach></button>
+                                            <button type="button" class="jiukBtn <c:if test="${location =='충북'}">jiuk-btn</c:if>"><c:forEach var="f" items="${fl }" varStatus="s"><c:if test="${s.count == 12}"><c:out value="${f.location }"/></c:if></c:forEach></button>
+                                            <button type="button" class="jiukBtn <c:if test="${location =='충남'}">jiuk-btn</c:if>"><c:forEach var="f" items="${fl }" varStatus="s"><c:if test="${s.count == 13}"><c:out value="${f.location }"/></c:if></c:forEach></button>
+                                            <button type="button" class="jiukBtn <c:if test="${location =='전북'}">jiuk-btn</c:if>"><c:forEach var="f" items="${fl }" varStatus="s"><c:if test="${s.count == 14}"><c:out value="${f.location }"/></c:if></c:forEach></button>
+                                            <button type="button" class="jiukBtn <c:if test="${location =='전남'}">jiuk-btn</c:if>"><c:forEach var="f" items="${fl }" varStatus="s"><c:if test="${s.count == 15}"><c:out value="${f.location }"/></c:if></c:forEach></button>
+                                            <button type="button" class="jiukBtn <c:if test="${location =='경북'}">jiuk-btn</c:if>"><c:forEach var="f" items="${fl }" varStatus="s"><c:if test="${s.count == 16}"><c:out value="${f.location }"/></c:if></c:forEach></button>
+                                            <button type="button" class="jiukBtn <c:if test="${location =='경남'}">jiuk-btn</c:if>"><c:forEach var="f" items="${fl }" varStatus="s"><c:if test="${s.count == 17}"><c:out value="${f.location }"/></c:if></c:forEach></button>
+                                            <button type="button" class="jiukBtn <c:if test="${location =='제주'}">jiuk-btn</c:if>"><c:forEach var="f" items="${fl }" varStatus="s"><c:if test="${s.count == 18}"><c:out value="${f.location }"/></c:if></c:forEach></button>
                                         </div>
                                     </div>
                                     <div class="modalgung">
                                         <h6 class="gunghae">경력</h6>
                                         <div class="gungbody">
                                             <select name="career" id="">
-                                                <option value="전체" class="all" <c:if test="${filter.career =='전체'}">selected</c:if>><c:forEach var="f" items="${fCareer }" varStatus="s"><c:if test="${s.count == 1}"><c:out value="${f.career }"/></c:if></c:forEach></option>
-                                                <option value="신입" <c:if test="${filter.career =='신입'}">selected</c:if>><c:forEach var="f" items="${fCareer }" varStatus="s"><c:if test="${s.count == 2}"><c:out value="${f.career }"/></c:if></c:forEach></option>
-                                                <option value="1년" <c:if test="${filter.career =='1년'}">selected</c:if>><c:forEach var="f" items="${fCareer }" varStatus="s"><c:if test="${s.count == 3}"><c:out value="${f.career }"/></c:if></c:forEach></option>
-                                                <option value="2년" <c:if test="${filter.career =='2년'}">selected</c:if>><c:forEach var="f" items="${fCareer }" varStatus="s"><c:if test="${s.count == 4}"><c:out value="${f.career }"/></c:if></c:forEach></option>
-                                                <option value="3년" <c:if test="${filter.career =='3년'}">selected</c:if>><c:forEach var="f" items="${fCareer }" varStatus="s"><c:if test="${s.count == 5}"><c:out value="${f.career }"/></c:if></c:forEach></option>
-                                                <option value="4년" <c:if test="${filter.career =='4년'}">selected</c:if>><c:forEach var="f" items="${fCareer }" varStatus="s"><c:if test="${s.count == 6}"><c:out value="${f.career }"/></c:if></c:forEach></option>
-                                                <option value="5년" <c:if test="${filter.career =='5년'}">selected</c:if>><c:forEach var="f" items="${fCareer }" varStatus="s"><c:if test="${s.count == 7}"><c:out value="${f.career }"/></c:if></c:forEach></option>
-                                                <option value="6년" <c:if test="${filter.career =='6년'}">selected</c:if>><c:forEach var="f" items="${fCareer }" varStatus="s"><c:if test="${s.count == 8}"><c:out value="${f.career }"/></c:if></c:forEach></option>
-                                                <option value="7년" <c:if test="${filter.career =='7년'}">selected</c:if>><c:forEach var="f" items="${fCareer }" varStatus="s"><c:if test="${s.count == 9}"><c:out value="${f.career }"/></c:if></c:forEach></option>
-                                                <option value="8년" <c:if test="${filter.career =='8년'}">selected</c:if>><c:forEach var="f" items="${fCareer }" varStatus="s"><c:if test="${s.count == 10}"><c:out value="${f.career }"/></c:if></c:forEach></option>
-                                                <option value="9년" <c:if test="${filter.career =='9년'}">selected</c:if>><c:forEach var="f" items="${fCareer }" varStatus="s"><c:if test="${s.count == 11}"><c:out value="${f.career }"/></c:if></c:forEach></option>
-                                                <option value="10년 이상" <c:if test="${filter.career =='10년 이상'}">selected</c:if>><c:forEach var="f" items="${fCareer }" varStatus="s"><c:if test="${s.count == 12}"><c:out value="${f.career }"/></c:if></c:forEach></option>
+                                                <option value="전체" class="all" <c:if test="${career =='전체'}">selected</c:if>><c:forEach var="f" items="${fCareer }" varStatus="s"><c:if test="${s.count == 1}"><c:out value="${f.career }"/></c:if></c:forEach></option>
+                                                <option value="신입" <c:if test="${career =='신입'}">selected</c:if>><c:forEach var="f" items="${fCareer }" varStatus="s"><c:if test="${s.count == 2}"><c:out value="${f.career }"/></c:if></c:forEach></option>
+                                                <option value="1년" <c:if test="${career =='1년'}">selected</c:if>><c:forEach var="f" items="${fCareer }" varStatus="s"><c:if test="${s.count == 3}"><c:out value="${f.career }"/></c:if></c:forEach></option>
+                                                <option value="2년" <c:if test="${career =='2년'}">selected</c:if>><c:forEach var="f" items="${fCareer }" varStatus="s"><c:if test="${s.count == 4}"><c:out value="${f.career }"/></c:if></c:forEach></option>
+                                                <option value="3년" <c:if test="${career =='3년'}">selected</c:if>><c:forEach var="f" items="${fCareer }" varStatus="s"><c:if test="${s.count == 5}"><c:out value="${f.career }"/></c:if></c:forEach></option>
+                                                <option value="4년" <c:if test="${career =='4년'}">selected</c:if>><c:forEach var="f" items="${fCareer }" varStatus="s"><c:if test="${s.count == 6}"><c:out value="${f.career }"/></c:if></c:forEach></option>
+                                                <option value="5년" <c:if test="${career =='5년'}">selected</c:if>><c:forEach var="f" items="${fCareer }" varStatus="s"><c:if test="${s.count == 7}"><c:out value="${f.career }"/></c:if></c:forEach></option>
+                                                <option value="6년" <c:if test="${career =='6년'}">selected</c:if>><c:forEach var="f" items="${fCareer }" varStatus="s"><c:if test="${s.count == 8}"><c:out value="${f.career }"/></c:if></c:forEach></option>
+                                                <option value="7년" <c:if test="${career =='7년'}">selected</c:if>><c:forEach var="f" items="${fCareer }" varStatus="s"><c:if test="${s.count == 9}"><c:out value="${f.career }"/></c:if></c:forEach></option>
+                                                <option value="8년" <c:if test="${career =='8년'}">selected</c:if>><c:forEach var="f" items="${fCareer }" varStatus="s"><c:if test="${s.count == 10}"><c:out value="${f.career }"/></c:if></c:forEach></option>
+                                                <option value="9년" <c:if test="${career =='9년'}">selected</c:if>><c:forEach var="f" items="${fCareer }" varStatus="s"><c:if test="${s.count == 11}"><c:out value="${f.career }"/></c:if></c:forEach></option>
+                                                <option value="10년 이상" <c:if test="${career =='10년 이상'}">selected</c:if>><c:forEach var="f" items="${fCareer }" varStatus="s"><c:if test="${s.count == 12}"><c:out value="${f.career }"/></c:if></c:forEach></option>
                                             </select>
                                         </div>
                                     </div>
@@ -262,8 +255,6 @@
                 </ul>
             </div>
         </div>
-    </section>
-<jsp:include page="/WEB-INF/views/common/footer.jsp"/> 
 <!-- 슬라이드용 스크립트 -->
 <script>
     var sliderWrapper = document.getElementsByClassName("mid-type-content"),
@@ -413,17 +404,17 @@
 	function chogihwa() {
 		$(".naraBtn").next().removeClass('narabody-btn');
 		$(".naraBtn").prev().removeClass('narabody-btn');
-		if($(".naraBtn").text() == ${filter.country}){
+		if($(".naraBtn").text() == '${filter.country}'){
 			$(this).addClass("narabody-btn");
 		}
 		$(".jiukBtn").next().removeClass('jiuk-btn');
 		$(".jiukBtn").prev().removeClass('jiuk-btn');
-		if($(".jiukBtn").test() == ${filter.location}){
+		if($(".jiukBtn").test() == '${filter.location}'){
 			$(this).addClass("jiuk-btn");
 		}
-		$("select[name=order]").val(${filter.job_sort}).prop("selected", true);
-		$("select[name=career]").val(${filter.career}).prop("selected", true);
+		$("select[name=order]").val('${filter.job_sort}').prop("selected", true);
+		$("select[name=career]").val('${filter.career}').prop("selected", true);
 	}
 	
-	
 </script>
+        

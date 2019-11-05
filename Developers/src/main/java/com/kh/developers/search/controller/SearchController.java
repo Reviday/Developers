@@ -1,6 +1,8 @@
 package com.kh.developers.search.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -68,7 +70,106 @@ public class SearchController {
 		model.addAttribute("fCareer", fCareer);
 		return "search/mainSearchLogin";
 	}
-
+	// 회원필터 적용한 탐색 리스트(로그인)
+	@RequestMapping(value = "/search/changeFilterLoginAjax", produces = "application/text; charset=utf8")
+	public ModelAndView changeFilterLoginAjax(int memNo, String order, String career, String filtersave, String country, String location, ModelAndView mv) {
+		// 적극채용중인 회사
+		List<Position> firstPsList = service.firstPsList();
+		mv.addObject("firstPsList", firstPsList);
+		// 직무 리스트
+		List<JobField> list = service.jobfieldList();
+		mv.addObject("list", list);
+		// 회원 필터  정보
+		if(filtersave.equals("off")) {			
+			Filter filter = service.SelectMemberFilter(memNo);
+			mv.addObject("filter", filter);
+		}else {
+			Map map = new HashMap();
+			map.put("memNo", memNo);
+			map.put("order", order);
+			map.put("career", career);
+			map.put("country", country);
+			map.put("location", location);
+			int result = service.updateMemFilter(map);
+			Filter filter = service.SelectMemberFilter(memNo);
+			mv.addObject("filter", filter);
+		}
+		// 필터 적용한 포지션리스트
+		Map map = new HashMap();
+		map.put("order", order);
+		map.put("career", career);
+		map.put("country", country);
+		map.put("location", location);
+		List<Position> psList = service.positionLoginFilterList(map);
+		mv.addObject("psList", psList);
+		// 필터 리스트 정보
+		List<FilterOrderType> fot = service.selectFilterOrderType();
+		List<FilterCountry> fCountry = service.selectFilterCountry();
+		List<FilterLocation> fl = service.selectFilterLocation();
+		List<FilterCareer> fCareer = service.selectFilterCareer();
+		mv.addObject("fot", fot);
+		mv.addObject("fCountry", fCountry);
+		mv.addObject("fl", fl);
+		mv.addObject("fCareer", fCareer);
+		// 필터 적용 정보
+		mv.addObject("order", order);
+		mv.addObject("career", career);
+		mv.addObject("country", country);
+		mv.addObject("location", location);
+		mv.setViewName("search/ajax/changeFilterLoginAjax");
+		return mv;
+	}
+	// 회원필터와 직무분야 적용한 탐색 리스트(로그인)
+	@RequestMapping(value = "/search/changeFilterJobNameLoginAjax", produces = "application/text; charset=utf8")
+	public ModelAndView changeFilterJobNameLoginAjax(int memNo, String jobName, String order, String career, String filtersave, String country, String location, ModelAndView mv) {
+		// 적극채용중인 회사
+		List<Position> firstPsList = service.firstPsList();
+		mv.addObject("firstPsList", firstPsList);
+		// 직무 리스트
+		List<JobField> list = service.jobfieldAjaxList(jobName);
+		mv.addObject("list", list);
+		// 회원 필터  정보
+		if(filtersave.equals("off")) {			
+			Filter filter = service.SelectMemberFilter(memNo);
+			mv.addObject("filter", filter);
+		}else {
+			Map map = new HashMap();
+			map.put("memNo", memNo);
+			map.put("order", order);
+			map.put("career", career);
+			map.put("country", country);
+			map.put("location", location);
+			int result = service.updateMemFilter(map);
+			Filter filter = service.SelectMemberFilter(memNo);
+			mv.addObject("filter", filter);
+		}
+		// 필터 적용한 포지션리스트
+		Map map = new HashMap();
+		map.put("jobName", jobName);
+		map.put("order", order);
+		map.put("career", career);
+		map.put("country", country);
+		map.put("location", location);
+		List<Position> psList = service.positionLoginFilterJobNameList(map);
+		mv.addObject("psList", psList);
+		// 필터 리스트 정보
+		List<FilterOrderType> fot = service.selectFilterOrderType();
+		List<FilterCountry> fCountry = service.selectFilterCountry();
+		List<FilterLocation> fl = service.selectFilterLocation();
+		List<FilterCareer> fCareer = service.selectFilterCareer();
+		mv.addObject("fot", fot);
+		mv.addObject("fCountry", fCountry);
+		mv.addObject("fl", fl);
+		mv.addObject("fCareer", fCareer);
+		// 필터 적용 정보
+		mv.addObject("order", order);
+		mv.addObject("career", career);
+		mv.addObject("country", country);
+		mv.addObject("location", location);
+		mv.addObject("jobName", jobName);
+		mv.setViewName("search/ajax/changeFilterJobNameLoginAjax");
+		return mv;
+	}
 	// 회사를 눌렀을 때의 회사 개인 정보 페이지(로그인시)
 	@RequestMapping("/search/companyInfo.do")
 	public String companyInfoList(int positionNo, int memNo, Model model) {

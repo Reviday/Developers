@@ -1,6 +1,7 @@
 package com.kh.developers.search.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -135,7 +136,23 @@ public class SearchServiceImpl implements SearchService {
 		List<FilterCareer> fCareer = dao.selectFilterCareer(session);
 		return fCareer;
 	}
+
+	@Override
+	public List<Position> positionLoginFilterList(Map map) {
+		List<Position> psList = dao.positionLoginFilterList(session, map);
+		return psList;
+	}
+
+	@Override
+	public int updateMemFilter(Map map) {
+		int result = dao.updateMemFilter(session, map);
+		return result;
+	}
 	
-	
+	@Override
+	public List<Position> positionLoginFilterJobNameList(Map map) {
+		List<Position> psList = dao.positionLoginFilterJobNameList(session, map);
+		return psList;
+	}
 	
 }

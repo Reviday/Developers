@@ -1,6 +1,7 @@
 package com.kh.developers.search.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
@@ -33,4 +34,7 @@ public interface SearchDao {
 	List<FilterCountry> selectFilterCountry(SqlSessionTemplate session);
 	List<FilterLocation> selectFilterLocation(SqlSessionTemplate session);
 	List<FilterCareer> selectFilterCareer(SqlSessionTemplate session);
+	List<Position> positionLoginFilterList(SqlSessionTemplate session, Map map);
+	int updateMemFilter(SqlSessionTemplate session, Map map);
+	List<Position> positionLoginFilterJobNameList(SqlSessionTemplate session, Map map);
 }

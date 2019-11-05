@@ -1,6 +1,7 @@
 package com.kh.developers.search.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.kh.developers.search.model.vo.Filter;
 import com.kh.developers.search.model.vo.FilterCareer;
@@ -45,4 +46,10 @@ public interface SearchService {
 	List<FilterCountry> selectFilterCountry();
 	List<FilterLocation> selectFilterLocation();
 	List<FilterCareer> selectFilterCareer();
+	// 회원필터 적용한 포지션리스트
+	List<Position> positionLoginFilterList(Map map);
+	// 회원필터 변경
+	int updateMemFilter(Map map);
+	// 회원필터, 직무분야 적용한 포지션 리스트
+	List<Position> positionLoginFilterJobNameList(Map map);
 }

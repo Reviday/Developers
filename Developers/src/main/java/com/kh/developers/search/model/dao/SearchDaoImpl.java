@@ -135,7 +135,23 @@ public class SearchDaoImpl implements SearchDao {
 		// TODO Auto-generated method stub
 		return session.selectList("search.selectFilterCareer");
 	}
+
+	@Override
+	public List<Position> positionLoginFilterList(SqlSessionTemplate session, Map map) {
+		// TODO Auto-generated method stub
+		return session.selectList("search.positionLoginFilterList", map);
+	}
+
+	@Override
+	public int updateMemFilter(SqlSessionTemplate session, Map map) {
+		// TODO Auto-generated method stub
+		return session.update("search.updateMemFilter", map);
+	}
 	
-	
+	@Override
+	public List<Position> positionLoginFilterJobNameList(SqlSessionTemplate session, Map map) {
+		// TODO Auto-generated method stub
+		return session.selectList("search.positionLoginFilterJobNameList", map);
+	}
 	
 }

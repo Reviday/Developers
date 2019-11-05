@@ -76,7 +76,7 @@
                             </c:if>
                         </div>
                         <div class="menu-mid-1 visible-xs">
-                            적용 중 필터
+                           	 적용 중 필터
                             <p>2</p>
                         </div>
                         <div class="filter">
@@ -104,14 +104,14 @@
                     </div>
                 </div>
                 
-                
+                <!-- 모달창 -->
                 <div id="modalTool">
                     <div class="modalchang">
                         <div class="modalchang-1">
                             <div class="modalHeader">
-                                <button type="button" class="modalHeader-btn">
+                                <button type="button" class="modalHeader-btn" onclick="chogihwa();">
                                     <i class="fas fa-redo-alt"></i>
-                                    초기화
+                                                                               초기화
                                 </button>
                                 <span>필터</span>
                                 <button type="button" id="chobtn">
@@ -124,9 +124,9 @@
                                         <h6 class="jungHea">정렬</h6>
                                         <div class="jungbody">
                                             <select name="order" id="">
-                                                <option value="time" class="time" <c:if test="${filter.job_sort =='최신순'}">selected</c:if>>최신순</option>
-                                                <option value="money" <c:if test="${filter.job_sort =='보상금순'}">selected</c:if>>보상금순</option>
-                                                <option value="like" <c:if test="${filter.job_sort =='인기순'}">selected</c:if>>인기순</option>
+                                                <option value="최신순" class="time" <c:if test="${filter.job_sort =='최신순'}">selected</c:if>>최신순</option>
+                                                <option value="보상금순" <c:if test="${filter.job_sort =='보상금순'}">selected</c:if>>보상금순</option>
+                                                <option value="인기순" <c:if test="${filter.job_sort =='인기순'}">selected</c:if>>인기순</option>
                                             </select>
                                         </div>
                                     </div>
@@ -168,30 +168,30 @@
                                     <div class="modalgung">
                                         <h6 class="gunghae">경력</h6>
                                         <div class="gungbody">
-                                            <select name="cureer" id="">
-                                                <option value="all" class="all" <c:if test="${filter.career =='전체'}">selected</c:if>>전체</option>
-                                                <option value="new" <c:if test="${filter.career =='신입'}">selected</c:if>>신입</option>
-                                                <option value="one" <c:if test="${filter.career =='1년'}">selected</c:if>>1년</option>
-                                                <option value="two" <c:if test="${filter.career =='2년'}">selected</c:if>>2년</option>
-                                                <option value="three" <c:if test="${filter.career =='3년'}">selected</c:if>>3년</option>
-                                                <option value="four" <c:if test="${filter.career =='4년'}">selected</c:if>>4년</option>
-                                                <option value="five" <c:if test="${filter.career =='5년'}">selected</c:if>>5년</option>
-                                                <option value="six" <c:if test="${filter.career =='6년'}">selected</c:if>>6년</option>
-                                                <option value="seven" <c:if test="${filter.career =='7년'}">selected</c:if>>7년</option>
-                                                <option value="eight" <c:if test="${filter.career =='8년'}">selected</c:if>>8년</option>
-                                                <option value="nine" <c:if test="${filter.career =='9년'}">selected</c:if>>9년</option>
-                                                <option value="tenup" <c:if test="${filter.career =='10년 이상'}">selected</c:if>>10년 이상</option>
+                                            <select name="career" id="">
+                                                <option value="전체" class="all" <c:if test="${filter.career =='전체'}">selected</c:if>>전체</option>
+                                                <option value="신입" <c:if test="${filter.career =='신입'}">selected</c:if>>신입</option>
+                                                <option value="1년" <c:if test="${filter.career =='1년'}">selected</c:if>>1년</option>
+                                                <option value="2년" <c:if test="${filter.career =='2년'}">selected</c:if>>2년</option>
+                                                <option value="3년" <c:if test="${filter.career =='3년'}">selected</c:if>>3년</option>
+                                                <option value="4년" <c:if test="${filter.career =='4년'}">selected</c:if>>4년</option>
+                                                <option value="5년" <c:if test="${filter.career =='5년'}">selected</c:if>>5년</option>
+                                                <option value="6년" <c:if test="${filter.career =='6년'}">selected</c:if>>6년</option>
+                                                <option value="7년" <c:if test="${filter.career =='7년'}">selected</c:if>>7년</option>
+                                                <option value="8년" <c:if test="${filter.career =='8년'}">selected</c:if>>8년</option>
+                                                <option value="9년" <c:if test="${filter.career =='9년'}">selected</c:if>>9년</option>
+                                                <option value="10년 이상" <c:if test="${filter.career =='10년 이상'}">selected</c:if>>10년 이상</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="modalfilter">
                                         <input type="checkbox" name="filtersave" id="">
-                                        적용된 필터를 저장하고 유지합니다.
+                                                                                        적용된 필터를 저장하고 유지합니다.
                                     </div>
                                 </div>
                             </div>
                             <div class="modalsubmit">
-                                <button type="submit">적용</button>
+                                <button type="submit" onclick="filterJobNameAccept('${loginMember.memNo}', '${jobName }');">적용</button>
                             </div>
                         </div>
                     </div>
@@ -377,6 +377,50 @@
 		$(".junguk").addClass('jiuk-btn');
 		$(".modaljiuk").css("display", "block");
 	})
-
+	/* 필터적용 */
+	function filterJobNameAccept(memNo, jobName){
+		var order = $("select[name=order]").val();
+		var career = $("select[name=career]").val();
+		var country = $(".narabody-btn").text();
+		var location = $(".jiuk-btn").text();
+		var filtersave = null;
+		if($("input[name=filtersave]:checked").val() == null){
+			filtersave = "off";
+		}else{
+			filtersave = "on";
+		}
+		$.ajax({
+			url: path + "/search/changeFilterJobNameLoginAjax",
+			type: "POST",
+			data: {
+					memNo : memNo,
+					jobName : jobName,
+					order : order,
+					career : career,
+					country : country,
+					location : location,
+					filtersave : filtersave
+					},	
+			success: function(data){
+				$("#search-main").html("");
+				$("#search-main").html(data);
+			}
+		}) 
+	}
+	function chogihwa() {
+		$(".naraBtn").next().removeClass('narabody-btn');
+		$(".naraBtn").prev().removeClass('narabody-btn');
+		if($(".naraBtn").text() == '${filter.country}'){
+			$(this).addClass("narabody-btn");
+		}
+		$(".jiukBtn").next().removeClass('jiuk-btn');
+		$(".jiukBtn").prev().removeClass('jiuk-btn');
+		if($(".jiukBtn").test() == '${filter.location}'){
+			$(this).addClass("jiuk-btn");
+		}
+		$("select[name=order]").val('${filter.job_sort}').prop("selected", true);
+		$("select[name=career]").val('${filter.career}').prop("selected", true);
+	}
+	
 </script>
         
