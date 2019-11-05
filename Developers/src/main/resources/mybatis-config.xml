@@ -19,5 +19,7 @@
 		<typeAlias type="com.kh.developers.search.model.vo.FilterLocation" alias="filterlocation"/>
 		<typeAlias type="com.kh.developers.search.model.vo.FilterCareer" alias="filtercareer"/>
 		<typeAlias type="com.kh.developers.search.model.vo.Filter" alias="filter"/>
+		<typeAlias type="com.kh.developers.member.model.vo.Interests" alias="intersts"/>
+		<typeAlias type="com.kh.developers.member.model.vo.School" alias="School"/>
 	</typeAliases>
 </configuration>

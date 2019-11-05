@@ -21,12 +21,30 @@
 <div style="height: 70px;" ></div>
   <div class="section">
     <div id="app">
-        <main class="App-iEDHGk UeTOO" data-reactid=".0">
+        <main class="App-iEDHGk UeTOO">
             <div>
                 <div>
                     <div id="resume-app" class="react-container">
                         <div class="resume-list-container" >
                             <div id="resume-list">
+                            <!-- <div class="Box-cwadsP bLaSri">
+                            <div width="50" class="Content-zwkXZ kKarJI">
+                            <div class="resume-delete-modal-body Div-hTZHGu fEVoGZ" >
+                            <div >
+                            <h3>
+                            <span>이력서 강병민 7<br>
+								삭제하시겠습니까?</span>
+							</h3>
+							</div>
+							</div>
+							<div class="resume-delete-modal-footer Div-hTZHGu dXKeOh">
+							<button>취소</button>
+							<button>삭제</button>
+							</div>
+							</div>
+							<div class="Overlay-iWuiZb emhpxA">
+							</div>
+							</div> -->
                                 <div class="resume-list-header" >
                                     <h4 >최근 문서</h4><button
                                         ><span >디벨로퍼 이력서
@@ -43,7 +61,7 @@
                                     <div class="resume-list-content Row-ciskzD hmOcCM" >
                                         <div class="resume-item Column-cKhjSj ehaaKs" >
                                             <div class="resume-box ResumeItemBox__Box-dRwtdQ jzITim">
-                                      
+                                      	
                                                 <button class="btn-add-resume btn btn-default" 
                                                 type="button" onclick="location.href='${path }/resume/insertResumepage.lmc?memEmail=${loginMember.memEmail }';">
                                                     <div class="wrapper" >
@@ -89,7 +107,6 @@
                                                                 type="button" data-toggle="dropdown">
                                                                 <i class="fas fa-ellipsis-v"></i></button>
                                                             <ul class="dropdown-menu dropdown-menu-right">
-                                                                <li name="en"><a href="#">이름변경</a></li>
                                                                 <li><a href="#">다운로드</a></li>
                                                                 <li><a href="#">삭제</a></li>
                                                             </ul>
