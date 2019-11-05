@@ -108,8 +108,8 @@
                         </div>
                     </div>
                 </div>
-                
-                
+                <!-- 필터 모달창 -->
+                <form>
                 <div id="modalTool">
                     <div class="modalchang">
                         <div class="modalchang-1">
@@ -173,7 +173,7 @@
                                     <div class="modalgung">
                                         <h6 class="gunghae">경력</h6>
                                         <div class="gungbody">
-                                            <select name="cureer" id="">
+                                            <select name="career" id="">
                                                 <option value="all" class="all" <c:if test="${filter.career =='전체'}">selected</c:if>>전체</option>
                                                 <option value="new" <c:if test="${filter.career =='신입'}">selected</c:if>>신입</option>
                                                 <option value="one" <c:if test="${filter.career =='1년'}">selected</c:if>>1년</option>
@@ -191,7 +191,7 @@
                                     </div>
                                     <div class="modalfilter">
                                         <input type="checkbox" name="filtersave" id="">
-                                        적용된 필터를 저장하고 유지합니다.
+                                                                                        적용된 필터를 저장하고 유지합니다.
                                     </div>
                                 </div>
                             </div>
@@ -202,7 +202,7 @@
                     </div>
                     <div role="presentation" class="modalBig"></div>
                 </div>
-                
+                </form>
                 
                 <h3 class="firstCompany">적극 채용 중인 회사</h3>
                 <div class="firstCompany-list">

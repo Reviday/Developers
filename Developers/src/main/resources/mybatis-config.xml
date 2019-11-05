@@ -14,6 +14,10 @@
 		<typeAlias type="com.kh.developers.search.model.vo.JobField" alias="jobfield"/>
 		<typeAlias type="com.kh.developers.search.model.vo.Position" alias="position"/>
 		<typeAlias type="com.kh.developers.search.model.vo.LikeMember" alias="likemember"/>
+		<typeAlias type="com.kh.developers.search.model.vo.FilterOrderType" alias="filterordertype"/>
+		<typeAlias type="com.kh.developers.search.model.vo.FilterCountry" alias="filtercountry"/>
+		<typeAlias type="com.kh.developers.search.model.vo.FilterLocation" alias="filterlocation"/>
+		<typeAlias type="com.kh.developers.search.model.vo.FilterCareer" alias="filtercareer"/>
 		<typeAlias type="com.kh.developers.search.model.vo.Filter" alias="filter"/>
 	</typeAliases>
 </configuration>

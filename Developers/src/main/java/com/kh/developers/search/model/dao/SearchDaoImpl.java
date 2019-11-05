@@ -8,6 +8,10 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.kh.developers.search.model.vo.Filter;
+import com.kh.developers.search.model.vo.FilterCareer;
+import com.kh.developers.search.model.vo.FilterCountry;
+import com.kh.developers.search.model.vo.FilterLocation;
+import com.kh.developers.search.model.vo.FilterOrderType;
 import com.kh.developers.search.model.vo.JobField;
 import com.kh.developers.search.model.vo.LikeMember;
 import com.kh.developers.search.model.vo.Position;
@@ -107,5 +111,31 @@ public class SearchDaoImpl implements SearchDao {
 		map.put("filter", filter);
 		return session.selectList("search.positionAjaxLoginList", map);
 	}
+
+	@Override
+	public List<FilterOrderType> selectFilterOrderType(SqlSessionTemplate session) {
+		// TODO Auto-generated method stub
+		return session.selectList("search.selectFilterOrderType");
+	}
+
+	@Override
+	public List<FilterCountry> selectFilterCountry(SqlSessionTemplate session) {
+		// TODO Auto-generated method stub
+		return session.selectList("search.selectFilterCountry");
+	}
+
+	@Override
+	public List<FilterLocation> selectFilterLocation(SqlSessionTemplate session) {
+		// TODO Auto-generated method stub
+		return session.selectList("search.selectFilterLocation");
+	}
+
+	@Override
+	public List<FilterCareer> selectFilterCareer(SqlSessionTemplate session) {
+		// TODO Auto-generated method stub
+		return session.selectList("search.selectFilterCareer");
+	}
+	
+	
 	
 }

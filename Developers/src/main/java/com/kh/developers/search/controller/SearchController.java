@@ -13,6 +13,10 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kh.developers.resume.controller.ResumeController;
 import com.kh.developers.search.model.service.SearchService;
 import com.kh.developers.search.model.vo.Filter;
+import com.kh.developers.search.model.vo.FilterCareer;
+import com.kh.developers.search.model.vo.FilterCountry;
+import com.kh.developers.search.model.vo.FilterLocation;
+import com.kh.developers.search.model.vo.FilterOrderType;
 import com.kh.developers.search.model.vo.JobField;
 import com.kh.developers.search.model.vo.LikeMember;
 import com.kh.developers.search.model.vo.Position;
@@ -47,12 +51,21 @@ public class SearchController {
 		// 직무 리스트
 		List<JobField> list = service.jobfieldList();
 		model.addAttribute("list", list);
-		// 필터  정보
+		// 회원 필터  정보
 		Filter filter = service.SelectMemberFilter(memNo);
 		model.addAttribute("filter", filter);
 		// 필터 적용한 포지션리스트
 		List<Position> psList = service.positionLoginList(filter);
 		model.addAttribute("psList", psList);
+		// 필터 리스트 정보
+		List<FilterOrderType> fot = service.selectFilterOrderType();
+		List<FilterCountry> fCountry = service.selectFilterCountry();
+		List<FilterLocation> fl = service.selectFilterLocation();
+		List<FilterCareer> fCareer = service.selectFilterCareer();
+		model.addAttribute("fot", fot);
+		model.addAttribute("fCountry", fCountry);
+		model.addAttribute("fl", fl);
+		model.addAttribute("fCareer", fCareer);
 		return "search/mainSearchLogin";
 	}
 

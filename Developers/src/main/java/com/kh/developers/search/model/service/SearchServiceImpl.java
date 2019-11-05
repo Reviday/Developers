@@ -8,6 +8,10 @@ import org.springframework.stereotype.Service;
 
 import com.kh.developers.search.model.dao.SearchDao;
 import com.kh.developers.search.model.vo.Filter;
+import com.kh.developers.search.model.vo.FilterCareer;
+import com.kh.developers.search.model.vo.FilterCountry;
+import com.kh.developers.search.model.vo.FilterLocation;
+import com.kh.developers.search.model.vo.FilterOrderType;
 import com.kh.developers.search.model.vo.JobField;
 import com.kh.developers.search.model.vo.LikeMember;
 import com.kh.developers.search.model.vo.Position;
@@ -107,5 +111,31 @@ public class SearchServiceImpl implements SearchService {
 		List<Position> psList = dao.positionAjaxLoginList(session, jobName, filter);
 		return psList;
 	}
+
+	@Override
+	public List<FilterOrderType> selectFilterOrderType() {
+		List<FilterOrderType> fot = dao.selectFilterOrderType(session);
+		return fot;
+	}
+
+	@Override
+	public List<FilterCountry> selectFilterCountry() {
+		List<FilterCountry> fCountry = dao.selectFilterCountry(session);
+		return fCountry;
+	}
+
+	@Override
+	public List<FilterLocation> selectFilterLocation() {
+		List<FilterLocation> fl = dao.selectFilterLocation(session);
+		return fl;
+	}
+
+	@Override
+	public List<FilterCareer> selectFilterCareer() {
+		List<FilterCareer> fCareer = dao.selectFilterCareer(session);
+		return fCareer;
+	}
+	
+	
 	
 }

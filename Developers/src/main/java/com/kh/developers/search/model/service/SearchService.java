@@ -3,6 +3,10 @@ package com.kh.developers.search.model.service;
 import java.util.List;
 
 import com.kh.developers.search.model.vo.Filter;
+import com.kh.developers.search.model.vo.FilterCareer;
+import com.kh.developers.search.model.vo.FilterCountry;
+import com.kh.developers.search.model.vo.FilterLocation;
+import com.kh.developers.search.model.vo.FilterOrderType;
 import com.kh.developers.search.model.vo.JobField;
 import com.kh.developers.search.model.vo.LikeMember;
 import com.kh.developers.search.model.vo.Position;
@@ -36,4 +40,9 @@ public interface SearchService {
 	List<Position> positionLoginList(Filter filter);
 	//직무분야 검색했을 때의 포지션 리스트(로그인)
 	List<Position> positionAjaxLoginList(String jobName, Filter filter);
+	// 필터 종류 
+	List<FilterOrderType> selectFilterOrderType();
+	List<FilterCountry> selectFilterCountry();
+	List<FilterLocation> selectFilterLocation();
+	List<FilterCareer> selectFilterCareer();
 }
