@@ -1,9 +1,10 @@
 //dashboard-applications
 
 
+
 $(function(){
     //리스트 가져오는 함수
-    fn_appl_nav(appl_index);
+    fn_appl_nav(appl_index, cPage);
 
     //인덱스 선택
     $($('.appl-main-nav>ul>li')[appl_index]).children().addClass('ca2');
@@ -32,26 +33,39 @@ $(function(){
     });
     $("[name='search_em']").on("keyup", function(event){
         if(event.keyCode=='13'){
-            fn_appl_nav(appl_index);
+            fn_appl_nav(appl_index, cPage);
         }
     });
     $("#like_check").on("change", function(){
-        fn_appl_nav(appl_index)
+        fn_appl_nav(appl_index, cPage);
     });
+
+   
 
 });
   
-function fn_appl_nav(index){
+function fn_appl_nav(index, cPage){
     appl_index=index==""?0:index;
     $(".appl-applicant-list").html("<img src='"+path+"/resources/images/Developers_black_loading.gif' width='30px;'/>");
     $.ajax({
         url:path+"/business/applChange",
-        data:{"applIndex":appl_index, "like":$("#like_check").prop("checked"),"search":$("[name='search_em']").val()},
+        data:{"applIndex":appl_index, "like":$("#like_check").prop("checked"),"search":$("[name='search_em']").val(), "cPage":cPage},
         success:function(data){
             $(".appl-applicant-list").html(data.applInnerHtml);
+            $(".appl-applicant-list").append(data.pageBar);
+             //좋아요 버튼 클릭
+            $(".aList-like-btn").on("click",function(){
+                if($(this).children().hasClass("like_on")){
+                    $(this).children().removeClass("like_on");
+                }else{
+                    $(this).children().addClass("like_on");
+                }
+            })
         }
     });
+
 }
+
     
     
 

@@ -139,7 +139,7 @@
 	var db_index="${dbIndex}";
 	var db_html="${dbHtml}";
 	var appl_index="${applIndex}";
-
+	var cPage='${applcPage}';
 	
 </script>
 <script src="${path}/resources/js/db-main.js"></script>

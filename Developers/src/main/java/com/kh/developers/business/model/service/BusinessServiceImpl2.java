@@ -25,39 +25,39 @@ public class BusinessServiceImpl2 implements BusinessService2 {
 	}
 
 	@Override
-	public List<Member> selectBusApplNew() {
-		List<Member> list=dao.selectBusApplNew(session);
+	public List<Member> selectBusApplNew(int cPage, int numPerPage) {
+		List<Member> list=dao.selectBusApplNew(session, cPage, numPerPage);
 		return list;
 	}
 
 	@Override
-	public List<Member> selectBusApplStart() {
+	public List<Member> selectBusApplStart(int cPage, int numPerPage) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Member> selectBusApplPass() {
+	public List<Member> selectBusApplPass(int cPage, int numPerPage) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Member> selectBusApplFail() {
+	public List<Member> selectBusApplFail(int cPage, int numPerPage) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Member> selectBusApplEnd() {
+	public List<Member> selectBusApplEnd(int cPage, int numPerPage) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public int selectBusApplNewCount() {
-		// TODO Auto-generated method stub
-		return 0;
+		int result=dao.selecBusApplNewCount(session);
+		return result;
 	}
 
 	@Override

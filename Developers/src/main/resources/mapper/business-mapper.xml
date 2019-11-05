@@ -30,7 +30,17 @@
 	</update>
 	
 	<select id="selectBusApplNew" resultMap="memberMap">
-		SELECT * FROM TA_MEMBER
+		SELECT * FROM TA_MEMBER ORDER BY MEM_NO DESC
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	<select id="selectBusApplNewCount" resultType="_int">
+		SELECT COUNT(*) FROM TA_MEMBER
 	</select>
 	
 	<resultMap type="bus" id="busMap">

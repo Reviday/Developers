@@ -22,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.developers.business.model.service.BusinessService2;
 import com.kh.developers.business.model.vo.Business;
+import com.kh.developers.common.page.PageFactory2;
 import com.kh.developers.member.model.vo.Member;
 
 
@@ -194,20 +195,22 @@ public class BusinessController2 {
 	}
 	
 	@RequestMapping("/business/applChange")
-	public ModelAndView applChange(HttpSession session, @RequestParam int applIndex, @RequestParam boolean like, @RequestParam String search) {
+	public ModelAndView applChange(HttpSession session, @RequestParam int applIndex, @RequestParam boolean like, @RequestParam String search, @RequestParam(value="cPage", required=false, defaultValue="1")int cPage) {
 		ModelAndView mv=new ModelAndView();
 		session.setAttribute("applIndex", applIndex);
+		session.setAttribute("applcPage", cPage);
 		String html="";
 		List<Member> memberList=new ArrayList<Member>();
+		int numPerPage=5;
+		int totalData=0;
 		//list 가져오기
-//		switch(applIndex) {
-//		case 0: memberList=service.selectBusApplNew(); break;//신규 지원자
-//		case 1: memberList=service.selectBusApplStart(); break;//서류통과
-//		case 2: memberList=service.selectBusApplPass(); break;//합격
-//		case 3: memberList=service.selectBusApplFail(); break;//불합격
-//		case 4: memberList=service.selectBusApplEnd(); break;//기간 만료
-//		}
-		memberList=service.selectBusApplNew();
+		switch(applIndex) {
+		case 0: memberList=service.selectBusApplNew(cPage, numPerPage); totalData=service.selectBusApplNewCount(); break;//신규 지원자
+		case 1: memberList=service.selectBusApplStart(cPage, numPerPage); totalData=service.selectBusApplStartCount(); break;//서류통과
+		case 2: memberList=service.selectBusApplPass(cPage, numPerPage); totalData=service.selectBusApplPassCount(); break;//합격
+		case 3: memberList=service.selectBusApplFail(cPage, numPerPage); totalData=service.selectBusApplFailCount(); break;//불합격
+		case 4: memberList=service.selectBusApplEnd(cPage, numPerPage); totalData=service.selectBusApplEndCount(); break;//기간 만료
+		}
 		
 		if(memberList.isEmpty()) {
 			html+="<br/>";
@@ -221,7 +224,7 @@ public class BusinessController2 {
 				html+="<div class='aList-like-btn'><i class='fas fa-star'></i></div>";
 				html+="<div class='aList-info'>";
 				html+="<div class='aList-info-no'>No_"+m.getMemNo()+"</div>";
-				html+="<div class='aList-info-name'>"+"dD"+"<i class='far fa-circle'></i><i class='far fa-circle'></i></div>";
+				html+="<div class='aList-info-name'>"+m.getMemName().charAt(0)+"<i class='far fa-circle'></i><i class='far fa-circle'></i></div>";
 				html+="</div>";
 				html+="<div class='aList-type'>";
 				html+="<span>매치업</span>";
@@ -238,6 +241,7 @@ public class BusinessController2 {
 		mv.addObject("likeCh", like);
 		mv.addObject("search", search);
 		mv.addObject("applInnerHtml", html);
+		mv.addObject("pageBar", PageFactory2.getApplPageBar(totalData, cPage, numPerPage));
 		mv.setViewName("jsonView");
 		return mv; 
 	}

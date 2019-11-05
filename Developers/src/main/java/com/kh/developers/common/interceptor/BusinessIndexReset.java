@@ -15,8 +15,10 @@ public class BusinessIndexReset extends HandlerInterceptorAdapter {
 			ModelAndView modelAndView) throws Exception {
 		if(request.getHeader("referer")==null) {
 			request.getSession().setAttribute("applIndex",0);
+			request.getSession().setAttribute("applcPage",1);
 		}else if(request.getHeader("referer")!=null&&request.getRequestURL().indexOf("appl")<0) {
 			request.getSession().setAttribute("applIndex",0);
+			request.getSession().setAttribute("applcPage",1);
 		}
 		super.postHandle(request, response, handler, modelAndView);
 	}

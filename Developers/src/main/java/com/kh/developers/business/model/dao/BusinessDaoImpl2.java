@@ -2,6 +2,7 @@ package com.kh.developers.business.model.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
@@ -17,27 +18,28 @@ public class BusinessDaoImpl2 implements BusinessDao2 {
 	}
 
 	@Override
-	public List<Member> selectBusApplNew(SqlSession session) {
-		return session.selectList("business.selectBusApplNew");
+	public List<Member> selectBusApplNew(SqlSession session, int cPage, int numPerPage) {
+		RowBounds row=new RowBounds((cPage-1)*numPerPage, numPerPage);
+		return session.selectList("business.selectBusApplNew", null, row);
 	}
 
 	@Override
-	public List<Member> selectBusApplStart(SqlSession session) {
+	public List<Member> selectBusApplStart(SqlSession session, int cPage, int numPerPage) {
 		return session.selectList("business.selectBusApplStart");
 	}
 
 	@Override
-	public List<Member> selectBusApplPass(SqlSession session) {
+	public List<Member> selectBusApplPass(SqlSession session, int cPage, int numPerPage) {
 		return session.selectList("business.selectBusApplPass");
 	}
 
 	@Override
-	public List<Member> selectBusApplFail(SqlSession session) {
+	public List<Member> selectBusApplFail(SqlSession session, int cPage, int numPerPage) {
 		return session.selectList("business.selectBusApplFail");
 	}
 
 	@Override
-	public List<Member> selectBusApplEnd(SqlSession session) {
+	public List<Member> selectBusApplEnd(SqlSession session, int cPage, int numPerPage) {
 		return session.selectList("business.selectBusApplEnd");
 	}
 

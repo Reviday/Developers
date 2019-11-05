@@ -142,7 +142,7 @@ input[name="search_em"]::placeholder{
 }
 .aList-like-btn>svg{
     color:silver;
-    font-size: 1.5rem;
+    font-size: 1.7rem;
 }
 .aList-left>div{
     position: relative;
@@ -173,6 +173,9 @@ input[name="search_em"]::placeholder{
     display: inline-grid;
     float:right;
 }
+.like_on{
+    color:gold !important;
+}
 
 .aList-del-btn{
     margin:16px 20px;
@@ -188,6 +191,27 @@ input[name="search_em"]::placeholder{
 .del-btn:hover{
     background-color:#900020;
     color:white;
+}
+
+.pagination>*{
+    font-size: 1.8rem;
+    margin:0 3px;
+    
+}
+.pagination>.active>.page-link{
+    background-color: #900020;
+    border-color:silver;
+}
+.pagination>.active>.page-link:hover{
+    color:white;
+}
+.pagination>li>a{
+    padding:.5rem 1rem;
+    color:brown;
+}
+
+.pagination>li>a:hover{
+    color:#900020;
 }
 
 /*matchup*/

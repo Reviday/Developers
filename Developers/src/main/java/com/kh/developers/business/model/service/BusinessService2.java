@@ -10,11 +10,11 @@ public interface BusinessService2 {
 	int busLogoChange(Business busInfo);
 	
 	//지원자 리스트
-	List<Member> selectBusApplNew();
-	List<Member> selectBusApplStart();
-	List<Member> selectBusApplPass();
-	List<Member> selectBusApplFail();
-	List<Member> selectBusApplEnd();
+	List<Member> selectBusApplNew(int cPage, int numPerPage);
+	List<Member> selectBusApplStart(int cPage, int numPerPage);
+	List<Member> selectBusApplPass(int cPage, int numPerPage);
+	List<Member> selectBusApplFail(int cPage, int numPerPage);
+	List<Member> selectBusApplEnd(int cPage, int numPerPage);
 	//지원자 리스트 카운트
 	int selectBusApplNewCount();
 	int selectBusApplStartCount();
