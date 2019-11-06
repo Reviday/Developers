@@ -1,6 +1,7 @@
 package com.kh.developers.business.model.service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.developers.business.model.dao.BusinessDao;
 import com.kh.developers.business.model.vo.Business;
+import com.kh.developers.business.model.vo.IntroCard;
 import com.kh.developers.common.authentication.MailHandler;
 import com.kh.developers.common.authentication.TempKey;
 import com.kh.developers.member.model.vo.Member;
@@ -103,6 +105,13 @@ public class BusinessServiceImpl implements BusinessService {
 	public Business selectBusInfo(int memberNo) {
 		
 		return dao.selectBusInfo(session, memberNo);
+	}
+	
+	// 매치업  introCard 불러오기 로직
+	@Override
+	public List<IntroCard> selectIntroCards(String duties) {
+		
+		return dao.selectIntroCards(session, duties);
 	}
 
 }

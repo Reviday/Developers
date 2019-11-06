@@ -211,7 +211,7 @@ public class BusinessController {
 			List<IntroCard> ic=bService.selectIntroCards(duties);
 			
 				try {
-					jsonStr=mapper.writeValueAsString(selected);
+					jsonStr=mapper.writeValueAsString(ic);
 				}catch(JsonProcessingException e) {
 					e.printStackTrace();
 				}

@@ -1,11 +1,13 @@
 package com.kh.developers.business.model.dao;
 
+import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.kh.developers.business.model.vo.Business;
+import com.kh.developers.business.model.vo.IntroCard;
 import com.kh.developers.member.model.vo.Member;
 
 @Repository
@@ -44,6 +46,13 @@ public class BusinessDaoImpl implements BusinessDao {
 	public Business selectBusInfo(SqlSessionTemplate session, int memberNo) {
 
 		return session.selectOne("business.selectBusInfo",memberNo);
+	}
+	
+//	매치업 로직
+	@Override
+	public List<IntroCard> selectIntroCards(SqlSessionTemplate session, String duties) {
+		
+		return session.selectList("business.selectIntroCards",duties);
 	}
 
 }

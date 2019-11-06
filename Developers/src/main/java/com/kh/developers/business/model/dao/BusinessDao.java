@@ -1,10 +1,12 @@
 package com.kh.developers.business.model.dao;
 
+import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
 import com.kh.developers.business.model.vo.Business;
+import com.kh.developers.business.model.vo.IntroCard;
 import com.kh.developers.member.model.vo.Member;
 
 public interface BusinessDao {
@@ -22,5 +24,9 @@ public interface BusinessDao {
 	int insertBusiness (SqlSessionTemplate session, Business bus);
 	
 	Business selectBusInfo (SqlSessionTemplate session, int memberNo);
-
+	
+	
+//	매치업 로직
+	List<IntroCard>selectIntroCards(SqlSessionTemplate session, String duties);
+	
 }
