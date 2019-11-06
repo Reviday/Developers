@@ -21,6 +21,9 @@
 		<typeAlias type="com.kh.developers.search.model.vo.Filter" alias="filter"/>
 		<typeAlias type="com.kh.developers.member.model.vo.Interests" alias="interests"/>
 		<typeAlias type="com.kh.developers.business.model.vo.Applicant" alias="applicant"/>
+		<typeAlias type="com.kh.developers.search.model.vo.Company" alias="company"/>
+		<typeAlias type="com.kh.developers.search.model.vo.Tag" alias="tag"/>
+		<typeAlias type="com.kh.developers.search.model.vo.BookMark" alias="bookmark"/>
 		
 	</typeAliases>
 </configuration>

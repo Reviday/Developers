@@ -14,6 +14,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.developers.resume.controller.ResumeController;
 import com.kh.developers.search.model.service.SearchService;
+import com.kh.developers.search.model.vo.BookMark;
+import com.kh.developers.search.model.vo.Company;
 import com.kh.developers.search.model.vo.Filter;
 import com.kh.developers.search.model.vo.FilterCareer;
 import com.kh.developers.search.model.vo.FilterCountry;
@@ -22,6 +24,7 @@ import com.kh.developers.search.model.vo.FilterOrderType;
 import com.kh.developers.search.model.vo.JobField;
 import com.kh.developers.search.model.vo.LikeMember;
 import com.kh.developers.search.model.vo.Position;
+import com.kh.developers.search.model.vo.Tag;
 
 @Controller
 public class SearchController {
@@ -173,11 +176,12 @@ public class SearchController {
 	// 회사를 눌렀을 때의 포지션 정보 페이지(로그인시)
 	@RequestMapping("/search/companyInfo.do")
 	public String companyInfoList(int positionNo, int memNo, Model model) {
-
+		BookMark bmList = service.selectBookMark(memNo, positionNo);
 		Position p = service.companyInfoList(positionNo);
 		int likeId = p.getLike_id();
 		List<LikeMember> list = service.likeMemberList(likeId);
 		LikeMember lm = service.selectLikeMemberOne(memNo, likeId);
+		model.addAttribute("bmList", bmList);
 		model.addAttribute("lm", lm);
 		model.addAttribute("p", p);
 		model.addAttribute("list", list);
@@ -251,11 +255,47 @@ public class SearchController {
 		mv.setViewName("search/ajax/changeLikeAjax");
 		return mv;
 	}
+	//북마크 눌렀을 때의 Ajax
+	@RequestMapping(value = "/search/changeBookMarkAjax", produces = "application/text; charset=utf8")
+	public ModelAndView changeBookMarkAjax(int memNo, int positionNo, int likeId, ModelAndView mv) {
+		BookMark bmList1 = service.selectBookMark(memNo, positionNo);
+		System.out.println(bmList1);
+		if(bmList1 == null) {
+			int result = service.insertBookMark(memNo, positionNo);
+			Position p = service.companyInfoList(positionNo);
+			List<LikeMember> list = service.likeMemberList(likeId);
+			LikeMember lm = service.selectLikeMemberOne(memNo, likeId);
+			BookMark bmList = service.selectBookMark(memNo, positionNo);
+			mv.addObject("lm", lm);
+			mv.addObject("p", p);
+			mv.addObject("list", list);
+			mv.addObject("bmList", bmList);
+		}else {
+			int result = service.deleteBookMark(memNo, positionNo);
+			Position p = service.companyInfoList(positionNo);
+			List<LikeMember> list = service.likeMemberList(likeId);
+			LikeMember lm = service.selectLikeMemberOne(memNo, likeId);
+			BookMark bmList = service.selectBookMark(memNo, positionNo);
+			mv.addObject("lm", lm);
+			mv.addObject("p", p);
+			mv.addObject("list", list);
+			mv.addObject("bmList", bmList);
+		}
+		mv.setViewName("search/ajax/changeBookMarkAjax");
+		return mv;
+	}
 	//탐색 -> 회사소개페이지로 전환(비로그인)
 	@RequestMapping("/search/companyAllInfo")
 	public String companyAllInfo(int busNo, Model model) {
+		//회사 포지션 리스트
 		List<Position> psList = service.companyPositionList(busNo);
-		
+		model.addAttribute("psList", psList);
+		//회사 태그 리스트
+		List<Tag> tagList = service.companyTagList(busNo);
+		model.addAttribute("tagList", tagList);
+		//회사소개 정보 
+		Company company = service.companyInfo(busNo);
+		model.addAttribute("company", company);
 		return "search/companyAllInfo";
 	}
 }

@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.developers.search.model.dao.SearchDao;
+import com.kh.developers.search.model.vo.BookMark;
+import com.kh.developers.search.model.vo.Company;
 import com.kh.developers.search.model.vo.Filter;
 import com.kh.developers.search.model.vo.FilterCareer;
 import com.kh.developers.search.model.vo.FilterCountry;
@@ -16,6 +18,7 @@ import com.kh.developers.search.model.vo.FilterOrderType;
 import com.kh.developers.search.model.vo.JobField;
 import com.kh.developers.search.model.vo.LikeMember;
 import com.kh.developers.search.model.vo.Position;
+import com.kh.developers.search.model.vo.Tag;
 
 @Service
 public class SearchServiceImpl implements SearchService {
@@ -160,4 +163,43 @@ public class SearchServiceImpl implements SearchService {
 		List<Position> rcList = dao.recommandPositionList(session, p);
 		return rcList;
 	}
+
+	@Override
+	public List<Position> companyPositionList(int busNo) {
+		List<Position> psList = dao.companyPositionList(session, busNo);
+		return psList;
+	}
+
+	@Override
+	public List<Tag> companyTagList(int busNo) {
+		List<Tag> tagList = dao.companyTagList(session, busNo);
+		return tagList;
+	}
+
+	@Override
+	public Company companyInfo(int busNo) {
+		Company company = dao.companyInfo(session, busNo);
+		return company;
+	}
+	
+	@Override
+	public BookMark selectBookMark(int memNo, int positionNo) {
+		BookMark bmList = dao.selectBookMark(session, memNo, positionNo);
+		return bmList;
+	}
+
+	@Override
+	public int insertBookMark(int memNo, int positionNo) {
+		int result = dao.insertBookMark(session, memNo, positionNo);
+		return result;
+	}
+
+	@Override
+	public int deleteBookMark(int memNo, int positionNo) {
+		int result = dao.deleteBookMark(session, memNo, positionNo);
+		return result;
+	}
+	
+	
+	
 }

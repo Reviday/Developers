@@ -3,6 +3,8 @@ package com.kh.developers.search.model.service;
 import java.util.List;
 import java.util.Map;
 
+import com.kh.developers.search.model.vo.BookMark;
+import com.kh.developers.search.model.vo.Company;
 import com.kh.developers.search.model.vo.Filter;
 import com.kh.developers.search.model.vo.FilterCareer;
 import com.kh.developers.search.model.vo.FilterCountry;
@@ -11,6 +13,7 @@ import com.kh.developers.search.model.vo.FilterOrderType;
 import com.kh.developers.search.model.vo.JobField;
 import com.kh.developers.search.model.vo.LikeMember;
 import com.kh.developers.search.model.vo.Position;
+import com.kh.developers.search.model.vo.Tag;
 
 public interface SearchService {
 	//직업분야리스트 
@@ -54,4 +57,16 @@ public interface SearchService {
 	List<Position> positionLoginFilterJobNameList(Map map);
 	// 포지션정보페이지의 추천채용 포지션리스트
 	List<Position> recommandPositionList(Position p);
+	// 회사 포지션 리스트
+	List<Position> companyPositionList(int busNo);
+	// 회사 태그 리스트
+	List<Tag> companyTagList(int busNo);
+	// 회사소개 정보 
+	Company companyInfo(int busNo);
+	// 북마크 정보
+	BookMark selectBookMark(int memNo, int positionNo);
+	//북마크 추가
+	int insertBookMark(int memNo, int positionNo);
+	//북마크 제거
+	int deleteBookMark(int memNo, int positionNo);
 }

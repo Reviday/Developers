@@ -202,11 +202,39 @@
 	<select id="recommandPositionList" parameterType="position" resultType="position" resultMap="positionArray">
 		SELECT * FROM (SELECT ROWNUM AS RNUM, A.* FROM (SELECT (SELECT COUNT(BUS_NO) FROM ENROLL_POSITION) AS PO_COUNT, P.*, BUS_LOGO, BUS_IMAGES, BUS_ADDRESS, BUS_INDUSTRIAL, BUS_AREA, BUS_COUNTRY,(SELECT COUNT(*) FROM PO_LIKE WHERE LIKE_ID = P.LIKE_ID) AS LIKE_COUNT FROM ENROLL_POSITION P JOIN BUSINESS_INFO B ON P.BUS_NO = B.BUS_NO WHERE SYSDATE <![CDATA[<]]> DEAD_DATE AND P.BUS_NO = #{bus_no} OR B.BUS_AREA = #{bus_area} OR B.BUS_COUNTRY = #{bus_country} ORDER BY 1)A) WHERE RNUM BETWEEN 1 AND 8
 	</select>
+	<!-- 회사 포지션 리스트 -->
+	<select id="companyPositionList" parameterType="_int" resultType="position">
+		SELECT P.*, BUS_LOGO, BUS_IMAGES, BUS_ADDRESS, BUS_INDUSTRIAL, BUS_AREA, BUS_COUNTRY, (SELECT COUNT(*) FROM PO_LIKE WHERE LIKE_ID = P.LIKE_ID) AS LIKE_COUNT FROM ENROLL_POSITION P JOIN BUSINESS_INFO B ON P.BUS_NO = B.BUS_NO WHERE SYSDATE <![CDATA[<]]> DEAD_DATE AND P.BUS_NO = #{busNo} ORDER BY POSITION_NO DESC
+	</select>
+	<!-- 회사 태그 리스트 -->
+	<select id="companyTagList" parameterType="_int" resultType="tag">
+		SELECT * FROM TAG WHERE BUS_NO = #{busNo}
+	</select>
+	<!-- 회사소개 정보  -->
+	<select id="companyInfo" parameterType="_int" resultType="company" resultMap="companyArray">
+		SELECT BUS_NO, BUS_NAME, BUS_COUNTRY, BUS_AREA, BUS_TOTAL_EMP, BUS_INTRODUCE, BUS_LOGO, BUS_IMAGES, NEW_INCOME, ALL_INCOME FROM BUSINESS_INFO WHERE BUS_NO = #{busNo} 
+	</select>
+	<!-- 북마크정보리스트 -->
+	<select id="selectBookMark" parameterType="map" resultType="bookmark">
+		SELECT * FROM BOOK_MARK WHERE MEM_NO = #{memNo} AND POSITION_NO = #{positionNo}
+	</select>
+	<!-- 북마크추가 -->
+	<insert id="insertBookMark" parameterType="map">
+		INSERT INTO BOOK_MARK VALUES(BOOK_MARK_SEQ.NEXTVAL, #{memNo}, #{positionNo})
+	</insert>
+	<!-- 북마크제거 -->
+	<delete id="deleteBookMark" parameterType="map">
+		DELETE FROM BOOK_MARK WHERE MEM_NO = #{memNo} AND POSITION_NO = #{positionNo}
+	</delete>
 	
 	
 	<resultMap type="position" id="positionArray">
 		<result column="job_type" property="job_type" typeHandler="StrArray"/>
 		<result column="tag" property="tag" typeHandler="StrArray"/>
+		<result column="bus_images" property="bus_images" typeHandler="StrArray"/>
+	</resultMap>
+	
+	<resultMap type="company" id="companyArray">
 		<result column="bus_images" property="bus_images" typeHandler="StrArray"/>
 	</resultMap>
 </mapper>

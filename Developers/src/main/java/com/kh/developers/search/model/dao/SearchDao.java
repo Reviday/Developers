@@ -5,6 +5,8 @@ import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
+import com.kh.developers.search.model.vo.BookMark;
+import com.kh.developers.search.model.vo.Company;
 import com.kh.developers.search.model.vo.Filter;
 import com.kh.developers.search.model.vo.FilterCareer;
 import com.kh.developers.search.model.vo.FilterCountry;
@@ -13,6 +15,7 @@ import com.kh.developers.search.model.vo.FilterOrderType;
 import com.kh.developers.search.model.vo.JobField;
 import com.kh.developers.search.model.vo.LikeMember;
 import com.kh.developers.search.model.vo.Position;
+import com.kh.developers.search.model.vo.Tag;
 
 public interface SearchDao {
 
@@ -38,4 +41,10 @@ public interface SearchDao {
 	int updateMemFilter(SqlSessionTemplate session, Map map);
 	List<Position> positionLoginFilterJobNameList(SqlSessionTemplate session, Map map);
 	List<Position> recommandPositionList(SqlSessionTemplate session, Position p);
+	List<Position> companyPositionList(SqlSessionTemplate session, int busNo);
+	List<Tag> companyTagList(SqlSessionTemplate session, int busNo);
+	Company companyInfo(SqlSessionTemplate session, int busNo);
+	BookMark selectBookMark(SqlSessionTemplate session, int memNo, int positionNo);
+	int insertBookMark(SqlSessionTemplate session, int memNo, int positionNo);
+	int deleteBookMark(SqlSessionTemplate session, int memNo, int positionNo);
 }

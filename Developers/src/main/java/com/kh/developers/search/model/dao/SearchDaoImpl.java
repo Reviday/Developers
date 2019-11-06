@@ -7,6 +7,8 @@ import java.util.Map;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.kh.developers.search.model.vo.BookMark;
+import com.kh.developers.search.model.vo.Company;
 import com.kh.developers.search.model.vo.Filter;
 import com.kh.developers.search.model.vo.FilterCareer;
 import com.kh.developers.search.model.vo.FilterCountry;
@@ -15,6 +17,7 @@ import com.kh.developers.search.model.vo.FilterOrderType;
 import com.kh.developers.search.model.vo.JobField;
 import com.kh.developers.search.model.vo.LikeMember;
 import com.kh.developers.search.model.vo.Position;
+import com.kh.developers.search.model.vo.Tag;
 
 @Repository
 public class SearchDaoImpl implements SearchDao {
@@ -160,4 +163,48 @@ public class SearchDaoImpl implements SearchDao {
 		// TODO Auto-generated method stub
 		return session.selectList("search.recommandPositionList", p);
 	}
+
+	@Override
+	public List<Position> companyPositionList(SqlSessionTemplate session, int busNo) {
+		// TODO Auto-generated method stub
+		return session.selectList("search.companyPositionList", busNo);
+	}
+
+	@Override
+	public List<Tag> companyTagList(SqlSessionTemplate session, int busNo) {
+		// TODO Auto-generated method stub
+		return session.selectList("search.companyTagList", busNo);
+	}
+
+	@Override
+	public Company companyInfo(SqlSessionTemplate session, int busNo) {
+		// TODO Auto-generated method stub
+		return session.selectOne("search.companyInfo", busNo);
+	}
+	
+	@Override
+	public BookMark selectBookMark(SqlSessionTemplate session, int memNo, int positionNo) {
+		Map map = new HashMap();
+		map.put("memNo", memNo);
+		map.put("positionNo", positionNo);
+		return session.selectOne("search.selectBookMark", map);
+	}
+
+	@Override
+	public int insertBookMark(SqlSessionTemplate session, int memNo, int positionNo) {
+		Map map = new HashMap();
+		map.put("memNo", memNo);
+		map.put("positionNo", positionNo);
+		return session.insert("search.insertBookMark", map);
+	}
+
+	@Override
+	public int deleteBookMark(SqlSessionTemplate session, int memNo, int positionNo) {
+		Map map = new HashMap();
+		map.put("memNo", memNo);
+		map.put("positionNo", positionNo);
+		return session.delete("search.deleteBookMark", map);
+	}
+	
+	
 }

@@ -12,15 +12,19 @@
     <section id="conmanyInfo">
         <div class="companyHeader">
             <div class="comheader">
-                <img src="" alt="Company Logo">
-                <h2>카플랫</h2>
+                <img src="${company.bus_logo }" alt="Company Logo">
+                <h2><c:out value="${company.bus_name }"/></h2>
             </div>
         </div>
         <div class="commanyBody">
             <div class="companyTag">
                 <h3>태그</h3>
                 <ul>
-                    <li><a href="">#연봉업계평균이상</a></li>
+                	<c:if test="${not empty tagList }">
+                    	<c:forEach var="t" items="${tagList }">
+                    		<li><a href="">#<c:out value="${t }"/></a></li>
+                    	</c:forEach>
+                    </c:if>
                     <li>
                         <button type="button" class="tagModalOpen">+ 태그 의견보내기</button>
                     </li>
@@ -31,7 +35,7 @@
                 <div class="tagModal">
                     <div class="tagModal-body">
                         <div class="tagmodal-header">
-                            태그 의견
+                                                              태그 의견
                             <button type="button" class="tagmodal-close">
                                 <i class="fas fa-times"></i>
                             </button>
@@ -39,9 +43,9 @@
                         <div id="MODAL_BODY" class="modaltag_body">
                             <div class="tag-body">
                                 <p class="tag-body-title">
-                                    해당 회사의 다양한 태그 의견을 받습니다
+                                                                               해당 회사의 다양한 태그 의견을 받습니다
                                     <br>
-                                    보내주신 태그는 developers에서 검토 후 반영됩니다
+                                                                               보내주신 태그는 developers에서 검토 후 반영됩니다
                                 </p>
                                 <div class="tagInput">
                                     <div class="tagInput-div">
@@ -59,62 +63,58 @@
             <div class="companyInfoBody">
                 <div class="company-position">
                     <h3>채용 중인 포지션</h3>
-                    <div class="positionList">
-                        <a href="" class="positionInfo">
-                            <h4>[사업개발]제휴사업 발굴 및 신규사업 제안</h4>
-                            <h5>채용보상금 1,000,000원</h5>
-                            <p>2019.11.30 까지</p>
-                            <button type="button">
-                                18
-                                <i class="far fa-heart"></i>
-                            </button>
-                        </a>
-                        <a href="" class="positionInfo">
-                            <h4>[사업개발]제휴사업 발굴 및 신규사업 제안</h4>
-                            <h5>채용보상금 1,000,000원</h5>
-                            <p>2019.11.30 까지</p>
-                            <button type="button">
-                                18
-                                <i class="far fa-heart"></i>
-                            </button>
-                        </a>
-                    </div>
+                    <c:if test="${empty psList }">
+	                    <button class="notPosition" type="button">
+	                    	등록된 포지션이 없습니다
+	                    </button>
+                    </c:if>
+                    <c:if test="${not empty psList }">
+	                    <div class="positionList">
+	                    	<c:forEach var="p" items="${psList }">
+		                        <a href="" class="positionInfo">
+		                            <h4>${p.position }</h4>
+		                            <h5>채용보상금 1,000,000원</h5>
+		                            <c:if test="${p.dead_date == 'Thu Dec 31 00:00:00 KST 2099'}">
+		                            	<p>상시</p>
+		                            </c:if>
+		                            <c:if test="${p.dead_date != 'Thu Dec 31 00:00:00 KST 2099'}">
+		                            	<p><fmt:formatDate value="${p.dead_date}" pattern="yyyy년MM월dd일"/></p>
+		                            </c:if>
+		                            <button type="button">
+		                                <c:out value="${p.like_count }"></c:out>
+		                                <i class="far fa-heart"></i>
+		                            </button>
+		                        </a>
+	                        </c:forEach>
+	                    </div>
+                    </c:if>
                 </div>
                 <div class="companyContent">
                     <h3>회사 소개</h3>
                     <div class="companyFicture">
-                        <button class="fictureBtn">
-                            <img src="https://static.wanted.co.kr/images/company/2086/lgkogufqjwi1ngpg__1080_790.jpg"
-                                alt="">
-                        </button>
-                        <button class="fictureBtn">
-                            <img src="https://static.wanted.co.kr/images/company/2086/lgkogufqjwi1ngpg__1080_790.jpg"
-                                alt="">
-                        </button>
-                        <button class="fictureBtn">
-                            <img src="https://static.wanted.co.kr/images/company/2086/lgkogufqjwi1ngpg__1080_790.jpg"
-                                alt="">
-                        </button>
-                        <button class="fictureBtn">
-                            <img src="https://static.wanted.co.kr/images/company/2086/lgkogufqjwi1ngpg__1080_790.jpg"
-                                alt="">
-                        </button>
+                    	<c:if test="${not empty company.bus_images }">
+	                    	<c:forEach var="f" items="${company.bus_images }" varStatus="vs">
+		                        <c:if test="${vs < 4 }">
+			                        <button class="fictureBtn">
+			                            <img src="${f }"
+			                                alt="">
+			                        </button>
+		                        </c:if>
+	                        </c:forEach>
+                        </c:if>
                         <p class="companyTextInfo companyTextInfo1">
-                            회사소개내용
+                           <c:out value="${company.bus_introduce }"></c:out>
                         </p>
                         <!-- 회사사진모달창 -->
                         <div class="modalChang">
                             <div class="modalbig">
                                 <div class="modalbody">
                                     <ul class="fictureUl">
-                                        <li><img src="https://static.wanted.co.kr/images/company/2086/lgkogufqjwi1ngpg__1080_790.jpg"
-                                            alt="" class="modalficture"></li>
-                                        <li><img src="https://static.wanted.co.kr/images/company/2086/7zebrsm0fctwqm6f__1080_790.jpg"
-                                            alt="" class="modalficture"></li>
-                                        <li><img src="https://static.wanted.co.kr/images/company/2086/lgkogufqjwi1ngpg__1080_790.jpg"
-                                            alt="" class="modalficture"></li>
-                                        <li><img src="https://static.wanted.co.kr/images/company/2086/lgkogufqjwi1ngpg__1080_790.jpg"
-                                            alt="" class="modalficture"></li>
+                                    	<c:forEach var="f" items="${company.bus_images }" varStatus="vs">
+	                                        <c:if test="${vs < 4 }">
+	                                        <li><img src="${f }" alt="" class="modalficture"></li>
+	                                        </c:if>
+                                        </c:forEach>
                                     </ul>
                                     <button type="button" class="closebtn">
                                         <i class="fas fa-times"></i>
@@ -141,16 +141,23 @@
                         <div class="pungIncome">
                             <h3>평균 연봉</h3>
                             <h4 class="gook">출처 : 국민연금</h4>
-                            <div class="incomeHeader">
-                                <div class="incomeNew">
-                                    <h4 class="incomeNew-header">신규 입사자</h4>
-                                    <div class="newPrice">2,433 만원</div>
-                                </div>
-                                <div class="incomeAll">
-                                    <h4 class="incomeAll-header">전체</h4>
-                                    <div class="allPrice">3,203 만원</div>
-                                </div>
-                            </div>
+                            <c:if test="${not empty company.new_income }">
+	                            <div class="incomeHeader">
+	                                <div class="incomeNew">
+	                                    <h4 class="incomeNew-header">신규 입사자</h4>
+	                                    <div class="newPrice"><c:out value="${company.new_income }"></c:out> 만원</div>
+	                                </div>
+	                                <div class="incomeAll">
+	                                    <h4 class="incomeAll-header">전체</h4>
+	                                    <div class="allPrice"><c:out value="${company.all_income }"></c:out> 만원</div>
+	                                </div>
+	                            </div>
+                            </c:if>
+                            <c:if test="${empty company.new_income }">
+                            	<div class="companyCount">
+                                <h4 class="companyCount-header">기업이 데이터 제공을 원하지 않습니다.</h4>
+                            	</div>
+                            </c:if>
                         </div>
                         <div></div>
                     </div>
@@ -160,8 +167,13 @@
                         <div class="pungIncome">
                             <h3>직원수</h3>
                             <div class="companyCount">
-                                <h4 class="companyCount-header">전체 인원</h4>
-                                <div class="companyCount-body">59</div>
+                            	<c:if test="${not empty company.new_income }">
+	                                <h4 class="companyCount-header">전체 인원</h4>
+	                                <div class="companyCount-body"><c:out value="${company.bus_total_emp }"/></div>
+	                            </c:if>
+	                            <c:if test="${empty company.new_income }">
+	                            	<h4 class="companyCount-header">기업이 데이터 제공을 원하지 않습니다.</h4>
+	                            </c:if>
                             </div>
                         </div>
                         <div></div>
@@ -171,6 +183,7 @@
         </div>
     </section>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/> 
+
 <!-- 회사사진슬라이드 -->
     <script>
         $(function () {

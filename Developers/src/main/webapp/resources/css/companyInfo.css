@@ -931,6 +931,20 @@ a {
     color: #258bf7;
 }
 
+.sharebtn1 {
+    margin: 20px 0;
+    width: 100%;
+    height: 50px;
+    border-radius: 3px;
+    border: 1px solid #258bf7;
+    background-color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: normal;
+    text-align: center;
+    color: #258bf7;
+}
+
 .rightasidemain>.rightHeader>.divider {
     height: 1px;
     background: #e1e2e3;
@@ -1424,4 +1438,213 @@ a {
     bottom: 0;
     z-index: 4;
     background-color: rgba(0,0,0,.5);
+}
+
+.shareModal {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: fixed;
+    overflow: hidden;
+    z-index: 1001;
+    display: none;
+}
+
+.modalShare {
+    z-index: 5;
+    border-radius: 5px;
+    background-color: #fff;
+    position: absolute;
+    overflow: hidden;
+}
+
+@media (min-width: 1200px) {
+    .modalShare {
+        top: 50%;
+        left: 50%;
+        width: 100%;
+        max-width: 500px;
+        max-height: calc(100vh - 150px);
+        -webkit-transform: translate(-50%,-50%);
+        transform: translate(-50%,-50%);
+        z-index: 5;
+        overflow-y: auto;
+    }
+}
+
+.sharemodalchang {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 4;
+    background-color: rgba(0,0,0,.5);
+}
+
+@media (max-width: 1199px) and (min-width: 992px) {
+    .modalShare {
+        top: 50%;
+        left: 50%;
+        width: 100%;
+        max-width: 500px;
+        max-height: calc(100vh - 150px);
+        -webkit-transform: translate(-50%,-50%);
+        transform: translate(-50%,-50%);
+        z-index: 5;
+    }
+}
+
+@media (max-width: 991px) and (min-width: 768px) {
+    .modalShare {
+        top: 50%;
+        left: 50%;
+        width: 100%;
+        max-width: 500px;
+        max-height: calc(100vh - 150px);
+        -webkit-transform: translate(-50%,-50%);
+        transform: translate(-50%,-50%);
+        z-index: 5;
+    }
+}
+
+@media (max-width: 767px) {
+    .modalShare {
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        max-width: none;
+        width: 100%!important;
+        -webkit-transform: none;
+        transform: none;
+        border-radius: 0;
+        max-height: none;
+        overflow: visible;
+    }
+}
+
+.sharemodal-header {
+    height: 120px;
+    padding: 16px 20px;
+    position: relative;
+    border-bottom: 1px solid #eee;
+    color: #333;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+    word-wrap: break-word;
+}
+
+@media (max-width: 991px) and (min-width: 768px) {
+    .sharemodal-header {
+        font-weight: 400;
+    }
+}
+
+@media (max-width: 767px) {
+    .sharemodal-header {
+        font-weight: 400;
+    }
+}
+
+.shareHeader-title>p {
+    line-height: 1.4;
+    text-align: center;
+    word-wrap: break-word;
+    margin: 10px 0 0;
+    font-size: 14px;
+    font-weight: 400;
+    color: #b5b5b5;
+}
+
+.shareHeader-title+button {
+    top: 22px;
+}
+
+.sharemodal-header a, .sharemodal-header button {
+    position: absolute;
+    top: 20%;
+    right: 0;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    padding: 15px;
+    line-height: 0;
+}
+
+.sharemodal-header a i, .sharemodal-header button i {
+    color: #bbb;
+    line-height: 1;
+    font-size: 13px;
+}
+
+.sharemodal-body {
+    padding: 20px;
+}
+
+@media (max-width: 767px) {
+    .sharemodal-body {
+        overflow: auto;
+        height: 100vh;
+        height: -webkit-fill-available;
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+.share-a1, .share-a1:active, .share-a1:hover, .share-a1:visited {
+    color: #fff;
+}
+
+@media (min-width: 1200px) {
+    .share-a2:first-child {
+        margin-right: 20px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .share-a2 {
+        width: calc(50% - 10px);
+        display: inline-block;
+        vertical-align: middle;
+    }
+}
+
+.share-first {
+    background-color: #395a9c;
+}
+
+.share-a1 {
+    width: 100%;
+    height: 50px;
+    display: block;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    line-height: 50px;
+    border-radius: 3px;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 1199px) and (min-width: 992px) {
+    .share-a2:first-child {
+        margin-right: 20px;
+    }
+}
+
+@media (max-width: 1199px) and (min-width: 992px) {
+    .share-a2 {
+        width: calc(50% - 10px);
+        display: inline-block;
+        vertical-align: middle;
+    }
+}
+
+.share-a1>i {
+    margin-right: 10px;
+    vertical-align: text-top;
+}
+
+.share-second {
+    background-color: #258bf7;
 }
