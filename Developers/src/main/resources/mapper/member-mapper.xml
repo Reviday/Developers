@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="member">
+	<update id="deleteMemberByAdmin" parameterType="member">
+    	UPDATE TA_MEMBER SET MEM_STATUS='N', MEM_WITHDRAWAL_DATE=SYSDATE, MEM_ADMINMEMO=CONCAT(CONCAT(CONCAT(MEM_ADMINMEMO,'[관리자에 의한 탈퇴처리('),SYSDATE),')]') WHERE MEM_NO=#{memNo}
+    </update>
+    <update id="updateMemberByAdmin" parameterType="member">
+    	UPDATE TA_MEMBER SET MEM_LEVEL=#{memLevel}, MEM_ADMINMEMO=#{memAdminmemo} WHERE MEM_NO=#{memNo}
+    </update>
 	<insert id="insertInterests" parameterType="interests">
-	INSERT INTO interests VALUES(seq_intersts.NEXTVAL,#{memEmail},#{jobName},#{duty, typeHandler=strArray},#{experience},#{salary},#{skill, typeHandler=strArray},SYSDATE,DEFAULT)
+		INSERT INTO interests VALUES(seq_intersts.NEXTVAL,#{memEmail},#{jobName},#{duty, typeHandler=strArray},#{experience},#{salary},#{skill, typeHandler=strArray},SYSDATE,DEFAULT)
 	</insert>
 	<select id="selectMemberCount" resultType="_int">
 		SELECT COUNT(*) FROM TA_MEMBER

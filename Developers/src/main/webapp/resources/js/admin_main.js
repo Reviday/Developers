@@ -52,3 +52,44 @@ $('.memoBtn').on('click', function() {
 	})
 })
 
+//멤버 수정
+function fn_updateMember(memNo) {
+	if(confirm('회원 정보를 수정하시겠습니까?')) {
+		$.ajax({
+			url:path+"/admin/updateMember.lac",
+			type:"POST",
+			data:{
+					"memNo":memNo,
+					"memLevel":$("#level_"+memNo+" option:selected").val(),
+					"memAdminmemo":$("#memoarea_"+memNo).val()
+				},
+			success: function(result) {
+				if(result==1) {
+					alert("회원 정보가 수정되었습니다.");
+				} else {
+					alert("회원 정보 수정에 실패하였습니다.");
+				}
+			},
+		});
+	}
+};
+
+//멤버 탈퇴
+function fn_deleteMember(memNo) {
+	if(confirm('회원을 정말로 탈퇴시키겠습니까? ')) {
+		$.ajax({
+			url:path+"/admin/deleteMember.lac",
+			type:"POST",
+			data:{
+					"memNo":memNo
+				},
+			success: function(result) {
+				if(result==1) {
+					alert("회원이 정상적으로 탈퇴처리 되었습니다.\n탈퇴회원관리 페이지에서 복구할 수 있습니다.");
+				} else {
+					alert("회원 탈퇴처리가 정상적으로 이루어지지 않았습니다.");
+				}
+			},
+		});
+	} 
+}

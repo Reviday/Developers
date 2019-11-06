@@ -49,7 +49,7 @@
 							<td data-th="이메일">${m.memEmail }</td>
 							<td data-th="등급">
 								<div class="dropdown" style="display: inline-block;">
-							        <select class="dropdown-select-version select" name="memLevel">
+							        <select class="dropdown-select-version select" name="memLevel" id="level_${m.memNo}">
 							        	<option value="5" <c:if test="${m.memLevel eq 5}">selected</c:if>>관리자</option>
 									    <option value="4" <c:if test="${m.memLevel eq 4}">selected</c:if>>기업관리자</option>
 									    <option value="3" <c:if test="${m.memLevel eq 3}">selected</c:if>>기업매니저</option>
@@ -73,12 +73,12 @@
 									<img src="${path}/resources/images/memo.png" style="width:32px; height:32px"/>
 								</button>
 								<div class="memo_area" id="memo_${m.memNo }" style="display:none;">
-									<textarea class="memo_ta">${m.memAdminmemo }</textarea>
+									<textarea class="memo_ta" id="memoarea_${m.memNo}">${m.memAdminmemo }</textarea>
 								</div>
 							</td>
 							<td data-th="수정/탈퇴"> 
-								<button type="button" class="btn btn-primary btn-sm" onclick="">수정</button>
-								<button type="button" class="btn btn-danger btn-sm">탈퇴</button>
+								<button type="button" class="btn btn-primary btn-sm" onclick="fn_updateMember(${m.memNo})">수정</button>
+								<button type="button" class="btn btn-danger btn-sm" onclick="fn_deleteMember(${m.memNo})">탈퇴</button>
 							</td>
 						</tr>
 						</c:forEach>

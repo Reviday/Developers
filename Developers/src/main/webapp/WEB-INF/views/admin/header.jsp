@@ -35,7 +35,6 @@
 
 <script>
 	var path = '${path}';
-	var lbc = '${lbc}';
 </script>
 
 </head>

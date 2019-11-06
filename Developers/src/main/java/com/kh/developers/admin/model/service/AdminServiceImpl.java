@@ -18,6 +18,16 @@ public class AdminServiceImpl implements AdminService {
 	private SqlSessionTemplate session;
 	
 	@Override
+	public int deleteMember(Member m) {
+		return dao.deleteMember(session, m);
+	}
+	
+	@Override
+	public int updateMember(Member m) {
+		return dao.updateMember(session, m);
+	}
+	
+	@Override
 	public List<Member> selectMemberList(int cPage, int numPerPage) {
 		return dao.selectMemberList(session, cPage, numPerPage);
 	}

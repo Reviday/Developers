@@ -8,4 +8,6 @@ public interface AdminDao {
 
 	List<Member> selectMemberList(SqlSessionTemplate session, int cPage, int numPerPage);
 	int selectMemberCount(SqlSessionTemplate session);
+	int updateMember(SqlSessionTemplate session, Member m);
+	int deleteMember(SqlSessionTemplate session, Member m);
 }

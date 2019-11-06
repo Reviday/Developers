@@ -4,14 +4,22 @@ import java.util.List;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.developers.member.model.vo.Member;
 
 @Repository
 public class AdminDaoImpl implements AdminDao{
-
+	
+	@Override
+	public int deleteMember(SqlSessionTemplate session, Member m) {
+		return session.update("member.deleteMemberByAdmin", m);
+	}
+	
+	@Override
+	public int updateMember(SqlSessionTemplate session, Member m) {
+		return session.update("member.updateMemberByAdmin", m);
+	}
 	
 	@Override
 	public int selectMemberCount(SqlSessionTemplate session) {
