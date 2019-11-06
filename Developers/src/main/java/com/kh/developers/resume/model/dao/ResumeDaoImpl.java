@@ -21,6 +21,12 @@ public class ResumeDaoImpl implements ResumeDao {
 	
 
 	@Override
+	public int updateInterestsRno(SqlSessionTemplate session, Resume r) {
+		// TODO Auto-generated method stub
+		return session.update("resume.updateInterestsRno",r);
+	}
+
+	@Override
 	public int insertMathupCareer(SqlSessionTemplate session, Resume r) {
 		// TODO Auto-generated method stub
 		return session.insert("resume.insertMathupCareer",r);

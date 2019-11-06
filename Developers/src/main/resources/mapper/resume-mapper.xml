@@ -4,7 +4,9 @@
 <select id="selectMathUpResume" parameterType="member" resultMap="resumeMap">
 SELECT * FROM RESUME WHERE MEM_EMAIL=#{memEmail} and MATCHUP='Y'
 </select>
-
+<update id="updateInterestsRno" parameterType="resume">
+UPDATE INTERESTS SET resume_no=#{resumeNo} WHERE mem_email=#{memEmail}
+</update>
 <update id="updateLinks" parameterType="links">
 UPDATE links SET links_addr=#{linksAddr} WHERE links_no=#{linksNo}
 </update>
@@ -39,7 +41,7 @@ DELETE FROM CAREER WHERE CAREER_NO=#{deleteNo}
 INSERT INTO RESUME VALUES (SEQ_RESUME.NEXTVAL,#{memEmail},#{memName},default,default,default,null,null)
 </insert>
 <insert id="insertMathupResume" parameterType="member">
-INSERT INTO RESUME VALUES (SEQ_RESUME.NEXTVAL,#{memEmail},#{memName},default,default,default,Y,null)
+INSERT INTO RESUME VALUES (SEQ_RESUME.NEXTVAL,#{memEmail},#{memName},default,default,default,'Y',null)
 <selectKey keyProperty="memNo" resultType="_int" order="AFTER" >
 SELECT SEQ_RESUME.CURRVAL FROM DUAL
 </selectKey>
@@ -105,17 +107,18 @@ SELECT * FROM RESUME WHERE MEM_EMAIL=#{memEmail} and RESUME_NO=#{resumeNo}
 	SELECT * FROM RESUME WHERE resume_no=#{resumeNo}
 </select>
 <select id="selectInter" parameterType="member" resultMap="interMap">
-	SELECT * FROM INTERESTS WHERE MEM_EMAIL=#{memEmail}
+	SELECT * FROM interests WHERE MEM_EMAIL=#{memEmail}
 </select>
 <resultMap type="interests" id="interMap">
-	<result property="interestNo " column="interests_no"/>
+	<result property="interestNo" column="INTERESTS_NO"/>
 	<result property="memEmail" column="mem_email"/>
-	<result property="jobName " column="job_name"/>
+	<result property="jobName" column="job_name"/>
 	<result property="duty" column="duty" typeHandler="strArray"/>
 	<result property="experience" column="EXPERIENCE"/>
 	<result property="salary" column="salary"/>
 	<result property="skill" column="skill" typeHandler="strArray"/>
 	<result property="interestsDate" column="interestsDate"/>
+	<result property="resumeNo" column="resume_No"/>
 </resultMap>
 
 <resultMap type="lang" id="laMap">

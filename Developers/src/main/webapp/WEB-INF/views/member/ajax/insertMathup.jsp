@@ -6,9 +6,14 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
+
 <body>
 	  <section>
-	  
+
 	  <form action="${path }/member/insertMathupResume.lmc" method="post" >
                     <div class="_3zYwAF74TDGVc-8gOuOTEa">
                         <div class="MatchUpForm _1DBZ1F8aWXUpL5ry5a_nRi fixedFooter">
@@ -21,12 +26,12 @@
                             <div class="FormBlock _3jRGSvRhv5E53D3OVwfvlL">
                                 <div class="FormBlock-content content">
                                     <div class="FormButton _3I5bkI50gryaER31Iu7b4E">
-                                        <h6 class="FormButton-label">학교</h6>
+                                        <h6 class="FormButton-label">학교</h6><br><br>
                                         <input type="text" class="resume-input school_name" name="schoolName"
                  							 placeholder="학교명">
                                     </div>
                                     <div class="FormButton _3I5bkI50gryaER31Iu7b4E">
-                                        <h6 class="FormButton-label">직장</h6>
+                                        <h6 class="FormButton-label">직장</h6><br><br>
                                        <input type="text" class="resume-input company_name"
                                                   name="empName"   placeholder="회사명">
                                     </div>

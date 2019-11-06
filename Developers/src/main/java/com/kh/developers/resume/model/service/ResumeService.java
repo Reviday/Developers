@@ -41,5 +41,6 @@ public interface ResumeService {
 	int insertMathupResume(Member m);
 	int insertMathupCareer(Resume r);
 	int insertMathupEd(Resume r);
+	int updateInterestsRno(Resume r);
 	
 }

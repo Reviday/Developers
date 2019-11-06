@@ -81,8 +81,11 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/member/myPage.lmc")
-	public ModelAndView myPage(Member m) {
+	public ModelAndView myPage(Member m,HttpServletRequest req) {
 		ModelAndView mv=new ModelAndView();
+		String email=((Member)req.getSession().getAttribute("loginMember")).getMemEmail();
+		m.setMemEmail(email);
+		m=service.selectMemberOne(m);
 		Resume resume=rService.selectMathUpResume(m);
 		if(resume==null) {
 			mv.setViewName("member/myPage");
@@ -104,9 +107,6 @@ public class MemberController {
 			mv.setViewName("member/myPage2");
 			return mv;
 		}
-
-		
-		
 	}
 	
 	@RequestMapping("/member/reSendMail.lmc")
@@ -292,24 +292,30 @@ public class MemberController {
     	mv.setViewName("member/ajax/insertMathup");
     	return mv;
     }
+    
 	@RequestMapping("/member/insertMathupResume.lmc")
 	public ModelAndView insertMathupResume(String schoolName,String empName,String startY,String startM,String endY,String endM,String memEmail,String memName) {
 		ModelAndView mv=new ModelAndView();
+		System.out.println(memEmail);
+		System.out.println(memName);
 		Member m =new Member();
+		System.out.println(m);
 		m.setMemEmail(memEmail);
 		m.setMemName(memName);
 		int result=rService.insertMathupResume(m);
+		String startCareer=startY+startM;
+		String endCareer=endY+endM;
 		Resume r=new Resume();
 		r.setResumeNo(m.getMemNo());
 		r.setMemEmail(memEmail);
+		r.setBusName(empName);
+		r.setSchoolName(schoolName);
+		r.setStartCareer(startCareer);
+		r.setEndCareer(endCareer);
+		int result4=rService.updateInterestsRno(r);
 		int result2=rService.insertMathupCareer(r);
 		int result3=rService.insertMathupEd(r);
-		
-		
-		String startCareer=startY+startM;
-		String endCareer=endY+endM;
-		
-		
+		mv.setViewName("redirect:/member/myPage.lmc");
 		return mv;
 	}
     

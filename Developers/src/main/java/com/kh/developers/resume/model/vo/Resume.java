@@ -19,4 +19,9 @@ public class Resume  {
 	private Date resumeDate;
 	private String matchup;
 	private int interestsNo;
+	private String schoolName;
+	private String startCareer;
+	private String endCareer;
+	private String busName;
+	
 }

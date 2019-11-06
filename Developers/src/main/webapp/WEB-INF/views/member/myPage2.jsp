@@ -26,7 +26,7 @@
     </nav>
     <div class="_14NzdD9Zqjq8ocf6TORWoN">
         <aside class="Aside _1dBR38s0D_bqykmPvZBYPu">
-            <header class="Aside-header">
+            <div class="Aside-header">
                 <div class="Aside-avatar">
                     <div class="Aside-avatar_image"
                         style="background-image: url(&quot;https://graph.facebook.com/1372739109548620/picture?height=300&amp;width=300&quot;);">
@@ -39,7 +39,7 @@
                     <div class="Aside-me_email">cay9506@naver.com</div>
                     <div class="Aside-me_tel">010-5632-1245</div>
                 </div><a href="/profile/matching?level=1" class="Aside-edit">기본정보 수정</a>
-            </header>
+            </div>
             <div class="MatchUpStatus _s0V-DmOyFivCW3HY7Nh3"><a href="/profile/status?type=matchup-likes"
                     class="MatchUpStatus-item"><span class="MatchUpStatus-label">원해요</span><strong
                         class="MatchUpStatus-value">0</strong></a><a href="/profile/status?type=matchup-opens"
@@ -50,28 +50,16 @@
         </aside>
         <section>
             <div class="_6zGbQ6Gwdi0O826QWL_gN">
-                <div class="MatchUpForm _1DBZ1F8aWXUpL5ry5a_nRi _3KMaM1vv70381zri4eolK1">
-                    <div class="ResumeWordCountWarning-body">
-                        <p class="ResumeWordCountWarning-count is-invalid">이력서 글자 수 : <span
-                                class="current_char">125자</span> / 최소 400자</p>
-                        <p class="ResumeWordCountWarning-guide">글자 수가 400자 이상이면, 직접 제안받을 확률이 높아집니다.</p>
-                    </div><a href="/cv/361116?from=profile" class="ResumeWordCountWarning-button">이력서 강화하기</a>
-                </div>
+
                 <div class="MatchUpForm _1DBZ1F8aWXUpL5ry5a_nRi _3IED0gKfPim4KkuZ7BNhTA">
-                    <header class="Form-header">
+                    <div class="Form-header">
                         <dl class="Form-title">
                             <dt>기본 이력서</dt>
                         </dl>
-                    </header>
+                    </div>
                     <div class="FormBlock _3jRGSvRhv5E53D3OVwfvlL">
                         <div class="FormBlock-content content">
-                            <div class="_1hQHY2MOttuKGMBqDe_htT">
-                                <div class="Static-label">기본 이력서 선택</div>
-                                <div class="Static-body">
-                                    <div class="j5MfBkBHKnuB74EAGzFL"><button type="button"
-                                            class="DefaultResumeSelector-button">강병민 9</button></div>
-                                </div>
-                            </div>
+
                             <div class="MainResume-fieldset">
                                 <div class="_1hQHY2MOttuKGMBqDe_htT">
                                     <div class="Static-label">학교</div>
@@ -96,11 +84,11 @@
                     </div>
                 </div>
                 <div class="MatchUpForm _1DBZ1F8aWXUpL5ry5a_nRi _3ZoHfZyrHiWR9JdVIgtNxq">
-                    <header class="Form-header">
+                    <div class="Form-header">
                         <dl class="Form-title">
                             <dt>관심분야 설정</dt>
                         </dl>
-                    </header>
+                    </div>
                     <div class="FormBlock _3jRGSvRhv5E53D3OVwfvlL">
                         <div class="FormBlock-content content">
                             <div class="EnterInterestArea-fieldset">

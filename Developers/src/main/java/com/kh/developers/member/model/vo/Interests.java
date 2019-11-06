@@ -17,4 +17,5 @@ public class Interests {
 	private int salary;
 	private String[] skill;
 	private Date interestsDate;
+	private int resumeNo;
 }

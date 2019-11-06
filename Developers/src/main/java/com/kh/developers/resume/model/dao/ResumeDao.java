@@ -43,4 +43,5 @@ public interface ResumeDao {
 	int insertMathupResume(SqlSessionTemplate session,Member m);
 	int insertMathupCareer(SqlSessionTemplate session,Resume r);
 	int insertMathupEd(SqlSessionTemplate session,Resume r);
+	int updateInterestsRno(SqlSessionTemplate session,Resume r);
 }

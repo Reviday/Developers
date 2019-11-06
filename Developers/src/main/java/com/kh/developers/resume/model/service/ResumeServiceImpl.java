@@ -26,6 +26,12 @@ public class ResumeServiceImpl implements ResumeService {
 	
 	
 	@Override
+	public int updateInterestsRno(Resume r) {
+		// TODO Auto-generated method stub
+		return dao.updateInterestsRno(session,r);
+	}
+
+	@Override
 	public int insertMathupCareer(Resume r) {
 		// TODO Auto-generated method stub
 		return dao.insertMathupCareer(session,r);
