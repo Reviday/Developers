@@ -61,9 +61,9 @@
    </select>
 	
 	<!-- 매치업 mapper -->
- <!-- 	<select id="selectIntroCards" parameterType="String" resultType="com.kh.developers.business.model.vo.IntroCard">
-		select 
-	</select>  -->
+  	<select id="selectIntroCards" parameterType="String" resultMap="introCardMap">
+		SELECT RESUME_NO,INTRO, DUTY, EXPERIENCE, SKILL FROM RESUME JOIN INTERESTS ON (RESUME.MEM_EMAIL=INTERESTS.MEM_EMAIL) WHERE RESUME.MATCHUP='Y' AND INTERESTS.DUTY LIKE #{duties}
+	</select>  
 	
 	
 	<resultMap type="bus" id="busMap">
@@ -124,12 +124,12 @@
       <result property="filter_id" column="filter_id"/>
    </resultMap>
    
-   <!-- <resultMap type="IntroCard" id="introCardMap">
+   <resultMap type="com.kh.developers.business.model.vo.IntroCard" id="introCardMap">
    	   <result property="resumeNo" column="resume_no"></result>
    	   <result property="intro" column="intro"></result>
-   	   <result property="resumeNo" column="resume_no"></result>
-   	   <result property="resumeNo" column="resume_no"></result>
-   	   <result property="resumeNo" column="resume_no"></result>
-   </resultMap>  -->
+   	   <result property="duty" column="duty" typeHandler="strArray"></result>
+   	   <result property="experience" column="experience"></result>
+   	   <result property="skill" column="skill" typeHandler="strArray"></result>
+   </resultMap> 
 	
 </mapper>
