@@ -1,5 +1,6 @@
 package com.kh.developers.member.model.service;
 
+import com.kh.developers.member.model.vo.Interests;
 import com.kh.developers.member.model.vo.Member;
 
 public interface MemberService {
@@ -10,4 +11,5 @@ public interface MemberService {
 	void sendMail(Member m, String url) throws Exception;
 	Member lastStepEnrollEnd(Member m);
 	int insertFilter();
+	int insertInterests(Interests i);
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.kh.developers.member.model.vo.Interests;
 import com.kh.developers.member.model.vo.Member;
 import com.kh.developers.resume.model.vo.Activitie;
 import com.kh.developers.resume.model.vo.Career;
@@ -18,6 +19,36 @@ public class ResumeDaoImpl implements ResumeDao {
 	
 	
 	
+
+	@Override
+	public int insertMathupCareer(SqlSessionTemplate session, Resume r) {
+		// TODO Auto-generated method stub
+		return session.insert("resume.insertMathupCareer",r);
+	}
+
+	@Override
+	public int insertMathupEd(SqlSessionTemplate session, Resume r) {
+		// TODO Auto-generated method stub
+		return session.insert("resume.insertMathupEd",r);
+	}
+
+	@Override
+	public int insertMathupResume(SqlSessionTemplate session, Member m) {
+		// TODO Auto-generated method stub
+		return session.insert("resume.insertMathupResume", m);
+	}
+
+	@Override
+	public Interests selectInter(SqlSessionTemplate session, Member m) {
+		// TODO Auto-generated method stub
+		return session.selectOne("resume.selectInter",m);
+	}
+
+	@Override
+	public Resume selectMathUpResume(SqlSessionTemplate session, Member m) {
+		// TODO Auto-generated method stub
+		return session.selectOne("resume.selectMathUpResume",m);
+	}
 
 	@Override
 	public int updateAct(SqlSessionTemplate session, Activitie a) {

@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.developers.member.model.vo.Interests;
 import com.kh.developers.member.model.vo.Member;
 import com.kh.developers.resume.model.dao.ResumeDao;
 import com.kh.developers.resume.model.vo.Activitie;
@@ -24,6 +25,36 @@ public class ResumeServiceImpl implements ResumeService {
 	
 	
 	
+	@Override
+	public int insertMathupCareer(Resume r) {
+		// TODO Auto-generated method stub
+		return dao.insertMathupCareer(session,r);
+	}
+
+	@Override
+	public int insertMathupEd(Resume r) {
+		// TODO Auto-generated method stub
+		return dao.insertMathupEd(session,r);
+	}
+
+	@Override
+	public int insertMathupResume(Member m) {
+		// TODO Auto-generated method stub
+		return dao.insertMathupResume(session,m);
+	}
+
+	@Override
+	public Interests selectInter(Member m) {
+		// TODO Auto-generated method stub
+		return dao.selectInter(session,m);
+	}
+
+	@Override
+	public Resume selectMathUpResume(Member m) {
+		// TODO Auto-generated method stub
+		return dao.selectMathUpResume(session,m);
+	}
+
 	@Override
 	public int updateAct(Activitie a) {
 		// TODO Auto-generated method stub

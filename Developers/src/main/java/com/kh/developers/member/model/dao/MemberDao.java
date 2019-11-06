@@ -4,6 +4,7 @@ import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
+import com.kh.developers.member.model.vo.Interests;
 import com.kh.developers.member.model.vo.Member;
 
 public interface MemberDao {
@@ -15,4 +16,5 @@ public interface MemberDao {
 	int successAuth(SqlSessionTemplate session, Member m);
 	int lastStepEnrollEnd(SqlSessionTemplate session, Member m);
 	int insertFilter(SqlSessionTemplate session);
+	int insertInterests(SqlSessionTemplate session,Interests i);
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
+import com.kh.developers.member.model.vo.Interests;
 import com.kh.developers.member.model.vo.Member;
 import com.kh.developers.resume.model.vo.Activitie;
 import com.kh.developers.resume.model.vo.Career;
@@ -37,4 +38,9 @@ public interface ResumeDao {
 	int updateAct(SqlSessionTemplate session,Activitie a);
 	int updateLang(SqlSessionTemplate session,Lang l);
 	int updateLinks(SqlSessionTemplate session,Links l);
+	Resume selectMathUpResume(SqlSessionTemplate session,Member m);
+	Interests selectInter(SqlSessionTemplate session,Member m);
+	int insertMathupResume(SqlSessionTemplate session,Member m);
+	int insertMathupCareer(SqlSessionTemplate session,Resume r);
+	int insertMathupEd(SqlSessionTemplate session,Resume r);
 }

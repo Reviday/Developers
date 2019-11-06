@@ -2,6 +2,7 @@ package com.kh.developers.resume.model.service;
 
 import java.util.List;
 
+import com.kh.developers.member.model.vo.Interests;
 import com.kh.developers.member.model.vo.Member;
 import com.kh.developers.resume.model.vo.Activitie;
 import com.kh.developers.resume.model.vo.Career;
@@ -35,5 +36,10 @@ public interface ResumeService {
 	int updateAct(Activitie a);
 	int updateLang(Lang l);
 	int updateLinks(Links l);
+	Resume selectMathUpResume(Member m);
+	Interests selectInter(Member m);
+	int insertMathupResume(Member m);
+	int insertMathupCareer(Resume r);
+	int insertMathupEd(Resume r);
 	
 }

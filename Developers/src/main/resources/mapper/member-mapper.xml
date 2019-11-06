@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="member">
+	<insert id="insertInterests" parameterType="interests">
+	INSERT INTO interests VALUES(seq_intersts.NEXTVAL,#{memEmail},#{jobName},#{duty, typeHandler=strArray},#{experience},#{salary},#{skill, typeHandler=strArray},SYSDATE)
+	
+	</insert>
 	<select id="selectMemberCount" resultType="_int">
 		SELECT COUNT(*) FROM TA_MEMBER
 	</select>

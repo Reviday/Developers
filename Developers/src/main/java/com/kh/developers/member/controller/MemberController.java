@@ -1,6 +1,8 @@
 package com.kh.developers.member.controller;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
@@ -23,7 +26,15 @@ import com.kh.developers.business.model.service.BusinessService;
 import com.kh.developers.business.model.vo.Business;
 import com.kh.developers.common.encrypt.MyEncrypt;
 import com.kh.developers.member.model.service.MemberService;
+import com.kh.developers.member.model.vo.Interests;
 import com.kh.developers.member.model.vo.Member;
+import com.kh.developers.resume.model.service.ResumeService;
+import com.kh.developers.resume.model.vo.Activitie;
+import com.kh.developers.resume.model.vo.Career;
+import com.kh.developers.resume.model.vo.Education;
+import com.kh.developers.resume.model.vo.Lang;
+import com.kh.developers.resume.model.vo.Links;
+import com.kh.developers.resume.model.vo.Resume;
 
 @SessionAttributes(value= {"loginMember","busInfo"})
 @Controller
@@ -33,6 +44,8 @@ public class MemberController {
 	private MemberService service;
 	@Autowired
 	private BusinessService bService;
+	@Autowired
+	private ResumeService rService;
 	@Autowired
 	private BCryptPasswordEncoder pwEncoder;
 	@Autowired
@@ -70,8 +83,30 @@ public class MemberController {
 	@RequestMapping("/member/myPage.lmc")
 	public ModelAndView myPage(Member m) {
 		ModelAndView mv=new ModelAndView();
-		mv.setViewName("member/myPage");
-		return mv;
+		Resume resume=rService.selectMathUpResume(m);
+		if(resume==null) {
+			mv.setViewName("member/myPage");
+			return mv;
+		}else {
+			List<Career> career=rService.selectCareer(resume);
+			List<Education> ed=rService.selectEd(resume);
+			List<Activitie> ac=rService.selectAc(resume);
+			List<Lang> Lang=rService.selectLang(resume);
+			List<Links> links=rService.selectLinks(resume);
+			Interests inter =rService.selectInter(m);
+			mv.addObject("ed",ed);
+			mv.addObject("ac",ac);
+			mv.addObject("Lang",Lang);
+			mv.addObject("links",links);
+			mv.addObject("resume", resume);
+			mv.addObject("career", career);
+			mv.addObject("inter",inter);
+			mv.setViewName("member/myPage2");
+			return mv;
+		}
+
+		
+		
 	}
 	
 	@RequestMapping("/member/reSendMail.lmc")
@@ -224,4 +259,59 @@ public class MemberController {
         model.addAttribute("loginMember",loginMember);
         return "member/mainPage";
     }
+    @RequestMapping(value="/member/insertInterests.lmc",produces = "application/text; charset=utf8" )
+    public ModelAndView insertInterests(
+    		@RequestParam(value="jobName") String jobName, 
+    		@RequestParam(value="memEmail") String memEmail,
+    		@RequestParam(value="experience") String experience,
+    		@RequestParam(value="duty[]") List<String> dutyList,
+    		@RequestParam(value="salary") int salary ,
+    		@RequestParam(value="skill[]") List<String> skillList ) {
+    	ModelAndView mv=new ModelAndView();
+    	Interests i = new Interests();
+    	i.setJobName(jobName);
+    	i.setExperience(experience);
+    	i.setSalary(salary);
+    	i.setMemEmail(memEmail);
+    	int dutysize=0;
+    	String[] arrayDuty = new String[dutyList.size()];
+         for(String duty : dutyList) {
+        	 arrayDuty[dutysize++] = duty;
+         }
+         int skillsize=0;
+         Arrays.sort(arrayDuty);
+    	i.setDuty(arrayDuty);
+    	String[] arraySkill = new String[skillList.size()];
+    	for(String skill : skillList) {
+    		arraySkill[skillsize++] = skill;
+        }
+    	Arrays.sort(arraySkill);
+    	i.setSkill(arraySkill);
+    	int result =service.insertInterests(i);
+    	mv.addObject("i",i);
+    	mv.setViewName("member/ajax/insertMathup");
+    	return mv;
+    }
+	@RequestMapping("/member/insertMathupResume.lmc")
+	public ModelAndView insertMathupResume(String schoolName,String empName,String startY,String startM,String endY,String endM,String memEmail,String memName) {
+		ModelAndView mv=new ModelAndView();
+		Member m =new Member();
+		m.setMemEmail(memEmail);
+		m.setMemName(memName);
+		int result=rService.insertMathupResume(m);
+		Resume r=new Resume();
+		r.setResumeNo(m.getMemNo());
+		r.setMemEmail(memEmail);
+		int result2=rService.insertMathupCareer(r);
+		int result3=rService.insertMathupEd(r);
+		
+		
+		String startCareer=startY+startM;
+		String endCareer=endY+endM;
+		
+		
+		return mv;
+	}
+    
+    
 }

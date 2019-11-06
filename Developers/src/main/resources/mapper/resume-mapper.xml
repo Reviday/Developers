@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="resume">
+<select id="selectMathUpResume" parameterType="member" resultMap="resumeMap">
+SELECT * FROM RESUME WHERE MEM_EMAIL=#{memEmail} and MATCHUP='Y'
+</select>
+
 <update id="updateLinks" parameterType="links">
 UPDATE links SET links_addr=#{linksAddr} WHERE links_no=#{linksNo}
 </update>
@@ -33,6 +37,12 @@ DELETE FROM CAREER WHERE CAREER_NO=#{deleteNo}
 </delete>
 <insert id="insertResume" parameterType="member">
 INSERT INTO RESUME VALUES (SEQ_RESUME.NEXTVAL,#{memEmail},#{memName},default,default,default,null,null)
+</insert>
+<insert id="insertMathupResume" parameterType="member">
+INSERT INTO RESUME VALUES (SEQ_RESUME.NEXTVAL,#{memEmail},#{memName},default,default,default,Y,null)
+<selectKey keyProperty="memNo" resultType="_int" order="AFTER" >
+SELECT SEQ_RESUME.CURRVAL FROM DUAL
+</selectKey>
 </insert>
 <select id="selectResume" parameterType="member" resultMap="resumeMap">
 SELECT * FROM RESUME WHERE MEM_EMAIL=#{memEmail} ORDER BY RESUME_DATE ASC
@@ -88,7 +98,19 @@ SELECT * FROM RESUME WHERE MEM_EMAIL=#{memEmail} and RESUME_NO=#{resumeNo}
 <select id="selectResumeOne" parameterType="resume" resultMap="resumeMap">
 	SELECT * FROM RESUME WHERE resume_no=#{resumeNo}
 </select>
-
+<select id="selectInter" parameterType="member" resultMap="interMap">
+	SELECT * FROM INTERESTS WHERE MEM_EMAIL=#{memEmail}
+</select>
+<resultMap type="interests" id="interMap">
+	<result property="interestNo " column="interests_no"/>
+	<result property="memEmail" column="mem_email"/>
+	<result property="jobName " column="job_name"/>
+	<result property="duty" column="duty"/>
+	<result property="experience" column="EXPERIENCE"/>
+	<result property="salary" column="salary"/>
+	<result property="skill" column="skill"/>
+	<result property="interestsDate" column="interestsDate"/>
+</resultMap>
 
 <resultMap type="lang" id="laMap">
 	<result property="langNo" column="lang_no"/>

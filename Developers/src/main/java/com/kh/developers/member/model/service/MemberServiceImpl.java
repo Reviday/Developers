@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import com.kh.developers.common.authentication.MailHandler;
 import com.kh.developers.common.authentication.TempKey;
 import com.kh.developers.member.model.dao.MemberDao;
+import com.kh.developers.member.model.vo.Interests;
 import com.kh.developers.member.model.vo.Member;
 
 @Service
@@ -26,6 +27,14 @@ public class MemberServiceImpl implements MemberService {
 	@Inject
     private JavaMailSender mailSender;
 	
+	
+	
+	@Override
+	public int insertInterests(Interests i) {
+		// TODO Auto-generated method stub
+		return dao.insertInterests(session,i);
+	}
+
 	@Override
 	public Member lastStepEnrollEnd(Member m) {
 		int result=dao.lastStepEnrollEnd(session, m);

@@ -5,11 +5,20 @@ import java.util.Map;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.kh.developers.member.model.vo.Interests;
 import com.kh.developers.member.model.vo.Member;
 
 @Repository
 public class MemberDaoImpl implements MemberDao {
 	
+	
+	
+	@Override
+	public int insertInterests(SqlSessionTemplate session, Interests i) {
+		// TODO Auto-generated method stub
+		return session.insert("member.insertInterests",i);
+	}
+
 	@Override
 	public int lastStepEnrollEnd(SqlSessionTemplate session, Member m) {
 		return session.update("member.lastStepEnrollEnd", m);

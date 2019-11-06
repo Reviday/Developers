@@ -242,7 +242,6 @@ public class ResumeController {
 	}
 	@RequestMapping("/resume/updateEd.lmc")
 	public ModelAndView updateEd(Education e) {
-		System.out.println(e+"updateED 넘어ㅓ어어어어오");
 		ModelAndView mv=new ModelAndView();
 		int resumeNo=e.getResumeNo();
 		String memEmail=e.getMemEmail();
@@ -337,5 +336,6 @@ public class ResumeController {
 		mv.setViewName("resume/resumeView");
 		return mv;
 	}
+
 	
 }
