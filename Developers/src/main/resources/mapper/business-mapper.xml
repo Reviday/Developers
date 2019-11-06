@@ -29,18 +29,26 @@
 		UPDATE BUSINESS_INFO SET BUS_LOGO=#{busLogo} WHERE BUS_NO=#{busNo}
 	</update>
 	
-	<select id="selectBusAppl" parameterType="map" resultMap="memberMap">
-		SELECT * FROM TA_MEMBER ORDER BY MEM_NO DESC
+	<select id="selectBusAppl" parameterType="map" resultMap="applMap">
+		SELECT * FROM TA_APPL_BUS
+	<if test="applLike!=null and applLike!='' or applLike==true">
+		JOIN TA_APPL_LIKE B ON (A.BUS_NO=B.BUS_NO)
+	</if>
+		where 2=2
+  	<if test="applIndex!=null and applIndex!=''">
+	  	and APPL_STATUS=#{applIndex}	
+  	</if>
+		ORDER BY MEM_NO DESC
 	</select>
 	
-	<select id="selectBusApplNewCount" parameterType="map" resultType="_int">
-		SELECT COUNT(*) FROM TA_MEMBER 
-			where 2=2
-  	<if test="type!=null and type!=''">
-	  	and ${type} like '%'||#{key}||'%'	
-  	</if>
-  	<if test="gender!=null and gender!=''">
-  		 and gender=#{gender}
+	<select id="selectBusApplCount" parameterType="map" resultType="_int">
+	SELECT COUNT(*) FROM TA_APPL_BUS A 
+	<if test="applLike!=null and applLike!='' or applLike==true">
+		JOIN TA_APPL_LIKE B ON (A.BUS_NO=B.BUS_NO)
+	</if>
+		where 2=2
+  	<if test="applIndex!=null and applIndex!=''">
+	  	and APPL_STATUS=#{applIndex}	
   	</if>
 	</select>
 	
@@ -72,28 +80,14 @@
 		<result property="busStatus" column="BUS_STATUS"></result>
 	</resultMap>
 	
-	<resultMap type="member" id="memberMap">
+	<resultMap type="applicant" id="applMap">
+		<result property="busNo" column="bus_no"/>
 		<result property="memNo" column="mem_no"/>
-		<result property="memEmail" column="mem_email"/>
-		<result property="memLevel" column="mem_level"/>
-		<result property="memPassword" column="mem_password"/>
-		<result property="memName" column="mem_name"/>
-		<result property="memPhone" column="mem_phone"/>
-		<result property="memPoint" column="mem_point"/>
-		<result property="memDenied" column="mem_denied"/>
-		<result property="memEmailCert" column="mem_email_cert"/>
-		<result property="memReceiveEmail" column="mem_receive_email"/>
-		<result property="memEnrollDatetime" column="mem_enroll_datetime"/>
-		<result property="memEnrollIp" column="mem_enroll_ip"/>
-		<result property="memLastloginDatetime" column="mem_lastlogin_datetime"/>
-		<result property="memLastloginIp" column="mem_lastlogin_ip"/>
-		<result property="memProgileContent" column="mem_profile_content"/>
-		<result property="memAdminmemo" column="mem_adminmemo"/>
-		<result property="memIcon" column="mem_icon"/>
-		<result property="memPhoto" column="mem_photo"/>
-		<result property="memStatus" column="mem_status"/>
-		<result property="memWithdrawalDate" column="mem_withdrawal_date"/>
-		<result property="memDeniedDate" column="mem_denied_date"/>
+		<result property="positionNo" column="position_no"/>
+		<result property="resumeNo" column="resume_no"/>
+		<result property="applStatus" column="appl_status"/>
+		<result property="applDate" column="appl_date"/>
+		<result property="applAnsYn" column="appl_ans_yn"/>
 	</resultMap>
 	
 </mapper>
