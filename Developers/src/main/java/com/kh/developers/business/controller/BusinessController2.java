@@ -5,7 +5,9 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -15,12 +17,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.developers.business.model.service.BusinessService2;
+import com.kh.developers.business.model.vo.Applicant;
 import com.kh.developers.business.model.vo.Business;
 import com.kh.developers.common.page.PageFactory2;
 import com.kh.developers.member.model.vo.Member;
@@ -97,6 +99,7 @@ public class BusinessController2 {
 	@RequestMapping("/business/applicants.lbc")
 	public ModelAndView dbApplications(Model model,HttpServletRequest req) {
 		ModelAndView mv=new ModelAndView();
+		Map map=new HashMap();
 		String applHtml="";
 		applHtml+="<div id='appl-leftside' class='appl-leftside'>";
 		applHtml+="<h5>채용중<i class='fas fa-angle-up'></i></h5>";
@@ -124,20 +127,25 @@ public class BusinessController2 {
 		applHtml+="</div>";
 		applHtml+="<nav class='appl-main-nav nav'>";
 		applHtml+="<ul class='nav_us'>";
+		map.put("applIndex", 1);
 		applHtml+="<li class='ls3'>";
-		applHtml+="<a class='ei_a2'>신규&nbsp;<span>( "+service.selectBusApplNewCount()+" )</span></a>";
+		applHtml+="<a class='ei_a2'>신규&nbsp;<span>( "+service.selectBusApplCount(map)+" )</span></a>";
 		applHtml+="</li>";
+		map.put("applIndex", 2);
 		applHtml+="<li class='ls3'>";
-		applHtml+="<a class='ei_a2'>서류통과&nbsp;<span>( "+service.selectBusApplStartCount()+" )</span></a>";
+		applHtml+="<a class='ei_a2'>서류통과&nbsp;<span>( "+service.selectBusApplCount(map)+" )</span></a>";
 		applHtml+="</li>";
+		map.put("applIndex", 3);
 		applHtml+="<li class='ls3'>";
-		applHtml+="<a class='ei_a2'>최종합격&nbsp;<span>( "+service.selectBusApplPassCount()+" )</span></a>";
+		applHtml+="<a class='ei_a2'>최종합격&nbsp;<span>( "+service.selectBusApplCount(map)+" )</span></a>";
 		applHtml+="</li>";
+		map.put("applIndex", 4);
 		applHtml+="<li class='ls3'>";
-		applHtml+="<a class='ei_a2'>불합격&nbsp;<span>( "+service.selectBusApplFailCount()+" )</span></a>";
+		applHtml+="<a class='ei_a2'>불합격&nbsp;<span>( "+service.selectBusApplCount(map)+" )</span></a>";
 		applHtml+="</li>";
+		map.put("applIndex", 0);
 		applHtml+="<li class='ls3'>";
-		applHtml+="<a class='ei_a2'>기간만료&nbsp;<span>( "+service.selectBusApplEndCount()+" )</span></a>";
+		applHtml+="<a class='ei_a2'>기간만료&nbsp;<span>( "+service.selectBusApplCount(map)+" )</span></a>";
 		applHtml+="</li>";
 		applHtml+="<li class='ls3 li_input'>";
 		applHtml+="<input type='text' name='search_em' placeholder='지원자, 포지션 검색'/>";
@@ -194,34 +202,39 @@ public class BusinessController2 {
 		return mv;
 	}
 	
-	@RequestMapping("/business/applChange")
-	public ModelAndView applChange(HttpSession session, @RequestParam int applIndex, @RequestParam boolean like, @RequestParam String search, @RequestParam(value="cPage", required=false, defaultValue="1")int cPage) {
+	@RequestMapping("/business/applChange.lbc")
+	public ModelAndView applChange(HttpSession session, @RequestParam int applIndex, @RequestParam boolean applLike, @RequestParam String search, @RequestParam(value="cPage", required=false, defaultValue="1")int cPage) {
 		ModelAndView mv=new ModelAndView();
-		session.setAttribute("applIndex", applIndex);
-		session.setAttribute("applcPage", cPage);
+		Map map=new HashMap();
+		map.put("applIndex", applIndex);
+		map.put("applLike", applLike);
 		String html="";
-		List<Member> memberList=new ArrayList<Member>();
+		List<Applicant> applList=new ArrayList<Applicant>();
 		int numPerPage=5;
 		int totalData=0;
 		//list 가져오기
-		switch(applIndex) {
-		case 0: memberList=service.selectBusApplNew(cPage, numPerPage); totalData=service.selectBusApplNewCount(); break;//신규 지원자
-		case 1: memberList=service.selectBusApplStart(cPage, numPerPage); totalData=service.selectBusApplStartCount(); break;//서류통과
-		case 2: memberList=service.selectBusApplPass(cPage, numPerPage); totalData=service.selectBusApplPassCount(); break;//합격
-		case 3: memberList=service.selectBusApplFail(cPage, numPerPage); totalData=service.selectBusApplFailCount(); break;//불합격
-		case 4: memberList=service.selectBusApplEnd(cPage, numPerPage); totalData=service.selectBusApplEndCount(); break;//기간 만료
-		}
+		applList=service.selectBusAppl(map, cPage,numPerPage); totalData=service.selectBusApplCount(map);
 		
-		if(memberList.isEmpty()) {
+
+		
+		if(applList.isEmpty()) {
 			html+="<br/>";
 			html+="<h4>포지션에 적합한 후보자가 없으신가요?</h4>";
 			html+="<h4><a href='#'>매치업</a> 탭에서 인재를 검색하고 직접 면접제안을 해보세요!</h4>";
 		}else {
-			for(int i=0; i<memberList.size(); i++) {
-				Member m=memberList.get(i);
+			for(int i=0; i<applList.size(); i++) {
+				Member m=service.selectApplicant(applList.get(i).getMemNo());
 				html+="<div class='appl-aList'>";
 				html+="<div class='aList-left'>";
-				html+="<div class='aList-like-btn'><i class='fas fa-star'></i></div>";
+				Map likeMap=new HashMap();
+				map.put("busNo", ((Business)session.getAttribute("busInfo")).getBusNo());
+				map.put("memNo", m.getMemNo());
+				if(applLike||service.selectCheckLike(likeMap)>0) {					
+					html+="<div class='aList-like-btn like_on'><i class='fas fa-star'></i></div>";
+				}else {
+					
+					html+="<div class='aList-like-btn'><i class='fas fa-star'></i></div>";
+				}
 				html+="<div class='aList-info'>";
 				html+="<div class='aList-info-no'>No_"+m.getMemNo()+"</div>";
 				html+="<div class='aList-info-name'>"+m.getMemName().charAt(0)+"<i class='far fa-circle'></i><i class='far fa-circle'></i></div>";
@@ -238,8 +251,9 @@ public class BusinessController2 {
 				html+="</div><br/>";
 			}
 		}
-		mv.addObject("likeCh", like);
-		mv.addObject("search", search);
+		session.setAttribute("applIndex", applIndex);
+		session.setAttribute("applcPage", cPage);
+		session.setAttribute("applLike", applLike);
 		mv.addObject("applInnerHtml", html);
 		mv.addObject("pageBar", PageFactory2.getApplPageBar(totalData, cPage, numPerPage));
 		mv.setViewName("jsonView");
@@ -258,6 +272,28 @@ public class BusinessController2 {
 		mv.addObject("dbHtml", biHtml);
 		mv.addObject("dbIndex",5);
 		mv.setViewName("business/dashboard");
+		return mv;
+	}
+	
+	@RequestMapping("/business/applLike.lbc")
+	public ModelAndView applLike(HttpSession session, @RequestParam int memNo, @RequestParam boolean flag) {
+		ModelAndView mv=new ModelAndView();
+		Map map=new HashMap();
+		map.put("busNo", ((Business)session.getAttribute("busInfo")).getBusNo());
+		map.put("memNo", memNo);
+		
+		int result=0;
+		if(flag) {			
+			result=service.deleteApplLike(map);
+		}else {
+			result=service.insertApplLike(map);
+		}
+		if(result>0) {
+			
+		}else {
+			System.out.println("에러");
+		}
+		mv.setViewName("jsonView");
 		return mv;
 	}
 }

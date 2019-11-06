@@ -139,8 +139,10 @@
 	var db_index="${dbIndex}";
 	var db_html="${dbHtml}";
 	var appl_index="${applIndex}";
-	var cPage='${applcPage}';
-	
+	var appl_page='${applcPage}';
+	var appl_like='${applLike}';
+	var bus_info='${busInfo}';
+
 </script>
 <script src="${path}/resources/js/db-main.js"></script>
 <c:if test="${dbIndex eq 1}">	

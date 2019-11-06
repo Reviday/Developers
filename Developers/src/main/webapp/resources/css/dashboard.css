@@ -173,7 +173,7 @@ input[name="search_em"]::placeholder{
     display: inline-grid;
     float:right;
 }
-.like_on{
+.like_on>svg{
     color:gold !important;
 }
 

@@ -1,11 +1,13 @@
 package com.kh.developers.business.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.kh.developers.business.model.vo.Applicant;
 import com.kh.developers.business.model.vo.Business;
 import com.kh.developers.member.model.vo.Member;
 
@@ -14,59 +16,43 @@ public class BusinessDaoImpl2 implements BusinessDao2 {
 
 	@Override
 	public int busLogoChange(SqlSession session, Business busInfo) {
-		return session.update("business.busLogoChange", busInfo);
+		return session.update("business2.busLogoChange", busInfo);
 	}
 
 	@Override
-	public List<Member> selectBusApplNew(SqlSession session, int cPage, int numPerPage) {
+	public List<Applicant> selectBusApplNew(SqlSession session, Map map,  int cPage, int numPerPage) {
 		RowBounds row=new RowBounds((cPage-1)*numPerPage, numPerPage);
-		return session.selectList("business.selectBusApplNew", null, row);
+		return session.selectList("business2.selectBusAppl", map, row);
+	}
+
+
+	@Override
+	public int selecBusApplNewCount(SqlSession session, Map map) {
+		return session.selectOne("business2.selectBusApplCount", map);
 	}
 
 	@Override
-	public List<Member> selectBusApplStart(SqlSession session, int cPage, int numPerPage) {
-		return session.selectList("business.selectBusApplStart");
+	public int insertApplLike(SqlSession session, Map map) {
+		return session.insert("business2.insertApplLike", map);
+	}
+	
+
+	@Override
+	public int deleteApplLike(SqlSession session, Map map) {
+		return session.insert("business2.deleteApplLike", map);
+	}
+	
+
+	@Override
+	public int selectCheckLike(SqlSession session, Map map) {
+		return session.selectOne("business2.selectCheckLike", map);
 	}
 
 	@Override
-	public List<Member> selectBusApplPass(SqlSession session, int cPage, int numPerPage) {
-		return session.selectList("business.selectBusApplPass");
+	public Member selectApplicant(SqlSession session, int memNo) {
+		return session.selectOne("business2.selectApplicant", memNo);
 	}
 
-	@Override
-	public List<Member> selectBusApplFail(SqlSession session, int cPage, int numPerPage) {
-		return session.selectList("business.selectBusApplFail");
-	}
-
-	@Override
-	public List<Member> selectBusApplEnd(SqlSession session, int cPage, int numPerPage) {
-		return session.selectList("business.selectBusApplEnd");
-	}
-
-	@Override
-	public int selecBusApplNewCount(SqlSession session) {
-		return session.selectOne("business.selectBusApplNewCount");
-	}
-
-	@Override
-	public int selecBusAppStartCount(SqlSession session) {
-		return session.selectOne("business.selectBusApplStartCount");
-	}
-
-	@Override
-	public int selecBusApplPassCount(SqlSession session) {
-		return session.selectOne("business.selectBusApplPassCount");
-	}
-
-	@Override
-	public int selecBusApplFailCount(SqlSession session) {
-		return session.selectOne("business.selectBusApplFailCount");
-	}
-
-	@Override
-	public int selecBusApplEndCount(SqlSession session) {
-		return session.selectOne("business.selectBusApplEndCount");
-	}
 	
 	
 }

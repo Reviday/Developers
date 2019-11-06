@@ -1,12 +1,14 @@
 package com.kh.developers.business.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.developers.business.model.dao.BusinessDao2;
+import com.kh.developers.business.model.vo.Applicant;
 import com.kh.developers.business.model.vo.Business;
 import com.kh.developers.member.model.vo.Member;
 
@@ -25,63 +27,44 @@ public class BusinessServiceImpl2 implements BusinessService2 {
 	}
 
 	@Override
-	public List<Member> selectBusApplNew(int cPage, int numPerPage) {
-		List<Member> list=dao.selectBusApplNew(session, cPage, numPerPage);
+	public List<Applicant> selectBusAppl(Map map, int cPage, int numPerPage) {
+		List<Applicant> list=dao.selectBusApplNew(session, map, cPage, numPerPage);
 		return list;
 	}
 
 	@Override
-	public List<Member> selectBusApplStart(int cPage, int numPerPage) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Member> selectBusApplPass(int cPage, int numPerPage) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Member> selectBusApplFail(int cPage, int numPerPage) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Member> selectBusApplEnd(int cPage, int numPerPage) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public int selectBusApplNewCount() {
-		int result=dao.selecBusApplNewCount(session);
+	public int selectBusApplCount(Map map) {
+		int result=dao.selecBusApplNewCount(session, map);
 		return result;
 	}
 
 	@Override
-	public int selectBusApplStartCount() {
-		// TODO Auto-generated method stub
-		return 0;
+	public int insertApplLike(Map map) {
+		int result=dao.insertApplLike(session, map);
+		return result;
+	}
+	
+
+	@Override
+	public int deleteApplLike(Map map) {
+		int result=dao.deleteApplLike(session, map);
+		return result;
+	}
+	
+	
+
+	@Override
+	public int selectCheckLike(Map map) {
+		int result=dao.selectCheckLike(session, map);
+		return result;
 	}
 
 	@Override
-	public int selectBusApplPassCount() {
-		// TODO Auto-generated method stub
-		return 0;
+	public Member selectApplicant(int memNo) {
+		Member m=dao.selectApplicant(session, memNo);
+		return m;
 	}
-
-	@Override
-	public int selectBusApplFailCount() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int selectBusApplEndCount() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+	
+	
 	
 }

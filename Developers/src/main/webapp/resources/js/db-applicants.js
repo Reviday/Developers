@@ -3,9 +3,12 @@
 
 
 $(function(){
+    if(appl_like=='true'){
+        $("#like_check").prop("checked",true);
+    }
     //리스트 가져오는 함수
-    fn_appl_nav(appl_index, cPage);
-
+    fn_appl_nav(appl_index, appl_page);
+   
     //인덱스 선택
     $($('.appl-main-nav>ul>li')[appl_index]).children().addClass('ca2');
 
@@ -33,38 +36,51 @@ $(function(){
     });
     $("[name='search_em']").on("keyup", function(event){
         if(event.keyCode=='13'){
-            fn_appl_nav(appl_index, cPage);
+            fn_appl_nav(appl_index, appl_page);
         }
     });
     $("#like_check").on("change", function(){
-        fn_appl_nav(appl_index, cPage);
+        fn_appl_nav(appl_index, appl_page);
     });
 
    
 
 });
   
-function fn_appl_nav(index, cPage){
-    appl_index=index==""?0:index;
+function fn_appl_nav(index, page){
+    appl_index=index;
+    appl_page=page;
     $(".appl-applicant-list").html("<img src='"+path+"/resources/images/Developers_black_loading.gif' width='30px;'/>");
     $.ajax({
-        url:path+"/business/applChange",
-        data:{"applIndex":appl_index, "like":$("#like_check").prop("checked"),"search":$("[name='search_em']").val(), "cPage":cPage},
+        url:path+"/business/applChange.lbc",
+        data:{"applIndex":index, "applLike":$("#like_check").prop("checked"),"search":$("[name='search_em']").val(), "cPage":page},
         success:function(data){
             $(".appl-applicant-list").html(data.applInnerHtml);
             $(".appl-applicant-list").append(data.pageBar);
              //좋아요 버튼 클릭
             $(".aList-like-btn").on("click",function(){
-                if($(this).children().hasClass("like_on")){
-                    $(this).children().removeClass("like_on");
+                if($(this).hasClass("like_on")){
+                    $(this).removeClass("like_on");
+                    fn_appl_like(event, true);
                 }else{
-                    $(this).children().addClass("like_on");
+                    $(this).addClass("like_on");
+                    fn_appl_like(event, false);
                 }
             })
         }
     });
 
 }
+
+function fn_appl_like(event, flag){
+    var memNo=$(event.target).parents('.aList-left').children('.aList-info').children(':first').html().substring(3);
+    $.ajax({
+        url:path+"/business/applLike.lbc",
+        data:{"memNo":memNo, "flag":flag}
+    });
+}
+
+
 
     
     
