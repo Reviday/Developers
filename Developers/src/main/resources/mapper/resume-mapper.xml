@@ -44,6 +44,12 @@ INSERT INTO RESUME VALUES (SEQ_RESUME.NEXTVAL,#{memEmail},#{memName},default,def
 SELECT SEQ_RESUME.CURRVAL FROM DUAL
 </selectKey>
 </insert>
+<insert id="insertMathupCareer" parameterType="resume">
+	INSERT INTO CAREER VALUES(SEQ_CAREER.NEXTVAL,#{memEmail},#{startCareer},#{endCareer},#{busName},default,default,#{resumeNo})
+</insert>
+<insert id="insertMathupEd" parameterType="resume">
+	INSERT INTO EDUCATION VALUES(seq_education.NEXTVAL,#{memEmail},default,default,#{schoolName},default,default,default,#{resumeNo})	
+</insert>
 <select id="selectResume" parameterType="member" resultMap="resumeMap">
 SELECT * FROM RESUME WHERE MEM_EMAIL=#{memEmail} ORDER BY RESUME_DATE ASC
 </select>
