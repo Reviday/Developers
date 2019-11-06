@@ -192,7 +192,7 @@
                      </div>
                      <ul>
                         <li>
-                           <a href="${path }/member/myPage.lmc" class="">
+                           <a href="${path }/member/myPage.lmc?memEmail=${loginMember.memEmail }" class="">
                               내 정보
                               <img src="${path}/resources/upload/profile/${loginMember.memPhoto!=null?loginMember.memPhoto:'no-profile-image.png' }" 
                                  class="xsOnly" id="profile_img"/>
