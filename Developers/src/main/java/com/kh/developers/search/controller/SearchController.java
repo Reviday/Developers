@@ -254,7 +254,8 @@ public class SearchController {
 	//탐색 -> 회사소개페이지로 전환(비로그인)
 	@RequestMapping("/search/companyAllInfo")
 	public String companyAllInfo(int busNo, Model model) {
-		System.out.println(busNo);
+		List<Position> psList = service.companyPositionList(busNo);
+		
 		return "search/companyAllInfo";
 	}
 }

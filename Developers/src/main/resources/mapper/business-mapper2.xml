@@ -96,6 +96,8 @@
 		<result property="busLogo" column="BUS_LOGO"></result>
 		<result property="busImages" column="BUS_IMAGES" typeHandler="strArray"></result>
 		<result property="busStatus" column="BUS_STATUS"></result>
+		<result property="newIncome" column="NEW_INCOME"></result>
+		<result property="allIncome" column="ALL_INCOME"></result>
 	</resultMap>
 	
 	<resultMap type="applicant" id="applMap">
