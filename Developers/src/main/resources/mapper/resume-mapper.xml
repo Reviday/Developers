@@ -105,10 +105,10 @@ SELECT * FROM RESUME WHERE MEM_EMAIL=#{memEmail} and RESUME_NO=#{resumeNo}
 	<result property="interestNo " column="interests_no"/>
 	<result property="memEmail" column="mem_email"/>
 	<result property="jobName " column="job_name"/>
-	<result property="duty" column="duty"/>
+	<result property="duty" column="duty" typeHandler="strArray"/>
 	<result property="experience" column="EXPERIENCE"/>
 	<result property="salary" column="salary"/>
-	<result property="skill" column="skill"/>
+	<result property="skill" column="skill" typeHandler="strArray"/>
 	<result property="interestsDate" column="interestsDate"/>
 </resultMap>
 
