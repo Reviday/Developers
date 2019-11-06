@@ -7,6 +7,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.kh.developers.business.model.vo.Business;
+import com.kh.developers.business.model.vo.CareerInCard;
+import com.kh.developers.business.model.vo.EducationInCard;
 import com.kh.developers.business.model.vo.IntroCard;
 import com.kh.developers.member.model.vo.Member;
 
@@ -53,6 +55,18 @@ public class BusinessDaoImpl implements BusinessDao {
 	public List<IntroCard> selectIntroCards(SqlSessionTemplate session, String duties) {
 		
 		return session.selectList("business.selectIntroCards",duties);
+	}
+	
+	@Override
+	public List<CareerInCard> selectCareers(SqlSessionTemplate session, int resumeNo) {
+		// TODO Auto-generated method stub
+		return session.selectList("business.selectCareers",resumeNo);
+	}
+	
+	@Override
+	public List<EducationInCard> selectEducations(SqlSessionTemplate session, int resumeNo) {
+		// TODO Auto-generated method stub
+		return session.selectList("business.selectEducations",resumeNo);
 	}
 
 }

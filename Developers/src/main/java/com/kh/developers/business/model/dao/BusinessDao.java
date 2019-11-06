@@ -6,6 +6,8 @@ import java.util.Map;
 import org.mybatis.spring.SqlSessionTemplate;
 
 import com.kh.developers.business.model.vo.Business;
+import com.kh.developers.business.model.vo.CareerInCard;
+import com.kh.developers.business.model.vo.EducationInCard;
 import com.kh.developers.business.model.vo.IntroCard;
 import com.kh.developers.member.model.vo.Member;
 
@@ -28,5 +30,9 @@ public interface BusinessDao {
 	
 //	매치업 로직
 	List<IntroCard>selectIntroCards(SqlSessionTemplate session, String duties);
+	
+	List<CareerInCard>selectCareers(SqlSessionTemplate session, int resumeNo);
+	
+	List<EducationInCard>selectEducations(SqlSessionTemplate session, int resumeNo);
 	
 }

@@ -13,6 +13,8 @@ import org.springframework.stereotype.Service;
 
 import com.kh.developers.business.model.dao.BusinessDao;
 import com.kh.developers.business.model.vo.Business;
+import com.kh.developers.business.model.vo.CareerInCard;
+import com.kh.developers.business.model.vo.EducationInCard;
 import com.kh.developers.business.model.vo.IntroCard;
 import com.kh.developers.common.authentication.MailHandler;
 import com.kh.developers.common.authentication.TempKey;
@@ -112,6 +114,18 @@ public class BusinessServiceImpl implements BusinessService {
 	public List<IntroCard> selectIntroCards(String duties) {
 		
 		return dao.selectIntroCards(session, duties);
+	}
+	
+	@Override
+	public List<CareerInCard> selectCareers(int resumeNo) {
+		// TODO Auto-generated method stub
+		return dao.selectCareers(session, resumeNo);
+	}
+	
+	@Override
+	public List<EducationInCard> selectEducations(int resumeNo) {
+		// TODO Auto-generated method stub
+		return dao.selectEducations(session, resumeNo);
 	}
 
 }

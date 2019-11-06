@@ -1,6 +1,7 @@
 // 검색하기 로직 
 
 var searchBtn=document.querySelector("#searchBtn");
+var searchBox=document.querySelector('#searchBox');
 var mainActive=document.querySelector('button.btn-outline-info.main');
 var details=$('button.btn-outline-info.rest');
 var activeCount=0; 
@@ -54,7 +55,22 @@ mainActive.addEventListener('click',function(e){
 });
 
 
+searchBtn.addEventListener('click',function(){
+    searchEvent();
+});
+searchBox.addEventListener('keyup',function(e){
+    if(e.keyCode==13){
+        searchEvent();
+    }
+});
+
+var searchValues=new Array;
+function searchEvent(){
+    searchValues=(searchBox.value).split(" ");
+    searchValues
     
+};
+
 
 
 

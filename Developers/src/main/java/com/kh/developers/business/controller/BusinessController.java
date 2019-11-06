@@ -208,10 +208,13 @@ public class BusinessController {
 			}
 			duties+='%';
 			System.out.println(duties);
-			List<IntroCard> ic=bService.selectIntroCards(duties);
-			
+			List<IntroCard> icList=bService.selectIntroCards(duties);
+			for(IntroCard ic:icList) {
+				ic.setCareers(bService.selectCareers(ic.getResumeNo()));
+				ic.setEducations(bService.selectEducations(ic.getResumeNo()));
+			}
 				try {
-					jsonStr=mapper.writeValueAsString(ic);
+					jsonStr=mapper.writeValueAsString(icList);
 				}catch(JsonProcessingException e) {
 					e.printStackTrace();
 				}

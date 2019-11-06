@@ -97,7 +97,7 @@
 			<hr>
 			<div class="searchBar container" style="height:35px">
 				<div class="input-group container col-md-8">
-					<input type="text" class="form-control" style="border-color: #ffffff;" placeholder="회사명, 학교, 스킬 검색 (중복검색 가능 e.g.회사명 AND 스킬, 회사명 OR 학교)" aria-label="search-bar" aria-describedby="basic-addon2">
+					<input type="text" id="searchBox" class="form-control" style="border-color: #ffffff;" placeholder="회사명, 학교, 스킬 검색 (중복검색 가능 e.g.회사명 AND 스킬, 회사명 OR 학교)" aria-label="search-bar" aria-describedby="basic-addon2">
 					<div class="input-group-append">
 						<button id="searchBtn" class="btn btn-primary" style="background-color: #02609B; border-color: #FFFFFF" type="button">검색하기</button>
 					</div>
