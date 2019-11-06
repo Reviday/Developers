@@ -61,16 +61,19 @@
    </select>
 	
 	<!-- 매치업 mapper -->
+	<select id="selectAllIntroCards" resultMap="introCardMap">
+		SELECT RESUME.RESUME_NO,INTRO, DUTY, EXPERIENCE, SKILL FROM RESUME JOIN INTERESTS ON (RESUME.MEM_EMAIL=INTERESTS.MEM_EMAIL) WHERE RESUME.MATCHUP='Y'
+	</select>
   	<select id="selectIntroCards" parameterType="String" resultMap="introCardMap">
 		SELECT RESUME.RESUME_NO,INTRO, DUTY, EXPERIENCE, SKILL FROM RESUME JOIN INTERESTS ON (RESUME.MEM_EMAIL=INTERESTS.MEM_EMAIL) WHERE RESUME.MATCHUP='Y' AND INTERESTS.DUTY LIKE #{duties}
 	</select>  
 	
 	<select id="selectCareers" parameterType="integer" resultMap="careerMap">
-	
+		SELECT BUS_NAME, START_CAREER, END_CAREER FROM CAREER WHERE RESUME_NO=#{resumeNo}
 	</select>
 	
 	<select id="selectEducations" parameterType="integer" resultMap="educationMap">
-	
+		SELECT SCHOOL_NAME, MAJOR_NAME FROM EDUCATION WHERE RESUME_NO=#{resumeNo}
 	</select>
 	
 	<resultMap type="com.kh.developers.business.model.vo.CareerInCard" id="careerMap">

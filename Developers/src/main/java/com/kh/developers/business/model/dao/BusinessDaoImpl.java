@@ -52,6 +52,12 @@ public class BusinessDaoImpl implements BusinessDao {
 	
 //	매치업 로직
 	@Override
+	public List<IntroCard> selectIntroCards(SqlSessionTemplate session) {
+		// TODO Auto-generated method stub
+		return session.selectList("business.selectAllIntroCards");
+	}
+	
+	@Override
 	public List<IntroCard> selectIntroCards(SqlSessionTemplate session, String duties) {
 		
 		return session.selectList("business.selectIntroCards",duties);

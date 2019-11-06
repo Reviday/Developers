@@ -20,7 +20,10 @@ public interface BusinessService {
 	
 	Business selectBusInfo(int memberNo);
 	
+	
 	// 매치업  introCard 불러오기 로직
+	List<IntroCard> selectIntroCards();
+	
 	List<IntroCard> selectIntroCards(String duties);
 	
 	List<CareerInCard> selectCareers(int resumeNo);

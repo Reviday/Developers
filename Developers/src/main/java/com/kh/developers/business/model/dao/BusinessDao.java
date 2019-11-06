@@ -29,6 +29,8 @@ public interface BusinessDao {
 	
 	
 //	매치업 로직
+	List<IntroCard>selectIntroCards(SqlSessionTemplate session);
+	
 	List<IntroCard>selectIntroCards(SqlSessionTemplate session, String duties);
 	
 	List<CareerInCard>selectCareers(SqlSessionTemplate session, int resumeNo);

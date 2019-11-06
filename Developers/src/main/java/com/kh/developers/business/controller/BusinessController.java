@@ -199,7 +199,23 @@ public class BusinessController {
 	public String selectResume(@RequestParam (value="selectedString") String selectedString, HttpServletResponse res) {
 		ObjectMapper mapper=new ObjectMapper(); //잭슨 객체 - json자바스크립트 객체 매핑시킴 
 		String jsonStr="";
-		if(!selectedString.isEmpty()||selectedString!="") {
+//		이력서 전부 가져오기 로직 
+		if(selectedString.equals("all")) {
+			List<IntroCard>icAllList=bService.selectIntroCards();
+			for(IntroCard ic:icAllList) {
+				ic.setCareers(bService.selectCareers(ic.getResumeNo()));
+				ic.setEducations(bService.selectEducations(ic.getResumeNo()));
+			}
+		try {
+			jsonStr=mapper.writeValueAsString(icAllList);
+		}catch(JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		res.setContentType("application/json;charset=utf-8");
+		}
+	
+//		이력서 검색으로 가져오기 로직
+		if(!selectedString.isEmpty()&&selectedString!=""&&!selectedString.equals("all")) {
 			String[] selected=selectedString.split(",");
 			Arrays.sort(selected);
 			String duties="";
@@ -207,7 +223,6 @@ public class BusinessController {
 				duties+='%'+selected[i];
 			}
 			duties+='%';
-			System.out.println(duties);
 			List<IntroCard> icList=bService.selectIntroCards(duties);
 			for(IntroCard ic:icList) {
 				ic.setCareers(bService.selectCareers(ic.getResumeNo()));
@@ -220,6 +235,7 @@ public class BusinessController {
 				}
 			res.setContentType("application/json;charset=utf-8");
 		}
+		System.out.println(selectedString);
 		return jsonStr;
 	}
 	

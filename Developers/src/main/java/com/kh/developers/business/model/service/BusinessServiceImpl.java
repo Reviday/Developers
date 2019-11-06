@@ -110,6 +110,13 @@ public class BusinessServiceImpl implements BusinessService {
 	}
 	
 	// 매치업  introCard 불러오기 로직
+	
+	@Override
+	public List<IntroCard> selectIntroCards() {
+		// TODO Auto-generated method stub
+		return dao.selectIntroCards(session);
+	}
+	
 	@Override
 	public List<IntroCard> selectIntroCards(String duties) {
 		
@@ -127,5 +134,7 @@ public class BusinessServiceImpl implements BusinessService {
 		// TODO Auto-generated method stub
 		return dao.selectEducations(session, resumeNo);
 	}
+	
+	
 
 }

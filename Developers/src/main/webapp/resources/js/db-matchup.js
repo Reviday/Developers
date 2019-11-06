@@ -24,6 +24,7 @@ for(var i=0;i<details.length;i++){
         console.log(activeCount);
         if(activeCount<1){
             mainActive.className='btn btn-outline-info main active';
+            selectAllCards();
         }
         if (typeof selected != 'undefined' && selected.length > 0) {
             var selectedString=selected.toString();
@@ -38,6 +39,10 @@ for(var i=0;i<details.length;i++){
                 },
                 success:function(result){
                     console.log(result);
+                    if(result!=undefined||result!=null){
+                        var cards=JSON.parse(result);
+                        console.log(cards);
+                    }
                 }
             });
         }
@@ -52,6 +57,7 @@ mainActive.addEventListener('click',function(e){
     selected=[];
     activeCount=0;
     console.log(selected);
+    selectAllCards();
 });
 
 
@@ -69,6 +75,26 @@ function searchEvent(){
     searchValues=(searchBox.value).split(" ");
     searchValues
     
+};
+
+function selectAllCards(){
+    var selectedString='all';
+    $.ajax({
+        url:path+"/business/selectResume",
+        type:"post",
+        async: false,
+        data:{
+            "selectedString":selectedString
+        },
+        success:function(result){
+            console.log(result);
+            if(result!=undefined||result!=null){
+                var cards=JSON.parse(result);
+                console.log(cards);
+            }
+            
+        }
+    });
 };
 
 
