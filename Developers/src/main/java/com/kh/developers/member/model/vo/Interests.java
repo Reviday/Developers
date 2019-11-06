@@ -13,7 +13,7 @@ public class Interests {
 	private String memEmail;
 	private String jobName; 
 	private String[] duty;
-	private String career;
+	private String experience;
 	private int salary;
 	private String[] skill;
 	private Date interestsDate;

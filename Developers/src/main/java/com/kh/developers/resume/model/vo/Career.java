@@ -15,7 +15,7 @@ public class Career {
 	private String memEmail;
 	private String startCareer;
 	private String endCareer;
-	private String empName;
+	private String busName;
 	private String depName;
 	private Date careerDate;
 	private int resumeNo;

@@ -14,7 +14,7 @@ UPDATE activitie SET start_act=#{startAct},act_name=#{actName},act_detail=#{actD
 UPDATE EDUCATION SET start_ed=#{startEd},end_ed=#{endEd},school_name=#{schoolName},major_name=#{majorName},subject_name=#{subjectName} WHERE ed_no=#{edNo}
 </update>
 <update id="updateCareer" parameterType="career">
-UPDATE CAREER SET start_career=#{startCareer},end_career=#{endCareer},emp_name=#{empName},dep_name=#{depName} WHERE career_no=#{careerNo}
+UPDATE CAREER SET start_career=#{startCareer},end_career=#{endCareer},bus_name=#{busName},dep_name=#{depName} WHERE career_no=#{careerNo}
 </update>
 <delete id="deleteEd" parameterType="_int">
 DELETE FROM EDUCATION WHERE ed_no=#{deleteNo}
@@ -32,7 +32,7 @@ DELETE FROM LINKS WHERE links_no=#{deleteNo}
 DELETE FROM CAREER WHERE CAREER_NO=#{deleteNo}
 </delete>
 <insert id="insertResume" parameterType="member">
-INSERT INTO RESUME VALUES (SEQ_RESUME.NEXTVAL,#{memEmail},#{memName},default,default,default)
+INSERT INTO RESUME VALUES (SEQ_RESUME.NEXTVAL,#{memEmail},#{memName},default,default,default,null,null)
 </insert>
 <select id="selectResume" parameterType="member" resultMap="resumeMap">
 SELECT * FROM RESUME WHERE MEM_EMAIL=#{memEmail} ORDER BY RESUME_DATE ASC
@@ -130,7 +130,7 @@ SELECT * FROM RESUME WHERE MEM_EMAIL=#{memEmail} and RESUME_NO=#{resumeNo}
 	<result property="memEmail" column="mem_email"/>
 	<result property="startCareer" column="start_career"/>
 	<result property="endCareer" column="end_career"/>
-	<result property="empName" column="emp_name"/>
+	<result property="busName" column="bus_name"/>
 	<result property="depName" column="dep_name"/>
 	<result property="careerDate" column="career_date"/>
 	<result property="resumeNo" column="resume_no"/>

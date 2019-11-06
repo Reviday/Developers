@@ -17,4 +17,6 @@ public class Resume  {
 	private String memPhone;
 	private String intro;
 	private Date resumeDate;
+	private String matchup;
+	private int interestsNo;
 }
