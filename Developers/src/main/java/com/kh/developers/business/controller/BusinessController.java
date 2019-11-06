@@ -1,6 +1,10 @@
 package com.kh.developers.business.controller;
 
+import java.util.Arrays;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -10,15 +14,22 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kh.developers.business.model.service.BusinessService;
 import com.kh.developers.business.model.vo.Business;
+import com.kh.developers.business.model.vo.IntroCard;
 import com.kh.developers.member.model.service.MemberService;
 import com.kh.developers.member.model.vo.Member;
+import com.kh.developers.resume.model.service.ResumeService;
+import com.kh.developers.resume.model.vo.Resume;
 
 @SessionAttributes(value= {"loginMember","busInfo"})
 
@@ -36,6 +47,9 @@ public class BusinessController {
 	
 	@Autowired
 	private MemberService service;
+	
+	@Autowired
+	private ResumeService rService;
 	
 	@RequestMapping("/business")
 	public String empPage(HttpSession session){
@@ -146,21 +160,64 @@ public class BusinessController {
 	}
 	
 	@RequestMapping("/business/matchup.lbc")
-	public ModelAndView matchup(Business bus) {
+	public ModelAndView matchup(Business bus,Resume r) {
 		ModelAndView mv= new ModelAndView();
-		String matchHTML="";
-		matchHTML+="<div class='matchupArea tagHeader'>";
-		matchHTML+="</div>";
-		matchHTML+="<div class='matchupArea searchBar>";
-		matchHTML+="</div>";
-		matchHTML+="<div class='matchupArea resumeList>";
-		matchHTML+="</div>";
-//		matchHTML+="<script src='${path}/resources/js/db-matchup.js'></script>";
-		
+//		Resume resume=rService.selectResumeOne(r);
+//		List<Career> career=rService.selectCareer(resume);
+//		List<Education> ed=rService.selectEd(resume);
+//		List<Activitie> ac=rService.selectAc(resume);
+//		List<Lang> Lang=rService.selectLang(resume);
+//		List<Links> links=rService.selectLinks(resume);
+//		mv.addObject("ed",ed);
+//		mv.addObject("ac",ac);
+//		mv.addObject("Lang",Lang);
+//		mv.addObject("links",links);
+//		mv.addObject("resume", resume);
+//		mv.addObject("career", career);
 		mv.addObject("dbIndex",2);
-		mv.addObject("dbHtml",matchHTML);
+//		mv.addObject("dbHtml",matchHTML);
 		mv.setViewName("business/temporaryPage");
 		return mv;
+	}
+	
+	@RequestMapping("/business/favorites")
+	public ModelAndView favorites(String busNo, String resumeNo, String selectVal) {
+		ModelAndView mv=new ModelAndView();
+//		찜하기: 사업장 번호와 이력서 번호 불러와서 fav로 연결시켜줌 -> 찜한 목록에 추가 
+//		찜하기: 취소시 테이블에서 delete
+//		이력서 미리보기: 백단에서 처리 할 것 없음 
+//		이력서를 열람하려면 열람권 결제를 해야함
+//		이력서 열람하기: 사업장 번호와 이력서 번호 불러와서 seen으로 연결시켜줌 -> 열람한 목록에 추가
+//		면접 제인하기: 사업장 번호와 이력서 번호 불러와서 offer로 연결시켜줌 -> 면접 제안한 목록에 추가
+//		int insertResult=bService.insertFavorite(busNo,resumeNo,selectVal);
+//		int removeResult=bService.removeFavorite(busNo,resumeNo,selectVal);
+		return mv;
+	}
+	
+	@RequestMapping(value = "/business/selectResume", produces = "application/text; charset=utf-8")
+	@ResponseBody
+	public String selectResume(@RequestParam (value="selectedString") String selectedString, HttpServletResponse res) {
+		ObjectMapper mapper=new ObjectMapper(); //잭슨 객체 - json자바스크립트 객체 매핑시킴 
+		String jsonStr="";
+		if(!selectedString.isEmpty()||selectedString!="") {
+			String[] selected=selectedString.split(",");
+			Arrays.sort(selected);
+			String duties="";
+			for(int i=0;i<selected.length;i++) {
+				duties+='%'+selected[i];
+			}
+			duties+='%';
+			System.out.println(duties);
+			List<IntroCard> ic=bService.selectIntroCards(duties);
+			
+				try {
+					jsonStr=mapper.writeValueAsString(selected);
+				}catch(JsonProcessingException e) {
+					e.printStackTrace();
+				}
+			res.setContentType("application/json;charset=utf-8");
+		}
+		return jsonStr;
 	}
 	
 }

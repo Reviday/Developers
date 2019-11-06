@@ -1,8 +1,9 @@
 package com.kh.developers.business.model.service;
 
-import java.util.Map;
+import java.util.List;
 
 import com.kh.developers.business.model.vo.Business;
+import com.kh.developers.business.model.vo.IntroCard;
 import com.kh.developers.member.model.vo.Member;
 
 public interface BusinessService {
@@ -16,4 +17,6 @@ public interface BusinessService {
 	int insertBusiness(Business bus);
 	
 	Business selectBusInfo(int memberNo);
+	
+	List<IntroCard> selectIntroCards(String duties);
 }
