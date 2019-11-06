@@ -37,4 +37,5 @@ public interface SearchDao {
 	List<Position> positionLoginFilterList(SqlSessionTemplate session, Map map);
 	int updateMemFilter(SqlSessionTemplate session, Map map);
 	List<Position> positionLoginFilterJobNameList(SqlSessionTemplate session, Map map);
+	List<Position> recommandPositionList(SqlSessionTemplate session, Position p);
 }

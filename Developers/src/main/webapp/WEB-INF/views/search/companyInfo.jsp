@@ -33,7 +33,7 @@
                         <section class="companytype">
                             <h2><c:out value="${p.position }"/></h2>
                             <h6>
-                                <a href="">
+                                <a href="${path }/search/companyAllInfo?busNo=${p.bus_no}">
                                     <c:out value="${p.bus_name }"/>
                                 </a>
                                 <span>
@@ -242,206 +242,33 @@
                     <h5 class="choochun-title">추천 채용</h5>
                     <div class="choochun-content">
                         <ul class="clearfix">
-                            <li>
-                                <div class="choochun-content-context">
-                                    <a href="">
-                                        <div class="contextHeader">
-                                            <button class="likeButton">
-                                                <i class="fas fa-heart" style="margin-right: 10px"></i>
-                                                0
-                                            </button>
-                                        </div>
-                                        <div class="body">
-                                            <dl>
-                                                <dt>웹 개발자(프론트엔드/HTML)</dt>
-                                                <dd>
-                                                    로켓뷰(RocketView)
-                                                    <br>
-                                                    <span>서울</span>
-                                                    <span class="addressDot">.</span>
-                                                    <span>한국</span>
-                                                </dd>
-                                            </dl>
-                                            <div class="reward">채용보상금 1,000,000원</div>
-                                        </div>
-                                    </a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="choochun-content-context">
-                                    <a href="">
-                                        <div class="contextHeader">
-                                            <button class="likeButton">
-                                                <i class="fas fa-heart" style="margin-right: 10px"></i>
-                                                0
-                                            </button>
-                                        </div>
-                                        <div class="body">
-                                            <dl>
-                                                <dt>웹 개발자(프론트엔드/HTML)</dt>
-                                                <dd>
-                                                    로켓뷰(RocketView)
-                                                    <br>
-                                                    <span>서울</span>
-                                                    <span class="addressDot">.</span>
-                                                    <span>한국</span>
-                                                </dd>
-                                            </dl>
-                                            <div class="reward">채용보상금 1,000,000원</div>
-                                        </div>
-                                    </a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="choochun-content-context">
-                                    <a href="">
-                                        <div class="contextHeader">
-                                            <button class="likeButton">
-                                                <i class="fas fa-heart" style="margin-right: 10px"></i>
-                                                0
-                                            </button>
-                                        </div>
-                                        <div class="body">
-                                            <dl>
-                                                <dt>웹 개발자(프론트엔드/HTML)</dt>
-                                                <dd>
-                                                    로켓뷰(RocketView)
-                                                    <br>
-                                                    <span>서울</span>
-                                                    <span class="addressDot">.</span>
-                                                    <span>한국</span>
-                                                </dd>
-                                            </dl>
-                                            <div class="reward">채용보상금 1,000,000원</div>
-                                        </div>
-                                    </a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="choochun-content-context">
-                                    <a href="">
-                                        <div class="contextHeader">
-                                            <button class="likeButton">
-                                                <i class="fas fa-heart" style="margin-right: 10px"></i>
-                                                0
-                                            </button>
-                                        </div>
-                                        <div class="body">
-                                            <dl>
-                                                <dt>웹 개발자(프론트엔드/HTML)</dt>
-                                                <dd>
-                                                    로켓뷰(RocketView)
-                                                    <br>
-                                                    <span>서울</span>
-                                                    <span class="addressDot">.</span>
-                                                    <span>한국</span>
-                                                </dd>
-                                            </dl>
-                                            <div class="reward">채용보상금 1,000,000원</div>
-                                        </div>
-                                    </a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="choochun-content-context">
-                                    <a href="">
-                                        <div class="contextHeader">
-                                            <button class="likeButton">
-                                                <i class="fas fa-heart" style="margin-right: 10px"></i>
-                                                0
-                                            </button>
-                                        </div>
-                                        <div class="body">
-                                            <dl>
-                                                <dt>웹 개발자(프론트엔드/HTML)</dt>
-                                                <dd>
-                                                    로켓뷰(RocketView)
-                                                    <br>
-                                                    <span>서울</span>
-                                                    <span class="addressDot">.</span>
-                                                    <span>한국</span>
-                                                </dd>
-                                            </dl>
-                                            <div class="reward">채용보상금 1,000,000원</div>
-                                        </div>
-                                    </a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="choochun-content-context">
-                                    <a href="">
-                                        <div class="contextHeader">
-                                            <button class="likeButton">
-                                                <i class="fas fa-heart" style="margin-right: 10px"></i>
-                                                0
-                                            </button>
-                                        </div>
-                                        <div class="body">
-                                            <dl>
-                                                <dt>웹 개발자(프론트엔드/HTML)</dt>
-                                                <dd>
-                                                    로켓뷰(RocketView)
-                                                    <br>
-                                                    <span>서울</span>
-                                                    <span class="addressDot">.</span>
-                                                    <span>한국</span>
-                                                </dd>
-                                            </dl>
-                                            <div class="reward">채용보상금 1,000,000원</div>
-                                        </div>
-                                    </a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="choochun-content-context">
-                                    <a href="">
-                                        <div class="contextHeader">
-                                            <button class="likeButton">
-                                                <i class="fas fa-heart" style="margin-right: 10px"></i>
-                                                0
-                                            </button>
-                                        </div>
-                                        <div class="body">
-                                            <dl>
-                                                <dt>웹 개발자(프론트엔드/HTML)</dt>
-                                                <dd>
-                                                    로켓뷰(RocketView)
-                                                    <br>
-                                                    <span>서울</span>
-                                                    <span class="addressDot">.</span>
-                                                    <span>한국</span>
-                                                </dd>
-                                            </dl>
-                                            <div class="reward">채용보상금 1,000,000원</div>
-                                        </div>
-                                    </a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="choochun-content-context">
-                                    <a href="">
-                                        <div class="contextHeader">
-                                            <button class="likeButton">
-                                                <i class="fas fa-heart" style="margin-right: 10px"></i>
-                                                0
-                                            </button>
-                                        </div>
-                                        <div class="body">
-                                            <dl>
-                                                <dt>웹 개발자(프론트엔드/HTML)</dt>
-                                                <dd>
-                                                    로켓뷰(RocketView)
-                                                    <br>
-                                                    <span>서울</span>
-                                                    <span class="addressDot">.</span>
-                                                    <span>한국</span>
-                                                </dd>
-                                            </dl>
-                                            <div class="reward">채용보상금 1,000,000원</div>
-                                        </div>
-                                    </a>
-                                </div>
-                            </li>
+                        	<c:forEach var="c" items="${rcList }">
+	                            <li>
+	                                <div class="choochun-content-context">
+	                                    <a href="${path }/search/companyInfo1.do?positionNo=${c.position_no }">
+	                                        <div class="contextHeader" style="background-image:url(${c.bus_images[0]});">
+	                                            <button class="likeButton">
+	                                                <i class="fas fa-heart" style="margin-right: 10px"></i>
+	                                                <c:out value="${c.like_count }"></c:out>
+	                                            </button>
+	                                        </div>
+	                                        <div class="body">
+	                                            <dl>
+	                                                <dt><c:out value="${c.position }"></c:out></dt>
+	                                                <dd>
+	                                                    <c:out value="${c.bus_name }"></c:out>
+	                                                    <br>
+	                                                    <span><c:out value="${c.bus_area }"></c:out></span>
+	                                                    <span class="addressDot">.</span>
+	                                                    <span><c:out value="${c.bus_country }"></c:out></span>
+	                                                </dd>
+	                                            </dl>
+	                                            <div class="reward">채용보상금 1,000,000원</div>
+	                                        </div>
+	                                    </a>
+	                                </div>
+	                            </li>
+                            </c:forEach>
                         </ul>
                     </div>
                 </div>
@@ -449,6 +276,24 @@
         </div>
     </section>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/> 
+<!-- 사이드바 고정 스크립트 -->
+<script>
+	var icon = $(".companyicon").offset().top;
+	$(function () {
+        $(window).scroll(function () { 
+            if ($(this).scrollTop() > icon - 300) { 
+                $(".rightaside").css("position", "absolute");
+                $(".rightaside").css("top", "");
+                $(".rightaside").css("bottom", "0px");
+                
+            } else {
+                $(".rightaside").css("position", "fixed");
+                $(".rightaside").css("top", "70px");
+              
+            }
+        });
+    });
+</script>
 	<!-- 사진 슬라이드 script -->
 <script>
     

@@ -846,10 +846,6 @@ a {
     margin: 0;
 }
 
-.rightaside {
-    top: 70px;
-}
-
 @media (min-width: 1200px) {
     .rightaside {
         width: 340px;

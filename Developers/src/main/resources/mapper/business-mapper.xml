@@ -20,7 +20,7 @@
 	
 	
 	<insert id="insertBusiness" parameterType="bus">
-		INSERT INTO BUSINESS_INFO VALUES (SEQ_BUS_NO.NEXTVAL,#{busName},#{busCountry},#{busArea},#{busAddress},#{busRegNo},#{busIncome},#{busIndustrial},#{busTotalEmp},#{busIntroduce},#{busEstablishment},#{busEmail},#{busPhone},#{busWebsite},#{searchKeywords, typeHandler=strArray},#{regPath},DEFAULT,NULL,NULL,DEFAULT)
+		INSERT INTO BUSINESS_INFO VALUES (SEQ_BUS_NO.NEXTVAL,#{busName},#{busCountry},#{busArea},#{busAddress},#{busRegNo},#{busIncome},#{busIndustrial},#{busTotalEmp},#{busIntroduce},#{busEstablishment},#{busEmail},#{busPhone},#{busWebsite},#{searchKeywords, typeHandler=strArray},#{regPath},DEFAULT,NULL,NULL,DEFAULT,NULL,NULL)
 	</insert>
 	<select id="selectBusInfo" parameterType="integer" resultMap="busMap">
 		SELECT * FROM BUSINESS_INFO WHERE BUS_NO=(SELECT BUS_NO FROM MEM_BUS_CONNECTION WHERE MEM_NO=#{memberNo})
@@ -87,6 +87,8 @@
 		<result property="busLogo" column="BUS_LOGO"></result>
 		<result property="busImages" column="BUS_IMAGES" typeHandler="strArray"></result>
 		<result property="busStatus" column="BUS_STATUS"></result>
+		<result property="newIncome" column="NEW_INCOME"></result>
+		<result property="allIncome" column="ALL_INCOME"></result>
 	</resultMap>
 	
 	<resultMap type="applicant" id="applMap">

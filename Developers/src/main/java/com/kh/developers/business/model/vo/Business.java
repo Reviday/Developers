@@ -28,6 +28,8 @@ public class Business {
 	private String[] searchKeywords; 
 	private String regPath;
 	private Date busEnrollDate;
+	private String newIncome;
+	private String allIncome;
 	
 	//logo & images
 	private String busLogo;

@@ -66,10 +66,10 @@
 					<button style="color:#FFFFFF; border-color:#FFFFFF;" class="btn btn-outline-info rest" value="프론트엔드 개발자">프론트엔드 개발자</button>
 					<button style="color:#FFFFFF; border-color:#FFFFFF;" class="btn btn-outline-info rest" value="파이썬 개발자">파이썬 개발자</button>
 					<button style="color:#FFFFFF; border-color:#FFFFFF;" class="btn btn-outline-info rest" value="안드로이드 개발자">안드로이드 개발자</button>
-					<button style="color:#FFFFFF; border-color:#FFFFFF;" class="btn btn-outline-info rest" value="C,C++ 개발자">C,C++ 개발자</button>
+					<button style="color:#FFFFFF; border-color:#FFFFFF;" class="btn btn-outline-info rest" value="C/C++ 개발자">C,C++ 개발자</button>
 					<button style="color:#FFFFFF; border-color:#FFFFFF;" class="btn btn-outline-info rest" value="Node.js 개발자">Node.js 개발자</button>
 					<button style="color:#FFFFFF; border-color:#FFFFFF;" class="btn btn-outline-info rest" value="데이터 엔지니어">데이터 엔지니어</button>
-					<button style="color:#FFFFFF; border-color:#FFFFFF;" class="btn btn-outline-info rest" value="시스템,네트워크 관리자">시스템,네트워크 관리자</button>
+					<button style="color:#FFFFFF; border-color:#FFFFFF;" class="btn btn-outline-info rest" value="시스템/네트워크 관리자">시스템,네트워크 관리자</button>
 					<button style="color:#FFFFFF; border-color:#FFFFFF;" class="btn btn-outline-info rest" value="개발 매니저">개발 매니저</button>
 					<button style="color:#FFFFFF; border-color:#FFFFFF;" class="btn btn-outline-info rest" value="데이터 사이언티스트">데이터 사이언티스트</button>
 					<button style="color:#FFFFFF; border-color:#FFFFFF;" class="btn btn-outline-info rest" value="DevOps / 시스템 관리자">DevOps / 시스템 관리자</button>
@@ -78,20 +78,20 @@
 					<button style="color:#FFFFFF; border-color:#FFFFFF;" class="btn btn-outline-info rest" value="웹 퍼블리셔">웹 퍼블리셔</button>
 					<button style="color:#FFFFFF; border-color:#FFFFFF;" class="btn btn-outline-info rest" value="빅데이터 엔지니어">빅데이터 엔지니어</button>
 					<button style="color:#FFFFFF; border-color:#FFFFFF;" class="btn btn-outline-info rest" value=".NET 개발자">.NET 개발자</button>
-					<button style="color:#FFFFFF; border-color:#FFFFFF;" class="btn btn-outline-info rest" value="QA,테스트 엔지니어">QA,테스트 엔지니어</button>
+					<button style="color:#FFFFFF; border-color:#FFFFFF;" class="btn btn-outline-info rest" value="QA/테스트 엔지니어">QA,테스트 엔지니어</button>
 					<button style="color:#FFFFFF; border-color:#FFFFFF;" class="btn btn-outline-info rest" value="머신러닝 엔지니어">머신러닝 엔지니어</button>
 					<button style="color:#FFFFFF; border-color:#FFFFFF;" class="btn btn-outline-info rest" value="프로덕트 매니저">프로덕트 매니저</button>
 					<button style="color:#FFFFFF; border-color:#FFFFFF;" class="btn btn-outline-info rest" value="기술지원">기술지원</button>
 					<button style="color:#FFFFFF; border-color:#FFFFFF;" class="btn btn-outline-info rest" value="임베디드 개발자">임베디드 개발자</button>
 					<button style="color:#FFFFFF; border-color:#FFFFFF;" class="btn btn-outline-info rest" value="보안 엔지니어">보안 엔지니어</button>
-					<button style="color:#FFFFFF; border-color:#FFFFFF;" class="btn btn-outline-info rest" value="CTO,Chief Technology Officer">CTO,Chief Technology Officer</button>
+					<button style="color:#FFFFFF; border-color:#FFFFFF;" class="btn btn-outline-info rest" value="CTO/Chief Technology Officer">CTO,Chief Technology Officer</button>
 					<button style="color:#FFFFFF; border-color:#FFFFFF;" class="btn btn-outline-info rest" value="하드웨어 엔지니어">하드웨어 엔지니어</button>
 					<button style="color:#FFFFFF; border-color:#FFFFFF;" class="btn btn-outline-info rest" value="블록체인 플랫폼 엔지니어">블록체인 플랫폼 엔지니어</button>
-					<button style="color:#FFFFFF; border-color:#FFFFFF;" class="btn btn-outline-info rest" value="영상,음성 엔지니어">영상,음성 엔지니어</button>
+					<button style="color:#FFFFFF; border-color:#FFFFFF;" class="btn btn-outline-info rest" value="영상/음성 엔지니어">영상,음성 엔지니어</button>
 					<button style="color:#FFFFFF; border-color:#FFFFFF;" class="btn btn-outline-info rest" value="BI 엔지니어">BI 엔지니어</button>
 					<button style="color:#FFFFFF; border-color:#FFFFFF;" class="btn btn-outline-info rest" value="루비온레일즈 개발자">루비온레일즈 개발자</button>
 					<button style="color:#FFFFFF; border-color:#FFFFFF;" class="btn btn-outline-info rest" value="그래픽스 엔지니어">그래픽스 엔지니어</button>
-					<button style="color:#FFFFFF; border-color:#FFFFFF;" class="btn btn-outline-info rest" value="CIO,Chief Information Officer">CIO,Chief Information Officer</button>
+					<button style="color:#FFFFFF; border-color:#FFFFFF;" class="btn btn-outline-info rest" value="CIO/Chief Information Officer">CIO,Chief Information Officer</button>
 				</div>
 			</div>
 			<hr>

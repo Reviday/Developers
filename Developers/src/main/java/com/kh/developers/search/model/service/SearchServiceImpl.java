@@ -155,4 +155,9 @@ public class SearchServiceImpl implements SearchService {
 		return psList;
 	}
 	
+	@Override
+	public List<Position> recommandPositionList(Position p) {
+		List<Position> rcList = dao.recommandPositionList(session, p);
+		return rcList;
+	}
 }
