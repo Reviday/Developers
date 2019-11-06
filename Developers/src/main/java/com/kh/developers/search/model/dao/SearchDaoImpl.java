@@ -154,4 +154,10 @@ public class SearchDaoImpl implements SearchDao {
 		return session.selectList("search.positionLoginFilterJobNameList", map);
 	}
 	
+	
+	@Override
+	public List<Position> recommandPositionList(SqlSessionTemplate session, Position p) {
+		// TODO Auto-generated method stub
+		return session.selectList("search.recommandPositionList", p);
+	}
 }

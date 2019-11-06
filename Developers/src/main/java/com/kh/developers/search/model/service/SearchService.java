@@ -52,4 +52,6 @@ public interface SearchService {
 	int updateMemFilter(Map map);
 	// 회원필터, 직무분야 적용한 포지션 리스트
 	List<Position> positionLoginFilterJobNameList(Map map);
+	// 포지션정보페이지의 추천채용 포지션리스트
+	List<Position> recommandPositionList(Position p);
 }

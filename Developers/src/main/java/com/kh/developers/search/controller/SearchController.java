@@ -170,7 +170,7 @@ public class SearchController {
 		mv.setViewName("search/ajax/changeFilterJobNameLoginAjax");
 		return mv;
 	}
-	// 회사를 눌렀을 때의 회사 개인 정보 페이지(로그인시)
+	// 회사를 눌렀을 때의 포지션 정보 페이지(로그인시)
 	@RequestMapping("/search/companyInfo.do")
 	public String companyInfoList(int positionNo, int memNo, Model model) {
 
@@ -183,15 +183,17 @@ public class SearchController {
 		model.addAttribute("list", list);
 		return "search/companyInfo";
 	}
-	// 회사를 눌렀을 때의 회사 개인 정보 페이지(비로그인시)
+	// 회사를 눌렀을 때의 포지션정보 페이지(비로그인시)
 	@RequestMapping("/search/companyInfo1.do")
 	public String companyInfoList(int positionNo, Model model) {
 
 		Position p = service.companyInfoList(positionNo);
+		List<Position> rcList = service.recommandPositionList(p);
 		int likeId = p.getLike_id();
 		List<LikeMember> list = service.likeMemberList(likeId);
 		model.addAttribute("p", p);
 		model.addAttribute("list", list);
+		model.addAttribute("rcList", rcList);
 		return "search/companyInfo";
 	}
 
@@ -248,5 +250,11 @@ public class SearchController {
 		} 
 		mv.setViewName("search/ajax/changeLikeAjax");
 		return mv;
+	}
+	//탐색 -> 회사소개페이지로 전환(비로그인)
+	@RequestMapping("/search/companyAllInfo")
+	public String companyAllInfo(int busNo, Model model) {
+		System.out.println(busNo);
+		return "search/companyAllInfo";
 	}
 }
