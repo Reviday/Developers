@@ -30,7 +30,7 @@
 	</update>
 	
 	<select id="selectBusAppl" parameterType="map" resultMap="applMap">
-		SELECT * FROM TA_APPL_BUS
+		SELECT * FROM TA_APPL_BUS A
 	<if test="applLike!=null and applLike!='' or applLike==true">
 		JOIN TA_APPL_LIKE B ON (A.BUS_NO=B.BUS_NO)
 	</if>
@@ -38,7 +38,7 @@
   	<if test="applIndex!=null and applIndex!=''">
 	  	and APPL_STATUS=#{applIndex}	
   	</if>
-		ORDER BY MEM_NO DESC
+		ORDER BY A.MEM_NO DESC
 	</select>
 	
 	<select id="selectBusApplCount" parameterType="map" resultType="_int">
@@ -56,14 +56,14 @@
 		INSERT INTO TA_APPL_LIKE VALUES(#{busNo}, #{memNo})
 	</insert>
 	
-	<select id="selectApplcant" parameterType="_int" resultMap="memberMap">
+	<select id="selectApplicant" parameterType="_int" resultMap="memberMap">
       SELECT * FROM TA_MEMBER WHERE MEM_NO=#{memNo}
    </select>
 	
 	<!-- 매치업 mapper -->
-<!-- 	<select id="selectIntroCards" parameterType="String" resultType="com.kh.developers.business.model.vo.IntroCard">
+ 	<select id="selectIntroCards" parameterType="String" resultType="com.kh.developers.business.model.vo.IntroCard">
 		select 
-	</select> -->
+	</select> 
 	
 	
 	<resultMap type="bus" id="busMap">
@@ -124,8 +124,12 @@
       <result property="filter_id" column="filter_id"/>
    </resultMap>
    
-<!--    <resultMap type="IntroCard" id="introCardMap">
-   	   <result property=""></result>
-   </resultMap> -->
+   <resultMap type="IntroCard" id="introCardMap">
+   	   <result property="resumeNo" column="resume_no"></result>
+   	   <result property="intro" column="intro"></result>
+   	   <result property="resumeNo" column="resume_no"></result>
+   	   <result property="resumeNo" column="resume_no"></result>
+   	   <result property="resumeNo" column="resume_no"></result>
+   </resultMap> 
 	
 </mapper>
