@@ -434,10 +434,10 @@
 <script>
 	 function initMap(){
 	       
-	    var latitude = 37.566536;
-	    var longitude = 126.97797;
+		var latitude = '${p.lat}';
+		var longitude = '${p.longg}';
 	
-	    var seoul = {lat: latitude, lng: longitude};
+	    var seoul = {lat: Number(latitude), lng: Number(longitude)};
 	    var map = new google.maps.Map(document.getElementById('map'),{
 	                zoom : 15,
 	                center : seoul});

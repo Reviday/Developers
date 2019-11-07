@@ -34,5 +34,7 @@ public class Position {
 	private int like_count; //좋아요개수(SELECT COUNT(*) FROM PO_LIKE WHERE LIKE_ID = P.LIKE_ID)
 	private String bus_industrial; //회사 산업군
 	private int po_count; //이 회사의 전체 포지션글 갯수
+	private String lat; //회사주소 위도
+	private String longg; //회사주소 경도
 	
 }
