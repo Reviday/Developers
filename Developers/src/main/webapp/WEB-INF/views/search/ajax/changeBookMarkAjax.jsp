@@ -34,9 +34,9 @@
                             </h6>
                             <div class="companytag">
                                 <ul>
-                                	<c:if test="${not empty p.tag }">
-	                                	<c:forEach var="t" items="${p.tag }">
-	                                        <li><a href=""><c:out value="${t }"/></a></li>
+                                	<c:if test="${not empty tagList }">
+	                                	<c:forEach var="t" items="${tagList }">
+	                                        <li><a href=""><c:out value="${t.tag }"/></a></li>
 	                                    </c:forEach>
                                     </c:if>
                                 </ul>
@@ -206,6 +206,92 @@
                                 </c:if>
                             </div>
                         </div>
+                        <!-- 지원하기 DIV -->
+                        <div class="submitDiv">
+                            <div class="submitHeader">
+                                <h2>지원하기</h2>
+                                <button type="button" class="submitclose">뒤로</button>
+                            </div>
+                            <div class="submitBody" id="MODAL_BODY">
+                                <h3 class="submitBody-info">지원 정보</h3>
+                                <div class="submit-information">
+                                    <label for="name" class="infor-name">
+                                        <h4>이름</h4>
+                                        <input type="text" name="name" id="" value="기영성">
+                                    </label>
+                                    <label for="email" class="infor-name">
+                                        <h4>이메일</h4>
+                                        <input type="text" name="email" value="ysung26@daum.net">
+                                    </label>
+                                    <label for="email" class="infor-name">
+                                        <h4>연락처</h4>
+                                        <input type="text" name="phone" value="01091920953">
+                                    </label>
+                                </div>
+                                <div class="choochun123">
+                                    <h4>추천인</h4>
+                                    <button type="button" class="choochun-btn">
+                                                                                        선택사항
+                                        <i class="icon-arrow_right"></i>
+                                    </button>
+                                </div>
+                                <h3 class="chumbu">
+                                                                                첨부파일
+                                    <div tabindex="0" class="upload">
+                                        <input type="file" multiple autocomplete="off" tabindex="-1" style="display: none;" name="" id="">
+                                        <button type="button" class="fileUpload">
+                                            <i class="icon-apply_add"></i>
+                                                                                                 파일 업로드
+                                        </button>
+                                    </div>
+                                </h3>
+                                <ul>
+                                    <div class="resumeresume">
+                                        <li>
+                                            <label for="resume">
+                                                <input type="checkbox" name="resume" disabled id="">
+                                                <i class="icon-icon_match_list_save"></i>
+                                            </label>
+                                            <div>
+                                                <h4>기영성 2</h4>
+                                                <div>
+                                                    <span>2019.10.18</span>
+                                                    <span>작성 중</span>
+                                                </div>
+                                            </div>
+                                            <a href="">
+                                                <i class="icon-icon_match_btn_next"></i>    
+                                            </a>
+                                        </li>
+                                    </div>
+                                    <div class="resumeresume">
+                                        <li>
+                                            <label for="resume">
+                                                <input type="checkbox" name="resume" id="">
+                                                <i class="icon-icon_match_list_save"></i>
+                                            </label>
+                                            <div>
+                                                <h4>기영성 1</h4>
+                                                <div>
+                                                    <span>2019.10.17</span>
+                                                    <span>작성 완료</span>
+                                                </div>
+                                            </div>
+                                            <a href="">
+                                                <i class="icon-icon_match_btn_next"></i>    
+                                            </a>
+                                        </li>
+                                    </div>
+                                </ul>
+                                <button type="button" class="newResume">새 이력서 작성</button>
+                                <div class="resumeIntro">
+                                    <p>developers 이력서로 지원하면 최종 합격률이 40% 높아집니다.</p>
+                                </div>
+                            </div>
+                            <div class="submitFooter">
+                                <button type="button">제출하기</button>
+                            </div>
+                        </div>
                     </aside>
                     <!-- 공유하기 모달창 -->
                     <div class="shareModal">
@@ -265,22 +351,20 @@
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/> 
 <!-- 사이드바 고정 스크립트 -->
 <script>
-	var icon = $(".companyicon").offset().top;
-	$(function () {
-        $(window).scroll(function () { 
-            if ($(this).scrollTop() > icon - 300) { 
-                $(".rightaside").css("position", "absolute");
-                $(".rightaside").css("top", "");
-                $(".rightaside").css("bottom", "0px");
-                
-            } else {
-                $(".rightaside").css("position", "fixed");
-                $(".rightaside").css("top", "70px");
-              
-            }
-        });
-    });
-</script>
+	var icon = $(".companyicon").offset().top;		
+    $(window).scroll(function () { 
+         if ($(this).scrollTop() > icon - 300 || $(this).scrollTop() == null) { 
+             $(".rightaside").css("position", "absolute");
+             $(".rightaside").css("top", "");
+             $(".rightaside").css("bottom", "0px");	                
+         } else {
+             $(".rightaside").css("position", "fixed");
+             $(".rightaside").css("top", "70px");
+           
+         }
+    	
+     });
+</script> 
 	<!-- 사진 슬라이드 script -->
 <script>
     
@@ -427,4 +511,15 @@
 			}
 		}) 
 	}
+</script>
+<!-- 지원하기 DIV -->
+<script>
+	$(".footerbtn1").click(function(){
+		$(".rightasidemain").css("display", "none");
+		$(".submitDiv").css("display", "block");
+	})
+	$(".submitclose").click(function(){
+		$(".rightasidemain").css("display", "block");
+		$(".submitDiv").css("display", "none");
+	})
 </script>

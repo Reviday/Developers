@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
+
 <div class="companyleft">
                         <section class="companyficture">
                             <button type="button" class="fictureprev">
@@ -22,7 +23,7 @@
                         <section class="companytype">
                             <h2><c:out value="${p.position }"/></h2>
                             <h6>
-                                <a href="">
+                                <a href="${path }/search/companyAllInfo?busNo=${p.bus_no}">
                                     <c:out value="${p.bus_name }"/>
                                 </a>
                                 <span>
@@ -33,9 +34,9 @@
                             </h6>
                             <div class="companytag">
                                 <ul>
-                                	<c:if test="${not empty p.tag }">
-	                                	<c:forEach var="t" items="${p.tag }">
-	                                        <li><a href=""><c:out value="${t }"/></a></li>
+                                	<c:if test="${tagList }">
+	                                	<c:forEach var="t" items="${tagList }">
+	                                        <li><a href=""><c:out value="${t.tag }"/></a></li>
 	                                    </c:forEach>
                                     </c:if>
                                 </ul>
@@ -104,7 +105,7 @@
 	                                    <span class="body">상시</span>
                                     </c:if>
                                     <c:if test="${p.dead_date != 'Thu Dec 31 00:00:00 KST 2099'}">
-	                                    <span class="body"><c:out value="${p.dead_date }"/></span>
+	                                    <span class="body"><fmt:formatDate value="${p.dead_date}" pattern="yyyy년MM월dd일"/></span>
                                     </c:if>
                                 </div>
                                 <div>
@@ -116,7 +117,7 @@
                         </div>
                         <section class="companyicon">
                             <button type="button" class="left">
-                                <div class="logo" style="background-image: ${p.bus_logo}"></div>
+                                <div class="logo" style="background-image: url(${p.bus_logo})"></div>
                                 <div>
                                     <h5><c:out value="${p.bus_name }"/></h5>
                                     <h6><c:out value="${p.bus_industrial }"/></h6>
@@ -143,7 +144,7 @@
                                     	<button class="sharebtn suBtn">공유하기</button>
                                     </c:if>
                                     <c:if test="${not empty loginMember }">
-                                    	<button class="sharebtn">공유하기</button>
+                                    	<button class="sharebtn1">공유하기</button>
                                     </c:if>
                                 </div>
                                 <hr class="divider">
@@ -163,7 +164,7 @@
                                         </ul>
                                     </button>
                                     <button type="button" class="share-btn suBtn">
-                                        <i class="fas fa-bookmark"></i>
+                                        <i class="fas fa-bookmark" style="color: lightgray;"></i>
                                     </button>
                                     </c:if>
                                     <c:if test="${not empty loginMember }">
@@ -175,19 +176,24 @@
                                         		<i class="fas fa-heart"></i>
                                         	</c:if>
                                         	<span><c:out value="${p.like_count }"/></span>
-                                    </button>
-                                    <button type="button" class="people">
-                                        <ul>
-                                            <c:if test="${p.like_count > 0 }">
-	                                        	<c:forEach var="f" items="${list }" begin="0" end="2">
-	                                            	<li style="background-image: url(${path}/resources/upload/profile/${f.mem_photo != null ? f.mem_photo : 'no-profile-image.png'})"></li>
-	                                            </c:forEach>
-                                            </c:if>
-                                        </ul>
-                                    </button>
-                                    <button type="button" class="share-btn">
-                                        <i class="fas fa-bookmark"></i>
-                                    </button>
+                                   		</button>
+	                                    <button type="button" class="people">
+	                                        <ul>
+	                                            <c:if test="${p.like_count > 0 }">
+		                                        	<c:forEach var="f" items="${list }" begin="0" end="2">
+		                                            	<li style="background-image: url(${path}/resources/upload/profile/${f.mem_photo != null ? f.mem_photo : 'no-profile-image.png'})"></li>
+		                                            </c:forEach>
+	                                            </c:if>
+	                                        </ul>
+	                                    </button>
+	                                    <button type="button" class="share-btn" onclick="onBookMark('${loginMember.memNo}', '${p.position_no }', '${p.like_id }')">
+	                                        <c:if test="${empty bmList }">
+	                                        	<i class="fas fa-bookmark" style="color: lightgray;"></i>
+	                                        </c:if>
+	                                        <c:if test="${not empty bmList }">
+	                                        	<i class="fas fa-bookmark" style="color: darkblue;"></i>
+	                                        </c:if>
+	                                    </button>
                                     </c:if>
                                 </div>
                             </div>
@@ -200,7 +206,122 @@
                                 </c:if>
                             </div>
                         </div>
+                        <!-- 지원하기 DIV -->
+                        <div class="submitDiv">
+                            <div class="submitHeader">
+                                <h2>지원하기</h2>
+                                <button type="button" class="submitclose">뒤로</button>
+                            </div>
+                            <div class="submitBody" id="MODAL_BODY">
+                                <h3 class="submitBody-info">지원 정보</h3>
+                                <div class="submit-information">
+                                    <label for="name" class="infor-name">
+                                        <h4>이름</h4>
+                                        <input type="text" name="name" id="" value="기영성">
+                                    </label>
+                                    <label for="email" class="infor-name">
+                                        <h4>이메일</h4>
+                                        <input type="text" name="email" value="ysung26@daum.net">
+                                    </label>
+                                    <label for="email" class="infor-name">
+                                        <h4>연락처</h4>
+                                        <input type="text" name="phone" value="01091920953">
+                                    </label>
+                                </div>
+                                <div class="choochun123">
+                                    <h4>추천인</h4>
+                                    <button type="button" class="choochun-btn">
+                                                                                        선택사항
+                                        <i class="icon-arrow_right"></i>
+                                    </button>
+                                </div>
+                                <h3 class="chumbu">
+                                                                                첨부파일
+                                    <div tabindex="0" class="upload">
+                                        <input type="file" multiple autocomplete="off" tabindex="-1" style="display: none;" name="" id="">
+                                        <button type="button" class="fileUpload">
+                                            <i class="icon-apply_add"></i>
+                                                                                                 파일 업로드
+                                        </button>
+                                    </div>
+                                </h3>
+                                <ul>
+                                    <div class="resumeresume">
+                                        <li>
+                                            <label for="resume">
+                                                <input type="checkbox" name="resume" disabled id="">
+                                                <i class="icon-icon_match_list_save"></i>
+                                            </label>
+                                            <div>
+                                                <h4>기영성 2</h4>
+                                                <div>
+                                                    <span>2019.10.18</span>
+                                                    <span>작성 중</span>
+                                                </div>
+                                            </div>
+                                            <a href="">
+                                                <i class="icon-icon_match_btn_next"></i>    
+                                            </a>
+                                        </li>
+                                    </div>
+                                    <div class="resumeresume">
+                                        <li>
+                                            <label for="resume">
+                                                <input type="checkbox" name="resume" id="">
+                                                <i class="icon-icon_match_list_save"></i>
+                                            </label>
+                                            <div>
+                                                <h4>기영성 1</h4>
+                                                <div>
+                                                    <span>2019.10.17</span>
+                                                    <span>작성 완료</span>
+                                                </div>
+                                            </div>
+                                            <a href="">
+                                                <i class="icon-icon_match_btn_next"></i>    
+                                            </a>
+                                        </li>
+                                    </div>
+                                </ul>
+                                <button type="button" class="newResume">새 이력서 작성</button>
+                                <div class="resumeIntro">
+                                    <p>developers 이력서로 지원하면 최종 합격률이 40% 높아집니다.</p>
+                                </div>
+                            </div>
+                            <div class="submitFooter">
+                                <button type="button">제출하기</button>
+                            </div>
+                        </div>
                     </aside>
+                    <!-- 공유하기 모달창 -->
+                    <div class="shareModal">
+                        <div class="modalShare">
+                            <div class="sharemodal-header">
+                                <div class="shareHeader-title">
+                                                                               공유하기
+                                    <p>
+                                                                                       이 포지션과 어울리는 사람을 알고 있다면, 추천해 주세요!
+                                    </p>
+                                </div>
+                                <button type="button" class="sharemodal-close">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                            <div id="MODAL_BODY" class="sharemodal-body">
+                                <div class="share-body">
+                                    <a target="_blank" href="https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=110" class="share-a1 share-first share-a2">
+                                        <i class="fab fa-facebook-f"></i>
+                                                                                         페이스북
+                                    </a>
+                                    <a target="_blank" href="https://ko-kr.facebook.com/messenger/" class="share-a1 share-second share-a2">
+                                        <i class="fab fa-facebook-messenger"></i>
+                                                                                        메신저
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div role="presentation" class="sharemodalchang"></div>
+                    </div>
                     <!-- 좋아요 모달창 -->
                     <div id="modalTool">
                         <div class="modalmain">
@@ -226,8 +347,23 @@
                         </div>
                         <div role="presentation" class="modalchang"></div>
                     </div>
-                    
-                    
+           
+<!-- 사이드바 고정 스크립트 -->
+<script>
+	var icon = $(".companyicon").offset().top;		
+    $(window).scroll(function () { 
+         if ($(this).scrollTop() > icon - 300 || $(this).scrollTop() == null) { 
+             $(".rightaside").css("position", "absolute");
+             $(".rightaside").css("top", "");
+             $(".rightaside").css("bottom", "0px");	                
+         } else {
+             $(".rightaside").css("position", "fixed");
+             $(".rightaside").css("top", "70px");
+           
+         }
+    	
+     });
+</script> 
 	<!-- 사진 슬라이드 script -->
 <script>
     
@@ -293,10 +429,29 @@
     }
     goToSlide(0);
 </script>
+    <!-- 구글맵 api 스크립트 -->
+<script>
+	 function initMap(){
+	       
+	    var latitude = 37.566536;
+	    var longitude = 126.97797;
+	
+	    var seoul = {lat: latitude, lng: longitude};
+	    var map = new google.maps.Map(document.getElementById('map'),{
+	                zoom : 15,
+	                center : seoul});
+ 	    var marker = new google.maps.Marker({
+	        position : seoul,
+	        title : "Hello Marker"
+	    });
+	    marker.setMap(map); 
+	    	
+	} 
+</script>
+<script async defer  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXNeoRZYBee7rZgjb0jWpmVUMsx-DPZUg&callback=initMap"></script>
 <!-- 좋아요 모달창 -->
 <script>
-	$(function(){
-	    var modal = document.getElementById('modalTool');                                         
+	$(function(){                                     
 	    $(".people").click(function() {
 	        $("#modalTool").css("display","block");
 	    }); 
@@ -306,6 +461,21 @@
 	    });
 	    $(".modalclose").on("click",function() {
 	        $("#modalTool").css("display","none");
+	    });
+	})
+</script>
+<!-- 공유하기 모달창 -->
+<script>
+	$(function(){                                        
+	    $(".sharebtn1").click(function() {
+	        $(".shareModal").css("display","block");
+	    }); 
+	
+	    $(".sharemodal-close").on("click",function() {
+	        $(".shareModal").css("display","none");
+	    });
+	    $(".sharemodalchang").on("click",function() {
+	        $(".shareModal").css("display","none");
 	    });
 	})
 </script>
@@ -323,24 +493,32 @@
 				$(".infomid-company").html(data);
 			}
 		}) 
-	}	
+	}
 </script>
-    <!-- 구글맵 api 스크립트 -->
+<!-- 북마크 클릭 Ajax -->
 <script>
-	 function initMap(){
-	       
-	    var latitude = 37.566536;
-	    var longitude = 126.97797;
-	
-	    var seoul = {lat: latitude, lng: longitude};
-	    var map = new google.maps.Map(document.getElementById('map'),{
-	                zoom : 15,
-	                center : seoul});
- 	    var marker = new google.maps.Marker({
-	        position : seoul,
-	        title : "Hello Marker"
-	    });
-	    marker.setMap(map); 
-	} 
+	function onBookMark(memNo, positionNo, likeId){
+		$.ajax({
+			url: path + "/search/changeBookMarkAjax",
+			type: "POST",
+			data: {memNo : memNo,
+				   positionNo : positionNo,
+				   likeId : likeId},	
+			success: function(data){
+				$(".infomid-company").html("");
+				$(".infomid-company").html(data);
+			}
+		}) 
+	}
 </script>
-<script async defer  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXNeoRZYBee7rZgjb0jWpmVUMsx-DPZUg&callback=initMap"></script>
+<!-- 지원하기 DIV -->
+<script>
+	$(".footerbtn1").click(function(){
+		$(".rightasidemain").css("display", "none");
+		$(".submitDiv").css("display", "block");
+	})
+	$(".submitclose").click(function(){
+		$(".rightasidemain").css("display", "block");
+		$(".submitDiv").css("display", "none");
+	})
+</script>

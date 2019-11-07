@@ -1052,6 +1052,18 @@ a {
     text-align: center;
 }
 
+.footerbtn1 {
+    width: 100%;
+    height: 50px;
+    border-radius: 3px;
+    background-color: #21c621;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: normal;
+    color: #fff;
+    text-align: center;
+}
+
 .choochun {
     margin: 80px 0 0;
 }
@@ -1647,4 +1659,300 @@ a {
 
 .share-second {
     background-color: #258bf7;
+}
+
+.submitDiv {
+    background-color: #fff;
+    position: relative;
+    display: none;
+}
+
+@media (min-width: 1200px) {
+    .submitDiv {
+        width: 340px;
+        border-radius: 3px;
+        border: 1px solid #e1e2e3;
+    }
+}
+
+@media (max-width: 1199px) and (min-width: 992px) {
+    .submitDiv {
+        border-radius: 3px;
+        border: 1px solid #e1e2e3;
+        width: 340px;
+    }
+}
+
+.submitHeader {
+    background: #fff;
+    padding: 15px 20px;
+    border-bottom: 1px solid #e1e2e3;
+    position: relative;
+}
+
+.submitHeader>h2 {
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    line-height: 22px;
+}
+
+.submitHeader>button[type=button] {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    font-size: 16px;
+    font-weight: 600;
+    color: #999;
+}
+
+.submitBody {
+    padding: 20px 20px 0;
+    overflow-y: scroll;
+}
+
+@media (min-width: 1200px) {
+    .submitBody {
+        min-height: 390px;
+        max-height: 520px;
+    }
+}
+
+@media (max-width: 1199px) and (min-width: 992px) {
+    .submitBody {
+        min-height: 390px;
+        max-height: 520px;
+    }
+}
+
+.submitBody-info {
+    border-left: 2px solid #258bf7;
+    padding-left: 20px;
+    margin: 0 -20px;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 22px;
+}
+
+.infor-name {
+    width: 100%;
+    height: 50px;
+    border-bottom: 1px solid #e1e2e3;
+    margin-bottom: 5px;
+}
+
+.infor-name h4, .infor-name input {
+    line-height: 50px;
+    font-size: 16px;
+    font-weight: 600;
+    float: left;
+}
+
+.infor-name h4 {
+    width: 80px;
+    color: #333;
+}
+
+.infor-name input {
+    width: calc(100% - 80px);
+    height: 50px;
+    padding: 0;
+    border: none;
+    border-bottom: 1px solid #e1e2e3;
+}
+
+.choochun123 {
+    width: 100%;
+    height: 50px;
+    border-bottom: 1px solid #e1e2e3;
+    margin-bottom: 5px;
+}
+
+.choochun123 h4, .choochun-btn {
+    float: left;
+    line-height: 50px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.choochun123 h4 {
+    width: 80px;
+    color: #333;
+}
+
+.choochun-btn {
+    width: calc(100% - 80px);
+    height: 50px;
+    padding: 0;
+    border: none;
+    border-bottom: 1px solid #e1e2e3;
+    color: #999;
+    text-align: left;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.choochun-btn>i {
+    float: right;
+    position: relative;
+    top: 17px;
+}
+
+.chumbu {
+    border-left: 2px solid #258bf7;
+    padding-left: 20px;
+    margin: 35px -20px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 22px;
+}
+
+.upload {
+    float: right;
+    margin-right: 20px;
+}
+
+.fileUpload {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.44;
+    color: #258bf7;
+    position: relative;
+}
+
+.fileUpload i {
+    font-size: 8px;
+    font-weight: 600;
+    margin-right: 8px;
+    position: relative;
+}
+
+.resumeresume > li {
+    width: 100%;
+    height: 50px;
+    border: 1px solid #f4f5f7;
+    background: #f4f5f7;
+    border-radius: 2px;
+    margin-bottom: 10px;
+}
+
+.resumeresume>li>label {
+    width: 50px;
+    height: 50px;
+    margin: 0;
+}
+
+.resumeresume>li>label>input[type=checkbox] {
+    display: none;
+}
+
+.resumeresume>li>label>input[type=checkbox]:disabled+i {
+    background: #e1e2e3;
+    color: #e1e2e3;
+}
+
+.resumeresume>li>label>i {
+    width: 20px;
+    height: 20px;
+    margin: 15px;
+    background: #fff;
+    border: 1px solid #e1e2e3;
+    color: #fff;
+    display: block;
+    border-radius: 2px;
+    font-size: 8px;
+    line-height: 18px;
+    text-align: center;
+}
+
+.resumeresume>li>div {
+    width: calc(100% - 88px);
+    color: #999;
+}
+
+.resumeresume>li>a, .resumeresume>li>div, .resumeresume>li>label {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.resumeresume>li>div>h4 {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 18px;
+    letter-spacing: normal;
+    text-align: left;
+    margin: 0 0 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+}
+
+.resumeresume>li>div>div {
+    margin-top: -5px;
+}
+
+.resumeresume>li>div>div>span:first-of-type {
+    margin-right: 20px;
+}
+
+.resumeresume>li>div>div>span {
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 15px;
+    letter-spacing: normal;
+    text-align: left;
+    color: #999;
+}
+
+.resumeresume>li>a {
+    width: 38px;
+    margin: 0;
+    text-align: center;
+}
+
+.resumeresume>li>a>i {
+    font-size: 8px;
+    color: #333;
+}
+
+.newResume {
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    border-radius: 2px;
+    border: 1px solid #999;
+    background-color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 50px;
+    letter-spacing: normal;
+    color: #333;
+}
+
+.resumeIntro {
+    padding-top: 10px;
+    padding-bottom: 20px;
+}
+
+.resumeIntro p {
+    text-align: left;
+    color: #999;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.29;
+    letter-spacing: normal;
+}
+
+.submitFooter>button[type=button] {
+    width: 100%;
+    height: 50px;
+    background: #258bf7;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
 }

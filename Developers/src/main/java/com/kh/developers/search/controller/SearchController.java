@@ -178,9 +178,11 @@ public class SearchController {
 	public String companyInfoList(int positionNo, int memNo, Model model) {
 		BookMark bmList = service.selectBookMark(memNo, positionNo);
 		Position p = service.companyInfoList(positionNo);
+		List<Tag> tagList = service.companyTagList(p.getBus_no());
 		int likeId = p.getLike_id();
 		List<LikeMember> list = service.likeMemberList(likeId);
 		LikeMember lm = service.selectLikeMemberOne(memNo, likeId);
+		model.addAttribute("tagList", tagList);
 		model.addAttribute("bmList", bmList);
 		model.addAttribute("lm", lm);
 		model.addAttribute("p", p);
@@ -192,9 +194,11 @@ public class SearchController {
 	public String companyInfoList(int positionNo, Model model) {
 
 		Position p = service.companyInfoList(positionNo);
+		List<Tag> tagList = service.companyTagList(p.getBus_no());
 		List<Position> rcList = service.recommandPositionList(p);
 		int likeId = p.getLike_id();
 		List<LikeMember> list = service.likeMemberList(likeId);
+		model.addAttribute("tagList", tagList);
 		model.addAttribute("p", p);
 		model.addAttribute("list", list);
 		model.addAttribute("rcList", rcList);
@@ -238,16 +242,20 @@ public class SearchController {
 		if(lm1 == null) { 
 			int insert = service.insertLikeButton(memNo, likeId); 
 			Position p = service.companyInfoList(positionNo);
+			List<Tag> tagList = service.companyTagList(p.getBus_no());
 			List<LikeMember> list = service.likeMemberList(likeId);
 			LikeMember lm = service.selectLikeMemberOne(memNo, likeId);
+			mv.addObject("tagList", tagList);
 			mv.addObject("lm", lm);
 			mv.addObject("p", p);
 			mv.addObject("list", list);
 		}else { 
 			int delete = service.deleteLikeButton(memNo, likeId); 
 			Position p = service.companyInfoList(positionNo);
+			List<Tag> tagList = service.companyTagList(p.getBus_no());
 			List<LikeMember> list = service.likeMemberList(likeId);
 			LikeMember lm = service.selectLikeMemberOne(memNo, likeId);
+			mv.addObject("tagList", tagList);
 			mv.addObject("lm", lm);
 			mv.addObject("p", p);
 			mv.addObject("list", list);
@@ -263,9 +271,11 @@ public class SearchController {
 		if(bmList1 == null) {
 			int result = service.insertBookMark(memNo, positionNo);
 			Position p = service.companyInfoList(positionNo);
+			List<Tag> tagList = service.companyTagList(p.getBus_no());
 			List<LikeMember> list = service.likeMemberList(likeId);
 			LikeMember lm = service.selectLikeMemberOne(memNo, likeId);
 			BookMark bmList = service.selectBookMark(memNo, positionNo);
+			mv.addObject("tagList", tagList);
 			mv.addObject("lm", lm);
 			mv.addObject("p", p);
 			mv.addObject("list", list);
@@ -273,9 +283,11 @@ public class SearchController {
 		}else {
 			int result = service.deleteBookMark(memNo, positionNo);
 			Position p = service.companyInfoList(positionNo);
+			List<Tag> tagList = service.companyTagList(p.getBus_no());
 			List<LikeMember> list = service.likeMemberList(likeId);
 			LikeMember lm = service.selectLikeMemberOne(memNo, likeId);
 			BookMark bmList = service.selectBookMark(memNo, positionNo);
+			mv.addObject("tagList", tagList);
 			mv.addObject("lm", lm);
 			mv.addObject("p", p);
 			mv.addObject("list", list);
