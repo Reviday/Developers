@@ -124,9 +124,15 @@ public class BusinessServiceImpl implements BusinessService {
 	}
 	
 	@Override
-	public List<IntroCard> selectIntroCards(String duties, String searchBox) {
+	public int selectCountBoth(String duties, String searchBox) {
 		// TODO Auto-generated method stub
-		return dao.selectIntroCards(session, duties, searchBox);
+		return dao.selectCountBoth(session, duties, searchBox);
+	}
+	
+	@Override
+	public List<IntroCard> selectIntroCards(String duties, String searchBox,int cPage, int numPerPage) {
+		// TODO Auto-generated method stub
+		return dao.selectIntroCards(session, duties, searchBox, cPage, numPerPage);
 	}
 	
 	@Override

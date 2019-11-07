@@ -105,6 +105,10 @@ public class PaginationTemplateFunction {
 		return numPerPage;
 	}
 	
+	public void setCPage(int cPage) {
+		this.cPage=cPage;
+	}
+	
 	//NumPerPage를 수정하기 위한 setter
 	public void setNumPerPage(int numPerPage) {
 		this.numPerPage=numPerPage;

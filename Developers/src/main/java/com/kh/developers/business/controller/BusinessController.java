@@ -2,7 +2,9 @@ package com.kh.developers.business.controller;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,6 +29,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kh.developers.business.model.service.BusinessService;
 import com.kh.developers.business.model.vo.Business;
 import com.kh.developers.business.model.vo.IntroCard;
+import com.kh.developers.common.util.PaginationTemplateFunction;
 import com.kh.developers.member.model.service.MemberService;
 import com.kh.developers.member.model.vo.Member;
 import com.kh.developers.resume.model.service.ResumeService;
@@ -38,7 +41,7 @@ import com.kh.developers.resume.model.vo.Resume;
 public class BusinessController {
 	
 	private static Logger logger = LoggerFactory.getLogger(BusinessController.class);
-	
+	private PaginationTemplateFunction ptf;
 	
 	@Autowired 
 	private BCryptPasswordEncoder pwEncoder;
@@ -197,12 +200,20 @@ public class BusinessController {
 	
 	@RequestMapping(value = "/business/selectResume", produces = "application/text; charset=utf-8")
 	@ResponseBody
-	public String selectResume(@RequestParam (value="searchPackage[]") List<String>searchPackage, HttpServletResponse res) {
+	public String selectResume(@RequestParam (value="searchPackage[]") List<String>searchPackage, HttpServletRequest req, HttpServletResponse res) {
 		ObjectMapper mapper=new ObjectMapper(); //잭슨 객체 - json자바스크립트 객체 매핑시킴 
 		List<IntroCard>icList=new ArrayList<IntroCard>();
+		Map<String,Object>resultMap=new HashMap<String,Object>();
 		String jsonStr="";
 		String duties="";
 		String searchBox="";
+		int cPage;
+		try {
+			cPage=Integer.parseInt(searchPackage.get(3));			
+		}catch(Exception e) {
+			cPage=1;
+		}
+		System.out.println(cPage);
 		
 		if(!searchPackage.get(0).isEmpty()) {
 			String[] selected=(searchPackage.get(0)).split(",");
@@ -219,25 +230,6 @@ public class BusinessController {
 				else searchBox+=search[i];
 			}
 		}
-		System.out.println(duties);
-		System.out.println(searchBox);
-		
-		
-//		이력서 전부 가져오기 로직 
-//		if(!searchPackage.get(0).isEmpty()&&searchPackage.get(0).equals("bringEverything")) {
-//			List<IntroCard>icAllList=bService.selectIntroCards();
-//			for(IntroCard ic:icAllList) {
-//				ic.setCareers(bService.selectCareers(ic.getResumeNo()));
-//				ic.setEducations(bService.selectEducations(ic.getResumeNo()));
-//			}
-//		try {
-//			jsonStr=mapper.writeValueAsString(icAllList);
-//		}catch(JsonProcessingException e) {
-//			e.printStackTrace();
-//		}
-//		res.setContentType("application/json;charset=utf-8");
-//		
-//		}
 
 //		이력서 검색으로 가져오기 로직
 		if(searchPackage.get(0).isEmpty()&&searchPackage.get(1).isEmpty()) {
@@ -261,7 +253,11 @@ public class BusinessController {
 		else if(!searchPackage.get(0).isEmpty()&&!searchPackage.get(1).isEmpty()) {
 			System.out.println("검색1,검색2 둘다 있음");
 //			검색1 과 검색2가 있을때
-			icList=bService.selectIntroCards(duties,searchBox);
+			int icCount=bService.selectCountBoth(duties,searchBox); // 개수 반환
+			ptf=new PaginationTemplateFunction(req, icCount,"cPageSearch");
+			ptf.setCPage(cPage);
+			ptf.setNumPerPage(10);
+			icList=bService.selectIntroCards(duties,searchBox, ptf.getcPage(), ptf.getNumPerPage());
 			for(IntroCard ic:icList) {
 				ic.setCareers(bService.selectCareers(ic.getResumeNo()));
 				ic.setEducations(bService.selectEducations(ic.getResumeNo()));
@@ -276,9 +272,12 @@ public class BusinessController {
 				ic.setEducations(bService.selectEducations(ic.getResumeNo()));
 			}
 		}
+		String pageBar=ptf.getPageBar();
 		
+		resultMap.put("icList", icList);
+		resultMap.put("pageBar",pageBar);
 		try {
-			jsonStr=mapper.writeValueAsString(icList);
+			jsonStr=mapper.writeValueAsString(resultMap);
 		}catch(JsonProcessingException e) {
 			e.printStackTrace();
 		}

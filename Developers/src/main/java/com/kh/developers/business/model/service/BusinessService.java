@@ -22,11 +22,15 @@ public interface BusinessService {
 	
 	
 	// 매치업  introCard 불러오기 로직
+
+	
 	List<IntroCard> selectIntroCards();
 	
 	List<IntroCard> selectIntroCards(String duties);
 	
-	List<IntroCard> selectIntroCards(String duties, String searchBox);
+	int selectCountBoth(String duties, String searchBox);
+	
+	List<IntroCard> selectIntroCards(String duties, String searchBox, int cPage, int numPerPage);
 	
 	List<IntroCard> selectIntroCardsSearch(String searchBox);
 	

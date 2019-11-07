@@ -30,14 +30,11 @@ for(var i=0;i<details.length;i++){
         if (typeof selected != 'undefined' && selected.length > 0) {
             let searchPackage= new Array;
             var selectedString=selected.toString();
-            console.log("searchBox :"+searchBoxValue);
-            console.log("selectedString :"+selectedString);
             console.log("값 있음");
             searchPackage.push(selectedString);
             searchBoxValue!=undefined?searchPackage.push(searchBoxValue):searchPackage.push("");
             console.log(searchPackage)
             ajaxLogic(searchPackage);
-
         }
     });
 }
@@ -76,17 +73,35 @@ function searchEvent(){
     selectedString=selected.toString();
     searchPackage.push(selectedString);
     searchPackage.push(searchBoxValue);
-    ajaxLogic(searchPackage)
+    ajaxLogic(searchPackage);
 };
 
 // 페이지 로딩할때 불러와야 할 것
-function selectAllCards(){
-    var selectedString="";
-    let searchPackage= new Array;
+// function selectAllCards(){
+//     var selectedString="";
+//     let searchPackage= new Array;
+//     searchPackage.push(selectedString);
+//     searchPackage.push("");
+//     ajaxLogic(searchPackage);
+// };
+
+
+function cPageSearch(cPage) {
+    let searchPackage=new Array;
+    let searchBoxValue=searchBox.value;
+    let selected=new Array;
+    let selectedString="";
+    for(var i=0;i<details.length;i++){
+        if(details[i].className=='btn btn-outline-info rest active'){
+            selected.push(details[i].value);
+        }
+    }
+    selectedString=selected.toString();
     searchPackage.push(selectedString);
-    searchPackage.push("");
+    searchPackage.push(searchBoxValue);
+    searchPackage.push(cPage);
     ajaxLogic(searchPackage);
-};
+}
 
 
 function ajaxLogic(searchPackage){
@@ -98,26 +113,27 @@ function ajaxLogic(searchPackage){
             "searchPackage":searchPackage
         },
         success:function(result){
-            console.log(result);
             if(result!=undefined||result!=null){
                 var cards=JSON.parse(result);
                 console.log(cards);
-                console.log(cards[0]);
 
                 var cardsArea=$('div#cards-area');
                 var cardContainer="";
 
-                for(var i in cards){
+                for(var i in cards.icList){
                     cardContainer+='<div class="resume-card col-sm-10 container">';
                     cardContainer+='<div class="card"><h5 class="card-header"><img class="bus-user-profile" src="'+path+'/resources/upload/profile/no-profile-image.png"/><button class="btn btn-outline-primary" type="button">찜하기</button></h5>';
                     cardContainer+='<div class="card-body">';
                     cardContainer+='<h5 class="card-title">Special title treatment</h5>';
-                    cardContainer+='<p class="card-text">'+cards[i].intro+'</p>';
+                    cardContainer+='<p class="card-text">'+cards.icList[i].intro+'</p>';
                     cardContainer+='<a href="#" class="btn btn-primary">이력서 미리보기</a>';
                     cardContainer+='</div></div></div>';
     
-                    $(cardsArea).html(cardContainer);
                 }
+                cardContainer+=cards.pageBar;
+                $(cardsArea).html(cardContainer);
+                 
+
             }
         }
     });

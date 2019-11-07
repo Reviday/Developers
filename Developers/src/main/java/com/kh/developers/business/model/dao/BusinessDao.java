@@ -33,7 +33,9 @@ public interface BusinessDao {
 	
 	List<IntroCard>selectIntroCards(SqlSessionTemplate session, String duties);
 	
-	List<IntroCard>selectIntroCards(SqlSessionTemplate session, String duties, String searchBox);
+	int selectCountBoth(SqlSessionTemplate session, String duties, String searchBox);
+	
+	List<IntroCard>selectIntroCards(SqlSessionTemplate session, String duties, String searchBox, int cPage, int numPerPage);
 	
 	List<IntroCard>selectIntroCardsSearch(SqlSessionTemplate session, String searchBox);
 	

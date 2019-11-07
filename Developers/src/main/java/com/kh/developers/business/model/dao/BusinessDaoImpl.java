@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -65,8 +66,18 @@ public class BusinessDaoImpl implements BusinessDao {
 	}
 	
 	@Override
-	public List<IntroCard> selectIntroCards(SqlSessionTemplate session, String duties, String searchBox) {
+	public int selectCountBoth(SqlSessionTemplate session, String duties, String searchBox) {
 		// TODO Auto-generated method stub
+		Map<String,String>values=new HashMap<String,String>();
+		values.put("duties", duties);
+		values.put("search",searchBox);
+		return session.selectOne("business.selectCountBoth",values);
+	}
+	
+	@Override
+	public List<IntroCard> selectIntroCards(SqlSessionTemplate session, String duties, String searchBox, int cPage, int numPerPage) {
+		// TODO Auto-generated method stub
+		RowBounds r=new RowBounds((cPage-1)*numPerPage, numPerPage);
 		Map<String,String>values=new HashMap<String,String>();
 		values.put("duties", duties);
 		values.put("search",searchBox);
