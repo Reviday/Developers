@@ -124,6 +124,18 @@ public class BusinessServiceImpl implements BusinessService {
 	}
 	
 	@Override
+	public List<IntroCard> selectIntroCards(String duties, String searchBox) {
+		// TODO Auto-generated method stub
+		return dao.selectIntroCards(session, duties, searchBox);
+	}
+	
+	@Override
+	public List<IntroCard> selectIntroCardsSearch(String searchBox) {
+		// TODO Auto-generated method stub
+		return dao.selectIntroCardsSearch(session, searchBox);
+	}
+	
+	@Override
 	public List<CareerInCard> selectCareers(int resumeNo) {
 		// TODO Auto-generated method stub
 		return dao.selectCareers(session, resumeNo);

@@ -1,5 +1,6 @@
 package com.kh.developers.business.controller;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -198,34 +199,86 @@ public class BusinessController {
 	@ResponseBody
 	public String selectResume(@RequestParam (value="searchPackage[]") List<String>searchPackage, HttpServletResponse res) {
 		ObjectMapper mapper=new ObjectMapper(); //잭슨 객체 - json자바스크립트 객체 매핑시킴 
+		List<IntroCard>icList=new ArrayList<IntroCard>();
 		String jsonStr="";
-		System.out.println(searchPackage.get(0));
-		System.out.println(searchPackage.get(1));
+		String duties="";
+		String searchBox="";
+		
+		if(!searchPackage.get(0).isEmpty()) {
+			String[] selected=(searchPackage.get(0)).split(",");
+			Arrays.sort(selected);
+			for(int i=0;i<selected.length;i++) {
+				duties+='%'+selected[i];
+			}
+			duties+='%';			
+		}
+		if(!searchPackage.get(1).isEmpty()) {
+			String[] search=(searchPackage.get(1)).split(" ");
+			for(int i=0;i<search.length;i++) {
+				if(i<search.length-1) searchBox+=search[i]+"|";
+				else searchBox+=search[i];
+			}
+		}
+		System.out.println(duties);
+		System.out.println(searchBox);
+		
 		
 //		이력서 전부 가져오기 로직 
-		if(!searchPackage.get(0).isEmpty()&&searchPackage.get(0).equals("all")) {
-			List<IntroCard>icAllList=bService.selectIntroCards();
-			for(IntroCard ic:icAllList) {
+//		if(!searchPackage.get(0).isEmpty()&&searchPackage.get(0).equals("bringEverything")) {
+//			List<IntroCard>icAllList=bService.selectIntroCards();
+//			for(IntroCard ic:icAllList) {
+//				ic.setCareers(bService.selectCareers(ic.getResumeNo()));
+//				ic.setEducations(bService.selectEducations(ic.getResumeNo()));
+//			}
+//		try {
+//			jsonStr=mapper.writeValueAsString(icAllList);
+//		}catch(JsonProcessingException e) {
+//			e.printStackTrace();
+//		}
+//		res.setContentType("application/json;charset=utf-8");
+//		
+//		}
+
+//		이력서 검색으로 가져오기 로직
+		if(searchPackage.get(0).isEmpty()&&searchPackage.get(1).isEmpty()) {
+			System.out.println("검색1,2 둘다 없음 (모든검색)");
+//			검색1,2 둘다없는 모든검색
+			icList=bService.selectIntroCards();
+			for(IntroCard ic:icList) {
 				ic.setCareers(bService.selectCareers(ic.getResumeNo()));
 				ic.setEducations(bService.selectEducations(ic.getResumeNo()));
 			}
+		}
+		else if(!searchPackage.get(0).isEmpty()&&searchPackage.get(1).isEmpty()) {
+			System.out.println("검색1만 있음");
+//			검색1만 있을때
+			icList=bService.selectIntroCards(duties);
+			for(IntroCard ic:icList) {
+				ic.setCareers(bService.selectCareers(ic.getResumeNo()));
+				ic.setEducations(bService.selectEducations(ic.getResumeNo()));
+			}
+		}
+		else if(!searchPackage.get(0).isEmpty()&&!searchPackage.get(1).isEmpty()) {
+			System.out.println("검색1,검색2 둘다 있음");
+//			검색1 과 검색2가 있을때
+			icList=bService.selectIntroCards(duties,searchBox);
+		}
+		else if(searchPackage.get(0).isEmpty()&&!searchPackage.get(1).isEmpty()) {
+			System.out.println("모든검색/검색2만 있음");
+//			검색2만 있을때 
+			icList=bService.selectIntroCardsSearch(searchBox);
+			for(IntroCard ic:icList) {
+				ic.setCareers(bService.selectCareers(ic.getResumeNo()));
+				ic.setEducations(bService.selectEducations(ic.getResumeNo()));
+			}
+		}
+		
 		try {
-			jsonStr=mapper.writeValueAsString(icAllList);
+			jsonStr=mapper.writeValueAsString(icList);
 		}catch(JsonProcessingException e) {
 			e.printStackTrace();
 		}
 		res.setContentType("application/json;charset=utf-8");
-		
-		}
-
-//		이력서 검색으로 가져오기 로직
-		if(!searchPackage.get(0).isEmpty()&&searchPackage.get(1).isEmpty()) {
-			
-		}
-		else if(!searchPackage.get(0).isEmpty()&&!searchPackage.get(1).isEmpty()) {
-			
-		}
-		
 //		if(!searchPackage[0].isEmpty()) {
 //			
 //		}

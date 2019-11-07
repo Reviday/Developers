@@ -22,7 +22,7 @@ for(var i=0;i<details.length;i++){
         console.log(activeCount);
         if(activeCount<1){
             mainActive.className='btn btn-outline-info main active';
-            selectAllCards();
+            searchEvent();
         }
         if(searchBox.value!=""&&searchBox.value!=undefined){
             var searchBoxValue=searchBox.value;
@@ -36,22 +36,23 @@ for(var i=0;i<details.length;i++){
             searchPackage.push(selectedString);
             searchBoxValue!=undefined?searchPackage.push(searchBoxValue):searchPackage.push("");
             console.log(searchPackage)
+            ajaxLogic(searchPackage);
 
-            $.ajax({
-                url:path+"/business/selectResume",
-                type:"post",
-                async: false,
-                data:{
-                    "searchPackage":searchPackage
-                },
-                success:function(result){
-                    console.log(result);
-                    if(result!=undefined||result!=null){
-                        var cards=JSON.parse(result);
-                        console.log(cards);
-                    }
-                }
-            });
+            // $.ajax({
+            //     url:path+"/business/selectResume",
+            //     type:"post",
+            //     async: false,
+            //     data:{
+            //         "searchPackage":searchPackage
+            //     },
+            //     success:function(result){
+            //         console.log(result);
+            //         if(result!=undefined||result!=null){
+            //             var cards=JSON.parse(result);
+            //             console.log(cards);
+            //         }
+            //     }
+            // });
         }
     });
 }
@@ -64,33 +65,69 @@ mainActive.addEventListener('click',function(e){
     selected=[];
     activeCount=0;
     console.log(selected);
-    selectAllCards();
+    searchEvent()
 });
 
 
 searchBtn.addEventListener('click',function(){
     searchEvent();
 });
-searchBox.addEventListener('keyup',function(e){
+searchBox.addEventListener('keypress',function(e){
     if(e.keyCode==13){
         searchEvent();
     }
 });
 
-var searchValues=new Array;
 function searchEvent(){
-    searchValues=(searchBox.value).split(" ");
-    console.log(searchValues);
+    let searchPackage=new Array;
+    let searchBoxValue=searchBox.value;
+    let selected=new Array;
+    let selectedString="";
+    for(var i=0;i<details.length;i++){
+        if(details[i].className=='btn btn-outline-info rest active'){
+            selected.push(details[i].value);
+        }
+    }
+    selectedString=selected.toString();
+    searchPackage.push(selectedString);
+    searchPackage.push(searchBoxValue);
+    ajaxLogic(searchPackage)
 };
 
+// 페이지 로딩할때 불러와야 할 것
 function selectAllCards(){
-    var selectedString='all';
+    var selectedString="";
+    let searchPackage= new Array;
+    searchPackage.push(selectedString);
+    searchPackage.push("");
+    ajaxLogic(searchPackage);
+
+    // $.ajax({
+    //     url:path+"/business/selectResume",
+    //     type:"post",
+    //     async: false,
+    //     data:{
+    //         "searchPackage":searchPackage
+    //     },
+    //     success:function(result){
+    //         console.log(result);
+    //         if(result!=undefined||result!=null){
+    //             var cards=JSON.parse(result);
+    //             console.log(cards);
+    //         }
+            
+    //     }
+    // });
+};
+
+
+function ajaxLogic(searchPackage){
     $.ajax({
         url:path+"/business/selectResume",
         type:"post",
         async: false,
         data:{
-            "selectedString":selectedString
+            "searchPackage":searchPackage
         },
         success:function(result){
             console.log(result);
@@ -98,14 +135,9 @@ function selectAllCards(){
                 var cards=JSON.parse(result);
                 console.log(cards);
             }
-            
         }
     });
-};
-
-
-
-
+}
 
 
 

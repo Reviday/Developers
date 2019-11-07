@@ -33,6 +33,10 @@ public interface BusinessDao {
 	
 	List<IntroCard>selectIntroCards(SqlSessionTemplate session, String duties);
 	
+	List<IntroCard>selectIntroCards(SqlSessionTemplate session, String duties, String searchBox);
+	
+	List<IntroCard>selectIntroCardsSearch(SqlSessionTemplate session, String searchBox);
+	
 	List<CareerInCard>selectCareers(SqlSessionTemplate session, int resumeNo);
 	
 	List<EducationInCard>selectEducations(SqlSessionTemplate session, int resumeNo);

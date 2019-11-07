@@ -1,5 +1,6 @@
 package com.kh.developers.business.model.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -61,6 +62,21 @@ public class BusinessDaoImpl implements BusinessDao {
 	public List<IntroCard> selectIntroCards(SqlSessionTemplate session, String duties) {
 		
 		return session.selectList("business.selectIntroCards",duties);
+	}
+	
+	@Override
+	public List<IntroCard> selectIntroCards(SqlSessionTemplate session, String duties, String searchBox) {
+		// TODO Auto-generated method stub
+		Map<String,String>values=new HashMap<String,String>();
+		values.put("duties", duties);
+		values.put("search",searchBox);
+		return session.selectList("business.selectIntroCardsUsingTwoValues",values);
+	}
+	
+	@Override
+	public List<IntroCard> selectIntroCardsSearch(SqlSessionTemplate session, String searchBox) {
+		// TODO Auto-generated method stub
+		return session.selectList("business.selectIntroCardsSearch",searchBox);
 	}
 	
 	@Override

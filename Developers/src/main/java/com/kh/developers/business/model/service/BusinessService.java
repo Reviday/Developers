@@ -26,6 +26,10 @@ public interface BusinessService {
 	
 	List<IntroCard> selectIntroCards(String duties);
 	
+	List<IntroCard> selectIntroCards(String duties, String searchBox);
+	
+	List<IntroCard> selectIntroCardsSearch(String searchBox);
+	
 	List<CareerInCard> selectCareers(int resumeNo);
 	
 	List<EducationInCard> selectEducations(int resumeNo);
