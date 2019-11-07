@@ -121,9 +121,9 @@
 					</div>
 				</div>
 			</div>
-			<div style="border: 1px solid red" class="col-12 col-sm-8">
+			<div id="cards-area" style="border: 1px solid red" class="col-12 col-sm-8">
 				<!-- 디비에서 레주메 가져와 리스트 뿌려주기  -->
-				<c:if test="${not empty myPage}">
+				<!-- <c:if test="${not empty myPage}">
 					<c:forEach var="i" items="${resumeList}" varStatus="s">
 						<div class="resume-card col-sm-10 container">
 							<div class="card">
@@ -139,7 +139,7 @@
 				</c:if>
 				<c:if test="${empty myPage}">
 					<h3>검색 결과가 없습니다.</h3>
-				</c:if>
+				</c:if> -->
 			</div>
 		</div>
 

@@ -262,6 +262,10 @@ public class BusinessController {
 			System.out.println("검색1,검색2 둘다 있음");
 //			검색1 과 검색2가 있을때
 			icList=bService.selectIntroCards(duties,searchBox);
+			for(IntroCard ic:icList) {
+				ic.setCareers(bService.selectCareers(ic.getResumeNo()));
+				ic.setEducations(bService.selectEducations(ic.getResumeNo()));
+			}
 		}
 		else if(searchPackage.get(0).isEmpty()&&!searchPackage.get(1).isEmpty()) {
 			System.out.println("모든검색/검색2만 있음");

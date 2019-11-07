@@ -38,21 +38,6 @@ for(var i=0;i<details.length;i++){
             console.log(searchPackage)
             ajaxLogic(searchPackage);
 
-            // $.ajax({
-            //     url:path+"/business/selectResume",
-            //     type:"post",
-            //     async: false,
-            //     data:{
-            //         "searchPackage":searchPackage
-            //     },
-            //     success:function(result){
-            //         console.log(result);
-            //         if(result!=undefined||result!=null){
-            //             var cards=JSON.parse(result);
-            //             console.log(cards);
-            //         }
-            //     }
-            // });
         }
     });
 }
@@ -101,23 +86,6 @@ function selectAllCards(){
     searchPackage.push(selectedString);
     searchPackage.push("");
     ajaxLogic(searchPackage);
-
-    // $.ajax({
-    //     url:path+"/business/selectResume",
-    //     type:"post",
-    //     async: false,
-    //     data:{
-    //         "searchPackage":searchPackage
-    //     },
-    //     success:function(result){
-    //         console.log(result);
-    //         if(result!=undefined||result!=null){
-    //             var cards=JSON.parse(result);
-    //             console.log(cards);
-    //         }
-            
-    //     }
-    // });
 };
 
 
@@ -134,6 +102,22 @@ function ajaxLogic(searchPackage){
             if(result!=undefined||result!=null){
                 var cards=JSON.parse(result);
                 console.log(cards);
+                console.log(cards[0]);
+
+                var cardsArea=$('div#cards-area');
+                var cardContainer="";
+
+                for(var i in cards){
+                    cardContainer+='<div class="resume-card col-sm-10 container">';
+                    cardContainer+='<div class="card"><h5 class="card-header"><img class="bus-user-profile" src="'+path+'/resources/upload/profile/no-profile-image.png"/><button class="btn btn-outline-primary" type="button">찜하기</button></h5>';
+                    cardContainer+='<div class="card-body">';
+                    cardContainer+='<h5 class="card-title">Special title treatment</h5>';
+                    cardContainer+='<p class="card-text">'+cards[i].intro+'</p>';
+                    cardContainer+='<a href="#" class="btn btn-primary">이력서 미리보기</a>';
+                    cardContainer+='</div></div></div>';
+    
+                    $(cardsArea).html(cardContainer);
+                }
             }
         }
     });
