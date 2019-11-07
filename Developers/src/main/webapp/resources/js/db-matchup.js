@@ -14,28 +14,35 @@ for(var i=0;i<details.length;i++){
             e.target.className+=' active';
             activeCount++;
             selected.push(e.target.value);
-            console.log(selected);
         }else if(e.target.className=='btn btn-outline-info rest active'){
             e.target.className='btn btn-outline-info rest';
             activeCount--;
             selected.splice(selected.indexOf(e.target.value),1);
-            console.log(selected);
         }
         console.log(activeCount);
         if(activeCount<1){
             mainActive.className='btn btn-outline-info main active';
             selectAllCards();
         }
+        if(searchBox.value!=""&&searchBox.value!=undefined){
+            var searchBoxValue=searchBox.value;
+        }
         if (typeof selected != 'undefined' && selected.length > 0) {
+            let searchPackage= new Array;
             var selectedString=selected.toString();
-            console.log(selectedString);
+            console.log("searchBox :"+searchBoxValue);
+            console.log("selectedString :"+selectedString);
             console.log("값 있음");
+            searchPackage.push(selectedString);
+            searchBoxValue!=undefined?searchPackage.push(searchBoxValue):searchPackage.push("");
+            console.log(searchPackage)
+
             $.ajax({
                 url:path+"/business/selectResume",
                 type:"post",
                 async: false,
                 data:{
-                    "selectedString":selectedString
+                    "searchPackage":searchPackage
                 },
                 success:function(result){
                     console.log(result);
@@ -73,8 +80,7 @@ searchBox.addEventListener('keyup',function(e){
 var searchValues=new Array;
 function searchEvent(){
     searchValues=(searchBox.value).split(" ");
-    searchValues
-    
+    console.log(searchValues);
 };
 
 function selectAllCards(){
@@ -96,6 +102,8 @@ function selectAllCards(){
         }
     });
 };
+
+
 
 
 

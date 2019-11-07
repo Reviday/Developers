@@ -196,11 +196,14 @@ public class BusinessController {
 	
 	@RequestMapping(value = "/business/selectResume", produces = "application/text; charset=utf-8")
 	@ResponseBody
-	public String selectResume(@RequestParam (value="selectedString") String selectedString, HttpServletResponse res) {
+	public String selectResume(@RequestParam (value="searchPackage[]") List<String>searchPackage, HttpServletResponse res) {
 		ObjectMapper mapper=new ObjectMapper(); //잭슨 객체 - json자바스크립트 객체 매핑시킴 
 		String jsonStr="";
+		System.out.println(searchPackage.get(0));
+		System.out.println(searchPackage.get(1));
+		
 //		이력서 전부 가져오기 로직 
-		if(selectedString.equals("all")) {
+		if(!searchPackage.get(0).isEmpty()&&searchPackage.get(0).equals("all")) {
 			List<IntroCard>icAllList=bService.selectIntroCards();
 			for(IntroCard ic:icAllList) {
 				ic.setCareers(bService.selectCareers(ic.getResumeNo()));
@@ -212,30 +215,41 @@ public class BusinessController {
 			e.printStackTrace();
 		}
 		res.setContentType("application/json;charset=utf-8");
+		
 		}
-	
+
 //		이력서 검색으로 가져오기 로직
-		if(!selectedString.isEmpty()&&selectedString!=""&&!selectedString.equals("all")) {
-			String[] selected=selectedString.split(",");
-			Arrays.sort(selected);
-			String duties="";
-			for(int i=0;i<selected.length;i++) {
-				duties+='%'+selected[i];
-			}
-			duties+='%';
-			List<IntroCard> icList=bService.selectIntroCards(duties);
-			for(IntroCard ic:icList) {
-				ic.setCareers(bService.selectCareers(ic.getResumeNo()));
-				ic.setEducations(bService.selectEducations(ic.getResumeNo()));
-			}
-				try {
-					jsonStr=mapper.writeValueAsString(icList);
-				}catch(JsonProcessingException e) {
-					e.printStackTrace();
-				}
-			res.setContentType("application/json;charset=utf-8");
+		if(!searchPackage.get(0).isEmpty()&&searchPackage.get(1).isEmpty()) {
+			
 		}
-		System.out.println(selectedString);
+		else if(!searchPackage.get(0).isEmpty()&&!searchPackage.get(1).isEmpty()) {
+			
+		}
+		
+//		if(!searchPackage[0].isEmpty()) {
+//			
+//		}
+//		if(!selectedString.isEmpty()&&selectedString!=""&&!selectedString.equals("all")) {
+//			String[] selected=selectedString.split(",");
+//			Arrays.sort(selected);
+//			String duties="";
+//			for(int i=0;i<selected.length;i++) {
+//				duties+='%'+selected[i];
+//			}
+//			duties+='%';
+//			List<IntroCard> icList=bService.selectIntroCards(duties);
+//			for(IntroCard ic:icList) {
+//				ic.setCareers(bService.selectCareers(ic.getResumeNo()));
+//				ic.setEducations(bService.selectEducations(ic.getResumeNo()));
+//			}
+//				try {
+//					jsonStr=mapper.writeValueAsString(icList);
+//				}catch(JsonProcessingException e) {
+//					e.printStackTrace();
+//				}
+//			res.setContentType("application/json;charset=utf-8");
+//		}
+//		System.out.println(selectedString);
 		return jsonStr;
 	}
 	
