@@ -69,4 +69,6 @@ public interface SearchService {
 	int insertBookMark(int memNo, int positionNo);
 	//북마크 제거
 	int deleteBookMark(int memNo, int positionNo);
+	//태그의견 저장
+	int insertTagOpinion(int busNo, String tag);
 }

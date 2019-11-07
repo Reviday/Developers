@@ -200,6 +200,11 @@ public class SearchServiceImpl implements SearchService {
 		return result;
 	}
 	
+	@Override
+	public int insertTagOpinion(int busNo, String tag) {
+		int result = dao.insertTagOpinion(session, busNo, tag);
+		return result;
+	}
 	
 	
 }

@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.developers.resume.controller.ResumeController;
@@ -296,7 +298,7 @@ public class SearchController {
 		mv.setViewName("search/ajax/changeBookMarkAjax");
 		return mv;
 	}
-	//탐색 -> 회사소개페이지로 전환(비로그인)
+	//탐색 -> 회사소개페이지로 전환
 	@RequestMapping("/search/companyAllInfo")
 	public String companyAllInfo(int busNo, Model model) {
 		//회사 포지션 리스트
@@ -309,5 +311,29 @@ public class SearchController {
 		Company company = service.companyInfo(busNo);
 		model.addAttribute("company", company);
 		return "search/companyAllInfo";
+	}
+	//회사소개페이지에서의 태그모달창 태그버튼생성
+	@RequestMapping(value = "/search/newTagButton", produces = "application/text; charset=utf8")
+	@ResponseBody
+	public String newTagButton(String newTag) {
+		String result = "<div class='newTagContent'>" + newTag + "<button type='button' class='tagclose'><i class='fas fa-times' style='font-size: 14px;'></i></button></div>";
+		return result;	
+	}
+	//회사소개페이지에서 태그의견전달
+	@RequestMapping(value = "/search/newTagSubmit", produces = "application/text; charset=utf8")
+	@ResponseBody
+	public String newTagSubmit(String[] tagArr, int busNo) {
+		String tag = "";
+		for(int i = 0; i < tagArr.length; i++) {
+			if(i < tagArr.length - 1) {
+			tag += tagArr[i] + ",";
+			}else {
+				tag += tagArr[i];
+			}
+		}
+		int insert = service.insertTagOpinion(busNo, tag);
+		
+		String result = "태그 의견을 전송했습니다.";
+		return result;	
 	}
 }

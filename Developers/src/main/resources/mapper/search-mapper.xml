@@ -226,7 +226,10 @@
 	<delete id="deleteBookMark" parameterType="map">
 		DELETE FROM BOOK_MARK WHERE MEM_NO = #{memNo} AND POSITION_NO = #{positionNo}
 	</delete>
-	
+	<!-- 태그의견 저장 -->
+	<insert id="insertTagOpinion" parameterType="map">
+		INSERT INTO TAG_OPINION VALUES(TAG_OPINION_SEQ.NEXTVAL, #{busNo}, #{tag})
+	</insert>
 	
 	<resultMap type="position" id="positionArray">
 		<result column="job_type" property="job_type" typeHandler="StrArray"/>

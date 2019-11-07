@@ -206,5 +206,12 @@ public class SearchDaoImpl implements SearchDao {
 		return session.delete("search.deleteBookMark", map);
 	}
 	
+	@Override
+	public int insertTagOpinion(SqlSessionTemplate session, int busNo, String tag) {
+		Map map = new HashMap();
+		map.put("busNo", busNo);
+		map.put("tag", tag);
+		return session.insert("search.insertTagOpinion", map);
+	}
 	
 }

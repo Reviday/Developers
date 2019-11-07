@@ -1114,3 +1114,34 @@ a {
     border: 1px solid #e1e2e3;
     color: #999;
 }
+
+.newTagDiv {
+    margin-bottom: 8px;
+    display: none;
+}
+
+.newTagContent {
+    position: relative;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1;
+    color: #333;
+    border-radius: 25px;
+    padding: 7px 30px 12px 17px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    text-align: left;
+    background-color: #f3f5f8;
+}
+
+.newTagContent>button {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    font-size: 10px;
+    line-height: 1;
+    padding: 5px;
+}

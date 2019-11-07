@@ -47,4 +47,5 @@ public interface SearchDao {
 	BookMark selectBookMark(SqlSessionTemplate session, int memNo, int positionNo);
 	int insertBookMark(SqlSessionTemplate session, int memNo, int positionNo);
 	int deleteBookMark(SqlSessionTemplate session, int memNo, int positionNo);
+	int insertTagOpinion(SqlSessionTemplate session, int busNo, String tag);
 }

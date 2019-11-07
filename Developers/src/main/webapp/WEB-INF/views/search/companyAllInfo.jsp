@@ -49,10 +49,11 @@
                                 </p>
                                 <div class="tagInput">
                                     <div class="tagInput-div">
-                                        <input type="text" name="newTag" id="" placeholder="태그를 이곳에 입력해주세요.">
-                                        <button type="button">추가</button>
+                                        <input type="text" name="newTag" id="newTag" placeholder="태그를 이곳에 입력해주세요.">
+                                        <button type="button" onclick="newTag();">추가</button>
                                     </div>
                                 </div>
+                                <div class="newTagDiv"></div>
                                 <button type="button" class="tagSubmit tagSubmit1" disabled style="cursor: default;">의견 보내기</button>
                             </div>
                         </div>
@@ -70,22 +71,42 @@
                     </c:if>
                     <c:if test="${not empty psList }">
 	                    <div class="positionList">
-	                    	<c:forEach var="p" items="${psList }">
-		                        <a href="${path }/search/companyInfo1.do?positionNo=${p.position_no }" class="positionInfo">
-		                            <h4>${p.position }</h4>
-		                            <h5>채용보상금 1,000,000원</h5>
-		                            <c:if test="${p.dead_date == 'Thu Dec 31 00:00:00 KST 2099'}">
-		                            	<p>상시</p>
-		                            </c:if>
-		                            <c:if test="${p.dead_date != 'Thu Dec 31 00:00:00 KST 2099'}">
-		                            	<p><fmt:formatDate value="${p.dead_date}" pattern="yyyy년MM월dd일"/></p>
-		                            </c:if>
-		                            <button type="button">
-		                                <c:out value="${p.like_count }"></c:out>
-		                                <i class="far fa-heart"></i>
-		                            </button>
-		                        </a>
-	                        </c:forEach>
+		                    <c:if test="${not empty loginMember }">
+		                    	<c:forEach var="p" items="${psList }">
+			                        <a href="${path }/search/companyInfo.do?positionNo=${p.position_no }&memNo=${loginMember.memNo}" class="positionInfo">
+			                            <h4>${p.position }</h4>
+			                            <h5>채용보상금 1,000,000원</h5>
+			                            <c:if test="${p.dead_date == 'Thu Dec 31 00:00:00 KST 2099'}">
+			                            	<p>상시</p>
+			                            </c:if>
+			                            <c:if test="${p.dead_date != 'Thu Dec 31 00:00:00 KST 2099'}">
+			                            	<p><fmt:formatDate value="${p.dead_date}" pattern="yyyy년MM월dd일"/></p>
+			                            </c:if>
+			                            <button type="button">
+			                                <c:out value="${p.like_count }"></c:out>
+			                                <i class="far fa-heart"></i>
+			                            </button>
+			                        </a>
+		                        </c:forEach>
+	                        </c:if>
+	                        <c:if test="${empty loginMember }">
+		                    	<c:forEach var="p" items="${psList }">
+			                        <a href="${path }/search/companyInfo1.do?positionNo=${p.position_no }" class="positionInfo">
+			                            <h4>${p.position }</h4>
+			                            <h5>채용보상금 1,000,000원</h5>
+			                            <c:if test="${p.dead_date == 'Thu Dec 31 00:00:00 KST 2099'}">
+			                            	<p>상시</p>
+			                            </c:if>
+			                            <c:if test="${p.dead_date != 'Thu Dec 31 00:00:00 KST 2099'}">
+			                            	<p><fmt:formatDate value="${p.dead_date}" pattern="yyyy년MM월dd일"/></p>
+			                            </c:if>
+			                            <button type="button">
+			                                <c:out value="${p.like_count }"></c:out>
+			                                <i class="far fa-heart"></i>
+			                            </button>
+			                        </a>
+		                        </c:forEach>
+	                        </c:if>
 	                    </div>
                     </c:if>
                 </div>
@@ -275,4 +296,55 @@
                 $(".tagModal").css("display", "none");
             });
         })
+    </script>
+    <!-- 태그의견보내기 스크립트 -->
+    <script>
+    	$(document).on('click', '.tagclose', function(){
+    		$(this).parent('div.newTagContent').remove();    
+	    	if($('.newTagContent').length == 0){
+	    		$('.tagSubmit').addClass("tagSubmit1");
+				$('.tagSubmit').prop("disabled", true);
+				$('.tagSubmit').css("cursor", "default");
+	    	}
+    	})
+    	function newTag(){
+    		if($("#newTag").val().length > 0){
+    			$.ajax({
+    				url: path + "/search/newTagButton",
+    				type: "POST",
+    				data: {newTag : $("#newTag").val()},	
+    				success: function(data){
+    					$("#newTag").val("");
+    					$(".newTagDiv").css("display", "block");
+    					var s = $(".newTagDiv").html();
+    					s += data;
+    					$(".newTagDiv").html(s);
+    					$('.tagSubmit').removeClass("tagSubmit1");
+    					$('.tagSubmit').removeAttr("disabled");
+    					$('.tagSubmit').css("cursor", "pointer");
+    				}
+    			}) 
+    		}
+    	}
+    	$(".tagSubmit").click(function(){
+    		var tagArr = new Array();
+    		var tag = document.getElementsByClassName("newTagContent");
+    		for(var i = 0; i < tag.length; i++) {
+    			tagArr[i] = tag[i].innerText;
+    		}
+    		var busNo = '${company.bus_no}';
+    		$.ajax({
+				url: path + "/search/newTagSubmit",
+				type: "POST",
+				traditional: true,
+				data: {
+						tagArr : tagArr,
+						busNo : busNo		
+				},	
+				success: function(data){
+					$(".tagModal").css("display", "none");
+					alert(data);
+				}
+			}) 
+    	})
     </script>
