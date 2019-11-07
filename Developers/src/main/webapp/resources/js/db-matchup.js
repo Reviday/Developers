@@ -120,20 +120,27 @@ function ajaxLogic(searchPackage){
                 var cardsArea=$('div#cards-area');
                 var cardContainer="";
 
-                for(var i in cards.icList){
-                    cardContainer+='<div class="resume-card col-sm-10 container">';
-                    cardContainer+='<div class="card"><h5 class="card-header"><img class="bus-user-profile" src="'+path+'/resources/upload/profile/no-profile-image.png"/><button class="btn btn-outline-primary" type="button">찜하기</button></h5>';
-                    cardContainer+='<div class="card-body">';
-                    cardContainer+='<h5 class="card-title">Special title treatment</h5>';
-                    cardContainer+='<p class="card-text">'+cards.icList[i].intro+'</p>';
-                    cardContainer+='<a href="#" class="btn btn-primary">이력서 미리보기</a>';
-                    cardContainer+='</div></div></div>';
-    
+                cardsArea.html();
+                
+                if(cards.icList!=null||cards.icList!=undefined){
+                        cardContainer+='<div class="cardsList" style="display:inline-block; width:100%;">';
+                    for(var i in cards.icList){
+                        cardContainer+='<div class="resume-card col-sm-10">';
+                        cardContainer+='<div class="card"><h5 class="card-header"><img class="bus-user-profile" src="'+path+'/resources/upload/profile/no-profile-image.png"/><button class="btn btn-outline-primary" type="button">찜하기</button></h5>';
+                        cardContainer+='<div class="card-body">';
+                        cardContainer+='<h5 class="card-title">Special title treatment</h5>';
+                        cardContainer+='<p class="card-text">'+cards.icList[i].intro+'</p>';
+                        cardContainer+='<a href="#" class="btn btn-primary">이력서 미리보기</a>';
+                        cardContainer+='</div></div></div>';
+                    }
+                    cardContainer+='</div>';
+                    cardContainer+='<div class="pageBar">'+cards.pageBar+'</div>';
+                    $(cardsArea).html(cardContainer);
                 }
-                cardContainer+=cards.pageBar;
-                $(cardsArea).html(cardContainer);
-                 
-
+                if(cards.icList==null||cards.icList==undefined){
+                    cardContainer+='<div class="container>검색 결과가 없습니다</div>';
+                    $(cardsArea).html(cardContainer);
+                }
             }
         }
     });

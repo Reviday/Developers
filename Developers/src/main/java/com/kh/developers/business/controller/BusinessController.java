@@ -257,6 +257,7 @@ public class BusinessController {
 			ptf=new PaginationTemplateFunction(req, icCount,"cPageSearch");
 			ptf.setCPage(cPage);
 			ptf.setNumPerPage(10);
+			System.out.println(icCount);
 			icList=bService.selectIntroCards(duties,searchBox, ptf.getcPage(), ptf.getNumPerPage());
 			for(IntroCard ic:icList) {
 				ic.setCareers(bService.selectCareers(ic.getResumeNo()));
@@ -273,7 +274,7 @@ public class BusinessController {
 			}
 		}
 		String pageBar=ptf.getPageBar();
-		
+		System.out.println(pageBar);
 		resultMap.put("icList", icList);
 		resultMap.put("pageBar",pageBar);
 		try {

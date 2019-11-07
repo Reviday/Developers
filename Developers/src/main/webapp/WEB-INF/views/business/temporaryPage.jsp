@@ -3,13 +3,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
+<!-- <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">   -->
 <jsp:include page="/WEB-INF/views/business/header.jsp">
 	<jsp:param name="pageTitle" value="메인 화면" />
 </jsp:include>
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <link rel="stylesheet" href="${path}/resources/css/style_ei.css">
-<%-- <link rel="stylesheet"
-	href="${path}/resources/css/dashboard.css"> --%>
 
 <style>
 	@media (max-width: 767px){
