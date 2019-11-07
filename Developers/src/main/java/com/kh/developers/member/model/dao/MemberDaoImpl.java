@@ -1,5 +1,6 @@
 package com.kh.developers.member.model.dao;
 
+import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.developers.member.model.vo.Interests;
 import com.kh.developers.member.model.vo.Member;
+import com.kh.developers.search.model.vo.Position;
 
 @Repository
 public class MemberDaoImpl implements MemberDao {
@@ -53,5 +55,29 @@ public class MemberDaoImpl implements MemberDao {
 	public int insertFilter(SqlSessionTemplate session) {
 		// TODO Auto-generated method stub
 		return session.insert("member.insertFilter");
+	}
+	
+	@Override
+	public Interests selectInterests(SqlSessionTemplate session, String memEmail) {
+		// TODO Auto-generated method stub
+		return session.selectOne("member.selectInterests", memEmail);
+	}
+	
+	@Override
+	public List<Position> selectPositionList(SqlSessionTemplate session) {
+		// TODO Auto-generated method stub
+		return session.selectList("member.selectPositionList");
+	}
+	
+	@Override
+	public List<Position> selectInterPositionList(SqlSessionTemplate session, Interests inter) {
+		// TODO Auto-generated method stub
+		return session.selectList("member.selectInterPositionList", inter);
+	}
+	
+	@Override
+	public List<Position> selectWeekPositionList(SqlSessionTemplate session) {
+		// TODO Auto-generated method stub
+		return session.selectList("member.selectWeekPositionList");
 	}
 }

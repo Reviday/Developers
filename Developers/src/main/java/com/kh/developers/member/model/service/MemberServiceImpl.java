@@ -1,6 +1,7 @@
 package com.kh.developers.member.model.service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -16,6 +17,7 @@ import com.kh.developers.common.authentication.TempKey;
 import com.kh.developers.member.model.dao.MemberDao;
 import com.kh.developers.member.model.vo.Interests;
 import com.kh.developers.member.model.vo.Member;
+import com.kh.developers.search.model.vo.Position;
 
 @Service
 public class MemberServiceImpl implements MemberService {
@@ -114,5 +116,29 @@ public class MemberServiceImpl implements MemberService {
 	public int insertFilter() {
 		// TODO Auto-generated method stub
 		return dao.insertFilter(session);
+	}
+	
+	@Override
+	public Interests selectInterests(String memEmail) {
+		Interests inter = dao.selectInterests(session, memEmail);
+		return inter;
+	}
+	
+	@Override
+	public List<Position> selectPositionList() {
+		List<Position> psList = dao.selectPositionList(session);
+		return psList;
+	}
+	
+	@Override
+	public List<Position> selectInterPositionList(Interests inter) {
+		List<Position> psList = dao.selectInterPositionList(session, inter);
+		return psList;
+	}
+	
+	@Override
+	public List<Position> selectWeekPositionList() {
+		List<Position> weekList = dao.selectWeekPositionList(session);
+		return weekList;
 	}
 }

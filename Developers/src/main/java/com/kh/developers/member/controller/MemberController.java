@@ -35,6 +35,8 @@ import com.kh.developers.resume.model.vo.Education;
 import com.kh.developers.resume.model.vo.Lang;
 import com.kh.developers.resume.model.vo.Links;
 import com.kh.developers.resume.model.vo.Resume;
+import com.kh.developers.search.model.service.SearchService;
+import com.kh.developers.search.model.vo.Position;
 
 @SessionAttributes(value= {"loginMember","busInfo"})
 @Controller
@@ -42,6 +44,8 @@ public class MemberController {
 
 	@Autowired
 	private MemberService service;
+	@Autowired
+	private SearchService service1;
 	@Autowired
 	private BusinessService bService;
 	@Autowired
@@ -165,6 +169,29 @@ public class MemberController {
 				int memberNo=result.getMemNo();
 				Business bus=bService.selectBusInfo(memberNo); //사업장 정보 불러오는 로직 
 				model.addAttribute("busInfo",bus);
+			}
+			//회원 관심분야 객체
+			Interests inter = service.selectInterests(result.getMemEmail());
+			if(inter == null) {
+				//추천 채용 리스트
+				List<Position> psList = service.selectPositionList();	
+				mv.addObject("psList", psList);
+				//신규 채용 회사
+				List<Position> firstList = service1.firstPsList();
+				mv.addObject("firstList", firstList);
+				//금주의 추천
+				List<Position> weekList = service.selectWeekPositionList();
+				mv.addObject("weekList", weekList);
+			}else {
+				//추천 채용 리스트
+				List<Position> psList = service.selectInterPositionList(inter);
+				mv.addObject("psList", psList);
+				//신규 채용 회사
+				List<Position> firstList = service1.firstPsList();
+				mv.addObject("firstList", firstList);
+				//금주의 추천
+				List<Position> weekList = service.selectWeekPositionList();
+				mv.addObject("weekList", weekList);
 			}
 			model.addAttribute("loginMember",result); 
 			mv.setViewName("member/mainPage");

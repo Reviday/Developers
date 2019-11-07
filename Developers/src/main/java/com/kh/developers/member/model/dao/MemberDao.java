@@ -1,11 +1,13 @@
 package com.kh.developers.member.model.dao;
 
+import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
 import com.kh.developers.member.model.vo.Interests;
 import com.kh.developers.member.model.vo.Member;
+import com.kh.developers.search.model.vo.Position;
 
 public interface MemberDao {
 
@@ -17,4 +19,8 @@ public interface MemberDao {
 	int lastStepEnrollEnd(SqlSessionTemplate session, Member m);
 	int insertFilter(SqlSessionTemplate session);
 	int insertInterests(SqlSessionTemplate session,Interests i);
+	Interests selectInterests(SqlSessionTemplate session, String memEmail);
+	List<Position> selectPositionList(SqlSessionTemplate session);
+	List<Position> selectInterPositionList(SqlSessionTemplate session, Interests inter);
+	List<Position> selectWeekPositionList(SqlSessionTemplate session);
 }

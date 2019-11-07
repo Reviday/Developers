@@ -1,7 +1,10 @@
 package com.kh.developers.member.model.service;
 
+import java.util.List;
+
 import com.kh.developers.member.model.vo.Interests;
 import com.kh.developers.member.model.vo.Member;
+import com.kh.developers.search.model.vo.Position;
 
 public interface MemberService {
 	
@@ -12,4 +15,8 @@ public interface MemberService {
 	Member lastStepEnrollEnd(Member m);
 	int insertFilter();
 	int insertInterests(Interests i);
+	Interests selectInterests(String memEmail);
+	List<Position> selectPositionList();
+	List<Position> selectInterPositionList(Interests inter);
+	List<Position> selectWeekPositionList();
 }
