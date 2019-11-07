@@ -78,8 +78,33 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/member/main.lmc")
-	public ModelAndView memberMainPage(Member m) {
+	public ModelAndView memberMainPage(Member m, HttpServletRequest req) {
 		ModelAndView mv=new ModelAndView();
+		
+		//회원 관심분야 객체
+		Interests inter = service.selectInterests(((Member)req.getSession().getAttribute("loginMember")).getMemEmail());
+		if(inter == null) {
+			//추천 채용 리스트
+			List<Position> psList = service.selectPositionList();	
+			mv.addObject("psList", psList);
+			//신규 채용 회사
+			List<Position> firstList = service1.firstPsList();
+			mv.addObject("firstList", firstList);
+			//금주의 추천
+			List<Position> weekList = service.selectWeekPositionList();
+			mv.addObject("weekList", weekList);
+		}else {
+			//추천 채용 리스트
+			List<Position> psList = service.selectInterPositionList(inter);
+			mv.addObject("psList", psList);
+			//신규 채용 회사
+			List<Position> firstList = service1.firstPsList();
+			mv.addObject("firstList", firstList);
+			//금주의 추천
+			List<Position> weekList = service.selectWeekPositionList();
+			mv.addObject("weekList", weekList);
+		}
+		
 		mv.setViewName("member/mainPage");
 		return mv;
 	}
