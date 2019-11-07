@@ -32,6 +32,7 @@ public class PaginationTemplateFunction {
 	private int pageBarSize;
 	private int pageNo;
 	private int pageEnd;
+	private int totalData;
 	
 	// 매핑용 변수
 	private String onClickFunction; 
@@ -107,6 +108,10 @@ public class PaginationTemplateFunction {
 	
 	public void setCPage(int cPage) {
 		this.cPage=cPage;
+		totalPage=(int) Math.ceil((double) totalData / this.numPerPage);
+		this.pageBarSize=10;
+		pageNo=((this.cPage - 1) / pageBarSize) * pageBarSize + 1;
+		pageEnd=pageNo + pageBarSize - 1;
 	}
 	
 	//NumPerPage를 수정하기 위한 setter
