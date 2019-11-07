@@ -16,6 +16,12 @@ public class MemberDaoImpl implements MemberDao {
 	
 	
 	@Override
+	public int memberUpdate(SqlSessionTemplate session, Member m) {
+		// TODO Auto-generated method stub
+		return session.update("member.memberUpdate",m);
+	}
+
+	@Override
 	public int insertInterests(SqlSessionTemplate session, Interests i) {
 		// TODO Auto-generated method stub
 		return session.insert("member.insertInterests",i);

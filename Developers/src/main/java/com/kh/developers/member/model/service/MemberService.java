@@ -19,4 +19,5 @@ public interface MemberService {
 	List<Position> selectPositionList();
 	List<Position> selectInterPositionList(Interests inter);
 	List<Position> selectWeekPositionList(); 
+	int memberUpdate(Member m);
 }

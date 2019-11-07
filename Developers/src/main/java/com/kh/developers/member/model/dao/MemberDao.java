@@ -11,16 +11,17 @@ import com.kh.developers.search.model.vo.Position;
 
 public interface MemberDao {
 
-	Member selectMemberOne(SqlSessionTemplate session, Member m);
-	int insertMember(SqlSessionTemplate session, Member m);
-	void createAuthKey(SqlSessionTemplate session, Map<String, Object> map);
-	int checkAuth(SqlSessionTemplate session, Member m);
-	int successAuth(SqlSessionTemplate session, Member m);
-	int lastStepEnrollEnd(SqlSessionTemplate session, Member m);
-	int insertFilter(SqlSessionTemplate session);
-	int insertInterests(SqlSessionTemplate session,Interests i);
-	Interests selectInterests(SqlSessionTemplate session, String memEmail);
-	List<Position> selectPositionList(SqlSessionTemplate session);
-	List<Position> selectInterPositionList(SqlSessionTemplate session, Interests inter);
-	List<Position> selectWeekPositionList(SqlSessionTemplate session);
+   Member selectMemberOne(SqlSessionTemplate session, Member m);
+   int insertMember(SqlSessionTemplate session, Member m);
+   void createAuthKey(SqlSessionTemplate session, Map<String, Object> map);
+   int checkAuth(SqlSessionTemplate session, Member m);
+   int successAuth(SqlSessionTemplate session, Member m);
+   int lastStepEnrollEnd(SqlSessionTemplate session, Member m);
+   int insertFilter(SqlSessionTemplate session);
+   int insertInterests(SqlSessionTemplate session,Interests i);
+   Interests selectInterests(SqlSessionTemplate session, String memEmail);
+   List<Position> selectPositionList(SqlSessionTemplate session);
+   List<Position> selectInterPositionList(SqlSessionTemplate session, Interests inter);
+   List<Position> selectWeekPositionList(SqlSessionTemplate session);
+   int memberUpdate(SqlSessionTemplate session,Member m);
 }

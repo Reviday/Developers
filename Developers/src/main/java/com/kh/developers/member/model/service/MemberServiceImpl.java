@@ -32,6 +32,12 @@ public class MemberServiceImpl implements MemberService {
 	
 	
 	@Override
+	public int memberUpdate(Member m) {
+		// TODO Auto-generated method stub
+		return dao.memberUpdate(session,m);
+	}
+
+	@Override
 	public int insertInterests(Interests i) {
 		// TODO Auto-generated method stub
 		return dao.insertInterests(session,i);

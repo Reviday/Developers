@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="member">
+<update id="memberUpdate" parameterType="member">
+	UPDATE TA_MEMBER SET mem_phone=#{memPhone},mem_name=#{memName} WHERE MEM_EMAIL=#{memEmail}
+	</update>
 	<update id="deleteMemberByAdmin" parameterType="member">
     	UPDATE TA_MEMBER SET MEM_STATUS='N', MEM_WITHDRAWAL_DATE=SYSDATE, MEM_ADMINMEMO=CONCAT(CONCAT(CONCAT(MEM_ADMINMEMO,'[관리자에 의한 탈퇴처리('),SYSDATE),')]') WHERE MEM_NO=#{memNo}
     </update>

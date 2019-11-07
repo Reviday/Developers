@@ -374,6 +374,21 @@ public class MemberController {
 		mv.setViewName("redirect:/member/myPage.lmc");
 		return mv;
 	}
+
+	@RequestMapping("/member/updatePage.lmc")
+	public ModelAndView updatePage() {
+		ModelAndView mv= new ModelAndView();
+		mv.setViewName("member/ajax/updatePage");
+		return mv;
+	}
+    @RequestMapping("/member/memberUpdate.lmc")
+    public ModelAndView memberUpdate(Member m) {
+    	ModelAndView mv = new ModelAndView();
+    	int result=service.memberUpdate(m);
+    	
+    	mv.setViewName("redirect:/member/myPage.lmc");
+    	return mv;
+    }
     
     
 }

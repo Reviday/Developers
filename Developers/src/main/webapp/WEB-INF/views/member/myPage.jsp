@@ -35,11 +35,19 @@
                                     class="icon-camera_icon" role="presentation"></i></div>
                         </div>
                     </div>
-                    <div class="Aside-me">
-                        <div class="Aside-me_name">강병민</div>
-                        <div class="Aside-me_email">cay9506@naver.com</div>
-                        <div class="Aside-me_tel">010-5632-1245</div>
-                    </div><a href="/profile/matching?level=1" class="Aside-edit">기본정보 수정</a>
+                     <div class="Aside-me">
+                    <div class="Aside-me_name">${loginMember.memName }</div>
+                    <div class="Aside-me_email">${memEmail }</div>
+                    <div class="Aside-me_tel">
+                    <c:if test="${loginMember.memPhone==null }">
+                    	저장된 번호가 없습니다
+                    </c:if>
+                    <c:if test="${loginMember.memPhone!=null }">
+                    ${loginMember.memPhone }
+                    </c:if>
+                    </div>
+                </div><a href="#"  onclick="updatePage();"class="Aside-edit">기본정보 수정</a>
+                
                 </div>
                 <div class="MatchUpStatus _s0V-DmOyFivCW3HY7Nh3"><a href="/profile/status?type=matchup-likes"
                         class="MatchUpStatus-item"><span class="MatchUpStatus-label">원해요</span><strong
@@ -216,7 +224,7 @@
 	   			"salary":salary,
 	   			"skill":skill
            };
-	   console.log(jobName,memEmail,experience,duty,salary,skill);
+	   
 	   $.ajax({
    		url:"${path }/member/insertInterests.lmc",
    		type:"POST",
@@ -225,11 +233,19 @@
    		success: function(data) { 
    			$("#sectionA").html("");
 			$("#sectionA").html(data);
-   		},
-   		error: function(data) {
-   			console.log(data);
    		}
    	}); 
+   }
+   function updatePage(){
+	   $.ajax({
+		   url:"${path }/member/updatePage.lmc",
+		   type:"POST",
+		   success:function(data){
+			   $("#sectionA").html("");
+			   $("#sectionA").html(data); 
+		   }
+		   
+	   })
    }
 
 
