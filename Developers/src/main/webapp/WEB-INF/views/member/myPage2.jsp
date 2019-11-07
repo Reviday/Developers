@@ -28,10 +28,15 @@
         <aside class="Aside _1dBR38s0D_bqykmPvZBYPu">
             <div class="Aside-header">
                 <div class="Aside-avatar">
-                    <div class="Aside-avatar_image"
-                        style="background-image: url(&quot;https://graph.facebook.com/1372739109548620/picture?height=300&amp;width=300&quot;);">
-                        <div class="_1RDFX7ZROHIIPqPMgmtS2E"><input type="file" accept="image/*"><i
-                                class="icon-camera_icon" role="presentation"></i></div>
+                    <div class="Aside-avatar_image" style="background-image: url(${path}/resources/upload/profile/${loginMember.memPhoto!=null?loginMember.memPhoto:'no-profile-image.png' });">
+                        <div class="_1RDFX7ZROHIIPqPMgmtS2E">
+                        <form id="logoFrm" name="logoFrm" enctype="multipart/form-data" method="POST">
+                        <i class="icon-camera_icon" role="presentation">+</i>
+					<input type="file" accept="image/*" id="logoFile" name="logoFile"/>
+			
+					
+						</form>
+                       </div>
                     </div>
                 </div>
                 <div class="Aside-me">
@@ -45,7 +50,7 @@
                     ${loginMember.memPhone }
                     </c:if>
                     </div>
-                </div><a href="" class="Aside-edit">기본정보 수정</a>
+                </div><a href="#"  onclick="updatePage();"class="Aside-edit">기본정보 수정</a>
             </div>
             <div class="MatchUpStatus _s0V-DmOyFivCW3HY7Nh3"><a href="/profile/status?type=matchup-likes"
                     class="MatchUpStatus-item"><span class="MatchUpStatus-label">원해요</span><strong
@@ -55,10 +60,10 @@
                     class="MatchUpStatus-item"><span class="MatchUpStatus-label">받은 제안</span><strong
                         class="MatchUpStatus-value">0</strong></a></div>
         </aside>
-        <section>
+        <section id="sectionA">
             <div class="_6zGbQ6Gwdi0O826QWL_gN">
 
-                <div class="MatchUpForm _1DBZ1F8aWXUpL5ry5a_nRi _3IED0gKfPim4KkuZ7BNhTA">
+                <div class="MatchUpForm _1DBZ1F8aWXUpL5ry5a_nRi _3IED0gKfPim4KkuZ7BNhTA" id="resumeContainer">
                     <div class="Form-header">
                         <dl class="Form-title">
                             <dt>기본 이력서</dt>
@@ -79,7 +84,7 @@
                                                 <span class="ResumeEntry-minor is-empty">전공 미입력</span>
                                                </c:if> 
                                                  <c:if test="${e.majorName!=null }">
-                                                <span class="ResumeEntry-minor is-empty">${e.majorName }</span>
+                                                <span class="ResumeEntry-minor">${e.majorName }</span>
                                                </c:if> 
                                                 </div>
                                                
@@ -98,13 +103,19 @@
                                                  </c:if> 
                                                    <c:if test="${c.depName!=null }">
                                                 <span
-                                                class="ResumeEntry-minor is-empty">${c.depName }</span>
+                                                class="ResumeEntry-minor">${c.depName }</span>
                                                  </c:if> 
                                          </div>
                                       </c:forEach>
                                     </div>
-                                </div><a href="/cv/361116?from=profile" class="MainResume-edit"><i class="icon-edit"
-                                        style="font-size: 28px;"></i></a>
+                                </div>
+                                <c:set value="${resume }" var="r"></c:set>
+                                <a href="#" 
+                                onclick="location.href ='${path }/resume/resumeView.lmc?resumeNo=${r.resumeNo }'"
+                                 class="MainResume-edit" >
+                                
+                                <i class="far fa-edit"  id="updateResume" 
+                                        style="font-size: 20px;"></i></a>
                             </div>
                             <div class="MainResume-about">${resume.intro }</div>
                         </div>
@@ -164,7 +175,48 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" type="text/javascript"></script>
 
 
+<script>
 
+function updatePage(){
+	   $.ajax({
+		   url:"${path }/member/updatePage.lmc",
+		   type:"POST",
+		   success:function(data){
+			   $("#sectionA").html("");
+			   $("#sectionA").html(data); 
+		   }
+		   
+	   })
+}
+
+$('#updateResume').hide();
+
+	$('#resumeContainer').hover(function() {
+		$('#updateResume').show();
+	}, function() {
+		$('#updateResume').hide();
+
+	});
+	
+	$(function(){
+		//로고 클릭 이벤트
+		$("#logoFile").on("change",function(){
+			var frm=new FormData($("#logoFrm")[0]);
+			$.ajax({
+				url:"${path}/member/logoChange",
+				data:frm,
+				type:"post",
+				processData:false,
+          	    contentType:false,
+				success:function(data){
+					$("#logoImg").attr("src",data.logo);
+				}
+
+			})
+		});
+	}
+
+</script>
 
 
 

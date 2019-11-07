@@ -154,13 +154,13 @@
                                        <div class="col-sm-9">
                                            <div
                                                class="search-input-box resume-input-form-group">
-                                               <c:if test="${c.empName==null }">
+                                               <c:if test="${c.busName==null }">
                                                <input type="text" class="resume-input company_name"
-                                                  name="empName"     placeholder="회사명">
+                                                  name="busName"     placeholder="회사명">
                                                 </c:if>
-                                                <c:if test="${c.empName!=null }">
+                                                <c:if test="${c.busName!=null }">
                                                <input type="text" class="resume-input company_name"
-                                                 name="empName" placeholder="회사명" value="${c.empName }">
+                                                 name="busName" placeholder="회사명" value="${c.busName }">
                                                 </c:if>
                                            </div>
                                            <div class="resume-input-form-group">
@@ -571,7 +571,7 @@
         plus +='<input type="text" maxlength="6"  name="endCareer" class="year form-control" placeholder="YYYYMM" onKeyup="this.value=this.value.replace(/[^0-9]/g,' +"''" + ');" />';
         plus +='</div><div class="form-group" ></div></span></div></div><div class="form-group" >';
         plus +='</div></div></div><div class="col-sm-9"><div class="search-input-box resume-input-form-group">';
-        plus +='<input type="text" class="resume-input company_name" placeholder="회사명" name="empName"/>';
+        plus +='<input type="text" class="resume-input company_name" placeholder="회사명" name="busName"/>';
         plus +='</div><div class="resume-input-form-group">';
         plus +='<input class="resume-input title" type="text" maxlength="255" placeholder="부서명/직책" name="depName"/></div>';
         plus +='<div class="resume-list projects" ><div class="resume-list-body"></div></div></div>';

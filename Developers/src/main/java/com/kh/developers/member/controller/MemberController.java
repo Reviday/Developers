@@ -1,7 +1,10 @@
 package com.kh.developers.member.controller;
 
+import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +22,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -352,10 +357,7 @@ public class MemberController {
 	@RequestMapping("/member/insertMathupResume.lmc")
 	public ModelAndView insertMathupResume(String schoolName,String empName,String startY,String startM,String endY,String endM,String memEmail,String memName) {
 		ModelAndView mv=new ModelAndView();
-		System.out.println(memEmail);
-		System.out.println(memName);
 		Member m =new Member();
-		System.out.println(m);
 		m.setMemEmail(memEmail);
 		m.setMemName(memName);
 		int result=rService.insertMathupResume(m);
@@ -382,13 +384,74 @@ public class MemberController {
 		return mv;
 	}
     @RequestMapping("/member/memberUpdate.lmc")
-    public ModelAndView memberUpdate(Member m) {
+    public ModelAndView memberUpdate(Member m,HttpSession session) {
     	ModelAndView mv = new ModelAndView();
     	int result=service.memberUpdate(m);
+    	Member m2=service.selectMemberOne(m);
+    	Interests inter=service.selectInterests(m2.getMemEmail());
+    	if(inter==null) {
+    		mv.addObject("loginMember",m2);
+        	mv.setViewName("member/myPage");
+    	}else {
+    		Resume resume=rService.selectMathUpResume(m2);
+    		List<Career> career=rService.selectCareer(resume);
+			List<Education> ed=rService.selectEd(resume);
+			List<Activitie> ac=rService.selectAc(resume);
+			List<Lang> Lang=rService.selectLang(resume);
+			List<Links> links=rService.selectLinks(resume);
+			mv.addObject("ed",ed);
+			mv.addObject("ac",ac);
+			mv.addObject("Lang",Lang);
+			mv.addObject("links",links);
+			mv.addObject("resume", resume);
+			mv.addObject("career", career);
+			mv.addObject("inter",inter);
+    		mv.addObject("loginMember",m2);
+        	mv.setViewName("member/myPage2");
+    	}
     	
-    	mv.setViewName("redirect:/member/myPage.lmc");
     	return mv;
     }
+    @RequestMapping("/member/logoChange")
+	public ModelAndView logoChange(MultipartHttpServletRequest mReq) {
+		ModelAndView mv=new ModelAndView();
+		MultipartFile logo=mReq.getFile("logoFile");
+		Business busInfo=(Business)mReq.getSession().getAttribute("busInfo");
+		String subDir="/resources/upload/images/member/bus_"+busInfo.getBusNo()+"/logo";
+		String saveDir=mReq.getSession().getServletContext().getRealPath("");
+		saveDir=saveDir.substring(0, saveDir.lastIndexOf("\\target"));
+		saveDir+="\\src\\main\\webapp";
+		File dir=new File(saveDir+subDir);
+		if(!dir.exists()) {
+			dir.mkdirs();
+		}
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd_HHmmssSSS");
+		String reName="logo_"+sdf.format(new Date());
+		String ext=logo.getOriginalFilename().substring(logo.getOriginalFilename().lastIndexOf("."));
+		reName+=ext;
+		//기존 로고 지우기
+		if(busInfo.getBusLogo()!=null) {			
+			String oriLogo=busInfo.getBusLogo();
+			if(oriLogo.lastIndexOf("/developers/")>0) {		
+				File oriFile=new File(saveDir+oriLogo.substring(oriLogo.lastIndexOf("/developers/")));
+				if(oriFile.exists()) {
+					oriFile.delete();
+				}
+			}
+		}
+		//새로운 로고로 저장
+		try {		
+			String logoFullName=saveDir+subDir+"/"+reName;
+			logo.transferTo(new File(logoFullName));
+			busInfo.setBusLogo("/developers"+subDir+"/"+reName);
+			int result=service.busLogoChange(busInfo);
+		}catch(IOException e) {
+			e.printStackTrace();
+		}
+		mv.addObject("logo",busInfo.getBusLogo());
+		mv.setViewName("jsonView");
+		return mv;
+	}
     
     
 }
