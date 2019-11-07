@@ -18,5 +18,5 @@ public interface MemberService {
 	Interests selectInterests(String memEmail);
 	List<Position> selectPositionList();
 	List<Position> selectInterPositionList(Interests inter);
-	List<Position> selectWeekPositionList();
+	List<Position> selectWeekPositionList(); 
 }

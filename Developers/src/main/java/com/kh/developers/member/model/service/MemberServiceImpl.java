@@ -134,7 +134,7 @@ public class MemberServiceImpl implements MemberService {
 	public List<Position> selectInterPositionList(Interests inter) {
 		List<Position> psList = dao.selectInterPositionList(session, inter);
 		return psList;
-	}
+	} 
 	
 	@Override
 	public List<Position> selectWeekPositionList() {
