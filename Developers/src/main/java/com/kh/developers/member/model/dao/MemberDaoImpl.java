@@ -71,7 +71,7 @@ public class MemberDaoImpl implements MemberDao {
 	
 	@Override
 	public List<Position> selectInterPositionList(SqlSessionTemplate session, Interests inter) {
-		// TODO Auto-generated method stub
+
 		return session.selectList("member.selectInterPositionList", inter);
 	}
 	

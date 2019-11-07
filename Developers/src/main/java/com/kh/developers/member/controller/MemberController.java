@@ -97,6 +97,8 @@ public class MemberController {
 			//추천 채용 리스트
 			List<Position> psList = service.selectInterPositionList(inter);
 			mv.addObject("psList", psList);
+			List<Position> psList1 = service.selectPositionList();	
+			mv.addObject("psList1", psList1);
 			//신규 채용 회사
 			List<Position> firstList = service1.firstPsList();
 			mv.addObject("firstList", firstList);
@@ -211,6 +213,8 @@ public class MemberController {
 				//추천 채용 리스트
 				List<Position> psList = service.selectInterPositionList(inter);
 				mv.addObject("psList", psList);
+				List<Position> psList1 = service.selectPositionList();	
+				mv.addObject("psList1", psList1);
 				//신규 채용 회사
 				List<Position> firstList = service1.firstPsList();
 				mv.addObject("firstList", firstList);

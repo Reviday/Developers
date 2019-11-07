@@ -49,11 +49,11 @@
                                 </p>
                                 <div class="tagInput">
                                     <div class="tagInput-div">
-                                        <input type="text" name="" id="" placeholder="태그를 이곳에 입력해주세요.">
+                                        <input type="text" name="newTag" id="" placeholder="태그를 이곳에 입력해주세요.">
                                         <button type="button">추가</button>
                                     </div>
                                 </div>
-                                <button type="button" class="tagSubmit tagSubmit1" disabled>의견 보내기</button>
+                                <button type="button" class="tagSubmit tagSubmit1" disabled style="cursor: default;">의견 보내기</button>
                             </div>
                         </div>
                     </div>
@@ -71,7 +71,7 @@
                     <c:if test="${not empty psList }">
 	                    <div class="positionList">
 	                    	<c:forEach var="p" items="${psList }">
-		                        <a href="" class="positionInfo">
+		                        <a href="${path }/search/companyInfo1.do?positionNo=${p.position_no }" class="positionInfo">
 		                            <h4>${p.position }</h4>
 		                            <h5>채용보상금 1,000,000원</h5>
 		                            <c:if test="${p.dead_date == 'Thu Dec 31 00:00:00 KST 2099'}">

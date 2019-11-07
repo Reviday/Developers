@@ -10,6 +10,10 @@ button {
     background: none;
 }
 
+button[disabled], html input[disabled] {
+    cursor: default;
+}
+
 a {
     text-decoration: inherit;
     cursor: pointer;
@@ -1001,7 +1005,7 @@ a {
 
 .tagInput-div>input {
     height: 100%;
-    width: calc(100% - 70px);
+    width: calc(100% - 80px);
     border: none;
     -webkit-appearance: none;
     -moz-appearance: none;

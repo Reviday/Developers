@@ -207,7 +207,7 @@
                     <ul>
                     	<c:if test="${not empty firstPsList }">
                     		<c:forEach var="f" items="${firstPsList }">
-                        		<a href="">
+                        		<a href="${path }/search/companyAllInfo?busNo=${f.bus_no}">
                             		<li>
                                 		<div class="searchHeader">
                                 			

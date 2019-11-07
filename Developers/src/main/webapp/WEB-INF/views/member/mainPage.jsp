@@ -123,35 +123,68 @@
             </div>
             <div class="position-content">
                 <ul class="clearfix">
-                	<c:forEach var="p" items="${psList }" begin="1" varStatus="s">
-	                    <c:if test="${s.count < 5 }">
-		                    <li>
-		                        <div class="position-content-company">
-		                            <a href="${path }/search/companyInfo.do?positionNo=${p.position_no }&memNo=${loginMember.memNo}">
-		                                <div class="position-company-header" style="background-image: url(${p.bus_images});">
-		                                    <button type="button" class="likeButton">
-		                                        <i class="fas fa-heart"></i>
-		                                        <c:out value="${p.like_count }"/>
-		                                    </button>
-		                                </div>
-		                                <div class="body">
-		                                    <dl>
-		                                        <dt><c:out value="${p.position }"/></dt>
-		                                        <dd>
-		                                            <c:out value="${p.bus_name }"/>
-		                                            <br>
-		                                            <span><c:out value="${p.bus_area }"/></span>
-		                                            <span class="addressDot">.</span>
-		                                            <span><c:out value="${p.bus_country }"/></span>
-		                                        </dd>
-		                                    </dl>
-		                                    <div class="reward">채용보상금 1,000,000원</div>
-		                                </div>
-		                            </a>
-		                        </div>
-		                    </li>
-	                    </c:if>
-                    </c:forEach>
+	                <c:if test="${not empty psList }">
+	                	<c:forEach var="p" items="${psList }" begin="1" varStatus="s">
+		                    <c:if test="${s.count < 5 }">
+			                    <li>
+			                        <div class="position-content-company">
+			                            <a href="${path }/search/companyInfo.do?positionNo=${p.position_no }&memNo=${loginMember.memNo}">
+			                                <div class="position-company-header" style="background-image: url(${p.bus_images});">
+			                                    <button type="button" class="likeButton">
+			                                        <i class="fas fa-heart"></i>
+			                                        <c:out value="${p.like_count }"/>
+			                                    </button>
+			                                </div>
+			                                <div class="body">
+			                                    <dl>
+			                                        <dt><c:out value="${p.position }"/></dt>
+			                                        <dd>
+			                                            <c:out value="${p.bus_name }"/>
+			                                            <br>
+			                                            <span><c:out value="${p.bus_area }"/></span>
+			                                            <span class="addressDot">.</span>
+			                                            <span><c:out value="${p.bus_country }"/></span>
+			                                        </dd>
+			                                    </dl>
+			                                    <div class="reward">채용보상금 1,000,000원</div>
+			                                </div>
+			                            </a>
+			                        </div>
+			                    </li>
+		                    </c:if>
+	                    </c:forEach>
+                    </c:if>
+                     <c:if test="${empty psList }">
+	                	<c:forEach var="p" items="${psList1 }" begin="1" varStatus="s">
+		                    <c:if test="${s.count < 5 }">
+			                    <li>
+			                        <div class="position-content-company">
+			                            <a href="${path }/search/companyInfo.do?positionNo=${p.position_no }&memNo=${loginMember.memNo}">
+			                                <div class="position-company-header" style="background-image: url(${p.bus_images});">
+			                                    <button type="button" class="likeButton">
+			                                        <i class="fas fa-heart"></i>
+			                                        <c:out value="${p.like_count }"/>
+			                                    </button>
+			                                </div>
+			                                <div class="body">
+			                                    <dl>
+			                                        <dt><c:out value="${p.position }"/></dt>
+			                                        <dd>
+			                                            <c:out value="${p.bus_name }"/>
+			                                            <br>
+			                                            <span><c:out value="${p.bus_area }"/></span>
+			                                            <span class="addressDot">.</span>
+			                                            <span><c:out value="${p.bus_country }"/></span>
+			                                        </dd>
+			                                    </dl>
+			                                    <div class="reward">채용보상금 1,000,000원</div>
+			                                </div>
+			                            </a>
+			                        </div>
+			                    </li>
+		                    </c:if>
+	                    </c:forEach>
+                    </c:if>
                 </ul>
             </div>
         </div>
@@ -222,8 +255,41 @@
 	                    	</c:if>
 	                    </c:forEach>
                     </c:if>
-                    <c:if test="${empty weekList }">
+                    <c:if test="${empty weekList && not empty psList }">
 	                    <c:forEach var="w" items="${psList }" begin="1" varStatus="s">
+	                    	<c:if test="${s.count < 5 }">
+			                    <li>
+			                        <div class="weekchoochun-company">
+			                            <a href="${path }/search/companyInfo.do?positionNo=${w.position_no }&memNo=${loginMember.memNo}">
+			                                <div class="weekchoochun-company-header" style="background-image:url(${w.bus_images});">
+			                                    <button type="button" class="likeButton">
+			                                        <i class="fas fa-heart"></i>
+			                                        <c:out value="${w.like_count }"/>
+			                                    </button>
+			                                </div>
+			                                <div class="body">
+			                                    <dl>
+			                                        <dt>
+			                                            <c:out value="${w.position }"/>
+			                                        </dt>
+			                                        <dd>
+			                                            <c:out value="${w.bus_name }"/>
+			                                            <br>
+			                                            <span><c:out value="${w.bus_area }"/></span>
+			                                            <span class="addressDot">.</span>
+			                                            <span><c:out value="${w.bus_country }"/></span>
+			                                        </dd>
+			                                    </dl>
+			                                    <div class="reward">채용보상금 1,000,000원</div>
+			                                </div>
+			                            </a>
+			                        </div>
+			                    </li>
+	                    	</c:if>
+	                    </c:forEach>
+                    </c:if>
+                    <c:if test="${empty weekList && empty psList }">
+	                    <c:forEach var="w" items="${psList1 }" begin="1" varStatus="s">
 	                    	<c:if test="${s.count < 5 }">
 			                    <li>
 			                        <div class="weekchoochun-company">
