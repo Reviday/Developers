@@ -17,6 +17,10 @@ public interface BusinessService2 {
 	//지원자 리스트 카운트
 	int selectBusApplCount(Map map);
 	
+	//지원자 insert/delete
+	int insertApplicant(Map map);
+	int deleteApplicant(Map map);
+	
 	//지원자 좋아요 insert/delete
 	int insertApplLike(Map map);
 	int deleteApplLike(Map map);

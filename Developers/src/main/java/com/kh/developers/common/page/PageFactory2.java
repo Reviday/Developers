@@ -5,10 +5,18 @@ public class PageFactory2 {
 		String pageBar="";
 		int pageBarSize=5;
 		int totalPage=(int)Math.ceil((double)totalData/numPerPage);
-		int pageNo=cPage>pageBarSize/2?cPage-pageBarSize/2:((cPage-1)/pageBarSize)*pageBarSize+1;
-		pageNo=totalPage-cPage<cPage-pageBarSize?totalPage-pageBarSize+1:pageNo;
-		int pageEnd=cPage>pageBarSize/2?cPage+pageBarSize/2:pageNo+pageBarSize-1;
-
+		int pageNo=cPage-2;
+		if(pageNo<1) {
+			pageNo=1;
+		}
+		int pageEnd=pageNo+pageBarSize-1;
+		if(pageEnd>totalPage) {
+			pageEnd=totalPage;
+			pageNo=totalPage-pageBarSize+1;
+			if(pageNo<1) {
+				pageNo=1;
+			}
+		}
 		pageBar="<ul class='pagination justify-content-center pagingation-sm appl-page'>";
 		if(cPage==1) {			
 			pageBar+="<li class='page-item disabled'>";

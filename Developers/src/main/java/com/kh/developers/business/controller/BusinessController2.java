@@ -100,6 +100,7 @@ public class BusinessController2 {
 	public ModelAndView dbApplications(Model model,HttpServletRequest req) {
 		ModelAndView mv=new ModelAndView();
 		Map map=new HashMap();
+		map.put("busNo", ((Business)req.getSession().getAttribute("busInfo")).getBusNo());
 		String applHtml="";
 		applHtml+="<div id='appl-leftside' class='appl-leftside'>";
 		applHtml+="<h5>채용중<i class='fas fa-angle-up'></i></h5>";
@@ -143,7 +144,7 @@ public class BusinessController2 {
 		applHtml+="<li class='ls3'>";
 		applHtml+="<a class='ei_a2'>불합격&nbsp;<span>( "+service.selectBusApplCount(map)+" )</span></a>";
 		applHtml+="</li>";
-		map.put("applIndex", 0);
+		map.put("applIndex", 5);
 		applHtml+="<li class='ls3'>";
 		applHtml+="<a class='ei_a2'>기간만료&nbsp;<span>( "+service.selectBusApplCount(map)+" )</span></a>";
 		applHtml+="</li>";
@@ -206,6 +207,7 @@ public class BusinessController2 {
 	public ModelAndView applChange(HttpSession session, @RequestParam int applIndex, @RequestParam boolean applLike, @RequestParam String search, @RequestParam(value="cPage", required=false, defaultValue="1")int cPage) {
 		ModelAndView mv=new ModelAndView();
 		Map map=new HashMap();
+		map.put("busNo", ((Business)session.getAttribute("busInfo")).getBusNo());
 		map.put("applIndex", applIndex);
 		map.put("applLike", applLike);
 		String html="";
@@ -222,21 +224,21 @@ public class BusinessController2 {
 			html+="<h4>포지션에 적합한 후보자가 없으신가요?</h4>";
 			html+="<h4><a href='#'>매치업</a> 탭에서 인재를 검색하고 직접 면접제안을 해보세요!</h4>";
 		}else {
-			for(int i=0; i<applList.size(); i++) {
-				Member m=service.selectApplicant(applList.get(i).getMemNo());
+			for(Applicant appl : applList) {
+				Member m=service.selectApplicant(appl.getMemNo());
 				html+="<div class='appl-aList'>";
 				html+="<div class='aList-left'>";
 				Map likeMap=new HashMap();
-				map.put("busNo", ((Business)session.getAttribute("busInfo")).getBusNo());
-				map.put("memNo", m.getMemNo());
-				if(applLike||service.selectCheckLike(likeMap)>0) {					
+				likeMap.put("busNo", ((Business)session.getAttribute("busInfo")).getBusNo());
+				likeMap.put("applNo", appl.getApplNo());
+				if(applLike||service.selectCheckLike(likeMap)>0) {
 					html+="<div class='aList-like-btn like_on'><i class='fas fa-star'></i></div>";
 				}else {
 					
 					html+="<div class='aList-like-btn'><i class='fas fa-star'></i></div>";
 				}
 				html+="<div class='aList-info'>";
-				html+="<div class='aList-info-no'>No_"+m.getMemNo()+"</div>";
+				html+="<div class='aList-info-no'>No_"+appl.getAlNo()+"</div>";
 				html+="<div class='aList-info-name'>"+m.getMemName().charAt(0)+"<i class='far fa-circle'></i><i class='far fa-circle'></i></div>";
 				html+="</div>";
 				html+="<div class='aList-type'>";
@@ -245,17 +247,41 @@ public class BusinessController2 {
 				html+="</div>";
 				html+="<div class='aList-right'>";
 				html+="<div class='aList-del-btn'>";
-				html+="<button type='button' class='del-btn' onclick='fn_aList_del()'>삭제</button>";
+				html+="<button type='button' class='del-btn' onclick='fn_del_modal(event);'>삭제</button>";
 				html+="</div>";
 				html+="</div>";
+				html+="<input type='hidden' class='aList-appl-no' value='"+appl.getApplNo()+"'/>";
 				html+="</div><br/>";
 			}
+			mv.addObject("pageBar", PageFactory2.getApplPageBar(totalData, cPage, numPerPage));
+			
+			String delModal="";
+			delModal+="<div class='del-modal'>";
+			delModal+="<div class='close-modal modal-background'></div>";
+			delModal+="<div class='del-modal-content'>";
+			delModal+="<div class='del-modal-header'>";
+			delModal+="<span>지원자 삭제</span>";
+			delModal+="</div>";
+			delModal+="<div class='del-modal-body'>";
+			delModal+="<div class='del-mem'></div>";
+			delModal+="<div>정말 삭제하시겠습니까?</div>";
+			delModal+="<div class='warn'>*한번 삭제된 지원자는 다시 열람할 수 없습니다.</div>";
+			delModal+="</div>";
+			delModal+="<div class='del-modal-footer'>";
+			delModal+="<button class='del-modal-button' onclick='fn_appl_del();'>삭제</button>";
+			delModal+="<button class='del-modal-button close-modal'>취소</button>";
+			delModal+="</div>";
+			delModal+="</div>";
+			
+			delModal+="</div>";
+			mv.addObject("delModal", delModal);
+					
 		}
 		session.setAttribute("applIndex", applIndex);
 		session.setAttribute("applcPage", cPage);
 		session.setAttribute("applLike", applLike);
 		mv.addObject("applInnerHtml", html);
-		mv.addObject("pageBar", PageFactory2.getApplPageBar(totalData, cPage, numPerPage));
+		
 		mv.setViewName("jsonView");
 		return mv; 
 	}
@@ -276,11 +302,11 @@ public class BusinessController2 {
 	}
 	
 	@RequestMapping("/business/applLike.lbc")
-	public ModelAndView applLike(HttpSession session, @RequestParam int memNo, @RequestParam boolean flag) {
+	public ModelAndView applLike(HttpSession session, @RequestParam int applNo, @RequestParam boolean flag) {
 		ModelAndView mv=new ModelAndView();
 		Map map=new HashMap();
 		map.put("busNo", ((Business)session.getAttribute("busInfo")).getBusNo());
-		map.put("memNo", memNo);
+		map.put("applNo", applNo);
 		
 		int result=0;
 		if(flag) {			
@@ -288,12 +314,20 @@ public class BusinessController2 {
 		}else {
 			result=service.insertApplLike(map);
 		}
-		if(result>0) {
-			
-		}else {
-			System.out.println("에러");
-		}
 		mv.setViewName("jsonView");
+		return mv;
+	}
+	
+	@RequestMapping("/business/applDel.lbc")
+	public ModelAndView applDel(HttpSession session, @RequestParam int applNo) {
+		ModelAndView mv=new ModelAndView();
+		Map map=new HashMap();
+		map.put("busNo", ((Business)session.getAttribute("busInfo")).getBusNo());
+		map.put("applNo", applNo);
+		service.deleteApplicant(map);
+		mv.addObject("msg", "해당 지원자가 삭제되었습니다.");
+		mv.addObject("loc", "/business/dashboard.lbc");
+		mv.setViewName("common/msg");
 		return mv;
 	}
 }

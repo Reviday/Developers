@@ -20,17 +20,30 @@ public class BusinessDaoImpl2 implements BusinessDao2 {
 	}
 
 	@Override
-	public List<Applicant> selectBusApplNew(SqlSession session, Map map,  int cPage, int numPerPage) {
+	public List<Applicant> selectBusAppl(SqlSession session, Map map,  int cPage, int numPerPage) {
 		RowBounds row=new RowBounds((cPage-1)*numPerPage, numPerPage);
 		return session.selectList("business2.selectBusAppl", map, row);
 	}
 
 
 	@Override
-	public int selecBusApplNewCount(SqlSession session, Map map) {
+	public int selecBusApplCount(SqlSession session, Map map) {
 		return session.selectOne("business2.selectBusApplCount", map);
 	}
+	
+	@Override
+	public int insertApplicant(SqlSession session, Map map) {
+		return session.insert("business2.insertApplicant", map);
+	}
 
+	@Override
+	public int deleteApplicant(SqlSession session, Map map) {
+		return session.update("business2.deleteApplicant", map);
+	}
+
+	
+	
+	
 	@Override
 	public int insertApplLike(SqlSession session, Map map) {
 		return session.insert("business2.insertApplLike", map);

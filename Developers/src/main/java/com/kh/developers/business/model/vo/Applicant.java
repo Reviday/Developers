@@ -11,6 +11,8 @@ import lombok.NoArgsConstructor;
 @Data
 public class Applicant {
 
+	private int alNo;
+	private int applNo;
 	private int busNo;
 	private int memNo;
 	private int positionNo;

@@ -29,16 +29,23 @@
 		UPDATE BUSINESS_INFO SET BUS_LOGO=#{busLogo} WHERE BUS_NO=#{busNo}
 	</update>
 	
+	
+	
+	
+	<!-- 지원자탭 -->
 	<select id="selectBusAppl" parameterType="map" resultMap="applMap">
-		SELECT * FROM TA_APPL_BUS A
+		SELECT A.* FROM (SELECT ROWNUM AS AL_NO, T.* FROM TA_APPL_BUS T WHERE BUS_NO=#{busNo}) A
 	<if test="applLike!=null and applLike!='' or applLike==true">
 		JOIN TA_APPL_LIKE B ON (A.BUS_NO=B.BUS_NO)
 	</if>
-		where 2=2
+		WHERE A.APPL_DEL_YN='N'
+	<if test="applLike!=null and applLike!='' or applLike==true">
+		AND A.APPL_NO=B.APPL_NO
+	</if>
   	<if test="applIndex!=null and applIndex!=''">
-	  	and APPL_STATUS=#{applIndex}	
+	  	AND APPL_STATUS=#{applIndex}	
   	</if>
-		ORDER BY A.MEM_NO DESC
+		ORDER BY 1 DESC
 	</select>
 	
 	<select id="selectBusApplCount" parameterType="map" resultType="_int">
@@ -46,21 +53,32 @@
 	<if test="applLike!=null and applLike!='' or applLike==true">
 		JOIN TA_APPL_LIKE B ON (A.BUS_NO=B.BUS_NO)
 	</if>
-		where 2=2
+		WHERE A.BUS_NO=#{busNo} AND A.APPL_DEL_YN='N'
+	<if test="applLike!=null and applLike!='' or applLike==true">
+		AND A.APPL_NO=B.APPL_NO
+	</if>
   	<if test="applIndex!=null and applIndex!=''">
 	  	and APPL_STATUS=#{applIndex}	
   	</if>
 	</select>
 	
+	<insert id="insertApplicant" parameterType="map">
+		INSERT INTO TA_APPL_BUS VALUES(#{busNo}, #{applNo})
+	</insert>
+	
+	<update id="deleteApplicant" parameterType="map">
+		UPDATE TA_APPL_BUS SET APPL_DEL_YN='Y' WHERE BUS_NO=#{busNo} AND APPL_NO=#{applNo}
+	</update>
+	
 	<select id="selectCheckLike" parameterType="map" resultType="_int">
-		SELECT COUNT(*) FROM TA_APPL_LIKE WHERE BUS_NO=#{bunNo} AND MEM_NO=#{memNo}
+		SELECT COUNT(*) FROM TA_APPL_LIKE WHERE BUS_NO=#{busNo} AND APPL_NO=#{applNo}
 	</select>
 	<insert id="insertApplLike" parameterType="map">
-		INSERT INTO TA_APPL_LIKE VALUES(#{busNo}, #{memNo})
+		INSERT INTO TA_APPL_LIKE VALUES(#{busNo}, #{applNo})
 	</insert>
 	
 	<delete id="deleteApplLike" parameterType="map">
-		DELETE FROM TA_APPL_LIKE BUS_NO=#{busNo} AND MEM_NO=#{memNo}
+		DELETE FROM TA_APPL_LIKE WHERE BUS_NO=#{busNo} AND APPL_NO=#{applNo}
 	</delete>
 	
 	<select id="selectApplicant" parameterType="_int" resultMap="memberMap">
@@ -101,6 +119,8 @@
 	</resultMap>
 	
 	<resultMap type="applicant" id="applMap">
+		<result property="alNo" column="al_no"/>
+		<result property="applNo" column="appl_no"/>
 		<result property="busNo" column="bus_no"/>
 		<result property="memNo" column="mem_no"/>
 		<result property="positionNo" column="position_no"/>

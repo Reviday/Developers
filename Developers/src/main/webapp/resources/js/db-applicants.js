@@ -3,6 +3,7 @@
 
 
 $(function(){
+    var del_applNo=0;
     if(appl_like=='true'){
         $("#like_check").prop("checked",true);
     }
@@ -10,7 +11,10 @@ $(function(){
     fn_appl_nav(appl_index, appl_page);
    
     //인덱스 선택
-    $($('.appl-main-nav>ul>li')[appl_index]).children().addClass('ca2');
+    if(appl_index<1){
+        appl_index=1;
+    }
+    $($('.appl-main-nav>ul>li')[appl_index-1]).children().addClass('ca2');
 
     //사이드내비
     $('.appl-leftside>h5').on('click',function(){
@@ -27,7 +31,7 @@ $(function(){
     $('.appl-main-nav>ul>li>a').on('click',function(){
         $($(this).parent().siblings()).children().removeClass('ca2');
         $(this).addClass('ca2');
-        fn_appl_nav($(this).parent().index());
+        fn_appl_nav($(this).parent().index()+1, 1);
     });
     $('.appl-main-nav>ul>li>a').hover(function(){
         $(this).addClass('ca4');
@@ -40,11 +44,9 @@ $(function(){
         }
     });
     $("#like_check").on("change", function(){
+        appl_page=1;
         fn_appl_nav(appl_index, appl_page);
     });
-
-   
-
 });
   
 function fn_appl_nav(index, page){
@@ -57,6 +59,7 @@ function fn_appl_nav(index, page){
         success:function(data){
             $(".appl-applicant-list").html(data.applInnerHtml);
             $(".appl-applicant-list").append(data.pageBar);
+            $("#content").append(data.delModal);
              //좋아요 버튼 클릭
             $(".aList-like-btn").on("click",function(){
                 if($(this).hasClass("like_on")){
@@ -66,20 +69,36 @@ function fn_appl_nav(index, page){
                     $(this).addClass("like_on");
                     fn_appl_like(event, false);
                 }
-            })
+            });
+
+            //삭제 모달 밖 클릭
+            $(".close-modal").on("click",function(){
+                $(".del-modal").hide();
+            });
         }
     });
 
 }
 
 function fn_appl_like(event, flag){
-    var memNo=$(event.target).parents('.aList-left').children('.aList-info').children(':first').html().substring(3);
+    var like_applNo=$(event.target).parents('.appl-aList').children('input[type="hidden"]').val();
     $.ajax({
         url:path+"/business/applLike.lbc",
-        data:{"memNo":memNo, "flag":flag}
+        data:{"applNo":like_applNo, "flag":flag},
+        datatype:'post'
     });
 }
 
+function fn_del_modal(event){
+    del_applNo=$(event.target).parents('.appl-aList').children('input[type="hidden"]').val();
+    var del_memName=$(event.target).parents('.aList-right').siblings('.aList-left').children('.aList-info').children(':last').html();
+    $(".del-mem").html(del_memName);
+    $(".del-modal").show();
+}
+
+function fn_appl_del(){
+    location.href=path+"/business/applDel.lbc?applNo="+del_applNo;
+}
 
 
     

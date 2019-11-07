@@ -214,6 +214,75 @@ input[name="search_em"]::placeholder{
     color:#900020;
 }
 
+.del-modal{
+    position: absolute;
+    top:0;
+    left:0;
+    display:none;
+    width:100%;
+    height:100%;
+}
+
+.del-modal-content{
+    position: absolute;
+    width:550px;
+    height:250px;
+    background-color: white;
+    z-index: 999;
+    top:20%;
+    left:50%; 
+    transform:translateX(-50%);
+}
+.del-modal-header{
+    width:100%;
+    height:25px;
+    padding-top:1%;
+    text-align: center;
+}
+.del-modal-header>span{
+    margin:0 auto;
+    font-size: 2rem;
+    font-weight: 900;
+}
+.del-modal-body{
+    width:100%;
+    height:180px;
+    padding:10% 10%;
+    font-size:1.5rem;
+}
+.del-modal-body>.warn{
+    font-size: 1rem;
+    color:red;
+}
+
+
+.del-modal-footer{
+    width:100%;
+    height:30px;
+    text-align: center;
+}
+
+.del-modal-footer>button{
+    width:48%;
+    height: 30px;
+    margin: 5px 0.2rem;
+    background-color: #900020;
+    color:white;
+    font-size: 1.8rem;
+    border-radius: 3px;
+}
+.del-modal-footer>button:hover{
+    background-color: #6e0000;
+}
+.modal-background{
+    position: absolute;
+    top:0;
+    width:100%;
+    height:100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index:990;
+}
+
 /*matchup*/
 .mu-top{
     background-color: black;

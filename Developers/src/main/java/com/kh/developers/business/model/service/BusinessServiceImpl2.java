@@ -28,15 +28,31 @@ public class BusinessServiceImpl2 implements BusinessService2 {
 
 	@Override
 	public List<Applicant> selectBusAppl(Map map, int cPage, int numPerPage) {
-		List<Applicant> list=dao.selectBusApplNew(session, map, cPage, numPerPage);
+		List<Applicant> list=dao.selectBusAppl(session, map, cPage, numPerPage);
 		return list;
 	}
 
 	@Override
 	public int selectBusApplCount(Map map) {
-		int result=dao.selecBusApplNewCount(session, map);
+		int result=dao.selecBusApplCount(session, map);
 		return result;
 	}
+	
+	@Override
+	public int insertApplicant(Map map) {
+		int result=dao.insertApplicant(session, map);
+		return result;
+	}
+
+	@Override
+	public int deleteApplicant(Map map) {
+		int result=dao.deleteApplicant(session, map);
+		return result;
+	}
+	
+	
+	
+	
 
 	@Override
 	public int insertApplLike(Map map) {

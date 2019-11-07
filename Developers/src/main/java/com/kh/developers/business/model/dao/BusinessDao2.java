@@ -13,10 +13,14 @@ public interface BusinessDao2 {
 	int busLogoChange(SqlSession session, Business busInfo);
 	
 	//지원자 리스트
-	List<Applicant> selectBusApplNew(SqlSession session, Map map, int cPage, int numPerPage);
+	List<Applicant> selectBusAppl(SqlSession session, Map map, int cPage, int numPerPage);
 	
 	//지원자 리스트 카운트
-	int selecBusApplNewCount(SqlSession session, Map map);
+	int selecBusApplCount(SqlSession session, Map map);
+	
+	//지원자 insert/delete
+	int insertApplicant(SqlSession session, Map map);
+	int deleteApplicant(SqlSession session, Map map);
 	
 	//지원자 좋아요 insert/delete
 	int insertApplLike(SqlSession session, Map map);
