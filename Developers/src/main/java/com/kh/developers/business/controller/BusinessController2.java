@@ -42,7 +42,7 @@ public class BusinessController2 {
 		String subDir="/resources/upload/images/business/bus_"+busInfo.getBusNo()+"/logo";
 		String saveDir=mReq.getSession().getServletContext().getRealPath("");
 		saveDir=saveDir.substring(0, saveDir.lastIndexOf("\\target"));
-		saveDir+="\\src\\main\\webapp";
+		saveDir+="/src/main/webapp";
 		File dir=new File(saveDir+subDir);
 		if(!dir.exists()) {
 			dir.mkdirs();
@@ -53,12 +53,10 @@ public class BusinessController2 {
 		reName+=ext;
 		//기존 로고 지우기
 		if(busInfo.getBusLogo()!=null) {			
-			String oriLogo=busInfo.getBusLogo();
-			if(oriLogo.lastIndexOf("/developers/")>0) {		
-				File oriFile=new File(saveDir+oriLogo.substring(oriLogo.lastIndexOf("/developers/")));
-				if(oriFile.exists()) {
-					oriFile.delete();
-				}
+			String oriLogo=busInfo.getBusLogo();	
+			File oriFile=new File(saveDir+oriLogo.substring(oriLogo.lastIndexOf("/resources")));
+			if(oriFile.exists()) {
+				oriFile.delete();
 			}
 		}
 		//새로운 로고로 저장
