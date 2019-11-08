@@ -1,7 +1,9 @@
 package com.kh.developers.admin.model.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,17 @@ public class AdminServiceImpl implements AdminService {
 	private AdminDao dao;
 	@Autowired
 	private SqlSessionTemplate session;
+	
+	@Override
+	public int selectMemberCountBySearch(String value) {
+		// value 값을 공백을 기준으로 검색 조건을 담는다.
+		Map<String, String> searchValue=new HashMap<String, String>();
+		String[] searchArr=value.split("\\s");
+		for(int i=0; i<searchArr.length; i++) {
+			searchValue.put(Integer.toString(i), searchArr[i]);
+		};
+ 		return dao.selectMemberCountBySearch(session, searchValue);
+	}
 	
 	@Override
 	public List<Member> deleteMember(Member m, int cPage, int numPerPage) {

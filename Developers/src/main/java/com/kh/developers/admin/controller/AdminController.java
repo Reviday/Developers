@@ -1,14 +1,11 @@
 package com.kh.developers.admin.controller;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.client.support.HttpAccessor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,8 +28,20 @@ public class AdminController {
 	private AdminService service;
 	private PaginationTemplate pt;
 	
+	@RequestMapping("/admin/memberSearchList.lac")
+	public String memberSearchList(HttpServletRequest req, Model model,
+			@RequestParam (value="value", required=true) String value) {
+		if(value==null || value.equals("")) return "/admin/memberList";
+		int totalData=service.selectMemberCountBySearch(value);
+		pt=new PaginationTemplate(req, totalData, "/admin/memberSearchList.lac");
+		
+		
+		return null;
+	}
+	
+	
 	@RequestMapping("/admin/deleteMember.lac")
-	public String deleteMember(Member m, HttpServletRequest req, HttpServletResponse res, Model model) {
+	public String deleteMember(Member m, HttpServletRequest req, Model model) {
 		ObjectMapper mapper=new ObjectMapper();
 		int totalData=service.selectMemberCount();
 		pt=new PaginationTemplate(req, totalData, "/admin/memberList.lac");
