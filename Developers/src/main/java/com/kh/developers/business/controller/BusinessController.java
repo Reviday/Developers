@@ -209,11 +209,11 @@ public class BusinessController {
 		String searchBox="";
 		int cPage;
 		try {
-			cPage=Integer.parseInt(searchPackage.get(3));			
+			cPage=Integer.parseInt(searchPackage.get(2));			
 		}catch(Exception e) {
 			cPage=1;
 		}
-		System.out.println(cPage);
+		System.out.println("가공후cPage: "+cPage);
 		
 		if(!searchPackage.get(0).isEmpty()) {
 			String[] selected=(searchPackage.get(0)).split(",");
@@ -235,7 +235,9 @@ public class BusinessController {
 		if(searchPackage.get(0).isEmpty()&&searchPackage.get(1).isEmpty()) {
 			System.out.println("검색1,2 둘다 없음 (모든검색)");
 //			검색1,2 둘다없는 모든검색
-			icList=bService.selectIntroCards();
+			int icCount=bService.selectCountBasic();
+			ptf=new PaginationTemplateFunction(cPage, icCount,"cPageSearch");
+			icList=bService.selectIntroCards(ptf.getcPage(), ptf.getNumPerPage());
 			for(IntroCard ic:icList) {
 				ic.setCareers(bService.selectCareers(ic.getResumeNo()));
 				ic.setEducations(bService.selectEducations(ic.getResumeNo()));
@@ -244,7 +246,10 @@ public class BusinessController {
 		else if(!searchPackage.get(0).isEmpty()&&searchPackage.get(1).isEmpty()) {
 			System.out.println("검색1만 있음");
 //			검색1만 있을때
-			icList=bService.selectIntroCards(duties);
+			int icCount=bService.selectCountDuties(duties);
+			ptf=new PaginationTemplateFunction(cPage, icCount,"cPageSearch");
+			
+			icList=bService.selectIntroCards(duties,ptf.getcPage(), ptf.getNumPerPage());
 			for(IntroCard ic:icList) {
 				ic.setCareers(bService.selectCareers(ic.getResumeNo()));
 				ic.setEducations(bService.selectEducations(ic.getResumeNo()));
@@ -254,10 +259,7 @@ public class BusinessController {
 			System.out.println("검색1,검색2 둘다 있음");
 //			검색1 과 검색2가 있을때
 			int icCount=bService.selectCountBoth(duties,searchBox); // 개수 반환
-			ptf=new PaginationTemplateFunction(req, icCount,"cPageSearch");
-			ptf.setCPage(cPage);
-			ptf.setNumPerPage(10);
-			System.out.println(icCount);
+			ptf=new PaginationTemplateFunction(cPage, icCount,"cPageSearch");
 			icList=bService.selectIntroCards(duties,searchBox, ptf.getcPage(), ptf.getNumPerPage());
 			for(IntroCard ic:icList) {
 				ic.setCareers(bService.selectCareers(ic.getResumeNo()));
@@ -267,14 +269,17 @@ public class BusinessController {
 		else if(searchPackage.get(0).isEmpty()&&!searchPackage.get(1).isEmpty()) {
 			System.out.println("모든검색/검색2만 있음");
 //			검색2만 있을때 
-			icList=bService.selectIntroCardsSearch(searchBox);
+			int icCount=bService.selectCountSearch(searchBox);
+			ptf=new PaginationTemplateFunction(cPage, icCount,"cPageSearch");
+			icList=bService.selectIntroCardsSearch(searchBox,ptf.getcPage(), ptf.getNumPerPage());
 			for(IntroCard ic:icList) {
 				ic.setCareers(bService.selectCareers(ic.getResumeNo()));
 				ic.setEducations(bService.selectEducations(ic.getResumeNo()));
 			}
 		}
-		String pageBar=ptf.getPageBar();
-		System.out.println(pageBar);
+		String pageBar="";
+		pageBar=ptf.getPageBar();			
+		
 		resultMap.put("icList", icList);
 		resultMap.put("pageBar",pageBar);
 		try {

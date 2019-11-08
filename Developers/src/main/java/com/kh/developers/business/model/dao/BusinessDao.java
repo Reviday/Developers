@@ -29,15 +29,17 @@ public interface BusinessDao {
 	
 	
 //	매치업 로직
-	List<IntroCard>selectIntroCards(SqlSessionTemplate session);
+	int selectCountBasic(SqlSessionTemplate session);
+	List<IntroCard>selectIntroCards(SqlSessionTemplate session,int cPage, int numPerPage);
 	
-	List<IntroCard>selectIntroCards(SqlSessionTemplate session, String duties);
+	int selectCountDuties(SqlSessionTemplate session, String duties);
+	List<IntroCard>selectIntroCards(SqlSessionTemplate session, String duties,int cPage, int numPerPage);
 	
 	int selectCountBoth(SqlSessionTemplate session, String duties, String searchBox);
-	
 	List<IntroCard>selectIntroCards(SqlSessionTemplate session, String duties, String searchBox, int cPage, int numPerPage);
 	
-	List<IntroCard>selectIntroCardsSearch(SqlSessionTemplate session, String searchBox);
+	int selectCountSearch(SqlSessionTemplate session, String searchBox);
+	List<IntroCard>selectIntroCardsSearch(SqlSessionTemplate session, String searchBox,int cPage, int numPerPage);
 	
 	List<CareerInCard>selectCareers(SqlSessionTemplate session, int resumeNo);
 	

@@ -112,15 +112,27 @@ public class BusinessServiceImpl implements BusinessService {
 	// 매치업  introCard 불러오기 로직
 	
 	@Override
-	public List<IntroCard> selectIntroCards() {
+	public int selectCountBasic() {
 		// TODO Auto-generated method stub
-		return dao.selectIntroCards(session);
+		return dao.selectCountBasic(session);
 	}
 	
 	@Override
-	public List<IntroCard> selectIntroCards(String duties) {
+	public List<IntroCard> selectIntroCards(int cPage, int numPerPage) {
+		// TODO Auto-generated method stub
+		return dao.selectIntroCards(session,cPage, numPerPage);
+	}
+	
+	@Override
+	public int selectCountDuties(String duties) {
+		// TODO Auto-generated method stub
+		return dao.selectCountDuties(session, duties);
+	}
+	
+	@Override
+	public List<IntroCard> selectIntroCards(String duties,int cPage, int numPerPage) {
 		
-		return dao.selectIntroCards(session, duties);
+		return dao.selectIntroCards(session, duties, cPage, numPerPage);
 	}
 	
 	@Override
@@ -136,9 +148,15 @@ public class BusinessServiceImpl implements BusinessService {
 	}
 	
 	@Override
-	public List<IntroCard> selectIntroCardsSearch(String searchBox) {
+	public int selectCountSearch(String searchBox) {
 		// TODO Auto-generated method stub
-		return dao.selectIntroCardsSearch(session, searchBox);
+		return dao.selectCountSearch(session, searchBox);
+	}
+	
+	@Override
+	public List<IntroCard> selectIntroCardsSearch(String searchBox,int cPage, int numPerPage) {
+		// TODO Auto-generated method stub
+		return dao.selectIntroCardsSearch(session, searchBox, cPage, numPerPage);
 	}
 	
 	@Override

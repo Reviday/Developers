@@ -3,19 +3,51 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<!-- <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">   -->
+<!-- <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">    -->
 <jsp:include page="/WEB-INF/views/business/header.jsp">
-	<jsp:param name="pageTitle" value="메인 화면" />
+<jsp:param name="pageTitle" value="메인 화면" />
 </jsp:include>
 <c:set var="path" value="${pageContext.request.contextPath}" />
+<!-- <link rel="stylesheet" href="${path}/resources/css/dashboard.css"> -->
 <link rel="stylesheet" href="${path}/resources/css/style_ei.css">
 
 <style>
-	@media (max-width: 767px){
-	#db-container{
-		margin-top:48px;
-		}
+@media (max-width: 767px){
+#db-container{
+	margin-top:48px;
 	}
+}
+/* .pagination>*{
+    font-size: 1.8rem;
+    margin:0 3px;
+    
+}
+.pagination>.active>.page-link{
+    background-color: #01C1D3;
+    border-color:silver;
+}
+.pagination>.active>.page-link:hover{
+    color:white;
+}
+.pagination>li>a{
+    padding:.5rem 1rem;
+    color:#0081C7;
+}
+
+.pagination>li>a:hover{
+    color:#01C1D3;
+} */
+
+@media (min-width: 576px){
+	.col-sm-4{
+		flex:0 0 30%;
+	}
+}
+a.col-6 {
+	margin:auto auto;
+	margin-top: 15px;
+}
+
 </style>
 
 <section id="content">

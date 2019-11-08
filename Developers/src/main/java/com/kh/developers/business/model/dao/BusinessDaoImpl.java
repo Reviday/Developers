@@ -54,15 +54,28 @@ public class BusinessDaoImpl implements BusinessDao {
 	
 //	매치업 로직
 	@Override
-	public List<IntroCard> selectIntroCards(SqlSessionTemplate session) {
+	public int selectCountBasic(SqlSessionTemplate session) {
 		// TODO Auto-generated method stub
-		return session.selectList("business.selectAllIntroCards");
+		return session.selectOne("business.selectCountBasic");
 	}
 	
 	@Override
-	public List<IntroCard> selectIntroCards(SqlSessionTemplate session, String duties) {
-		
-		return session.selectList("business.selectIntroCards",duties);
+	public List<IntroCard> selectIntroCards(SqlSessionTemplate session,int cPage, int numPerPage) {
+		// TODO Auto-generated method stub
+		RowBounds r=new RowBounds((cPage-1)*numPerPage, numPerPage);
+		return session.selectList("business.selectAllIntroCards",null,r);
+	}
+	
+	@Override
+	public int selectCountDuties(SqlSessionTemplate session,String duties) {
+		// TODO Auto-generated method stub
+		return session.selectOne("business.selectCountDuties",duties);
+	}
+	
+	@Override
+	public List<IntroCard> selectIntroCards(SqlSessionTemplate session, String duties,int cPage, int numPerPage) {
+		RowBounds r=new RowBounds((cPage-1)*numPerPage, numPerPage);
+		return session.selectList("business.selectIntroCards",duties,r);
 	}
 	
 	@Override
@@ -81,13 +94,20 @@ public class BusinessDaoImpl implements BusinessDao {
 		Map<String,String>values=new HashMap<String,String>();
 		values.put("duties", duties);
 		values.put("search",searchBox);
-		return session.selectList("business.selectIntroCardsUsingTwoValues",values);
+		return session.selectList("business.selectIntroCardsUsingTwoValues",values,r);
 	}
 	
 	@Override
-	public List<IntroCard> selectIntroCardsSearch(SqlSessionTemplate session, String searchBox) {
+	public int selectCountSearch(SqlSessionTemplate session, String searchBox) {
 		// TODO Auto-generated method stub
-		return session.selectList("business.selectIntroCardsSearch",searchBox);
+		return session.selectOne("business.selectCountSearch",searchBox);
+	}
+	
+	@Override
+	public List<IntroCard> selectIntroCardsSearch(SqlSessionTemplate session, String searchBox,int cPage, int numPerPage) {
+		// TODO Auto-generated method stub
+		RowBounds r=new RowBounds((cPage-1)*numPerPage, numPerPage);
+		return session.selectList("business.selectIntroCardsSearch",searchBox,r);
 	}
 	
 	@Override

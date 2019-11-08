@@ -22,19 +22,20 @@ for(var i=0;i<details.length;i++){
         console.log(activeCount);
         if(activeCount<1){
             mainActive.className='btn btn-outline-info main active';
-            searchEvent();
+            cPageSearch();
         }
-        if(searchBox.value!=""&&searchBox.value!=undefined){
-            var searchBoxValue=searchBox.value;
-        }
+        // if(searchBox.value!=""&&searchBox.value!=undefined){
+        //     var searchBoxValue=searchBox.value;
+        // }
         if (typeof selected != 'undefined' && selected.length > 0) {
-            let searchPackage= new Array;
-            var selectedString=selected.toString();
-            console.log("값 있음");
-            searchPackage.push(selectedString);
-            searchBoxValue!=undefined?searchPackage.push(searchBoxValue):searchPackage.push("");
-            console.log(searchPackage)
-            ajaxLogic(searchPackage);
+            cPageSearch();
+            // let searchPackage= new Array;
+            // var selectedString=selected.toString();
+            // console.log("값 있음");
+            // searchPackage.push(selectedString);
+            // searchBoxValue!=undefined?searchPackage.push(searchBoxValue):searchPackage.push("");
+            // console.log(searchPackage)
+            // ajaxLogic(searchPackage);
         }
     });
 }
@@ -47,16 +48,16 @@ mainActive.addEventListener('click',function(e){
     selected=[];
     activeCount=0;
     console.log(selected);
-    searchEvent()
+    cPageSearch()
 });
 
 
 searchBtn.addEventListener('click',function(){
-    searchEvent();
+    cPageSearch();
 });
 searchBox.addEventListener('keypress',function(e){
     if(e.keyCode==13){
-        searchEvent();
+        cPageSearch();
     }
 });
 
@@ -84,7 +85,7 @@ function searchEvent(){
 //     searchPackage.push("");
 //     ajaxLogic(searchPackage);
 // };
-
+var firstValue="";
 
 function cPageSearch(cPage) {
     let searchPackage=new Array;
@@ -93,6 +94,8 @@ function cPageSearch(cPage) {
     let selectedString="";
     for(var i=0;i<details.length;i++){
         if(details[i].className=='btn btn-outline-info rest active'){
+            firstValue=details[i].value;
+            console.log(firstValue);
             selected.push(details[i].value);
         }
     }
@@ -116,29 +119,62 @@ function ajaxLogic(searchPackage){
             if(result!=undefined||result!=null){
                 var cards=JSON.parse(result);
                 console.log(cards);
+                var icList=cards.icList;
+                console.log(icList);
 
                 var cardsArea=$('div#cards-area');
                 var cardContainer="";
 
                 cardsArea.html();
+                console.log("firstValue= "+firstValue);
                 
-                if(cards.icList!=null||cards.icList!=undefined){
+                if(icList!=null||icList!=undefined||icList!="undefined"){
                         cardContainer+='<div class="cardsList" style="display:inline-block; width:100%;">';
-                    for(var i in cards.icList){
-                        cardContainer+='<div class="resume-card col-sm-10">';
+                    for(var i in icList){
+                        cardContainer+='<div class="resume-card" style="margin:auto auto; width:90%;">';
                         cardContainer+='<div class="card"><h5 class="card-header"><img class="bus-user-profile" src="'+path+'/resources/upload/profile/no-profile-image.png"/><button class="btn btn-outline-primary" type="button">찜하기</button></h5>';
                         cardContainer+='<div class="card-body">';
-                        cardContainer+='<h5 class="card-title">Special title treatment</h5>';
-                        cardContainer+='<p class="card-text">'+cards.icList[i].intro+'</p>';
-                        cardContainer+='<a href="#" class="btn btn-primary">이력서 미리보기</a>';
+                        
+                        cardContainer+='<h5 class="card-title">';
+                        cardContainer+='<p class="duty-list">'
+
+                        //원하는 값 배열에 첫번째로 두고 재정렬 
+                        icList[i].duty.splice(icList[i].duty.indexOf(firstValue),1);
+                        icList[i].duty.unshift(firstValue);
+                        for(var re in icList[i].duty){
+                            if(icList[i].duty[re]==firstValue){
+                                cardContainer+='<b>'+icList[i].duty[re]+'</b>';
+                            }else{
+                                cardContainer+=" / "+icList[i].duty[re];
+                            }
+                        }
+                        cardContainer+='</p></h5>'
+                        // 경력 / 커리어
+                        cardContainer+='<p class="career-list">'+icList[i].experience+"년 / ";
+                        let careers=icList[i].careers;
+                        for(var ca=0;ca<careers.length;ca++){
+                            cardContainer+=careers[ca].busName+" ";
+                            cardContainer+='<small>'+getMonths(careers[ca].startCareer,careers[ca].endCareer)+'개월</small>';
+                        }
+                        cardContainer+='<hr>';
+                        cardContainer+='<p class="card-text intro">'+icList[i].intro+'</p>';
+                        cardContainer+='<hr>';
+                        cardContainer+='<div class="row"><p class="education-list col-12 col-sm-8">';
+                        let education=icList[i].educations;
+                        for(var ed=0;ed<education.length;ed++){
+                            cardContainer+=education[ed].schoolName+" / ";
+                            cardContainer+='<small>'+education[ed].majorName+'</small>';
+                        }
+                        cardContainer+='</p>'
+                        cardContainer+='<a href="#" class="btn btn-primary col-6 col-sm-4">이력서 미리보기</a></div>';
                         cardContainer+='</div></div></div>';
                     }
                     cardContainer+='</div>';
                     cardContainer+='<div class="pageBar">'+cards.pageBar+'</div>';
                     $(cardsArea).html(cardContainer);
                 }
-                if(cards.icList==null||cards.icList==undefined){
-                    cardContainer+='<div class="container>검색 결과가 없습니다</div>';
+                if(cards.icList==null||cards.icList==undefined||cards.icList=="undefined"){
+                    cardContainer+='<div class="container><h3>검색 결과가 없습니다.</h3></div>';
                     $(cardsArea).html(cardContainer);
                 }
             }
@@ -147,9 +183,21 @@ function ajaxLogic(searchPackage){
 }
 
 
+function getMonths(startCareer,endCareer){
+    var workingYears
+    let startYear=parseInt(startCareer.substring(0,4));
+    let endYear=parseInt(endCareer.substring(0,4));
+    let startMonth=parseInt(startCareer.substring(5,6))
+    let endMonth=parseInt(endCareer.substring(5,6))
 
-
-
+    let diff=endYear-startYear;
+    if(diff==0){
+        workingYears=endMonth-startMonth;
+    }else if(diff>0){
+        workingYears=(diff*12+endMonth)-startMonth;
+    }
+    return workingYears;
+}
 
 
 

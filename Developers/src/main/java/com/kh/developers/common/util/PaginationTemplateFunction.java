@@ -43,55 +43,58 @@ public class PaginationTemplateFunction {
 	 * 데이터의 총 갯수인 totalData와
 	 * 해당 함수를 적용하기 위한 함수 이름을 받는다.(onClickFunction)
 	 */
-	public PaginationTemplateFunction (HttpServletRequest request, int totalData, String onClickFunction)  
-	{
+	public PaginationTemplateFunction (int cPage, int totalData, String onClickFunction){
 		// 페이지 설정
-		try {
-			this.cPage = Integer.parseInt(request.getParameter("cPage"));
-		} catch (NumberFormatException e) {
-			this.cPage = 1;
-		}
+//		try {
+//			this.cPage = Integer.parseInt(request.getParameter("cPage"));
+//		} catch (NumberFormatException e) {
+//			this.cPage = 1;
+//		}
+//		
+//		try {
+//			this.numPerPage=Integer.parseInt(request.getParameter("numPerPage"));
+//		} catch (NumberFormatException e) {
+//			this.numPerPage = 10;
+//		}
 		
-		try {
-			this.numPerPage=Integer.parseInt(request.getParameter("numPerPage"));
-		} catch (NumberFormatException e) {
-			this.numPerPage = 15;
-		}
-		
+		this.cPage=cPage;
+		this.numPerPage=10;
+
 		// 페이징 처리
 		totalPage=(int) Math.ceil((double) totalData / this.numPerPage);
-		this.pageBarSize=10;
-		pageNo=((this.cPage - 1) / pageBarSize) * pageBarSize + 1;
+		this.pageBarSize=5;
+		pageNo=((cPage - 1) / pageBarSize) * pageBarSize + 1;
 		pageEnd=pageNo + pageBarSize - 1;
 		pageBar="";
 		this.onClickFunction=onClickFunction;
+
 	}
 	
-	private String setPageBar(String onClickFunction) 
-	{
-		pageBar+="<ul class=\"pagination\">";
+	private String setPageBar(String onClickFunction){
+		
+		pageBar+="<ul class='pagination justify-content-center'>";
 		// 이전 pagination
 		if(pageNo == 1) {
-			pageBar += "<li class=\"disabled\"><a href=\"#\">«</a></li>";
-		} else {
-			pageBar += "<li><a href='javascript:void(0);' onclick='"+onClickFunction+"("+(cPage-1)+");'>«</a></li>";
+			pageBar += "<li class='page-item disabled'><a href='#' class='page-link'>이전</a></li>";
+		} else if(pageNo > 1) {
+			pageBar += "<li class='page-item'><a href='#' onclick='"+onClickFunction+"("+(cPage-1)+"); return false'>이전</a></li>";
 		}
 		
 		// 페이지 pagination
 		while (!(pageNo > pageEnd || pageNo > totalPage)) {
 			if (pageNo == cPage) {
-				pageBar += "<li class=\"active\"><a href=\"javascript:void(0);\">" + pageNo + "<span class=\"sr-only\">(current)</span></a></li>";
+				pageBar += "<li class='page-item active'><a href='#' class='page-link'>" + pageNo + "<span class='sr-only'>(current)</span></a></li>";
 			} else {
-				pageBar += "<li><a href='javascript:void(0);' onclick='"+onClickFunction+"("+pageNo+");' >"+pageNo+"</a></li>";
+				pageBar += "<li class='page-item'><a class='page-link' href='#' onclick='"+onClickFunction+"("+pageNo+"); return false'>"+pageNo+"</a></li>";
 			}
 			pageNo++;
 		}
 
 		// 다음 pagination
 		if (pageNo > totalPage) {
-			pageBar += "<li class=\"disabled\"><a href=\"javascript:void(0);\">»</a></li>";
-		} else {
-			pageBar += "<li><a href='javascript:void(0);' onclick='"+onClickFunction+"("+(pageNo+1)+");'>»</a></li>";
+			pageBar += "<li class='page-item disabled'><a class='page-link' href='#'>다음</a></li>";
+		} else if(pageNo < totalPage) {
+			pageBar += "<li class='page-item'><a href='#' class='page-link' onclick='"+onClickFunction+"("+(pageNo+1)+"); return false'>다음</a></li>";
 		}
 		pageBar+="</ul>";
 		return pageBar;

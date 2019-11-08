@@ -23,16 +23,17 @@ public interface BusinessService {
 	
 	// 매치업  introCard 불러오기 로직
 
+	int selectCountBasic();
+	List<IntroCard> selectIntroCards(int cPage, int numPerPage);
 	
-	List<IntroCard> selectIntroCards();
-	
-	List<IntroCard> selectIntroCards(String duties);
+	int selectCountDuties(String duties);
+	List<IntroCard> selectIntroCards(String duties,int cPage, int numPerPage);
 	
 	int selectCountBoth(String duties, String searchBox);
-	
 	List<IntroCard> selectIntroCards(String duties, String searchBox, int cPage, int numPerPage);
 	
-	List<IntroCard> selectIntroCardsSearch(String searchBox);
+	int selectCountSearch(String searchBox);
+	List<IntroCard> selectIntroCardsSearch(String searchBox,int cPage, int numPerPage);
 	
 	List<CareerInCard> selectCareers(int resumeNo);
 	
