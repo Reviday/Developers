@@ -28,16 +28,30 @@
         <aside class="Aside _1dBR38s0D_bqykmPvZBYPu">
             <div class="Aside-header">
                 <div class="Aside-avatar">
-                    <div class="Aside-avatar_image" style="background-image: url(${path}/resources/upload/profile/${loginMember.memPhoto!=null?loginMember.memPhoto:'no-profile-image.png' });">
-                        <div class="_1RDFX7ZROHIIPqPMgmtS2E">
+                    <c:if test="${loginMember.memIcon==null }">
+                    <div class="Aside-avatar_image" id="logoImg" 
+                    style="background-image: url('${path}/resources/upload/profile/no-profile-image.png ');">
+                          <div class="_1RDFX7ZROHIIPqPMgmtS2E">
                         <form id="logoFrm" name="logoFrm" enctype="multipart/form-data" method="POST">
                         <i class="icon-camera_icon" role="presentation">+</i>
-					<input type="file" accept="image/*" id="logoFile" name="logoFile"/>
-			
-					
+							<input type="file" accept="image/*" id="logoFile" name="logoFile"/>
 						</form>
                        </div>
                     </div>
+                    </c:if>
+                    
+                    <c:if test="${loginMember.memIcon!=null }">
+                    <div class="Aside-avatar_image" id="logoImg" 
+                    style="background-image: url('${loginMember.memIcon } ');">
+                          <div class="_1RDFX7ZROHIIPqPMgmtS2E">
+                        <form id="logoFrm" name="logoFrm" enctype="multipart/form-data" method="POST">
+                        <i class="icon-camera_icon" role="presentation">+</i>
+					<input type="file" accept="image/*" id="logoFile" name="logoFile"/>
+						</form>
+                       </div>
+                    </div>
+                    </c:if>
+                  
                 </div>
                 <div class="Aside-me">
                     <div class="Aside-me_name">${loginMember.memName }</div>
@@ -179,9 +193,11 @@
 
 function updatePage(){
 	   $.ajax({
+		
 		   url:"${path }/member/updatePage.lmc",
 		   type:"POST",
 		   success:function(data){
+			   
 			   $("#sectionA").html("");
 			   $("#sectionA").html(data); 
 		   }
@@ -190,31 +206,34 @@ function updatePage(){
 }
 
 $('#updateResume').hide();
-
 	$('#resumeContainer').hover(function() {
 		$('#updateResume').show();
 	}, function() {
 		$('#updateResume').hide();
-
 	});
 	
-	$(function(){
 		//로고 클릭 이벤트
 		$("#logoFile").on("change",function(){
 			var frm=new FormData($("#logoFrm")[0]);
 			$.ajax({
-				url:"${path}/member/logoChange",
+				url:"${path }/member/logoChange",
 				data:frm,
 				type:"post",
 				processData:false,
+				dataType:"json",
           	    contentType:false,
 				success:function(data){
-					$("#logoImg").attr("src",data.logo);
+					console.log("성공");
+					console.log(data);
+					$("#logoImg").css('background-image', 'url('+data+')');
+					$("#profile_img").attr("src",data);
+				},error:function(data){
+					console.log("실패");
 				}
 
 			})
 		});
-	}
+
 
 </script>
 

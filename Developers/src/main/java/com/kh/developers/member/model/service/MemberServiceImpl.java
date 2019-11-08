@@ -32,6 +32,13 @@ public class MemberServiceImpl implements MemberService {
 	
 	
 	@Override
+	public int busLogoChange(Member memInfo) {
+		// TODO Auto-generated method stub
+			int result=dao.busLogoChange(session,memInfo);
+				return result;
+	}
+
+	@Override
 	public int memberUpdate(Member m) {
 		// TODO Auto-generated method stub
 		return dao.memberUpdate(session,m);

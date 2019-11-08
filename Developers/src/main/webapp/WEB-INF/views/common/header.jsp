@@ -158,8 +158,16 @@
                      </li>
                      <li class="smMoreVisible">
                         <button type="button" class="profileButton">
-                            <img src="${path}/resources/upload/profile/${loginMember.memPhoto!=null?loginMember.memPhoto:'no-profile-image.png' }" 
+                        
+                        	<c:if test="${loginMember.memIcon==null }">
+                            <img src="${path}/resources/upload/profile/'no-profile-image.png' }" 
                             style="width:32px; height:32px;" id="profile_img"/>
+                            </c:if>
+                            <c:if test="${loginMember.memIcon!=null }">
+                            <img src="${loginMember.memIcon }" 
+                            style="width:32px; height:32px;" id="profile_img"/>
+                            </c:if>
+                            
                          </button>
                      </li>
                      <li class="smMoreVisible">

@@ -24,4 +24,5 @@ public interface MemberDao {
    List<Position> selectInterPositionList(SqlSessionTemplate session, Interests inter);
    List<Position> selectWeekPositionList(SqlSessionTemplate session);
    int memberUpdate(SqlSessionTemplate session,Member m);
+   int busLogoChange(SqlSessionTemplate session,Member memInfo);
 }

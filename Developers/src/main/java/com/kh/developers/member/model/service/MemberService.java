@@ -20,4 +20,5 @@ public interface MemberService {
 	List<Position> selectInterPositionList(Interests inter);
 	List<Position> selectWeekPositionList(); 
 	int memberUpdate(Member m);
+	int busLogoChange(Member memInfo);
 }

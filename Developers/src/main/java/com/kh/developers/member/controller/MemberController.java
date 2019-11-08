@@ -20,6 +20,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
@@ -27,6 +28,8 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kh.developers.business.model.service.BusinessService;
 import com.kh.developers.business.model.vo.Business;
 import com.kh.developers.common.encrypt.MyEncrypt;
@@ -413,14 +416,17 @@ public class MemberController {
     	return mv;
     }
     @RequestMapping("/member/logoChange")
-	public ModelAndView logoChange(MultipartHttpServletRequest mReq) {
-		ModelAndView mv=new ModelAndView();
+    @ResponseBody
+	public String logoChange(MultipartHttpServletRequest mReq,HttpServletResponse res) {
+    	/*@ReponseBody이용*/
+		ObjectMapper mapper=new ObjectMapper();
+		//잭슨이 제공하는 객체 자바클래스하고 json자바스크립트 객체 매핑 시켜줌 
 		MultipartFile logo=mReq.getFile("logoFile");
-		Business busInfo=(Business)mReq.getSession().getAttribute("busInfo");
-		String subDir="/resources/upload/images/member/bus_"+busInfo.getBusNo()+"/logo";
+		Member memInfo=((Member)mReq.getSession().getAttribute("loginMember"));
+		String subDir="/resources/upload/profile";
 		String saveDir=mReq.getSession().getServletContext().getRealPath("");
 		saveDir=saveDir.substring(0, saveDir.lastIndexOf("\\target"));
-		saveDir+="\\src\\main\\webapp";
+		saveDir+="/src/main/webapp";
 		File dir=new File(saveDir+subDir);
 		if(!dir.exists()) {
 			dir.mkdirs();
@@ -430,28 +436,33 @@ public class MemberController {
 		String ext=logo.getOriginalFilename().substring(logo.getOriginalFilename().lastIndexOf("."));
 		reName+=ext;
 		//기존 로고 지우기
-		if(busInfo.getBusLogo()!=null) {			
-			String oriLogo=busInfo.getBusLogo();
-			if(oriLogo.lastIndexOf("/developers/")>0) {		
-				File oriFile=new File(saveDir+oriLogo.substring(oriLogo.lastIndexOf("/developers/")));
-				if(oriFile.exists()) {
-					oriFile.delete();
-				}
+		if(memInfo.getMemIcon()!=null) {			
+			String oriLogo=memInfo.getMemIcon();	
+			File oriFile=new File(saveDir+oriLogo.substring(oriLogo.lastIndexOf("/resources")));
+			if(oriFile.exists()) {
+				oriFile.delete();
 			}
 		}
 		//새로운 로고로 저장
 		try {		
 			String logoFullName=saveDir+subDir+"/"+reName;
 			logo.transferTo(new File(logoFullName));
-			busInfo.setBusLogo("/developers"+subDir+"/"+reName);
-			int result=service.busLogoChange(busInfo);
+			memInfo.setMemIcon("/developers"+subDir+"/"+reName);
+			int result=service.busLogoChange(memInfo);
 		}catch(IOException e) {
 			e.printStackTrace();
 		}
-		mv.addObject("logo",busInfo.getBusLogo());
-		mv.setViewName("jsonView");
-		return mv;
+		String jsonStr="";
+		try {
+			jsonStr=mapper.writeValueAsString(memInfo.getMemIcon());
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 res.setContentType("application/json;charset=utf-8");
+		return jsonStr;
+
 	}
-    
+
     
 }

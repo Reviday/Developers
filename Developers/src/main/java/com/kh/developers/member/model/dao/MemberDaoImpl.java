@@ -16,6 +16,12 @@ public class MemberDaoImpl implements MemberDao {
 	
 	
 	@Override
+	public int busLogoChange(SqlSessionTemplate session, Member memInfo) {
+		// TODO Auto-generated method stub
+		return session.update("member.busLogoChange",memInfo);
+	}
+
+	@Override
 	public int memberUpdate(SqlSessionTemplate session, Member m) {
 		// TODO Auto-generated method stub
 		return session.update("member.memberUpdate",m);
