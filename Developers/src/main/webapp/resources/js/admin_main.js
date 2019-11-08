@@ -3,6 +3,7 @@ $(document).ready(function() {
 	var activeSystemClass = $('.list-group-item.active');
 
 	//something is entered in search form
+	/*
 	$('#system-search').keyup(function() {
 		var that = this;
 		// affect all table rows on in systems table
@@ -36,7 +37,11 @@ $(document).ready(function() {
 		if (tableRowsClass.children(':visible').length == 0) {
 			tableBody.append('<tr class="search-sf"><td class="text-muted" colspan="6">No entries found.</td></tr>');
 		}
-	});
+	});*/
+	
+	function search() {
+		var searchValue=document
+	};
 });
 
 // memo js
@@ -81,11 +86,15 @@ function fn_deleteMember(memNo) {
 			url:path+"/admin/deleteMember.lac",
 			type:"POST",
 			data:{
-					"memNo":memNo
-				},
+				"memNo":memNo,
+				"cPage":$('#cPage').val(),
+				"numPerPage":$('#numPerPage').val()
+			},
 			success: function(result) {
-				if(result==1) {
+				if(result!=null) {
 					alert("회원이 정상적으로 탈퇴처리 되었습니다.\n탈퇴회원관리 페이지에서 복구할 수 있습니다.");
+					$('.mainContent').html("");
+					$('.mainContent').html(result);
 				} else {
 					alert("회원 탈퇴처리가 정상적으로 이루어지지 않았습니다.");
 				}

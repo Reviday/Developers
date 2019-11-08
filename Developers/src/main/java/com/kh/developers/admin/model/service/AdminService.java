@@ -9,6 +9,6 @@ public interface AdminService {
 	List<Member> selectMemberList(int cPage, int numPerPage);
 	int selectMemberCount();
 	int updateMember(Member m);
-	int deleteMember(Member m);
+	List<Member> deleteMember(Member m, int cPage, int numPerPage);
 	
 }

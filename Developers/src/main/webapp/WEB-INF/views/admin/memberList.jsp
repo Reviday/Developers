@@ -22,13 +22,13 @@
 					<input class="form-control" id="system-search" name="q"
 						placeholder="Search for" required> <span
 						class="input-group-btn">
-						<button type="submit" class="btn btn-default">
+						<button type="submit" class="btn btn-default" onclick="search();">
 							<i class="fas fa-search"></i>
 						</button>
 					</span>
 				</div>
 			</form>
-			<table class="table table-list-search rwd-table">
+			<table class="table table-list-search rwd-table" id="memberListTB">
 				<thead>
 					<tr>
 						<th>회원번호</th>
@@ -90,6 +90,8 @@
 			<c:if test="${pageBar ne null }">
 				${pageBar}
 			</c:if>
+			<input type="hidden" value="${cPage}" id="cPage"/>
+			<input type="hidden" value="${numPerPage}" id="numPerPage"/> 
 		</div>
 	</div>
 
