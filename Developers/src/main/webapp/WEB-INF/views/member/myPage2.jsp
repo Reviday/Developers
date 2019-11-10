@@ -10,18 +10,18 @@
 	<jsp:param name="pageTitle" value=""/>
 </jsp:include>
 <div style="height: 50px;"></div>
-    <div class="_1Gv5LM5zal-f72_XSo_qJ_">
+    <div class="_1Gv5LM5zal-f72_XSo_qJ_" id="mainContent">
     <nav role="presentation" class="_3wSXAiIJQZ98fJ-Hi6G42Q"><button type="button" class="">프로필<i
                 class="icon-arrow_bottom_fill"></i></button>
         <ul class="">
-            <li class="_1ft7OZSrbzL35bkI-omU2b"><a href="/profile/matching" class="activeNav">프로필</a></li>
-            <li class="_1ft7OZSrbzL35bkI-omU2b"><a href="/profile/point" class="">포인트</a></li>
+            <li class="_1ft7OZSrbzL35bkI-omU2b"><a href="#" class="activeNav">프로필</a></li>
+            <li class="_1ft7OZSrbzL35bkI-omU2b"><a href="#" class="">포인트</a></li>
             <li class="_1ft7OZSrbzL35bkI-omU2b"><button type="button" class="">제안받기 현황<i
-                        class="icon-arrow_bottom_fill"></i></button><a href="/profile/status" class="">제안받기 현황</a></li>
-            <li class="_1ft7OZSrbzL35bkI-omU2b"><a href="/profile/likes" class="">좋아요</a></li>
-            <li class="_1ft7OZSrbzL35bkI-omU2b"><a href="/profile/bookmarks" class="">북마크</a></li>
+                        class="icon-arrow_bottom_fill"></i></button><a href="#" class="">제안받기 현황</a></li>
+            <li class="_1ft7OZSrbzL35bkI-omU2b"><a href="#" onclick="likePage();" class="">좋아요</a></li>
+            <li class="_1ft7OZSrbzL35bkI-omU2b"><a href="#" class="">북마크</a></li>
             <li class="_1ft7OZSrbzL35bkI-omU2b"><button type="button" class="">설정<i
-                        class="icon-arrow_bottom_fill"></i></button><a href="/profile/settings" class="">설정</a></li>
+                        class="icon-arrow_bottom_fill"></i></button><a href="#" class="">설정</a></li>
         </ul>
     </nav>
     <div class="_14NzdD9Zqjq8ocf6TORWoN">
@@ -203,6 +203,16 @@ function updatePage(){
 		   }
 		   
 	   })
+}
+function likePage() {
+	   $.ajax({
+		   url:"${path }/member/likePage.lmc",
+		   type:"POST",
+		   success:function(data){
+			   $("#mainContent").html("");
+			   $("#mainContent").html(data);
+		   }
+	   })	
 }
 
 $('#updateResume').hide();

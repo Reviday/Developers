@@ -10,31 +10,50 @@
 	<jsp:param name="pageTitle" value=""/>
 </jsp:include>
 <div style="height: 50px;"></div>
-     <div class="_1Gv5LM5zal-f72_XSo_qJ_">
+     <div class="_1Gv5LM5zal-f72_XSo_qJ_"  id="mainContent">
         <nav role="presentation" class="_3wSXAiIJQZ98fJ-Hi6G42Q"><button type="button" class="">프로필<i
                     class="icon-arrow_bottom_fill"></i></button>
             <ul class="">
-                <li class="_1ft7OZSrbzL35bkI-omU2b"><a href="/profile/matching" class="activeNav">프로필</a></li>
-                <li class="_1ft7OZSrbzL35bkI-omU2b"><a href="/profile/point" class="">포인트</a></li>
+                <li class="_1ft7OZSrbzL35bkI-omU2b"><a href="#" class="activeNav">프로필</a></li>
+                <li class="_1ft7OZSrbzL35bkI-omU2b"><a href="#" class="">포인트</a></li>
                 <li class="_1ft7OZSrbzL35bkI-omU2b"><button type="button" class="">제안받기 현황<i
-                            class="icon-arrow_bottom_fill"></i></button><a href="/profile/status" class="">제안받기 현황</a>
+                            class="icon-arrow_bottom_fill"></i></button><a href="#" class="">제안받기 현황</a>
                 </li>
-                <li class="_1ft7OZSrbzL35bkI-omU2b"><a href="/profile/likes" class="">좋아요</a></li>
-                <li class="_1ft7OZSrbzL35bkI-omU2b"><a href="/profile/bookmarks" class="">북마크</a></li>
+                <li class="_1ft7OZSrbzL35bkI-omU2b"><a href="#" onclick="likePage();" class="">좋아요</a></li>
+                <li class="_1ft7OZSrbzL35bkI-omU2b"><a href="#" class="">북마크</a></li>
                 <li class="_1ft7OZSrbzL35bkI-omU2b"><button type="button" class="">설정<i
-                            class="icon-arrow_bottom_fill"></i></button><a href="/profile/settings" class="">설정</a></li>
+                            class="icon-arrow_bottom_fill"></i></button><a href="#" class="">설정</a></li>
             </ul>
         </nav>
         <div class="_14NzdD9Zqjq8ocf6TORWoN">
             <aside class="Aside _1dBR38s0D_bqykmPvZBYPu">
                 <div class="Aside-header">
-                    <div class="Aside-avatar">
-                        <div class="Aside-avatar_image"
-                            style="background-image: url(&quot;https://graph.facebook.com/1372739109548620/picture?height=300&amp;width=300&quot;);">
-                            <div class="_1RDFX7ZROHIIPqPMgmtS2E"><input type="file" accept="image/*"><i
-                                    class="icon-camera_icon" role="presentation"></i></div>
-                        </div>
+                                    <div class="Aside-avatar">
+                    <c:if test="${loginMember.memIcon==null }">
+                    <div class="Aside-avatar_image" id="logoImg" 
+                    style="background-image: url('${path}/resources/upload/profile/no-profile-image.png ');">
+                          <div class="_1RDFX7ZROHIIPqPMgmtS2E">
+                        <form id="logoFrm" name="logoFrm" enctype="multipart/form-data" method="POST">
+                        <i class="icon-camera_icon" role="presentation">+</i>
+							<input type="file" accept="image/*" id="logoFile" name="logoFile"/>
+						</form>
+                       </div>
                     </div>
+                    </c:if>
+                    
+                    <c:if test="${loginMember.memIcon!=null }">
+                    <div class="Aside-avatar_image" id="logoImg" 
+                    style="background-image: url('${loginMember.memIcon } ');">
+                          <div class="_1RDFX7ZROHIIPqPMgmtS2E">
+                        <form id="logoFrm" name="logoFrm" enctype="multipart/form-data" method="POST">
+                        <i class="icon-camera_icon" role="presentation">+</i>
+					<input type="file" accept="image/*" id="logoFile" name="logoFile"/>
+						</form>
+                       </div>
+                    </div>
+                    </c:if>
+                  
+                </div>
                      <div class="Aside-me">
                     <div class="Aside-me_name">${loginMember.memName }</div>
                     <div class="Aside-me_email">${memEmail }</div>
@@ -247,6 +266,38 @@
 		   
 	   })
    }
+   function likePage() {
+	   $.ajax({
+		   url:"${path }/member/likePage.lmc",
+		   type:"POST",
+		   success:function(data){
+			   $("#mainContent").html("");
+			   $("#mainContent").html(data);
+		   }
+	   })	
+}
+   
+ //로고 클릭 이벤트
+	$("#logoFile").on("change",function(){
+		var frm=new FormData($("#logoFrm")[0]);
+		$.ajax({
+			url:"${path }/member/logoChange",
+			data:frm,
+			type:"post",
+			processData:false,
+			dataType:"json",
+     	    contentType:false,
+			success:function(data){
+				console.log("성공");
+				console.log(data);
+				$("#logoImg").css('background-image', 'url('+data+')');
+				$("#profile_img").attr("src",data);
+			},error:function(data){
+				console.log("실패");
+			}
+
+		})
+	});
 
 
 </script>

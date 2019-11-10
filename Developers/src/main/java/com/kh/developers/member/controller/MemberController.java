@@ -386,6 +386,12 @@ public class MemberController {
 		mv.setViewName("member/ajax/updatePage");
 		return mv;
 	}
+	@RequestMapping("/member/likePage.lmc")
+	public ModelAndView likePage() {
+		ModelAndView mv= new ModelAndView();
+		mv.setViewName("member/ajax/myLike");
+		return mv;
+	}
     @RequestMapping("/member/memberUpdate.lmc")
     public ModelAndView memberUpdate(Member m,HttpSession session) {
     	ModelAndView mv = new ModelAndView();
@@ -419,6 +425,8 @@ public class MemberController {
     @ResponseBody
 	public String logoChange(MultipartHttpServletRequest mReq,HttpServletResponse res) {
     	/*@ReponseBody이용*/
+
+    	
 		ObjectMapper mapper=new ObjectMapper();
 		//잭슨이 제공하는 객체 자바클래스하고 json자바스크립트 객체 매핑 시켜줌 
 		MultipartFile logo=mReq.getFile("logoFile");
