@@ -6,6 +6,8 @@ var mainActive=document.querySelector('button.btn-outline-info.main');
 var details=$('button.btn-outline-info.rest');
 var activeCount=0; 
 var selected = new Array;
+var firstValue="";
+var searchValue="";
 
 for(var i=0;i<details.length;i++){  
     details[i].addEventListener('click',function(e){
@@ -22,6 +24,8 @@ for(var i=0;i<details.length;i++){
         console.log(activeCount);
         if(activeCount<1){
             mainActive.className='btn btn-outline-info main active';
+            firstValue="";
+            searchValue="";
             cPageSearch();
         }
         // if(searchBox.value!=""&&searchBox.value!=undefined){
@@ -45,6 +49,8 @@ mainActive.addEventListener('click',function(e){
     for(var i=0;i<details.length;i++){
         details[i].className='btn btn-outline-info rest';
     }
+    firstValue="";
+    searchValue="";
     selected=[];
     activeCount=0;
     console.log(selected);
@@ -85,11 +91,16 @@ function searchEvent(){
 //     searchPackage.push("");
 //     ajaxLogic(searchPackage);
 // };
-var firstValue="";
+
+
 
 function cPageSearch(cPage) {
     let searchPackage=new Array;
     let searchBoxValue=searchBox.value;
+    seva=searchBoxValue;
+    // seva.trim();
+    // seva.replace(/\s{2,}/gi, ' ');
+    searchValue=seva.trim().replace(/\s{2,}/gi, ' ');
     let selected=new Array;
     let selectedString="";
     for(var i=0;i<details.length;i++){
@@ -121,61 +132,134 @@ function ajaxLogic(searchPackage){
                 console.log(cards);
                 var icList=cards.icList;
                 console.log(icList);
-
+                console.log("길이: "+icList.length);
+                
                 var cardsArea=$('div#cards-area');
                 var cardContainer="";
-
+                if(searchValue!=""){
+                    var sValues = new Array;
+                    sValues=searchValue.split(" ");
+                    console.log(sValues.length);
+                    for(let i=0;i<sValues.length;i++){
+                        if(sValues[i]==""||sValues[i]==null||sValues[i]==undefined){
+                            console.log(sValues[i]);
+                            sValues.splice(sValues.indexOf(sValues[i]),1);
+                        }
+                    }
+                    console.log(sValues);
+                }
+                
                 cardsArea.html();
                 console.log("firstValue= "+firstValue);
+                console.log("searchValue= "+searchValue);
                 
-                if(icList!=null||icList!=undefined||icList!="undefined"){
+                if(icList.length>0){
                         cardContainer+='<div class="cardsList" style="display:inline-block; width:100%;">';
                     for(var i in icList){
-                        cardContainer+='<div class="resume-card" style="margin:auto auto; width:90%;">';
-                        cardContainer+='<div class="card"><h5 class="card-header"><img class="bus-user-profile" src="'+path+'/resources/upload/profile/no-profile-image.png"/><button class="btn btn-outline-primary" type="button">찜하기</button></h5>';
+                        cardContainer+='<div class="resume-card" style="margin:auto auto; width:90%; padding-top:15px; padding-bottom:15px;">';
+                        cardContainer+='<div class="card"><h5 class="card-header"><div><img class="bus-user-profile" src="'+path+'/resources/upload/profile/no-profile-image.png"/>';
+                        cardContainer+='<button class="btn btn-outline-primary favBtn" style="position:absolute; right:0; margin-right:3%;" type="button">찜하기</button><div></h5>';
                         cardContainer+='<div class="card-body">';
-                        
                         cardContainer+='<h5 class="card-title">';
-                        cardContainer+='<p class="duty-list">'
+                        cardContainer+='<div class="duty-list"><p class="duty">';
 
-                        //원하는 값 배열에 첫번째로 두고 재정렬 
-                        icList[i].duty.splice(icList[i].duty.indexOf(firstValue),1);
-                        icList[i].duty.unshift(firstValue);
-                        for(var re in icList[i].duty){
-                            if(icList[i].duty[re]==firstValue){
-                                cardContainer+='<b>'+icList[i].duty[re]+'</b>';
-                            }else{
-                                cardContainer+=" / "+icList[i].duty[re];
+                        // 직무 
+                        if(icList[i].duty.length>0){
+                            for(var re in icList[i].duty){
+                                if(firstValue!=""){
+                                    icList[i].duty.splice(icList[i].duty.indexOf(firstValue),1);
+                                    icList[i].duty.unshift(firstValue);
+                                }
+                                if(icList[i].duty[re]==firstValue){
+                                    cardContainer+='<mark><b>'+icList[i].duty[re]+'</b></mark>';
+                                }else{
+                                    if(firstValue!=""){
+                                        cardContainer+=" / "+icList[i].duty[re];
+                                    }else{
+                                        if(icList[i].duty[icList[i].duty.length-1]==icList[i].duty[re]){
+                                            cardContainer+=icList[i].duty[re];
+                                        }else{
+                                            cardContainer+=icList[i].duty[re]+" / ";
+                                        }
+                                    }
+                                }
                             }
                         }
-                        cardContainer+='</p></h5>'
+                        cardContainer+='</p></div></h5>'
                         // 경력 / 커리어
-                        cardContainer+='<p class="career-list">'+icList[i].experience+"년 / ";
+                        cardContainer+='<div><p class="career-list">'+icList[i].experience+"년 / "+'</p></div>';
                         let careers=icList[i].careers;
                         for(var ca=0;ca<careers.length;ca++){
-                            cardContainer+=careers[ca].busName+" ";
-                            cardContainer+='<small>'+getMonths(careers[ca].startCareer,careers[ca].endCareer)+'개월</small>';
+                            cardContainer+='<div class="career-busName">';
+                            if(searchValue!=""){
+                            for(var s=0;s<sValues.length;s++){
+                                    if(careers[ca].busName.match(sValues[s])){  
+                                    cardContainer+='<mark>'
+                                    }
+                                }
+                            }
+                            cardContainer+=careers[ca].busName;
+                            if(searchValue!=""){
+                                cardContainer+='</mark>';
+                            }
+                            cardContainer+='</div>';
+                            
+                            cardContainer+='<div><small>'+getMonths(careers[ca].startCareer,careers[ca].endCareer)+'개월</small></div>';
                         }
                         cardContainer+='<hr>';
                         cardContainer+='<p class="card-text intro">'+icList[i].intro+'</p>';
-                        cardContainer+='<hr>';
-                        cardContainer+='<div class="row"><p class="education-list col-12 col-sm-8">';
+
+                        //스킬 
+                        cardContainer+='<div class="skill-list">';
+                        if (icList[i].skill.length>0){
+                            for(var sk in icList[i].skill){
+                                cardContainer+='<div class="showBox">';
+                                if(searchValue!=""){
+                                    for(var v=0;v<sValues.length;v++){
+                                        if(icList[i].skill[sk].match(sValues[v])){
+                                            cardContainer+='<mark>';
+                                        }
+                                    }
+                                }
+                                cardContainer+=icList[i].skill[sk];
+                                if(searchValue!=""){
+                                    cardContainer+='</mark>';
+                                }
+                                cardContainer+='</div>';
+                            }
+                        }
+                        cardContainer+='</div><hr>';
+
+                        // 학교 + 미리보기 버튼
+                        cardContainer+='<div class="bottom row"><p class="education-list col-12 col-sm-8">';
                         let education=icList[i].educations;
                         for(var ed=0;ed<education.length;ed++){
-                            cardContainer+=education[ed].schoolName+" / ";
+                            if(searchValue!=""){
+                                for(var u=0;u<sValues.length;u++){
+                                    if(education[ed].schoolName.match(sValues[u])){
+                                        cardContainer+='<mark>';
+                                    }
+                                }
+                            }
+                            cardContainer+=education[ed].schoolName;
+                            if(searchValue!=""){
+                                cardContainer+='</mark>';
+                            }
+                            cardContainer+=" / ";    
                             cardContainer+='<small>'+education[ed].majorName+'</small>';
                         }
                         cardContainer+='</p>'
-                        cardContainer+='<a href="#" class="btn btn-primary col-6 col-sm-4">이력서 미리보기</a></div>';
+                        cardContainer+='<a href="#" class="btn btn-primary favBtn col-6 col-sm-4">이력서 미리보기</a></div>';
                         cardContainer+='</div></div></div>';
                     }
                     cardContainer+='</div>';
                     cardContainer+='<div class="pageBar">'+cards.pageBar+'</div>';
                     $(cardsArea).html(cardContainer);
                 }
-                if(cards.icList==null||cards.icList==undefined||cards.icList=="undefined"){
-                    cardContainer+='<div class="container><h3>검색 결과가 없습니다.</h3></div>';
-                    $(cardsArea).html(cardContainer);
+
+                if(icList.length<1){
+                cardContainer+='<div class="container"><h4>검색 결과가 없습니다.</h4></div>';
+                $(cardsArea).html(cardContainer);
                 }
             }
         }
@@ -199,6 +283,11 @@ function getMonths(startCareer,endCareer){
     return workingYears;
 }
 
+
+// 페이지 시작과 동시에 시작되는 함수
+$(function(){
+    cPageSearch();
+});
 
 
 

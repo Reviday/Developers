@@ -43,10 +43,73 @@
 		flex:0 0 30%;
 	}
 }
-a.col-6 {
-	margin:auto auto;
-	margin-top: 15px;
+@media (max-width: 767px){
+	a.col-6 {
+		margin:auto auto;
+		margin-top: 15px;
+	} 
 }
+
+/* .row{
+	margin-right: 0;
+	margin-left: 0;
+} */
+
+.favBtn{
+	padding: .575rem 1.75rem;
+}
+
+div.resume-area{
+	background-color:#F6F7F7;
+}
+
+.card-header{
+	background-color: #fff;
+}
+
+div.card{
+	border-color: #fff;
+	box-shadow: 5px 5px 5px 5px #CBCCCC;
+}
+div.card>*{
+	padding:15px;
+}
+/* h5.card-title{
+	padding:5px;
+}
+p.career-list{
+	padding:5px;
+}
+p.card-text{
+	padding:5px;
+}
+div.bottom{
+	padding:5px;
+} */
+
+div.showBox{
+	display: inline-block;
+	padding-left:10px;
+	padding-right: 10px;
+	padding-top: 1px;
+	padding-bottom: 1px;
+	border-radius: 18px;
+	margin-right:5px;
+	border:1px solid #5E23D3;
+}
+div.skill-list{
+	padding: 5px;
+}
+div.duty-list{
+	display: inline-block;
+}
+mark{
+	background-color: #e0ff3f;
+}
+
+
+
+
 
 </style>
 
