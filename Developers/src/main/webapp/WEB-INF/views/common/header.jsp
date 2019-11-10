@@ -65,7 +65,12 @@
                <c:if test="${loginMember==null }">  
                <li class="smMoreVisible"><a href="${path }/resume/resumeIntro.do" class="">이력서</a></li>
                </c:if>
-               <li class="smMoreVisible selectedNav"><a href="#" class="">추천</a></li>
+               <c:if test="${not empty loginMember }">
+               	    <li class="smMoreVisible selectedNav"><a href="${path }/recommend/recommendMain.lmc?memNo=${loginMember.memNo}" class="">추천</a></li>
+               </c:if>
+               <c:if test="${empty loginMember }">
+               	    <li class="smMoreVisible selectedNav"><a href="#" class="">추천</a></li>
+               </c:if>
             </ul>
             <div role="presentation" class="list_view">
                <div class="overlay">
