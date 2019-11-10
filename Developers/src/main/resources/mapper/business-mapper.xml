@@ -67,7 +67,7 @@
 	</select>
 	
 	<select id="selectAllIntroCards" resultMap="introCardMap">
-		SELECT RESUME.RESUME_NO,INTRO, DUTY, EXPERIENCE, SKILL FROM RESUME JOIN INTERESTS ON (RESUME.MEM_EMAIL=INTERESTS.MEM_EMAIL) WHERE RESUME.MATCHUP='Y'
+		SELECT RESUME.RESUME_NO,MEM_NAME,INTRO, DUTY, EXPERIENCE, SKILL FROM RESUME JOIN INTERESTS ON (RESUME.MEM_EMAIL=INTERESTS.MEM_EMAIL) WHERE RESUME.MATCHUP='Y'
 	</select>
 	
 	<select id="selectCountDuties" parameterType="String" resultType="Integer">
@@ -75,7 +75,7 @@
 	</select>
 	
   	<select id="selectIntroCards" parameterType="String" resultMap="introCardMap">
-		SELECT RESUME.RESUME_NO,INTRO, DUTY, EXPERIENCE, SKILL FROM RESUME JOIN INTERESTS ON (RESUME.MEM_EMAIL=INTERESTS.MEM_EMAIL) WHERE RESUME.MATCHUP='Y' AND INTERESTS.DUTY LIKE #{duties}
+		SELECT RESUME.RESUME_NO, MEM_NAME, INTRO, DUTY, EXPERIENCE, SKILL FROM RESUME JOIN INTERESTS ON (RESUME.MEM_EMAIL=INTERESTS.MEM_EMAIL) WHERE RESUME.MATCHUP='Y' AND INTERESTS.DUTY LIKE #{duties}
 	</select>  
 	
 	<select id="selectCountBoth" parameterType="map" resultType="Integer">
@@ -89,7 +89,7 @@
 	</select>
 	
 	<select id="selectIntroCardsUsingTwoValues" parameterType="map" resultMap="introCardMap">
-		SELECT RESUME.RESUME_NO,INTRO, DUTY, EXPERIENCE, SKILL FROM RESUME JOIN INTERESTS 
+		SELECT RESUME.RESUME_NO, MEM_NAME, INTRO, DUTY, EXPERIENCE, SKILL FROM RESUME JOIN INTERESTS 
 		ON (RESUME.MEM_EMAIL=INTERESTS.MEM_EMAIL) WHERE RESUME.MATCHUP='Y' AND RESUME.RESUME_NO IN(
 		SELECT RESUME.RESUME_NO FROM RESUME JOIN INTERESTS 
 		ON (RESUME.MEM_EMAIL=INTERESTS.MEM_EMAIL) WHERE RESUME.MATCHUP='Y' AND INTERESTS.DUTY LIKE #{duties}
@@ -105,7 +105,7 @@
 	</select>
 	
 	<select id="selectIntroCardsSearch" parameterType="String" resultMap="introCardMap">
-		SELECT RESUME_NO, INTRO, DUTY, EXPERIENCE, SKILL FROM RESUME JOIN INTERESTS USING (RESUME_NO) 
+		SELECT RESUME_NO, MEM_NAME, INTRO, DUTY, EXPERIENCE, SKILL FROM RESUME JOIN INTERESTS USING (RESUME_NO) 
 		JOIN CAREER USING (RESUME_NO) JOIN EDUCATION USING (RESUME_NO) WHERE RESUME.MATCHUP='Y' AND 
 		REGEXP_LIKE(SKILL,#{search}) OR REGEXP_LIKE(BUS_NAME,#{search}) OR REGEXP_LIKE(SCHOOL_NAME,#{search})
 	</select>
@@ -191,6 +191,7 @@
    
    <resultMap type="com.kh.developers.business.model.vo.IntroCard" id="introCardMap">
    	   <result property="resumeNo" column="resume_no"></result>
+   	   <result property="memName" column="mem_name"></result>
    	   <result property="intro" column="intro"></result>
    	   <result property="duty" column="duty" typeHandler="strArray"></result>
    	   <result property="experience" column="experience"></result>

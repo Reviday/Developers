@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 public class IntroCard {
 	
 	private int resumeNo;
+	private String memName;
 	private String intro;
 	private String duty[];
 	private String experience;

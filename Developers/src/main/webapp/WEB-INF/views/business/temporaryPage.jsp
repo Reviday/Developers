@@ -10,12 +10,16 @@
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <!-- <link rel="stylesheet" href="${path}/resources/css/dashboard.css"> -->
 <link rel="stylesheet" href="${path}/resources/css/style_ei.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <style>
 @media (max-width: 767px){
 #db-container{
 	margin-top:48px;
 	}
+}
+p{
+	font-size: 14px;
 }
 /* .pagination>*{
     font-size: 1.8rem;
@@ -50,10 +54,22 @@
 	} 
 }
 
-/* .row{
-	margin-right: 0;
-	margin-left: 0;
+div#resumeNo{
+	color:#A4A4A4;
+}
+/* div#memName{
+	border:1px solid red;
+	border-radius: 20px;
+	height:30px;
+	width: 30px;
 } */
+div.searchBar{
+	height:50px;
+}
+
+input#searchBox{
+	padding:20px;
+}
 
 .favBtn{
 	padding: .575rem 1.75rem;
@@ -65,6 +81,8 @@ div.resume-area{
 
 .card-header{
 	background-color: #fff;
+	padding-bottom:12px !important;
+	padding-top:12px !important;
 }
 
 div.card{
@@ -74,23 +92,16 @@ div.card{
 div.card>*{
 	padding:15px;
 }
-/* h5.card-title{
-	padding:5px;
+
+button.btn-outline-info{
+	margin:3px 3px 3px 3px;
+	border-radius: 15px;
 }
-p.career-list{
-	padding:5px;
-}
-p.card-text{
-	padding:5px;
-}
-div.bottom{
-	padding:5px;
-} */
 
 div.showBox{
 	display: inline-block;
-	padding-left:10px;
-	padding-right: 10px;
+	padding-left:20px;
+	padding-right: 20px;
 	padding-top: 1px;
 	padding-bottom: 1px;
 	border-radius: 18px;
@@ -98,7 +109,7 @@ div.showBox{
 	border:1px solid #5E23D3;
 }
 div.skill-list{
-	padding: 5px;
+	padding-top: 12px;
 }
 div.duty-list{
 	display: inline-block;
@@ -106,6 +117,59 @@ div.duty-list{
 mark{
 	background-color: #e0ff3f;
 }
+div.forOpen{
+	text-align: center;
+}
+
+div.forOpen>.btn{
+	width: 90%;
+	height: 55px;
+	margin-top: 30px;
+}
+/* div.left-menu{
+	margin-left: 15px;
+	margin-right: 15px;
+
+} */
+div.left-menu{
+	padding:15px
+}
+
+@media (min-width: 576px){
+	div.resume-left-area{
+		margin-left: 20px;
+		padding-right:0;
+	}
+}
+
+a.list-group-item-action{
+	border-color: #fff;
+}
+
+div.exp-career{
+	margin-left:3px;
+	margin-right:3px;
+}
+
+p.intro{
+	color:#A4A4A4;
+}
+span.aline{
+	color:#A4A4A4;
+}
+p#sirName:after {
+	content: ' \25EF' ' \25EF';
+}
+h4#noResult{
+	height:70px;
+	text-align: center;
+	margin-top:80px;
+}
+h4#noResult::before {
+    content: ' \26A0 ';
+}
+
+
 
 
 
@@ -189,7 +253,7 @@ mark{
 				</div>
 			</div>
 			<hr>
-			<div class="searchBar container" style="height:35px">
+			<div class="searchBar">
 				<div class="input-group container col-md-8">
 					<input type="text" id="searchBox" class="form-control" style="border-color: #ffffff;" placeholder="회사명, 학교, 스킬 검색 (중복검색 가능 e.g.회사명 AND 스킬, 회사명 OR 학교)" aria-label="search-bar" aria-describedby="basic-addon2">
 					<div class="input-group-append">
@@ -202,12 +266,12 @@ mark{
 			</div>
 		</div>
 		<div class="resume-area row">
-			<div style="border: 1px solid red; padding-right: 0;" class="col-12 col-sm-4">
-				<div class="top center" style="height: 100px; border: 1px solid green">
-					<button class="btn btn-success" style="background-color: #7B39BD; border-color: #7B39BD; height:60px; width:70%;">알림권 결제하기</button>
+			<div class="resume-left-area col-12 col-sm-4">
+				<div class="top center forOpen" style="height: 100px;">
+					<button class="btn btn-success" style="background-color: #7B39BD; border-color: #7B39BD;">알림권 결제하기</button>
 				</div>
-				<div class="bottom center" style="border: 1px solid blue">
-					<div class="list-group">
+				<div class="bottom center favList">
+					<div class="list-group left-menu">
 						<a href="#" class="list-group-item list-group-item-action active">목록 전체</a>
 						<a href="#" class="list-group-item list-group-item-action">찜한 목록<div class='countSelected'></div></a>
 						<a href="#" class="list-group-item list-group-item-action">열람한 목록<div class='countSelected'></div></a>
@@ -215,7 +279,7 @@ mark{
 					</div>
 				</div>
 			</div>
-			<div id="cards-area" style="border: 1px solid red" class="col-12 col-sm-8">
+			<div id="cards-area" class="col-12 col-sm-8">
 				<!-- 디비에서 레주메 가져와 리스트 뿌려주기  -->
 				<!-- <c:if test="${not empty myPage}">
 					<c:forEach var="i" items="${resumeList}" varStatus="s">
