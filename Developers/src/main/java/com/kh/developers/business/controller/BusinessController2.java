@@ -284,21 +284,6 @@ public class BusinessController2 {
 		return mv; 
 	}
 	
-	
-	@RequestMapping("/business/busInfo.lbc")
-	public ModelAndView dbMatchup() {
-		ModelAndView mv=new ModelAndView();
-		String biHtml="";
-		biHtml+="<div id='bi-top'>";
-		biHtml+="<nav></nav>";
-		biHtml+="</div>";
-		
-		mv.addObject("dbHtml", biHtml);
-		mv.addObject("dbIndex",5);
-		mv.setViewName("business/dashboard");
-		return mv;
-	}
-	
 	@RequestMapping("/business/applLike.lbc")
 	public ModelAndView applLike(HttpSession session, @RequestParam int applNo, @RequestParam boolean flag) {
 		ModelAndView mv=new ModelAndView();
@@ -326,6 +311,125 @@ public class BusinessController2 {
 		mv.addObject("msg", "해당 지원자가 삭제되었습니다.");
 		mv.addObject("loc", "/business/dashboard.lbc");
 		mv.setViewName("common/msg");
+		return mv;
+	}
+	
+	
+	@RequestMapping("/business/busInfo.lbc")
+	public ModelAndView dbMatchup(HttpSession session) {
+		ModelAndView mv=new ModelAndView();
+		Business bus=(Business)session.getAttribute("busInfo");
+		String biHtml="";
+		biHtml+="<div class='bi_main'>";
+		biHtml+="<div class='bi_main_top'>";
+		biHtml+="<div class='bi_main_title'>회사 정보</div> <div class='bi_info_img'>이미지 변경</div>";
+		biHtml+="</div>";
+		biHtml+="<form class='bi_frm' name='bi_frm'>";
+		biHtml+="<div>";
+		biHtml+="<div class='bi_info_title'>회사 이름<span class='bi_warn'>*</span></div>";
+		biHtml+="<input class='form-control' type='text' value='"+bus.getBusName()+"' disabled />";
+		biHtml+="<div class='bi_info_warn'><span class='bi_warn'>*</span>회사이름은 직접 수정이 불가합니다. 수정이 필요하시면 admin@developer.com으로 문의해 주세요.</div>";
+		biHtml+="</div>";
+		biHtml+="<div class='bi_info'>";
+		biHtml+="<div class='bi_info_title'>회사 소개<span class='bi_warn'>*</span></div>";
+		biHtml+="<textarea class='form-control bi_info_ta'>";
+		biHtml+=bus.getBusIntroduce();
+		biHtml+="</textarea>";
+		biHtml+="</div>";
+		biHtml+="<div>";
+		biHtml+="<div class='bi_info_title'>웹사이트 주소</div>";
+		biHtml+="<input class='form-control' type='text' value='"+bus.getBusWebsite()+"' />";
+		biHtml+="</div>";
+		biHtml+="<div>";
+		biHtml+="<div class='bi_info_title'>본사 주소<span class='bi_warn'>*</span></div>";
+		biHtml+="<input class='form-control' type='text' value='"+bus.getBusAddress()+"' />";
+		biHtml+="</div>";
+		biHtml+="<div class='bi_half'>"; 
+		biHtml+="<div class='bi_left'>";
+		biHtml+="<div class='bi_info_title'>사업자 등록번호<span class='bi_warn'>*</span></div>";
+		biHtml+="<input class='form-control' type='text' value='"+bus.getBusRegNo()+"'/>";
+		biHtml+="</div>";
+		biHtml+="<div class='bi_right'>";
+		biHtml+="<div class='bi_info_title'>매출액/투자금액(승인기준 : 매출액/투자금액 4억원 이상)<span class='bi_warn'>*</span></div>";
+		biHtml+="<input class='form-control' type='text' value='"+bus.getAllIncome()+"'/><span class='won'>억원</span>";
+		biHtml+="</div>";
+		biHtml+="</div>";
+		biHtml+="<div class='bi_half'>";
+		biHtml+="<div class='bi_left'>";
+		biHtml+="<div class='bi_info_title'>산업군<span class='bi_warn'>*</span></div>";
+		biHtml+="<input class='form-control' type='text' value='"+bus.getBusIndustrial()+"'/>";
+		biHtml+="</div>";
+		biHtml+="<div class='bi_right'>";
+		biHtml+="<div class='bi_info_title'>직원수(승인기준 : 팀원 10명이상)*</div>";
+		biHtml+="<select class='form-control'>";
+		biHtml+="<option value=''>회사규모</option>";
+		biHtml+="<option value='1~4'>1~4명</option>";
+		biHtml+="<option value='5~10'>5~10명</option>";
+		biHtml+="<option value='11~50'>11~50명</option>";
+		biHtml+="<option value='51~200'>51~200명</option>";
+		biHtml+="<option value='201~500'>201~500명</option>";
+		biHtml+="<option value='501~1000'>501~1000명</option>";
+		biHtml+="<option value='1001~5000'>1001~5000명</option>";
+		biHtml+="<option value='5001~10000'>5001~10000명</option>";
+		biHtml+="<option value='10001~'>10000명 이상</option>";
+		biHtml+="</select>";
+		biHtml+="</div>";
+		biHtml+="</div>";
+		biHtml+="<div class='bi_half'>";
+		biHtml+="<div class='bi_left'>";
+		biHtml+="<div class='bi_info_title'>설립연도<span class='bi_warn'>*</span></div>";
+		biHtml+="<select class='form-control'>";
+		biHtml+="<option value='' disabled>ex) 2010년</option><option value='2019'>2019년</option><option value='2018'>2018년</option><option value='2017'>2017년</option><option value='2016'>2016년</option><option value='2015'>2015년</option><option value='2014'>2014년</option><option value='2013'>2013년</option><option value='2012'>2012년</option><option value='2011'>2011년</option><option value='2010'>2010년</option><option value='2009'>2009년</option><option value='2008'>2008년</option><option value='2007'>2007년</option><option value='2006'>2006년</option><option value='2005'>2005년</option><option value='2004'>2004년</option><option value='2003'>2003년</option><option value='2002'>2002년</option><option value='2001'>2001년</option><option value='2000'>2000년</option><option value='1999'>1999년</option><option value='1998'>1998년</option><option value='1997'>1997년</option><option value='1996'>1996년</option><option value='1995'>1995년</option><option value='1994'>1994년</option><option value='1993'>1993년</option><option value='1992'>1992년</option><option value='1991'>1991년</option><option value='1990'>1990년</option><option value='1989'>1989년</option><option value='1988'>1988년</option><option value='1987'>1987년</option><option value='1986'>1986년</option><option value='1985'>1985년</option><option value='1984'>1984년</option><option value='1983'>1983년</option><option value='1982'>1982년</option><option value='1981'>1981년</option><option value='1980'>1980년</option><option value='1979'>1979년</option><option value='1978'>1978년</option><option value='1977'>1977년</option><option value='1976'>1976년</option><option value='1975'>1975년</option><option value='1974'>1974년</option><option value='1973'>1973년</option><option value='1972'>1972년</option><option value='1971'>1971년</option><option value='1970'>1970년</option><option value='1969'>1969년</option><option value='1968'>1968년</option><option value='1967'>1967년</option><option value='1966'>1966년</option><option value='1965'>1965년</option><option value='1964'>1964년</option><option value='1963'>1963년</option><option value='1962'>1962년</option><option value='1961'>1961년</option><option value='1960'>1960년</option><option value='1959'>1959년</option><option value='1958'>1958년</option><option value='1957'>1957년</option><option value='1956'>1956년</option><option value='1955'>1955년</option><option value='1954'>1954년</option><option value='1953'>1953년</option><option value='1952'>1952년</option><option value='1951'>1951년</option><option value='1950'>1950년</option>";
+		biHtml+="</select>";
+		biHtml+="</div>";
+		biHtml+="<div class='bi_right'>";
+		biHtml+="<div class='bi_info_title'>정보 수신 메일<span class='bi_warn'>*</span></div>";
+		biHtml+="<input class='form-control' type='email' value='"+bus.getBusEmail()+"'/>";
+		biHtml+="</div>";
+		biHtml+="</div>";
+		biHtml+="<div>";
+		biHtml+="<div class='bi_info_title'>담당자 연락처<span class='bi_warn'>*</span></div>";
+		biHtml+="<input class='form-control' type='text' value='"+bus.getBusPhone()+"'/>";
+		biHtml+="</div>";
+		biHtml+="<div>";
+		biHtml+="<div class='bi_info_title'>검색 키워드(키워드는 최대 3개까지 등록 가능합니다.)</div>";
+		biHtml+="<input class='form-control' type='text' placeholder='서비스명 혹은 브랜드명'/><button type='button' class='bi_keyword_add btn bi_right'>추가</button>";
+		biHtml+="</div>";
+		biHtml+="</form>";
+		biHtml+="</div>";
+		
+		String seHtml="";
+		
+		seHtml+="<div class='bi_bottom_bar'>";
+		seHtml+="<div class='bi_bottom_con'>";
+		seHtml+="<button type='button' class='btn bi_info_modify'>수정</button>";
+		seHtml+="</div>";
+		seHtml+="</div>";
+
+		seHtml+="<div class='bi_img_container'>";
+		seHtml+="<div class='bi_img_content'>";
+		seHtml+="<div class='bi_img_header'>";
+		seHtml+="이미지 변경";
+		seHtml+="</div>";
+		seHtml+="<div class='bi_img_main'>";
+		seHtml+="<div>";
+		seHtml+="<span>대표 이미지</span><br/>";
+		seHtml+="<img class='bi_img_mainimg'/>";
+		seHtml+="</div>";
+		seHtml+="<div>";
+		seHtml+="<span>로고 이미지</span><br/>";
+		seHtml+="<img class='bi_img_mainlogo'/>";
+		seHtml+="</div>";
+		seHtml+="</div>";
+		seHtml+="<div class='bi_img_bottom'>";
+		seHtml+="<button class='bi_img_close'>저장 후 닫기</div>";
+		seHtml+="</div>";
+		seHtml+="</div>";
+		seHtml+="</div>";
+		mv.addObject("dbHtml", biHtml);
+		mv.addObject("seHtml", seHtml);
+		mv.addObject("dbIndex",5);
+		mv.setViewName("business/dashboard");
 		return mv;
 	}
 }

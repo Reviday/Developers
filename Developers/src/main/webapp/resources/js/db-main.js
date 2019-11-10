@@ -1,8 +1,11 @@
 //dashborad-main
 $(window).ready(function(){
   
-    if(db_index==1){
+    if(db_index!=''){
         $("#db-container").html(db_html);
+        if(se_html!=''){
+            $("#content").append(se_html);
+        }
         $($(".ei_nav>li>a")[db_index-1]).addClass("ca1");
         
     }else{

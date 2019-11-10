@@ -1,9 +1,9 @@
 section{
     background-color: #f8f8f8 !important;
+    height:auto;
 }
 .db-container{
     margin:20px auto;
-    height: 1000px;
 }
 .db-container>div{
     position: relative;
@@ -283,34 +283,184 @@ input[name="search_em"]::placeholder{
     z-index:990;
 }
 
-/*matchup*/
-.mu-top{
-    background-color: black;
-    color:white;
+/*bus info*/
+.bi_main{
+    width:100%;
+    max-width: 1024px;
     margin:0 auto;
 }
-.mu-top>form{
-    background-color: white;
-    display : flex;
-    align-content: center;
-    justify-content: center;
-    height: 50px;
+.bi_main_top>div{
+    display: inline-block;
+}
+.bi_main>div{
+    display: inline-block;
+}
+.bi_frm>div{
+    margin:5px auto;
+    width:100%;
+    padding:10px 0;
+}
+.bi_main_title{
+    font-size: 3rem;
+    font-weight: 900;
+    margin: 10px 0px;
+}
+.bi_info_img{
+    font-size: 1.5rem;
+    cursor: pointer;
+    border:1px solid silver;
+    padding:3px 3px;
+    border-radius: 3px;
+    float:right;
+    bottom:0;
+    margin:20px 0;
+    font-weight: 900;
+}
+.bi_info_img:hover{
+    color:white;
+    background-color: #900020;
+}
+.bi_info_warn{
+    font-size:1.3rem;
+}
+.bi_info_title{
+    font-size: 1.7rem;
+    margin-bottom: 5px;
+}
+.form-control{
+    font-size:1.5rem;
+}
+.bi_info_ta{
+    resize: none;
+}
+.bi_warn{
+    color:red;
+}
+.bi_half{
+    height:60px;
+}
+.bi_half>div>input{
     width:100%;
 }
-.mu-input{
-    width:100% -40px;
-    height:32px;
-    border: none;
+.bi_half>div{
+    display: inline-block;
+    width:49%
 }
-.mu-search{
-    border:2px solid black;
-    border-radius: 3px;
-    background-color:white;
-    padding:3px 2px;
-    font-weight: 900;
+.bi_left{
+    float: left;
+}
+.bi_right{
+    float: right;
+}
+
+.won{
+    font-size:1.6rem;
+    color:silver;
+    float: right;
+    margin-top:-25px;
+    padding-right: 10px;
+}
+
+.bi_keyword_add{
+    margin-top:-31.5px;
+    background-color: white;
+    border:1px solid silver;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
     font-size: 1.5rem;
-    margin-left: 3px;
-    height:30px;
+}
+.bi_bottom_bar{
+    position: fixed;
+    bottom:0;
+    border-top:1px solid silver;
+    width:100%;
+    height:60px;
+    background-color: #f8f8f8;
+}
+
+.bi_bottom_con{
+    max-width: 1024px;
+    width:80%;
+    height:100%;
+    margin:0 auto;
+}
+.bi_info_modify{
+    position: relative;
+    float:right;
+    font-size: 2rem;
+    margin:7px 0;
+    background-color: #900020;
+    color:white;
+    font-weight: bold;
+}
+
+.bi_img_container{
+    position: absolute !important;
+    display: none !important;
+    top:0;
+    width:100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.bi_img_content{
+    position: absolute;
+    max-width: 1024px;
+    width:80%;
+    height:90%;
+    left:50%; 
+    top:5%;
+    transform:translateX(-50%);
+    background-color: white;
+    overflow: auto;
+}
+
+.bi_img_header{
+    position: relative;
+    font-size: 2.5rem;
+    left:5%;
+    margin:20px 0;
+    font-weight: bold;
+    width:200px;
+}
+.bi_img_main{
+    width:90%;
+    height:auto;
+    margin:0 auto;
+    padding: 10px 10px;
+    
+}
+.bi_img_main>div>span{
+    font-size: 2rem;
+    font-weight: bolder;
+}
+.bi_img_main>div{
+    margin:20px 0;
+}
+.bi_img_mainimg{
+    width: 275px;
+    height: 210px;
+    border:1px dotted silver;
+    margin:10px 8px;
+}
+.bi_img_mainlogo{
+    width:220px;
+    height:220px;
+    border:1px dotted silver;
+    margin:10px 8px;
+}
+.bi_img_bottom{
+    position: fixed;
+    width:95%;
+    height: 50px;
+    margin:10px 0;
+    bottom:0;
+}
+.bi_img_close{
+    float:right;
+    padding:10px 10px;
+    border:1px solid silver;
+    cursor: pointer;  
 }
 
 
@@ -329,9 +479,7 @@ input[name="search_em"]::placeholder{
         width:790px;
     }
 
-    .mu-top{
-        width:790px;
-    }
+   
 
 }
 @media (max-width: 1199px) and (min-width: 768px){
@@ -345,9 +493,7 @@ input[name="search_em"]::placeholder{
         width:75%;
     }
 
-    .mu-top{
-        width:75%;
-    }
+  
     
 }
 @media (max-width: 767px){
@@ -366,10 +512,8 @@ input[name="search_em"]::placeholder{
     .appl-leftside>h5>svg{
         display: block;
     }
-
-    .mu-top{
-        width:100% -25px;
-        top:20px;
+    .bi_half>div{
+        width:100%;
     }
 
 }

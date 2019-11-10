@@ -138,6 +138,7 @@
 	var path="${path}";
 	var db_index="${dbIndex}";
 	var db_html="${dbHtml}";
+	var se_html="${seHtml}";
 	var appl_index="${applIndex}";
 	var appl_page='${applcPage}';
 	var appl_like='${applLike}';
@@ -153,6 +154,6 @@
 </c:if>
 
 <c:if test="${dbIndex eq 5}">	
-	<!-- <script src="${path}/resources/js/db-businfo.js"></script> -->
+	<script src="${path}/resources/js/db-businfo.js"></script>
 </c:if>
 <jsp:include page="/WEB-INF/views/business/footer.jsp"/> 
