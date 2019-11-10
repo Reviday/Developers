@@ -1,11 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="member">
-<update id="busLogoChange" parameterType="member">
+	<select id="selectMemberListBySearch" parameterType="map" resultMap="memberMap">
+		SELECT * FROM TA_MEMBER WHERE 1=0
+		<if test="searchStr != null">
+			<foreach collection="searchStr" item="str">
+				OR MEM_EMAIL LIKE '%'||#{str}||'%'
+				OR MEM_NAME LIKE '%'||#{str}||'%'
+				OR MEM_ADMINMEMO LIKE '%'||#{str}||'%'
+			</foreach>
+		</if>	
+		<if test="searchInt != null">
+			<foreach collection="searchInt" item="int">
+				OR MEM_NO LIKE '%'||${int}||'%'
+				OR MEM_PHONE LIKE '%'||${int}||'%'
+			</foreach>
+		</if>
+	</select>
+	<select id="selectMemberCountBySearch" parameterType="map" resultType="_int">
+		SELECT COUNT(*) FROM TA_MEMBER WHERE 1=0
+		<if test="searchStr != null">
+			<foreach collection="searchStr" item="str">
+				OR MEM_EMAIL LIKE '%'||#{str}||'%'
+				OR MEM_NAME LIKE '%'||#{str}||'%'
+				OR MEM_ADMINMEMO LIKE '%'||#{str}||'%'
+			</foreach>
+		</if>	
+		<if test="searchInt != null">
+			<foreach collection="searchInt" item="int">
+				OR MEM_NO LIKE '%'||${int}||'%'
+				OR MEM_PHONE LIKE '%'||${int}||'%'
+			</foreach>
+		</if>
+	</select>
+	<update id="busLogoChange" parameterType="member">
 		UPDATE TA_MEMBER SET mem_icon=#{memIcon} WHERE mem_no=#{memNo}
 	</update>
-<update id="memberUpdate" parameterType="member">
-	UPDATE TA_MEMBER SET mem_phone=#{memPhone},mem_name=#{memName} WHERE MEM_EMAIL=#{memEmail}
+	<update id="memberUpdate" parameterType="member">
+		UPDATE TA_MEMBER SET mem_phone=#{memPhone},mem_name=#{memName} WHERE MEM_EMAIL=#{memEmail}
 	</update>
 	<update id="deleteMemberByAdmin" parameterType="member">
     	UPDATE TA_MEMBER SET MEM_STATUS='N', MEM_WITHDRAWAL_DATE=SYSDATE, MEM_ADMINMEMO=CONCAT(CONCAT(CONCAT(MEM_ADMINMEMO,'[관리자에 의한 탈퇴처리('),SYSDATE),')]') WHERE MEM_NO=#{memNo}

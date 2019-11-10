@@ -21,13 +21,49 @@ public class AdminServiceImpl implements AdminService {
 	private SqlSessionTemplate session;
 	
 	@Override
+	public List<Member> selectMemberListBySearch(String value, int cPage, int numPerPage) {
+		Map<String, Object> searchValue=new HashMap<String, Object>();
+		String[] searchStr=value.split("\\s");
+		List<Integer> intList=new ArrayList<Integer>();
+		for(String str:searchStr) {
+			try {
+				intList.add(Integer.parseInt(str));
+			} catch(Exception e) {
+				/*변환 불가*/
+			}
+		}
+		searchValue.put("searchStr",searchStr);
+		if(intList.size()>0) {
+			searchValue.put("searchInt",intList);
+		}
+ 		return dao.selectMemberListBySearch(session, searchValue, cPage, numPerPage);
+	}
+	
+	@Override
 	public int selectMemberCountBySearch(String value) {
 		// value 값을 공백을 기준으로 검색 조건을 담는다.
-		Map<String, String> searchValue=new HashMap<String, String>();
-		String[] searchArr=value.split("\\s");
-		for(int i=0; i<searchArr.length; i++) {
-			searchValue.put(Integer.toString(i), searchArr[i]);
-		};
+		/* <검색 조건>
+		 * 공백을 기준으로 단어를 분류 .
+		 * 단어가 포함된 내용의 정보 리스트를 검색하여 가져온다.
+		 * "토끼는 풀을 먹는다."
+		 * 1. 토끼는  2. 풀을 3. 먹는다. 
+		 * 기준으로 3가지 검색을 모두 수행한다.
+		 * 하여, 비교적 가장 정확한 검색 루틴을 돌린다.
+		 */
+		Map<String, Object> searchValue=new HashMap<String, Object>();
+		String[] searchStr=value.split("\\s");
+		List<Integer> intList=new ArrayList<Integer>();
+		for(String str:searchStr) {
+			try {
+				intList.add(Integer.parseInt(str));
+			} catch(Exception e) {
+				/*변환 불가*/
+			}
+		}
+		searchValue.put("searchStr",searchStr);
+		if(intList.size()>0) {
+			searchValue.put("searchInt",intList);
+		}
  		return dao.selectMemberCountBySearch(session, searchValue);
 	}
 	

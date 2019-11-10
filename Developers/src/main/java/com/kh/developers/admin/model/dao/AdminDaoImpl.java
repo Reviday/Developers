@@ -13,7 +13,14 @@ import com.kh.developers.member.model.vo.Member;
 public class AdminDaoImpl implements AdminDao{
 	
 	@Override
-	public int selectMemberCountBySearch(SqlSessionTemplate session, Map<String, String> searchValue) {
+	public List<Member> selectMemberListBySearch(SqlSessionTemplate session, Map<String, Object> searchValue, int cPage,
+			int numPerPage) {
+		RowBounds r=new RowBounds((cPage-1)*numPerPage, numPerPage);
+		return session.selectList("member.selectMemberListBySearch", searchValue, r);
+	}
+	
+	@Override
+	public int selectMemberCountBySearch(SqlSessionTemplate session, Map<String, Object> searchValue) {
 		return session.selectOne("member.selectMemberCountBySearch",searchValue);
 	}
 	

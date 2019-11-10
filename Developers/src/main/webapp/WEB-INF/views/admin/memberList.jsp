@@ -19,10 +19,10 @@
 			<form action="#" method="get" style="width: 50%;">
 				<div class="input-group">
 					<!-- USE TWITTER TYPEAHEAD JSON WITH API TO SEARCH -->
-					<input class="form-control" id="system-search" name="q"
+					<input class="form-control" id="system-search" 
 						placeholder="Search for" required> <span
 						class="input-group-btn">
-						<button type="submit" class="btn btn-default" onclick="search();">
+						<button class="btn btn-default" onclick="search();">
 							<i class="fas fa-search"></i>
 						</button>
 					</span>

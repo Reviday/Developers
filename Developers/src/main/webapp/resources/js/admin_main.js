@@ -39,25 +39,26 @@ $(document).ready(function() {
 		}
 	});*/
 	
-	function search() {
-		var searchValue=document.getElementById('system-search').value;
-		$.ajax({
-			url:path+"/admin/memberSearchList.lac",
-			type:"POST",
-			data:{
-				"value":searchValue,
-				"cPage":$('#cPage').val(),
-				"numPerPage":$('#numPerPage').val()
-			},
-			success: function(result) {
-				if(result!=null) {
-					$('.mainContent').html("");
-					$('.mainContent').html(result);
-				} 
-			}
-		});
-	};
 });
+function search() {
+	var searchValue=document.getElementById('system-search').value;
+	console.log(searchValue);
+	$.ajax({
+		url:path+"/admin/memberSearchList.lac",
+		type:"POST",
+		data:{
+			"value":searchValue,
+			"cPage":$('#cPage').val(),
+			"numPerPage":$('#numPerPage').val()
+		},
+		success: function(result) {
+			if(result!=null) {
+				$('.mainContent').html("");
+				$('.mainContent').html(result);
+			} 
+		}
+	});
+};
 
 // memo js
 $('.memoBtn').on('click', function() {
