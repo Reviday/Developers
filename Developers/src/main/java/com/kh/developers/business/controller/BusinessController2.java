@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.developers.business.model.service.BusinessService;
 import com.kh.developers.business.model.service.BusinessService2;
 import com.kh.developers.business.model.vo.Applicant;
 import com.kh.developers.business.model.vo.Business;
@@ -73,6 +74,119 @@ public class BusinessController2 {
 		return mv;
 	}
 	
+	@RequestMapping("/business/busImgAdd")
+	public ModelAndView busImgAdd(MultipartHttpServletRequest mReq) {
+		ModelAndView mv=new ModelAndView();
+		MultipartFile logo=mReq.getFile("bus_img");
+		Business busInfo=(Business)mReq.getSession().getAttribute("busInfo");
+		String subDir="/resources/upload/images/business/bus_"+busInfo.getBusNo()+"/images";
+		String saveDir=mReq.getSession().getServletContext().getRealPath("");
+		saveDir=saveDir.substring(0, saveDir.lastIndexOf("\\target"));
+		saveDir+="/src/main/webapp";
+		File dir=new File(saveDir+subDir);
+		if(!dir.exists()) {
+			dir.mkdirs();
+		}
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd_HHmmssSSS");
+		String reName="bus_img_"+sdf.format(new Date());
+		String ext=logo.getOriginalFilename().substring(logo.getOriginalFilename().lastIndexOf("."));
+		reName+=ext;
+		int count=busInfo.getBusImages()!=null?busInfo.getBusImages().length+1:1;
+		//새로운 이미지 저장
+		try {		
+			String logoFullName=saveDir+subDir+"/"+reName;
+			logo.transferTo(new File(logoFullName));
+			Map map=new HashMap();
+			map.put("busNo", busInfo.getBusNo());
+			map.put("count",count);
+			map.put("busImg","/developers"+subDir+"/"+reName);
+			int result=service.busImgAdd(map);
+			String imgHtml="";
+			imgHtml+="";
+			imgHtml+="<div class='bi_img_bus modi_img del_img'>";
+			imgHtml+="<label for='bus_img"+count+"'>";
+			imgHtml+="<img class='bi_img_busimg' src='/developers"+subDir+"/"+reName+"'/>";
+			imgHtml+="<form enctype='multipart/form-data' method='POST'>";
+			imgHtml+="<input id='bus_img"+count+"' name='bus_img' type='file' style='display:none;'>";
+			imgHtml+="</form>";
+			imgHtml+="</label>";
+			imgHtml+="<button type='button' class='img_del_btn' onclick='fn_del_img(event);'><i class='far fa-times-circle'></i></botton>";
+			imgHtml+="</div>";
+			mv.addObject("imgHtml",imgHtml);
+			busInfo.setBusImages(service.selectBusOne(busInfo.getBusNo()).getBusImages());
+		}catch(IOException e) {
+			e.printStackTrace();
+		}
+		mv.setViewName("jsonView");
+		return mv;
+	}
+	
+	
+	@RequestMapping("/business/busImgModify")
+	public ModelAndView busImgModify(MultipartHttpServletRequest mReq) {
+		ModelAndView mv=new ModelAndView();
+		MultipartFile logo=mReq.getFile("logoFile");
+		Business busInfo=(Business)mReq.getSession().getAttribute("busInfo");
+		String subDir="/resources/upload/images/business/bus_"+busInfo.getBusNo()+"/logo";
+		String saveDir=mReq.getSession().getServletContext().getRealPath("");
+		saveDir=saveDir.substring(0, saveDir.lastIndexOf("\\target"));
+		saveDir+="/src/main/webapp";
+		File dir=new File(saveDir+subDir);
+		if(!dir.exists()) {
+			dir.mkdirs();
+		}
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd_HHmmssSSS");
+		String reName="logo_"+sdf.format(new Date());
+		String ext=logo.getOriginalFilename().substring(logo.getOriginalFilename().lastIndexOf("."));
+		reName+=ext;
+		//기존 로고 지우기
+		if(busInfo.getBusLogo()!=null) {			
+			String oriLogo=busInfo.getBusLogo();	
+			File oriFile=new File(saveDir+oriLogo.substring(oriLogo.lastIndexOf("/resources")));
+			if(oriFile.exists()) {
+				oriFile.delete();
+			}
+		}
+		//새로운 로고로 저장
+		try {		
+			String logoFullName=saveDir+subDir+"/"+reName;
+			logo.transferTo(new File(logoFullName));
+			busInfo.setBusLogo("/developers"+subDir+"/"+reName);
+			int result=service.busLogoChange(busInfo);
+		}catch(IOException e) {
+			e.printStackTrace();
+		}
+		mv.addObject("logo",busInfo.getBusLogo());
+		mv.setViewName("jsonView");
+		return mv;
+	}
+	
+	@RequestMapping("business/busImgDelete")
+	public ModelAndView busImgDelete(HttpSession session, @RequestParam int imgIndex) {
+		ModelAndView mv= new ModelAndView();
+		Business bus=(Business)session.getAttribute("busInfo");			
+		String delImg=bus.getBusImages()[imgIndex-1];	
+		String subDir="/resources/upload/images/business/bus_"+bus.getBusNo()+"/images";
+		String saveDir=session.getServletContext().getRealPath("");
+		saveDir=saveDir.substring(0, saveDir.lastIndexOf("\\target"));
+		saveDir+="/src/main/webapp";
+		File delFile=new File(saveDir+delImg.substring(delImg.lastIndexOf("/resources")));
+		if(delFile.exists()) {
+			delFile.delete();
+		}
+		String[] images=new String[bus.getBusImages().length-1];
+		int count=0;
+		for(int i=0; i<bus.getBusImages().length; i++) {
+			if(i!=imgIndex-1) {
+				images[count++]=bus.getBusImages()[i];
+			}
+		}
+		bus.setBusImages(images);
+		service.updateBusInfo(bus);
+		session.setAttribute("busInfo", service.selectBusOne(bus.getBusNo()));
+		mv.setViewName("jsonView");
+		return mv;
+	}
 	
 	@RequestMapping("/business/dashboard.lbc")
 	public ModelAndView dashboard(HttpSession session) {
@@ -351,7 +465,7 @@ public class BusinessController2 {
 		biHtml+="</div>";
 		biHtml+="<div class='bi_right'>";
 		biHtml+="<div class='bi_info_title'>매출액/투자금액(승인기준 : 매출액/투자금액 4억원 이상)<span class='bi_warn'>*</span></div>";
-		biHtml+="<input class='form-control' type='text' value='"+bus.getAllIncome()+"'/><span class='won'>억원</span>";
+		biHtml+="<input class='form-control' type='text' value='"+bus.getBusIncome()+"'/><span class='won'>억원</span>";
 		biHtml+="</div>";
 		biHtml+="</div>";
 		biHtml+="<div class='bi_half'>";
@@ -378,7 +492,7 @@ public class BusinessController2 {
 		biHtml+="<div class='bi_half'>";
 		biHtml+="<div class='bi_left'>";
 		biHtml+="<div class='bi_info_title'>설립연도<span class='bi_warn'>*</span></div>";
-		biHtml+="<select class='form-control'>";
+		biHtml+="<select class='form-control esta_sel'>";
 		biHtml+="<option value='' disabled>ex) 2010년</option><option value='2019'>2019년</option><option value='2018'>2018년</option><option value='2017'>2017년</option><option value='2016'>2016년</option><option value='2015'>2015년</option><option value='2014'>2014년</option><option value='2013'>2013년</option><option value='2012'>2012년</option><option value='2011'>2011년</option><option value='2010'>2010년</option><option value='2009'>2009년</option><option value='2008'>2008년</option><option value='2007'>2007년</option><option value='2006'>2006년</option><option value='2005'>2005년</option><option value='2004'>2004년</option><option value='2003'>2003년</option><option value='2002'>2002년</option><option value='2001'>2001년</option><option value='2000'>2000년</option><option value='1999'>1999년</option><option value='1998'>1998년</option><option value='1997'>1997년</option><option value='1996'>1996년</option><option value='1995'>1995년</option><option value='1994'>1994년</option><option value='1993'>1993년</option><option value='1992'>1992년</option><option value='1991'>1991년</option><option value='1990'>1990년</option><option value='1989'>1989년</option><option value='1988'>1988년</option><option value='1987'>1987년</option><option value='1986'>1986년</option><option value='1985'>1985년</option><option value='1984'>1984년</option><option value='1983'>1983년</option><option value='1982'>1982년</option><option value='1981'>1981년</option><option value='1980'>1980년</option><option value='1979'>1979년</option><option value='1978'>1978년</option><option value='1977'>1977년</option><option value='1976'>1976년</option><option value='1975'>1975년</option><option value='1974'>1974년</option><option value='1973'>1973년</option><option value='1972'>1972년</option><option value='1971'>1971년</option><option value='1970'>1970년</option><option value='1969'>1969년</option><option value='1968'>1968년</option><option value='1967'>1967년</option><option value='1966'>1966년</option><option value='1965'>1965년</option><option value='1964'>1964년</option><option value='1963'>1963년</option><option value='1962'>1962년</option><option value='1961'>1961년</option><option value='1960'>1960년</option><option value='1959'>1959년</option><option value='1958'>1958년</option><option value='1957'>1957년</option><option value='1956'>1956년</option><option value='1955'>1955년</option><option value='1954'>1954년</option><option value='1953'>1953년</option><option value='1952'>1952년</option><option value='1951'>1951년</option><option value='1950'>1950년</option>";
 		biHtml+="</select>";
 		biHtml+="</div>";
@@ -414,15 +528,47 @@ public class BusinessController2 {
 		seHtml+="<div class='bi_img_main'>";
 		seHtml+="<div>";
 		seHtml+="<span>대표 이미지</span><br/>";
-		seHtml+="<img class='bi_img_mainimg'/>";
+		int count=1;
+		if(bus.getBusImages()!=null) {			
+			for(String src:bus.getBusImages()) {
+				seHtml+="<div class='bi_img_bus modi_img del_img'>";
+				seHtml+="<label for='bus_img"+count+"'>";
+				seHtml+="<img class='bi_img_busimg' src='"+src+"'/>";
+				seHtml+="<form enctype='multipart/form-data' method='POST'>";
+				seHtml+="<input id='bus_img"+count+"' name='bus_img' type='file' style='display:none;'>";
+				seHtml+="</form>";
+				seHtml+="</label>";
+				seHtml+="<button type='button' class='img_del_btn' onclick='fn_del_img(event);'><i class='far fa-times-circle'></i></botton>";
+				seHtml+="</div>";
+				count++;
+			}
+		}
+		seHtml+="<div class='bi_img_bus add_img'>";
+		seHtml+="<label for='bus_img'>";
+		seHtml+="<img class='bi_img_busimg' src='/developers/resources/images/bus_img_plus.png'/>";
+		seHtml+="<form enctype='multipart/form-data' method='POST'>";
+		seHtml+="<input id='bus_img' name='bus_img' type='file' style='display:none;'>";
+		seHtml+="</form>";
+		seHtml+="</label>";
+		seHtml+="</div>";
 		seHtml+="</div>";
 		seHtml+="<div>";
 		seHtml+="<span>로고 이미지</span><br/>";
-		seHtml+="<img class='bi_img_mainlogo'/>";
+		seHtml+="<label for='logoFile'>";
+		if(bus.getBusLogo()!=null) {
+			seHtml+="<div class='bi_img_logo modi_img'>";
+			seHtml+="<img class='bi_img_buslogo' src='"+bus.getBusLogo()+"'/>";
+			seHtml+="</div>";
+		}else {
+			seHtml+="<div class='bi_img_logo add_img'>";
+			seHtml+="<img class='bi_img_buslogo' src='/developers/resources/images/bus_img_plus.png'/>";
+			seHtml+="</div>";
+		}
+		seHtml+="</label>";
 		seHtml+="</div>";
 		seHtml+="</div>";
 		seHtml+="<div class='bi_img_bottom'>";
-		seHtml+="<button class='bi_img_close'>저장 후 닫기</div>";
+		seHtml+="<button class='bi_img_close'>닫기</div>";
 		seHtml+="</div>";
 		seHtml+="</div>";
 		seHtml+="</div>";

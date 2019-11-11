@@ -29,10 +29,47 @@
 		UPDATE BUSINESS_INFO SET BUS_LOGO=#{busLogo} WHERE BUS_NO=#{busNo}
 	</update>
 	
-	
+	<update id="updateBusInfo" parameterType="bus">
+		UPDATE BUSINESS_INFO 
+		SET BUS_INTRODUCE=#{busIntroduce}, 
+			BUS_ADDRESS=#{busAddress}, 
+			BUS_INCOME=#{busIncome}, 
+			BUS_INDUSTRIAL=#{busIndustrial}, 
+			BUS_TOTAL_EMP=#{busTotalEmp}, 
+			BUS_EMAIL=#{busEmail}, 
+			BUS_ESTABLISHMENT=#{busEstablishment}, 
+			BUS_PHONE=#{busPhone}, 
+	<if test="searchKeywords!=null and searchKeywords!=''">
+		BUS_SEARCH_KEYWORDS=#{searchKeywords, typeHandler=strArray},
+	</if>
+	<if test="busImages!=null and busImages!=''">
+		 BUS_IMAGES=#{busImages, typeHandler=strArray}, 
+	</if>
+	<if test="busLogo!=null and busLogo!=''">
+		 BUS_LOGO=#{busLogo}, 
+	</if> 		 
+		 BUS_WEBSITE=#{busWebsite}
+		 WHERE BUS_NO=#{busNo}
+	</update>
 	
 	
 	<!-- 지원자탭 -->
+	<update id="busImgAdd" parameterType="map">
+		UPDATE BUSINESS_INFO SET 
+	<if test="count>1">
+		BUS_IMAGES=BUS_IMAGES||','||#{busImg}
+	</if>
+	<if test="count==1">
+		BUS_IMAGES=#{busImg}
+	</if>
+	 	WHERE BUS_NO=#{busNo}
+	</update>
+	
+	<select id="selectBusOne" parameterType="string" resultMap="busMap">
+		SELECT * FROM BUSINESS_INFO WHERE BUS_NO=#{busNo}
+	</select>
+	
+	
 	<select id="selectBusAppl" parameterType="map" resultMap="applMap">
 		SELECT A.* FROM (SELECT ROWNUM AS AL_NO, T.* FROM TA_APPL_BUS T WHERE BUS_NO=#{busNo}) A
 	<if test="applLike!=null and applLike!='' or applLike==true">

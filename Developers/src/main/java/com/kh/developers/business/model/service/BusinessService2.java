@@ -8,9 +8,17 @@ import com.kh.developers.business.model.vo.Business;
 import com.kh.developers.member.model.vo.Member;
 
 public interface BusinessService2 {
-
+	//bus 수정
+	int updateBusInfo(Business bus);
+	
+	//로고 바꾸기
 	int busLogoChange(Business busInfo);
 	
+	//대표이미지 추가
+	int busImgAdd(Map map);
+	
+	//busNo로 비지니스 정보 가져오기
+	Business selectBusOne(String busNo);	
 	//지원자 리스트
 	List<Applicant> selectBusAppl(Map map, int cPage, int numPerPage);
 

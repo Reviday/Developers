@@ -10,7 +10,17 @@ import com.kh.developers.business.model.vo.Business;
 import com.kh.developers.member.model.vo.Member;
 
 public interface BusinessDao2 {
+	//bus 수정
+	int updateBusInfo(SqlSession session, Business bus);
+	
+	//로고 이미지 바꾸기
 	int busLogoChange(SqlSession session, Business busInfo);
+	
+	//대표 이미지 추가
+	int busImgAdd(SqlSession session, Map map);
+	
+	//bus가져오기 번호로
+	Business selectBusOne(SqlSession session, String busNo);
 	
 	//지원자 리스트
 	List<Applicant> selectBusAppl(SqlSession session, Map map, int cPage, int numPerPage);

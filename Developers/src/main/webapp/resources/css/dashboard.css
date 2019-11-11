@@ -309,7 +309,7 @@ input[name="search_em"]::placeholder{
     font-size: 1.5rem;
     cursor: pointer;
     border:1px solid silver;
-    padding:3px 3px;
+    padding:3px 5px;
     border-radius: 3px;
     float:right;
     bottom:0;
@@ -370,7 +370,7 @@ input[name="search_em"]::placeholder{
     font-size: 1.5rem;
 }
 .bi_bottom_bar{
-    position: fixed;
+    position: sticky;
     bottom:0;
     border-top:1px solid silver;
     width:100%;
@@ -396,7 +396,7 @@ input[name="search_em"]::placeholder{
 
 .bi_img_container{
     position: absolute !important;
-    display: none !important;
+    display: none;
     top:0;
     width:100%;
     height: 100%;
@@ -416,17 +416,17 @@ input[name="search_em"]::placeholder{
 }
 
 .bi_img_header{
-    position: relative;
+    position: fixed;
     font-size: 2.5rem;
-    left:5%;
+    padding:0 5%;
     margin:20px 0;
     font-weight: bold;
-    width:200px;
+    width:100%;
+    top:0;
 }
 .bi_img_main{
     width:90%;
-    height:auto;
-    margin:0 auto;
+    margin:5% auto;
     padding: 10px 10px;
     
 }
@@ -437,31 +437,74 @@ input[name="search_em"]::placeholder{
 .bi_img_main>div{
     margin:20px 0;
 }
-.bi_img_mainimg{
+.bi_img_main>div>div{
+    display: inline-grid;
+}
+
+.bi_img_main>div label{
+    cursor: pointer;
+}
+.bi_img_bus{
     width: 275px;
     height: 210px;
-    border:1px dotted silver;
+    border:0.5px solid silver;
     margin:10px 8px;
 }
-.bi_img_mainlogo{
+
+.bi_img_busimg{
+    width:100%;
+    height:100%;
+}
+.modi_img:hover .img_del_btn{
+    display: block;
+}
+.img_del_btn{
+    background-color: rgba(0,0,0, 0.68);
+    position: absolute;
+    display: none;
+    border-radius: 1.1rem;
+    width:2.2rem;
+    height: 2.2rem;
+    margin-left: 252.5px;
+}
+
+.img_del_btn>svg{
+    font-size: 2rem;
+    color:white;
+}
+
+.bi_img_logo{
     width:220px;
     height:220px;
-    border:1px dotted silver;
+    border:0.5px solid silver;
     margin:10px 8px;
 }
+.bi_img_buslogo{
+    width:100%;
+    height:100%;
+}
 .bi_img_bottom{
-    position: fixed;
-    width:95%;
+    position:sticky;
+    width:100%;
     height: 50px;
-    margin:10px 0;
+    padding:0 5%;
     bottom:0;
 }
 .bi_img_close{
     float:right;
     padding:10px 10px;
     border:1px solid silver;
-    cursor: pointer;  
+    cursor: pointer; 
+    font-size: 1.4rem; 
+    font-weight: 900;
+    border-radius: 3px;
 }
+.bi_img_close:hover{
+    color:white;
+    background-color: #900020;
+}
+
+
 
 
 

@@ -15,8 +15,25 @@ import com.kh.developers.member.model.vo.Member;
 public class BusinessDaoImpl2 implements BusinessDao2 {
 
 	@Override
+	public int updateBusInfo(SqlSession session, Business bus) {
+		return session.update("business2.updateBusInfo", bus);
+	}
+
+
+	@Override
 	public int busLogoChange(SqlSession session, Business busInfo) {
 		return session.update("business2.busLogoChange", busInfo);
+	}
+	
+
+	@Override
+	public int busImgAdd(SqlSession session, Map map) {
+		return session.update("business2.busImgAdd", map);
+	}
+
+	@Override
+	public Business selectBusOne(SqlSession session, String busNo) {
+		return session.selectOne("business2.selectBusOne", busNo);
 	}
 
 	@Override
