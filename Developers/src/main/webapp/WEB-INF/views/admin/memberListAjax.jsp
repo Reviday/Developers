@@ -5,16 +5,16 @@
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 
 <div class="row">
-			<h1 class="title">회원 정보</h1>
-		</div>
-		<div class="row">
-			<form action="#" method="get" style="width: 50%;">
+	<h1 class="title">회원 정보</h1>
+</div>
+<div class="row">
+	<form action="#" method="get" style="width: 50%;">
 		<div class="input-group">
 			<!-- USE TWITTER TYPEAHEAD JSON WITH API TO SEARCH -->
 			<input class="form-control" id="system-search"
 				placeholder="Search for" required value="${searchValue}"> <span
 				class="input-group-btn">
-				<button class="btn btn-default" onclick="search();">
+				<button type="button" class="btn btn-default" onclick="search();">
 					<i class="fas fa-search"></i>
 				</button>
 			</span>
@@ -25,7 +25,18 @@
 			<tr>
 				<th>회원번호</th>
 				<th>이메일</th>
-				<th>등급</th>
+				<th>등급
+					<div class="dropdown" style="display: inline-block;">
+				        <select class="dropdown-select-version select" name="memLevel" id="searchlevel" style="vertical-align: top; height: 21px; width: 100px; margin: 0; margin-left: 10px;">
+				        	<option value="5">관리자</option>
+						    <option value="4">기업관리자</option>
+						    <option value="3">기업매니저</option>
+						    <!--<option value="2">-미정-</option> -->
+						    <option value="1">정회원</option>
+						    <option value="0">가입미완료</option> <!-- 회원가입 미완료 상태 -->
+				        </select>
+				    </div>
+				</th>
 				<th>이름</th>
 				<th>전화번호</th>
 				<th class="hidden_th">포인트</th>
@@ -84,4 +95,38 @@
 	</c:if>
 	<input type="hidden" value="${cPage}" id="cPage"/>
 	<input type="hidden" value="${numPerPage}" id="numPerPage"/> 
+	<script>
+		$('.memoBtn').on('click', function() {
+			var choId=$(this).next('.memo_area');
+			var memoArr=$(".memo_area");
+			$.each(memoArr, function(index, item) {
+				if($(item).attr("id")==$(choId).attr("id")) {
+					$(choId).slideToggle();
+				} else {
+					$(item).slideUp();		
+				}
+			})
+		})
+		
+		$('#searchlevel').on('change', function() {
+			var selectLevel=$("#searchlevel option:selected").val();
+			console.log(selectLevel);
+			$.ajax({
+				url:path+"/admin/searchByLevel.lac",
+				type:"POST",
+				data: {
+					"value":searchValue,
+					"cPage":$('#cPage').val(),
+					"numPerPage":$('#numPerPage').val(),
+					"searchLevel":selectLevel
+				},
+				success: function(result) {
+					if(result!=null) {
+						$('.mainContent').html("");
+						$('.mainContent').html(result);
+					} 
+				}
+			});
+		});
+	</script>
 </div>
