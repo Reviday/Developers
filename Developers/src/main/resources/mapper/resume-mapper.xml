@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="resume">
-
+<select id="selectLike" parameterType="member" resultType="myLike">
+select * from ENROLL_POSITION p join po_like l on (p.like_id=l.like_id) join ta_member m on(l.mem_no=m.mem_no) join BUSINESS_INFO b on(p.bus_no=b.bus_no) where m.MEM_NO=#{memNo}
+</select>
 <select id="selectMathUpResume" parameterType="member" resultMap="resumeMap">
 SELECT * FROM RESUME WHERE MEM_EMAIL=#{memEmail} and MATCHUP='Y'
 </select>
@@ -175,4 +177,33 @@ SELECT * FROM RESUME WHERE MEM_EMAIL=#{memEmail} and RESUME_NO=#{resumeNo}
 	<result property="Intro" column="intro"/>
 	<result property="resumeDate" column="resume_date"/>
 </resultMap>
+<resultMap type="member" id="memberMap">
+		<result property="memNo" column="mem_no"/>
+		<result property="memEmail" column="mem_email"/>
+		<result property="memLevel" column="mem_level"/>
+		<result property="memPassword" column="mem_password"/>
+		<result property="memName" column="mem_name"/>
+		<result property="memPhone" column="mem_phone"/>
+		<result property="memPoint" column="mem_point"/>
+		<result property="memDenied" column="mem_denied"/>
+		<result property="memEmailCert" column="mem_email_cert"/>
+		<result property="memReceiveEmail" column="mem_receive_email"/>
+		<result property="memEnrollDatetime" column="mem_enroll_datetime"/>
+		<result property="memEnrollIp" column="mem_enroll_ip"/>
+		<result property="memLastloginDatetime" column="mem_lastlogin_datetime"/>
+		<result property="memLastloginIp" column="mem_lastlogin_ip"/>
+		<result property="memProgileContent" column="mem_profile_content"/>
+		<result property="memAdminmemo" column="mem_adminmemo"/>
+		<result property="memIcon" column="mem_icon"/>
+		<result property="memPhoto" column="mem_photo"/>
+		<result property="memStatus" column="mem_status"/>
+		<result property="memWithdrawalDate" column="mem_withdrawal_date"/>
+		<result property="memDeniedDate" column="mem_denied_date"/>
+		<result property="filter_id" column="filter_id"/>
+	</resultMap>
+	<resultMap type="com.kh.developers.search.model.vo.LikeMember" id="likeMemberMap">
+   	   <result property="like_no" column="LIKE_NO"/>
+   	   <result property="like_id" column="LIKE_ID"/>
+   	   <result property="mem_no" column="MEM_NO"/>
+   </resultMap> 
 </mapper>

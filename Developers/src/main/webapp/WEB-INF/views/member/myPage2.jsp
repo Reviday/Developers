@@ -13,15 +13,14 @@
     <div class="_1Gv5LM5zal-f72_XSo_qJ_" id="mainContent">
     <nav role="presentation" class="_3wSXAiIJQZ98fJ-Hi6G42Q"><button type="button" class="">프로필<i
                 class="icon-arrow_bottom_fill"></i></button>
+                <c:set value="${loginMember.memEmail }" var="memEmail"  />
         <ul class="">
             <li class="_1ft7OZSrbzL35bkI-omU2b"><a href="#" class="activeNav">프로필</a></li>
             <li class="_1ft7OZSrbzL35bkI-omU2b"><a href="#" class="">포인트</a></li>
             <li class="_1ft7OZSrbzL35bkI-omU2b"><button type="button" class="">제안받기 현황<i
                         class="icon-arrow_bottom_fill"></i></button><a href="#" class="">제안받기 현황</a></li>
-            <li class="_1ft7OZSrbzL35bkI-omU2b"><a href="#" onclick="likePage();" class="">좋아요</a></li>
+            <li class="_1ft7OZSrbzL35bkI-omU2b"><a href="#" onclick="likePage('${memEmail }');" class="">좋아요</a></li>
             <li class="_1ft7OZSrbzL35bkI-omU2b"><a href="#" class="">북마크</a></li>
-            <li class="_1ft7OZSrbzL35bkI-omU2b"><button type="button" class="">설정<i
-                        class="icon-arrow_bottom_fill"></i></button><a href="#" class="">설정</a></li>
         </ul>
     </nav>
     <div class="_14NzdD9Zqjq8ocf6TORWoN">
@@ -204,10 +203,11 @@ function updatePage(){
 		   
 	   })
 }
-function likePage() {
+function likePage(memEmail) {
 	   $.ajax({
 		   url:"${path }/member/likePage.lmc",
 		   type:"POST",
+		   data:{"memEmail":memEmail},
 		   success:function(data){
 			   $("#mainContent").html("");
 			   $("#mainContent").html(data);

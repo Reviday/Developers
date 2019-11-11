@@ -24,6 +24,7 @@
 		<typeAlias type="com.kh.developers.search.model.vo.Company" alias="company"/>
 		<typeAlias type="com.kh.developers.search.model.vo.Tag" alias="tag"/>
 		<typeAlias type="com.kh.developers.search.model.vo.BookMark" alias="bookmark"/>
+		<typeAlias type="com.kh.developers.member.model.vo.MyLike" alias="myLike"/>
 		
 	</typeAliases>
 </configuration>

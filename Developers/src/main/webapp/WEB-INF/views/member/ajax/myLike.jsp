@@ -26,8 +26,8 @@
         <div class="_2oEXS1kAsO9i_0mkxCxkCA">
             <ul class="clearfix">
                 <li>
-                    <div class="_3D4OeuZHyGXN7wwibRM5BJ liked"><a href="/wd/29584?referer_id=835297" target="_self"
-                            class="">
+                    <div class="_3D4OeuZHyGXN7wwibRM5BJ liked">
+                    <a href="/wd/29584?referer_id=835297" target="_self" class="">
                             <header
                                 style="background-image: url(&quot;https://static.wanted.co.kr/images/company/4924/mynzjzvx2zw7rbfx__400_400.jpg&quot;);">
                                 <button type="button" class="likeButton"><i

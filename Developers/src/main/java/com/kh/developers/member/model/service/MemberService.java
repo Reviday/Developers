@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.kh.developers.member.model.vo.Interests;
 import com.kh.developers.member.model.vo.Member;
+import com.kh.developers.search.model.vo.LikeMember;
 import com.kh.developers.search.model.vo.Position;
 
 public interface MemberService {
@@ -21,4 +22,6 @@ public interface MemberService {
 	List<Position> selectWeekPositionList(); 
 	int memberUpdate(Member m);
 	int busLogoChange(Member memInfo);
+	List<LikeMember> selectLike(Member m);
+	
 }

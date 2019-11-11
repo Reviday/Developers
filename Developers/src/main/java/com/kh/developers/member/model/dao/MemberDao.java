@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 
 import com.kh.developers.member.model.vo.Interests;
 import com.kh.developers.member.model.vo.Member;
+import com.kh.developers.search.model.vo.LikeMember;
 import com.kh.developers.search.model.vo.Position;
 
 public interface MemberDao {
@@ -25,4 +26,6 @@ public interface MemberDao {
    List<Position> selectWeekPositionList(SqlSessionTemplate session);
    int memberUpdate(SqlSessionTemplate session,Member m);
    int busLogoChange(SqlSessionTemplate session,Member memInfo);
+   List<LikeMember> selectLike(SqlSessionTemplate session, Member m);
+   
 }

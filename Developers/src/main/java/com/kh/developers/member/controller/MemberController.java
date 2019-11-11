@@ -44,6 +44,7 @@ import com.kh.developers.resume.model.vo.Lang;
 import com.kh.developers.resume.model.vo.Links;
 import com.kh.developers.resume.model.vo.Resume;
 import com.kh.developers.search.model.service.SearchService;
+import com.kh.developers.search.model.vo.LikeMember;
 import com.kh.developers.search.model.vo.Position;
 
 @SessionAttributes(value= {"loginMember","busInfo"})
@@ -387,8 +388,12 @@ public class MemberController {
 		return mv;
 	}
 	@RequestMapping("/member/likePage.lmc")
-	public ModelAndView likePage() {
+	public ModelAndView likePage(Member m) {
 		ModelAndView mv= new ModelAndView();
+		System.out.println(m);
+		m=service.selectMemberOne(m);
+		List<LikeMember>likeList=service.selectLike(m);
+		System.out.println(likeList);
 		mv.setViewName("member/ajax/myLike");
 		return mv;
 	}
