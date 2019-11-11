@@ -193,13 +193,20 @@ div.modal-footer{
 		padding-bottom:15px;
 	}
 }
-div.modal-body-area{
+div#resumeBody{
+	overflow:auto; 
+	background-color:#E6E6E6;
+
+}
+div#resumeBodyInside{
 	background-color: #FFFFFF;
 	margin:2px 2px 2px 2px;
+	box-shadow: 2px 2px 2px 2px #CBCCCC;
 }
 
 div#memName{
-
+	font-size:35px;
+	padding:25px;
 }
 
 
@@ -330,8 +337,8 @@ div#memName{
 	        	</button>
 	    		</div>
          		 <!-- <form id="login" action="${pageContext.request.contextPath}/business/login" onsubmit="return loginValidate()" method="post"> -->
-	    		<div class="modal-body" style="overflow:auto; background-color: A4A4A4;">
-					<div class="modal-body-area">
+	    		<div class="modal-body" id="resumeBody">
+					<div class="modal-body-area" id="resumeBodyInside">
 						<div class="" id="ResumeTitle"></div>
 						<div class="" id="ResuMemName"></div>
 						<div class="" id="ResuMemEmail"></div>
