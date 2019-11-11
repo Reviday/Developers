@@ -12,13 +12,18 @@ public class LoginAdminCheck extends HandlerInterceptorAdapter {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		if(request.getSession().getAttribute("loginMember")!=null 
+		if(request.getSession().getAttribute("loginMember")==null) {
+			request.setAttribute("msg", "로그인 후 이용가능합니다.");
+			request.setAttribute("loc", "/");
+			request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp").forward(request, response);
+			return false;
+		} else if(request.getSession().getAttribute("loginMember")!=null 
 				&& ((Member)request.getSession().getAttribute("loginMember")).getMemLevel()<5) {
 			request.setAttribute("msg", "페이지 접근 권한이 없습니다.");
 			request.setAttribute("loc", "/");
 			request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp").forward(request, response);
 			return false;
-		}  else {
+		} else {
 			return super.preHandle(request, response, handler);
 		}
 	}
