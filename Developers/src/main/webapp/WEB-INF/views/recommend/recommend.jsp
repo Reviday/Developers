@@ -168,6 +168,9 @@
     $(".requestmodalclose2").click(function(){
         $(".requestModal2").css("display", "none");
     })
+    $(document).on("click", ".writeReferralLater", function(){
+    	$(".recommendModal2").css("display", "none");
+    })
 </script>
 <!-- 메뉴변환 -->
 <script>
@@ -243,7 +246,19 @@
 					realationship : recommendRealationship
 			},	
 			success: function(data){
-				
+				if(data == "이미 추천한 친구입니다."){
+					alert(data);	
+				}
+				if(data == "추천추가" || data == "추천친구추가"){
+					var div = "<div class='modalsun1 modalsun2'><button type='button' class='right modalbtn close'><i class='fas fa-times'></i></button></div><div class='profilePicWrapper complete'><div class='referLogo'><i class='far fa-thumbs-up'></i></div></div><div class='reComplete1 reComplete2 reComplete3 reComplete4'><p class='referFinishedText'><span>";
+					div += recommendName;
+					div += "님을 좋은 인재로 추천했습니다.</span></p><p class='referralInductionText'><span>나의 추천 한마디는 지인이 커리어를 쌓아가는데 큰 힘이 됩니다.<br>지인이 고마워할 만한 멋진 추천사를 남겨보세요.</span></p><div class='writeReferralButton'><p>추천사 작성하기</p></div><p class='writeReferralLater'>나중에 하기</p></div>";
+					$(".recommendmodalmain2").html("");
+					$(".recommendmodalmain2").html(div);
+				}
+				if(data == "추천받는 사람이 Developers회원이 아닙니다."){
+					alert(data);
+				}
 			}
 		}) 
 	}

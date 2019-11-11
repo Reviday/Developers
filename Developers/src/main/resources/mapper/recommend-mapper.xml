@@ -1,5 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="recommend">
-
+	
+	<!-- 추천여부 검사 -->
+	<select id="selectRecommend" parameterType="map" resultType="recommend">
+		SELECT * FROM RECOMMEND WHERE MEM_NO = #{memNo} AND RECOMMEND_NO = #{recommendNo}
+	</select>
+	<!-- 친구여부 검사 -->
+	<select id="selectFriend" parameterType="map" resultType="friend">
+		SELECT * FROM FRIEND WHERE MEM_NO = #{memNo} AND FRIEND_NO = #{friendNo}
+	</select>
+	<!-- 추천인 회원여부 검사 -->
+	<select id="selectRecommendMember" parameterType="string" resultMap="memberMap">
+		SELECT * FROM TA_MEMBER WHERE MEM_EMAIL = #{email}
+	</select>
+	<!-- 추천 등록 -->
+	<insert id="insertRecommend" parameterType="map">
+		INSERT INTO RECOMMEND VALUES(#{memNo}, #{recommendNo}, #{name}, #{realationship}, NULL)
+	</insert>
+	<!-- 친구 등록 -->
+	<insert id="insertFriend" parameterType="map">
+		INSERT INTO FRIEND VALUES(#{memNo}, #{friendNo}, DEFAULT)
+	</insert>
+	
+	
+	
+	
+	
+	
+	<resultMap type="member" id="memberMap">
+		<result property="memNo" column="mem_no"/>
+		<result property="memEmail" column="mem_email"/>
+		<result property="memLevel" column="mem_level"/>
+		<result property="memPassword" column="mem_password"/>
+		<result property="memName" column="mem_name"/>
+		<result property="memPhone" column="mem_phone"/>
+		<result property="memPoint" column="mem_point"/>
+		<result property="memDenied" column="mem_denied"/>
+		<result property="memEmailCert" column="mem_email_cert"/>
+		<result property="memReceiveEmail" column="mem_receive_email"/>
+		<result property="memEnrollDatetime" column="mem_enroll_datetime"/>
+		<result property="memEnrollIp" column="mem_enroll_ip"/>
+		<result property="memLastloginDatetime" column="mem_lastlogin_datetime"/>
+		<result property="memLastloginIp" column="mem_lastlogin_ip"/>
+		<result property="memProgileContent" column="mem_profile_content"/>
+		<result property="memAdminmemo" column="mem_adminmemo"/>
+		<result property="memIcon" column="mem_icon"/>
+		<result property="memPhoto" column="mem_photo"/>
+		<result property="memStatus" column="mem_status"/>
+		<result property="memWithdrawalDate" column="mem_withdrawal_date"/>
+		<result property="memDeniedDate" column="mem_denied_date"/>
+		<result property="filter_id" column="filter_id"/>
+	</resultMap>
 </mapper>
