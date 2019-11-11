@@ -25,22 +25,28 @@
         </nav>
         <div class="_2oEXS1kAsO9i_0mkxCxkCA">
             <ul class="clearfix">
+       
+            <c:forEach items="${likeList }" var="l">
                 <li>
                     <div class="_3D4OeuZHyGXN7wwibRM5BJ liked">
                     <a href="/wd/29584?referer_id=835297" target="_self" class="">
                             <header
-                                style="background-image: url(&quot;https://static.wanted.co.kr/images/company/4924/mynzjzvx2zw7rbfx__400_400.jpg&quot;);">
-                                <button type="button" class="likeButton"><i
-                                        class="icon-ic_favorite_black_24px"></i>25</button></header>
+                                style="background-image: url();">
+                                <button type="button" class="likeButton">
+                                 <i class="fas fa-heart"></i>&nbsp;&nbsp; ${l.like_count }</button></header>
                             <div class="body">
                                 <dl>
-                                    <dt>[포트폴리오전략실] Junior Business Analyst</dt>
-                                    <dd>야놀자<br><span>서울</span><span class="addressDot">.</span><span>한국</span></dd>
+                                    <dt> ${l.position }</dt>
+                                    <dd>${l.bus_name }<br><span>${l.bus_area }</span>
+                                    <span class="addressDot">.</span>
+                                    <span>${l.bus_country }</span></dd>
                                 </dl>
                                 <div class="reward">채용보상금 1,000,000원</div>
                             </div>
                         </a></div>
-                </li>
+             	   </li>
+               </c:forEach>
+              
             </ul>
         </div>
     </div>

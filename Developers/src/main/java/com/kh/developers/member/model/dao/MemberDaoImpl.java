@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.developers.member.model.vo.Interests;
 import com.kh.developers.member.model.vo.Member;
-import com.kh.developers.search.model.vo.LikeMember;
+import com.kh.developers.member.model.vo.MyLike;
 import com.kh.developers.search.model.vo.Position;
 
 @Repository
@@ -17,7 +17,7 @@ public class MemberDaoImpl implements MemberDao {
 	
 	
 	@Override
-	public List<LikeMember> selectLike(SqlSessionTemplate session, Member m) {
+	public List<Position> selectLike(SqlSessionTemplate session, Member m) {
 		// TODO Auto-generated method stub
 		return session.selectList("resume.selectLike",m);
 	}

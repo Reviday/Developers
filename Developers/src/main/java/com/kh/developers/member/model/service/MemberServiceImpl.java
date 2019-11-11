@@ -17,6 +17,7 @@ import com.kh.developers.common.authentication.TempKey;
 import com.kh.developers.member.model.dao.MemberDao;
 import com.kh.developers.member.model.vo.Interests;
 import com.kh.developers.member.model.vo.Member;
+import com.kh.developers.member.model.vo.MyLike;
 import com.kh.developers.search.model.vo.LikeMember;
 import com.kh.developers.search.model.vo.Position;
 
@@ -33,7 +34,7 @@ public class MemberServiceImpl implements MemberService {
 	
 	
 	@Override
-	public List<LikeMember> selectLike(Member m) {
+	public List<Position> selectLike(Member m) {
 		// TODO Auto-generated method stub
 		return dao.selectLike(session,m);
 	}

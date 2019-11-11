@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="resume">
-<select id="selectLike" parameterType="member" resultType="myLike">
-select * from ENROLL_POSITION p join po_like l on (p.like_id=l.like_id) join ta_member m on(l.mem_no=m.mem_no) join BUSINESS_INFO b on(p.bus_no=b.bus_no) where m.MEM_NO=#{memNo}
+<select id="selectLike" parameterType="member" resultType="position">
+select b.bus_name,b.BUS_COUNTRY,p.position,b.bus_area,b.bus_images,(SELECT COUNT(*) FROM PO_LIKE WHERE LIKE_ID = P.LIKE_ID) AS LIKE_COUNT from ENROLL_POSITION p join po_like l on (p.like_id=l.like_id) join ta_member m on(l.mem_no=m.mem_no) join BUSINESS_INFO b on(p.bus_no=b.bus_no) where m.MEM_NO=#{memNo}
 </select>
 <select id="selectMathUpResume" parameterType="member" resultMap="resumeMap">
 SELECT * FROM RESUME WHERE MEM_EMAIL=#{memEmail} and MATCHUP='Y'
@@ -77,7 +77,7 @@ SELECT * FROM LINKS WHERE MEM_EMAIL=#{memEmail} AND RESUME_NO=${resumeNo} ORDER 
 SELECT * FROM RESUME WHERE MEM_EMAIL=#{memEmail} and RESUME_NO=#{resumeNo}
 </select>
 <insert id="insertCareer" parameterType="resume">
-	INSERT INTO CAREER VALUES(SEQ_CAREER.NEXTVAL,#{memEmail},default,default,default,default,default,#{resumeNo})
+	INSERT INTO CAREER VALUES(SEQ_CAREER.NEXTVAL,#{memEmail},default,default,default,default,default,#{resumeNo},default)
 <selectKey keyProperty="resumeNo" resultType="_int" order="AFTER">
  	SELECT SEQ_CAREER.CURRVAL FROM DUAL
  </selectKey>
@@ -168,6 +168,7 @@ SELECT * FROM RESUME WHERE MEM_EMAIL=#{memEmail} and RESUME_NO=#{resumeNo}
 	<result property="depName" column="dep_name"/>
 	<result property="careerDate" column="career_date"/>
 	<result property="resumeNo" column="resume_no"/>
+	<result property="careerIntro" column="career_intro"/>
 </resultMap>
 <resultMap type="resume" id="resumeMap">
 	<result property="resumeNo" column="resume_no"/>
@@ -201,9 +202,4 @@ SELECT * FROM RESUME WHERE MEM_EMAIL=#{memEmail} and RESUME_NO=#{resumeNo}
 		<result property="memDeniedDate" column="mem_denied_date"/>
 		<result property="filter_id" column="filter_id"/>
 	</resultMap>
-	<resultMap type="com.kh.developers.search.model.vo.LikeMember" id="likeMemberMap">
-   	   <result property="like_no" column="LIKE_NO"/>
-   	   <result property="like_id" column="LIKE_ID"/>
-   	   <result property="mem_no" column="MEM_NO"/>
-   </resultMap> 
 </mapper>

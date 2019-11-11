@@ -36,6 +36,7 @@ import com.kh.developers.common.encrypt.MyEncrypt;
 import com.kh.developers.member.model.service.MemberService;
 import com.kh.developers.member.model.vo.Interests;
 import com.kh.developers.member.model.vo.Member;
+import com.kh.developers.member.model.vo.MyLike;
 import com.kh.developers.resume.model.service.ResumeService;
 import com.kh.developers.resume.model.vo.Activitie;
 import com.kh.developers.resume.model.vo.Career;
@@ -387,13 +388,12 @@ public class MemberController {
 		mv.setViewName("member/ajax/updatePage");
 		return mv;
 	}
-	@RequestMapping("/member/likePage.lmc")
+	@RequestMapping(value="/member/likePage.lmc",produces = "application/text; charset=utf8" )
 	public ModelAndView likePage(Member m) {
 		ModelAndView mv= new ModelAndView();
-		System.out.println(m);
 		m=service.selectMemberOne(m);
-		List<LikeMember>likeList=service.selectLike(m);
-		System.out.println(likeList);
+		List<Position>likeList=service.selectLike(m);
+		mv.addObject("likeList",likeList);
 		mv.setViewName("member/ajax/myLike");
 		return mv;
 	}

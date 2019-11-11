@@ -19,5 +19,6 @@ public class Career {
 	private String depName;
 	private Date careerDate;
 	private int resumeNo;
+	private String careerIntro;
 	
 }
