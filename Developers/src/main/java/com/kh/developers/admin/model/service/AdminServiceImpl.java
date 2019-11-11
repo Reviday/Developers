@@ -21,6 +21,51 @@ public class AdminServiceImpl implements AdminService {
 	private SqlSessionTemplate session;
 	
 	@Override
+	public List<Member> selectMemberListBySearchLevel(String value, int searchLevel, int cPage, int numPerPage) {
+		Map<String, Object> searchValue=new HashMap<String, Object>();
+		if(value != null || !value.equals("")) {
+			String[] searchStr=value.split("\\s");
+			List<Integer> intList=new ArrayList<Integer>();
+			for(String str:searchStr) {
+				try {
+					intList.add(Integer.parseInt(str));
+				} catch(Exception e) {
+					/*변환 불가*/
+				}
+			}
+			searchValue.put("searchStr",searchStr);
+			if(intList.size()>0) {
+				searchValue.put("searchInt",intList);
+			}
+		}
+		searchValue.put("searchLevel",searchLevel);
+ 		return dao.selectMemberListBySearchLevel(session, searchValue, cPage, numPerPage);
+	}
+	
+	@Override
+	public int selectMemberCountBySearchLevel(String value, int searchLevel) {
+		//검색조건을 위함
+		Map<String, Object> searchValue=new HashMap<String, Object>();
+		if(value != null || !value.equals("")) {
+			String[] searchStr=value.split("\\s");
+			List<Integer> intList=new ArrayList<Integer>();
+			for(String str:searchStr) {
+				try {
+					intList.add(Integer.parseInt(str));
+				} catch(Exception e) {
+					/*변환 불가*/
+				}
+			}
+			searchValue.put("searchStr",searchStr);
+			if(intList.size()>0) {
+				searchValue.put("searchInt",intList);
+			}
+		}
+		searchValue.put("searchLevel",searchLevel);
+ 		return dao.selectMemberCountBySearchLevel(session, searchValue);
+	}
+	
+	@Override
 	public List<Member> selectMemberListBySearch(String value, int cPage, int numPerPage) {
 		Map<String, Object> searchValue=new HashMap<String, Object>();
 		String[] searchStr=value.split("\\s");

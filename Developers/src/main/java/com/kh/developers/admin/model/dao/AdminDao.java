@@ -15,4 +15,6 @@ public interface AdminDao {
 	int deleteMember(SqlSessionTemplate session, Member m);
 	int selectMemberCountBySearch(SqlSessionTemplate session, Map<String, Object> searchValue);
 	List<Member> selectMemberListBySearch(SqlSessionTemplate session, Map<String, Object> searchValue, int cPage, int numPerPage);
+	int selectMemberCountBySearchLevel(SqlSessionTemplate session, Map<String, Object> searchValue);
+	List<Member> selectMemberListBySearchLevel(SqlSessionTemplate session, Map<String, Object> searchValue, int cPage, int numPerPage);
 }

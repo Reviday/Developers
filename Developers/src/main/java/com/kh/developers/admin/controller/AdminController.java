@@ -1,6 +1,5 @@
 package com.kh.developers.admin.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -29,20 +28,33 @@ public class AdminController {
 	private AdminService service;
 	private PaginationTemplate pt;
 	
+	@RequestMapping("/admin/searchByLevel.lac")
+	public String memberSearchByLevel(HttpServletRequest req, Model model,
+			@RequestParam (value="value", required=false, defaultValue="") String value,
+			@RequestParam (value="searchLevel", required=true) int searchLevel) {
+		int totalData=service.selectMemberCountBySearchLevel(value, searchLevel);
+		pt=new PaginationTemplate(req, totalData, "/admin/searchByLevel.lac");
+		List<Member> list=service.selectMemberListBySearchLevel(value, searchLevel, pt.getcPage(), pt.getNumPerPage());
+		model.addAttribute("memList",list);
+		model.addAttribute("searchValue", value);
+		model.addAttribute("searchLevel", searchLevel);
+		model.addAttribute("cPage", pt.getcPage());
+		model.addAttribute("numPerPage", pt.getNumPerPage());
+		model.addAttribute("pageBar", pt.getPageBar());
+		return "admin/memberListAjax";
+	}
+	
 	@RequestMapping("/admin/memberSearchList.lac")
 	public String memberSearchList(HttpServletRequest req, Model model,
 			@RequestParam (value="value", required=true) String value) {
-		// value가 없으면 처음 페이지로 
-		if(value==null || value.equals("")) return "/admin/memberList";
 		// value 조건을 가진 검색 리스트 갯수
 		int totalData=service.selectMemberCountBySearch(value);
-		System.out.println("검색된 개수 : " + totalData);
 		pt=new PaginationTemplate(req, totalData, "/admin/memberSearchList.lac");
 		List<Member> list=service.selectMemberListBySearch(value, pt.getcPage(), pt.getNumPerPage());
 		model.addAttribute("memList",list);
+		model.addAttribute("searchValue", value);
 		model.addAttribute("cPage", pt.getcPage());
 		model.addAttribute("numPerPage", pt.getNumPerPage());
-		model.addAttribute("searchValue", value);
 		model.addAttribute("pageBar", pt.getPageBar());
 		return "admin/memberListAjax";
 	}

@@ -1,6 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="member">
+	<select id="selectMemberListBySearchLevel" parameterType="map" resultMap="memberMap">
+		SELECT * FROM TA_MEMBER WHERE 1=0
+		<if test="searchStr != null">
+			OR ( 1=0
+			<foreach collection="searchStr" item="str">
+				OR MEM_EMAIL LIKE '%'||#{str}||'%'
+				OR MEM_NAME LIKE '%'||#{str}||'%'
+				OR MEM_ADMINMEMO LIKE '%'||#{str}||'%'
+			</foreach>
+			<if test="searchInt != null">
+				<foreach collection="searchInt" item="int">
+					OR MEM_NO LIKE '%'||${int}||'%'
+					OR MEM_PHONE LIKE '%'||${int}||'%'
+				</foreach>
+			</if>
+			)
+		</if>	
+		<if test="searchLevel != null">
+			AND (MEM_LEVEL=${searchLevel})
+		</if>
+	</select>
+	<select id="selectMemberCountBySearchLevel" parameterType="map" resultType="_int">
+		SELECT COUNT(*) FROM TA_MEMBER WHERE 1=0
+		<if test="searchStr != null">
+			OR ( 1=0
+			<foreach collection="searchStr" item="str">
+				OR MEM_EMAIL LIKE '%'||#{str}||'%'
+				OR MEM_NAME LIKE '%'||#{str}||'%'
+				OR MEM_ADMINMEMO LIKE '%'||#{str}||'%'
+			</foreach>
+			<if test="searchInt != null">
+				<foreach collection="searchInt" item="int">
+					OR MEM_NO LIKE '%'||${int}||'%'
+					OR MEM_PHONE LIKE '%'||${int}||'%'
+				</foreach>
+			</if>
+			)
+		</if>	
+		<if test="searchLevel != null">
+			AND (MEM_LEVEL=${searchLevel})
+		</if>
+	</select>
 	<select id="selectMemberListBySearch" parameterType="map" resultMap="memberMap">
 		SELECT * FROM TA_MEMBER WHERE 1=0
 		<if test="searchStr != null">

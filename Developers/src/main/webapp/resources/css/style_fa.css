@@ -398,6 +398,7 @@ header {
 #header_title {
 	font-family: sans-serif;
 	padding: 1.0rem 0;
+	text-decoration: none;
 }
 
 .header_fa a {

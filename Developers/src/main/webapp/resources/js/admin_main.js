@@ -42,7 +42,6 @@ $(document).ready(function() {
 });
 function search() {
 	var searchValue=document.getElementById('system-search').value;
-	console.log(searchValue);
 	$.ajax({
 		url:path+"/admin/memberSearchList.lac",
 		type:"POST",
@@ -57,7 +56,7 @@ function search() {
 				$('.mainContent').html(result);
 			} 
 		}
-	});
+	}); 
 };
 
 // memo js
@@ -118,3 +117,4 @@ function fn_deleteMember(memNo) {
 		});
 	} 
 }
+

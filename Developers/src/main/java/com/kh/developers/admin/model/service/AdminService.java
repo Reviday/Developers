@@ -12,4 +12,6 @@ public interface AdminService {
 	List<Member> deleteMember(Member m, int cPage, int numPerPage);
 	int selectMemberCountBySearch(String value);
 	List<Member> selectMemberListBySearch(String value, int cPage, int numPerPage);
+	int selectMemberCountBySearchLevel(String value, int searchLevel);
+	List<Member> selectMemberListBySearchLevel(String value, int searchLevel, int cPage, int numPerPage);
 }

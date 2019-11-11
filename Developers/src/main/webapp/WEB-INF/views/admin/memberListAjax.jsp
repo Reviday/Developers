@@ -28,12 +28,13 @@
 				<th>등급
 					<div class="dropdown" style="display: inline-block;">
 				        <select class="dropdown-select-version select" name="memLevel" id="searchlevel" style="vertical-align: top; height: 21px; width: 100px; margin: 0; margin-left: 10px;">
-				        	<option value="5">관리자</option>
-						    <option value="4">기업관리자</option>
-						    <option value="3">기업매니저</option>
+				        	<option selected disabled hidden>등급별검색</option>
+				        	<option value="5" <c:if test="${searchLevel eq 5}">selected</c:if>>관리자</option>
+						    <option value="4" <c:if test="${searchLevel eq 4}">selected</c:if>>기업관리자</option>
+						    <option value="3" <c:if test="${searchLevel eq 3}">selected</c:if>>기업매니저</option>
 						    <!--<option value="2">-미정-</option> -->
-						    <option value="1">정회원</option>
-						    <option value="0">가입미완료</option> <!-- 회원가입 미완료 상태 -->
+						    <option value="1" <c:if test="${searchLevel eq 1}">selected</c:if>>정회원</option>
+						    <option value="0" <c:if test="${searchLevel eq 0}">selected</c:if>>가입미완료</option> <!-- 회원가입 미완료 상태 -->
 				        </select>
 				    </div>
 				</th>
@@ -44,9 +45,9 @@
 				<th>수정/탈퇴</th>
 			</tr>
 		</thead>
+		<tbody>
 		<c:if test="${not empty memList}">
-			<tbody>
-				<c:forEach items="${memList }" var="m">
+			<c:forEach items="${memList }" var="m">
 				<tr>
 					<td data-th="회원번호">${m.memNo }</td>
 					<td data-th="이메일">${m.memEmail }</td>
@@ -85,8 +86,15 @@
 					</td>
 				</tr>
 				</c:forEach>
-			</tbody>
-		</c:if>
+			</c:if>
+			<c:if test="${empty memList}">
+				<tr>
+					<td colspan="8">
+						결과가 존재하지 않습니다.
+					</td>
+				</tr>
+			</c:if>
+		</tbody>
 	</table>
 </div>
 <div class="container text-align-center">
@@ -110,6 +118,7 @@
 		
 		$('#searchlevel').on('change', function() {
 			var selectLevel=$("#searchlevel option:selected").val();
+			var searchValue=$("#system-search").val();
 			console.log(selectLevel);
 			$.ajax({
 				url:path+"/admin/searchByLevel.lac",

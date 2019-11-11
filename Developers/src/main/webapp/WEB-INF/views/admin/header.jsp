@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Developers Black - Admin</title>
-
+<link rel="shortcut icon" href="${path }/resources/images/Developers_black_logo_favicon.png">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/css/bootstrap.min.css">
 <link rel="stylesheet"
@@ -47,7 +47,7 @@
 	        <nav class="nav_style_l">
 				<ul class="nav_us">
 					<li class="ls1 ls2">
-						<a id="header_title" aria-current="page" class="as1" href="#">
+						<a id="header_title" aria-current="page" class="as1" href="${path}/admin/adminPage.lac">
 							<img id="header_logo" src="${path}/resources/images/Developers_black_logo_favicon.png" widht="30px" height="30px"/>
 							&nbsp;Developers Black for Admin
 						</a>
