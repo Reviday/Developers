@@ -163,7 +163,7 @@ function ajaxLogic(searchPackage){
                         let userName=icList[i].memName.split("");
                         let sirName=userName.splice(0,1);
                         cardContainer+='<div id="memName" style="float:left; color:#A4A4A4; margin-left:10px; padding:7px;"><p id="sirName">'+sirName+'</p></div>';
-                        cardContainer+='<div id="favBtn" style="float:right;"><button class="btn btn-outline-primary favBtn" type="button">찜하기</button></div></h5>';
+                        cardContainer+='<div id="favBtn" style="float:right;"><button class="btn btn-outline-primary favBtn" onclick="clickFav('+icList[i].resumeNo+');" type="button">찜하기</button></div></h5>';
                         cardContainer+='<div class="card-body">';
                         cardContainer+='<h5 class="card-title">';
                         cardContainer+='<div class="duty-list"><p class="duty">';
@@ -322,27 +322,35 @@ function openResume(resumeNo){
                     info=JSON.parse(result);
                     
                     name.html('<div id="memName">'+info.memName+'</div>');
-                    email.html('<div class="personal">'+info.memEmail+'</div>');
-                    phone.html('<div class="personal">'+info.memPhone+'</div>');
+                    email.html('<div class="personalInfo">이메일: '+info.memEmail+'</div>');
+                    phone.html('<div class="personalInfo">전화번호: '+info.memPhone+'</div>');
                     intro.html('<div id="memIntro">'+info.intro+'</div>');
 
                     let careerss="";
                     for(let i in info.careers){
-                        careerss+='<div>'+info.careers[i].busName+'</div>';
-                        careerss+='<div>'+info.careers[i].deptName+'</div>';
-                        careerss+='<div>'+info.careers[i].careerIntro+'</div>';
-                        careerss+='<div>'+info.careers[i].startCareer+'</div>';
-                        careerss+='<div>'+info.careers[i].endCareer+'</div>';
+                        careerss+='<div class="careerTitle">경력</div>';
+                        careerss+='<div class="busName">'+info.careers[i].busName+'</div>';
+                        careerss+='<div><span class="aline" style="float:left; margin-left:1%; margin-right:1%;">'+" | "+'</span></div>';
+                        careerss+='<div class="deptName">'+info.careers[i].deptName+'</div>';
+                        careerss+='<div class="endCareer">'+info.careers[i].endCareer+'</div>';
+                        careerss+='<div class="startCareer">'+info.careers[i].startCareer+'  ~'+'</div>';
+                        careerss+='<br>';
+                        careerss+='<div class="careerIntro">'+info.careers[i].careerIntro+'</div>';
+                        careerss+='<hr style="width:95%;">';
                     }
                     career.html(careerss);
 
                     let educationss="";
                     for(let i in info.educations){
-                        educationss+='<div>'+info.educations[i].schoolName+'</div>';
-                        educationss+='<div>'+info.educations[i].majorName+'</div>';
-                        educationss+='<div>'+info.educations[i].subjectName+'</div>';
-                        educationss+='<div>'+info.educations[i].startEd+'</div>';
-                        educationss+='<div>'+info.educations[i].endEd+'</div>';
+                        educationss+='<div class="educationTitle">학력</div>';
+                        educationss+='<div class="schoolName">'+info.educations[i].schoolName+'</div>';
+                        educationss+='<span class="aline" style="float:left; margin-left:1%; margin-right:1%;">'+" | "+'</span>';
+                        educationss+='<div class="majorName">'+info.educations[i].majorName+'</div>';
+                        educationss+='<div class="endEd">'+info.educations[i].endEd+'</div>';
+                        educationss+='<div class="startEd">'+info.educations[i].startEd+'  ~'+'</div>';
+                        educationss+='<br>';
+                        educationss+='<div class="subjectName">'+info.educations[i].subjectName+'</div>';
+                        educationss+='<hr style="width:95%;">';
                     }
                     education.html(educationss);
                 }
@@ -352,13 +360,87 @@ function openResume(resumeNo){
 }
 
 
+// 왼쪽 메뉴바 함수들 
+
+var favBtns=document.querySelectorAll('a.list-group-item-action');
+favBtns.forEach(function(e){
+    e.addEventListener('click',function(){
+        for(let i=0;i<favBtns.length;i++){
+            favBtns[i].className="list-group-item list-group-item-action";
+        }
+        this.className+=' active';
+    });
+});
+
+function favoriteList(){
+    $.ajax({
+        url:path+"/business/favoriteList",
+        type:"post",
+        async: false,
+        data:{
+        },
+        success:function(result){
+        }
+    });
+}
+
+function openedList(){
+    $.ajax({
+        url:path+"/business/openedList",
+        type:"post",
+        async: false,
+        data:{
+        },
+        success:function(result){
+        }
+    });
+}
+
+function offeredList(){
+    $.ajax({
+        url:path+"/business/offeredList",
+        type:"post",
+        async: false,
+        data:{
+        },
+        success:function(result){
+        }
+    });
+}
 
 
-
-
-
-
-
+function clickFav(resumeNo){
+    console.log(resumeNo);
+    // if(e.target.style.backgroundColor!="yellow"){
+    //     $.ajax({
+    //         url:path+"/business/clickFav",
+    //         type:"post",
+    //         async: false,
+    //         data:{
+    //         },
+    //         success:function(result){
+    //             console.log(result);
+    //             if(result>0){
+    //                 e.target.style.backgroundColor="yellow";
+    //             }
+    //         }
+    //     });
+    // }else{
+    //     $.ajax({
+    //         url:path+"/business/removeFav",
+    //         type:"post",
+    //         async: false,
+    //         data:{
+    //         },
+    //         success:function(result){
+    //             console.log(result);
+    //             if(result>0){
+    //                 e.target.style.backgroundColor="";
+    //             }
+    //         }
+    //     });
+    // }
+}
 
 
 

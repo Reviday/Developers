@@ -314,6 +314,27 @@ public class BusinessController {
 		return jsonStr;
 	}
 	
+	//찜하기 로직 
+	@RequestMapping(value = "/business/clickFav", produces = "application/text; charset=utf-8")
+	@ResponseBody
+	public String clickFav(@RequestParam(value="resumeNo") int resumeNo,HttpSession session,HttpServletResponse res) {
+		Business bus=(Business) session.getAttribute("busInfo");
+		ObjectMapper mapper=new ObjectMapper(); //잭슨 객체 - json자바스크립트 객체 매핑시킴
+		String jsonStr="";
+		int result=bService.insertFavorite(bus.getBusNo(),resumeNo);
+	}
+	
+	
+	// 왼쪽 메뉴바 로직
+	
+//	@RequestMapping(value = "/business/favoriteList", produces = "application/text; charset=utf-8")
+//	@ResponseBody
+//	public String favoriteList(HttpSession session, HttpServletResponse res) {
+//		Business bus=(Business) session.getAttribute("busInfo");
+//		bus.getBusNo();
+//	}
+	
+	
 	
 	
 }

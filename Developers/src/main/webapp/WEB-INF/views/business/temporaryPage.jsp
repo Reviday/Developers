@@ -200,14 +200,54 @@ div#resumeBody{
 }
 div#resumeBodyInside{
 	background-color: #FFFFFF;
-	margin:2px 2px 2px 2px;
+	margin:3px 3px 3px 3px;
 	box-shadow: 2px 2px 2px 2px #CBCCCC;
 }
+div#resumeBodyInside>*{
+	font-size:15px;
+	padding:2px;
+} 
 
 div#memName{
 	font-size:35px;
 	padding:25px;
+	padding-left:30px;
+	font-weight:bold;
 }
+div.personalInfo{
+	padding-left:30px;
+	font-size:15px;
+	color:#A4A4A4;
+}
+div#memIntro{
+	padding:30px;
+	padding-left:30px;
+	font-size:13px;
+	color:#2E2E2E
+}
+.careerTitle,.educationTitle{
+	float:left;
+	margin-left:30px;
+}
+.busName,.schoolName{
+	float:left;
+	margin-left:20%;
+}
+.deptName,.majorName{
+	float:left;
+}
+.startCareer,.startEd{
+	float:right;
+	margin-right:5px;
+}
+.endCareer,.endEd{
+	float:right;
+	margin-right:4%;
+} 
+.careerIntro,.subjectName{
+	padding:30px;
+}
+
 
 
 
@@ -312,10 +352,10 @@ div#memName{
 				</div>
 				<div class="bottom center favList">
 					<div class="list-group left-menu">
-						<a href="#" class="list-group-item list-group-item-action active">목록 전체</a>
-						<a href="#" class="list-group-item list-group-item-action">찜한 목록<div class='countSelected'></div></a>
-						<a href="#" class="list-group-item list-group-item-action">열람한 목록<div class='countSelected'></div></a>
-						<a href="#" class="list-group-item list-group-item-action">면접 제안한 목록<div class='countSelected'></div></a>
+						<a href="#" class="list-group-item list-group-item-action active" onclick="location.reload()">목록 전체</a>
+						<a href="#" class="list-group-item list-group-item-action" onclick="favoriteList();">찜한 목록<div class='countSelected'></div></a>
+						<a href="#" class="list-group-item list-group-item-action" onclick="openedList();">열람한 목록<div class='countSelected'></div></a>
+						<a href="#" class="list-group-item list-group-item-action" onclick="offeredList();">면접 제안한 목록<div class='countSelected'></div></a>
 					</div>
 				</div>
 			</div>
@@ -344,7 +384,7 @@ div#memName{
 						<div class="" id="ResuMemEmail"></div>
 						<div class="" id="ResuMemPhone"></div>
 						<div class="" id="ResuIntro"></div>
-						<hr>
+						<hr style="width:95%; border-top:groove;">
 						<div class="" id="ResuCareers"></div>
 						<div class="" id="ResuEducation"></div>
 					</div>
@@ -352,7 +392,7 @@ div#memName{
 				<!-- </form> -->
 	    		<div class="modal-footer">
 					<div class="resume-footer row" style="width:100%">
-						<div class="footer-intro col-12 col-sm-9" style="color: #fff; margin:auto auto;"><p style="font-size:20px;">이력서 상세보기 시, 열람권이 1회가 차감됩니다.</p></div>
+						<div class="footer-intro col-12 col-sm-9" style="color: #fff; margin:auto auto;"><p style="font-size:20px;">이력서 상세보기 시, 열람권 1회가 차감됩니다.</p></div>
 						<div class="resumePayment col-12 col-sm-3"><button type="button" id="resumePayment" color="#258BF7" class="btn btn-primary" style="background-color: #fff; border-color: #fff; color: #2E2E2E; padding:20px;">이력서 상세보기</button></div>
 					</div>	
 		  		<!-- <p>계정이 없으신가요?<a class="navbar-brand-small" href="#" onclick="changeModal('toReg'); return false">채용담당자 계정 만들기</a></p> -->
