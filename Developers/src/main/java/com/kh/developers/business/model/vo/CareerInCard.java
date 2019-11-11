@@ -11,4 +11,7 @@ public class CareerInCard {
 	private String busName;
 	private String startCareer;
 	private String endCareer;
+	
+	private String deptName;
+	private String careerIntro;
 }

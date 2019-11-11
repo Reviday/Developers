@@ -288,31 +288,28 @@ public class BusinessController {
 			e.printStackTrace();
 		}
 		res.setContentType("application/json;charset=utf-8");
-//		if(!searchPackage[0].isEmpty()) {
-//			
-//		}
-//		if(!selectedString.isEmpty()&&selectedString!=""&&!selectedString.equals("all")) {
-//			String[] selected=selectedString.split(",");
-//			Arrays.sort(selected);
-//			String duties="";
-//			for(int i=0;i<selected.length;i++) {
-//				duties+='%'+selected[i];
-//			}
-//			duties+='%';
-//			List<IntroCard> icList=bService.selectIntroCards(duties);
-//			for(IntroCard ic:icList) {
-//				ic.setCareers(bService.selectCareers(ic.getResumeNo()));
-//				ic.setEducations(bService.selectEducations(ic.getResumeNo()));
-//			}
-//				try {
-//					jsonStr=mapper.writeValueAsString(icList);
-//				}catch(JsonProcessingException e) {
-//					e.printStackTrace();
-//				}
-//			res.setContentType("application/json;charset=utf-8");
-//		}
-//		System.out.println(selectedString);
+
 		return jsonStr;
 	}
+	
+	@RequestMapping
+	@ResponseBody
+	public String openResume(@RequestParam (value="resumeNo", required=true) int resumeNo) {
+		ObjectMapper mapper=new ObjectMapper(); //잭슨 객체 - json자바스크립트 객체 매핑시킴
+		String jsonStr="";
+		IntroCard ic=bService.selectOneIntroCard(resumeNo);
+		if(ic!=null) {
+			ic.setCareers(bService.selectCareers(resumeNo));
+			ic.setEducations(bService.selectEducations(resumeNo));			
+		}
+		try {
+			jsonStr=mapper.writeValueAsString(ic);
+		}catch(JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		return jsonStr;
+	}
+	
+	
 	
 }

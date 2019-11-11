@@ -205,7 +205,7 @@
 	aria-labelledby="exampleModalLabel" aria-hidden="true">
 	  <div class="modal-dialog modal-dialog-centered" role="document">
 	    <div class="modal-content">
-		  <div class="modal-header" style="background-color: #151515;">
+		  <div class="modal-header" style="background-color: #1C1C1C;">
 			<img src="${path }/resources/images/Developers_black_logo.png" style="height:30px; margin-left:10px;"/>
 	        <h5 class="modal-title" style="color: #ffffff; margin: auto auto;" id="exampleModalLabel">Recruiting Developers</h5>
 	        <button type="button" style="color:#ffffff; padding-top: 15px;" class="close" data-dismiss="modal" aria-label="Close">
@@ -248,7 +248,7 @@
 	aria-labelledby="exampleModalLabel" aria-hidden="true">
 	  <div class="modal-dialog modal-dialog-centered" role="document">
 	    <div class="modal-content">
-		  <div class="modal-header" style="background-color: #151515;" >
+		  <div class="modal-header" style="background-color: #1C1C1C;" >
 			<img src="${path }/resources/images/Developers_black_logo.png" style="height:30px; margin-left:10px;"/>
 	        <h5 class="modal-title" style="color: #ffffff; margin: auto auto;"  id="exampleModalLabel">Recruiting Developers</h5>
 	        <button type="button" class="close" style="color:#ffffff; padding-top: 15px;" data-dismiss="modal" aria-label="Close">

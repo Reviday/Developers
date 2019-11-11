@@ -38,4 +38,9 @@ public interface BusinessService {
 	List<CareerInCard> selectCareers(int resumeNo);
 	
 	List<EducationInCard> selectEducations(int resumeNo);
+	
+	
+	//openRoughResume 로직 
+	
+	IntroCard selectOneIntroCard(int resumeNo);
 }

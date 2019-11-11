@@ -171,6 +171,14 @@ public class BusinessServiceImpl implements BusinessService {
 		return dao.selectEducations(session, resumeNo);
 	}
 	
+	//openRoughResume 로직 
+	
+	@Override
+	public IntroCard selectOneIntroCard(int resumeNo) {
+		// TODO Auto-generated method stub
+		return dao.selectOneIntroCard(session, resumeNo);
+	}
+	
 	
 
 }

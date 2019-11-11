@@ -121,5 +121,12 @@ public class BusinessDaoImpl implements BusinessDao {
 		// TODO Auto-generated method stub
 		return session.selectList("business.selectEducations",resumeNo);
 	}
+	
+	//openRoughResume 로직 
+	@Override
+	public IntroCard selectOneIntroCard(SqlSessionTemplate session, int resumeNo) {
+		// TODO Auto-generated method stub
+		return session.selectOne("business.selectOneIntroCard",resumeNo);
+	}
 
 }

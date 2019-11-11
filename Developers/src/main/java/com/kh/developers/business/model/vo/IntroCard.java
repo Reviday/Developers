@@ -20,5 +20,8 @@ public class IntroCard {
 	
 	private List<CareerInCard> careers;
 	private List<EducationInCard> educations;
+	
+	private String memEmail;
+	private String memPhone;
 
 }

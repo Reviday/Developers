@@ -111,22 +111,34 @@
 	</select>
 	
 	<select id="selectCareers" parameterType="integer" resultMap="careerMap">
-		SELECT BUS_NAME, START_CAREER, END_CAREER FROM CAREER WHERE RESUME_NO=#{resumeNo}
+		SELECT BUS_NAME, START_CAREER, END_CAREER , DEP_NAME, CAREER_INTRO FROM CAREER WHERE RESUME_NO=#{resumeNo}
 	</select>
 	
 	<select id="selectEducations" parameterType="integer" resultMap="educationMap">
-		SELECT SCHOOL_NAME, MAJOR_NAME FROM EDUCATION WHERE RESUME_NO=#{resumeNo}
+		SELECT SCHOOL_NAME, MAJOR_NAME, SUBJECT_NAME, START_ED, END_ED FROM EDUCATION WHERE RESUME_NO=#{resumeNo}
 	</select>
+	
+	<select id="selectOneIntroCard" parameterType="integer" resultMap="introCardMap">
+		SELECT RESUME_NO,MEM_NAME,MEM_EMAIL,MEM_PHONE,INTRO FROM RESUME WHERE RESUME_NO=${resumeNo}
+	</select>
+	
+	
+	
 	
 	<resultMap type="com.kh.developers.business.model.vo.CareerInCard" id="careerMap">
 		<result property="busName" column="BUS_NAME"></result>
+		<result property="deptName" column="DEP_NAME"></result>
 		<result property="startCareer" column="START_CAREER"></result>
 		<result property="endCareer" column="END_CAREER"></result>
+		<result property="careerIntro" column="CAREER_INTRO"></result>
 	</resultMap>
 	
 	<resultMap type="com.kh.developers.business.model.vo.EducationInCard" id="educationMap">
 		<result property="schoolName" column="SCHOOL_NAME"></result>
 		<result property="majorName" column="MAJOR_NAME"></result>
+		<result property="subjectName" column="SUBJECT_NAME"></result>
+		<result property="startEd" column="START_ED"></result>
+		<result property="endEd" column="END_ED"></result>
 	</resultMap>
 	
 	<resultMap type="bus" id="busMap">
@@ -196,6 +208,8 @@
    	   <result property="duty" column="duty" typeHandler="strArray"></result>
    	   <result property="experience" column="experience"></result>
    	   <result property="skill" column="skill" typeHandler="strArray"></result>
+   	   <result property="memEmail" column="mem_email"></result>
+   	   <result property="memPhone" column="mem_Phone"></result>
    </resultMap> 
 	
 </mapper>

@@ -169,6 +169,31 @@ h4#noResult::before {
     content: ' \26A0 ';
 }
 
+/* 모달 css */
+
+div.roughResume{
+	position: fixed;
+}
+div.modal-footer{
+	background-color: #2E2E2E;
+	padding:20px;
+}
+@media (min-width: 576px){
+	.modal-dialog {
+		max-width: 700px;
+	}
+}
+
+@media (max-width: 767px){
+	div.resumePayment {
+		text-align:center;
+	} 
+	div.footer-intro{
+		text-align:center;
+		padding-bottom:15px;
+	}
+}
+
 
 
 
@@ -280,35 +305,46 @@ h4#noResult::before {
 				</div>
 			</div>
 			<div id="cards-area" class="col-12 col-sm-8">
-				<!-- 디비에서 레주메 가져와 리스트 뿌려주기  -->
-				<!-- <c:if test="${not empty myPage}">
-					<c:forEach var="i" items="${resumeList}" varStatus="s">
-						<div class="resume-card col-sm-10 container">
-							<div class="card">
-								<h5 class="card-header"><img class="bus-user-profile" src="${path}/resources/upload/profile/no-profile-image.png"/><button class="btn btn-outline-primary" type="button">찜하기</button></h5>
-								<div class="card-body">
-									<h5 class="card-title">Special title treatment</h5>
-									<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-									<a href="#" class="btn btn-primary">이력서 미리보기</a>
-								</div>
-							</div>
-						</div>
-					</c:forEach>
-				</c:if>
-				<c:if test="${empty myPage}">
-					<h3>검색 결과가 없습니다.</h3>
-				</c:if> -->
+					<!-- Ajax 로 불러온 레쥬메 영역 -->
 			</div>
 		</div>
-
-
-
-
-
-
-
-
 	</div>	
+
+	<!-- 이력서 미리보기 모달 -->
+	<div class="modal fade roughResume" id="openRoughResume" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  	<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+	    	<div class="modal-content" style="margin-top:20px; margin-bottom:20px;">
+		  		<div class="modal-header" style="background-color: #2E2E2E;" >
+					<img src="${path }/resources/images/Developers_black_logo.png" style="height:30px; margin-left:10px;"/>
+					<h5 class="modal-title" style="color: #ffffff; margin: auto auto;"  id="exampleModalLabel">이력서 미리보기</h5>
+	        		<button type="button" class="close" style="color:#ffffff; padding-top: 15px;" data-dismiss="modal" aria-label="Close">
+	          		<span aria-hidden="true">X</span>
+	        	</button>
+	    		</div>
+         		 <!-- <form id="login" action="${pageContext.request.contextPath}/business/login" onsubmit="return loginValidate()" method="post"> -->
+	    		<div class="modal-body" style="overflow:auto; background-color: A4A4A4;">
+					<div class="modal-body-area">
+						<div class="" id="memName"></div>
+						<div class="" id="memEmail"></div>
+						<div class="" id="memPhone"></div>
+						<div class="" id="intro"></div>
+						<hr>
+						<div class="" id="careers"></div>
+						<div class="" id="education"></div>
+					</div>
+				</div>
+				<!-- </form> -->
+	    		<div class="modal-footer">
+					<div class="resume-footer row" style="width:100%">
+						<div class="footer-intro col-12 col-sm-9" style="color: #fff; margin:auto auto;"><p style="font-size:20px;">이력서 상세보기 시, 열람권이 1회가 차감됩니다.</p></div>
+						<div class="resumePayment col-12 col-sm-3"><button type="button" id="resumePayment" color="#258BF7" class="btn btn-primary" style="background-color: #fff; border-color: #fff; color: #2E2E2E; padding:20px;">이력서 상세보기</button></div>
+					</div>	
+		  		<!-- <p>계정이 없으신가요?<a class="navbar-brand-small" href="#" onclick="changeModal('toReg'); return false">채용담당자 계정 만들기</a></p> -->
+				</div>
+			</div>
+		</div>
+	</div>
+
 </section>
 
 

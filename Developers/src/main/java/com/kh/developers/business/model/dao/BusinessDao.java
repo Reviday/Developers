@@ -28,7 +28,7 @@ public interface BusinessDao {
 	Business selectBusInfo (SqlSessionTemplate session, int memberNo);
 	
 	
-//	매치업 로직
+	//	매치업 로직
 	int selectCountBasic(SqlSessionTemplate session);
 	List<IntroCard>selectIntroCards(SqlSessionTemplate session,int cPage, int numPerPage);
 	
@@ -44,5 +44,8 @@ public interface BusinessDao {
 	List<CareerInCard>selectCareers(SqlSessionTemplate session, int resumeNo);
 	
 	List<EducationInCard>selectEducations(SqlSessionTemplate session, int resumeNo);
+
+	//openRoughResume 로직 
+	IntroCard selectOneIntroCard(SqlSessionTemplate session, int resumeNo);
 	
 }

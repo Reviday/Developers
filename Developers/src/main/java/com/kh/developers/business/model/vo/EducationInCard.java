@@ -12,5 +12,9 @@ public class EducationInCard {
 	private String schoolName;
 	private String majorName;
 	
+	private String subjectName;
+	private String startEd;
+	private String endEd;
+	
 }
 

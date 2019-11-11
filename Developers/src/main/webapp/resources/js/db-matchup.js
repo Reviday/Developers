@@ -257,7 +257,8 @@ function ajaxLogic(searchPackage){
                             cardContainer+='<small>'+education[ed].majorName+'</small>';
                         }
                         cardContainer+='</p>'
-                        cardContainer+='<a href="#" class="btn btn-primary favBtn col-6 col-sm-4">이력서 미리보기</a></div>';
+                        // 이력서 미리보기 버튼 
+                        cardContainer+='<a href="#" class="btn btn-primary favBtn openResume col-6 col-sm-4" data-toggle="modal" data-target="#openRoughResume" onclick="openResume('+icList[i].resumeNo+');">이력서 미리보기</a></div>';
                         cardContainer+='</div></div></div>';
                     }
                     cardContainer+='</div>';
@@ -299,11 +300,21 @@ $(function(){
 
 
 
-
-
-
-
-
+// 이력서 미리보기 로직
+function openResume(resumeNo){
+    if(resumeNo!=""||resumeNo!=null||resumeNo!=undefined){
+        $.ajax({
+            url:path+"/business/openResume",
+            type:"post",
+            async: false,
+            data:{
+                "resumeNo":resumeNo
+            },
+            success:function(result){
+            }
+        });   
+    }
+}
 
 
 
