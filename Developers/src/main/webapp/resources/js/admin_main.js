@@ -59,19 +59,6 @@ function search() {
 	}); 
 };
 
-// memo js
-$('.memoBtn').on('click', function() {
-	var choId=$(this).next('.memo_area');
-	var memoArr=$(".memo_area");
-	$.each(memoArr, function(index, item) {
-		if($(item).attr("id")==$(choId).attr("id")) {
-			$(choId).slideToggle();
-		} else {
-			$(item).slideUp();		
-		}
-	})
-})
-
 //멤버 수정
 function fn_updateMember(memNo) {
 	if(confirm('회원 정보를 수정하시겠습니까?')) {

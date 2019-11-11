@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
+import com.kh.developers.admin.model.vo.MemberLoginLog;
 import com.kh.developers.member.model.vo.Interests;
 import com.kh.developers.member.model.vo.Member;
 import com.kh.developers.member.model.vo.MyLike;
@@ -28,5 +29,5 @@ public interface MemberDao {
    int memberUpdate(SqlSessionTemplate session,Member m);
    int busLogoChange(SqlSessionTemplate session,Member memInfo);
    List<Position> selectLike(SqlSessionTemplate session, Member m);
-   
+   void insertLoginLog(SqlSessionTemplate session, MemberLoginLog mll);
 }

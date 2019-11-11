@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
+import com.kh.developers.admin.model.vo.MemberLoginLog;
 import com.kh.developers.common.authentication.MailHandler;
 import com.kh.developers.common.authentication.TempKey;
 import com.kh.developers.member.model.dao.MemberDao;
@@ -161,5 +162,10 @@ public class MemberServiceImpl implements MemberService {
 	public List<Position> selectWeekPositionList() {
 		List<Position> weekList = dao.selectWeekPositionList(session);
 		return weekList;
+	}
+	
+	@Override
+	public void insertLoginLog(MemberLoginLog mll) {
+		dao.insertLoginLog(session, mll);
 	}
 }

@@ -6,6 +6,7 @@ import java.util.Map;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.kh.developers.admin.model.vo.MemberLoginLog;
 import com.kh.developers.member.model.vo.Interests;
 import com.kh.developers.member.model.vo.Member;
 import com.kh.developers.member.model.vo.MyLike;
@@ -98,5 +99,10 @@ public class MemberDaoImpl implements MemberDao {
 	public List<Position> selectWeekPositionList(SqlSessionTemplate session) {
 		// TODO Auto-generated method stub
 		return session.selectList("member.selectWeekPositionList");
+	}
+	
+	@Override
+	public void insertLoginLog(SqlSessionTemplate session, MemberLoginLog mll) {
+		session.insert("member.insertLoginLog", mll);
 	}
 }

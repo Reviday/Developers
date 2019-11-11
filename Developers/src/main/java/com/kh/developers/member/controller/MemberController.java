@@ -30,13 +30,13 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.kh.developers.admin.model.vo.MemberLoginLog;
 import com.kh.developers.business.model.service.BusinessService;
 import com.kh.developers.business.model.vo.Business;
 import com.kh.developers.common.encrypt.MyEncrypt;
 import com.kh.developers.member.model.service.MemberService;
 import com.kh.developers.member.model.vo.Interests;
 import com.kh.developers.member.model.vo.Member;
-import com.kh.developers.member.model.vo.MyLike;
 import com.kh.developers.resume.model.service.ResumeService;
 import com.kh.developers.resume.model.vo.Activitie;
 import com.kh.developers.resume.model.vo.Career;
@@ -45,10 +45,9 @@ import com.kh.developers.resume.model.vo.Lang;
 import com.kh.developers.resume.model.vo.Links;
 import com.kh.developers.resume.model.vo.Resume;
 import com.kh.developers.search.model.service.SearchService;
-import com.kh.developers.search.model.vo.LikeMember;
 import com.kh.developers.search.model.vo.Position;
 
-@SessionAttributes(value= {"loginMember","busInfo"})
+@SessionAttributes(value= {"loginMember","busInfo","REMOTE_ADDR"})
 @Controller
 public class MemberController {
 
@@ -244,31 +243,31 @@ public class MemberController {
 	}
 		
 	@RequestMapping("/member/passwordCheck") 
-	public ModelAndView passwordCheck(Member m) {
+	public ModelAndView passwordCheck(Member m, HttpServletRequest request) {
 		ModelAndView mv=new ModelAndView();
 		Member result=service.selectMemberOne(m);
-		System.out.println("passwordCheck : "+m);
 		boolean flag=false;
 		if(result != null) {
 			if(pwEncoder.matches(m.getMemPassword(), result.getMemPassword())) {
 				flag=true;
 			}
 		}
+		insertLoginLog(result, flag, request, "패스워드 불일치");
 		mv.addObject("flag",flag);
 		mv.setViewName("jsonView");
 		return mv;
 	}
 	
 	@RequestMapping("/member/emailCheck")
-	public ModelAndView emailCheck(Member m) {
+	public ModelAndView emailCheck(Member m, HttpServletRequest request) {
 		ModelAndView mv=new ModelAndView();
 		Member result=service.selectMemberOne(m);
-		logger.debug(result!=null?result.toString():"");
 		boolean flag=result!=null?true:false;
 		String msg=""; 
 		if(result!=null&&result.getMemStatus().equals("N")) {
 			flag=false;
 			msg="현재 사용 불가능한 계정입니다. 관리자에게 문의바랍니다.";
+			insertLoginLog(result, flag, request, "사용 불가능한 계정");
 		} 
 		mv.addObject("flag",flag);
 		mv.addObject("msg",msg);
@@ -477,5 +476,18 @@ public class MemberController {
 
 	}
 
-    
+    public void insertLoginLog(Member m, boolean result, HttpServletRequest request, String reason) {
+    	MemberLoginLog mll=new MemberLoginLog();
+		mll.setMllSuccess(m!=null?"Y":"N"); // m이 null이 아니면 로그인 성공
+		mll.setMllMemNo(m.getMemNo()); // m의 uid를 가져온다.
+		mll.setMllUserEmail(m.getMemEmail()); // 사용자가 입력한 이메일
+		mll.setMllIp(request.getRemoteAddr()); // 로그인 시도한 ip
+		mll.setMllReason(result==true?"로그인 성공":reason); // 로그인 성공/실패시 이유(더 다양한 사유도 가능할 듯하다)
+		mll.setMllUseragent(request.getHeader("User-Agent")); // 로그인한 브라우저의 user agent
+		mll.setMllUrl(String.valueOf(request.getRequestURL())); // 로그인한 페이지 주소
+		mll.setMllReferer(request.getHeader("referer"));// 이전 페이지 주소
+		
+		//로그인 로그를 남긴다. (리턴값은 필요없음.)
+		service.insertLoginLog(mll);
+    }
 }
