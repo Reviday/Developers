@@ -23,7 +23,7 @@ UPDATE activitie SET start_act=#{startAct},act_name=#{actName},act_detail=#{actD
 UPDATE EDUCATION SET start_ed=#{startEd},end_ed=#{endEd},school_name=#{schoolName},major_name=#{majorName},subject_name=#{subjectName} WHERE ed_no=#{edNo}
 </update>
 <update id="updateCareer" parameterType="career">
-UPDATE CAREER SET start_career=#{startCareer},end_career=#{endCareer},bus_name=#{busName},dep_name=#{depName} WHERE career_no=#{careerNo}
+UPDATE CAREER SET start_career=#{startCareer},end_career=#{endCareer},bus_name=#{busName},dep_name=#{depName},career_intro=#{careerIntro} WHERE career_no=#{careerNo}
 </update>
 <delete id="deleteEd" parameterType="_int">
 DELETE FROM EDUCATION WHERE ed_no=#{deleteNo}

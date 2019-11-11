@@ -126,6 +126,8 @@
                                                        </c:if>
                                                        </div>
                                                        <div class="form-group">
+                                                       
+                                                    
                                                        </div></span>
                                                    </div>
                                                    <div class="end-time"><span
@@ -144,7 +146,9 @@
                                                                onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" />
                                                        </c:if>
                                                        </div>
-                                                       <div class=" form-group"></div>
+                                                       <div class=" form-group">
+                                                       
+                                                       </div>
                                                        </span>
                                                    </div>
                                                </div>
@@ -178,11 +182,20 @@
                                                 </c:if>    
                                                 
                                                 </div>
-                                           <div class="resume-list projects">
-                                               <div class="resume-list-body"></div>
+                                           
+                                                <div class="resume-input-form-group">
+            								    <div class="dynamic-textarea">
+            								  <c:if test="${c.careerIntro==null }">  
+                                             	 <textarea style="height:60px;" class="resume-input description" name="careerIntro"
+                        maxlength="1000" placeholder="상세 업무 내용과 성과를 기입해주세요"></textarea>
+                                             	</c:if>
+                                             	<c:if test="${c.careerIntro!=null }">  
+                                             	 <textarea style="height:60px; text-align: left" class="resume-input description" name="careerIntro"
+                        maxlength="1000" placeholder="상세 업무 내용과 성과를 기입해주세요">${c.careerIntro }</textarea>
+                                             	</c:if>
+                                               </div>
                                            </div>
-                                       </div>
-                                     
+                                      
                                        <c:set value="${c.careerNo }" var="careerNo"/>
                                        <input type="hidden" value="${c.careerNo }" name="careerNo"/>
                                        <input type="hidden" value="${resumeNo }" name="resumeNo"/> 
@@ -574,7 +587,11 @@
         plus +='<input type="text" class="resume-input company_name" placeholder="회사명" name="busName"/>';
         plus +='</div><div class="resume-input-form-group">';
         plus +='<input class="resume-input title" type="text" maxlength="255" placeholder="부서명/직책" name="depName"/></div>';
-        plus +='<div class="resume-list projects" ><div class="resume-list-body"></div></div></div>';
+        plus +='<div class="resume-input-form-group">';
+		plus +='<div class="dynamic-textarea">';
+		plus +='<textarea style="height:60px;" class="resume-input description" name="careerIntro"';
+		plus +='maxlength="1000" placeholder="상세 업무 내용과 성과를 기입해주세요"></textarea>';
+		plus +='</div></div>';
         plus += '<button class="btn-delete btn" type="button"  onclick="deleteModal('+data+',1);">';
         plus += '<i class="fas fa-times"></i></button>';
         plus += '<input type="hidden" value="'+data+'" name="careerNo"/>';
