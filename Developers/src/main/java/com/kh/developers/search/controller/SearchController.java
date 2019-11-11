@@ -310,6 +310,7 @@ public class SearchController {
 		//회사소개 정보 
 		Company company = service.companyInfo(busNo);
 		model.addAttribute("company", company);
+		System.out.println(company);
 		return "search/companyAllInfo";
 	}
 	//회사소개페이지에서의 태그모달창 태그버튼생성

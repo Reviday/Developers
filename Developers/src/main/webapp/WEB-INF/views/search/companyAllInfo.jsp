@@ -7,7 +7,7 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath }/resources/css/companyAllInfo.css">
+	href="${path }/resources/css/companyAllInfo.css">
 	
     <section id="conmanyInfo">
         <div class="companyHeader">
@@ -114,11 +114,10 @@
                     <h3>회사 소개</h3>
                     <div class="companyFicture">
                     	<c:if test="${not empty company.bus_images }">
-	                    	<c:forEach var="f" items="${company.bus_images }" varStatus="vs">
-		                        <c:if test="${vs < 4 }">
+	                    	<c:forEach var="f" items="${company.bus_images }" begin="0" varStatus="vs">
+		                        <c:if test="${vs.count < 4 }">
 			                        <button class="fictureBtn">
-			                            <img src="${f }"
-			                                alt="">
+			                            <img src="${f }" alt=""/>
 			                        </button>
 		                        </c:if>
 	                        </c:forEach>
@@ -131,9 +130,9 @@
                             <div class="modalbig">
                                 <div class="modalbody">
                                     <ul class="fictureUl">
-                                    	<c:forEach var="f" items="${company.bus_images }" varStatus="vs">
-	                                        <c:if test="${vs < 4 }">
-	                                        <li><img src="${f }" alt="" class="modalficture"></li>
+                                    	<c:forEach var="f" items="${company.bus_images }" begin="0" varStatus="vs">
+	                                        <c:if test="${vs.count < 4 }">
+	                                        	<li><img src="${f }" alt="" class="modalficture"></li>
 	                                        </c:if>
                                         </c:forEach>
                                     </ul>

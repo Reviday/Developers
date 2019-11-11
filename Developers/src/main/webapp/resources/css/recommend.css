@@ -543,9 +543,7 @@ a {
 
 
 
-.recommend-body {
-    display: none;
-}
+
 .myrecievehun2 {
     position: relative;
     display: none;
@@ -859,6 +857,7 @@ a {
 
 .mypushrecommend2 {
     margin-top: 20px;
+    display: none;
 }
 
 .mypushrecommend4 {

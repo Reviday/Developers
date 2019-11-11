@@ -1035,7 +1035,7 @@ button {
 
 ._2BSYHDiCEVW0U-znbJ1IyD .career.background-image {
     background-image: url(/developers/resources/images/background.png);
-    background-size: auto;
+    background-size: contain;
     background-repeat: no-repeat;
     background-position: 70%;
 }

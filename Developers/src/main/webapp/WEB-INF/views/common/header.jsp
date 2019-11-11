@@ -69,7 +69,7 @@
                	    <li class="smMoreVisible selectedNav"><a href="${path }/recommend/recommendMain.lmc?memNo=${loginMember.memNo}" class="">추천</a></li>
                </c:if>
                <c:if test="${empty loginMember }">
-               	    <li class="smMoreVisible selectedNav"><a href="#" class="">추천</a></li>
+               	    <li class="smMoreVisible selectedNav suBtn"><a href="#" class="">추천</a></li>
                </c:if>
             </ul>
             <div role="presentation" class="list_view">
