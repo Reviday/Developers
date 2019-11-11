@@ -119,7 +119,7 @@
 	</select>
 	
 	<select id="selectOneIntroCard" parameterType="integer" resultMap="introCardMap">
-		SELECT RESUME_NO,MEM_NAME,MEM_EMAIL,MEM_PHONE,INTRO FROM RESUME WHERE RESUME_NO=${resumeNo}
+		SELECT RESUME_NO,MEM_NAME,MEM_EMAIL,MEM_PHONE,INTRO FROM RESUME WHERE RESUME_NO=#{resumeNo}
 	</select>
 	
 	

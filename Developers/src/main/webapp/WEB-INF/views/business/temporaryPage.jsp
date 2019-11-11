@@ -193,6 +193,14 @@ div.modal-footer{
 		padding-bottom:15px;
 	}
 }
+div.modal-body-area{
+	background-color: #FFFFFF;
+	margin:2px 2px 2px 2px;
+}
+
+div#memName{
+
+}
 
 
 
@@ -324,13 +332,14 @@ div.modal-footer{
          		 <!-- <form id="login" action="${pageContext.request.contextPath}/business/login" onsubmit="return loginValidate()" method="post"> -->
 	    		<div class="modal-body" style="overflow:auto; background-color: A4A4A4;">
 					<div class="modal-body-area">
-						<div class="" id="memName"></div>
-						<div class="" id="memEmail"></div>
-						<div class="" id="memPhone"></div>
-						<div class="" id="intro"></div>
+						<div class="" id="ResumeTitle"></div>
+						<div class="" id="ResuMemName"></div>
+						<div class="" id="ResuMemEmail"></div>
+						<div class="" id="ResuMemPhone"></div>
+						<div class="" id="ResuIntro"></div>
 						<hr>
-						<div class="" id="careers"></div>
-						<div class="" id="education"></div>
+						<div class="" id="ResuCareers"></div>
+						<div class="" id="ResuEducation"></div>
 					</div>
 				</div>
 				<!-- </form> -->

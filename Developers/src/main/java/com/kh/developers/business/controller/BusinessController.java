@@ -292,9 +292,10 @@ public class BusinessController {
 		return jsonStr;
 	}
 	
-	@RequestMapping("/business/openResume")
+	
+	@RequestMapping(value = "/business/openResume", produces = "application/text; charset=utf-8")
 	@ResponseBody
-	public String openResume(@RequestParam (value="resumeNo", required=true) int resumeNo) {
+	public String openResume(@RequestParam (value="resumeNo", required=true) int resumeNo, HttpServletResponse res) {
 		ObjectMapper mapper=new ObjectMapper(); //잭슨 객체 - json자바스크립트 객체 매핑시킴
 		String jsonStr="";
 		IntroCard ic=bService.selectOneIntroCard(resumeNo);
@@ -307,6 +308,7 @@ public class BusinessController {
 		}catch(JsonProcessingException e) {
 			e.printStackTrace();
 		}
+		res.setContentType("application/json;charset=utf-8");
 		return jsonStr;
 	}
 	

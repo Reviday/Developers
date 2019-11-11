@@ -298,7 +298,7 @@ $(function(){
     cPageSearch();
 });
 
-
+var info="";
 
 // 이력서 미리보기 로직
 function openResume(resumeNo){
@@ -311,7 +311,41 @@ function openResume(resumeNo){
                 "resumeNo":resumeNo
             },
             success:function(result){
-                console.log(result);
+                if(result!=null||result!=undefined){
+                    let title=$('div#ResumeTitle');
+                    let name=$('div#ResuMemName');
+                    let email=$('div#ResuMemEmail');
+                    let phone=$('div#ResuMemPhone');
+                    let intro=$('div#ResuIntro');
+                    let career=$('div#ResuCareers');
+                    let education=$('div#ResuEducation');
+                    info=JSON.parse(result);
+                    
+                    name.html('<div id="memName">'+info.memName+'</div>');
+                    email.html('<div class="personal">'+info.memEmail+'</div>');
+                    phone.html('<div class="personal">'+info.memPhone+'</div>');
+                    intro.html('<div id="memIntro">'+info.intro+'</div>');
+
+                    let careerss="";
+                    for(let i in info.careers){
+                        careerss+='<div>'+info.careers[i].busName+'</div>';
+                        careerss+='<div>'+info.careers[i].deptName+'</div>';
+                        careerss+='<div>'+info.careers[i].careerIntro+'</div>';
+                        careerss+='<div>'+info.careers[i].startCareer+'</div>';
+                        careerss+='<div>'+info.careers[i].endCareer+'</div>';
+                    }
+                    career.html(careerss);
+
+                    let educationss="";
+                    for(let i in info.educations){
+                        educationss+='<div>'+info.educations[i].schoolName+'</div>';
+                        educationss+='<div>'+info.educations[i].majorName+'</div>';
+                        educationss+='<div>'+info.educations[i].subjectName+'</div>';
+                        educationss+='<div>'+info.educations[i].startEd+'</div>';
+                        educationss+='<div>'+info.educations[i].endEd+'</div>';
+                    }
+                    education.html(educationss);
+                }
             }
         });   
     }
