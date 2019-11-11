@@ -25,6 +25,6 @@
 		<typeAlias type="com.kh.developers.search.model.vo.Tag" alias="tag"/>
 		<typeAlias type="com.kh.developers.search.model.vo.BookMark" alias="bookmark"/>
 		<typeAlias type="com.kh.developers.member.model.vo.MyLike" alias="myLike"/>
-		
+		<typeAlias type="com.kh.developers.admin.model.vo.MemberLoginLog" alias="mll"/>
 	</typeAliases>
 </configuration>
