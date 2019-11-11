@@ -30,6 +30,7 @@ import com.kh.developers.business.model.service.BusinessService;
 import com.kh.developers.business.model.vo.Business;
 import com.kh.developers.business.model.vo.IntroCard;
 import com.kh.developers.common.util.PaginationTemplateFunction;
+import com.kh.developers.member.controller.MemberController;
 import com.kh.developers.member.model.service.MemberService;
 import com.kh.developers.member.model.vo.Member;
 import com.kh.developers.resume.model.service.ResumeService;
@@ -118,7 +119,7 @@ public class BusinessController {
 	}
 	
 	@RequestMapping("/business/login")
-	public ModelAndView empLogin(Member m, Model model) {
+	public ModelAndView empLogin(Member m, Model model, HttpServletRequest request) {
 			ModelAndView mv=new ModelAndView();
 			logger.debug(""+m);
 			Member result=service.selectMemberOne(m);
@@ -151,6 +152,7 @@ public class BusinessController {
 				mv.setViewName("common/msg");
 				}
 			}
+			new MemberController().insertLoginLog(result, flag, request, "패스워드 불일치");
 			return mv;
 	}
 	
