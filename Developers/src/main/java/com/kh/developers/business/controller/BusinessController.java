@@ -292,7 +292,7 @@ public class BusinessController {
 		return jsonStr;
 	}
 	
-	@RequestMapping
+	@RequestMapping("/business/openResume")
 	@ResponseBody
 	public String openResume(@RequestParam (value="resumeNo", required=true) int resumeNo) {
 		ObjectMapper mapper=new ObjectMapper(); //잭슨 객체 - json자바스크립트 객체 매핑시킴

@@ -311,6 +311,7 @@ function openResume(resumeNo){
                 "resumeNo":resumeNo
             },
             success:function(result){
+                console.log(result);
             }
         });   
     }
