@@ -165,7 +165,7 @@
                         <button type="button" class="profileButton">
                         
                         	<c:if test="${loginMember.memIcon==null }">
-                            <img src="${path}/resources/upload/profile/'no-profile-image.png' }" 
+                            <img src="${path}/resources/upload/profile/no-profile-image.png " 
                             style="width:32px; height:32px;" id="profile_img"/>
                             </c:if>
                             <c:if test="${loginMember.memIcon!=null }">
@@ -207,7 +207,7 @@
                         <li>
                            <a href="${path }/member/myPage.lmc?memEmail=${loginMember.memEmail }" class="">
                               내 정보
-                              <img src="${path}/resources/upload/profile/${loginMember.memPhoto!=null?loginMember.memPhoto:'no-profile-image.png' }" 
+                              <img src="${path}/resources/upload/profile/no-profile-image.png" 
                                  class="xsOnly" id="profile_img"/>
                            </a>
                         </li>
