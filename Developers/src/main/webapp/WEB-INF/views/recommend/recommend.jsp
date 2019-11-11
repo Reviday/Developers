@@ -39,7 +39,7 @@
                 <div class="recommendmodalmain1 recommendmodalmain2 recommendmodalmain3 recommendmodalmain4">
                     <div class="modalsun1 modalsun2">
                         <button type="button" class="right modalbtn close">
-                            <i class="icon-close"></i>
+                            <i class="fas fa-times"></i>
                         </button>
                     </div>
                     <div class="modalbody1 modalbody2">
@@ -48,13 +48,13 @@
                                 <span>
                                     Developers회원을
                                     <br>
-                                    추천합니다.
+                                                                               추천합니다.
                                 </span>
                             </p>
                             <input type="text" class="recommendName" placeholder="지인의 이름">
                             <input type="email"class="recommendEmail" placeholder="지인의 이메일">
                             <div class="realationship">
-                                <select name="" id="">
+                                <select name="" id="recommendSelect">
                                     <option value="none" selected>추천하실 분과의 관계를 선택해 주세요</option>
                                     <option value="colleague">(전)직장동료</option>
                                     <option value="otherCompany">가까운 회사의 직원</option>
@@ -63,12 +63,12 @@
                                     <option value="warmFriend">친한친구</option>
                                     <option value="friends">지인</option>
                                 </select>
-                                <i class="icon-arrow_bottom_fill"></i>
+                                <i class="fas fa-angle-down"></i>
                             </div>
                         </div>
                         <div class="recommendModal-submit1 recommendModal-submit2">
                             <!-- 활성화되면 enable클래스 추가 -->
-                            <div class="submitreferButton">
+                            <div class="submitreferButton" onclick="recommendPush('${memNo}');">
                                 <p>추천하기</p>
                             </div>
                         </div>
@@ -103,13 +103,13 @@
                     <div class="reModalTitle1 reModalTitle2">
                         <span>추천 요청</span>
                         <button type="button" class="right modalbtn close">
-                            <i class="icon-close"></i>
+                            <i class="fas fa-times"></i>
                         </button>
                     </div>
                     <div class="friendSearch1 friendSearch2">
                         <div class="searchFriends">
                             <input type="text" class="friendSearchInput" placeholder="친구 검색">
-                            <i class="icon-search"></i>
+                            <i class="fas fa-search"></i>
                         </div>
                         <div style="max-height:inherit;overflow-y:scroll;height:inherit;">
                             <div class="networkList1 networkList2">
@@ -191,4 +191,60 @@
         $(".mypushrecommend2").css("display", "block");
         $(".recommend-body").css("display", "none");
     })
+</script>
+<!-- 추천하기 모달 -->
+<script>	
+	var nameflag = false;
+	var emailflag = false;
+	$("input[class=recommendName]").keyup(function(){
+		if($("input[class=recommendName]").val().trim().length > 0) nameflag = true;
+		else nameflag = false;
+		if($("input[class=recommendEmail]").val().trim().length > 0) emailflag = true;
+		else emailflag = false;
+		if(nameflag == true && emailflag == true && $("#recommendSelect option:selected").val() != 'none') {
+			$(".submitreferButton").addClass("enable");
+		}else{
+			$(".submitreferButton").removeClass("enable");
+		}
+	})
+	$("input[class=recommendEmail]").keyup(function(){
+		if($("input[class=recommendEmail]").val().trim().length > 0) emailflag = true;
+		else emailflag = false;
+		if($("input[class=recommendName]").val().trim().length > 0) nameflag = true;
+		else nameflag = false;
+		if(nameflag == true && emailflag == true && $("#recommendSelect option:selected").val() != 'none') {
+			$(".submitreferButton").addClass("enable");
+		}else{
+			$(".submitreferButton").removeClass("enable");
+		}
+	})
+	$(".realationship").change(function(){
+		if($("input[class=recommendEmail]").val().trim().length > 0) emailflag = true;
+		else emailflag = false;
+		if($("input[class=recommendName]").val().trim().length > 0) nameflag = true;
+		else nameflag = false;
+		if(nameflag == true && emailflag == true && $("#recommendSelect option:selected").val() != 'none') {
+			$(".submitreferButton").addClass("enable");
+		}else{
+			$(".submitreferButton").removeClass("enable");
+		}
+	})
+	function recommendPush(memNo) {
+		var recommendName = $(".recommendName").val();
+		var recommendEmail = $(".recommendEmail").val();
+		var recommendRealationship = $("#recommendSelect option:selected").val()
+		$.ajax({
+			url: path + "/recommend/recommendPush",
+			type: "POST",
+			data: {
+					memNo : memNo,
+					name : recommendName,
+					email : recommendEmail,
+					realationship : recommendRealationship
+			},	
+			success: function(data){
+				
+			}
+		}) 
+	}
 </script>
