@@ -68,7 +68,7 @@
                         </div>
                         <div class="recommendModal-submit1 recommendModal-submit2">
                             <!-- 활성화되면 enable클래스 추가 -->
-                            <div class="submitreferButton" onclick="recommendPush('${memNo}');">
+                            <div class="submitreferButton">
                                 <p>추천하기</p>
                             </div>
                         </div>
@@ -170,6 +170,13 @@
     })
     $(document).on("click", ".writeReferralLater", function(){
     	$(".recommendModal2").css("display", "none");
+    	$(".recommendmodalmain2").html("");
+    	$(".recommendmodalmain2").html("<div class='modalsun1 modalsun2'><button type='button' class='right modalbtn close'><i class='fas fa-times'></i></button></div><div class='modalbody1 modalbody2'><div class='modalbody-text1 modalbody-text2'><p class='referText'><span>Developers회원을<br>추천합니다.</span></p><input type='text' class='recommendName' placeholder='지인의 이름'><input type='email' class='recommendEmail' placeholder='지인의 이메일'><div class='realationship'><select name='' id='recommendSelect'><option value='none' selected>추천하실 분과의 관계를 선택해 주세요</option><option value='colleague'>(전)직장동료</option><option value='otherCompany'>가까운 회사의 직원</option><option value='school'>학교 동문</option><option value='mentor'>멘토/멘티</option><option value='warmFriend'>친한친구</option><option value='friends'>지인</option></select><i class='fas fa-angle-down'></i></div></div><div class='recommendModal-submit1 recommendModal-submit2'><!-- 활성화되면 enable클래스 추가 --><div class='submitreferButton' onclick='recommendPush('${memNo}');'><p>추천하기</p></div></div></div>");
+    })
+    $(document).on("click", ".modalpresen2", function(){
+    	$(".recommendModal2").css("display", "none");
+    	$(".recommendmodalmain2").html("");
+    	$(".recommendmodalmain2").html("<div class='modalsun1 modalsun2'><button type='button' class='right modalbtn close'><i class='fas fa-times'></i></button></div><div class='modalbody1 modalbody2'><div class='modalbody-text1 modalbody-text2'><p class='referText'><span>Developers회원을<br>추천합니다.</span></p><input type='text' class='recommendName' placeholder='지인의 이름'><input type='email' class='recommendEmail' placeholder='지인의 이메일'><div class='realationship'><select name='' id='recommendSelect'><option value='none' selected>추천하실 분과의 관계를 선택해 주세요</option><option value='colleague'>(전)직장동료</option><option value='otherCompany'>가까운 회사의 직원</option><option value='school'>학교 동문</option><option value='mentor'>멘토/멘티</option><option value='warmFriend'>친한친구</option><option value='friends'>지인</option></select><i class='fas fa-angle-down'></i></div></div><div class='recommendModal-submit1 recommendModal-submit2'><!-- 활성화되면 enable클래스 추가 --><div class='submitreferButton' onclick='recommendPush('${memNo}');'><p>추천하기</p></div></div></div>");
     })
 </script>
 <!-- 메뉴변환 -->
@@ -199,7 +206,7 @@
 <script>	
 	var nameflag = false;
 	var emailflag = false;
-	$("input[class=recommendName]").keyup(function(){
+	$(document).on("keyup", "input[class=recommendName]", function(event){
 		if($("input[class=recommendName]").val().trim().length > 0) nameflag = true;
 		else nameflag = false;
 		if($("input[class=recommendEmail]").val().trim().length > 0) emailflag = true;
@@ -210,7 +217,7 @@
 			$(".submitreferButton").removeClass("enable");
 		}
 	})
-	$("input[class=recommendEmail]").keyup(function(){
+	$(document).on("keyup", "input[class=recommendEmail]", function(event){
 		if($("input[class=recommendEmail]").val().trim().length > 0) emailflag = true;
 		else emailflag = false;
 		if($("input[class=recommendName]").val().trim().length > 0) nameflag = true;
@@ -221,7 +228,7 @@
 			$(".submitreferButton").removeClass("enable");
 		}
 	})
-	$(".realationship").change(function(){
+	$(document).on("change", ".realationship", function(event){
 		if($("input[class=recommendEmail]").val().trim().length > 0) emailflag = true;
 		else emailflag = false;
 		if($("input[class=recommendName]").val().trim().length > 0) nameflag = true;
@@ -232,15 +239,16 @@
 			$(".submitreferButton").removeClass("enable");
 		}
 	})
-	function recommendPush(memNo) {
+	
+	$(document).on("click", ".submitreferButton", function(event){
 		var recommendName = $(".recommendName").val();
 		var recommendEmail = $(".recommendEmail").val();
-		var recommendRealationship = $("#recommendSelect option:selected").val()
+		var recommendRealationship = $("#recommendSelect option:selected").val();
 		$.ajax({
 			url: path + "/recommend/recommendPush",
 			type: "POST",
 			data: {
-					memNo : memNo,
+					memNo : '${memNo}',
 					name : recommendName,
 					email : recommendEmail,
 					realationship : recommendRealationship
@@ -261,5 +269,6 @@
 				}
 			}
 		}) 
-	}
+	})
+
 </script>
