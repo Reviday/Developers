@@ -488,7 +488,7 @@ public class MemberController {
     public void insertLoginLog(Member m, boolean result, HttpServletRequest request, String reason) {
     	try {
     		MemberLoginLog mll=new MemberLoginLog();
-    		mll.setMllSuccess(m!=null?"Y":"N"); // m이 null이 아니면 로그인 성공
+    		mll.setMllSuccess(result==true?"Y":"N"); // m이 null이 아니면 로그인 성공
     		mll.setMllMemNo(m.getMemNo()); // m의 uid를 가져온다.
     		mll.setMllUserEmail(m.getMemEmail()); // 사용자가 입력한 이메일
     		mll.setMllIp(request.getRemoteAddr()); // 로그인 시도한 ip
