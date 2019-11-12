@@ -104,12 +104,11 @@
 	                               </li>
 	                           </ul>
 	                       </li>
+	                       <!-- 해당 기능은 동결
 	                        <li>
-	                            <a href="#">Sub Item Two</a>
+	                            <a href="#">차단회원목록</a>
 	                        </li>
-	                        <li>
-	                            <a href="#">Sub Item Three</a>
-	                        </li>
+	                         -->
 	                        <li>
 	                            <a href="${path }/admin/withdrawMemberList.lac">탈퇴회원목록</a>
 	                        </li>
@@ -126,13 +125,13 @@
 	                        <li>
 	                            <a href="javascript:;">
 	                                <i class="fa fa-graduation-cap" aria-hidden="true"></i>
-	                                Sub Item One						
+	                                	기업등록승인관리				
 	                            </a>
 	                        </li>
 	                        <li>
 	                            <a href="#">
 	                                <i class="fa fa-database" aria-hidden="true"></i>
-	                                Sub Item Two
+	                                	포지션등록승인관리
 	                            </a>
 	                        </li>
 	                        <li>
@@ -168,12 +167,12 @@
 	                <li>
 	                    <a class="" href="javascript:;">
 	                        <i class="fa fa-graduation-cap" aria-hidden="true"></i>
-	                        <span class="title">로그 관리</span>
+	                        <span class="title">로그/통계</span>
 	    
 	                    </a>
 	                    <ul>
 	                        <li>
-	                            <a href="#">Sub Item One
+	                            <a href="#">로그인 로그
 	                            </a>
 	                        </li>
 	                        <li>

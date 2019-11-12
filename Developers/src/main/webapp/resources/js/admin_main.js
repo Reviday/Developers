@@ -46,9 +46,7 @@ function search() {
 		url:path+"/admin/memberSearchList.lac",
 		type:"POST",
 		data:{
-			"value":searchValue,
-			"cPage":$('#cPage').val(),
-			"numPerPage":$('#numPerPage').val()
+			"value":searchValue
 		},
 		success: function(result) {
 			if(result!=null) {
@@ -65,9 +63,7 @@ function wd_search() {
 		url:path+"/admin/withdrawMemberSearchList.lac",
 		type:"POST",
 		data:{
-			"value":searchValue,
-			"cPage":$('#cPage').val(),
-			"numPerPage":$('#numPerPage').val()
+			"value":searchValue
 		},
 		success: function(result) {
 			if(result!=null) {

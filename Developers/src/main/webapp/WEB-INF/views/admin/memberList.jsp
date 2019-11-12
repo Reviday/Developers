@@ -133,8 +133,6 @@
 						type:"POST",
 						data: {
 							"value":searchValue,
-							"cPage":$('#cPage').val(),
-							"numPerPage":$('#numPerPage').val(),
 							"searchLevel":selectLevel
 						},
 						success: function(result) {
