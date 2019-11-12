@@ -1,6 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="member">
+	<update id="restoreMember" parameterType="member">
+		UPDATE TA_MEMBER SET MEM_STATUS='Y', MEM_WITHDRAWAL_DATE=NULL WHERE MEM_NO=#{memNo}
+	</update>
+	<select id="selectWithdrawMemberListBySearch" parameterType="map" resultMap="memberMap">
+		SELECT * FROM TA_MEMBER WHERE 1=0
+		<if test="searchStr != null">
+			OR ( 1=0
+			<foreach collection="searchStr" item="str">
+				OR MEM_EMAIL LIKE '%'||#{str}||'%'
+				OR MEM_NAME LIKE '%'||#{str}||'%'
+				OR MEM_ADMINMEMO LIKE '%'||#{str}||'%'
+			</foreach>
+			<if test="searchInt != null">
+				<foreach collection="searchInt" item="int">
+					OR MEM_NO LIKE '%'||${int}||'%'
+					OR MEM_PHONE LIKE '%'||${int}||'%'
+				</foreach>
+			</if>
+			)
+		</if>	
+		AND MEM_STATUS='N'
+	</select>
+	<select id="selectWithdrawMemberCountBySearch" parameterType="map" resultType="_int">
+		SELECT COUNT(*) FROM TA_MEMBER WHERE 1=0
+		<if test="searchStr != null">
+			OR ( 1=0
+			<foreach collection="searchStr" item="str">
+				OR MEM_EMAIL LIKE '%'||#{str}||'%'
+				OR MEM_NAME LIKE '%'||#{str}||'%'
+				OR MEM_ADMINMEMO LIKE '%'||#{str}||'%'
+			</foreach>
+			<if test="searchInt != null">
+				<foreach collection="searchInt" item="int">
+					OR MEM_NO LIKE '%'||${int}||'%'
+					OR MEM_PHONE LIKE '%'||${int}||'%'
+				</foreach>
+			</if>
+			)
+		</if>	
+		AND MEM_STATUS='N'
+	</select>
+	<select id="selectWithdrawMemberList" resultMap="memberMap">
+		SELECT * FROM TA_MEMBER WHERE MEM_STATUS='N' ORDER BY MEM_WITHDRAWAL_DATE DESC
+	</select>
+	<select id="selectWithdrawMemberCount" resultType="_int">
+		SELECT COUNT(*) FROM TA_MEMBER WHERE MEM_STATUS='N'
+	</select>
 	<insert id="insertLoginLog">
 		INSERT INTO TA_MEMBER_LOGIN_LOG VALUES(MLL_SEQ.NEXTVAL, #{mllSuccess}, #{mllMemNo}, #{mllUserEmail}, SYSDATE, #{mllIp}, #{mllReason}, #{mllUseragent}, #{mllUrl}, #{mllReferer})
 	</insert>
@@ -22,7 +69,7 @@
 			)
 		</if>	
 		<if test="searchLevel != null">
-			AND (MEM_LEVEL=${searchLevel})
+			AND (MEM_LEVEL=${searchLevel} AND MEM_STATUS='Y')
 		</if>
 	</select>
 	<select id="selectMemberCountBySearchLevel" parameterType="map" resultType="_int">
@@ -43,40 +90,46 @@
 			)
 		</if>	
 		<if test="searchLevel != null">
-			AND (MEM_LEVEL=${searchLevel})
+			AND (MEM_LEVEL=${searchLevel} AND MEM_STATUS='Y')
 		</if>
 	</select>
 	<select id="selectMemberListBySearch" parameterType="map" resultMap="memberMap">
 		SELECT * FROM TA_MEMBER WHERE 1=0
 		<if test="searchStr != null">
+			OR ( 1=0
 			<foreach collection="searchStr" item="str">
 				OR MEM_EMAIL LIKE '%'||#{str}||'%'
 				OR MEM_NAME LIKE '%'||#{str}||'%'
 				OR MEM_ADMINMEMO LIKE '%'||#{str}||'%'
 			</foreach>
+			<if test="searchInt != null">
+				<foreach collection="searchInt" item="int">
+					OR MEM_NO LIKE '%'||${int}||'%'
+					OR MEM_PHONE LIKE '%'||${int}||'%'
+				</foreach>
+			</if>
+			)
 		</if>	
-		<if test="searchInt != null">
-			<foreach collection="searchInt" item="int">
-				OR MEM_NO LIKE '%'||${int}||'%'
-				OR MEM_PHONE LIKE '%'||${int}||'%'
-			</foreach>
-		</if>
+		AND MEM_STATUS='Y'
 	</select>
 	<select id="selectMemberCountBySearch" parameterType="map" resultType="_int">
 		SELECT COUNT(*) FROM TA_MEMBER WHERE 1=0
 		<if test="searchStr != null">
+			OR ( 1=0
 			<foreach collection="searchStr" item="str">
 				OR MEM_EMAIL LIKE '%'||#{str}||'%'
 				OR MEM_NAME LIKE '%'||#{str}||'%'
 				OR MEM_ADMINMEMO LIKE '%'||#{str}||'%'
 			</foreach>
+			<if test="searchInt != null">
+				<foreach collection="searchInt" item="int">
+					OR MEM_NO LIKE '%'||${int}||'%'
+					OR MEM_PHONE LIKE '%'||${int}||'%'
+				</foreach>
+			</if>
+			)
 		</if>	
-		<if test="searchInt != null">
-			<foreach collection="searchInt" item="int">
-				OR MEM_NO LIKE '%'||${int}||'%'
-				OR MEM_PHONE LIKE '%'||${int}||'%'
-			</foreach>
-		</if>
+		AND MEM_STATUS='Y'
 	</select>
 	<update id="busLogoChange" parameterType="member">
 		UPDATE TA_MEMBER SET mem_icon=#{memIcon} WHERE mem_no=#{memNo}
@@ -94,7 +147,7 @@
 		INSERT INTO interests VALUES(seq_intersts.NEXTVAL,#{memEmail},#{jobName},#{duty, typeHandler=strArray},#{experience},#{salary},#{skill, typeHandler=strArray},SYSDATE,DEFAULT)
 	</insert>
 	<select id="selectMemberCount" resultType="_int">
-		SELECT COUNT(*) FROM TA_MEMBER
+		SELECT COUNT(*) FROM TA_MEMBER WHERE MEM_STATUS='Y'
 	</select>
 	<update id="lastStepEnrollEnd" parameterType="member">
 		UPDATE TA_MEMBER SET MEM_NAME=#{memName}, MEM_RECEIVE_EMAIL=#{memReceiveEmail} WHERE MEM_NO=#{memNo}
@@ -118,13 +171,13 @@
 		INSERT INTO MEMBER_AUTH_EMAIL VALUES(MAE_SEQ.NEXTVAL, #{memNo}, #{key}, 'E', DEFAULT, DEFAULT, DEFAULT)
 	</insert>
 	<select id="selectMemberList" parameterType="member" resultMap="memberMap">
-		SELECT * FROM TA_MEMBER WHERE MEM_STATUS='Y' ORDER BY MEM_ENROLL_DATETIME 
+		SELECT * FROM TA_MEMBER WHERE MEM_STATUS='Y' ORDER BY MEM_ENROLL_DATETIME DESC
 	</select>
 	<select id="selectMemberOne" parameterType="member" resultMap="memberMap">
-		SELECT * FROM TA_MEMBER WHERE MEM_EMAIL = #{memEmail}
+		SELECT * FROM TA_MEMBER WHERE MEM_EMAIL = #{memEmail} AND MEM_STATUS='Y'
 	</select>
 	<select id="selectInterests" parameterType="string" resultMap="interMap">
-		SELECT * FROM INTERESTS WHERE MEM_EMAIL = #{memEmail}
+		SELECT * FROM INTERESTS WHERE MEM_EMAIL = #{memEmail} AND MEM_STATUS='Y'
 	</select>
 	<select id="selectPositionList" resultType="position">
 		SELECT P.*, BUS_LOGO, BUS_IMAGES, BUS_ADDRESS, BUS_INDUSTRIAL, BUS_AREA, BUS_COUNTRY, (SELECT COUNT(*) FROM PO_LIKE WHERE LIKE_ID = P.LIKE_ID) AS LIKE_COUNT FROM ENROLL_POSITION P JOIN BUSINESS_INFO B ON P.BUS_NO = B.BUS_NO WHERE SYSDATE <![CDATA[<]]> DEAD_DATE ORDER BY POSITION_NO DESC

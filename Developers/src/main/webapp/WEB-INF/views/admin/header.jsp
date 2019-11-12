@@ -111,7 +111,7 @@
 	                            <a href="#">Sub Item Three</a>
 	                        </li>
 	                        <li>
-	                            <a href="#">Sub Item Four</a>
+	                            <a href="${path }/admin/withdrawMemberList.lac">탈퇴회원목록</a>
 	                        </li>
 	                    </ul>
 	                </li>

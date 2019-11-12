@@ -21,6 +21,59 @@ public class AdminServiceImpl implements AdminService {
 	private SqlSessionTemplate session;
 	
 	@Override
+	public int restoreMember(Member m) {
+		return dao.restoreMember(session, m);
+	}
+	
+	@Override
+	public List<Member> selectWithdrawMemberListBySearch(String value, int cPage, int numPerPage) {
+		Map<String, Object> searchValue=new HashMap<String, Object>();
+		String[] searchStr=value.split("\\s");
+		List<Integer> intList=new ArrayList<Integer>();
+		for(String str:searchStr) {
+			try {
+				intList.add(Integer.parseInt(str));
+			} catch(Exception e) {
+				/*변환 불가*/
+			}
+		}
+		searchValue.put("searchStr",searchStr);
+		if(intList.size()>0) {
+			searchValue.put("searchInt",intList);
+		}
+ 		return dao.selectWithdrawMemberListBySearch(session, searchValue, cPage, numPerPage);
+	}
+	
+	@Override
+	public int selectWithdrawMemberCountBySearch(String value) {
+		Map<String, Object> searchValue=new HashMap<String, Object>();
+		String[] searchStr=value.split("\\s");
+		List<Integer> intList=new ArrayList<Integer>();
+		for(String str:searchStr) {
+			try {
+				intList.add(Integer.parseInt(str));
+			} catch(Exception e) {
+				/*변환 불가*/
+			}
+		}
+		searchValue.put("searchStr",searchStr);
+		if(intList.size()>0) {
+			searchValue.put("searchInt",intList);
+		}
+ 		return dao.selectWithdrawMemberCountBySearch(session, searchValue);
+	}
+	
+	@Override
+	public List<Member> selectWithdrawMemberList(int cPage, int numPerPage) {
+		return dao.selectWithdrawMemberList(session, cPage, numPerPage);
+	}
+	
+	@Override
+	public int selectWithdrawMemberCount() {
+		return dao.selectWithdrawMemberCount(session);
+	}
+	
+	@Override
 	public List<Member> selectMemberListBySearchLevel(String value, int searchLevel, int cPage, int numPerPage) {
 		Map<String, Object> searchValue=new HashMap<String, Object>();
 		if(value != null || !value.equals("")) {
@@ -113,15 +166,8 @@ public class AdminServiceImpl implements AdminService {
 	}
 	
 	@Override
-	public List<Member> deleteMember(Member m, int cPage, int numPerPage) {
-		int result=dao.deleteMember(session, m);
-		List<Member> list=new ArrayList<Member>();
-		if(result>0) {
-			list=dao.selectMemberList(session, cPage, numPerPage);
-		} else {
-			list=null;
-		}
-		return list;
+	public int deleteMember(Member m) {
+		return dao.deleteMember(session, m);
 	}
 	
 	@Override

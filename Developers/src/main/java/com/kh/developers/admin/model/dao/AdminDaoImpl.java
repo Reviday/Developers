@@ -13,6 +13,34 @@ import com.kh.developers.member.model.vo.Member;
 public class AdminDaoImpl implements AdminDao{
 	
 	@Override
+	public int restoreMember(SqlSessionTemplate session, Member m) {
+		return session.update("member.restoreMember", m);
+	}
+	
+	@Override
+	public List<Member> selectWithdrawMemberListBySearch(SqlSessionTemplate session, Map<String, Object> searchValue,
+			int cPage, int numPerPage) {
+		RowBounds r=new RowBounds((cPage-1)*numPerPage, numPerPage);
+		return session.selectList("member.selectWithdrawMemberListBySearch", searchValue, r);
+	}
+	
+	@Override
+	public int selectWithdrawMemberCountBySearch(SqlSessionTemplate session, Map<String, Object> searchValue) {
+		return session.selectOne("member.selectWithdrawMemberCountBySearch", searchValue);
+	}
+	
+	@Override
+	public List<Member> selectWithdrawMemberList(SqlSessionTemplate session, int cPage, int numPerPage) {
+		RowBounds r=new RowBounds((cPage-1)*numPerPage, numPerPage);
+		return session.selectList("member.selectWithdrawMemberList", null, r);
+	}
+	
+	@Override
+	public int selectWithdrawMemberCount(SqlSessionTemplate session) {
+		return session.selectOne("member.selectWithdrawMemberCount");
+	}
+	
+	@Override
 	public List<Member> selectMemberListBySearchLevel(SqlSessionTemplate session, Map<String, Object> searchValue,
 			int cPage, int numPerPage) {
 		RowBounds r=new RowBounds((cPage-1)*numPerPage, numPerPage);

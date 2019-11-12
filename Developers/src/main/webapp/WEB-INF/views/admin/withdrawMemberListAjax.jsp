@@ -5,19 +5,22 @@
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 
 <div class="row">
-	<h1 class="title">회원 정보</h1>
+	<h1 class="title">탈퇴회원정보</h1>
 </div>
 <div class="row">
 	<form action="#" method="get" style="width: 50%;">
 		<div class="input-group">
 			<!-- USE TWITTER TYPEAHEAD JSON WITH API TO SEARCH -->
-			<input class="form-control" id="system-search"
-				placeholder="Search for" required value="${searchValue}"> <span
+			<input class="form-control" id="system-search" 
+				placeholder="Search for" required> <span
 				class="input-group-btn">
-				<button type="button" class="btn btn-default" onclick="search();">
+				<button type="button" class="btn btn-default" onclick="wd_search();">
 					<i class="fas fa-search"></i>
 				</button>
 			</span>
+		</div>
+		<div class="subscript">
+			<span id="subspan">기본검색(회원번호,이메일,이름)만 가능합니다.</span>
 		</div>
 	</form>
 	<table class="table table-list-search rwd-table" id="memberListTB">
@@ -25,29 +28,16 @@
 			<tr>
 				<th>회원번호</th>
 				<th>이메일</th>
-				<th>등급
-					<div class="dropdown" style="display: inline-block;">
-				        <select class="dropdown-select-version select" name="memLevel" id="searchlevel" style="vertical-align: top; height: 21px; width: 100px; margin: 0; margin-left: 10px;">
-				        	<option value="-1" selected disabled hidden>등급별검색</option>
-				        	<option value="5" <c:if test="${searchLevel eq 5}">selected</c:if>>관리자</option>
-						    <option value="4" <c:if test="${searchLevel eq 4}">selected</c:if>>기업관리자</option>
-						    <option value="3" <c:if test="${searchLevel eq 3}">selected</c:if>>기업매니저</option>
-						    <!--<option value="2">-미정-</option> -->
-						    <option value="1" <c:if test="${searchLevel eq 1}">selected</c:if>>정회원</option>
-						    <option value="0" <c:if test="${searchLevel eq 0}">selected</c:if>>가입미완료</option> <!-- 회원가입 미완료 상태 -->
-				        </select>
-				    </div>
-				</th>
+				<th>등급</th>
 				<th>이름</th>
-				<th>전화번호</th>
-				<th class="hidden_th">포인트</th>
+				<th class="hidden_th">탈퇴일</th>
 				<th class="hidden_th">메모</th>
-				<th>수정/탈퇴</th>
+				<th>계정복구</th>
 			</tr>
 		</thead>
 		<tbody>
-		<c:if test="${not empty memList}">
-			<c:forEach items="${memList }" var="m">
+			<c:if test="${not empty memList}">
+				<c:forEach items="${memList }" var="m">
 				<tr>
 					<td data-th="회원번호">${m.memNo }</td>
 					<td data-th="이메일">${m.memEmail }</td>
@@ -67,11 +57,11 @@
 						<c:if test="${m.memName eq null}"><span style="color:rgb(91, 91, 91);">#미기입</span></c:if>
 						<c:if test="${m.memName ne null}">${m.memName}</c:if>
 					</td>
-					<td data-th="전화번호">
-						<c:if test="${m.memPhone eq null}"><span style="color:rgb(91, 91, 91);">#미기입</span></c:if>
-						<c:if test="${m.memPhone ne null}">${m.memPhone}</c:if>
+					<td class="hidden_td" data-th="탈퇴일">	
+						<c:if test="${m.memWithdrawalDate ne null }">
+							<fmt:formatDate value="${m.memWithdrawalDate }" pattern="yyyy-MM-dd HH:mm:ss"/>
+						</c:if>
 					</td>
-					<td class="hidden_td" data-th="포인트">${m.memPoint }</td>
 					<td class="hidden_td" data-th="메모">
 						<button class="btn memoBtn" id="mBtn_${m.memNo }" style=" width:32px; height:32px">
 							<img src="${path}/resources/images/memo.png" style="width:32px; height:32px"/>
@@ -80,9 +70,8 @@
 							<textarea class="memo_ta" id="memoarea_${m.memNo}">${m.memAdminmemo }</textarea>
 						</div>
 					</td>
-					<td data-th="수정/탈퇴"> 
-						<button type="button" class="btn btn-primary btn-sm" onclick="fn_updateMember(${m.memNo})">수정</button>
-						<button type="button" class="btn btn-danger btn-sm" onclick="fn_deleteMember(${m.memNo})">탈퇴</button>
+					<td data-th="계정복구"> 
+						<button type="button" class="btn btn-primary btn-sm" onclick="fn_restoreMember(${m.memNo})">계정복구</button>
 					</td>
 				</tr>
 				</c:forEach>

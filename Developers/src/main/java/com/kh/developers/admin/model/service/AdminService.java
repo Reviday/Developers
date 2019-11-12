@@ -9,9 +9,14 @@ public interface AdminService {
 	List<Member> selectMemberList(int cPage, int numPerPage);
 	int selectMemberCount();
 	int updateMember(Member m);
-	List<Member> deleteMember(Member m, int cPage, int numPerPage);
+	int deleteMember(Member m);
 	int selectMemberCountBySearch(String value);
 	List<Member> selectMemberListBySearch(String value, int cPage, int numPerPage);
 	int selectMemberCountBySearchLevel(String value, int searchLevel);
 	List<Member> selectMemberListBySearchLevel(String value, int searchLevel, int cPage, int numPerPage);
+	int selectWithdrawMemberCount();
+	List<Member> selectWithdrawMemberList(int cPage, int numPerPage);
+	int selectWithdrawMemberCountBySearch(String value);
+	List<Member> selectWithdrawMemberListBySearch(String value, int cPage, int numPerPage);
+	int restoreMember(Member m);
 }

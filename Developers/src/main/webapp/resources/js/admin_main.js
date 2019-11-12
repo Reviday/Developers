@@ -59,6 +59,25 @@ function search() {
 	}); 
 };
 
+function wd_search() {
+	var searchValue=document.getElementById('system-search').value;
+	$.ajax({
+		url:path+"/admin/withdrawMemberSearchList.lac",
+		type:"POST",
+		data:{
+			"value":searchValue,
+			"cPage":$('#cPage').val(),
+			"numPerPage":$('#numPerPage').val()
+		},
+		success: function(result) {
+			if(result!=null) {
+				$('.mainContent').html("");
+				$('.mainContent').html(result);
+			} 
+		}
+	}); 
+}
+
 //멤버 수정
 function fn_updateMember(memNo) {
 	if(confirm('회원 정보를 수정하시겠습니까?')) {
@@ -83,14 +102,18 @@ function fn_updateMember(memNo) {
 
 //멤버 탈퇴
 function fn_deleteMember(memNo) {
-	if(confirm('회원을 정말로 탈퇴시키겠습니까? ')) {
+	if(confirm('회원을 정말로 탈퇴시키겠습니까?')) {
+		var searchValue=document.getElementById('system-search').value;
+		var selectLevel=$("#searchlevel option:selected").val();
 		$.ajax({
 			url:path+"/admin/deleteMember.lac",
 			type:"POST",
 			data:{
 				"memNo":memNo,
 				"cPage":$('#cPage').val(),
-				"numPerPage":$('#numPerPage').val()
+				"numPerPage":$('#numPerPage').val(),
+				"value":searchValue,
+				"searchLevel":selectLevel
 			},
 			success: function(result) {
 				if(result!=null) {
@@ -105,3 +128,28 @@ function fn_deleteMember(memNo) {
 	} 
 }
 
+//멤버 복구
+function fn_restoreMember(memNo) {
+	if(confirm('해당 계정을 복구시키겠습니까?')) {
+		var searchValue=document.getElementById('system-search').value;
+		$.ajax({
+			url:path+"/admin/restoreMember.lac",
+			type:"POST",
+			data:{
+				"memNo":memNo,
+				"cPage":$('#cPage').val(),
+				"numPerPage":$('#numPerPage').val(),
+				"value":searchValue
+			},
+			success: function(result) {
+				if(result!=null) {
+					alert("해당 게정은 사용가능한 계정으로 전환되었습니다.");
+					$('.mainContent').html("");
+					$('.mainContent').html(result);
+				} else {
+					alert("계정 복구가 제대로 이루어지지 않았습니다.");
+				}
+			},
+		});
+	} 
+}
