@@ -393,6 +393,11 @@ input[name="search_em"]::placeholder{
     color:white;
     font-weight: bold;
 }
+.bi_info_modify:hover{
+    border:1px solid silver;
+    background-color: white;
+    color:#900020;
+}
 
 .bi_img_container{
     position: absolute !important;
@@ -401,6 +406,7 @@ input[name="search_em"]::placeholder{
     width:100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.7);
+    z-index: 999;
 }
 
 .bi_img_content{
@@ -504,15 +510,31 @@ input[name="search_em"]::placeholder{
 .bi_img_close{
     float:right;
     padding:10px 10px;
-    border:1px solid silver;
+   
     cursor: pointer; 
     font-size: 1.4rem; 
     font-weight: 900;
     border-radius: 3px;
-}
-.bi_img_close:hover{
     color:white;
     background-color: #900020;
+}
+.bi_img_close:hover{
+    border:1px solid silver;
+    background-color: white;
+    color:#900020;
+}
+
+.modi_text{
+    position: fixed;
+    display: none;
+    top:0;
+    color:#900020;
+    text-align: center;
+    width:100%;
+    padding:10px 0;
+    font-size: 1.8rem;
+    background-color: rgba(255,255,255,0.2);
+
 }
 
 

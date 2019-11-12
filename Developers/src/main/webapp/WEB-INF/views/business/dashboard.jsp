@@ -130,19 +130,19 @@
 				</c:if>
 			</div>
 		</div> -->
-
+		<c:if test='${not empty dbIndex}'>
+			${dbHtml}
+		</c:if>
 		
 	</div>
 </section>
 <script>
 	var path="${path}";
 	var db_index="${dbIndex}";
-	var db_html="${dbHtml}";
 	var se_html="${seHtml}";
 	var appl_index="${applIndex}";
 	var appl_page='${applcPage}';
 	var appl_like='${applLike}';
-	var bus_info='${busInfo}';
 
 </script>
 <script src="${path}/resources/js/db-main.js"></script>

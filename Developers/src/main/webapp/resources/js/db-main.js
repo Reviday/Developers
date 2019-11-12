@@ -2,7 +2,7 @@
 $(window).ready(function(){
   
     if(db_index!=''){
-        $("#db-container").html(db_html);
+        // $("#db-container").html(db_html);
         if(se_html!=''){
             $("#content").append(se_html);
         }

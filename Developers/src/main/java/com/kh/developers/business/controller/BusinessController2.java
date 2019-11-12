@@ -439,41 +439,41 @@ public class BusinessController2 {
 		biHtml+="<form class='bi_frm' name='bi_frm'>";
 		biHtml+="<div>";
 		biHtml+="<div class='bi_info_title'>회사 이름<span class='bi_warn'>*</span></div>";
-		biHtml+="<input class='form-control' type='text' value='"+bus.getBusName()+"' disabled />";
+		biHtml+="<input class='form-control' type='text' name='busName' value='"+bus.getBusName()+"' disabled />";
 		biHtml+="<div class='bi_info_warn'><span class='bi_warn'>*</span>회사이름은 직접 수정이 불가합니다. 수정이 필요하시면 admin@developer.com으로 문의해 주세요.</div>";
 		biHtml+="</div>";
 		biHtml+="<div class='bi_info'>";
 		biHtml+="<div class='bi_info_title'>회사 소개<span class='bi_warn'>*</span></div>";
-		biHtml+="<textarea class='form-control bi_info_ta'>";
+		biHtml+="<textarea class='form-control bi_info_ta' name='busIntroduce'>";
 		biHtml+=bus.getBusIntroduce();
 		biHtml+="</textarea>";
 		biHtml+="</div>";
 		biHtml+="<div>";
 		biHtml+="<div class='bi_info_title'>웹사이트 주소</div>";
-		biHtml+="<input class='form-control' type='text' value='"+bus.getBusWebsite()+"' />";
+		biHtml+="<input class='form-control' type='text' name='busWebsite' value='"+bus.getBusWebsite()+"' />";
 		biHtml+="</div>";
 		biHtml+="<div>";
 		biHtml+="<div class='bi_info_title'>본사 주소<span class='bi_warn'>*</span></div>";
-		biHtml+="<input class='form-control' type='text' value='"+bus.getBusAddress()+"' />";
+		biHtml+="<input class='form-control' type='text' name='busAddress' value='"+bus.getBusAddress()+"' />";
 		biHtml+="</div>";
 		biHtml+="<div class='bi_half'>"; 
 		biHtml+="<div class='bi_left'>";
 		biHtml+="<div class='bi_info_title'>사업자 등록번호<span class='bi_warn'>*</span></div>";
-		biHtml+="<input class='form-control' type='text' value='"+bus.getBusRegNo()+"'/>";
+		biHtml+="<input class='form-control' type='text' name='busRegNo' value='"+bus.getBusRegNo()+"' disabled/>";
 		biHtml+="</div>";
 		biHtml+="<div class='bi_right'>";
 		biHtml+="<div class='bi_info_title'>매출액/투자금액(승인기준 : 매출액/투자금액 4억원 이상)<span class='bi_warn'>*</span></div>";
-		biHtml+="<input class='form-control' type='text' value='"+bus.getBusIncome()+"'/><span class='won'>억원</span>";
+		biHtml+="<input class='form-control' type='text' name='busIncome' value='"+bus.getBusIncome()+"'/><span class='won'>억원</span>";
 		biHtml+="</div>";
 		biHtml+="</div>";
 		biHtml+="<div class='bi_half'>";
 		biHtml+="<div class='bi_left'>";
 		biHtml+="<div class='bi_info_title'>산업군<span class='bi_warn'>*</span></div>";
-		biHtml+="<input class='form-control' type='text' value='"+bus.getBusIndustrial()+"'/>";
+		biHtml+="<input class='form-control' type='text' name='busIndustrial' value='"+bus.getBusIndustrial()+"'/>";
 		biHtml+="</div>";
 		biHtml+="<div class='bi_right'>";
 		biHtml+="<div class='bi_info_title'>직원수(승인기준 : 팀원 10명이상)*</div>";
-		biHtml+="<select class='form-control'>";
+		biHtml+="<select class='form-control' name='busTotalEmp'>";
 		biHtml+="<option value=''>회사규모</option>";
 		String[] totalEmp= {"1~4","5~10","11~50","51~200","201~500","501~1000","1001~5000","5001~10000","10001~"};
 		for(String te:totalEmp) {
@@ -490,22 +490,13 @@ public class BusinessController2 {
 			}
 			biHtml+="</option>";
 		}
-		biHtml+="<option value='1~4'>1~4명</option>";
-		biHtml+="<option value='5~10'>5~10명</option>";
-		biHtml+="<option value='11~50'>11~50명</option>";
-		biHtml+="<option value='51~200'>51~200명</option>";
-		biHtml+="<option value='201~500'>201~500명</option>";
-		biHtml+="<option value='501~1000'>501~1000명</option>";
-		biHtml+="<option value='1001~5000'>1001~5000명</option>";
-		biHtml+="<option value='5001~10000'>5001~10000명</option>";
-		biHtml+="<option value='10001~'>10000명 이상</option>";
 		biHtml+="</select>";
 		biHtml+="</div>";
 		biHtml+="</div>";
 		biHtml+="<div class='bi_half'>";
 		biHtml+="<div class='bi_left'>";
 		biHtml+="<div class='bi_info_title'>설립연도<span class='bi_warn'>*</span></div>";
-		biHtml+="<select class='form-control esta_sel'>";
+		biHtml+="<select class='form-control esta_sel' name='busEstablishment'>";
 		biHtml+="<option value='' disabled>ex) 2010년</option>";
 		Date date=new Date();
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy");
@@ -522,12 +513,12 @@ public class BusinessController2 {
 		biHtml+="</div>";
 		biHtml+="<div class='bi_right'>";
 		biHtml+="<div class='bi_info_title'>정보 수신 메일<span class='bi_warn'>*</span></div>";
-		biHtml+="<input class='form-control' type='email' value='"+bus.getBusEmail()+"'/>";
+		biHtml+="<input class='form-control' type='email' name='busEmail' value='"+bus.getBusEmail()+"'/>";
 		biHtml+="</div>";
 		biHtml+="</div>";
 		biHtml+="<div>";
 		biHtml+="<div class='bi_info_title'>담당자 연락처<span class='bi_warn'>*</span></div>";
-		biHtml+="<input class='form-control' type='text' value='"+bus.getBusPhone()+"'/>";
+		biHtml+="<input class='form-control' type='text' name='busPhone' value='"+bus.getBusPhone()+"'/>";
 		biHtml+="</div>";
 		biHtml+="<div>";
 		biHtml+="<div class='bi_info_title'>검색 키워드(키워드는 최대 3개까지 등록 가능합니다.)</div>";
@@ -540,7 +531,7 @@ public class BusinessController2 {
 		
 		seHtml+="<div class='bi_bottom_bar'>";
 		seHtml+="<div class='bi_bottom_con'>";
-		seHtml+="<button type='button' class='btn bi_info_modify'>수정</button>";
+		seHtml+="<button type='button' class='btn bi_info_modify' onclick='fn_update_bus();'>수정</button>";
 		seHtml+="</div>";
 		seHtml+="</div>";
 
@@ -600,6 +591,9 @@ public class BusinessController2 {
 		seHtml+="</div>";
 		seHtml+="</div>";
 		seHtml+="</div>";
+		seHtml+="<div class='modi_text'>";
+		seHtml+="<span>정보가 수정되었습니다.</span>";
+		seHtml+="</div>";
 		mv.addObject("dbHtml", biHtml);
 		mv.addObject("seHtml", seHtml);
 		mv.addObject("dbIndex",5);
@@ -608,9 +602,22 @@ public class BusinessController2 {
 	}
 	
 	//비지니스 정보 수정
-	@RequestMapping("/business/updateBusInfo")
-	public ModelAndView updateBusInfo(HttpSession session ) {
+	@RequestMapping("/business/updateBusInfo.lbc")
+	public ModelAndView updateBusInfo(HttpSession session, Business bus) {
 		ModelAndView mv=new ModelAndView();
+		Business busInfo=(Business)session.getAttribute("busInfo");
+		busInfo.setBusAddress(bus.getBusAddress());
+		busInfo.setBusIncome(bus.getBusIncome());
+		busInfo.setBusIndustrial(bus.getBusIndustrial());
+		busInfo.setBusTotalEmp(bus.getBusTotalEmp());
+		busInfo.setBusIntroduce(bus.getBusIntroduce());
+		busInfo.setBusEstablishment(bus.getBusEstablishment());
+		busInfo.setBusEmail(bus.getBusEmail());
+		busInfo.setBusPhone(bus.getBusPhone());
+		busInfo.setBusWebsite(bus.getBusWebsite());
+		service.updateBusInfo(busInfo);
+		session.setAttribute("busInfo", busInfo);
+		mv.setViewName("jsonView");
 		return mv;
 		
 	}

@@ -56,3 +56,21 @@ function fn_del_img(event){
     });
     $($(event.target).parents('.modi_img')).remove();
 }
+
+function fn_update_bus(){
+    var busFrm=new FormData($(".bi_frm")[0]);
+    $.ajax({
+        url:path+"/business/updateBusInfo.lbc",
+        data:busFrm,
+        type:"post",
+        processData:false,
+        contentType:false,
+        success:function(){
+            $(".modi_text").show();
+            setTimeout(function(){
+                $(".modi_text").fadeOut();
+            },2000);
+
+        }
+    });
+}
