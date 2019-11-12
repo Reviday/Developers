@@ -238,7 +238,7 @@ div#memIntro{
 }
 .startCareer,.startEd{
 	float:right;
-	margin-right:5px;
+	margin-right:4px;
 }
 .endCareer,.endEd{
 	float:right;
@@ -247,6 +247,16 @@ div#memIntro{
 .careerIntro,.subjectName{
 	padding:30px;
 }
+button#buttonFav{
+	background-color: #A4A4A4;
+	border-color: #A4A4A4;
+	width:100%;
+}
+.btn-primary.focus, .btn-primary:focus {
+    box-shadow: 0 0 0 0;
+}
+
+
 
 
 

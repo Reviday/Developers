@@ -179,6 +179,18 @@ public class BusinessServiceImpl implements BusinessService {
 		return dao.selectOneIntroCard(session, resumeNo);
 	}
 	
+	//클릭 Favorite 로직
+	
+	@Override
+	public int insertFavorite(int resumeNo, int busNo) {
+		// TODO Auto-generated method stub
+		return dao.insertFavorite(session, resumeNo, busNo);
+	}
+	@Override
+	public int removeFavorite(int resumeNo, int busNo) {
+		// TODO Auto-generated method stub
+		return dao.removeFavorite(session, resumeNo, busNo);
+	}
 	
 
 }

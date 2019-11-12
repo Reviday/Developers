@@ -122,6 +122,12 @@
 		SELECT RESUME_NO,MEM_NAME,MEM_EMAIL,MEM_PHONE,INTRO FROM RESUME WHERE RESUME_NO=#{resumeNo}
 	</select>
 	
+	<insert id="insertFavorite" parameterType="map">
+		INSERT INTO MATCHUP_FAV VALUES (SEQ_MATCHUP_FAV_NO.NEXTVAL, #{resumeNo}, #{busNo}, 'T')
+	</insert>
+	<delete id="removeFavorite" parameterType="map">
+		DELETE FROM MATCHUP_FAV WHERE RESUME_NO=#{resumeNo} AND BUS_NO=#{busNo}
+	</delete>
 	
 	
 	

@@ -163,7 +163,7 @@ function ajaxLogic(searchPackage){
                         let userName=icList[i].memName.split("");
                         let sirName=userName.splice(0,1);
                         cardContainer+='<div id="memName" style="float:left; color:#A4A4A4; margin-left:10px; padding:7px;"><p id="sirName">'+sirName+'</p></div>';
-                        cardContainer+='<div id="favBtn" style="float:right;"><button class="btn btn-outline-primary favBtn" onclick="clickFav('+icList[i].resumeNo+');" type="button">찜하기</button></div></h5>';
+                        cardContainer+='<div id="favBtn" style="float:right; width:18%;"><button class="btn btn-primary favBtns" id="buttonFav" style="font-size:large; margin-top:-2px;"><i class="fas fa-heart"></i>&nbsp&nbsp<p style="font-size:12px; display:inline-block";>찜하기</p></button></div></h5>';
                         cardContainer+='<div class="card-body">';
                         cardContainer+='<h5 class="card-title">';
                         cardContainer+='<div class="duty-list"><p class="duty">';
@@ -263,6 +263,9 @@ function ajaxLogic(searchPackage){
                     }
                     cardContainer+='</div>';
                     cardContainer+='<div class="pageBar">'+cards.pageBar+'</div>';
+                    cardContainer+='<script> document.querySelectorAll("button.favBtns").forEach(function(e){';
+                    cardContainer+='e.addEventListener("click",function(e){';
+                    cardContainer+='clickFav(e)});});</script>';
                     $(cardsArea).html(cardContainer);
                 }
 
@@ -328,10 +331,10 @@ function openResume(resumeNo){
 
                     let careerss="";
                     for(let i in info.careers){
-                        careerss+='<div class="careerTitle">경력</div>';
+                        careerss+='<div class="careerTitle" style="font-weight:bold;">경력</div>';
                         careerss+='<div class="busName">'+info.careers[i].busName+'</div>';
                         careerss+='<div><span class="aline" style="float:left; margin-left:1%; margin-right:1%;">'+" | "+'</span></div>';
-                        careerss+='<div class="deptName">'+info.careers[i].deptName+'</div>';
+                        careerss+='<div class="deptName" style="color:#6E6E6E";>'+info.careers[i].deptName+'</div>';
                         careerss+='<div class="endCareer">'+info.careers[i].endCareer+'</div>';
                         careerss+='<div class="startCareer">'+info.careers[i].startCareer+'  ~'+'</div>';
                         careerss+='<br>';
@@ -342,10 +345,10 @@ function openResume(resumeNo){
 
                     let educationss="";
                     for(let i in info.educations){
-                        educationss+='<div class="educationTitle">학력</div>';
+                        educationss+='<div class="educationTitle" style="font-weight:bold;">학력</div>';
                         educationss+='<div class="schoolName">'+info.educations[i].schoolName+'</div>';
                         educationss+='<span class="aline" style="float:left; margin-left:1%; margin-right:1%;">'+" | "+'</span>';
-                        educationss+='<div class="majorName">'+info.educations[i].majorName+'</div>';
+                        educationss+='<div class="majorName" style="color:#6E6E6E;">'+info.educations[i].majorName+'</div>';
                         educationss+='<div class="endEd">'+info.educations[i].endEd+'</div>';
                         educationss+='<div class="startEd">'+info.educations[i].startEd+'  ~'+'</div>';
                         educationss+='<br>';
@@ -409,8 +412,27 @@ function offeredList(){
 }
 
 
-function clickFav(resumeNo){
-    console.log(resumeNo);
+function clickFav(e){
+    let resumeNo=e.target.parentNode.parentNode.firstChild.innerText;
+    let flag="";
+    let bcolor=e.target.style.backgroundColor;
+    console.log(e);
+    if(resumeNo!=""&&bcolor==""){
+        flag='insert';
+        e.target.style.backgroundColor='#F2F2F2';
+        e.target.style.borderColor='#F2F2F2';
+        e.target.firstChild.firstChild.style.color='#FF0040';
+        e.target.style.color='#2E2E2E';
+    }else if(resumeNo!=""&&bcolor!=""){
+        flag='remove';
+        e.target.style.backgroundColor='';
+        e.target.firstChild.color='';
+        e.target.firstChild.firstChild.style.color='';
+        e.target.style.color='';
+    }
+
+    console.log(flag);
+
     // if(e.target.style.backgroundColor!="yellow"){
     //     $.ajax({
     //         url:path+"/business/clickFav",

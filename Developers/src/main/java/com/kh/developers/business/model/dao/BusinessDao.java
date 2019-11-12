@@ -48,4 +48,8 @@ public interface BusinessDao {
 	//openRoughResume 로직 
 	IntroCard selectOneIntroCard(SqlSessionTemplate session, int resumeNo);
 	
+	//클릭 Favorite 로직
+	int insertFavorite(SqlSessionTemplate session, int resumeNo, int busNo);
+	int removeFavorite(SqlSessionTemplate session, int resumeNo, int busNo);
+	
 }

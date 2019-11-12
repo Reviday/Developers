@@ -43,4 +43,8 @@ public interface BusinessService {
 	//openRoughResume 로직 
 	
 	IntroCard selectOneIntroCard(int resumeNo);
+	
+	//Favorite클릭 로직 
+	int insertFavorite(int resumeNo, int busNo);
+	int removeFavorite(int resumeNo, int busNo);
 }

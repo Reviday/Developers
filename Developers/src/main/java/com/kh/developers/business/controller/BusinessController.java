@@ -317,11 +317,28 @@ public class BusinessController {
 	//찜하기 로직 
 	@RequestMapping(value = "/business/clickFav", produces = "application/text; charset=utf-8")
 	@ResponseBody
-	public String clickFav(@RequestParam(value="resumeNo") int resumeNo,HttpSession session,HttpServletResponse res) {
+	public String clickFav(@RequestParam(value="resumeNo") int resumeNo, @RequestParam(value="flag") String flag,HttpSession session,HttpServletResponse res) {
 		Business bus=(Business) session.getAttribute("busInfo");
 		ObjectMapper mapper=new ObjectMapper(); //잭슨 객체 - json자바스크립트 객체 매핑시킴
 		String jsonStr="";
-		int result=bService.insertFavorite(bus.getBusNo(),resumeNo);
+		int result;
+		int busNo=Integer.parseInt(bus.getBusNo());
+		
+		if(flag=="insert") {
+			result=bService.insertFavorite(resumeNo, busNo);			
+		}else {
+			result=bService.removeFavorite(resumeNo, busNo);
+			if(result>0) {
+				result=-1;
+			}
+		}
+		try {
+			jsonStr=mapper.writeValueAsString(result);
+		}catch(JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		res.setContentType("application/json;charset=utf-8");
+		return jsonStr;
 	}
 	
 	
@@ -333,6 +350,8 @@ public class BusinessController {
 //		Business bus=(Business) session.getAttribute("busInfo");
 //		bus.getBusNo();
 //	}
+	
+	
 	
 	
 	

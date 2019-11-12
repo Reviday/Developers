@@ -128,5 +128,23 @@ public class BusinessDaoImpl implements BusinessDao {
 		// TODO Auto-generated method stub
 		return session.selectOne("business.selectOneIntroCard",resumeNo);
 	}
+	
+	//클릭 Favorite 로직
+	@Override
+	public int insertFavorite(SqlSessionTemplate session, int resumeNo, int busNo) {
+		// TODO Auto-generated method stub
+		Map<String,Object>map=new HashMap<String,Object>();
+		map.put("resumeNo",resumeNo);
+		map.put("busNo",busNo);
+		return session.insert("business.insertFavorite",map);
+	}
+	@Override
+	public int removeFavorite(SqlSessionTemplate session, int resumeNo, int busNo) {
+		// TODO Auto-generated method stub
+		Map<String,Object>map=new HashMap<String,Object>();
+		map.put("resumeNo",resumeNo);
+		map.put("busNo",busNo);
+		return session.delete("business.removeFavorite",map);
+	}
 
 }
