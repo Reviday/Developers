@@ -206,6 +206,8 @@ public class BusinessController {
 		ObjectMapper mapper=new ObjectMapper(); //잭슨 객체 - json자바스크립트 객체 매핑시킴 
 		List<IntroCard>icList=new ArrayList<IntroCard>();
 		Map<String,Object>resultMap=new HashMap<String,Object>();
+		Business bus=(Business)req.getSession().getAttribute("busInfo");
+		int busNo=Integer.parseInt(bus.getBusNo());
 		String jsonStr="";
 		String duties="";
 		String searchBox="";
@@ -215,7 +217,7 @@ public class BusinessController {
 		}catch(Exception e) {
 			cPage=1;
 		}
-		System.out.println("가공후cPage: "+cPage);
+		
 		
 		if(!searchPackage.get(0).isEmpty()) {
 			String[] selected=(searchPackage.get(0)).split(",");
@@ -243,6 +245,13 @@ public class BusinessController {
 			for(IntroCard ic:icList) {
 				ic.setCareers(bService.selectCareers(ic.getResumeNo()));
 				ic.setEducations(bService.selectEducations(ic.getResumeNo()));
+				System.out.println(busNo);
+				System.out.println(ic.getResumeNo());
+				if(bService.selectFavorite(busNo,ic.getResumeNo())!=null){
+					ic.setFavorite(bService.selectFavorite(busNo,ic.getResumeNo()));					
+				}else {
+					ic.setFavorite("F");
+				}
 			}
 		}
 		else if(!searchPackage.get(0).isEmpty()&&searchPackage.get(1).isEmpty()) {
@@ -255,6 +264,11 @@ public class BusinessController {
 			for(IntroCard ic:icList) {
 				ic.setCareers(bService.selectCareers(ic.getResumeNo()));
 				ic.setEducations(bService.selectEducations(ic.getResumeNo()));
+				if(bService.selectFavorite(busNo,ic.getResumeNo())!=null){
+					ic.setFavorite(bService.selectFavorite(busNo,ic.getResumeNo()));					
+				}else {
+					ic.setFavorite("F");
+				}
 			}
 		}
 		else if(!searchPackage.get(0).isEmpty()&&!searchPackage.get(1).isEmpty()) {
@@ -266,6 +280,11 @@ public class BusinessController {
 			for(IntroCard ic:icList) {
 				ic.setCareers(bService.selectCareers(ic.getResumeNo()));
 				ic.setEducations(bService.selectEducations(ic.getResumeNo()));
+				if(bService.selectFavorite(busNo,ic.getResumeNo())!=null){
+					ic.setFavorite(bService.selectFavorite(busNo,ic.getResumeNo()));					
+				}else {
+					ic.setFavorite("F");
+				}
 			}
 		}
 		else if(searchPackage.get(0).isEmpty()&&!searchPackage.get(1).isEmpty()) {
@@ -277,6 +296,11 @@ public class BusinessController {
 			for(IntroCard ic:icList) {
 				ic.setCareers(bService.selectCareers(ic.getResumeNo()));
 				ic.setEducations(bService.selectEducations(ic.getResumeNo()));
+				if(bService.selectFavorite(busNo,ic.getResumeNo())!=null){
+					ic.setFavorite(bService.selectFavorite(busNo,ic.getResumeNo()));					
+				}else {
+					ic.setFavorite("F");
+				}
 			}
 		}
 		String pageBar="";
@@ -317,14 +341,14 @@ public class BusinessController {
 	//찜하기 로직 
 	@RequestMapping(value = "/business/clickFav", produces = "application/text; charset=utf-8")
 	@ResponseBody
-	public String clickFav(@RequestParam(value="resumeNo") int resumeNo, @RequestParam(value="flag") String flag,HttpSession session,HttpServletResponse res) {
+	public String clickFav(@RequestParam(value="resumeNo") int resumeNo, @RequestParam(value="flag") int flag,HttpSession session,HttpServletResponse res) {
 		Business bus=(Business) session.getAttribute("busInfo");
 		ObjectMapper mapper=new ObjectMapper(); //잭슨 객체 - json자바스크립트 객체 매핑시킴
 		String jsonStr="";
 		int result;
 		int busNo=Integer.parseInt(bus.getBusNo());
 		
-		if(flag=="insert") {
+		if(flag>0) {
 			result=bService.insertFavorite(resumeNo, busNo);			
 		}else {
 			result=bService.removeFavorite(resumeNo, busNo);
@@ -344,12 +368,48 @@ public class BusinessController {
 	
 	// 왼쪽 메뉴바 로직
 	
-//	@RequestMapping(value = "/business/favoriteList", produces = "application/text; charset=utf-8")
-//	@ResponseBody
-//	public String favoriteList(HttpSession session, HttpServletResponse res) {
-//		Business bus=(Business) session.getAttribute("busInfo");
-//		bus.getBusNo();
-//	}
+	// 찜하기 불러오기 
+	@RequestMapping(value = "/business/favoriteList", produces = "application/text; charset=utf-8")
+	@ResponseBody
+	public String favoriteList(@RequestParam (value="cPage", required=false, defaultValue="0") int cPage,HttpSession session, HttpServletResponse res) {
+		Business bus=(Business) session.getAttribute("busInfo");
+		Map<String,Object>resultMap=new HashMap<String,Object>();
+		List<IntroCard>icList=new ArrayList<IntroCard>();
+		ObjectMapper mapper=new ObjectMapper(); //잭슨 객체 - json자바스크립트 객체 매핑시킴
+		String jsonStr="";
+		int busNo=Integer.parseInt(bus.getBusNo());
+		if(cPage<1) {
+			cPage=1;
+		}
+		
+		int icCount=bService.selectCountFav(busNo);
+		ptf=new PaginationTemplateFunction(cPage, icCount,"favoriteList");
+		icList=bService.selectFavorites(busNo,ptf.getcPage(), ptf.getNumPerPage());
+		if(icList.size()>0) {
+			for(IntroCard ic:icList) {
+				ic.setCareers(bService.selectCareers(ic.getResumeNo()));
+				ic.setEducations(bService.selectEducations(ic.getResumeNo()));
+			}
+			String pageBar="";
+			pageBar=ptf.getPageBar();			
+			resultMap.put("icList", icList);
+			resultMap.put("pageBar",pageBar);
+			try {
+				jsonStr=mapper.writeValueAsString(resultMap);
+			}catch(JsonProcessingException e) {
+				e.printStackTrace();
+			}
+		}else{
+			String val="F";
+			try {
+				jsonStr=mapper.writeValueAsString(val);
+			}catch(JsonProcessingException e) {
+				e.printStackTrace();
+			}
+		}
+		res.setContentType("application/json;charset=utf-8");
+		return jsonStr;
+	}
 	
 	
 	

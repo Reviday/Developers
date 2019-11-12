@@ -54,6 +54,11 @@ p{
 	} 
 }
 
+img#loading{
+	margin-left:45%;
+	margin-top:15%;
+}
+
 div#resumeNo{
 	color:#A4A4A4;
 }
@@ -248,8 +253,6 @@ div#memIntro{
 	padding:30px;
 }
 button#buttonFav{
-	background-color: #A4A4A4;
-	border-color: #A4A4A4;
 	width:100%;
 }
 .btn-primary.focus, .btn-primary:focus {
@@ -363,9 +366,9 @@ button#buttonFav{
 				<div class="bottom center favList">
 					<div class="list-group left-menu">
 						<a href="#" class="list-group-item list-group-item-action active" onclick="location.reload()">목록 전체</a>
-						<a href="#" class="list-group-item list-group-item-action" onclick="favoriteList();">찜한 목록<div class='countSelected'></div></a>
-						<a href="#" class="list-group-item list-group-item-action" onclick="openedList();">열람한 목록<div class='countSelected'></div></a>
-						<a href="#" class="list-group-item list-group-item-action" onclick="offeredList();">면접 제안한 목록<div class='countSelected'></div></a>
+						<a href="#" class="list-group-item list-group-item-action" onclick="favoriteList(); return false;">찜한 목록<div class='countSelected'></div></a>
+						<a href="#" class="list-group-item list-group-item-action" onclick="openedList();return false;">열람한 목록<div class='countSelected'></div></a>
+						<a href="#" class="list-group-item list-group-item-action" onclick="offeredList();return false;">면접 제안한 목록<div class='countSelected'></div></a>
 					</div>
 				</div>
 			</div>

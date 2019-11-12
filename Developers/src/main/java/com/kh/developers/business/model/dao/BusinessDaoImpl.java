@@ -122,6 +122,15 @@ public class BusinessDaoImpl implements BusinessDao {
 		return session.selectList("business.selectEducations",resumeNo);
 	}
 	
+	@Override
+	public String selectFavorite(SqlSessionTemplate session, int busNo, int resumeNo) {
+		// TODO Auto-generated method stub
+		Map<String,Object>map=new HashMap<String,Object>();
+		map.put("busNo",busNo);
+		map.put("resumeNo",resumeNo);
+		return session.selectOne("business.selectFavorite",map);
+	}
+	
 	//openRoughResume 로직 
 	@Override
 	public IntroCard selectOneIntroCard(SqlSessionTemplate session, int resumeNo) {
@@ -145,6 +154,19 @@ public class BusinessDaoImpl implements BusinessDao {
 		map.put("resumeNo",resumeNo);
 		map.put("busNo",busNo);
 		return session.delete("business.removeFavorite",map);
+	}
+	
+	//Favorites 불러오기 로직
+	@Override
+	public int selectCountFav(SqlSessionTemplate session, int busNo) {
+		// TODO Auto-generated method stub
+		return session.selectOne("business.selectCountFav",busNo);
+	}
+	@Override
+	public List<IntroCard> selectFavorites(SqlSessionTemplate session, int busNo,int cPage, int numPerPage) {
+		// TODO Auto-generated method stub
+		RowBounds r=new RowBounds((cPage-1)*numPerPage, numPerPage);
+		return session.selectList("business.selectFavorites",busNo,r);
 	}
 
 }

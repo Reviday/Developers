@@ -27,7 +27,9 @@ public class IntroCard {
 	private List<Activitie> activities;
 	private List<Lang> languages;
 	private List<Links> links;
+	
 	private String memEmail;
 	private String memPhone;
+	private String favorite;
 
 }

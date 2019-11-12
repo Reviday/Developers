@@ -44,6 +44,8 @@ public interface BusinessDao {
 	List<CareerInCard>selectCareers(SqlSessionTemplate session, int resumeNo);
 	
 	List<EducationInCard>selectEducations(SqlSessionTemplate session, int resumeNo);
+	
+	String selectFavorite(SqlSessionTemplate session, int busNo, int resumeNo);
 
 	//openRoughResume 로직 
 	IntroCard selectOneIntroCard(SqlSessionTemplate session, int resumeNo);
@@ -51,5 +53,9 @@ public interface BusinessDao {
 	//클릭 Favorite 로직
 	int insertFavorite(SqlSessionTemplate session, int resumeNo, int busNo);
 	int removeFavorite(SqlSessionTemplate session, int resumeNo, int busNo);
+	
+	//Favorites 불러오기 로직
+	int selectCountFav(SqlSessionTemplate session, int busNo);
+	List<IntroCard>selectFavorites(SqlSessionTemplate session, int busNo,int cPage, int numPerPage);
 	
 }

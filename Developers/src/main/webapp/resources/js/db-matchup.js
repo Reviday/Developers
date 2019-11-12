@@ -119,21 +119,18 @@ function cPageSearch(cPage) {
 
 
 function ajaxLogic(searchPackage){
+    $('div#cards-area').html("<img id='loading' src='"+path+"/resources/images/Developers_black_loading.gif' width='30px;'/>");
     $.ajax({
         url:path+"/business/selectResume",
         type:"post",
-        async: false,
+        // async: false,
         data:{
             "searchPackage":searchPackage
         },
         success:function(result){
             if(result!=undefined||result!=null){
                 var cards=JSON.parse(result);
-                console.log(cards);
-                var icList=cards.icList;
-                console.log(icList);
-                console.log("길이: "+icList.length);
-                
+                var icList=cards.icList;                
                 var cardsArea=$('div#cards-area');
                 var cardContainer="";
                 if(searchValue!=""){
@@ -142,13 +139,10 @@ function ajaxLogic(searchPackage){
                     console.log(sValues.length);
                     for(let i=0;i<sValues.length;i++){
                         if(sValues[i]==""||sValues[i]==null||sValues[i]==undefined){
-                            console.log(sValues[i]);
                             sValues.splice(sValues.indexOf(sValues[i]),1);
                         }
                     }
-                    console.log(sValues);
                 }
-                
                 cardsArea.html();
                 console.log("firstValue= "+firstValue);
                 console.log("searchValue= "+searchValue);
@@ -163,7 +157,14 @@ function ajaxLogic(searchPackage){
                         let userName=icList[i].memName.split("");
                         let sirName=userName.splice(0,1);
                         cardContainer+='<div id="memName" style="float:left; color:#A4A4A4; margin-left:10px; padding:7px;"><p id="sirName">'+sirName+'</p></div>';
-                        cardContainer+='<div id="favBtn" style="float:right; width:18%;"><button class="btn btn-primary favBtns" id="buttonFav" style="font-size:large; margin-top:-2px;"><i class="fas fa-heart"></i>&nbsp&nbsp<p style="font-size:12px; display:inline-block";>찜하기</p></button></div></h5>';
+                        cardContainer+='<div id="favBtn" style="float:right; width:18%;">';
+                        if(icList[i].favorite!="F"){
+                            cardContainer+='<button class="btn btn-primary favBtns" id="buttonFav" style="font-size:large; margin-top:-2px; border-Color:#F2F2F2; background-Color:#F2F2F2; color:#2E2E2E;">';
+                            cardContainer+='<i class="fas fa-heart" style="color:#FF0040;"></i>&nbsp&nbsp<p style="font-size:12px; display:inline-block";>찜함</p></button></div></h5>';
+                        }else{
+                            cardContainer+='<button class="btn btn-primary favBtns" id="buttonFav" style="font-size:large; margin-top:-2px; border-Color:#D8D8D8; background-Color:#D8D8D8; color:#FFFFFF;">';
+                            cardContainer+='<i class="fas fa-heart" style="color:#FFFFFF;"></i>&nbsp&nbsp<p style="font-size:12px; display:inline-block";>찜하기</p></button></div></h5>';
+                        }
                         cardContainer+='<div class="card-body">';
                         cardContainer+='<h5 class="card-title">';
                         cardContainer+='<div class="duty-list"><p class="duty">';
@@ -263,9 +264,9 @@ function ajaxLogic(searchPackage){
                     }
                     cardContainer+='</div>';
                     cardContainer+='<div class="pageBar">'+cards.pageBar+'</div>';
-                    cardContainer+='<script> document.querySelectorAll("button.favBtns").forEach(function(e){';
+                    cardContainer+='<script>document.querySelectorAll("button.favBtns").forEach(function(e){';
                     cardContainer+='e.addEventListener("click",function(e){';
-                    cardContainer+='clickFav(e)});});</script>';
+                    cardContainer+='clickFav($(this))});});</script>';
                     $(cardsArea).html(cardContainer);
                 }
 
@@ -375,15 +376,159 @@ favBtns.forEach(function(e){
     });
 });
 
-function favoriteList(){
+// 찜하기 불러오기
+function favoriteList(cPage){
+    $('div#cards-area').html("<img src='"+path+"/resources/images/Developers_black_loading.gif' width='30px;'/>");
     $.ajax({
         url:path+"/business/favoriteList",
         type:"post",
         async: false,
         data:{
+            "cPage":cPage
         },
-        success:function(result){
+        success:function(result) {
+        if(result!=undefined||result!=null){
+            document.querySelector('#searchBox').setAttribute("disabled","disabled");
+            document.querySelector('#searchBtn').setAttribute("disabled","disabled");
+            let rest=document.querySelectorAll('button.btn-outline-info');
+            for(let i=0;i<rest.length;i++){
+                rest[i].setAttribute("disabled","disabled");
+            }
+            var cards=JSON.parse(result);
+            var cardsArea=$('div#cards-area');
+            var cardContainer="";
+            if(cards!="F"){
+                var icList=cards.icList;                
+                cardsArea.html();
+                if(icList.length>0){
+                    cardContainer+='<div class="cardsList" style="display:inline-block; width:100%;">';
+                    for(var i in icList){
+                        cardContainer+='<div class="resume-card" style="margin:auto auto; width:90%; padding-top:18px; padding-bottom:15px;">';
+                        cardContainer+='<div class="card"><h5 class="card-header">';
+                        cardContainer+='<div id="resumeNo" style="float:left;"><small>'+icList[i].resumeNo+'</small></div>';
+                        cardContainer+='<div style="float:left; margin-left:10px;"><img class="bus-user-profile" src="'+path+'/resources/upload/profile/no-profile-image.png"/></div>';
+                        let userName=icList[i].memName.split("");
+                        let sirName=userName.splice(0,1);
+                        cardContainer+='<div id="memName" style="float:left; color:#A4A4A4; margin-left:10px; padding:7px;"><p id="sirName">'+sirName+'</p></div>';
+                        cardContainer+='<div id="favBtn" style="float:right; width:18%;">';
+                        if(icList[i].favorite!="F"){
+                            cardContainer+='<button class="btn btn-primary favBtns" id="buttonFav" style="font-size:large; margin-top:-2px; border-Color:#F2F2F2; background-Color:#F2F2F2; color:#2E2E2E;">';
+                            cardContainer+='<i class="fas fa-heart" style="color:#FF0040;"></i>&nbsp&nbsp<p style="font-size:12px; display:inline-block";>찜함</p></button></div></h5>';
+                        }else{
+                            cardContainer+='<button class="btn btn-primary favBtns" id="buttonFav" style="font-size:large; margin-top:-2px; border-Color:#D8D8D8; background-Color:#D8D8D8; color:#FFFFFF;">';
+                            cardContainer+='<i class="fas fa-heart" style="color:#FFFFFF;"></i>&nbsp&nbsp<p style="font-size:12px; display:inline-block";>찜하기</p></button></div></h5>';
+                        }
+                        cardContainer+='<div class="card-body">';
+                        cardContainer+='<h5 class="card-title">';
+                        cardContainer+='<div class="duty-list"><p class="duty">';
+                        
+                        // 직무 
+                        if(icList[i].duty.length>0){
+                            for(var re in icList[i].duty){
+                                if(firstValue!=""){
+                                    icList[i].duty.splice(icList[i].duty.indexOf(firstValue),1);
+                                    icList[i].duty.unshift(firstValue);
+                                }
+                                if(icList[i].duty[re]==firstValue){
+                                    cardContainer+='<mark><b>'+icList[i].duty[re]+'</b></mark>';
+                                }else{
+                                    if(firstValue!=""){
+                                        cardContainer+='&nbsp&nbsp<span class="aline">'+" | "+'</span>&nbsp&nbsp'+icList[i].duty[re];
+                                    }else{
+                                        if(icList[i].duty[icList[i].duty.length-1]==icList[i].duty[re]){
+                                            cardContainer+=icList[i].duty[re];
+                                        }else{
+                                            cardContainer+=icList[i].duty[re]+'&nbsp&nbsp<span class="aline">'+" | "+'</span>&nbsp&nbsp';
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        cardContainer+='</p></div></h5>'
+                        // 경력 / 커리어
+                        let experi="";
+                        experi=icList[i].experience>0?icList[i].experience+"년 경력":"신입";
+                        cardContainer+='<div class="exp-career" style="display:inline-block"><p class="career-list">'+experi+'<span class="aline">'+" | "+'&nbsp</span></p></div>';
+                        let careers=icList[i].careers;
+                        for(var ca=0;ca<careers.length;ca++){
+                            cardContainer+='<div class="career-busName exp-career" style="display:inline-block"><p>';
+                            if(searchValue!=""){
+                                for(var s=0;s<sValues.length;s++){
+                                    if(careers[ca].busName.match(sValues[s])){  
+                                        cardContainer+='<mark><b>'
+                                    }
+                                }
+                            }
+                            cardContainer+=careers[ca].busName;
+                            if(searchValue!=""){
+                                cardContainer+='</b></mark>';
+                            }
+                            cardContainer+='</p></div>';
+                            
+                            cardContainer+='<div class="exp-career" style="display:inline-block"><small>('+getMonths(careers[ca].startCareer,careers[ca].endCareer)+'개월)</small></div>';
+                        }
+                        cardContainer+='<hr>';
+                        let intro=icList[i].intro!=null?icList[i].intro:"";
+                        cardContainer+='<p class="card-text intro">'+intro+'</p>';
+                        
+                        //스킬 
+                        cardContainer+='<div class="skill-list">';
+                        if (icList[i].skill.length>0){
+                            for(var sk in icList[i].skill){
+                                cardContainer+='<div class="showBox">';
+                                if(searchValue!=""){
+                                    for(var v=0;v<sValues.length;v++){
+                                        if(icList[i].skill[sk].match(sValues[v])){
+                                            cardContainer+='<mark><b>';
+                                        }
+                                    }
+                                }
+                                cardContainer+=icList[i].skill[sk];
+                                if(searchValue!=""){
+                                    cardContainer+='</b></mark>';
+                                }
+                                cardContainer+='</div>';
+                            }
+                        }
+                        cardContainer+='</div><hr>';
+                        
+                        // 학교 + 미리보기 버튼
+                        cardContainer+='<div class="bottom row"><p class="education-list col-12 col-sm-8">';
+                        let education=icList[i].educations;
+                        for(var ed=0;ed<education.length;ed++){
+                            if(searchValue!=""){
+                                for(var u=0;u<sValues.length;u++){
+                                    if(education[ed].schoolName.match(sValues[u])){
+                                        cardContainer+='<mark><b>';
+                                    }
+                                }
+                            }
+                            cardContainer+=education[ed].schoolName;
+                            if(searchValue!=""){
+                                cardContainer+='</b></mark>';
+                            }
+                            cardContainer+='<span class="aline">'+" | "+'</span>';    
+                            cardContainer+='<small>'+education[ed].majorName+'</small>';
+                        }
+                        cardContainer+='</p>'
+                        // 이력서 미리보기 버튼 
+                        cardContainer+='<a href="#" class="btn btn-primary favBtn openResume col-6 col-sm-4" data-toggle="modal" data-target="#openRoughResume" onclick="openResume('+icList[i].resumeNo+');">이력서 미리보기</a></div>';
+                        cardContainer+='</div></div></div>';
+                    }
+                    cardContainer+='</div>';
+                    cardContainer+='<div class="pageBar">'+cards.pageBar+'</div>';
+                    cardContainer+='<script>document.querySelectorAll("button.favBtns").forEach(function(e){';
+                    cardContainer+='e.addEventListener("click",function(e){';
+                    cardContainer+='clickFav($(this))});});</script>';
+                    $(cardsArea).html(cardContainer);
+                }
+            }
+            else{
+                cardContainer+='<div class="container"><h4 id="noResult">검색 결과가 없습니다.</h4></div>';
+                $(cardsArea).html(cardContainer);
+            }
         }
+    }
     });
 }
 
@@ -411,58 +556,50 @@ function offeredList(){
     });
 }
 
-
+// 찜하기 로직
 function clickFav(e){
-    let resumeNo=e.target.parentNode.parentNode.firstChild.innerText;
-    let flag="";
-    let bcolor=e.target.style.backgroundColor;
-    console.log(e);
-    if(resumeNo!=""&&bcolor==""){
-        flag='insert';
-        e.target.style.backgroundColor='#F2F2F2';
-        e.target.style.borderColor='#F2F2F2';
-        e.target.firstChild.firstChild.style.color='#FF0040';
-        e.target.style.color='#2E2E2E';
-    }else if(resumeNo!=""&&bcolor!=""){
-        flag='remove';
-        e.target.style.backgroundColor='';
-        e.target.firstChild.color='';
-        e.target.firstChild.firstChild.style.color='';
-        e.target.style.color='';
+    let resumeNo;
+    if(parseInt(e[0].parentNode.parentNode.firstChild.innerText)>0){
+        resumeNo=e[0].parentNode.parentNode.firstChild.innerText;
+    }else{
+        resumeNo=-1;
     }
-
-    console.log(flag);
-
-    // if(e.target.style.backgroundColor!="yellow"){
-    //     $.ajax({
-    //         url:path+"/business/clickFav",
-    //         type:"post",
-    //         async: false,
-    //         data:{
-    //         },
-    //         success:function(result){
-    //             console.log(result);
-    //             if(result>0){
-    //                 e.target.style.backgroundColor="yellow";
-    //             }
-    //         }
-    //     });
-    // }else{
-    //     $.ajax({
-    //         url:path+"/business/removeFav",
-    //         type:"post",
-    //         async: false,
-    //         data:{
-    //         },
-    //         success:function(result){
-    //             console.log(result);
-    //             if(result>0){
-    //                 e.target.style.backgroundColor="";
-    //             }
-    //         }
-    //     });
-    // }
+    let flag="";
+    let innerText=e[0].children[1].innerText
+    if(innerText=='찜하기'&&resumeNo>-1){
+        flag=1;
+    }else if(innerText=='찜함'&&resumeNo>-1){
+        flag=-1;
+    }
+        $.ajax({
+        url:path+"/business/clickFav",
+        type:"post",
+        async: false,
+        data:{
+            "resumeNo":resumeNo,
+            "flag":flag
+        },
+        success:function(result){
+            if(result>0){
+                e[0].style.backgroundColor='#F2F2F2';
+                e[0].style.borderColor='#F2F2F2';
+                e[0].firstChild.firstChild.style.color='#FF0040';
+                e[0].children[1].innerText='찜함';
+                e[0].style.color='#2E2E2E';
+            }else{
+                e[0].style.backgroundColor='#D8D8D8';
+                e[0].firstChild.color='#D8D8D8';
+                e[0].firstChild.firstChild.style.color='#FFFFFF';
+                e[0].children[1].innerText='찜하기';
+                e[0].style.color='#FFFFFF';
+            }
+        }
+    });
 }
+
+
+
+
 
 
 

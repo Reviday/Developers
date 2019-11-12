@@ -58,7 +58,7 @@ public class PaginationTemplateFunction {
 //		}
 		
 		this.cPage=cPage;
-		this.numPerPage=10;
+		this.numPerPage=5;
 
 		// 페이징 처리
 		totalPage=(int) Math.ceil((double) totalData / this.numPerPage);

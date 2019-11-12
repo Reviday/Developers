@@ -39,6 +39,8 @@ public interface BusinessService {
 	
 	List<EducationInCard> selectEducations(int resumeNo);
 	
+	String selectFavorite (int busNo, int resumeNo);
+	
 	
 	//openRoughResume 로직 
 	
@@ -47,4 +49,8 @@ public interface BusinessService {
 	//Favorite클릭 로직 
 	int insertFavorite(int resumeNo, int busNo);
 	int removeFavorite(int resumeNo, int busNo);
+	
+	//Favorites 불러오기 로직
+	int selectCountFav(int busNo);
+	List<IntroCard>selectFavorites(int busNo,int cPage, int numPerPage);
 }

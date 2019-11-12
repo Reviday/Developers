@@ -171,6 +171,12 @@ public class BusinessServiceImpl implements BusinessService {
 		return dao.selectEducations(session, resumeNo);
 	}
 	
+	@Override
+	public String selectFavorite(int busNo, int resumeNo) {
+		// TODO Auto-generated method stub
+		return dao.selectFavorite(session, busNo, resumeNo);
+	}
+	
 	//openRoughResume 로직 
 	
 	@Override
@@ -192,5 +198,16 @@ public class BusinessServiceImpl implements BusinessService {
 		return dao.removeFavorite(session, resumeNo, busNo);
 	}
 	
+	//Favorites 불러오기 로직
+	@Override
+	public int selectCountFav(int busNo) {
+		// TODO Auto-generated method stub
+		return dao.selectCountFav(session, busNo);
+	}
+	@Override
+	public List<IntroCard> selectFavorites(int busNo,int cPage, int numPerPage) {
+		// TODO Auto-generated method stub
+		return dao.selectFavorites(session,busNo, cPage, numPerPage);
+	}
 
 }

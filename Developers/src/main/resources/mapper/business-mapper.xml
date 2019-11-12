@@ -117,6 +117,9 @@
 	<select id="selectEducations" parameterType="integer" resultMap="educationMap">
 		SELECT SCHOOL_NAME, MAJOR_NAME, SUBJECT_NAME, START_ED, END_ED FROM EDUCATION WHERE RESUME_NO=#{resumeNo}
 	</select>
+	<select id="selectFavorite" parameterType="map" resultType="string">
+		SELECT FAVORITE FROM MATCHUP_FAV WHERE resume_no=#{resumeNo} AND bus_no=#{busNo}
+	</select>
 	
 	<select id="selectOneIntroCard" parameterType="integer" resultMap="introCardMap">
 		SELECT RESUME_NO,MEM_NAME,MEM_EMAIL,MEM_PHONE,INTRO FROM RESUME WHERE RESUME_NO=#{resumeNo}
@@ -128,6 +131,15 @@
 	<delete id="removeFavorite" parameterType="map">
 		DELETE FROM MATCHUP_FAV WHERE RESUME_NO=#{resumeNo} AND BUS_NO=#{busNo}
 	</delete>
+	
+	<select id="selectCountFav" parameterType="integer" resultType="Integer">
+			SELECT COUNT(*) FROM RESUME JOIN INTERESTS USING (RESUME_NO) 
+		JOIN MATCHUP_FAV USING (RESUME_NO) WHERE RESUME.MATCHUP='Y' AND MATCHUP_FAV.BUS_NO=#{busNo}
+	</select>
+	<select id="selectFavorites" parameterType="integer" resultMap="introCardMap">
+		SELECT RESUME_NO, MEM_NAME, INTRO, DUTY, EXPERIENCE, SKILL, FAVORITE FROM RESUME JOIN INTERESTS USING (RESUME_NO) 
+		JOIN MATCHUP_FAV USING (RESUME_NO) WHERE RESUME.MATCHUP='Y' AND MATCHUP_FAV.BUS_NO=#{busNo}
+	</select>
 	
 	
 	
