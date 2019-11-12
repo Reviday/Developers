@@ -16,7 +16,7 @@ $(function(){
     //회사정보-메인사진 클릭
     $("[name=bus_img]").on("change",function(){
         var frm=new FormData($(this).parent()[0]);
-        if($(this).parents('add_img')!=null){
+        if($(this).parents('.add_img').length!=0){
             $.ajax({
                 url:path+"/business/busImgAdd",
                 data:frm,
@@ -28,21 +28,24 @@ $(function(){
                 }
             });
         }else{
+            frm.append("imgIndex",$(this).parents('.modi_img').index()-1);
+            var img=$(this).parent().siblings('.bi_img_busimg');
             $.ajax({
-                url:"${path}/business/busImgModify",
+                url:path+"/business/busImgModify",
                 data:frm,
                 type:"post",
                 processData:false,
                 contentType:false,
                 success:function(data){
-                    $(".bi_img_buslogo").attr("src",data.logo);
-    
+                    $(img).attr("src",data.busImg);
+                    
                 }
             });
         }
     });
 
-    
+    $('.modi_img').attr('title','이미지 변경');
+    $('.add_img').attr('title', '이미지 추가');
 });
 
 function fn_del_img(event){

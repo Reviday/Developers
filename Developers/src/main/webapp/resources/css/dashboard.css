@@ -452,11 +452,22 @@ input[name="search_em"]::placeholder{
 }
 
 .bi_img_busimg{
-    width:100%;
-    height:100%;
+    width:275px;
+    height:210px;
 }
 .modi_img:hover .img_del_btn{
     display: block;
+}
+.modi_img:hover svg{
+    display: block;
+}
+.modi_img>label>svg{
+    position: relative;
+    display: none;
+    font-size:4rem;
+    left:50%;
+    top:-50%;
+    transform: translateX(-50%);
 }
 .img_del_btn{
     background-color: rgba(0,0,0, 0.68);
