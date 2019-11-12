@@ -72,11 +72,32 @@ public class ResumeController {
 		return "resume/resumeIntro";
 	}
 	@RequestMapping("/resume/insertResumepage.lmc")
-	public String insertResume(Member m,Model model) {	
+	public ModelAndView insertResume(Member m,Model model) {	
+		ModelAndView mv= new ModelAndView();
 		Member m2=mservice.selectMemberOne(m);
+		Resume r=new Resume();
+		r.setResumeNo(m2.getMemNo());
+		if(m2.getMemPhone()==null) {
+			m2.setMemPhone("null");
+		}
+		r.setMemEmail(m2.getMemEmail());
 		int result=service.insertResume(m2);
-		model.addAttribute("resumeMem", m2);
-		return "resume/insertResume";
+		r.setResumeNo(m2.getMemNo());
+		Resume resume=service.selectResumeOne(r);
+		List<Career> career=service.selectCareer(resume);
+		List<Education> ed=service.selectEd(resume);
+		List<Activitie> ac=service.selectAc(resume);
+		List<Lang> Lang=service.selectLang(resume);
+		List<Links> links=service.selectLinks(resume);
+		mv.addObject("ed",ed);
+		mv.addObject("ac",ac);
+		mv.addObject("Lang",Lang);
+		mv.addObject("links",links);
+		mv.addObject("resume", resume);
+		mv.addObject("career", career);
+		mv.addObject("resumeMem", m2);
+		mv.setViewName("resume/insertResume");
+		return mv;
 	}
 	
 	@RequestMapping("/resume/insertCareer.lmc")
@@ -336,6 +357,19 @@ public class ResumeController {
 		mv.setViewName("resume/resumeView");
 		return mv;
 	}
+	@RequestMapping("/resume/deleteResume.lmc")
+	public ModelAndView deleteResume(Resume r) {
+		ModelAndView mv=new ModelAndView();
+		int result=service.deleteResume(r);
+		Member m=new Member();
+		m.setMemEmail(r.getMemEmail());
+		Member m2=mservice.selectMemberOne(m);
+		List<Resume> list=service.selectResume(m2);
+		mv.addObject("list", list);
+		mv.setViewName("resume/ajax/resumeListView");
+		return mv;
+	}
+	
 
 	
 }

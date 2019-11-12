@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="resume">
+<delete id="deleteResume" parameterType="resume">
+DELETE FROM RESUME WHERE resume_no=${resumeNo}
+</delete>
 <select id="selectLike" parameterType="member" resultType="position">
 select b.bus_name,b.BUS_COUNTRY,p.position,b.bus_area,b.bus_images,(SELECT COUNT(*) FROM PO_LIKE WHERE LIKE_ID = P.LIKE_ID) AS LIKE_COUNT from ENROLL_POSITION p join po_like l on (p.like_id=l.like_id) join ta_member m on(l.mem_no=m.mem_no) join BUSINESS_INFO b on(p.bus_no=b.bus_no) where m.MEM_NO=#{memNo}
 </select>
@@ -41,7 +44,10 @@ DELETE FROM LINKS WHERE links_no=#{deleteNo}
 DELETE FROM CAREER WHERE CAREER_NO=#{deleteNo}
 </delete>
 <insert id="insertResume" parameterType="member">
-INSERT INTO RESUME VALUES (SEQ_RESUME.NEXTVAL,#{memEmail},#{memName},default,default,default,null,null)
+INSERT INTO RESUME VALUES (SEQ_RESUME.NEXTVAL,#{memEmail},#{memName},#{memPhone},default,default,null,null)
+<selectKey keyProperty="memNo" resultType="_int" order="AFTER">
+SELECT SEQ_RESUME.CURRVAL FROM DUAL
+</selectKey>
 </insert>
 <insert id="insertMathupResume" parameterType="member">
 INSERT INTO RESUME VALUES (SEQ_RESUME.NEXTVAL,#{memEmail},#{memName},default,default,default,'Y',null)
@@ -50,7 +56,7 @@ SELECT SEQ_RESUME.CURRVAL FROM DUAL
 </selectKey>
 </insert>
 <insert id="insertMathupCareer" parameterType="resume">
-	INSERT INTO CAREER VALUES(SEQ_CAREER.NEXTVAL,#{memEmail},#{startCareer},#{endCareer},#{busName},default,default,#{resumeNo})
+	INSERT INTO CAREER VALUES(SEQ_CAREER.NEXTVAL,#{memEmail},#{startCareer},#{endCareer},#{busName},default,default,#{resumeNo},default)
 </insert>
 <insert id="insertMathupEd" parameterType="resume">
 	INSERT INTO EDUCATION VALUES(seq_education.NEXTVAL,#{memEmail},default,default,#{schoolName},default,default,default,#{resumeNo})	

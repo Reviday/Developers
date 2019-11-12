@@ -37,8 +37,11 @@
                                        ></i></div>
 
                                 <div class="other-btns"><button class="border-primary hidden-xs btn btn-default"
-                                        type="button">임시 저장</button><button class="hidden-xs btn btn-primary"
-                                        type="button">작성 완료</button><button class="border-gray btn btn-default"
+                                        type="button">임시 저장</button>
+                                        
+                                    <c:set value="${resume.resumeNo }" var="resumeNo"/>  
+                                        <button class="hidden-xs btn btn-primary"
+                                   onclick="finshResume();"   type="button">작성 완료</button><button class="border-gray btn btn-default"
                                         type="button"><i class="fas fa-download"></i></button>
                                 </div>
                             </div>
@@ -69,13 +72,14 @@
      <div class="resume-input-form-group"><input class="resume-input email" type="text"
              maxlength="120" placeholder="이메일(필수)" value="${resume.memEmail }" id="allmemEmail"></div>
      <div class="resume-input-form-group">
-         <c:if test="${resume.memPhone==null }">
+         <c:if test="${resume.memPhone==null||resume.memPhone=='null' }">
              <input class="resume-input mobile" type="text" maxlength="200"
                  placeholder="연락처(필수) ex) 010-0000-0000">
          </c:if>
-         <c:if test="${resume.memPhone!=null }">
+  
+         <c:if test="${resume.memPhone!=null&&resume.memPhone!='null' }">
              <input class="resume-input mobile" type="text" maxlength="200"
-                 value="${resume.memPhone }" placeholder="연락처(필수) ex) 010-0000-0000">
+                 value="${resume.memPhone }">
          </c:if>
      </div>
      <div class="resume-input-form-group">
@@ -302,15 +306,14 @@
                   </c:if>
                   <c:if test="${e.subjectName!=null }">
                  <textarea style="height:34px;" class="resume-input description"
-                         maxlength="1000" placeholder="이수과목 또는 연구내용">
-                         ${e.subjectName }
-                         </textarea>
+                         maxlength="1000" placeholder="이수과목 또는 연구내용">${e.subjectName }</textarea>
                   </c:if>
                          <textarea class="textarea-clone"
                          readonly=""
-                         style="top: 0px; left: 0px; width: 750px; padding: 0px; font-size: 14px; line-height: 22.4px; font-weight: 400; position: absolute; visibility: hidden; z-index: -9999; height: 0px;">
-                         이수과목 또는 연구내용
-                         </textarea>
+                         style="top: 0px; left: 0px; 
+                         width: 750px; padding: 0px; font-size: 14px; line-height: 22.4px;
+                          font-weight: 400; position: absolute; visibility: hidden;
+                           z-index: -9999; height: 0px;">이수과목 또는 연구내용</textarea>
                  </div>
              </div>
          </div>

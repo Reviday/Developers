@@ -1,27 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/resumeList.css">
-    <meta name="msapplication-TileImage" content="//static.wanted.co.kr/favicon/144x144.png" class="next-head">
-<!-- 합쳐지고 최소화된 최신 CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-<jsp:include page="/WEB-INF/views/common/header.jsp">
-	<jsp:param name="pageTitle" value="메인 화면"/> 
-</jsp:include>
-
-<section id="content" style="height: 1000px;">
-<div style="height: 70px;" ></div>
-  <div class="section">
-    <div id="app">
-        <main class="App-iEDHGk UeTOO">
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+ <main class="App-iEDHGk UeTOO">
             <div>
                 <div>
                     <div id="resume-app" class="react-container">
@@ -99,7 +88,6 @@
                                                        <c:if test="${r.matchup=='Y' }">
                                                        <p class="matchup">매치업 이력서</p>
                                                        </c:if>
-                                                       
                                                 </div>
 
                                                 <div class="resume-info">
@@ -131,31 +119,6 @@
                     <div class="Overlay-iWuiZb gMLFic"></div>
                 </div>
         </main>
-    </div>
 
-</div>
-</section>
-<script>
-	function deleteResume(resumeNo,memEmail) {
-		 console.log("asdadsad");
-		  $.ajax({
-			 
-	            url: "${path}/resume/deleteResume.lmc",
-	            type: "POST",
-	            data:{"resumeNo":resumeNo,
-	            	"memEmail":memEmail},
-	            success:function(data){
-	            	$("#app").html("");
-	            	$("#app").html(data);
-	            	},
-	            error:function(data){
-	            	alret("실패");
-	            }
-	            	
-	            });
-	}
-
-
-</script>
-<jsp:include page="/WEB-INF/views/common/footer.jsp"/> 
-
+</body>
+</html>

@@ -21,7 +21,7 @@
                             class="icon-arrow_bottom_fill"></i></button><a href="#" class="">제안받기 현황</a>
                 </li>
                 <li class="_1ft7OZSrbzL35bkI-omU2b"><a href="#" onclick="likePage('${memEmail }');" class="">좋아요</a></li>
-                <li class="_1ft7OZSrbzL35bkI-omU2b"><a href="#" class="">북마크</a></li>
+                <li class="_1ft7OZSrbzL35bkI-omU2b"><a href="#" onclick="myBookMark('${memEmail }')" class="">북마크</a></li>
               
             </ul>
         </nav>
@@ -277,7 +277,17 @@
 		   }
 	   })	
 }
-   
+   function myBookMark(memEmail) {
+	   $.ajax({
+		   url:"${path }/member/myBookMark.lmc",
+		   type:"POST",
+		   data:{"memEmail":memEmail},
+		   success:function(data){
+			   $("#mainContent").html("");
+			   $("#mainContent").html(data);
+		   }
+	   })	
+}   
  //로고 클릭 이벤트
 	$("#logoFile").on("change",function(){
 		var frm=new FormData($("#logoFrm")[0]);
