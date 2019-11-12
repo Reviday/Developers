@@ -2,134 +2,190 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="business2">
 	<update id="successAuth" parameterType="member">
-		UPDATE TA_MEMBER SET MEM_LEVEL=1, MEM_EMAIL_CERT='Y' WHERE MEM_NO=#{memNo}
+		UPDATE TA_MEMBER SET
+		MEM_LEVEL=1, MEM_EMAIL_CERT='Y' WHERE MEM_NO=#{memNo}
 	</update>
 	<update id="checkAuth" parameterType="member">
-		UPDATE MEMBER_AUTH_EMAIL SET MAE_USE_DATETIME=SYSDATE, MAE_EXPIRED='Y' WHERE MEM_NO=#{memNo}
+		UPDATE MEMBER_AUTH_EMAIL
+		SET MAE_USE_DATETIME=SYSDATE, MAE_EXPIRED='Y' WHERE MEM_NO=#{memNo}
 	</update>
 	<insert id="insertMember" parameterType="member">
-		INSERT INTO TA_MEMBER VALUES(MEM_SEQ.NEXTVAL, #{memEmail} , #{memPassword}, #{memName}, #{memPhone}, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT) 
-		<selectKey keyProperty="memNo" resultType="_int" order="AFTER">
+		INSERT INTO TA_MEMBER VALUES(MEM_SEQ.NEXTVAL, #{memEmail} ,
+		#{memPassword}, #{memName}, #{memPhone}, DEFAULT, DEFAULT, DEFAULT,
+		DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT,
+		DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT)
+		<selectKey keyProperty="memNo" resultType="_int"
+			order="AFTER">
 			SELECT MEM_SEQ.CURRVAL FROM DUAL
 		</selectKey>
 	</insert>
 	<insert id="createAuthKey" parameterType="map">
-		INSERT INTO MEMBER_AUTH_EMAIL VALUES(MAE_SEQ.NEXTVAL, #{memNo}, #{key}, 'E', DEFAULT, DEFAULT, DEFAULT)
+		INSERT INTO
+		MEMBER_AUTH_EMAIL VALUES(MAE_SEQ.NEXTVAL, #{memNo}, #{key}, 'E',
+		DEFAULT, DEFAULT, DEFAULT)
 	</insert>
-	
-	
-	
+
+
+
 	<insert id="insertBusiness" parameterType="bus">
-		INSERT INTO BUSINESS_INFO VALUES (SEQ_BUS_NO.NEXTVAL,#{busName},#{busCountry},#{busArea},#{busAddress},#{busRegNo},#{busIncome},#{busIndustrial},#{busTotalEmp},#{busIntroduce},#{busEstablishment},#{busEmail},#{busPhone},#{busWebsite},#{searchKeywords, typeHandler=strArray},#{regPath},DEFAULT,NULL,NULL,DEFAULT)
+		INSERT INTO
+		BUSINESS_INFO VALUES
+		(SEQ_BUS_NO.NEXTVAL,#{busName},#{busCountry},#{busArea},#{busAddress},#{busRegNo},#{busIncome},#{busIndustrial},#{busTotalEmp},#{busIntroduce},#{busEstablishment},#{busEmail},#{busPhone},#{busWebsite},#{searchKeywords,
+		typeHandler=strArray},#{regPath},DEFAULT,NULL,NULL,DEFAULT)
 	</insert>
-	<select id="selectBusInfo" parameterType="integer" resultMap="busMap">
-		SELECT * FROM BUSINESS_INFO WHERE BUS_NO=(SELECT BUS_NO FROM MEM_BUS_CONNECTION WHERE MEM_NO=#{memberNo})
+	<select id="selectBusInfo" parameterType="integer"
+		resultMap="busMap">
+		SELECT * FROM BUSINESS_INFO WHERE BUS_NO=(SELECT BUS_NO FROM
+		MEM_BUS_CONNECTION WHERE MEM_NO=#{memberNo})
 	</select>
 	<update id="busLogoChange" parameterType="bus">
-		UPDATE BUSINESS_INFO SET BUS_LOGO=#{busLogo} WHERE BUS_NO=#{busNo}
+		UPDATE BUSINESS_INFO
+		SET BUS_LOGO=#{busLogo} WHERE BUS_NO=#{busNo}
 	</update>
-	
+
 	<update id="updateBusInfo" parameterType="bus">
-		UPDATE BUSINESS_INFO 
-		SET BUS_INTRODUCE=#{busIntroduce}, 
-			BUS_ADDRESS=#{busAddress}, 
-			BUS_INCOME=#{busIncome}, 
-			BUS_INDUSTRIAL=#{busIndustrial}, 
-			BUS_TOTAL_EMP=#{busTotalEmp}, 
-			BUS_EMAIL=#{busEmail}, 
-			BUS_ESTABLISHMENT=#{busEstablishment}, 
-			BUS_PHONE=#{busPhone}, 
-	<if test="searchKeywords!=null and searchKeywords!=''">
-		BUS_SEARCH_KEYWORDS=#{searchKeywords, typeHandler=strArray},
-	</if>
-	<if test="busImages!=null and busImages!=''">
-		 BUS_IMAGES=#{busImages, typeHandler=strArray}, 
-	</if>
-	<if test="busLogo!=null and busLogo!=''">
-		 BUS_LOGO=#{busLogo}, 
-	</if> 		 
-		 BUS_WEBSITE=#{busWebsite}
-		 WHERE BUS_NO=#{busNo}
+		UPDATE BUSINESS_INFO
+		SET BUS_INTRODUCE=#{busIntroduce},
+		BUS_ADDRESS=#{busAddress},
+		BUS_INCOME=#{busIncome},
+		BUS_INDUSTRIAL=#{busIndustrial},
+		BUS_TOTAL_EMP=#{busTotalEmp},
+		BUS_EMAIL=#{busEmail},
+		BUS_ESTABLISHMENT=#{busEstablishment},
+		BUS_PHONE=#{busPhone},
+		<if test="searchKeywords!=null and searchKeywords!=''">
+			BUS_SEARCH_KEYWORDS=#{searchKeywords, typeHandler=strArray},
+		</if>
+		<if test="busImages!=null and busImages!=''">
+			BUS_IMAGES=#{busImages, typeHandler=strArray},
+		</if>
+		<if test="busLogo!=null and busLogo!=''">
+			BUS_LOGO=#{busLogo},
+		</if>
+		BUS_WEBSITE=#{busWebsite}
+		WHERE BUS_NO=#{busNo}
 	</update>
-	
-	
+
+
 	<!-- 지원자탭 -->
 	<update id="busImgAdd" parameterType="map">
-		UPDATE BUSINESS_INFO SET 
-	<if test="count>1">
-		BUS_IMAGES=BUS_IMAGES||','||#{busImg}
-	</if>
-	<if test="count==1">
-		BUS_IMAGES=#{busImg}
-	</if>
-	 	WHERE BUS_NO=#{busNo}
+		UPDATE BUSINESS_INFO SET
+		<if test="count>1">
+			BUS_IMAGES=BUS_IMAGES||','||#{busImg}
+		</if>
+		<if test="count==1">
+			BUS_IMAGES=#{busImg}
+		</if>
+		WHERE BUS_NO=#{busNo}
 	</update>
-	
-	<select id="selectBusOne" parameterType="string" resultMap="busMap">
+
+	<select id="selectBusOne" parameterType="string"
+		resultMap="busMap">
 		SELECT * FROM BUSINESS_INFO WHERE BUS_NO=#{busNo}
 	</select>
-	
-	
-	<select id="selectBusAppl" parameterType="map" resultMap="applMap">
-		SELECT A.* FROM (SELECT ROWNUM AS AL_NO, T.* FROM TA_APPL_BUS T WHERE BUS_NO=#{busNo}) A
-	<if test="applLike!=null and applLike!='' or applLike==true">
-		JOIN TA_APPL_LIKE B ON (A.BUS_NO=B.BUS_NO)
-	</if>
+
+
+	<select id="selectBusAppl" parameterType="map"
+		resultMap="applMap">
+		SELECT A.* FROM (SELECT ROWNUM AS AL_NO, T.* FROM TA_APPL_BUS T WHERE
+		BUS_NO=#{busNo}) A
+		<if test="applLike!=null and applLike!='' or applLike==true">
+			JOIN TA_APPL_LIKE B ON (A.BUS_NO=B.BUS_NO)
+		</if>
 		WHERE A.APPL_DEL_YN='N'
-	<if test="applLike!=null and applLike!='' or applLike==true">
-		AND A.APPL_NO=B.APPL_NO
-	</if>
-  	<if test="applIndex!=null and applIndex!=''">
-	  	AND APPL_STATUS=#{applIndex}	
-  	</if>
+		<if test="applLike!=null and applLike!='' or applLike==true">
+			AND A.APPL_NO=B.APPL_NO
+		</if>
+		<if test="applIndex!=null and applIndex!=''">
+			AND APPL_STATUS=#{applIndex}
+		</if>
 		ORDER BY 1 DESC
 	</select>
-	
-	<select id="selectBusApplCount" parameterType="map" resultType="_int">
-	SELECT COUNT(*) FROM TA_APPL_BUS A 
-	<if test="applLike!=null and applLike!='' or applLike==true">
-		JOIN TA_APPL_LIKE B ON (A.BUS_NO=B.BUS_NO)
-	</if>
+
+	<select id="selectBusApplCount" parameterType="map"
+		resultType="_int">
+		SELECT COUNT(*) FROM TA_APPL_BUS A
+		<if test="applLike!=null and applLike!='' or applLike==true">
+			JOIN TA_APPL_LIKE B ON (A.BUS_NO=B.BUS_NO)
+		</if>
 		WHERE A.BUS_NO=#{busNo} AND A.APPL_DEL_YN='N'
-	<if test="applLike!=null and applLike!='' or applLike==true">
-		AND A.APPL_NO=B.APPL_NO
-	</if>
-  	<if test="applIndex!=null and applIndex!=''">
-	  	and APPL_STATUS=#{applIndex}	
-  	</if>
+		<if test="applLike!=null and applLike!='' or applLike==true">
+			AND A.APPL_NO=B.APPL_NO
+		</if>
+		<if test="applIndex!=null and applIndex!=''">
+			and APPL_STATUS=#{applIndex}
+		</if>
 	</select>
-	
+
 	<insert id="insertApplicant" parameterType="map">
-		INSERT INTO TA_APPL_BUS VALUES(#{busNo}, #{applNo})
+		INSERT INTO
+		TA_APPL_BUS VALUES(#{busNo}, #{applNo})
 	</insert>
-	
+
 	<update id="deleteApplicant" parameterType="map">
-		UPDATE TA_APPL_BUS SET APPL_DEL_YN='Y' WHERE BUS_NO=#{busNo} AND APPL_NO=#{applNo}
+		UPDATE TA_APPL_BUS
+		SET APPL_DEL_YN='Y' WHERE BUS_NO=#{busNo} AND APPL_NO=#{applNo}
 	</update>
-	
-	<select id="selectCheckLike" parameterType="map" resultType="_int">
-		SELECT COUNT(*) FROM TA_APPL_LIKE WHERE BUS_NO=#{busNo} AND APPL_NO=#{applNo}
+
+	<select id="selectCheckLike" parameterType="map"
+		resultType="_int">
+		SELECT COUNT(*) FROM TA_APPL_LIKE WHERE BUS_NO=#{busNo} AND
+		APPL_NO=#{applNo}
 	</select>
 	<insert id="insertApplLike" parameterType="map">
-		INSERT INTO TA_APPL_LIKE VALUES(#{busNo}, #{applNo})
+		INSERT INTO
+		TA_APPL_LIKE VALUES(#{busNo}, #{applNo})
 	</insert>
-	
+
 	<delete id="deleteApplLike" parameterType="map">
-		DELETE FROM TA_APPL_LIKE WHERE BUS_NO=#{busNo} AND APPL_NO=#{applNo}
+		DELETE FROM
+		TA_APPL_LIKE WHERE BUS_NO=#{busNo} AND APPL_NO=#{applNo}
 	</delete>
+
+	<select id="selectApplicant" parameterType="_int"
+		resultMap="memberMap">
+		SELECT * FROM TA_MEMBER WHERE MEM_NO=#{memNo}
+	</select>
+
+	<select id="selectResumeOne" parameterType="_int"
+		resultMap="introCardMap">
+		SELECT * FROM RESUME WHERE RESUME_NO=(SELECT RESUME_NO FROM TA_APPL_BUS
+		WHERE APPL_NO=#{applNo})
+	</select>
 	
-	<select id="selectApplicant" parameterType="_int" resultMap="memberMap">
-      SELECT * FROM TA_MEMBER WHERE MEM_NO=#{memNo}
-   </select>
-   
- 
+	<select id="selectCareerList" parameterType="_int" resultMap="careerMap">
+		SELECT * FROM CAREER WHERE RESUME_NO=#{resumeNo}
+	</select>
 	
+	<select id="selectEducationList" parameterType="_int" resultMap="educationMap">
+		SELECT * FROM EDUCATION WHERE RESUME_NO=#{resumeNo}
+	</select>
+	
+	<select id="selectLangList" parameterType="_int" resultMap="laMap">
+		SELECT * FROM LANG WHERE RESUME_NO=#{resumeNo}
+	</select>
+	
+	<select id="selectLinkList" parameterType="_int" resultMap="linksMap">
+		SELECT * FROM LINKS WHERE RESUME_NO=#{resumeNo}
+	</select>
+	
+	<select id="selectActivitieList" parameterType="_int" resultMap="actMap">
+		SELECT * FROM ACTIVITIE WHERE RESUME_NO=#{resumeNo}
+	</select>
+
+
+	<select id="selectPositionList" parameterType="map" resultType="position">
+		SELECT * FROM ENROLL_POSITION WHERE BUS_NO=#{busNo}
+		<if test="jobType!=null and jobType!=''">
+			AND JOB_TYPE=#{jobType}
+		</if>
+	</select>
+
 	<!-- 매치업 mapper -->
- <!-- 	<select id="selectIntroCards" parameterType="String" resultType="com.kh.developers.business.model.vo.IntroCard">
-		select 
-	</select>  -->
-	
-	
+	<!-- <select id="selectIntroCards" parameterType="String" resultType="com.kh.developers.business.model.vo.IntroCard"> 
+		select </select> -->
+
+
 	<resultMap type="bus" id="busMap">
 		<result property="busNo" column="BUS_NO"></result>
 		<result property="busName" column="BUS_NAME"></result>
@@ -145,59 +201,113 @@
 		<result property="busEmail" column="BUS_EMAIL"></result>
 		<result property="busPhone" column="BUS_PHONE"></result>
 		<result property="busWebsite" column="BUS_WEBSITE"></result>
-		<result property="searchKeywords" column="BUS_SEARCH_KEYWORDS" typeHandler="strArray"></result>
+		<result property="searchKeywords" column="BUS_SEARCH_KEYWORDS"
+			typeHandler="strArray"></result>
 		<result property="RegPath" column="Reg_PATH"></result>
 		<result property="busEnrollDate" column="BUS_ENROLLDATE"></result>
 		<result property="busLogo" column="BUS_LOGO"></result>
-		<result property="busImages" column="BUS_IMAGES" typeHandler="strArray"></result>
+		<result property="busImages" column="BUS_IMAGES"
+			typeHandler="strArray"></result>
 		<result property="busStatus" column="BUS_STATUS"></result>
 		<result property="newIncome" column="NEW_INCOME"></result>
 		<result property="allIncome" column="ALL_INCOME"></result>
 	</resultMap>
-	
+
 	<resultMap type="applicant" id="applMap">
-		<result property="alNo" column="al_no"/>
-		<result property="applNo" column="appl_no"/>
-		<result property="busNo" column="bus_no"/>
-		<result property="memNo" column="mem_no"/>
-		<result property="positionNo" column="position_no"/>
-		<result property="resumeNo" column="resume_no"/>
-		<result property="applStatus" column="appl_status"/>
-		<result property="applDate" column="appl_date"/>
-		<result property="applAnsYn" column="appl_ans_yn"/>
+		<result property="alNo" column="al_no" />
+		<result property="applNo" column="appl_no" />
+		<result property="busNo" column="bus_no" />
+		<result property="memNo" column="mem_no" />
+		<result property="positionNo" column="position_no" />
+		<result property="resumeNo" column="resume_no" />
+		<result property="applStatus" column="appl_status" />
+		<result property="applDate" column="appl_date" />
+		<result property="applAnsYn" column="appl_ans_yn" />
 	</resultMap>
-	
+
 	<resultMap type="member" id="memberMap">
-      <result property="memNo" column="mem_no"/>
-      <result property="memEmail" column="mem_email"/>
-      <result property="memLevel" column="mem_level"/>
-      <result property="memPassword" column="mem_password"/>
-      <result property="memName" column="mem_name"/>
-      <result property="memPhone" column="mem_phone"/>
-      <result property="memPoint" column="mem_point"/>
-      <result property="memDenied" column="mem_denied"/>
-      <result property="memEmailCert" column="mem_email_cert"/>
-      <result property="memReceiveEmail" column="mem_receive_email"/>
-      <result property="memEnrollDatetime" column="mem_enroll_datetime"/>
-      <result property="memEnrollIp" column="mem_enroll_ip"/>
-      <result property="memLastloginDatetime" column="mem_lastlogin_datetime"/>
-      <result property="memLastloginIp" column="mem_lastlogin_ip"/>
-      <result property="memProgileContent" column="mem_profile_content"/>
-      <result property="memAdminmemo" column="mem_adminmemo"/>
-      <result property="memIcon" column="mem_icon"/>
-      <result property="memPhoto" column="mem_photo"/>
-      <result property="memStatus" column="mem_status"/>
-      <result property="memWithdrawalDate" column="mem_withdrawal_date"/>
-      <result property="memDeniedDate" column="mem_denied_date"/>
-      <result property="filter_id" column="filter_id"/>
-   </resultMap>
-   
-   <!-- <resultMap type="IntroCard" id="introCardMap">
-   	   <result property="resumeNo" column="resume_no"></result>
-   	   <result property="intro" column="intro"></result>
-   	   <result property="resumeNo" column="resume_no"></result>
-   	   <result property="resumeNo" column="resume_no"></result>
-   	   <result property="resumeNo" column="resume_no"></result>
-   </resultMap>  -->
-	
+		<result property="memNo" column="mem_no" />
+		<result property="memEmail" column="mem_email" />
+		<result property="memLevel" column="mem_level" />
+		<result property="memPassword" column="mem_password" />
+		<result property="memName" column="mem_name" />
+		<result property="memPhone" column="mem_phone" />
+		<result property="memPoint" column="mem_point" />
+		<result property="memDenied" column="mem_denied" />
+		<result property="memEmailCert" column="mem_email_cert" />
+		<result property="memReceiveEmail" column="mem_receive_email" />
+		<result property="memEnrollDatetime"
+			column="mem_enroll_datetime" />
+		<result property="memEnrollIp" column="mem_enroll_ip" />
+		<result property="memLastloginDatetime"
+			column="mem_lastlogin_datetime" />
+		<result property="memLastloginIp" column="mem_lastlogin_ip" />
+		<result property="memProgileContent"
+			column="mem_profile_content" />
+		<result property="memAdminmemo" column="mem_adminmemo" />
+		<result property="memIcon" column="mem_icon" />
+		<result property="memPhoto" column="mem_photo" />
+		<result property="memStatus" column="mem_status" />
+		<result property="memWithdrawalDate"
+			column="mem_withdrawal_date" />
+		<result property="memDeniedDate" column="mem_denied_date" />
+		<result property="filter_id" column="filter_id" />
+	</resultMap>
+
+	<resultMap
+		type="com.kh.developers.business.model.vo.IntroCard" id="introCardMap">
+		<result property="resumeNo" column="resume_no"></result>
+		<result property="memName" column="mem_name"></result>
+		<result property="intro" column="intro"></result>
+		<result property="duty" column="duty" typeHandler="strArray"></result>
+		<result property="experience" column="experience"></result>
+		<result property="skill" column="skill" typeHandler="strArray"></result>
+		<result property="memEmail" column="mem_email"></result>
+		<result property="memPhone" column="mem_Phone"></result>
+	</resultMap>
+
+	<resultMap
+		type="com.kh.developers.business.model.vo.CareerInCard" id="careerMap">
+		<result property="busName" column="BUS_NAME"></result>
+		<result property="deptName" column="DEP_NAME"></result>
+		<result property="startCareer" column="START_CAREER"></result>
+		<result property="endCareer" column="END_CAREER"></result>
+		<result property="careerIntro" column="CAREER_INTRO"></result>
+	</resultMap>
+
+	<resultMap
+		type="com.kh.developers.business.model.vo.EducationInCard"
+		id="educationMap">
+		<result property="schoolName" column="SCHOOL_NAME"></result>
+		<result property="majorName" column="MAJOR_NAME"></result>
+		<result property="subjectName" column="SUBJECT_NAME"></result>
+		<result property="startEd" column="START_ED"></result>
+		<result property="endEd" column="END_ED"></result>
+	</resultMap>
+
+	<resultMap type="lang" id="laMap">
+		<result property="langNo" column="lang_no" />
+		<result property="memEmail" column="mem_email" />
+		<result property="langName" column="lang_name" />
+		<result property="langLevel" column="lang_level" />
+		<result property="langDate" column="lang_date" />
+		<result property="resumeNo" column="resume_no" />
+	</resultMap>
+	<resultMap type="links" id="linksMap">
+		<result property="linksNo" column="links_no" />
+		<result property="memEmail" column="mem_email" />
+		<result property="linksAddr" column="links_addr" />
+		<result property="linksDate" column="links_date" />
+		<result property="resumeNo" column="resume_no" />
+	</resultMap>
+	<resultMap type="activitie" id="actMap">
+		<result property="actNo" column="act_no" />
+		<result property="memEmail" column="mem_email" />
+		<result property="startAct" column="start_act" />
+		<result property="actName" column="act_name" />
+		<result property="actDetail" column="act_detail" />
+		<result property="actDate" column="act_date" />
+		<result property="resumeNo" column="resume_no" />
+	</resultMap>
+
 </mapper>

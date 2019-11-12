@@ -7,7 +7,14 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.kh.developers.business.model.vo.Applicant;
 import com.kh.developers.business.model.vo.Business;
+import com.kh.developers.business.model.vo.CareerInCard;
+import com.kh.developers.business.model.vo.EducationInCard;
+import com.kh.developers.business.model.vo.IntroCard;
 import com.kh.developers.member.model.vo.Member;
+import com.kh.developers.resume.model.vo.Activitie;
+import com.kh.developers.resume.model.vo.Lang;
+import com.kh.developers.resume.model.vo.Links;
+import com.kh.developers.search.model.vo.Position;
 
 public interface BusinessDao2 {
 	//bus 수정
@@ -38,6 +45,15 @@ public interface BusinessDao2 {
 	
 	int selectCheckLike(SqlSession session, Map map);
 	
+	IntroCard selectResumeOne(SqlSession session, int applNo);
+	List<CareerInCard> selectCareerList(SqlSession session, int resumeNo);
+	List<EducationInCard> selectEducationList(SqlSession session, int resumeNo);
+	List<Activitie> selectActivitieList(SqlSession session, int resumeNo);
+	List<Lang> selectLangList(SqlSession session, int resumeNo); 
+	List<Links> selectLinkList(SqlSession session, int resumeNo); 
+	
 	Member selectApplicant(SqlSession session, int memNo);
 	
+	
+	List<Position> selectPositionList(SqlSession session, Map map);
 }

@@ -25,8 +25,15 @@ import com.kh.developers.business.model.service.BusinessService;
 import com.kh.developers.business.model.service.BusinessService2;
 import com.kh.developers.business.model.vo.Applicant;
 import com.kh.developers.business.model.vo.Business;
+import com.kh.developers.business.model.vo.CareerInCard;
+import com.kh.developers.business.model.vo.EducationInCard;
+import com.kh.developers.business.model.vo.IntroCard;
 import com.kh.developers.common.page.PageFactory2;
 import com.kh.developers.member.model.vo.Member;
+import com.kh.developers.resume.model.vo.Activitie;
+import com.kh.developers.resume.model.vo.Lang;
+import com.kh.developers.resume.model.vo.Links;
+import com.kh.developers.search.model.vo.Position;
 
 
 @Controller
@@ -426,9 +433,165 @@ public class BusinessController2 {
 		return mv;
 	}
 	
+	@RequestMapping("/business/applView.lbc")
+	public ModelAndView applView(@RequestParam int applNo) {
+		ModelAndView mv=new ModelAndView();
+		IntroCard ic=service.selectResumeOne(applNo);
+		String viewHtml="";
+		viewHtml+="<div class='appl_view_container'>";
+		viewHtml+="<div class='appl_view_header'>";
+		viewHtml+="<button type='button' class='appl_offer_btn' onclick='fn_appl_offer'>제안하기</button>";
+		viewHtml+="</div>";
+		viewHtml+="<div class='appl_view_section'>";
+		viewHtml+="<div class='appl_name'>"+ic.getMemName()+"</div>";
+		viewHtml+="<div class='appl_info'>"+ic.getMemEmail()+"</div>";
+		viewHtml+="<div class='appl_info'>"+ic.getMemPhone()+"</div>";
+		viewHtml+="<div class='appl_intro'>"+ic.getIntro()+"</div>";
+		viewHtml+="<hr style='width:95%; border-top:groove;'>";
+		if(ic.getCareers()!=null) {
+			viewHtml+="<div class='appl_careers'>";			
+			for(CareerInCard cic:ic.getCareers()) {			
+				viewHtml+="<div class='appl_view_title' style='font-weight:bold;'>경력</div>";
+				viewHtml+="<div class='appl_view_name'>"+cic.getBusName()+"</div>";
+				viewHtml+="<div><span class='aline' style='float:left; margin-left:1%; margin-right:1%;'>"+" | "+"</span></div>";
+				viewHtml+="<div class='appl_view_subname' style='color:#6E6E6E';>"+cic.getDeptName()+"</div>";
+				viewHtml+="<div class='appl_view_date'>"+cic.getEndCareer()+"</div>";
+				viewHtml+="<div class='appl_view_date'>"+cic.getStartCareer()+"  ~</div>";
+				viewHtml+="<br>";
+				viewHtml+="<div class='appl_view_intro'>"+cic.getCareerIntro()+"</div>";
+				viewHtml+="<hr style='width:95%;'>";
+			}
+			viewHtml+="</div>";
+		}
+		if(ic.getEducations()!=null) {			
+			viewHtml+="<div class='appl_edus'>";
+			for(EducationInCard eic:ic.getEducations()) {
+				viewHtml+="<div class='appl_view_title' style='font-weight:bold;'>학력</div>";
+				viewHtml+="<div class='appl_view_name'>"+eic.getSchoolName()+"</div>";
+				viewHtml+="<div><span class='aline' style='float:left; margin-left:1%; margin-right:1%;'>"+" | "+"</span></div>";
+				viewHtml+="<div class='appl_view_subname' style='color:#6E6E6E';>"+eic.getMajorName()+"</div>";
+				viewHtml+="<div class='appl_view_date'>"+eic.getEndEd()+"</div>";
+				viewHtml+="<div class='appl_view_date'>"+eic.getStartEd()+"  ~</div>";
+				viewHtml+="<br>";
+				viewHtml+="<div class='appl_view_intro'>"+eic.getSubjectName()+"</div>";
+				viewHtml+="<hr style='width:95%;'>";
+			}
+			viewHtml+="</div>";
+		}
+		if(ic.getActivities()!=null) {
+			viewHtml+="<div class='appl_acts'>";
+			for(Activitie ac:ic.getActivities()) {
+				viewHtml+="<div class='appl_view_title' style='font-weight:bold;'>대외활동</div>";
+				viewHtml+="<div class='appl_view_name'>"+ac.getActName()+"</div>";
+				viewHtml+="<div><span class='aline' style='float:left; margin-left:1%; margin-right:1%;'>"+" | "+"</span></div>";
+				viewHtml+="<div class='appl_view_date'>"+ac.getStartAct()+"</div>";
+				viewHtml+="<br>";
+				viewHtml+="<div class='appl_view_intro'>"+ac.getActDetail()+"</div>";
+				viewHtml+="<hr style='width:95%;'>";
+			}
+			viewHtml+="</div>";
+		}
+		if(ic.getLanguages()!=null) {			
+			viewHtml+="<div class='appl_langs'>";
+			for(Lang ln:ic.getLanguages()) {
+				viewHtml+="<div class='appl_view_title' style='font-weight:bold;'>언어</div>";
+				viewHtml+="<div class='appl_view_name'>"+ln.getLangName()+"</div>";
+				viewHtml+="<div><span class='aline' style='float:left; margin-left:1%; margin-right:1%;'>"+" | "+"</span></div>";
+				viewHtml+="<div class='appl_view_subname' style='color:#6E6E6E';>"+ln.getLangLevel()+"</div>";
+				viewHtml+="<div class='appl_view_date'>"+ln.getLangDate()+"</div>";
+				viewHtml+="<br>";
+				viewHtml+="<hr style='width:95%;'>";
+			}
+			viewHtml+="</div>";
+		}
+		if(ic.getLinks()!=null) {
+			viewHtml+="<div class='appl_links'>";
+			for(Links lk:ic.getLinks()) {
+				viewHtml+="<div class='appl_view_title' style='font-weight:bold;'>링크</div>";
+				viewHtml+="<div class='appl_view_name'>"+lk.getLinksAddr()+"</div>";
+				viewHtml+="<div><span class='aline' style='float:left; margin-left:1%; margin-right:1%;'>"+" | "+"</span></div>";
+				viewHtml+="<div class='appl_view_date'>"+lk.getLinksDate()+"</div>";
+				viewHtml+="<hr style='width:95%;'>";
+			}
+			viewHtml+="</div>";
+		}
+		viewHtml+="</div>";
+
+		viewHtml+="</div>";
+		
+		mv.addObject("viewHtml", viewHtml);
+		mv.setViewName("jsonView");
+		return mv;
+	}
 	
+//비지니스 포지션
+	@RequestMapping("/business/position.lbc")
+	public ModelAndView dbBusPosition(HttpSession session) {
+		ModelAndView mv=new ModelAndView();
+		Business bus=(Business)session.getAttribute("busInfo");
+		Map map=new HashMap();
+		map.put("busNo", bus.getBusNo());
+		List<Position> poList=service.selectPositionList(map);
+		String poHtml="";
+		if(poList.size()>0) {
+			poHtml+="<div class='position_header'>";
+//			poHtml+="<div class='position_nav>";
+//			poHtml+="<ul>";
+//			poHtml+="<li class='position_all>";
+//			poHtml+="</li>";
+//			for(Position po:poList) {
+//				poHtml+="<li class='position_"++"'>";
+//				poHtml+="</li>";
+//			}
+//			poHtml+="</ul>";
+//			poHtml+="</div>";
+			poHtml+="<button type='button' class='position_add_btn' onclick='fn_add_position();'>포지션 추가</button>";
+			poHtml+="</div>";
+			poHtml+="<div class='position_section'>";
+			poHtml+="<div class='position_list'>";
+			for(Position po:poList) {
+				poHtml+="<div class='position_info'>";
+				poHtml+="<div class='position_name'>";
+				if(po.getPosition()!=null && !po.getPosition().equals("")) {
+					poHtml+=po.getPosition();
+				}else {
+					poHtml+="포지션명 등록";
+				}
+				poHtml+="</div>";
+				poHtml+="<div class='position_date'>";
+				SimpleDateFormat sdf=new SimpleDateFormat("yyyy.MM.dd");
+				String date=sdf.format(po.getDead_date());
+				if(date.equals("2099.12.31")) {
+					poHtml+="상시";
+				}else {
+					poHtml+="~ "+date+" 까지";
+				}
+				poHtml+="</div>";
+				poHtml+="</div>";
+				
+			}
+			poHtml+="</div>";
+			poHtml+="</div>";
+		}
+		
+//		
+		
+		mv.addObject("dbHtml", poHtml);
+		mv.addObject("dbIndex",3);
+		mv.setViewName("business/dashboard");
+		return mv;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+//비지니스 정보	
 	@RequestMapping("/business/busInfo.lbc")
-	public ModelAndView dbMatchup(HttpSession session) {
+	public ModelAndView dbBusInfo(HttpSession session) {
 		ModelAndView mv=new ModelAndView();
 		Business bus=(Business)session.getAttribute("busInfo");
 		String biHtml="";
@@ -521,8 +684,17 @@ public class BusinessController2 {
 		biHtml+="<input class='form-control' type='text' name='busPhone' value='"+bus.getBusPhone()+"'/>";
 		biHtml+="</div>";
 		biHtml+="<div>";
-		biHtml+="<div class='bi_info_title'>검색 키워드(키워드는 최대 3개까지 등록 가능합니다.)</div>";
-		biHtml+="<input class='form-control' type='text' placeholder='서비스명 혹은 브랜드명'/><button type='button' class='bi_keyword_add btn bi_right'>추가</button>";
+		biHtml+="<div class='bi_info_title'>검색 키워드<span class='key_over'>(키워드는 최대 3개까지 등록 가능합니다.)</span></div>";
+		biHtml+="<input class='form-control' type='text' name='add_keyword' placeholder='서비스명 혹은 브랜드명'/><button type='button' class='bi_keyword_add btn bi_right' onclick='fn_keyword_add();'>추가</button>";
+		biHtml+="<div class='bi_info_keywords'>";
+		if(bus.getSearchKeywords()!=null) {	
+			for(String kw:bus.getSearchKeywords()) {
+				biHtml+="<div class='bi_keyword'>";	
+				biHtml+="<input type='checkbox' value='"+kw+"' name='searchKeywords' checked/>";
+				biHtml+="<span>#"+kw+"</span><button type='button' onclick='fn_del_keyword();'><i class='fas fa-times'></i></button></div>";
+			}
+		}
+		biHtml+="</div>";
 		biHtml+="</div>";
 		biHtml+="</form>";
 		biHtml+="</div>";
@@ -606,6 +778,7 @@ public class BusinessController2 {
 	public ModelAndView updateBusInfo(HttpSession session, Business bus) {
 		ModelAndView mv=new ModelAndView();
 		Business busInfo=(Business)session.getAttribute("busInfo");
+		busInfo.setSearchKeywords(bus.getSearchKeywords());
 		busInfo.setBusAddress(bus.getBusAddress());
 		busInfo.setBusIncome(bus.getBusIncome());
 		busInfo.setBusIndustrial(bus.getBusIndustrial());

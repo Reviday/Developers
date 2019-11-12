@@ -1,5 +1,5 @@
 section{
-    background-color: #f8f8f8 !important;
+    background-color: #f4f4f4 !important;
     height:auto;
 }
 .db-container{
@@ -282,8 +282,102 @@ input[name="search_em"]::placeholder{
     background: rgba(0, 0, 0, 0.5);
     z-index:990;
 }
+.appl_view_section{
+    background-color: white;
+}
+.appl_name{
+    font-size: 35px;
+    padding: 25px;
+    padding-left: 30px;
+    font-weight: bold;
+}
 
-/*bus info*/
+.appl_info{
+    padding-left: 30px;
+    font-size: 15px;
+    color: #A4A4A4;
+}
+
+.appl_intro{
+    padding: 30px;
+    padding-left: 30px;
+    font-size: 13px;
+    color: #2E2E2E;
+}
+
+.appl_view_title{
+    float: left;
+    margin-left: 30px;
+    font-weight: bold;
+}
+
+.appl_view_name{
+    float: left;
+    margin-left: 20%;
+}
+
+.appl_view_subname{
+    color: #6E6E6E;
+}
+
+.appl_view_date{
+    float: right;
+    margin-right: 4%;
+}
+
+.appl_view_intro{
+    padding: 30px;
+}
+/*---------------------------포지션------------------------------*/
+.position_header{
+    position: relative;
+    float: right;
+}
+.position_add_btn{
+    padding:3px 10px;
+    color:white;
+    background-color:#900020;
+    border-radius: 4px;
+    font-size: 1.6rem;
+    font-weight: bold;
+    border:1px solid #6e0000;
+}
+.position_add_btn:hover{
+    border:1px solid silver;
+    background-color: white;
+    color:#900020;
+}
+.position_section{
+    margin-top:20px;
+    width: 100%;
+}
+.position_info{
+    position: relative;
+    display: inline-grid;
+    width:22%;
+    height:100px;
+    border:1px solid silver;
+    border-radius: 4px;
+    background-color: white;
+    margin:10px 10px;
+    padding:10px 10px;
+    cursor: pointer;
+}
+.position_info:active{
+    border:1px solid darkgrey;
+    background-color: #f4f4f4;
+}
+.position_name{
+    font-size:2rem;
+    font-weight: bold;
+}
+.position_date{
+    font-size: 1.3rem;
+}
+
+
+
+/*---------------bus info-----------------*/
 .bi_main{
     width:100%;
     max-width: 1024px;
@@ -332,6 +426,7 @@ input[name="search_em"]::placeholder{
 }
 .bi_info_ta{
     resize: none;
+    height:250px !important;
 }
 .bi_warn{
     color:red;
@@ -362,12 +457,39 @@ input[name="search_em"]::placeholder{
 }
 
 .bi_keyword_add{
-    margin-top:-31.5px;
+    margin-top:-32px;
     background-color: white;
     border:1px solid silver;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
     font-size: 1.5rem;
+}
+
+.bi_keyword{
+    margin-top:3px;
+    margin-right:5px;
+    padding:2px 5px;
+    color:white;
+    background-color:#6e0000;
+    position: relative;
+    display: inline-block;
+    border-radius: 4px;
+}
+.key_o{
+    box-shadow:0 0 0 .2rem rgba(255,0,0,.5) !important;
+    border-color:  rgba(255,0,0,.2) !important;
+}
+
+input[name='searchKeywords']{
+    display: none;
+}
+.bi_keyword>span{
+    margin-right:5px;
+    font-size: 1.6rem;
+}
+.bi_keyword>button{
+    font-size:1.3rem;
+    color:silver;
 }
 .bi_bottom_bar{
     position: sticky;
@@ -375,7 +497,7 @@ input[name="search_em"]::placeholder{
     border-top:1px solid silver;
     width:100%;
     height:60px;
-    background-color: #f8f8f8;
+    background-color: #f4f4f4;
 }
 
 .bi_bottom_con{
@@ -398,6 +520,11 @@ input[name="search_em"]::placeholder{
     background-color: white;
     color:#900020;
 }
+
+
+
+
+/* -------------------이미지 모달--------------------- */
 
 .bi_img_container{
     position: absolute !important;
@@ -533,8 +660,7 @@ input[name="search_em"]::placeholder{
     width:100%;
     padding:10px 0;
     font-size: 1.8rem;
-    background-color: rgba(255,255,255,0.2);
-
+    background-color: rgba(255,255,255,0.4);
 }
 
 
@@ -543,7 +669,7 @@ input[name="search_em"]::placeholder{
 
 
 
-/*반응형/크기 */
+/*---------------------- 반응형크기 -----------------------*/
 @media (min-width: 1200px){
     .db-container{
         width:1024px;

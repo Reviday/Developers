@@ -5,7 +5,9 @@ import java.util.Map;
 
 import com.kh.developers.business.model.vo.Applicant;
 import com.kh.developers.business.model.vo.Business;
+import com.kh.developers.business.model.vo.IntroCard;
 import com.kh.developers.member.model.vo.Member;
+import com.kh.developers.search.model.vo.Position;
 
 public interface BusinessService2 {
 	//bus 수정
@@ -36,8 +38,14 @@ public interface BusinessService2 {
 	//지원자 좋아요 유무
 	int selectCheckLike(Map map);
 	
+	//지원자 이력서 가져오기
+	IntroCard selectResumeOne(int applNo);
+	
 	Member selectApplicant(int memNo);
 	
+	
+	//회사 포지션 가져오기
+	List<Position> selectPositionList(Map map);
 	
 	
 

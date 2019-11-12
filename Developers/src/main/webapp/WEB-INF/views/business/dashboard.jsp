@@ -133,8 +133,10 @@
 		<c:if test='${not empty dbIndex}'>
 			${dbHtml}
 		</c:if>
-		
 	</div>
+	<c:if test='${not empty seHtml}'>
+		${seHtml}
+	</c:if>
 </section>
 <script>
 	var path="${path}";
@@ -152,7 +154,9 @@
 <c:if test="${dbIndex eq 2}">	
 	<!-- <script src="${path}/resources/js/db-matchup.js"></script> -->
 </c:if>
-
+<c:if test="${dbIndex eq 3}">	
+	<script src="${path}/resources/js/db-position.js"></script>
+</c:if>
 <c:if test="${dbIndex eq 5}">	
 	<script src="${path}/resources/js/db-businfo.js"></script>
 </c:if>

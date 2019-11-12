@@ -47,6 +47,7 @@ $(function(){
         appl_page=1;
         fn_appl_nav(appl_index, appl_page);
     });
+
 });
   
 function fn_appl_nav(index, page){
@@ -75,6 +76,20 @@ function fn_appl_nav(index, page){
             $(".close-modal").on("click",function(){
                 $(".del-modal").hide();
             });
+
+             //지원자 이력서 보기. 지원자클릭
+            $(".appl-aList").on("click",function(){
+                
+                $.ajax({
+                    url:path+"/business/applView.lbc",
+                    data:{"applNo":$(this).children(".aList-appl-no").val()},
+                    datatype:'post',
+                    success:function(data){
+                        $(".appl-main").html(data.viewHtml);
+                        $('.appl-leftside').css("top","0");
+                    }
+                });
+            });
         }
     });
 
@@ -98,6 +113,10 @@ function fn_del_modal(event){
 
 function fn_appl_del(){
     location.href=path+"/business/applDel.lbc?applNo="+del_applNo;
+}
+
+function fn_appl_offer(){
+    
 }
 
 

@@ -9,7 +9,14 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.developers.business.model.vo.Applicant;
 import com.kh.developers.business.model.vo.Business;
+import com.kh.developers.business.model.vo.CareerInCard;
+import com.kh.developers.business.model.vo.EducationInCard;
+import com.kh.developers.business.model.vo.IntroCard;
 import com.kh.developers.member.model.vo.Member;
+import com.kh.developers.resume.model.vo.Activitie;
+import com.kh.developers.resume.model.vo.Lang;
+import com.kh.developers.resume.model.vo.Links;
+import com.kh.developers.search.model.vo.Position;
 
 @Repository
 public class BusinessDaoImpl2 implements BusinessDao2 {
@@ -78,11 +85,56 @@ public class BusinessDaoImpl2 implements BusinessDao2 {
 		return session.selectOne("business2.selectCheckLike", map);
 	}
 
+	
+	@Override
+	public IntroCard selectResumeOne(SqlSession session, int applNo) {
+		return session.selectOne("business2.selectResumeOne", applNo);
+	}
+	
+
+	@Override
+	public List<CareerInCard> selectCareerList(SqlSession session, int resumeNo) {
+		return session.selectList("business2.selectCareerList", resumeNo);
+	}
+
+
+	@Override
+	public List<EducationInCard> selectEducationList(SqlSession session, int resumeNo) {
+		return session.selectList("business2.selectEducationList", resumeNo);
+	}
+
+
+	@Override
+	public List<Activitie> selectActivitieList(SqlSession session, int resumeNo) {
+		return session.selectList("business2.selectActivitieList", resumeNo);
+	}
+
+
+	@Override
+	public List<Lang> selectLangList(SqlSession session, int resumeNo) {
+		return session.selectList("business2.selectLangList", resumeNo);
+	}
+
+
+	@Override
+	public List<Links> selectLinkList(SqlSession session, int resumeNo) {
+		return session.selectList("business2.selectLinkList", resumeNo);
+	}
+
+
 	@Override
 	public Member selectApplicant(SqlSession session, int memNo) {
 		return session.selectOne("business2.selectApplicant", memNo);
 	}
 
+
+	@Override
+	public List<Position> selectPositionList(SqlSession session, Map map) {
+		return session.selectList("business2.selectPositionList", map);
+	}
+	
+
+	
 	
 	
 }

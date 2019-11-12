@@ -10,7 +10,9 @@ import org.springframework.stereotype.Service;
 import com.kh.developers.business.model.dao.BusinessDao2;
 import com.kh.developers.business.model.vo.Applicant;
 import com.kh.developers.business.model.vo.Business;
+import com.kh.developers.business.model.vo.IntroCard;
 import com.kh.developers.member.model.vo.Member;
+import com.kh.developers.search.model.vo.Position;
 
 @Service
 public class BusinessServiceImpl2 implements BusinessService2 {
@@ -93,12 +95,33 @@ public class BusinessServiceImpl2 implements BusinessService2 {
 		int result=dao.selectCheckLike(session, map);
 		return result;
 	}
+	
+	
+
+	@Override
+	public IntroCard selectResumeOne(int applNo) {
+		IntroCard ic=dao.selectResumeOne(session, applNo);
+		ic.setCareers(dao.selectCareerList(session, ic.getResumeNo()));
+		ic.setEducations(dao.selectEducationList(session, ic.getResumeNo()));
+		ic.setActivities(dao.selectActivitieList(session, ic.getResumeNo()));
+		ic.setLanguages(dao.selectLangList(session, ic.getResumeNo()));
+		ic.setLinks(dao.selectLinkList(session, ic.getResumeNo()));
+		return ic;
+	}
 
 	@Override
 	public Member selectApplicant(int memNo) {
 		Member m=dao.selectApplicant(session, memNo);
 		return m;
 	}
+
+	@Override
+	public List<Position> selectPositionList(Map map) {
+		List<Position> poList=dao.selectPositionList(session, map); 
+		return poList;
+	}
+	
+	
 	
 	
 	
