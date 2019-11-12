@@ -396,6 +396,15 @@ public class MemberController {
 		mv.setViewName("member/ajax/myLike");
 		return mv;
 	}
+	@RequestMapping(value="/member/myBookMark.lmc",produces = "application/text; charset=utf8" )
+	public ModelAndView myBookMark(Member m) {
+		ModelAndView mv= new ModelAndView();
+		m=service.selectMemberOne(m);
+		List<Position>likeList=service.selectLike(m);
+		mv.addObject("likeList",likeList);
+		mv.setViewName("member/ajax/myLike");
+		return mv;
+	}
     @RequestMapping("/member/memberUpdate.lmc")
     public ModelAndView memberUpdate(Member m,HttpSession session) {
     	ModelAndView mv = new ModelAndView();
