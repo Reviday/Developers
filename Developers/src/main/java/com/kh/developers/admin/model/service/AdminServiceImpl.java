@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.developers.admin.model.dao.AdminDao;
+import com.kh.developers.admin.model.vo.MemberLoginLog;
 import com.kh.developers.member.model.vo.Member;
 
 @Service
@@ -19,6 +20,16 @@ public class AdminServiceImpl implements AdminService {
 	private AdminDao dao;
 	@Autowired
 	private SqlSessionTemplate session;
+	
+	@Override
+	public List<MemberLoginLog> selectLoginLogList(int cPage, int numPerPage) {
+		return dao.;
+	}
+	
+	@Override
+	public int selectloginLogCount() {
+		return dao.selectloginLogCount(session);
+	}
 	
 	@Override
 	public int restoreMember(Member m) {

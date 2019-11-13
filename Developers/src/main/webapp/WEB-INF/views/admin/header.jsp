@@ -172,7 +172,7 @@
 	                    </a>
 	                    <ul>
 	                        <li>
-	                            <a href="#">로그인 로그
+	                            <a href="${path}/admin/loginLog.lac">로그인 로그
 	                            </a>
 	                        </li>
 	                        <li>

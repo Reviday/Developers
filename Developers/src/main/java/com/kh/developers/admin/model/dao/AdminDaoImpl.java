@@ -13,6 +13,11 @@ import com.kh.developers.member.model.vo.Member;
 public class AdminDaoImpl implements AdminDao{
 	
 	@Override
+	public int selectloginLogCount(SqlSessionTemplate session) {
+		return session.selectOne("");
+	}
+	
+	@Override
 	public int restoreMember(SqlSessionTemplate session, Member m) {
 		return session.update("member.restoreMember", m);
 	}

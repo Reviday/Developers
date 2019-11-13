@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kh.developers.admin.model.service.AdminService;
+import com.kh.developers.admin.model.vo.MemberLoginLog;
 import com.kh.developers.common.util.PaginationTemplate;
 import com.kh.developers.member.model.vo.Member;
 
@@ -27,6 +28,20 @@ public class AdminController {
 	@Autowired
 	private AdminService service;
 	private PaginationTemplate pt;
+	
+	@RequestMapping("/admin/loginLog.lac")
+	public ModelAndView loginLog(HttpServletRequest req) {
+		ModelAndView mv=new ModelAndView();
+		int totalData=service.selectloginLogCount();
+		pt=new PaginationTemplate(req, totalData, "/admin/memberList.lac");
+		List<MemberLoginLog> list=service.selectLoginLogList(pt.getcPage(),pt.getNumPerPage());
+		
+		mv.addObject("logList",list);
+		mv.addObject("cPage",pt.getcPage());
+		mv.addObject("numPerPage",pt.getNumPerPage());
+		mv.addObject("pageBar",pt.getPageBar());
+		return mv;
+	}
 	
 	@RequestMapping("/admin/restoreMember.lac")
 	public String restoreMember(Member m, HttpServletRequest req, Model model,

@@ -22,4 +22,5 @@ public interface AdminDao {
 	int selectWithdrawMemberCountBySearch(SqlSessionTemplate session, Map<String, Object> searchValue);
 	List<Member> selectWithdrawMemberListBySearch(SqlSessionTemplate session, Map<String, Object> searchValue, int cPage, int numPerPage);
 	int restoreMember(SqlSessionTemplate session, Member m);
+	int selectloginLogCount(SqlSessionTemplate session);
 }

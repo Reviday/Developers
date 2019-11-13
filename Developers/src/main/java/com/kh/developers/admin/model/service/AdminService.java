@@ -2,6 +2,7 @@ package com.kh.developers.admin.model.service;
 
 import java.util.List;
 
+import com.kh.developers.admin.model.vo.MemberLoginLog;
 import com.kh.developers.member.model.vo.Member;
 
 public interface AdminService {
@@ -19,4 +20,6 @@ public interface AdminService {
 	int selectWithdrawMemberCountBySearch(String value);
 	List<Member> selectWithdrawMemberListBySearch(String value, int cPage, int numPerPage);
 	int restoreMember(Member m);
+	int selectloginLogCount();
+	List<MemberLoginLog> selectLoginLogList(int cPage, int numPerPage);
 }
