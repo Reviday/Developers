@@ -24,4 +24,5 @@ public interface MemberService {
 	int busLogoChange(Member memInfo);
 	List<Position> selectLike(Member m);
 	void insertLoginLog(MemberLoginLog mll);
+	int updateInterests(Interests i);
 }

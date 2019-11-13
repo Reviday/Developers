@@ -22,6 +22,7 @@
         <div>
             <div>
                 <div id="resume-app" class="react-container background-white">
+                 <form action="${path }/resume/updateResume.lmc" method="post">
                     <div class="container">
                         <div id="resume-detail" class="">
                             <div class="resume-toolbar">
@@ -36,9 +37,8 @@
                                     </select><i class="icon-arrow_bottom_fill"
                                        ></i></div>
 
-                                <div class="other-btns"><button class="border-primary hidden-xs btn btn-default"
-                                        type="button">임시 저장</button><button class="hidden-xs btn btn-primary"
-                                        type="button">작성 완료</button><button class="border-gray btn btn-default"
+                                <div class="other-btns"><button class="hidden-xs btn btn-primary"
+                                        type="submit">작성 완료</button><button class="border-gray btn btn-default"
                                         type="button"><i class="fas fa-download"></i></button>
                                 </div>
                             </div>
@@ -54,10 +54,10 @@
                                         <p class="Confirm__ConfirmMessage-fNOBqL cHGGot" id=".0.3.0.$/=11.0">
                                             삭제하시겠습니까?</p>
                                     </div>
-                                    <div class="Div-hTZHGu dXKeOh"><button color="#B5B5B5"
+                                    <div class="Div-hTZHGu dXKeOh"><button color="#B5B5B5" type="button"
                                             class="Button-kDSBcD hzWWar" onclick="madalclose();">닫기</button>
                                             <button
-                 color="#258BF7" class="Button-kDSBcD ebVQvc"
+                 color="#258BF7" class="Button-kDSBcD ebVQvc" type="button"
                  onclick="deleteList('${resumeNo }');">확인</button>
          </div>
      </div>
@@ -70,23 +70,27 @@
              maxlength="120" placeholder="이메일(필수)" value="${resume.memEmail }" id="allmemEmail"></div>
      <div class="resume-input-form-group">
          <c:if test="${resume.memPhone==null||resume.memPhone=='null' }">
-             <input class="resume-input mobile" type="text" maxlength="200"
+             <input class="resume-input mobile" type="text" maxlength="200"name="memPhone"
                  placeholder="연락처(필수) ex) 010-0000-0000">
          </c:if>
           <c:if test="${resume.memPhone!=null&&resume.memPhone!='null' }">
-             <input class="resume-input mobile" type="text" maxlength="200"
+             <input class="resume-input mobile" type="text" maxlength="200"name="memPhone"
                  value="${resume.memPhone }">
          </c:if>
      </div>
      <div class="resume-input-form-group">
+     <c:set value="${resume.resumeNo }" var="resumeNo"/>
+       <input type="hidden" name="memEmail" value="${loginMember.memEmail }"/>
+	<input type="hidden"  name="resumeNo" value="${resume.resumeNo }"/>
          <div class="dynamic-textarea"><textarea style="height:34px;"
-                 class="resume-input about" maxlength="2000"
+                 class="resume-input about" maxlength="2000" name="intro"
                  placeholder="간단한 자기소개를 통해 이력서를 돋보이게 만들어보세요. (3~5줄 권장)"></textarea><textarea
                  class="textarea-clone" readonly=""
                  style="top: 0px; left: 0px; width: 1060px; padding: 0px; font-size: 16px; line-height: 22.8571px; font-weight: 400; position: absolute; visibility: hidden; z-index: -9999; height: 0px;">간단한 자기소개를 통해 이력서를 돋보이게 만들어보세요. (3~5줄 권장)</textarea>
          </div>
      </div>
  </div>
+</form>
  <div class="resume-lists">
      <div class="resume-list careers">
          <div class="resume-list-header"><span>경력</span></div>

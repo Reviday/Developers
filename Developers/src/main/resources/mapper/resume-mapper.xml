@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="resume">
+<update id="updateInterests" parameterType="interests">
+update interests set JOB_NAME=#{jobName},DUTY=#{duty, typeHandler=strArray},EXPERIENCE=#{experience},SALARY=#{salary},SKILL=#{skill, typeHandler=strArray} WHERE MEM_EMAIL=#{memEmail}
+
+</update>
+
+<update id="updateResume" parameterType="resume">
+	UPDATE RESUME SET MEM_PHONE=#{memPhone},INTRO=#{intro} WHERE RESUME_NO=#{resumeNo}
+</update>
 <delete id="deleteResume" parameterType="resume">
-DELETE FROM RESUME WHERE resume_no=${resumeNo}
+DELETE FROM RESUME WHERE resume_no=#{resumeNo}
 </delete>
 <select id="selectLike" parameterType="member" resultType="position">
 select b.bus_name,b.BUS_COUNTRY,p.position,b.bus_area,b.bus_images,(SELECT COUNT(*) FROM PO_LIKE WHERE LIKE_ID = P.LIKE_ID) AS LIKE_COUNT from ENROLL_POSITION p join po_like l on (p.like_id=l.like_id) join ta_member m on(l.mem_no=m.mem_no) join BUSINESS_INFO b on(p.bus_no=b.bus_no) where m.MEM_NO=#{memNo}
@@ -181,7 +189,7 @@ SELECT * FROM RESUME WHERE MEM_EMAIL=#{memEmail} and RESUME_NO=#{resumeNo}
 	<result property="memEmail" column="mem_email"/>
 	<result property="memName" column="mem_name"/>
 	<result property="memPhone" column="mem_phone"/>
-	<result property="Intro" column="intro"/>
+	<result property="intro" column="intro"/>
 	<result property="resumeDate" column="resume_date"/>
 </resultMap>
 <resultMap type="member" id="memberMap">
@@ -208,4 +216,5 @@ SELECT * FROM RESUME WHERE MEM_EMAIL=#{memEmail} and RESUME_NO=#{resumeNo}
 		<result property="memDeniedDate" column="mem_denied_date"/>
 		<result property="filter_id" column="filter_id"/>
 	</resultMap>
+
 </mapper>

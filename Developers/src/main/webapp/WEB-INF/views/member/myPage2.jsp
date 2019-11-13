@@ -65,13 +65,7 @@
                     </div>
                 </div><a href="#"  onclick="updatePage();"class="Aside-edit">기본정보 수정</a>
             </div>
-            <div class="MatchUpStatus _s0V-DmOyFivCW3HY7Nh3"><a href="/profile/status?type=matchup-likes"
-                    class="MatchUpStatus-item"><span class="MatchUpStatus-label">원해요</span><strong
-                        class="MatchUpStatus-value">0</strong></a><a href="/profile/status?type=matchup-opens"
-                    class="MatchUpStatus-item"><span class="MatchUpStatus-label">열람/요청</span><strong
-                        class="MatchUpStatus-value">0</strong></a><a href="/profile/status?type=matchup-offers"
-                    class="MatchUpStatus-item"><span class="MatchUpStatus-label">받은 제안</span><strong
-                        class="MatchUpStatus-value">0</strong></a></div>
+
         </aside>
         <section id="sectionA">
             <div class="_6zGbQ6Gwdi0O826QWL_gN">
@@ -134,7 +128,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="MatchUpForm _1DBZ1F8aWXUpL5ry5a_nRi _3ZoHfZyrHiWR9JdVIgtNxq">
+                <div class="MatchUpForm _1DBZ1F8aWXUpL5ry5a_nRi _3ZoHfZyrHiWR9JdVIgtNxq" id="interestsContainer">
                     <div class="Form-header">
                         <dl class="Form-title">
                             <dt>관심분야 설정</dt>
@@ -169,9 +163,12 @@
                                     </c:forEach> 
                                     
                                     </div>
-                                </div><a href="/profile/matching?level=2&amp;step=1&amp;modi=true"
-                                    class="EnterInterestArea-edit"><i class="icon-edit"
-                                        style="font-size: 28px;"></i></a>
+                                </div> 
+                                 <c:set value="${loginMember.memEmail }" var="memEmail" />
+                               <a href="#" class="EnterInterestArea-edit"
+                                onclick="updateInterts('${memEmail }');">
+                                 <i class="far fa-edit"  id="updateInterests" 
+                                        style="font-size: 20px;"></i></a></a>
                             </div>
                         </div>
                     </div>
@@ -232,7 +229,12 @@ $('#updateResume').hide();
 	}, function() {
 		$('#updateResume').hide();
 	});
-	
+	$('#updateInterests').hide();
+	$('#interestsContainer').hover(function() {
+		$('#updateInterests').show();
+	}, function() {
+		$('#updateInterests').hide();
+	});
 		//로고 클릭 이벤트
 		$("#logoFile").on("change",function(){
 			var frm=new FormData($("#logoFrm")[0]);
@@ -244,17 +246,26 @@ $('#updateResume').hide();
 				dataType:"json",
           	    contentType:false,
 				success:function(data){
-					console.log("성공");
-					console.log(data);
 					$("#logoImg").css('background-image', 'url('+data+')');
 					$("#profile_img").attr("src",data);
 				},error:function(data){
-					console.log("실패");
 				}
 
 			})
 		});
-
+	function updateInterts(memEmail){
+		$.ajax({
+		url:"${path }/member/updateInterestsPage.lmc",
+		data:{"memEmail":memEmail},
+		type:"post",
+		success:function(data){
+			  $("#sectionA").html("");
+			   $("#sectionA").html(data); 
+		}
+		
+			
+		})
+	}
 
 </script>
 

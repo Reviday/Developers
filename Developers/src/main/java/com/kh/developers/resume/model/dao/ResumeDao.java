@@ -1,7 +1,6 @@
 package com.kh.developers.resume.model.dao;
 
-import java.util.List;
-
+import java.util.List;import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionTemplate;
 
 import com.kh.developers.member.model.vo.Interests;
@@ -45,4 +44,5 @@ public interface ResumeDao {
 	int insertMathupEd(SqlSessionTemplate session,Resume r);
 	int updateInterestsRno(SqlSessionTemplate session,Resume r);
 	int deleteResume(SqlSessionTemplate session,Resume r);
+	int updateResume(SqlSessionTemplate session,Resume r);
 }

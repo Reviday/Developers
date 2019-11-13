@@ -26,6 +26,12 @@ public class ResumeServiceImpl implements ResumeService {
 	
 	
 	@Override
+	public int updateResume(Resume r) {
+		// TODO Auto-generated method stub
+		return dao.updateResume(session,r);
+	}
+
+	@Override
 	public int deleteResume(Resume r) {
 		// TODO Auto-generated method stub
 		return dao.deleteResume(session,r);

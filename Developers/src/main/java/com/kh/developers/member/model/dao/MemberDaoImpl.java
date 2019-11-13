@@ -101,6 +101,14 @@ public class MemberDaoImpl implements MemberDao {
 		return session.selectList("member.selectWeekPositionList");
 	}
 	
+	
+	
+	@Override
+	public int updateInterests(SqlSessionTemplate session, Interests i) {
+		// TODO Auto-generated method stub
+		return session.update("resume.updateInterests",i);
+	}
+
 	@Override
 	public void insertLoginLog(SqlSessionTemplate session, MemberLoginLog mll) {
 		session.insert("member.insertLoginLog", mll);

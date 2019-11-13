@@ -369,7 +369,21 @@ public class ResumeController {
 		mv.setViewName("resume/ajax/resumeListView");
 		return mv;
 	}
-	
+	@RequestMapping("/resume/updateResume.lmc")
+	public ModelAndView updateResume(Resume r) {
+		ModelAndView mv=new ModelAndView();
+		int result=service.updateResume(r);
+		Member m=new Member();
+		m.setMemEmail(r.getMemEmail());
+		System.out.println(m);
+		Member m2=mservice.selectMemberOne(m);
+		System.out.println(m2+"sadsadsad");
+		List<Resume> list=service.selectResume(m2);
+		mv.addObject("list", list);
+		mv.setViewName("resume/resumeList");
+		return mv;
+		
+	}
 
 	
 }

@@ -30,4 +30,6 @@ public interface MemberDao {
    int busLogoChange(SqlSessionTemplate session,Member memInfo);
    List<Position> selectLike(SqlSessionTemplate session, Member m);
    void insertLoginLog(SqlSessionTemplate session, MemberLoginLog mll);
+   int updateInterests(SqlSessionTemplate session, Interests i);
+   
 }

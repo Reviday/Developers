@@ -503,4 +503,47 @@ public class MemberController {
     		/*에러 처리 없음*/
     	}
     }
+    @RequestMapping("/member/updateInterestsPage.lmc")
+    public ModelAndView updateInterests(Member m) {
+    	ModelAndView mv=new ModelAndView();    	
+    	Interests i=service.selectInterests(m.getMemEmail());
+    	mv.addObject("inter", i);
+    	mv.setViewName("member/ajax/updateInterests");
+    	return mv;
+    }
+    @RequestMapping(value="/member/updateInterests.lmc",produces = "application/text; charset=utf8")
+    public ModelAndView updateInterests(
+    		@RequestParam(value="jobName") String jobName, 
+    		@RequestParam(value="memEmail") String memEmail,
+    		@RequestParam(value="experience") String experience,
+    		@RequestParam(value="duty[]") List<String> dutyList,
+    		@RequestParam(value="salary") int salary ,
+    		@RequestParam(value="skill[]") List<String> skillList
+    		) {
+    	ModelAndView mv= new ModelAndView();
+    	Interests i = new Interests();
+    	i.setJobName(jobName);
+    	i.setExperience(experience);
+    	i.setSalary(salary);
+    	i.setMemEmail(memEmail);
+    	int dutysize=0;
+    	String[] arrayDuty = new String[dutyList.size()];
+         for(String duty : dutyList) {
+        	 arrayDuty[dutysize++] = duty;
+         }
+         int skillsize=0;
+         Arrays.sort(arrayDuty);
+    	i.setDuty(arrayDuty);
+    	String[] arraySkill = new String[skillList.size()];
+    	for(String skill : skillList) {
+    		arraySkill[skillsize++] = skill;
+        }
+    	Arrays.sort(arraySkill);
+    	i.setSkill(arraySkill);
+    	int result =service.updateInterests(i);
+    	mv.addObject("i",i);
+    	mv.setViewName("member/myPage2");
+    	
+    	return mv;
+    }
 }

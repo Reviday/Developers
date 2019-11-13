@@ -1,78 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
-  <link rel="stylesheet" type="text/css" href="${path }/resources/css/mypage.css">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-
-<jsp:include page="/WEB-INF/views/common/header.jsp">
-	<jsp:param name="pageTitle" value=""/>
-</jsp:include>
-<div style="height: 50px;"></div>
-     <div class="_1Gv5LM5zal-f72_XSo_qJ_"  id="mainContent">
-        <nav role="presentation" class="_3wSXAiIJQZ98fJ-Hi6G42Q"><button type="button" class="">프로필<i
-                    class="icon-arrow_bottom_fill"></i></button>
-                    <c:set value="${loginMember.memEmail }" var="memEmail"  />
-            <ul class="">
-                <li class="_1ft7OZSrbzL35bkI-omU2b"><a href="#" class="activeNav">프로필</a></li>
-                <li class="_1ft7OZSrbzL35bkI-omU2b"><a href="#" class="">포인트</a></li>
-                <li class="_1ft7OZSrbzL35bkI-omU2b"><button type="button" class="">제안받기 현황<i
-                            class="icon-arrow_bottom_fill"></i></button><a href="#" class="">제안받기 현황</a>
-                </li>
-                <li class="_1ft7OZSrbzL35bkI-omU2b"><a href="#" onclick="likePage('${memEmail }');" class="">좋아요</a></li>
-                <li class="_1ft7OZSrbzL35bkI-omU2b"><a href="#" onclick="myBookMark('${memEmail }')" class="">북마크</a></li>
-              
-            </ul>
-        </nav>
-        <div class="_14NzdD9Zqjq8ocf6TORWoN">
-            <aside class="Aside _1dBR38s0D_bqykmPvZBYPu">
-                <div class="Aside-header">
-                                    <div class="Aside-avatar">
-                    <c:if test="${loginMember.memIcon==null }">
-                    <div class="Aside-avatar_image" id="logoImg" 
-                    style="background-image: url('${path}/resources/upload/profile/no-profile-image.png ');">
-                          <div class="_1RDFX7ZROHIIPqPMgmtS2E">
-                        <form id="logoFrm" name="logoFrm" enctype="multipart/form-data" method="POST">
-                        <i class="icon-camera_icon" role="presentation">+</i>
-							<input type="file" accept="image/*" id="logoFile" name="logoFile"/>
-						</form>
-                       </div>
-                    </div>
-                    </c:if>
-                    
-                    <c:if test="${loginMember.memIcon!=null }">
-                    <div class="Aside-avatar_image" id="logoImg" 
-                    style="background-image: url('${loginMember.memIcon } ');">
-                          <div class="_1RDFX7ZROHIIPqPMgmtS2E">
-                        <form id="logoFrm" name="logoFrm" enctype="multipart/form-data" method="POST">
-                        <i class="icon-camera_icon" role="presentation">+</i>
-					<input type="file" accept="image/*" id="logoFile" name="logoFile"/>
-						</form>
-                       </div>
-                    </div>
-                    </c:if>
-                  
-                </div>
-                     <div class="Aside-me">
-                    <div class="Aside-me_name">${loginMember.memName }</div>
-                    <div class="Aside-me_email">${memEmail }</div>
-                    <div class="Aside-me_tel">
-                    <c:if test="${loginMember.memPhone==null }">
-                    	저장된 번호가 없습니다
-                    </c:if>
-                    <c:if test="${loginMember.memPhone!=null }">
-                    ${loginMember.memPhone }
-                    </c:if>
-                    </div>
-                </div><a href="#"  onclick="updatePage();"class="Aside-edit">기본정보 수정</a>
-                
-                </div>
-              
-            </aside>
-            <section>
-                <section id="sectionA">
-                    <div class="MatchUpForm _1DBZ1F8aWXUpL5ry5a_nRi fixedFooter">
+<title>Insert title here</title>
+</head>
+<body>
+ <div class="MatchUpForm _1DBZ1F8aWXUpL5ry5a_nRi fixedFooter">
                         <div class="Form-header">
                             <dl class="Form-title">
                                 <dt>관심분야 설정</dt>
@@ -84,15 +22,19 @@
                                     <h6>직군</h6>
                                     <div class="_3Q44kHqvs_YnYQ-Edlc7V">
                                     <select name="jobName" id="jobName">
-                                            <option value="----default----" hidden="" >선택하기</option>
+                                            <option value="${inter.jobName }" hidden="" >${inter.jobName }</option>
                                             <option value="개발">개발</option>
-                                        
+                                        	
                                         </select>
                                         </div>
                                 </div>
                                 <div class="kPWd3WMdUzCJKWNaAekr0">
                                     <h6>직무</h6>
                                     <div role="presentation" class="options">
+                                    
+                                  		<c:forEach items="${inter.duty }" var="duty" varStatus="v">
+										<button type="button" class="_26Ms0F-WSvfKh16ALOIC20 active" value="${duty }" >${duty }</button>
+							            </c:forEach>
 										    <button type="button" class="_26Ms0F-WSvfKh16ALOIC20" value="웹 개발자" disabled="">웹 개발자</button>
 										    <button type="button" class="_26Ms0F-WSvfKh16ALOIC20" value="서버 개발자" disabled="">서버 개발자</button>
 										    <button type="button" class="_26Ms0F-WSvfKh16ALOIC20" value="프론트엔드 개발자" disabled="">프론트엔드 개발자</button>
@@ -130,7 +72,7 @@
                                 <div class="_1L31UYqre402LhtszG3_cE selected">
                                     <h6>경력</h6>
                                     <div class="_3Q44kHqvs_YnYQ-Edlc7V"><select name="career">
-                                            <option value="----default----" hidden="" disabled="">선택하기</option>
+                                            <option value="${inter.experience }" >${inter.experience }년</option>
                                             <option value="0">신입</option>
                                             <option value="1">1 년</option>
                                             <option value="2">2 년</option>
@@ -148,7 +90,7 @@
                                     <h6 class="FormButton-label">현재 연봉</h6> 
                                     </div>
                                     <div class="col-8">
-                                    <input type="number" name="salary" class="form-control">
+                                    <input type="number" name="salary" class="form-control" value="${inter.salary }">
                                     </div>
                                 </div>
                                 <div class="FormButton _3I5bkI50gryaER31Iu7b4E selected " >
@@ -159,6 +101,7 @@
                                 </div>    
                                 <div class=" FormButton _3I5bkI50gryaER31Iu7b4E selected orm-group row">
                                     <div class="checkbox checkbox-info col-12">
+                                    
 			                       <label><input  name="skill"  class="styled" value="JAVA"  type="checkbox">JAVA</label>
 			                   		<label><input name="skill" class="styled" value="SPRING"  type="checkbox">SPRING</label>
 			                   		<label><input name="skill" class="styled" value="JSP"  type="checkbox">JSP</label>
@@ -172,6 +115,11 @@
 			                   		<label><input name="skill" class="styled" value="PPAP"   type="checkbox">PPAP</label>
 			                   		<label><input name="skill" class="styled" value="럭키세븐"  type="checkbox">럭키세븐</label>
 			                   		<label><input name="skill" class="styled" value="텔레포트"  type="checkbox">텔레포트</label>
+					                <c:forEach items="${inter.skill }" var="skill" varStatus="v">
+							        <script>
+							        	$('input[value="${skill}"]').attr('checked','checked');
+							        </script>
+							        </c:forEach>
 					                </div>					
 					                </div> 		
                             </div>
@@ -182,42 +130,35 @@
                         <footer class="FormFooter _3MqXvmRsKlYS61B7NaqHUC fixedFooter isChild">
                          <c:set value="${loginMember.memEmail }" var="memEmail"  />
                         	<input type="hidden" value="${memEmail }" name="memEmail" id="memEmail"/>
-                            <div class="childrenWrapper"><button type="button" onclick="saveInter('${memEmail }' );">다음 단계</button></div>
+                            <div class="childrenWrapper"><button type="button" onclick="saveInter('${memEmail }' );">수정 완료</button></div>
                         </footer>
                     </div>
-                </section>
-            </section>
-        </div>
-    </div>
-<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" type="text/javascript"></script>
-<script src="http://code.jquery.com/jquery-1.11.1.min.js" type="text/javascript"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" type="text/javascript"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" type="text/javascript"></script>
-<script>	
-	var duty=[];
-    function dutyview(){
-        var dutybutton =document.getElementsByClassName('_26Ms0F-WSvfKh16ALOIC20');
-        if($(dutybutton).attr('disabled')){
-            $(dutybutton).attr('disabled',false);
-        }else{
-            $(dutybutton).attr('disabled',true);
-        }
-     
-	
+
+</body>
+<script type="text/javascript">
+var duty=[];
+function dutyview(){
+    var dutybutton =document.getElementsByClassName('_26Ms0F-WSvfKh16ALOIC20');
+    if($(dutybutton).attr('disabled')){
+        $(dutybutton).attr('disabled',false);
+    }else{
+        $(dutybutton).attr('disabled',true);
     }
-    
-    $(function(){
-    	 $('._26Ms0F-WSvfKh16ALOIC20').click(function() {
-         	if($(this).hasClass("active") === false){
-             $(this).addClass('active');
-         	}else{
-         	$(this).removeClass('active');	
-         	}
-         });
-    });
-    
-   function saveInter(memEmail){
+ 
+
+}
+
+$(function(){
+	 $('._26Ms0F-WSvfKh16ALOIC20').click(function() {
+     	if($(this).hasClass("active") === false){
+         $(this).addClass('active');
+     	}else{
+     	$(this).removeClass('active');	
+     	}
+     });
+});
+
+function saveInter(memEmail){
 	
 	   var skill = [];
 	   $("input[name='skill']:checked").each(function(i){   
@@ -228,7 +169,7 @@
 	   var salary =$("input[name=salary]").val();
 	   for(var i=0; i<$('.active').length; i++){
 	   duty.push($(document.getElementsByClassName('active')[i]).val());
-  		 }
+		 }
 	   var objParams = {
 			   "jobName":jobName,
 			   "memEmail":memEmail,
@@ -236,79 +177,21 @@
 	   			"duty":duty,
 	   			"salary":salary,
 	   			"skill":skill
-           };
+        };
 	   
 	   $.ajax({
-   		url:"${path }/member/insertInterests.lmc",
-   		type:"POST",
-   		data: objParams,
-   		contentType :   "application/x-www-form-urlencoded; charset=UTF-8",
-   		success: function(data) { 
-   			$("#sectionA").html("");
+		url:"${path }/member/updateInterests.lmc",
+		type:"POST",
+		data: objParams,
+		contentType :   "application/x-www-form-urlencoded; charset=UTF-8",
+		success: function(data) { 
+			$("#sectionA").html("");
 			$("#sectionA").html(data);
-   		}
-   	}); 
-   }
-   function updatePage(){
-	   $.ajax({
-		   url:"${path }/member/updatePage.lmc",
-		   type:"POST",
-		   success:function(data){
-			   $("#sectionA").html("");
-			   $("#sectionA").html(data); 
-		   }
-		   
-	   })
-   }
-   function likePage(memEmail) {
-	   $.ajax({
-		   url:"${path }/member/likePage.lmc",
-		   type:"POST",
-		   data:{"memEmail":memEmail},
-		   success:function(data){
-			   $("#mainContent").html("");
-			   $("#mainContent").html(data);
-		   }
-	   })	
+		}
+	}); 
 }
-   function myBookMark(memEmail) {
-	   $.ajax({
-		   url:"${path }/member/myBookMark.lmc",
-		   type:"POST",
-		   data:{"memEmail":memEmail},
-		   success:function(data){
-			   $("#mainContent").html("");
-			   $("#mainContent").html(data);
-		   }
-	   })	
-}   
- //로고 클릭 이벤트
-	$("#logoFile").on("change",function(){
-		var frm=new FormData($("#logoFrm")[0]);
-		$.ajax({
-			url:"${path }/member/logoChange",
-			data:frm,
-			type:"post",
-			processData:false,
-			dataType:"json",
-     	    contentType:false,
-			success:function(data){
-				console.log("성공");
-				console.log(data);
-				$("#logoImg").css('background-image', 'url('+data+')');
-				$("#profile_img").attr("src",data);
-			},error:function(data){
-				console.log("실패");
-			}
 
-		})
-	});
 
 
 </script>
-
-
-
-
-
-
+</html>
