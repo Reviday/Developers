@@ -1,0 +1,1034 @@
+
+h2.middleTitle{
+	/* color: #FFFFFF; */
+	font-size: 4.5em;
+	margin-left:15%;
+	margin-top:10%;
+	font-weight: bold;
+	font-display:inherit;
+}
+h4.middlesub{
+	font-size:2.2em;
+	color: #FFFFFF;
+	margin-left:5%;
+	margin-top:1%;
+	padding:3em;
+}
+
+h1.mainTitle, h3.subTitle, p.event, h3.subTitletop{
+	color: #FFFFFF;
+	font-size: xx-large;
+}
+h1.mainTitle{
+	font-size:7em;
+	font-weight: bold;
+  position: absolute;
+  width: 100%;
+  padding-top: 3.2em;
+}
+h3.subTitle{
+  font-size:4.5em;
+	font-weight: bold;
+  position: absolute;
+  width: 100%;
+  padding-top: 4.7em;
+}
+h3.subTitletop{
+  font-size:5em;
+	font-weight: bold;
+  position: absolute;
+  width: 100%;
+  padding-top: 1.8em;
+}
+button#startBtn{
+	/* width:15em;
+	height:6em; */
+	
+  font-size:20px;
+}
+
+ p.event{
+   position: absolute;
+
+ }
+
+ img.groupImage{
+   position: absolute;
+   width:85%;
+   height:70%;
+   left:0;
+   margin-left:7%;
+   margin-top:14em
+ }
+
+ button#startBtn{
+   /* position: absolute; */
+ }
+ img.logo{
+   /* position: absolute; */
+ 
+ }
+ div.forTwo{
+   position: absolute;
+   display:inline-flex;
+   bottom:0;
+   right:0;
+   padding-bottom:25em;
+   margin-right:37%;
+ }
+
+ div.developersLogo{
+  float:left;
+ }
+ div.developersBlackLogo{
+  background-color: black;
+  float: left;
+  margin-left:12px;
+  margin-top:5px;
+ }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.text-flicker-in-glow {
+	-webkit-animation: text-flicker-in-glow 3s linear 2.5s both;
+	        animation: text-flicker-in-glow 3s linear 2.5s both;
+}
+
+ @-webkit-keyframes text-flicker-in-glow {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 0;
+    text-shadow: none;
+  }
+  10.1% {
+    opacity: 1;
+    text-shadow: none;
+  }
+  10.2% {
+    opacity: 0;
+    text-shadow: none;
+  }
+  20% {
+    opacity: 0;
+    text-shadow: none;
+  }
+  20.1% {
+    opacity: 1;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.25);
+  }
+  20.6% {
+    opacity: 0;
+    text-shadow: none;
+  }
+  30% {
+    opacity: 0;
+    text-shadow: none;
+  }
+  30.1% {
+    opacity: 1;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.45), 0 0 60px rgba(255, 255, 255, 0.25);
+  }
+  30.5% {
+    opacity: 1;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.45), 0 0 60px rgba(255, 255, 255, 0.25);
+  }
+  30.6% {
+    opacity: 0;
+    text-shadow: none;
+  }
+  45% {
+    opacity: 0;
+    text-shadow: none;
+  }
+  45.1% {
+    opacity: 1;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.45), 0 0 60px rgba(255, 255, 255, 0.25);
+  }
+  50% {
+    opacity: 1;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.45), 0 0 60px rgba(255, 255, 255, 0.25);
+  }
+  55% {
+    opacity: 1;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.45), 0 0 60px rgba(255, 255, 255, 0.25);
+  }
+  55.1% {
+    opacity: 0;
+    text-shadow: none;
+  }
+  57% {
+    opacity: 0;
+    text-shadow: none;
+  }
+  57.1% {
+    opacity: 1;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.55), 0 0 60px rgba(255, 255, 255, 0.35);
+  }
+  60% {
+    opacity: 1;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.55), 0 0 60px rgba(255, 255, 255, 0.35);
+  }
+  60.1% {
+    opacity: 0;
+    text-shadow: none;
+  }
+  65% {
+    opacity: 0;
+    text-shadow: none;
+  }
+  65.1% {
+    opacity: 1;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.55), 0 0 60px rgba(255, 255, 255, 0.35), 0 0 100px rgba(255, 255, 255, 0.1);
+  }
+  75% {
+    opacity: 1;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.55), 0 0 60px rgba(255, 255, 255, 0.35), 0 0 100px rgba(255, 255, 255, 0.1);
+  }
+  75.1% {
+    opacity: 0;
+    text-shadow: none;
+  }
+  77% {
+    opacity: 0;
+    text-shadow: none;
+  }
+  77.1% {
+    opacity: 1;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.55), 0 0 60px rgba(255, 255, 255, 0.4), 0 0 110px rgba(255, 255, 255, 0.2), 0 0 100px rgba(255, 255, 255, 0.1);
+  }
+  85% {
+    opacity: 1;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.55), 0 0 60px rgba(255, 255, 255, 0.4), 0 0 110px rgba(255, 255, 255, 0.2), 0 0 100px rgba(255, 255, 255, 0.1);
+  }
+  85.1% {
+    opacity: 0;
+    text-shadow: none;
+  }
+  86% {
+    opacity: 0;
+    text-shadow: none;
+  }
+  86.1% {
+    opacity: 1;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.6), 0 0 60px rgba(255, 255, 255, 0.45), 0 0 110px rgba(255, 255, 255, 0.25), 0 0 100px rgba(255, 255, 255, 0.1);
+  }
+  100% {
+    opacity: 1;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.6), 0 0 60px rgba(255, 255, 255, 0.45), 0 0 110px rgba(255, 255, 255, 0.25), 0 0 100px rgba(255, 255, 255, 0.1);
+  }
+}
+@keyframes text-flicker-in-glow {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 0;
+    text-shadow: none;
+  }
+  10.1% {
+    opacity: 1;
+    text-shadow: none;
+  }
+  10.2% {
+    opacity: 0;
+    text-shadow: none;
+  }
+  20% {
+    opacity: 0;
+    text-shadow: none;
+  }
+  20.1% {
+    opacity: 1;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.25);
+  }
+  20.6% {
+    opacity: 0;
+    text-shadow: none;
+  }
+  30% {
+    opacity: 0;
+    text-shadow: none;
+  }
+  30.1% {
+    opacity: 1;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.45), 0 0 60px rgba(255, 255, 255, 0.25);
+  }
+  30.5% {
+    opacity: 1;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.45), 0 0 60px rgba(255, 255, 255, 0.25);
+  }
+  30.6% {
+    opacity: 0;
+    text-shadow: none;
+  }
+  45% {
+    opacity: 0;
+    text-shadow: none;
+  }
+  45.1% {
+    opacity: 1;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.45), 0 0 60px rgba(255, 255, 255, 0.25);
+  }
+  50% {
+    opacity: 1;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.45), 0 0 60px rgba(255, 255, 255, 0.25);
+  }
+  55% {
+    opacity: 1;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.45), 0 0 60px rgba(255, 255, 255, 0.25);
+  }
+  55.1% {
+    opacity: 0;
+    text-shadow: none;
+  }
+  57% {
+    opacity: 0;
+    text-shadow: none;
+  }
+  57.1% {
+    opacity: 1;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.55), 0 0 60px rgba(255, 255, 255, 0.35);
+  }
+  60% {
+    opacity: 1;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.55), 0 0 60px rgba(255, 255, 255, 0.35);
+  }
+  60.1% {
+    opacity: 0;
+    text-shadow: none;
+  }
+  65% {
+    opacity: 0;
+    text-shadow: none;
+  }
+  65.1% {
+    opacity: 1;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.55), 0 0 60px rgba(255, 255, 255, 0.35), 0 0 100px rgba(255, 255, 255, 0.1);
+  }
+  75% {
+    opacity: 1;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.55), 0 0 60px rgba(255, 255, 255, 0.35), 0 0 100px rgba(255, 255, 255, 0.1);
+  }
+  75.1% {
+    opacity: 0;
+    text-shadow: none;
+  }
+  77% {
+    opacity: 0;
+    text-shadow: none;
+  }
+  77.1% {
+    opacity: 1;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.55), 0 0 60px rgba(255, 255, 255, 0.4), 0 0 110px rgba(255, 255, 255, 0.2), 0 0 100px rgba(255, 255, 255, 0.1);
+  }
+  85% {
+    opacity: 1;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.55), 0 0 60px rgba(255, 255, 255, 0.4), 0 0 110px rgba(255, 255, 255, 0.2), 0 0 100px rgba(255, 255, 255, 0.1);
+  }
+  85.1% {
+    opacity: 0;
+    text-shadow: none;
+  }
+  86% {
+    opacity: 0;
+    text-shadow: none;
+  }
+  86.1% {
+    opacity: 1;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.6), 0 0 60px rgba(255, 255, 255, 0.45), 0 0 110px rgba(255, 255, 255, 0.25), 0 0 100px rgba(255, 255, 255, 0.1);
+  }
+  100% {
+    opacity: 1;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.6), 0 0 60px rgba(255, 255, 255, 0.45), 0 0 110px rgba(255, 255, 255, 0.25), 0 0 100px rgba(255, 255, 255, 0.1);
+  }
+}
+
+
+
+
+
+.text-flicker-out-glow {
+	-webkit-animation: text-flicker-out-glow 2.5s linear 0.7s both;
+	        animation: text-flicker-out-glow 2.5s linear 0.7s both;
+}
+.text-flicker-out-glow-sub {
+	-webkit-animation: text-flicker-out-glow 2s linear 2s both;
+	        animation: text-flicker-out-glow 2s linear 2s both;
+}
+
+/* ----------------------------------------------
+ * Generated by Animista on 2019-11-13 19:0:49
+ * Licensed under FreeBSD License.
+ * See http://animista.net/license for more info. 
+ * w: http://animista.net, t: @cssanimista
+ * ---------------------------------------------- */
+
+/**
+ * ----------------------------------------
+ * animation text-flicker-out-glow
+ * ----------------------------------------
+ */
+ @-webkit-keyframes text-flicker-out-glow {
+  0% {
+    opacity: 1;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.6), 0 0 60px rgba(255, 255, 255, 0.45), 0 0 110px rgba(255, 255, 255, 0.25), 0 0 100px rgba(255, 255, 255, 0.1);
+  }
+  13.9% {
+    opacity: 1;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.6), 0 0 60px rgba(255, 255, 255, 0.45), 0 0 110px rgba(255, 255, 255, 0.25), 0 0 100px rgba(255, 255, 255, 0.1);
+  }
+  14% {
+    opacity: 0;
+    text-shadow: none;
+  }
+  14.9% {
+    opacity: 0;
+    text-shadow: none;
+  }
+  15% {
+    opacity: 1;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.55), 0 0 60px rgba(255, 255, 255, 0.4), 0 0 110px rgba(255, 255, 255, 0.2), 0 0 100px rgba(255, 255, 255, 0.1);
+  }
+  22.9% {
+    opacity: 1;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.55), 0 0 60px rgba(255, 255, 255, 0.4), 0 0 110px rgba(255, 255, 255, 0.2), 0 0 100px rgba(255, 255, 255, 0.1);
+  }
+  23% {
+    opacity: 0;
+    text-shadow: none;
+  }
+  24.9% {
+    opacity: 0;
+    text-shadow: none;
+  }
+  25% {
+    opacity: 1;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.55), 0 0 60px rgba(255, 255, 255, 0.35), 0 0 100px rgba(255, 255, 255, 0.1);
+  }
+  34.9% {
+    opacity: 1;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.55), 0 0 60px rgba(255, 255, 255, 0.35), 0 0 100px rgba(255, 255, 255, 0.1);
+  }
+  35% {
+    opacity: 0;
+    text-shadow: none;
+  }
+  39.9% {
+    opacity: 0;
+    text-shadow: none;
+  }
+  40% {
+    opacity: 1;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.55), 0 0 60px rgba(255, 255, 255, 0.35);
+  }
+  42.9% {
+    opacity: 1;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.55), 0 0 60px rgba(255, 255, 255, 0.35);
+  }
+  43% {
+    opacity: 0;
+    text-shadow: none;
+  }
+  44.9% {
+    opacity: 0;
+    text-shadow: none;
+  }
+  45% {
+    opacity: 1;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.45), 0 0 60px rgba(255, 255, 255, 0.25);
+  }
+  50% {
+    opacity: 1;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.45), 0 0 60px rgba(255, 255, 255, 0.25);
+  }
+  54.9% {
+    opacity: 1;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.45), 0 0 60px rgba(255, 255, 255, 0.25);
+  }
+  55% {
+    opacity: 0;
+    text-shadow: none;
+  }
+  69.4% {
+    opacity: 0;
+    text-shadow: none;
+  }
+  69.5% {
+    opacity: 1;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.45), 0 0 60px rgba(255, 255, 255, 0.25);
+  }
+  69.9% {
+    opacity: 1;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.45), 0 0 60px rgba(255, 255, 255, 0.25);
+  }
+  70% {
+    opacity: 0;
+    text-shadow: none;
+  }
+  79.4% {
+    opacity: 0;
+    text-shadow: none;
+  }
+  79.9% {
+    opacity: 1;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.25);
+  }
+  80% {
+    opacity: 0;
+    text-shadow: none;
+  }
+  89.8% {
+    opacity: 0;
+    text-shadow: none;
+  }
+  89.9% {
+    opacity: 1;
+    text-shadow: none;
+  }
+  90% {
+    opacity: 0;
+    text-shadow: none;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes text-flicker-out-glow {
+  0% {
+    opacity: 1;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.6), 0 0 60px rgba(255, 255, 255, 0.45), 0 0 110px rgba(255, 255, 255, 0.25), 0 0 100px rgba(255, 255, 255, 0.1);
+  }
+  13.9% {
+    opacity: 1;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.6), 0 0 60px rgba(255, 255, 255, 0.45), 0 0 110px rgba(255, 255, 255, 0.25), 0 0 100px rgba(255, 255, 255, 0.1);
+  }
+  14% {
+    opacity: 0;
+    text-shadow: none;
+  }
+  14.9% {
+    opacity: 0;
+    text-shadow: none;
+  }
+  15% {
+    opacity: 1;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.55), 0 0 60px rgba(255, 255, 255, 0.4), 0 0 110px rgba(255, 255, 255, 0.2), 0 0 100px rgba(255, 255, 255, 0.1);
+  }
+  22.9% {
+    opacity: 1;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.55), 0 0 60px rgba(255, 255, 255, 0.4), 0 0 110px rgba(255, 255, 255, 0.2), 0 0 100px rgba(255, 255, 255, 0.1);
+  }
+  23% {
+    opacity: 0;
+    text-shadow: none;
+  }
+  24.9% {
+    opacity: 0;
+    text-shadow: none;
+  }
+  25% {
+    opacity: 1;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.55), 0 0 60px rgba(255, 255, 255, 0.35), 0 0 100px rgba(255, 255, 255, 0.1);
+  }
+  34.9% {
+    opacity: 1;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.55), 0 0 60px rgba(255, 255, 255, 0.35), 0 0 100px rgba(255, 255, 255, 0.1);
+  }
+  35% {
+    opacity: 0;
+    text-shadow: none;
+  }
+  39.9% {
+    opacity: 0;
+    text-shadow: none;
+  }
+  40% {
+    opacity: 1;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.55), 0 0 60px rgba(255, 255, 255, 0.35);
+  }
+  42.9% {
+    opacity: 1;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.55), 0 0 60px rgba(255, 255, 255, 0.35);
+  }
+  43% {
+    opacity: 0;
+    text-shadow: none;
+  }
+  44.9% {
+    opacity: 0;
+    text-shadow: none;
+  }
+  45% {
+    opacity: 1;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.45), 0 0 60px rgba(255, 255, 255, 0.25);
+  }
+  50% {
+    opacity: 1;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.45), 0 0 60px rgba(255, 255, 255, 0.25);
+  }
+  54.9% {
+    opacity: 1;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.45), 0 0 60px rgba(255, 255, 255, 0.25);
+  }
+  55% {
+    opacity: 0;
+    text-shadow: none;
+  }
+  69.4% {
+    opacity: 0;
+    text-shadow: none;
+  }
+  69.5% {
+    opacity: 1;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.45), 0 0 60px rgba(255, 255, 255, 0.25);
+  }
+  69.9% {
+    opacity: 1;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.45), 0 0 60px rgba(255, 255, 255, 0.25);
+  }
+  70% {
+    opacity: 0;
+    text-shadow: none;
+  }
+  79.4% {
+    opacity: 0;
+    text-shadow: none;
+  }
+  79.9% {
+    opacity: 1;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.25);
+  }
+  80% {
+    opacity: 0;
+    text-shadow: none;
+  }
+  89.8% {
+    opacity: 0;
+    text-shadow: none;
+  }
+  89.9% {
+    opacity: 1;
+    text-shadow: none;
+  }
+  90% {
+    opacity: 0;
+    text-shadow: none;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.puff-in-center {
+	-webkit-animation: puff-in-center 0.7s cubic-bezier(0.470, 0.000, 0.745, 0.715) 3.8s both;
+	        animation: puff-in-center 0.7s cubic-bezier(0.470, 0.000, 0.745, 0.715) 3.8s both;
+}
+
+/* ----------------------------------------------
+ * Generated by Animista on 2019-11-13 19:11:44
+ * Licensed under FreeBSD License.
+ * See http://animista.net/license for more info. 
+ * w: http://animista.net, t: @cssanimista
+ * ---------------------------------------------- */
+
+/**
+ * ----------------------------------------
+ * animation puff-in-center
+ * ----------------------------------------
+ */
+ @-webkit-keyframes puff-in-center {
+  0% {
+    -webkit-transform: scale(2);
+            transform: scale(2);
+    -webkit-filter: blur(4px);
+            filter: blur(4px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    -webkit-filter: blur(0px);
+            filter: blur(0px);
+    opacity: 1;
+  }
+}
+@keyframes puff-in-center {
+  0% {
+    -webkit-transform: scale(2);
+            transform: scale(2);
+    -webkit-filter: blur(4px);
+            filter: blur(4px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    -webkit-filter: blur(0px);
+            filter: blur(0px);
+    opacity: 1;
+  }
+}
+
+.bounce-in-bck {
+	-webkit-animation: bounce-in-bck 1.5s 4.0s both;
+	        animation: bounce-in-bck 1.5s 4.0s both;
+}
+
+/* ----------------------------------------------
+ * Generated by Animista on 2019-11-13 19:31:34
+ * Licensed under FreeBSD License.
+ * See http://animista.net/license for more info. 
+ * w: http://animista.net, t: @cssanimista
+ * ---------------------------------------------- */
+
+/**
+ * ----------------------------------------
+ * animation bounce-in-bck
+ * ----------------------------------------
+ */
+ @-webkit-keyframes bounce-in-bck {
+  0% {
+    -webkit-transform: scale(7);
+            transform: scale(7);
+    -webkit-animation-timing-function: ease-in;
+            animation-timing-function: ease-in;
+    opacity: 0;
+  }
+  38% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    -webkit-animation-timing-function: ease-out;
+            animation-timing-function: ease-out;
+    opacity: 1;
+  }
+  55% {
+    -webkit-transform: scale(1.5);
+            transform: scale(1.5);
+    -webkit-animation-timing-function: ease-in;
+            animation-timing-function: ease-in;
+  }
+  72% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    -webkit-animation-timing-function: ease-out;
+            animation-timing-function: ease-out;
+  }
+  81% {
+    -webkit-transform: scale(1.24);
+            transform: scale(1.24);
+    -webkit-animation-timing-function: ease-in;
+            animation-timing-function: ease-in;
+  }
+  89% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    -webkit-animation-timing-function: ease-out;
+            animation-timing-function: ease-out;
+  }
+  95% {
+    -webkit-transform: scale(1.04);
+            transform: scale(1.04);
+    -webkit-animation-timing-function: ease-in;
+            animation-timing-function: ease-in;
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    -webkit-animation-timing-function: ease-out;
+            animation-timing-function: ease-out;
+  }
+}
+@keyframes bounce-in-bck {
+  0% {
+    -webkit-transform: scale(7);
+            transform: scale(7);
+    -webkit-animation-timing-function: ease-in;
+            animation-timing-function: ease-in;
+    opacity: 0;
+  }
+  38% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    -webkit-animation-timing-function: ease-out;
+            animation-timing-function: ease-out;
+    opacity: 1;
+  }
+  55% {
+    -webkit-transform: scale(1.5);
+            transform: scale(1.5);
+    -webkit-animation-timing-function: ease-in;
+            animation-timing-function: ease-in;
+  }
+  72% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    -webkit-animation-timing-function: ease-out;
+            animation-timing-function: ease-out;
+  }
+  81% {
+    -webkit-transform: scale(1.24);
+            transform: scale(1.24);
+    -webkit-animation-timing-function: ease-in;
+            animation-timing-function: ease-in;
+  }
+  89% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    -webkit-animation-timing-function: ease-out;
+            animation-timing-function: ease-out;
+  }
+  95% {
+    -webkit-transform: scale(1.04);
+            transform: scale(1.04);
+    -webkit-animation-timing-function: ease-in;
+            animation-timing-function: ease-in;
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    -webkit-animation-timing-function: ease-out;
+            animation-timing-function: ease-out;
+  }
+}
+
+.blur-out-expand-fwd {
+	-webkit-animation: blur-out-expand-fwd 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.4s both;
+	        animation: blur-out-expand-fwd 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.4s both;
+}
+.blur-out-expand-fwd-1 {
+	-webkit-animation: blur-out-expand-fwd 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.6s both;
+	        animation: blur-out-expand-fwd 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.6s both;
+}
+.blur-out-expand-fwd-2 {
+	-webkit-animation: blur-out-expand-fwd 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.8s both;
+	        animation: blur-out-expand-fwd 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.8s both;
+}
+.blur-out-expand-fwd-3 {
+	-webkit-animation: blur-out-expand-fwd 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) 1.0s both;
+	        animation: blur-out-expand-fwd 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) 1.0s both;
+}
+.blur-out-expand-fwd-4 {
+	-webkit-animation: blur-out-expand-fwd 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) 1.2s both;
+	        animation: blur-out-expand-fwd 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) 1.2s both;
+}
+.blur-out-expand-fwd-5 {
+	-webkit-animation: blur-out-expand-fwd 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) 1.4s both;
+	        animation: blur-out-expand-fwd 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) 1.4s both;
+}
+.blur-out-expand-fwd-6 {
+	-webkit-animation: blur-out-expand-fwd 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) 1.6s both;
+	        animation: blur-out-expand-fwd 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) 1.6s both;
+}
+.blur-out-expand-fwd-7 {
+	-webkit-animation: blur-out-expand-fwd 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) 1.7s both;
+	        animation: blur-out-expand-fwd 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) 1.7s both;
+}
+.blur-out-expand-fwd-8 {
+	-webkit-animation: blur-out-expand-fwd 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) 1.8s both;
+	        animation: blur-out-expand-fwd 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) 1.8s both;
+}
+.blur-out-expand-fwd-9 {
+	-webkit-animation: blur-out-expand-fwd 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) 1.9s both;
+	        animation: blur-out-expand-fwd 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) 1.9s both;
+}
+.blur-out-expand-fwd-10 {
+	-webkit-animation: blur-out-expand-fwd 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) 2.0s both;
+	        animation: blur-out-expand-fwd 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) 2.0s both;
+}
+.blur-out-expand-fwd-11 {
+	-webkit-animation: blur-out-expand-fwd 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) 2.1s both;
+	        animation: blur-out-expand-fwd 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) 2.1s both;
+}
+.blur-out-expand-fwd-12 {
+	-webkit-animation: blur-out-expand-fwd 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) 2.2s both;
+	        animation: blur-out-expand-fwd 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) 2.2s both;
+}
+.blur-out-expand-fwd-13 {
+	-webkit-animation: blur-out-expand-fwd 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) 2.3s both;
+	        animation: blur-out-expand-fwd 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) 2.3s both;
+}
+.blur-out-expand-fwd-14 {
+	-webkit-animation: blur-out-expand-fwd 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) 2.4s both;
+	        animation: blur-out-expand-fwd 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) 2.4s both;
+}
+
+/* ----------------------------------------------
+ * Generated by Animista on 2019-11-13 19:50:19
+ * Licensed under FreeBSD License.
+ * See http://animista.net/license for more info. 
+ * w: http://animista.net, t: @cssanimista
+ * ---------------------------------------------- */
+
+/**
+ * ----------------------------------------
+ * animation blur-out-expand-fwd
+ * ----------------------------------------
+ */
+ @-webkit-keyframes blur-out-expand-fwd {
+  0% {
+    -webkit-transform: translateZ(0);
+            transform: translateZ(0);
+    -webkit-filter: blur(0.01);
+            filter: blur(0.01);
+  }
+  100% {
+    letter-spacing: 1em;
+    -webkit-transform: translateZ(300px);
+            transform: translateZ(300px);
+    -webkit-filter: blur(12px) opacity(0%);
+            filter: blur(12px) opacity(0%);
+  }
+}
+@keyframes blur-out-expand-fwd {
+  0% {
+    -webkit-transform: translateZ(0);
+            transform: translateZ(0);
+    -webkit-filter: blur(0.01);
+            filter: blur(0.01);
+  }
+  100% {
+    letter-spacing: 1em;
+    -webkit-transform: translateZ(300px);
+            transform: translateZ(300px);
+    -webkit-filter: blur(12px) opacity(0%);
+            filter: blur(12px) opacity(0%);
+  }
+}
+
+
+.text-focus-in {
+	-webkit-animation: text-focus-in 1s cubic-bezier(0.550, 0.085, 0.680, 0.530) 2.7s both;
+	        animation: text-focus-in 1s cubic-bezier(0.550, 0.085, 0.680, 0.530) 2.7s both;
+}
+.text-focus-in-next {
+	-webkit-animation: text-focus-in 1s cubic-bezier(0.550, 0.085, 0.680, 0.530) 3.0s both;
+	        animation: text-focus-in 1s cubic-bezier(0.550, 0.085, 0.680, 0.530) 3.0s both;
+}
+.text-focus-in-last {
+	-webkit-animation: text-focus-in 1s cubic-bezier(0.550, 0.085, 0.680, 0.530) 3.3s both;
+	        animation: text-focus-in 1s cubic-bezier(0.550, 0.085, 0.680, 0.530) 3.3s both;
+}
+
+
+/* ----------------------------------------------
+ * Generated by Animista on 2019-11-13 20:25:42
+ * Licensed under FreeBSD License.
+ * See http://animista.net/license for more info. 
+ * w: http://animista.net, t: @cssanimista
+ * ---------------------------------------------- */
+
+/**
+ * ----------------------------------------
+ * animation text-focus-in
+ * ----------------------------------------
+ */
+ @-webkit-keyframes text-focus-in {
+  0% {
+    -webkit-filter: blur(12px);
+            filter: blur(12px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-filter: blur(0px);
+            filter: blur(0px);
+    opacity: 1;
+  }
+}
+@keyframes text-focus-in {
+  0% {
+    -webkit-filter: blur(12px);
+            filter: blur(12px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-filter: blur(0px);
+            filter: blur(0px);
+    opacity: 1;
+  }
+}
+
+.text-shadow-drop-br {
+	-webkit-animation: text-shadow-drop-br 0.6s both;
+	        animation: text-shadow-drop-br 0.6s both;
+}
+/* ----------------------------------------------
+ * Generated by Animista on 2019-11-14 1:27:33
+ * Licensed under FreeBSD License.
+ * See http://animista.net/license for more info. 
+ * w: http://animista.net, t: @cssanimista
+ * ---------------------------------------------- */
+
+/**
+ * ----------------------------------------
+ * @animation text-shadow-drop-br
+ * ----------------------------------------
+ */
+ @-webkit-keyframes text-shadow-drop-br {
+  0% {
+    text-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  }
+  100% {
+    text-shadow: 6px 6px 18px rgba(0, 0, 0, 0.35);
+  }
+}
+@keyframes text-shadow-drop-br {
+  0% {
+    text-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  }
+  100% {
+    text-shadow: 6px 6px 18px rgba(0, 0, 0, 0.35);
+  }
+}
+
+.shadow-inset-center {
+	-webkit-animation: shadow-inset-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: shadow-inset-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+/* ----------------------------------------------
+ * Generated by Animista on 2019-11-14 1:40:6
+ * Licensed under FreeBSD License.
+ * See http://animista.net/license for more info. 
+ * w: http://animista.net, t: @cssanimista
+ * ---------------------------------------------- */
+
+/**
+ * ----------------------------------------
+ * animation shadow-inset-center
+ * ----------------------------------------
+ */
+ @-webkit-keyframes shadow-inset-center {
+  0% {
+    -webkit-box-shadow: inset 0 0 0 0 rgba(0, 0, 0, 0.9);
+            box-shadow: inset 0 0 0 0 rgba(0, 0, 0, 0.9);
+  }
+  100% {
+    -webkit-box-shadow: inset 0 0 14px 0px rgba(0, 0, 0, 0.9);
+            box-shadow: inset 0 0 14px 0px rgba(0, 0, 0, 0.9);
+  }
+}
+@keyframes shadow-inset-center {
+  0% {
+    -webkit-box-shadow: inset 0 0 0 0 rgba(0, 0, 0, 0.9);
+            box-shadow: inset 0 0 0 0 rgba(0, 0, 0, 0.9);
+  }
+  100% {
+    -webkit-box-shadow: inset 0 0 14px 0px rgba(0, 0, 0, 0.9);
+            box-shadow: inset 0 0 14px 0px rgba(0, 0, 0, 0.9);
+  }
+}
+
+
+
