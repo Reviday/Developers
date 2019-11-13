@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
+import com.kh.developers.admin.model.vo.MemberLoginLog;
 import com.kh.developers.member.model.vo.Member;
 
 public interface AdminDao {
@@ -23,4 +24,5 @@ public interface AdminDao {
 	List<Member> selectWithdrawMemberListBySearch(SqlSessionTemplate session, Map<String, Object> searchValue, int cPage, int numPerPage);
 	int restoreMember(SqlSessionTemplate session, Member m);
 	int selectloginLogCount(SqlSessionTemplate session);
+	List<MemberLoginLog> selectLoginLogList(SqlSessionTemplate session, int cPage, int numPerPage);
 }

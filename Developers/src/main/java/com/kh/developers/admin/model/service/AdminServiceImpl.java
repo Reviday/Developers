@@ -23,7 +23,7 @@ public class AdminServiceImpl implements AdminService {
 	
 	@Override
 	public List<MemberLoginLog> selectLoginLogList(int cPage, int numPerPage) {
-		return dao.;
+		return dao.selectLoginLogList(session, cPage, numPerPage);
 	}
 	
 	@Override

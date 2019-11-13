@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="log">
+	<select id="selectLoginLogList" resultMap="mllMap">
+		SELECT * FROM TA_MEMBER_LOGIN_LOG ORDER BY MLL_DATETIME DESC
+	</select>
+	<select id="selectLoginLogCount" resultType="_int">
+		SELECT COUNT(*) FROM TA_MEMBER_LOGIN_LOG
+	</select>
+	
+	<resultMap type="mll" id="mllMap">
+		<result property="mllNo" column="mll_no"/>
+		<result property="mllSuccess" column="mll_success"/>
+		<result property="mllMemNo" column="mll_mem_no"/>
+		<result property="mllUserEmail" column="mll_user_email"/>
+		<result property="mllDatetime" column="mll_datetime"/>
+		<result property="mllIp" column="mll_ip"/>
+		<result property="mllReason" column="mll_reason"/>
+		<result property="mllUseragent" column="mll_useragent"/>
+		<result property="mllUrl" column="mll_url"/>
+		<result property="mllReferer" column="mll_referer"/>
+	</resultMap>
+</mapper>

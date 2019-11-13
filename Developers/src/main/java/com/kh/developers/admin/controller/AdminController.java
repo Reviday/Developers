@@ -33,7 +33,7 @@ public class AdminController {
 	public ModelAndView loginLog(HttpServletRequest req) {
 		ModelAndView mv=new ModelAndView();
 		int totalData=service.selectloginLogCount();
-		pt=new PaginationTemplate(req, totalData, "/admin/memberList.lac");
+		pt=new PaginationTemplate(req, totalData, "/admin/loginLog.lac");
 		List<MemberLoginLog> list=service.selectLoginLogList(pt.getcPage(),pt.getNumPerPage());
 		
 		mv.addObject("logList",list);
