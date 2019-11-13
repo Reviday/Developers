@@ -3,6 +3,7 @@ package com.kh.developers.admin.model.service;
 import java.util.List;
 
 import com.kh.developers.admin.model.vo.MemberLoginLog;
+import com.kh.developers.admin.model.vo.VisitCount;
 import com.kh.developers.member.model.vo.Member;
 
 public interface AdminService {

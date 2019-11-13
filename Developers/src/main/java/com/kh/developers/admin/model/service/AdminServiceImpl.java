@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.developers.admin.model.dao.AdminDao;
 import com.kh.developers.admin.model.vo.MemberLoginLog;
+import com.kh.developers.admin.model.vo.VisitCount;
 import com.kh.developers.member.model.vo.Member;
 
 @Service

@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="log">
+	<insert id="insertVisitor" parameterType="vc">
+        INSERT
+        INTO TB_VISITOR
+        (
+            VISIT_ID,
+            VISIT_IP,
+            VISIT_TIME
+        )
+        VALUES
+        (
+            VISITOR_SEQ.NEXTVAL,
+            #{visitIp},
+            SYSDATE
+        )
+    </insert>
 	<select id="selectLoginLogList" resultMap="mllMap">
 		SELECT * FROM TA_MEMBER_LOGIN_LOG ORDER BY MLL_DATETIME DESC
 	</select>

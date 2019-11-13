@@ -26,6 +26,7 @@
 		<typeAlias type="com.kh.developers.search.model.vo.BookMark" alias="bookmark"/>
 		<typeAlias type="com.kh.developers.member.model.vo.MyLike" alias="myLike"/>
 		<typeAlias type="com.kh.developers.admin.model.vo.MemberLoginLog" alias="mll"/>
+		<typeAlias type="com.kh.developers.admin.model.vo.VisitCount" alias="vc"/>
 		<typeAlias type="com.kh.developers.recommend.model.vo.Recommend" alias="recommend"/>
 		<typeAlias type="com.kh.developers.recommend.model.vo.Friend" alias="friend"/>
 	</typeAliases>
