@@ -11,16 +11,16 @@
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <body>
     <div class="_1Gv5LM5zal-f72_XSo_qJ_">
-        <nav role="presentation" class="_3wSXAiIJQZ98fJ-Hi6G42Q"><button type="button" class="">좋아요<i
+ <nav role="presentation" class="_3wSXAiIJQZ98fJ-Hi6G42Q"><button type="button" class="">프로필<i
                     class="icon-arrow_bottom_fill"></i></button>
+                    <c:set value="${loginMember.memEmail }" var="memEmail"  />
             <ul class="">
-                <li class="_1ft7OZSrbzL35bkI-omU2b"><a href="#" onclick=""; class="">프로필</a></li>
+                <li class="_1ft7OZSrbzL35bkI-omU2b"><a href="#" class="activeNav">프로필</a></li>
                 <li class="_1ft7OZSrbzL35bkI-omU2b"><a href="#" class="">포인트</a></li>
-                <li class="_1ft7OZSrbzL35bkI-omU2b"><button type="button" class="">제안받기 현황<i
-                            class="icon-arrow_bottom_fill"></i></button><a href="#" class="">제안받기 현황</a>
-                </li>
-                <li class="_1ft7OZSrbzL35bkI-omU2b"><a href="#" class="activeNav">좋아요</a></li>
-                <li class="_1ft7OZSrbzL35bkI-omU2b"><a href="#" class="">북마크</a></li>
+				<li class="_1ft7OZSrbzL35bkI-omU2b"><a href="#" onclick="applicantPage('${memEmail}');" class="">제안받기 현황</a></li>	
+                <li class="_1ft7OZSrbzL35bkI-omU2b"><a href="#" onclick="likePage('${memEmail }');" class="">좋아요</a></li>
+                <li class="_1ft7OZSrbzL35bkI-omU2b"><a href="#" onclick="myBookMark('${memEmail }')" class="">북마크</a></li>
+              
             </ul>
         </nav>
         <div class="_2oEXS1kAsO9i_0mkxCxkCA">

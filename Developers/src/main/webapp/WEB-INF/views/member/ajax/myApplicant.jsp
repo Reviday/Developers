@@ -17,8 +17,7 @@
         <ul class="">
             <li class="_1ft7OZSrbzL35bkI-omU2b"><a href="/profile/matching" class="">프로필</a></li>
             <li class="_1ft7OZSrbzL35bkI-omU2b"><a href="/profile/point" class="">포인트</a></li>
-            <li class="_1ft7OZSrbzL35bkI-omU2b"><button type="button" class="">제안받기 현황<i
-                        class="icon-arrow_bottom_fill"></i></button><a href="/profile/status" class="activeNav">제안받기
+            <li class="_1ft7OZSrbzL35bkI-omU2b"><a href="/profile/status" class="activeNav">제안받기
                     현황</a></li>
             <li class="_1ft7OZSrbzL35bkI-omU2b"><a href="/profile/likes" class="">좋아요</a></li>
             <li class="_1ft7OZSrbzL35bkI-omU2b"><a href="/profile/bookmarks" class="">북마크</a></li>
