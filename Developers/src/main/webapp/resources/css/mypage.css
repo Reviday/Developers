@@ -1846,6 +1846,8 @@
 ._1ft7OZSrbzL35bkI-omU2b>button:hover {
     color: #333;
     background-color: #fff;
+    border: 1px solid orange;
+   
     border-radius: 999px;
     -webkit-transition: color .4s, background-color .4s;
     transition: color .4s, background-color .4s
@@ -17537,6 +17539,7 @@ button._2b3tpm3Ab5C1Cgd6GaKizW {
     left: 0;
     width: 250px;
     position: absolute
+   
 }
 
 @media (max-width:767px) {

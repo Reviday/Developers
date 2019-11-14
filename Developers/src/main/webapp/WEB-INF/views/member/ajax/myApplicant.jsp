@@ -56,7 +56,7 @@
                             <time ></time>
                             <div class="type resumeRequest" id="resumeRequest">
                             <c:set value="${loginMember.memNo }" var="memNo"  />
-               				<button type="button" class="btn btn-primary btn-sm" onclick="fu_appl('${memNo}','1');">승인</button>
+               				<button type="button" class="btn btn-primary btn-sm" onclick="fn_appl('${memNo}','1');">승인</button>
 							<button type="button" class="btn btn-danger btn-sm" onclick="fn_appl('${memNo}','2');">거절</button>
                             </div>
                         </li>
@@ -81,7 +81,7 @@
         </section>
     </div>
 <script>
-function fu_appl(memNo,number){
+function fn_appl(memNo,number){
 		$.ajax({
 		url:"${path }/member/applAns.lmc",
 		type:"POST",
