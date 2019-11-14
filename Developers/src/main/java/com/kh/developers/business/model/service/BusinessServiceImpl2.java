@@ -46,6 +46,19 @@ public class BusinessServiceImpl2 implements BusinessService2 {
 		Business bus=dao.selectBusOne(session, busNo);
 		return bus;
 	}
+	
+
+	@Override
+	public Double selectAnswerRate(Map map) {
+		double rate=dao.selectAnswerRate(session, map);
+		return rate;
+	}
+
+	@Override
+	public Double selectAnswerPeriod(Map map) {
+		double period=dao.selectAnswerPeriod(session, map);
+		return period;
+	}
 
 	@Override
 	public List<Integer> selectApplPoList(Map map) {

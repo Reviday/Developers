@@ -283,11 +283,11 @@ public class BusinessController2 {
 		applHtml+="<div id='appl-main-top' class='appl-main-top'>";
 		applHtml+="<div id='appl-main-top-left' class='appl-main-top-left'>";
 		applHtml+="<h4 class='h-left'>지원자 응답률</h4>";
-		applHtml+="<h4 class='h-right'>0.0%</h4>";
+		applHtml+="<h4 class='h-right'>"+service.selectAnswerRate(map)+"%</h4>";
 		applHtml+="</div>";
 		applHtml+="<div>";
 		applHtml+="<h4 class='h-left'>평균 응답일</h4>";
-		applHtml+="<h4 class='h-right'>0일</h4>";
+		applHtml+="<h4 class='h-right'>"+service.selectAnswerPeriod(map)+"일</h4>";
 		applHtml+="</div>";
 		applHtml+="</div>";
 		applHtml+="<nav class='appl-main-nav nav'>";
@@ -359,16 +359,16 @@ public class BusinessController2 {
 			for(Applicant appl : applList) {
 				Member m=service.selectApplicant(appl.getMemNo());
 				html+="<div class='appl-aList'>";
-				html+="<div class='aList-left'>";
 				Map likeMap=new HashMap();
 				likeMap.put("busNo", ((Business)session.getAttribute("busInfo")).getBusNo());
 				likeMap.put("applNo", appl.getApplNo());
 				if(applLike||service.selectCheckLike(likeMap)>0) {
 					html+="<div class='aList-like-btn like_on'><i class='fas fa-star'></i></div>";
 				}else {
-
+					
 					html+="<div class='aList-like-btn'><i class='fas fa-star'></i></div>";
 				}
+				html+="<div class='aList-left'>";
 				html+="<div class='aList-info'>";
 				html+="<div class='aList-info-no'>No_"+appl.getAlNo()+"</div>";
 				html+="<div class='aList-info-name'>"+m.getMemName().charAt(0)+"<i class='far fa-circle'></i><i class='far fa-circle'></i></div>";

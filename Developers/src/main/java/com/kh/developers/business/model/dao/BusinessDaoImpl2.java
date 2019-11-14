@@ -42,8 +42,19 @@ public class BusinessDaoImpl2 implements BusinessDao2 {
 	public Business selectBusOne(SqlSession session, String busNo) {
 		return session.selectOne("business2.selectBusOne", busNo);
 	}
-
 	
+	@Override
+	public double selectAnswerRate(SqlSession session, Map map) {
+		return session.selectOne("business2.selectAnswerRate", map);
+	}
+
+
+	@Override
+	public double selectAnswerPeriod(SqlSession session, Map map) {
+		return session.selectOne("business2.selectAnswerPeriod", map);
+	}
+
+
 	@Override
 	public List<Integer> selectApplPoList(SqlSession session, Map map) {
 		return session.selectList("business2.selectApplPoList", map);

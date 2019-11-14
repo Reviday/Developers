@@ -28,6 +28,10 @@ public interface BusinessDao2 {
 	
 	//bus가져오기 번호로
 	Business selectBusOne(SqlSession session, String busNo);
+	
+	double selectAnswerRate(SqlSession session, Map map);
+	double selectAnswerPeriod(SqlSession session, Map map);
+	
 	List<Integer> selectApplPoList(SqlSession session, Map map);
 	
 	//지원자 리스트
