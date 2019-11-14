@@ -585,5 +585,33 @@ public class MemberController {
     	mv.setViewName("member/ajax/myApplicant");
     	return mv;
     }
+    @RequestMapping("/member/profilePage.lmc")
+	public ModelAndView profilePage(Member m,HttpServletRequest req) {
+		ModelAndView mv=new ModelAndView();
+		String email=((Member)req.getSession().getAttribute("loginMember")).getMemEmail();
+		m.setMemEmail(email);
+		m=service.selectMemberOne(m);
+		Resume resume=rService.selectMathUpResume(m);
+		if(resume==null) {
+			mv.setViewName("member/ajax/profilePage");
+			return mv;
+		}else {
+			List<Career> career=rService.selectCareer(resume);
+			List<Education> ed=rService.selectEd(resume);
+			List<Activitie> ac=rService.selectAc(resume);
+			List<Lang> Lang=rService.selectLang(resume);
+			List<Links> links=rService.selectLinks(resume);
+			Interests inter =rService.selectInter(m);
+			mv.addObject("ed",ed);
+			mv.addObject("ac",ac);
+			mv.addObject("Lang",Lang);
+			mv.addObject("links",links);
+			mv.addObject("resume", resume);
+			mv.addObject("career", career);
+			mv.addObject("inter",inter);
+			mv.setViewName("member/ajax/profilePage2");
+			return mv;
+		}
+	}
     
 }

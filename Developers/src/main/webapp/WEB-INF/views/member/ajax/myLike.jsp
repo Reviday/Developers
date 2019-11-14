@@ -9,7 +9,7 @@
         <nav role="presentation" class="_3wSXAiIJQZ98fJ-Hi6G42Q">
         	<c:set value="${loginMember.memEmail }" var="memEmail"  />
             <ul class="">
-                <li class="_1ft7OZSrbzL35bkI-omU2b"><a href="#" onclick="profilePage(${memEmail})" class="">프로필</a></li>
+                <li class="_1ft7OZSrbzL35bkI-omU2b"><a href="#" onclick="profilePage('${memEmail }')" class="">프로필</a></li>
                 <li class="_1ft7OZSrbzL35bkI-omU2b"><a href="#" class="">포인트</a></li>
 				<li class="_1ft7OZSrbzL35bkI-omU2b"><a href="#" onclick="applicantPage('${memEmail}');" class="">제안받기 현황</a></li>	
                 <li class="_1ft7OZSrbzL35bkI-omU2b"><a href="#"  class="activeNav">좋아요</a></li>
