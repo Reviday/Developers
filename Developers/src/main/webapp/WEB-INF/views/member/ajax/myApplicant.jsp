@@ -48,7 +48,7 @@
         </div>
         <section>
             <div class="_2BcuDguCHGaa1TAI2sJw20">
-                <div>
+                <div class="header">
                     <ul>
                         <li>회사명</li>
                         <li>일자</li>

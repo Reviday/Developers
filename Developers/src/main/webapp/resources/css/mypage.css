@@ -14520,17 +14520,17 @@ button._2b3tpm3Ab5C1Cgd6GaKizW {
     }
 }
 
-._2BcuDguCHGaa1TAI2sJw20>header ul {
+._2BcuDguCHGaa1TAI2sJw20>.header ul {
     padding: 10px
 }
 
-._2BcuDguCHGaa1TAI2sJw20>header ul:after {
+._2BcuDguCHGaa1TAI2sJw20>.header ul:after {
     display: block;
     content: "";
     clear: both
 }
 
-._2BcuDguCHGaa1TAI2sJw20>header ul li {
+._2BcuDguCHGaa1TAI2sJw20>.header ul li {
     float: left
 }
 
