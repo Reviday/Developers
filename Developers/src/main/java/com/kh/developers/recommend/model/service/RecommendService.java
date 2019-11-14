@@ -28,4 +28,6 @@ public interface RecommendService {
 	int deleteRecommend(int memNo, int recommendNo);
 	//추천사 추가
 	int insertChoochunsa(int memNo, int recommendNo, String text);
+	//추천하기-> 추천사
+	Member selectMember(String recommendEmail);
 }

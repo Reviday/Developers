@@ -5,6 +5,8 @@ import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
+import com.kh.developers.member.model.vo.Member;
+import com.kh.developers.recommend.model.vo.Recommend;
 import com.kh.developers.search.model.vo.BookMark;
 import com.kh.developers.search.model.vo.Company;
 import com.kh.developers.search.model.vo.Filter;
@@ -15,6 +17,7 @@ import com.kh.developers.search.model.vo.FilterOrderType;
 import com.kh.developers.search.model.vo.JobField;
 import com.kh.developers.search.model.vo.LikeMember;
 import com.kh.developers.search.model.vo.Position;
+import com.kh.developers.search.model.vo.ResumeSearch;
 import com.kh.developers.search.model.vo.Tag;
 
 public interface SearchDao {
@@ -48,4 +51,7 @@ public interface SearchDao {
 	int insertBookMark(SqlSessionTemplate session, int memNo, int positionNo);
 	int deleteBookMark(SqlSessionTemplate session, int memNo, int positionNo);
 	int insertTagOpinion(SqlSessionTemplate session, int busNo, String tag);
+	Member SelectMember(SqlSessionTemplate session, int memNo);
+	List<ResumeSearch> selectResume(SqlSessionTemplate session, String memEmail);
+	List<Recommend> selectRecommendList(SqlSessionTemplate session, int memNo);
 }

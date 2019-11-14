@@ -227,79 +227,76 @@
                                 <div class="submit-information">
                                     <label for="name" class="infor-name">
                                         <h4>이름</h4>
-                                        <input type="text" name="name" id="" value="기영성">
+                                        <input type="text" name="name" id="" value="<c:out value="${m.memName }"/>">
                                     </label>
                                     <label for="email" class="infor-name">
                                         <h4>이메일</h4>
-                                        <input type="text" name="email" value="ysung26@daum.net">
+                                        <input type="text" name="email" value="<c:out value="${m.memEmail }"/>">
                                     </label>
                                     <label for="email" class="infor-name">
                                         <h4>연락처</h4>
-                                        <input type="text" name="phone" value="01091920953">
+                                        <input type="text" name="phone" value="<c:out value="${m.memPhone }"/>">
                                     </label>
                                 </div>
                                 <div class="choochun123">
                                     <h4>추천인</h4>
                                     <button type="button" class="choochun-btn">
                                                                                         선택사항
-                                        <i class="icon-arrow_right"></i>
+                                        <i class="fas fa-angle-right"></i>
                                     </button>
                                 </div>
-                                <h3 class="chumbu">
-                                                                                첨부파일
-                                    <div tabindex="0" class="upload">
-                                        <input type="file" multiple autocomplete="off" tabindex="-1" style="display: none;" name="" id="">
-                                        <button type="button" class="fileUpload">
-                                            <i class="icon-apply_add"></i>
-                                                                                                 파일 업로드
-                                        </button>
-                                    </div>
-                                </h3>
+                                <h3 class="chumbu">첨부파일</h3>
                                 <ul>
-                                    <div class="resumeresume">
-                                        <li>
-                                            <label for="resume">
-                                                <input type="checkbox" name="resume" disabled id="">
-                                                <i class="icon-icon_match_list_save"></i>
-                                            </label>
-                                            <div>
-                                                <h4>기영성 2</h4>
-                                                <div>
-                                                    <span>2019.10.18</span>
-                                                    <span>작성 중</span>
-                                                </div>
-                                            </div>
-                                            <a href="">
-                                                <i class="icon-icon_match_btn_next"></i>    
-                                            </a>
-                                        </li>
-                                    </div>
-                                    <div class="resumeresume">
-                                        <li>
-                                            <label for="resume">
-                                                <input type="checkbox" name="resume" id="">
-                                                <i class="icon-icon_match_list_save"></i>
-                                            </label>
-                                            <div>
-                                                <h4>기영성 1</h4>
-                                                <div>
-                                                    <span>2019.10.17</span>
-                                                    <span>작성 완료</span>
-                                                </div>
-                                            </div>
-                                            <a href="">
-                                                <i class="icon-icon_match_btn_next"></i>    
-                                            </a>
-                                        </li>
-                                    </div>
+                                	<c:if test="${not empty rList }">
+                                		<c:forEach var="r" items="${rList }">
+                                			<c:if test="${r.status == 'N' }">
+			                                    <div class="resumeresume">
+			                                        <li>
+			                                            <label for="resume">
+			                                                <input type="checkbox" name="resume" disabled id="resume">
+			                                            </label>
+			                                            <div>
+			                                                <h4><c:out value="${r.mem_name}"/></h4>
+			                                                <div>
+			                                                    <span><fmt:formatDate value="${r.resume_date }" pattern="yyyy.MM.dd"/></span>
+			                                                    <span>작성 중</span>
+			                                                </div>
+			                                            </div>
+			                                            <a href="">
+			                                                <i class="icon-icon_match_btn_next"></i>    
+			                                            </a>
+			                                        </li>
+			                                    </div>
+		                                    </c:if>
+		                                    <c:if test="${r.status == 'Y' }">
+			                                    <div class="resumeresume">
+			                                        <li>
+			                                            <label for="resume">
+			                                                <input type="checkbox" name="resume" id="resume">
+			                                            </label>
+			                                            <div>
+			                                                <h4><c:out value="${r.mem_name}"/></h4>
+			                                                <div>
+			                                                    <span><fmt:formatDate value="${r.resume_date }" pattern="yyyy.MM.dd"/></span>
+			                                                    <span>작성 완료</span>
+			                                                </div>
+			                                            </div>
+			                                            <a href="">
+			                                                <i class="icon-icon_match_btn_next"></i>    
+			                                            </a>
+			                                        </li>
+			                                    </div>
+		                                    </c:if>
+	                                    </c:forEach>
+                                    </c:if>
                                 </ul>
-                                <button type="button" class="newResume">새 이력서 작성</button>
+                                <button type="button" class="newResume" onclick="location.href='${path }/resume/insertResumepage.lmc?memEmail=${loginMember.memEmail }';">새 이력서 작성</button>
                                 <div class="resumeIntro">
                                     <p>developers 이력서로 지원하면 최종 합격률이 40% 높아집니다.</p>
                                 </div>
                             </div>
                             <div class="submitFooter">
-                                <button type="button">제출하기</button>
+                                <button type="button" onclick>제출하기</button>
                             </div>
                         </div>
                     </aside>
@@ -392,6 +389,48 @@
                         </ul>
                     </div>
                 </div>
+            </div>
+        </div>
+        <!-- 추천인 모달 -->
+        <div id="modal">
+            <div class="modalmodalmodal">
+                <div class="modalBody111">
+                    <div class="modalbodytitle">
+                                                     추천인 선택
+                        <button type="button" class="modalmodalclose">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <c:if test="${empty reList }">
+	                    <div id="MODAL_BODY" class="modalbodybody">
+	                        <div class="nomodalbody">
+	                            <i class="far fa-thumbs-up"></i>
+	                        </div>
+	                    </div>
+	                    <div class="modalbodyfooter">
+	                        <div>
+	                                                      추천 메뉴에서 지인에게 추천을 요청해 보세요.(선택사항) 추천인이 있는 지원자는 합격률이 3배 높습니다. 또한 합격 시 지원자와 추천인 모두에게 원티드가 보상금을 드립니다.
+	                        </div>
+	                        <a href="${path }/recommend/recommendMain.lmc?memNo=${loginMember.memNo}">추천 메뉴로 이동</a>
+	                    </div>
+                    </c:if>
+                    <c:if test="${not empty reList }">
+                    	<div id="MODAL_BODY" class="modalBody">
+                            <ul class="likeList1">
+                                <c:forEach var="r" items="${reList }">
+                             	<li class="choochunList" id="${r.mem_name }">
+                             		<div style="background-image: url(${path}${r.mem_photo != null ? r.mem_photo : '/resources/upload/profile/no-profile-image.png'})"></div>
+                             		<p><c:out value="${r.mem_name }"/></p>
+                             	</li>
+                             </c:forEach>
+                            </ul>
+                            <div class="modalbodyfooter">
+	                        	<a href="javacript:void(0);" onclick="recommendInsert();">추천인 선택</a>
+	                    </div>
+                        </div>
+                    </c:if>
+                </div>
+                <div role="presentation" class="modalmodalmodalmodal"></div>
             </div>
         </div>
     </section>
@@ -559,12 +598,41 @@
 </script>
 <!-- 지원하기 DIV -->
 <script>
-	$(".footerbtn1").click(function(){
+	$(document).on("click", ".footerbtn1", function(event){
 		$(".rightasidemain").css("display", "none");
 		$(".submitDiv").css("display", "block");
 	})
-	$(".submitclose").click(function(){
+	$(document).on("click", ".submitclose", function(event){
 		$(".rightasidemain").css("display", "block");
 		$(".submitDiv").css("display", "none");
+	})
+</script>
+<!-- 추천인 선택사항 모달 -->
+<script>
+	$(document).on("click", ".choochun-btn", function(event){
+		$("#modal").css("display", "block");
+	})
+	$(document).on("click", ".modalmodalmodalmodal", function(event){
+		$("#modal").css("display", "none");
+	})
+	$(document).on("click", ".modalmodalclose", function(event){
+		$("#modal").css("display", "none");
+	})
+	$(document).on("click", ".choochunList", function(event){
+		$(this).prev().removeClass("selectedC");
+		$(this).next().removeClass("selectedC");
+		$(this).addClass("selectedC");
+		$(".modalbodyfooter>a").css("background-color", "#258bf7");
+		$(".modalbodyfooter>a").css("cursor", "pointer");
+	})
+	function recommendInsert(){
+		var name = $(".selectedC").attr("id");
+		var str = "<h4>추천인</h4><button type='button' class='choochun-btn'>" + name + "<i class='fas fa-angle-right'></i></button>";
+		$(".choochun123").html("");
+		$(".choochun123").html(str);
+		$("#modal").css("display", "none");
+	}
+	$(document).on("click", ".icon-icon_match_list_save", function(event){
+		$("#" + $(this).parents("label").attr("for")).click();
 	})
 </script>

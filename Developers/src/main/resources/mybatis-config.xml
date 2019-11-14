@@ -30,5 +30,6 @@
 		<typeAlias type="com.kh.developers.recommend.model.vo.Recommend" alias="recommend"/>
 		<typeAlias type="com.kh.developers.recommend.model.vo.Friend" alias="friend"/>
 		<typeAlias type="com.kh.developers.salary.model.vo.Salary" alias="salary"/>
+		<typeAlias type="com.kh.developers.search.model.vo.ResumeSearch" alias="resumesearch"/>
 	</typeAliases>
 </configuration>
