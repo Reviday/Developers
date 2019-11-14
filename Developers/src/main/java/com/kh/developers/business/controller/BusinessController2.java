@@ -124,35 +124,9 @@ public class BusinessController2 {
 			map.put("count",count);
 			map.put("busImg",subDir+"/"+reName);
 			int result=service.busImgAdd(map);
-			String imgHtml="";
-			imgHtml+="";
-			imgHtml+="<div class='bi_img_bus modi_img del_img'>";
-			imgHtml+="<label for='bus_img"+count+"'>";
-			
-			
-			//서버
-//			imgHtml+="<img class='bi_img_busimg' src='/19PM_Developers_final"+subDir+"/"+reName+"'/>";
-			
-			
-			
-			//로컬
-			imgHtml+="<img class='bi_img_busimg' src='/developers"+subDir+"/"+reName+"'/>";
-			
-			
-			
-			
-			
-			
-			
-			imgHtml+="<i class='fas fa-sync-alt'></i>";
-			imgHtml+="<form enctype='multipart/form-data' method='POST'>";
-			imgHtml+="<input id='bus_img"+count+"' name='bus_img' type='file' style='display:none;'>";
-			imgHtml+="</form>";
-			imgHtml+="</label>";
-			imgHtml+="<button type='button' class='img_del_btn' onclick='fn_del_img(event);'><i class='far fa-times-circle'></i></botton>";
-			imgHtml+="</div>";
-			mv.addObject("imgHtml",imgHtml);
 			busInfo.setBusImages(service.selectBusOne(busInfo.getBusNo()).getBusImages());
+			mv.addObject("count",map.get("count"));
+			mv.addObject("addImg",map.get("busImg"));
 		}catch(IOException e) {
 			e.printStackTrace();
 		}
@@ -273,15 +247,30 @@ public class BusinessController2 {
 		Map map=new HashMap();
 		map.put("busNo", ((Business)req.getSession().getAttribute("busInfo")).getBusNo());
 		String applHtml="";
+		String cPosition="";
+		try {
+			cPosition=(String)req.getSession().getAttribute("applPosition");
+			
+		}catch(Exception e) {
+			
+		}
 		applHtml+="<div id='appl-leftside' class='appl-leftside'>";
 		applHtml+="<h5>채용중<i class='fas fa-angle-up'></i></h5>";
 		applHtml+="<hr/>";
 		applHtml+="<ul class='apply-ing'>";
-		applHtml+="<li data='' class='aList-click'><span class='aList-type'>포지션 전체</span> <span class='aList-count'>"+service.selectBusApplCount(map)+"</span></li>";
+		applHtml+="<li data='' class='";
+		if(cPosition.equals("")) {			
+			applHtml+="aList-click'";
+		}
+		applHtml+="'><span class='aList-type'>포지션 전체</span> <span class='aList-count'>"+service.selectBusApplCount(map)+"</span></li>";
 		List<Integer> poList=service.selectApplPoList(map);
 		for(int po:poList) {
 			map.put("applPosition", po);
-			applHtml+="<li data='"+po+"'><span class='aList-type'>매치업</span> <span class='aList-count'>"+service.selectBusApplCount(map)+"</span></li>";
+			applHtml+="<li data='"+po+"' class='";
+			if(cPosition.equals(""+po)) {			
+				applHtml+="aList-click'";
+			}
+			applHtml+="'><span class='aList-type'>매치업</span> <span class='aList-count'>"+service.selectBusApplCount(map)+"</span></li>";
 		}
 		applHtml+="</ul>";
 		applHtml+="<br/>";
@@ -390,8 +379,7 @@ public class BusinessController2 {
 				html+="</div>";
 				html+="<div class='aList-right'>";
 				html+="<div class='aList-del-btn'>";
-				html+="<button type='button' class='appl-del-btn'>삭제</button>";
-//				html+="<button type='button' class='del-btn' onclick='fn_del_modal(event);'>삭제</button>";
+				html+="<button type='button' class='appl-del-btn' onclick='fn_del_modal(event);'>삭제</button>";
 				html+="</div>";
 				html+="</div>";
 				html+="<input type='hidden' class='aList-appl-no' value='"+appl.getApplNo()+"'/>";
@@ -424,7 +412,7 @@ public class BusinessController2 {
 		session.setAttribute("applIndex", applIndex);
 		session.setAttribute("applcPage", cPage);
 		session.setAttribute("applLike", applLike);
-		session.setAttribute("applPoistion", applPosition);
+		session.setAttribute("applPosition", applPosition);
 		mv.addObject("applInnerHtml", html);
 
 		mv.setViewName("jsonView");
@@ -772,6 +760,13 @@ public class BusinessController2 {
 		biHtml+="</form>";
 		biHtml+="</div>";
 
+		String path="";
+		if(new BusinessController2().getClass().getResource("/").getPath().indexOf("target")<0) {
+			path="/19PM_Developers_final";
+		}else {
+			path="/developers";
+		}
+		
 		String seHtml="";
 
 		seHtml+="<div class='bi_bottom_bar'>";
@@ -793,18 +788,7 @@ public class BusinessController2 {
 			for(String src:bus.getBusImages()) {
 				seHtml+="<div class='bi_img_bus modi_img del_img'>";
 				seHtml+="<label for='bus_img"+count+"'>";
-				
-				
-				//서버
-//				seHtml+="<img class='bi_img_busimg' src='/19PM_Developers_final"+src+"'/>";
-				
-				//로컬
-				seHtml+="<img class='bi_img_busimg' src='/developers"+src+"'/>";
-				
-				
-				
-				
-				
+				seHtml+="<img class='bi_img_busimg' src='"+path+src+"'/>";
 				seHtml+="<i class='fas fa-sync-alt'></i>";
 				seHtml+="<form enctype='multipart/form-data' method='POST'>";
 				seHtml+="<input id='bus_img"+count+"' name='bus_img' type='file' style='display:none;'>";
@@ -817,21 +801,7 @@ public class BusinessController2 {
 		}
 		seHtml+="<div class='bi_img_bus add_img'>";
 		seHtml+="<label for='bus_img'>";
-		
-		
-		//서버
-//		seHtml+="<img class='bi_img_busimg' src='/19PM_Developers_final/resources/images/bus_img_plus.png'/>";
-		
-		
-		
-		//로컬
-		seHtml+="<img class='bi_img_busimg' src='/developers/resources/images/bus_img_plus.png'/>";
-		
-		
-		
-		
-		
-		
+		seHtml+="<img class='bi_img_busimg' src='"+path+"/resources/images/bus_img_plus.png'/>";
 		seHtml+="<form enctype='multipart/form-data' method='POST'>";
 		seHtml+="<input id='bus_img' name='bus_img' type='file' style='display:none;'>";
 		seHtml+="</form>";
@@ -841,18 +811,16 @@ public class BusinessController2 {
 		seHtml+="<div>";
 		seHtml+="<span>로고 이미지</span><br/>";
 		if(bus.getBusLogo()!=null) {
-			seHtml+="<div class='bi_img_logo modi_img logoImg'>";
+			seHtml+="<div class='bi_img_logo modi_img'>";
 			seHtml+="<label for='logoFile'>";
-//			seHtml+="<img class='bi_img_buslogo' src='/developers"+bus.getBusLogo()+"'/>";
-			seHtml+="<img class='bi_img_buslogo' src='/19PM_Developers_final"+bus.getBusLogo()+"'/>";
+			seHtml+="<img class='bi_img_buslogo logoImg' src='"+path+bus.getBusLogo()+"'/>";
 			seHtml+="<i class='fas fa-sync-alt'></i>";
 			seHtml+="</label>";
 			seHtml+="</div>";
 		}else {
 			seHtml+="<div class='bi_img_logo add_img logoImg'>";
 			seHtml+="<label for='logoFile'>";
-//			seHtml+="<img class='bi_img_buslogo' src='/developers/resources/images/bus_img_plus.png'/>";
-			seHtml+="<img class='bi_img_buslogo' src='/19PM_Developers_final/resources/images/bus_img_plus.png'/>";
+			seHtml+="<img class='bi_img_buslogo logoImg' src='"+path+"/resources/images/bus_img_plus.png'/>";
 			seHtml+="</label>";
 			seHtml+="</div>";
 		}

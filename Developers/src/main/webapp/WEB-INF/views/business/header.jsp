@@ -37,7 +37,7 @@
 </head>
 
 <style>
-	#logoImg{
+	.logoImg{
 		margin-top:6px;
 		width:35px;
 		height:35px;
@@ -144,7 +144,12 @@
 					<ul class="nav_us">
 						<li class="ls1 ls2" id="logo">
 							<label for="logoFile" style="cursor: pointer;">
-								<img id="logoImg" src="${path}${busInfo.busLogo}"/>
+								<c:if test="${not empty busInfo.busLogo}">
+									<img class="logoImg" src="${path}${busInfo.busLogo}"/>
+								</c:if>
+								<c:if test="${empty busInfo.busLogo}">
+									<img class="logoImg" src=""/>
+								</c:if>
 								<form id="logoFrm" name="logoFrm" enctype="multipart/form-data" method="POST">
 									<input type="file" accept="image/*" id="logoFile" name="logoFile" style="display:none"/>
 								</form>
@@ -353,7 +358,7 @@
 					processData:false,
               	    contentType:false,
 					success:function(data){
-						$("#logoImg").attr("src",path+data.logo);
+						$(".logoImg").attr("src",path+data.logo);
 					}
 
 				})
@@ -376,3 +381,4 @@
 	<!-- custom js -->
 <script type="text/javascript"
 src="${pageContext.request.contextPath }/resources/js/business-main.js"></script>	
+<jsp:include page="/WEB-INF/views/business/busloadingPage.jsp"/>

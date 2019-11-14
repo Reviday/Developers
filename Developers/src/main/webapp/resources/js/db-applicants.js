@@ -32,7 +32,7 @@ $(function(){
     $('.appl-main-nav>ul>li>a').on('click',function(){
         // $($(this).parent().siblings()).children().removeClass('ca2');
         // $(this).addClass('ca2');
-        fn_appl_nav($(this).parent().index()+1, 1);
+        fn_appl_nav($(this).parent().index()+1, 1, appl_position);
     });
     $('.appl-main-nav>ul>li>a').hover(function(){
         $(this).addClass('ca4');
@@ -41,19 +41,23 @@ $(function(){
     });
     $("[name='search_em']").on("keyup", function(event){
         if(event.keyCode=='13'){
-            fn_appl_nav(appl_index, appl_page);
+            fn_appl_nav(appl_index, appl_page, appl_position);
         }
     });
     $("#like_check").on("change", function(){
         appl_page=1;
-        fn_appl_nav(appl_index, appl_page);
+        fn_appl_nav(appl_index, appl_page, appl_position);
     });
-    $(document).on("click", ".appl-del-btn", function(){
-        del_applNo=$(this).parents('.appl-aList').children('input[type="hidden"]').val();
-        var del_memName=$(this).parents('.aList-right').siblings('.aList-left').children('.aList-info').children(':last').html();
-        $(".del-mem").html(del_memName);
-        $(".del-modal").show();
+
+
+    $('.appl-leftside>ul>li').on('click', function(){
+        fn_appl_nav(1, 1, $(this).attr('data'));
+        $(this).parent().parent().children('ul').children().removeClass('aList-click');
+        if(!$(this).hasClass('aList-click')){
+            $(this).addClass('aList-click');
+        }
     });
+
 });
   
 function fn_appl_nav(index, page, po){
@@ -61,7 +65,7 @@ function fn_appl_nav(index, page, po){
     appl_page=page;
     appl_position=po;
     console.log(appl_position);
-    $(".appl-applicant-list").html("<img src='"+path+"/resources/images/Developers_black_loading.gif' width='30px;'/>");
+    // $(".appl-applicant-list").html("<img class='bus_loading' src='"+path+"/resources/images/Developers_black_loading.gif' width='30px;'/>");
     $.ajax({
         url:path+"/business/applChange.lbc",
         data:{"applIndex":index, "applLike":$("#like_check").prop("checked"),"search":$("[name='search_em']").val(),"applPosition":appl_position, "cPage":page},
@@ -88,8 +92,8 @@ function fn_appl_nav(index, page, po){
             });
 
              //지원자 이력서 보기. 지원자클릭
-            $(".appl-aList").on("click",function(){
-                location.href=path+"/business/applView.lbc?applNo="+$(this).children(".aList-appl-no").val();
+            $(".aList-left").on("click",function(){
+                location.href=path+"/business/applView.lbc?applNo="+$(this).siblings(".aList-appl-no").val();
                 // $.ajax({
                 //     url:path+"/business/applView.lbc",
                 //     data:{"applNo":$(this).children(".aList-appl-no").val()},
@@ -115,7 +119,10 @@ function fn_appl_like(event, flag){
 }
 
 function fn_del_modal(event){
-   
+    del_applNo=$(event.target).parents('.appl-aList').children('input[type="hidden"]').val();
+        var del_memName=$(event.target).parents('.aList-right').siblings('.aList-left').children('.aList-info').children(':last').html();
+        $(".del-mem").html(del_memName);
+        $(".del-modal").show();
 }
 
 function fn_appl_del(){
@@ -137,11 +144,4 @@ $(function(){
         }
     });
 
-    $('.appl-leftside>ul>li').on('click', function(){
-        fn_appl_nav(1, 1, $(this).attr('data'));
-        $(this).parent().parent().children('ul').children().removeClass('aList-click');
-        if(!$(this).hasClass('aList-click')){
-            $(this).addClass('aList-click');
-        }
-    });
 });

@@ -11,9 +11,6 @@ section{
 }
 
 /*applicants*/
-.appl-main{
-    
-}
 .appl-leftside{
     /* top:-40px; */
     padding:0 13px;
@@ -127,23 +124,22 @@ input[name="search_em"]::placeholder{
     vertical-align: middle;
     cursor: pointer;
 }
-.appl-applicant-list{
-    text-align: center;
+
+.bus_loading{
+    position: relative;
+    left:50%;
+    transform: translateX(-50%);
 }
 .appl-aList{
     width:100%;
-    height:60px;
+    height:63px;
     background-color: white;
     border-radius: 3px;
 }
-
-.appl-aList>div>div{
-    position: relative;
-    display: inline-grid;
-}
 .aList-like-btn{
-    margin:22px 20px;
+    margin:0 20px;
     margin-left: 40px;
+    transform: translateY(-50%);
 }
 .aList-like-btn>svg{
     color:silver;
@@ -151,9 +147,14 @@ input[name="search_em"]::placeholder{
 }
 .aList-left{
     position: relative;
-    display: inline-grid;
-    float:left;
-    width:80%;
+    float:left; 
+    width:89%;
+    height:100%;
+}
+.aList-left>div{
+    position: relative;
+    display: inline-block;
+    left:0;
     
 }
 .aList-info-no{
@@ -167,6 +168,9 @@ input[name="search_em"]::placeholder{
     font-weight: bold;
     margin: 3px auto;
 }
+.aList-type{
+    transform: translateY(-50%);
+}
 .aList-type>span{
     font-size:1rem;
     padding:2px 3px;
@@ -176,11 +180,13 @@ input[name="search_em"]::placeholder{
 }
 .aList-right{
     position: relative;
-    display: inline-grid;
     float:right;
-    width:20%;
+    height:100%;
 }
-
+.aList-right>div{
+    position: relative;
+    display: inline-block;
+}
 .like_on>svg{
     color:gold !important;
 }
@@ -627,15 +633,15 @@ input[name='searchKeywords']{
     cursor: pointer;
 }
 .bi_img_bus{
-    width: 275px;
-    height: 210px;
+    width: 27rem;
+    height: 21rem;
     border:0.5px solid silver;
     margin:10px 8px;
 }
 
 .bi_img_busimg{
-    width:275px;
-    height:210px;
+    width: 27rem;
+    height: 21rem;
 }
 .modi_img:hover .img_del_btn{
     display: block;

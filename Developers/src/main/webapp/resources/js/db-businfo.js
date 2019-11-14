@@ -10,7 +10,8 @@ $(function(){
         $('body').css('overflow','');
     });
 
-    $(".bi_info_ta").css("height",$(".bi_info_ta")[0].scrollHeight+5+"px");
+    
+
 
     //회사정보-메인사진 클릭
     $("[name=bus_img]").on("change",function(){
@@ -23,7 +24,19 @@ $(function(){
                 processData:false,
                 contentType:false,
                 success:function(data){
-                    $(".add_img").before(data.imgHtml);
+                    var imgHtml="";
+                    imgHtml+="";
+                    imgHtml+="<div class='bi_img_bus modi_img del_img'>";
+                    imgHtml+="<label for='bus_img"+data.count+"'>";
+                    imgHtml+="<img class='bi_img_busimg' src='"+path+data.addImg+"'/>";
+                    imgHtml+="<i class='fas fa-sync-alt'></i>";
+                    imgHtml+="<form enctype='multipart/form-data' method='POST'>";
+                    imgHtml+="<input id='bus_img"+data.count+"' name='bus_img' type='file' style='display:none;'>";
+                    imgHtml+="</form>";
+                    imgHtml+="</label>";
+                    imgHtml+="<button type='button' class='img_del_btn' onclick='fn_del_img(event);'><i class='far fa-times-circle'></i></botton>";
+                    imgHtml+="</div>";
+                    $(".add_img").before(imgHtml);
                 }
             });
         }else{
@@ -36,7 +49,7 @@ $(function(){
                 processData:false,
                 contentType:false,
                 success:function(data){
-                    $(img).attr("src",data.busImg);
+                    $(img).attr("src",path+data.busImg);
                     
                 }
             });
@@ -103,5 +116,4 @@ function fn_del_keyword(){
     $(event.target).parents('.bi_keyword').remove();
     $('.key_over').css("color","black");
     $('.bi_keyword_add').prop("disabled",false);
-    console.log($('.bi_keyword_add').prop("disabled"));
 }
