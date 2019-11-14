@@ -11,7 +11,7 @@
 <section id="content">
 	<div id="service-main">
         <div class="_2BSYHDiCEVW0U-znbJ1IyD">
-            <div class="block career background-image">
+            <div class="block career background-image" style="background-image:url(${path}/resources/images/background.png)">
                 <div class="content">
                     <div class="go-image"></div>
                     <h1>나에게 딱 맞는 회사,

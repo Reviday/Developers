@@ -1034,7 +1034,6 @@ button {
 }
 
 ._2BSYHDiCEVW0U-znbJ1IyD .career.background-image {
-    background-image: url(/developers/resources/images/background.png);
     background-size: contain;
     background-repeat: no-repeat;
     background-position: 70%;
@@ -1586,7 +1585,6 @@ a {
 
 @media (max-width: 991px) and (min-width: 768px){
 ._2BSYHDiCEVW0U-znbJ1IyD .career.background-image {
-    background-image: url(/developers/resources/images/background.png);
     background-size: contain;
     background-position: bottom;
 }
@@ -2243,7 +2241,6 @@ a {
 	margin-bottom: 300px;
 }
 ._2BSYHDiCEVW0U-znbJ1IyD .career.background-image {
-    background-image: url(/developers/resources/images/background.png);
     background-size: 90%;
     background-position: bottom;
 }
