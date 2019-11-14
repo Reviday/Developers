@@ -9,6 +9,10 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp">
 	<jsp:param name="pageTitle" value=""/>
 </jsp:include>
+<script>
+var path = ${path };
+
+</script>
 <div style="height: 50px;"></div>
      <div class="_1Gv5LM5zal-f72_XSo_qJ_"  id="mainContent">
         <nav role="presentation" class="_3wSXAiIJQZ98fJ-Hi6G42Q"><button type="button" class="">프로필<i
@@ -193,6 +197,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" type="text/javascript"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" type="text/javascript"></script>
 <script>	
+	
 	var duty=[];
     function dutyview(){
         var dutybutton =document.getElementsByClassName('_26Ms0F-WSvfKh16ALOIC20');
@@ -283,6 +288,7 @@
  //로고 클릭 이벤트
 	$("#logoFile").on("change",function(){
 		var frm=new FormData($("#logoFrm")[0]);
+		 console.log("여기오니 ?");
 		$.ajax({
 			url:"${path }/member/logoChange",
 			data:frm,
@@ -291,8 +297,8 @@
 			dataType:"json",
      	    contentType:false,
 			success:function(data){
-				$("#logoImg").css('background-image', 'url('+data+')');
-				$("#profile_img").attr("src",data);
+				$("#logoImg").css('background-image', 'url('+path+data+')');
+				$("#profile_img").attr("src",path+data);
 			},error:function(data){
 				console.log("실패");
 			}
@@ -301,6 +307,7 @@
 	});
  
  function applicantPage(memEmail){
+
 	 $.ajax({
 		url:"${path }/member/applicantPage.lmc",
 		data:{"memEmail":memEmail},

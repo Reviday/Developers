@@ -168,7 +168,7 @@
                             style="width:32px; height:32px;" id="profile_img"/>
                             </c:if>
                             <c:if test="${loginMember.memIcon!=null }">
-                            <img src="${path}${loginMember.memIcon }" 
+                            <img src="${path }${loginMember.memIcon }" 
                             style="width:32px; height:32px;" id="profile_img"/>
                             </c:if>
                             

@@ -9,6 +9,10 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp">
 	<jsp:param name="pageTitle" value=""/>
 </jsp:include>
+<script>
+
+var path=${path };
+</script>
 <div style="height: 50px;"></div>
     <div class="_1Gv5LM5zal-f72_XSo_qJ_" id="mainContent">
     <nav role="presentation" class="_3wSXAiIJQZ98fJ-Hi6G42Q"><button type="button" class="">프로필<i
@@ -245,8 +249,8 @@ $('#updateResume').hide();
 				dataType:"json",
           	    contentType:false,
 				success:function(data){
-					$("#logoImg").css('background-image', 'url('+data+')');
-					$("#profile_img").attr("src",data);
+					$("#logoImg").css('background-image', 'url('+path+data+')');
+					$("#profile_img").attr("src",path+data);
 				},error:function(data){
 				}
 
