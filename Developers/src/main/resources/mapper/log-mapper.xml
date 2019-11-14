@@ -6,10 +6,10 @@
 		<if test="searchStr != null">
 			OR ( 1=0
 			<foreach collection="searchStr" item="str">
-				OR MLL_USER_EMAIL LIKE '%'||#{str}||'%'
-				OR MLL_REASON LIKE '%'||#{str}||'%'
-				OR MLL_IP LIKE '%'||#{str}||'%'
-				OR MLL_USERAGENT LIKE '%'||#{str}||'%'
+				OR UPPER(MLL_USER_EMAIL) LIKE UPPER('%'||#{str}||'%')
+				OR UPPER(MLL_REASON) LIKE UPPER('%'||#{str}||'%')
+				OR UPPER(MLL_IP) LIKE UPPER('%'||#{str}||'%')
+				OR UPPER(MLL_USERAGENT) LIKE UPPER('%'||#{str}||'%')
 			</foreach>
 			<if test="searchInt != null">
 				<foreach collection="searchInt" item="int">
@@ -17,18 +17,19 @@
 					OR MLL_MEM_NO LIKE '%'||${int}||'%'
 				</foreach>
 			</if>
-			)
+			) 
 		</if>	
+		ORDER BY MLL_DATETIME DESC
 	</select>
 	<select id="selectLoginLogCountBySearch" parameterType="map" resultType='_int'>
 		SELECT COUNT(*) FROM TA_MEMBER_LOGIN_LOG WHERE 1=0
 		<if test="searchStr != null">
 			OR ( 1=0
 			<foreach collection="searchStr" item="str">
-				OR MLL_USER_EMAIL LIKE '%'||#{str}||'%'
-				OR MLL_REASON LIKE '%'||#{str}||'%'
-				OR MLL_IP LIKE '%'||#{str}||'%'
-				OR MLL_USERAGENT LIKE '%'||#{str}||'%'
+				OR UPPER(MLL_USER_EMAIL) LIKE UPPER('%'||#{str}||'%')
+				OR UPPER(MLL_REASON) LIKE UPPER('%'||#{str}||'%')
+				OR UPPER(MLL_IP) LIKE UPPER('%'||#{str}||'%')
+				OR UPPER(MLL_USERAGENT) LIKE UPPER('%'||#{str}||'%')
 			</foreach>
 			<if test="searchInt != null">
 				<foreach collection="searchInt" item="int">
