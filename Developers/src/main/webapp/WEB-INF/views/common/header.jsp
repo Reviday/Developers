@@ -99,7 +99,6 @@
                         <button class="searchButton" type="button">
                            <i class="fas fa-search"></i>
                         </button>
-                        
                      </li>
                      <li>
                         <button class="signUpButton suBtn" type="button">회원가입/로그인</button>
@@ -169,7 +168,7 @@
                             style="width:32px; height:32px;" id="profile_img"/>
                             </c:if>
                             <c:if test="${loginMember.memIcon!=null }">
-                            <img src="${loginMember.memIcon }" 
+                            <img src="${path}/${loginMember.memIcon }" 
                             style="width:32px; height:32px;" id="profile_img"/>
                             </c:if>
                             

@@ -448,8 +448,8 @@ public class MemberController {
 		Member memInfo=((Member)mReq.getSession().getAttribute("loginMember"));
 		String subDir="/resources/upload/profile";
 		String saveDir=mReq.getSession().getServletContext().getRealPath("");
-		saveDir=saveDir.substring(0, saveDir.lastIndexOf("\\classes"));
-		saveDir+="/src/main/webapp";
+		saveDir=saveDir.substring(0, saveDir.lastIndexOf("\\WEB-INF"));
+		/* saveDir+="/src/main/webapp"; */
 		File dir=new File(saveDir+subDir);
 		if(!dir.exists()) {
 			dir.mkdirs();
@@ -461,7 +461,7 @@ public class MemberController {
 		//기존 로고 지우기
 		if(memInfo.getMemIcon()!=null) {			
 			String oriLogo=memInfo.getMemIcon();	
-			File oriFile=new File(saveDir+oriLogo.substring(oriLogo.lastIndexOf("/resources")));
+			File oriFile=new File(saveDir+oriLogo);
 			if(oriFile.exists()) {
 				oriFile.delete();
 			}
@@ -470,7 +470,7 @@ public class MemberController {
 		try {		
 			String logoFullName=saveDir+subDir+"/"+reName;
 			logo.transferTo(new File(logoFullName));
-			memInfo.setMemIcon("/developers"+subDir+"/"+reName);
+			memInfo.setMemIcon(subDir+"/"+reName);
 			int result=service.busLogoChange(memInfo);
 		}catch(IOException e) {
 			e.printStackTrace();
