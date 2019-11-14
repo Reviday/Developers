@@ -7,6 +7,8 @@ import java.util.Map;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.kh.developers.member.model.vo.Member;
+import com.kh.developers.recommend.model.vo.Recommend;
 import com.kh.developers.search.model.vo.BookMark;
 import com.kh.developers.search.model.vo.Company;
 import com.kh.developers.search.model.vo.Filter;
@@ -17,6 +19,7 @@ import com.kh.developers.search.model.vo.FilterOrderType;
 import com.kh.developers.search.model.vo.JobField;
 import com.kh.developers.search.model.vo.LikeMember;
 import com.kh.developers.search.model.vo.Position;
+import com.kh.developers.search.model.vo.ResumeSearch;
 import com.kh.developers.search.model.vo.Tag;
 
 @Repository
@@ -214,4 +217,21 @@ public class SearchDaoImpl implements SearchDao {
 		return session.insert("search.insertTagOpinion", map);
 	}
 	
+	@Override
+	public Member SelectMember(SqlSessionTemplate session, int memNo) {
+		// TODO Auto-generated method stub
+		return session.selectOne("search.SelectMember", memNo);
+	}
+	
+	@Override
+	public List<ResumeSearch> selectResume(SqlSessionTemplate session, String memEmail) {
+		// TODO Auto-generated method stub
+		return session.selectList("search.selectResume", memEmail);
+	}
+	
+	@Override
+	public List<Recommend> selectRecommendList(SqlSessionTemplate session, int memNo) {
+		// TODO Auto-generated method stub
+		return session.selectList("search.selectRecommendList", memNo);
+	}
 }

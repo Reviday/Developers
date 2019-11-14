@@ -89,4 +89,10 @@ public class RecommendDaoImpl implements RecommendDao {
 		map.put("text", text);
 		return session.insert("recommend.insertChoochunsa", map);
 	}
+	
+	@Override
+	public Member selectMember(SqlSessionTemplate session, String recommendEmail) {
+		// TODO Auto-generated method stub
+		return session.selectOne("recommend.selectMember", recommendEmail);
+	}
 }

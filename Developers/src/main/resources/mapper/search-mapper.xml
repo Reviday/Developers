@@ -230,6 +230,18 @@
 	<insert id="insertTagOpinion" parameterType="map">
 		INSERT INTO TAG_OPINION VALUES(TAG_OPINION_SEQ.NEXTVAL, #{busNo}, #{tag})
 	</insert>
+	<!-- 회원조회 -->
+	<select id="SelectMember" parameterType="_int" resultMap="memberMap">
+		SELECT * FROM TA_MEMBER WHERE MEM_NO = #{memNo}
+	</select>
+	<!-- 이력서 조회 -->
+	<select id="selectResume" parameterType="string" resultType="resumesearch">
+		SELECT * FROM RESUME WHERE MEM_EMAIL = #{memEmail} ORDER BY STATUS ASC
+	</select>
+	<!-- 나를 추천한 사람들 조회 -->
+	<select id="selectRecommendList" parameterType="_int" resultType="recommend">
+		SELECT * FROM RECOMMEND WHERE RECOMMEND_NO = #{memNo}
+	</select>
 	
 	<resultMap type="position" id="positionArray">
 		<result column="job_type" property="job_type" typeHandler="StrArray"/>
@@ -239,5 +251,30 @@
 	
 	<resultMap type="company" id="companyArray">
 		<result column="bus_images" property="bus_images" typeHandler="StrArray"/>
+	</resultMap>
+	
+	<resultMap type="member" id="memberMap">
+		<result property="memNo" column="mem_no"/>
+		<result property="memEmail" column="mem_email"/>
+		<result property="memLevel" column="mem_level"/>
+		<result property="memPassword" column="mem_password"/>
+		<result property="memName" column="mem_name"/>
+		<result property="memPhone" column="mem_phone"/>
+		<result property="memPoint" column="mem_point"/>
+		<result property="memDenied" column="mem_denied"/>
+		<result property="memEmailCert" column="mem_email_cert"/>
+		<result property="memReceiveEmail" column="mem_receive_email"/>
+		<result property="memEnrollDatetime" column="mem_enroll_datetime"/>
+		<result property="memEnrollIp" column="mem_enroll_ip"/>
+		<result property="memLastloginDatetime" column="mem_lastlogin_datetime"/>
+		<result property="memLastloginIp" column="mem_lastlogin_ip"/>
+		<result property="memProgileContent" column="mem_profile_content"/>
+		<result property="memAdminmemo" column="mem_adminmemo"/>
+		<result property="memIcon" column="mem_icon"/>
+		<result property="memPhoto" column="mem_photo"/>
+		<result property="memStatus" column="mem_status"/>
+		<result property="memWithdrawalDate" column="mem_withdrawal_date"/>
+		<result property="memDeniedDate" column="mem_denied_date"/>
+		<result property="filter_id" column="filter_id"/>
 	</resultMap>
 </mapper>

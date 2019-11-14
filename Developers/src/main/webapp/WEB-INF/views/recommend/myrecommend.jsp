@@ -120,11 +120,11 @@
 	var s = 0;
 	$(document).on("click", ".cancle", function(event){
 		if(s == 0){
-			$(".showMoreOverlay").css("display", "block");
+			$(this).next().css("display", "block");
 			s = 1;
 		}
 		else if(s == 1){
-			$(".showMoreOverlay").css("display", "none");
+			$(this).next().css("display", "none");
 			s = 0;
 		}
 	})
@@ -146,7 +146,6 @@
 <!-- 추천사 작성 페이지-->
 <script>
 	function choochunsa(memNo, recommendNo){
-		console.log("ddd");
 		location.href = '${path}' + "/recommend/choochunsa?memNo=" + memNo + "&recommendNo=" + recommendNo;
 	}
 </script>

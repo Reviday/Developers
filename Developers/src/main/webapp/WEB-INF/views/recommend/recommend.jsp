@@ -167,10 +167,10 @@
 			$(".submitreferButton").removeClass("enable");
 		}
 	})
-	
+	var recommendEmail = "";
 	$(document).on("click", ".submitreferButton", function(event){
 		var recommendName = $(".recommendName").val();
-		var recommendEmail = $(".recommendEmail").val();
+		recommendEmail = $(".recommendEmail").val();
 		var recommendRealationship = $("#recommendSelect option:selected").val();
 		$.ajax({
 			url: path + "/recommend/recommendPush",
@@ -197,6 +197,9 @@
 				}
 			}
 		}) 
+	})
+	$(document).on("click", ".writeReferralButton", function(event){
+		location.href = '${path}' + "/recommend/choochunsaFirst?memNo=" + '${memNo}' + "&recommendEmail=" + recommendEmail;
 	})
 
 </script>

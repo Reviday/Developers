@@ -78,4 +78,10 @@ public class RecommendServiceImpl implements RecommendService{
 		return insert;
 	}
 	
+	@Override
+	public Member selectMember(String recommendEmail) {
+		Member m = dao.selectMember(session, recommendEmail);
+		return m;
+	}
+	
 }

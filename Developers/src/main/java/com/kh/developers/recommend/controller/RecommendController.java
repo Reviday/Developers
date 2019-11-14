@@ -83,7 +83,7 @@ public class RecommendController {
 		mv.setViewName("recommend/myrecommend");
 		return mv;
 	}
-	//내가 한 추천 -> 추천사 작성
+	//내가 한 추천 -> 추천사 작성페이지
 	@RequestMapping("/recommend/choochunsa")
 	public String Choochunsa(int memNo, int recommendNo, Model model) {
 		Recommend recommend = service.selectRecommend(memNo, recommendNo);
@@ -96,5 +96,13 @@ public class RecommendController {
 		int insert = service.insertChoochunsa(memNo, recommendNo, text);
 		model.addAttribute("memNo", memNo);
 		return "recommend/recommend";
+	}
+	//추천하기 모달 -> 추천사 작성페이지
+	@RequestMapping("/recommend/choochunsaFirst")
+	public String choochunsaFirst(int memNo, String recommendEmail, Model model) {
+		Member m = service.selectMember(recommendEmail);
+		Recommend recommend = service.selectRecommend(memNo, m.getMemNo());
+		model.addAttribute("recommend", recommend);
+		return "/recommend/choochunsa";
 	}
 }

@@ -3,6 +3,8 @@ package com.kh.developers.search.model.service;
 import java.util.List;
 import java.util.Map;
 
+import com.kh.developers.member.model.vo.Member;
+import com.kh.developers.recommend.model.vo.Recommend;
 import com.kh.developers.search.model.vo.BookMark;
 import com.kh.developers.search.model.vo.Company;
 import com.kh.developers.search.model.vo.Filter;
@@ -13,6 +15,7 @@ import com.kh.developers.search.model.vo.FilterOrderType;
 import com.kh.developers.search.model.vo.JobField;
 import com.kh.developers.search.model.vo.LikeMember;
 import com.kh.developers.search.model.vo.Position;
+import com.kh.developers.search.model.vo.ResumeSearch;
 import com.kh.developers.search.model.vo.Tag;
 
 public interface SearchService {
@@ -71,4 +74,10 @@ public interface SearchService {
 	int deleteBookMark(int memNo, int positionNo);
 	//태그의견 저장
 	int insertTagOpinion(int busNo, String tag);
+	//멤버 조회
+	Member SelectMember(int memNo);
+	//이력서 조회
+	List<ResumeSearch> selectResume(String memEmail);
+	//나를 추천한 리스트 조회
+	List<Recommend> selectRecommendList(int memNo);
 }

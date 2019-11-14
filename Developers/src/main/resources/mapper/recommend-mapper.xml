@@ -42,7 +42,10 @@
 	<insert id="insertChoochunsa" parameterType="map">
 		UPDATE RECOMMEND SET RECOMMEND_TEXT = #{text} WHERE MEM_NO = #{memNo} AND RECOMMEND_NO = #{recommendNo}
 	</insert>
-	
+	<!-- 추천하기->추천사 -->
+	<select id="selectMember" parameterType="string" resultMap="memberMap">
+		SELECT * FROM TA_MEMBER WHERE MEM_EMAIL = #{recommendEmail}
+	</select>
 	
 	
 	

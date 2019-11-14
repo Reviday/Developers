@@ -7,6 +7,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.developers.member.model.vo.Member;
+import com.kh.developers.recommend.model.vo.Recommend;
 import com.kh.developers.search.model.dao.SearchDao;
 import com.kh.developers.search.model.vo.BookMark;
 import com.kh.developers.search.model.vo.Company;
@@ -18,6 +20,7 @@ import com.kh.developers.search.model.vo.FilterOrderType;
 import com.kh.developers.search.model.vo.JobField;
 import com.kh.developers.search.model.vo.LikeMember;
 import com.kh.developers.search.model.vo.Position;
+import com.kh.developers.search.model.vo.ResumeSearch;
 import com.kh.developers.search.model.vo.Tag;
 
 @Service
@@ -204,6 +207,24 @@ public class SearchServiceImpl implements SearchService {
 	public int insertTagOpinion(int busNo, String tag) {
 		int result = dao.insertTagOpinion(session, busNo, tag);
 		return result;
+	}
+	
+	@Override
+	public Member SelectMember(int memNo) {
+		Member m = dao.SelectMember(session, memNo);
+		return m;
+	}
+	
+	@Override
+	public List<ResumeSearch> selectResume(String memEmail) {
+		List<ResumeSearch> r = dao.selectResume(session, memEmail);
+		return r;
+	}
+	
+	@Override
+	public List<Recommend> selectRecommendList(int memNo) {
+		List<Recommend> list = dao.selectRecommendList(session, memNo);
+		return list;
 	}
 	
 	
