@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="member">
-<select id="selectBookMark" parameterType="member" resultMap="positionMap" >
-select * from BUSINESS_INFO i join enroll_position e on (i.bus_no=e.bus_no) join BOOK_MARK b on (e.position_no=b.position_no) join ta_member m on(b.mem_no=m.mem_no) where m.mem_no=#{memNo}
-</select>
-<select id="selectLike" parameterType="member" resultMap="positionMap">
-select p.position_no,b.bus_name,b.BUS_COUNTRY,p.position,b.bus_area,b.bus_images,(SELECT COUNT(*) FROM PO_LIKE WHERE LIKE_ID = P.LIKE_ID) AS LIKE_COUNT from ENROLL_POSITION p join po_like l on (p.like_id=l.like_id) join ta_member m on(l.mem_no=m.mem_no) join BUSINESS_INFO b on(p.bus_no=b.bus_no) where m.MEM_NO=#{memNo}
-</select>
+	<select id="selectBookMark" parameterType="member" resultMap="positionMap" >
+		select * from BUSINESS_INFO i join enroll_position e on (i.bus_no=e.bus_no) join BOOK_MARK b on (e.position_no=b.position_no) join ta_member m on(b.mem_no=m.mem_no) where m.mem_no=#{memNo}
+	</select>
+	<select id="selectLike" parameterType="member" resultMap="positionMap">
+		select p.position_no,b.bus_name,b.BUS_COUNTRY,p.position,b.bus_area,b.bus_images,(SELECT COUNT(*) FROM PO_LIKE WHERE LIKE_ID = P.LIKE_ID) AS LIKE_COUNT from ENROLL_POSITION p join po_like l on (p.like_id=l.like_id) join ta_member m on(l.mem_no=m.mem_no) join BUSINESS_INFO b on(p.bus_no=b.bus_no) where m.MEM_NO=#{memNo}
+	</select>
 	<update id="applAnsY" parameterType="_int">
-	UPDATE TA_APPL_BUS SET APPL_ANS_YN='Y',ANSWER_DATE=SYSDATE WHERE MEM_NO = #{memNo}
+		UPDATE TA_APPL_BUS SET APPL_ANS_YN='Y',ANSWER_DATE=SYSDATE WHERE MEM_NO = #{memNo}
 	</update>
 	<update id="applAnsN" parameterType="_int">
-	UPDATE TA_APPL_BUS SET APPL_ANS_YN='N',ANSWER_DATE=SYSDATE WHERE MEM_NO = #{memNo}
+		UPDATE TA_APPL_BUS SET APPL_ANS_YN='N',ANSWER_DATE=SYSDATE WHERE MEM_NO = #{memNo}
 	</update>
 	<select id="selectApplicant" parameterType="member" resultMap="applicantMap">
-	SELECT * FROM TA_APPL_BUS WHERE MEM_NO=#{memNo} AND APPL_STATUS=2 AND APPL_ANS_YN='O' AND APPL_DEL_YN='N'
+		SELECT * FROM TA_APPL_BUS WHERE MEM_NO=#{memNo} AND APPL_STATUS=2 AND APPL_ANS_YN='O' AND APPL_DEL_YN='N'
 	</select>
 	<update id="restoreMember" parameterType="member">
 		UPDATE TA_MEMBER SET MEM_STATUS='Y', MEM_WITHDRAWAL_DATE=NULL WHERE MEM_NO=#{memNo}
 	</update>
 	<select id="selectWithdrawMemberListBySearch" parameterType="map" resultMap="memberMap">
-		SELECT * FROM TA_MEMBER WHERE 1=0
+		SELECT * FROM TA_MEMBER WHERE
 		<if test="searchStr != null">
-			OR ( 1=0
+			( 1=0
 			<foreach collection="searchStr" item="str">
 				OR UPPER(MEM_EMAIL) LIKE UPPER('%'||#{str}||'%')
 				OR UPPER(MEM_NAME) LIKE UPPER('%'||#{str}||'%')
@@ -36,13 +36,19 @@ select p.position_no,b.bus_name,b.BUS_COUNTRY,p.position,b.bus_area,b.bus_images
 			</if>
 			)
 		</if>	
-		AND MEM_STATUS='N' 
+		<if test="searchStr == null">
+			1=1 
+		</if>
+		<if test="searchLevel != null">
+			AND MEM_LEVEL=${searchLevel} 
+		</if>
+		AND MEM_STATUS='N'
 		ORDER BY MEM_ENROLL_DATETIME DESC
 	</select>
 	<select id="selectWithdrawMemberCountBySearch" parameterType="map" resultType="_int">
-		SELECT COUNT(*) FROM TA_MEMBER WHERE 1=0
+		SELECT COUNT(*) FROM TA_MEMBER WHERE
 		<if test="searchStr != null">
-			OR ( 1=0
+			( 1=0
 			<foreach collection="searchStr" item="str">
 				OR UPPER(MEM_EMAIL) LIKE UPPER('%'||#{str}||'%')
 				OR UPPER(MEM_NAME) LIKE UPPER('%'||#{str}||'%')
@@ -56,64 +62,21 @@ select p.position_no,b.bus_name,b.BUS_COUNTRY,p.position,b.bus_area,b.bus_images
 			</if>
 			)
 		</if>	
+		<if test="searchStr == null">
+			1=1 
+		</if>
+		<if test="searchLevel != null">
+			AND MEM_LEVEL=${searchLevel} 
+		</if>
 		AND MEM_STATUS='N'
-	</select>
-	<select id="selectWithdrawMemberList" resultMap="memberMap">
-		SELECT * FROM TA_MEMBER WHERE MEM_STATUS='N' ORDER BY MEM_WITHDRAWAL_DATE DESC
-	</select>
-	<select id="selectWithdrawMemberCount" resultType="_int">
-		SELECT COUNT(*) FROM TA_MEMBER WHERE MEM_STATUS='N'
 	</select>
 	<insert id="insertLoginLog">
 		INSERT INTO TA_MEMBER_LOGIN_LOG VALUES(MLL_SEQ.NEXTVAL, #{mllSuccess}, #{mllMemNo}, #{mllUserEmail}, SYSDATE, #{mllIp}, #{mllReason}, #{mllUseragent}, #{mllUrl}, #{mllReferer})
 	</insert>
-	<select id="selectMemberListBySearchLevel" parameterType="map" resultMap="memberMap">
-		SELECT * FROM TA_MEMBER WHERE 1=0
-		<if test="searchStr != null">
-			OR ( 1=0
-			<foreach collection="searchStr" item="str">
-				OR UPPER(MEM_EMAIL) LIKE UPPER('%'||#{str}||'%')
-				OR UPPER(MEM_NAME) LIKE UPPER('%'||#{str}||'%')
-				OR UPPER(MEM_ADMINMEMO) LIKE UPPER('%'||#{str}||'%')
-			</foreach>
-			<if test="searchInt != null">
-				<foreach collection="searchInt" item="int">
-					OR MEM_NO LIKE '%'||${int}||'%'
-					OR MEM_PHONE LIKE '%'||${int}||'%'
-				</foreach>
-			</if>
-			)
-		</if>	
-		<if test="searchLevel != null">
-			AND (MEM_LEVEL=${searchLevel} AND MEM_STATUS='Y')
-		</if>
-		ORDER BY MEM_ENROLL_DATETIME DESC
-	</select>
-	<select id="selectMemberCountBySearchLevel" parameterType="map" resultType="_int">
-		SELECT COUNT(*) FROM TA_MEMBER WHERE 1=0
-		<if test="searchStr != null">
-			OR ( 1=0
-			<foreach collection="searchStr" item="str">
-				OR UPPER(MEM_EMAIL) LIKE UPPER('%'||#{str}||'%')
-				OR UPPER(MEM_NAME) LIKE UPPER('%'||#{str}||'%')
-				OR UPPER(MEM_ADMINMEMO) LIKE UPPER('%'||#{str}||'%')
-			</foreach>
-			<if test="searchInt != null">
-				<foreach collection="searchInt" item="int">
-					OR MEM_NO LIKE '%'||${int}||'%'
-					OR MEM_PHONE LIKE '%'||${int}||'%'
-				</foreach>
-			</if>
-			)
-		</if>	
-		<if test="searchLevel != null">
-			AND (MEM_LEVEL=${searchLevel} AND MEM_STATUS='Y')
-		</if>
-	</select>
 	<select id="selectMemberListBySearch" parameterType="map" resultMap="memberMap">
-		SELECT * FROM TA_MEMBER WHERE 1=0
+		SELECT * FROM TA_MEMBER WHERE
 		<if test="searchStr != null">
-			OR ( 1=0
+			( 1=0
 			<foreach collection="searchStr" item="str">
 				OR UPPER(MEM_EMAIL) LIKE UPPER('%'||#{str}||'%')
 				OR UPPER(MEM_NAME) LIKE UPPER('%'||#{str}||'%')
@@ -127,13 +90,19 @@ select p.position_no,b.bus_name,b.BUS_COUNTRY,p.position,b.bus_area,b.bus_images
 			</if>
 			)
 		</if>	
-		AND MEM_STATUS='Y' 
+		<if test="searchStr == null">
+			1=1 
+		</if>
+		<if test="searchLevel != null">
+			AND MEM_LEVEL=${searchLevel} 
+		</if>
+		AND MEM_STATUS='Y'
 		ORDER BY MEM_ENROLL_DATETIME DESC
 	</select>
 	<select id="selectMemberCountBySearch" parameterType="map" resultType="_int">
-		SELECT COUNT(*) FROM TA_MEMBER WHERE 1=0
+		SELECT COUNT(*) FROM TA_MEMBER WHERE 
 		<if test="searchStr != null">
-			OR ( 1=0
+			( 1=0
 			<foreach collection="searchStr" item="str">
 				OR UPPER(MEM_EMAIL) LIKE UPPER('%'||#{str}||'%')
 				OR UPPER(MEM_NAME) LIKE UPPER('%'||#{str}||'%')
@@ -147,6 +116,12 @@ select p.position_no,b.bus_name,b.BUS_COUNTRY,p.position,b.bus_area,b.bus_images
 			</if>
 			)
 		</if>	
+		<if test="searchStr == null">
+			1=1 
+		</if>
+		<if test="searchLevel != null">
+			AND MEM_LEVEL=${searchLevel} 
+		</if>
 		AND MEM_STATUS='Y'
 	</select>
 	<update id="busLogoChange" parameterType="member">

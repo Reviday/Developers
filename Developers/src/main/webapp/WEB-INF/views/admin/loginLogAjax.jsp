@@ -82,4 +82,24 @@
 	</c:if>
 	<input type="hidden" value="${cPage}" id="cPage"/>
 	<input type="hidden" value="${numPerPage}" id="numPerPage"/> 
+	<script>
+		$('#mllSuccess').on('change', function() {
+			var mllSuccess=$("#mllSuccess option:selected").val();
+			var searchValue=$("#system-search").val();
+			$.ajax({
+				url:path+"/admin/mllSearchBySuccess.lac",
+				type:"POST",
+				data: {
+					"value":searchValue,
+					"mllSuccess":mllSuccess
+				},
+				success: function(result) {
+					if(result!=null) {
+						$('.mainContent').html("");
+						$('.mainContent').html(result);
+					} 
+				}
+			});
+		});
+	</script>
 </div>

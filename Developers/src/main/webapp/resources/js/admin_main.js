@@ -40,13 +40,19 @@ $(document).ready(function() {
 	});*/
 	
 });
-function search() {
-	var searchValue=document.getElementById('system-search').value;
+
+function search(cPage) {
+	var selectLevel=$("#searchlevel option:selected").val();
+	var searchValue=$("#system-search").val();
+	if(cPage==0) cPage=$('#cPage').val();
 	$.ajax({
 		url:path+"/admin/memberSearchList.lac",
 		type:"POST",
 		data:{
-			"value":searchValue
+			"value":searchValue,
+			"searchLevel":selectLevel,
+			"cPage":cPage,
+			"numPerPage":$('#numPerPage').val()
 		},
 		success: function(result) {
 			if(result!=null) {
@@ -57,13 +63,17 @@ function search() {
 	}); 
 };
 
-function wd_search() {
+
+function wd_search(cPage) {
 	var searchValue=document.getElementById('system-search').value;
+	if(cPage==0) cPage=$('#cPage').val();
 	$.ajax({
 		url:path+"/admin/withdrawMemberSearchList.lac",
 		type:"POST",
 		data:{
-			"value":searchValue
+			"value":searchValue,
+			"cPage":cPage,
+			"numPerPage":$('#numPerPage').val()
 		},
 		success: function(result) {
 			if(result!=null) {

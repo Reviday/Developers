@@ -5,7 +5,7 @@
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 
 <div class="row">
-	<h1 class="title">회원 정보</h1>
+	<h1 class="title">회원 정보 - 기본 정보</h1>
 </div>
 <div class="row">
 	<form action="#" method="get" style="width: 50%;">
@@ -14,7 +14,7 @@
 			<input class="form-control" id="system-search"
 				placeholder="Search for" required value="${searchValue}"> <span
 				class="input-group-btn">
-				<button type="button" class="btn btn-default" onclick="search();">
+				<button type="button" class="btn btn-default" onclick="search(0);">
 					<i class="fas fa-search"></i>
 				</button>
 			</span>
@@ -28,7 +28,7 @@
 				<th>등급
 					<div class="dropdown" style="display: inline-block;">
 				        <select class="dropdown-select-version select" name="memLevel" id="searchlevel" style="vertical-align: top; height: 21px; width: 100px; margin: 0; margin-left: 10px;">
-				        	<option selected disabled hidden>등급별검색</option>
+				        	<option value="-2" selected disabled hidden>등급별검색</option>
 						    <option value="-1" <c:if test="${searchLevel eq -1}">selected</c:if>>전체</option>
 				        	<option value="5" <c:if test="${searchLevel eq 5}">selected</c:if>>관리자</option>
 						    <option value="4" <c:if test="${searchLevel eq 4}">selected</c:if>>기업관리자</option>
@@ -118,23 +118,7 @@
 		})
 		
 		$('#searchlevel').on('change', function() {
-			var selectLevel=$("#searchlevel option:selected").val();
-			var searchValue=$("#system-search").val();
-			console.log(selectLevel);
-			$.ajax({
-				url:path+"/admin/searchByLevel.lac",
-				type:"POST",
-				data: {
-					"value":searchValue,
-					"searchLevel":selectLevel
-				},
-				success: function(result) {
-					if(result!=null) {
-						$('.mainContent').html("");
-						$('.mainContent').html(result);
-					} 
-				}
-			});
+			search(0);		
 		});
 	</script>
 </div>

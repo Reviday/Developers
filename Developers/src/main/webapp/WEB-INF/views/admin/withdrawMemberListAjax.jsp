@@ -14,7 +14,7 @@
 			<input class="form-control" id="system-search" 
 				placeholder="Search for" required value="${searchValue}"> <span
 				class="input-group-btn">
-				<button type="button" class="btn btn-default" onclick="wd_search();">
+				<button type="button" class="btn btn-default" onclick="wd_search(0);">
 					<i class="fas fa-search"></i>
 				</button>
 			</span>
@@ -104,27 +104,5 @@
 				}
 			})
 		})
-		
-		$('#searchlevel').on('change', function() {
-			var selectLevel=$("#searchlevel option:selected").val();
-			var searchValue=$("#system-search").val();
-			console.log(selectLevel);
-			$.ajax({
-				url:path+"/admin/searchByLevel.lac",
-				type:"POST",
-				data: {
-					"value":searchValue,
-					"cPage":$('#cPage').val(),
-					"numPerPage":$('#numPerPage').val(),
-					"searchLevel":selectLevel
-				},
-				success: function(result) {
-					if(result!=null) {
-						$('.mainContent').html("");
-						$('.mainContent').html(result);
-					} 
-				}
-			});
-		});
 	</script>
 </div>

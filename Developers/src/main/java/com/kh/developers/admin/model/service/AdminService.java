@@ -8,16 +8,8 @@ import com.kh.developers.member.model.vo.Member;
 
 public interface AdminService {
 	
-	List<Member> selectMemberList(int cPage, int numPerPage);
-	int selectMemberCount();
 	int updateMember(Member m);
 	int deleteMember(Member m);
-	int selectMemberCountBySearch(String value);
-	List<Member> selectMemberListBySearch(String value, int cPage, int numPerPage);
-	int selectMemberCountBySearchLevel(String value, int searchLevel);
-	List<Member> selectMemberListBySearchLevel(String value, int searchLevel, int cPage, int numPerPage);
-	int selectWithdrawMemberCount();
-	List<Member> selectWithdrawMemberList(int cPage, int numPerPage);
 	int selectWithdrawMemberCountBySearch(String value);
 	List<Member> selectWithdrawMemberListBySearch(String value, int cPage, int numPerPage);
 	int restoreMember(Member m);
@@ -25,4 +17,9 @@ public interface AdminService {
 	List<MemberLoginLog> selectLoginLogList(int cPage, int numPerPage);
 	int selectLoginLogCountBySearch(String value);
 	List<MemberLoginLog> selectLoginLogListBySearch(String value, int cPage, int numPerPage);
+	int selectLoginLogCountBySuccess(String value, String mllSuccess);
+	List<MemberLoginLog> selectLoginLogListBySuccess(String value, String mllSuccess, int cPage, int numPerPage);
+	
+	int selectMemberCountBySearch(String value, int searchLevel);
+	List<Member> selectMemberListBySearch(String value, int searchLevel, int cPage, int numPerPage);
 }

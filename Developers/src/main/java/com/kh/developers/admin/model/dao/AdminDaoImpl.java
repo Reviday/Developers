@@ -15,6 +15,18 @@ import com.kh.developers.member.model.vo.Member;
 public class AdminDaoImpl implements AdminDao{
 	
 	@Override
+	public List<MemberLoginLog> selectLoginLogListBySuccess(SqlSessionTemplate session, Map<String, Object> searchValue,
+			int cPage, int numPerPage) {
+		RowBounds r=new RowBounds((cPage-1)*numPerPage, numPerPage);
+		return session.selectList("log.selectLoginLogListBySuccess", searchValue, r);
+	}
+	
+	@Override
+	public int selectLoginLogCountBySuccess(SqlSessionTemplate session, Map<String, Object> searchValue) {
+		return session.selectOne("log.selectLoginLogCountBySuccess",searchValue);
+	}
+	
+	@Override
 	public List<MemberLoginLog> selectLoginLogListBySearch(SqlSessionTemplate session, Map<String, Object> searchValue,
 			int cPage, int numPerPage) {
 		RowBounds r=new RowBounds((cPage-1)*numPerPage, numPerPage);
@@ -55,29 +67,6 @@ public class AdminDaoImpl implements AdminDao{
 	}
 	
 	@Override
-	public List<Member> selectWithdrawMemberList(SqlSessionTemplate session, int cPage, int numPerPage) {
-		RowBounds r=new RowBounds((cPage-1)*numPerPage, numPerPage);
-		return session.selectList("member.selectWithdrawMemberList", null, r);
-	}
-	
-	@Override
-	public int selectWithdrawMemberCount(SqlSessionTemplate session) {
-		return session.selectOne("member.selectWithdrawMemberCount");
-	}
-	
-	@Override
-	public List<Member> selectMemberListBySearchLevel(SqlSessionTemplate session, Map<String, Object> searchValue,
-			int cPage, int numPerPage) {
-		RowBounds r=new RowBounds((cPage-1)*numPerPage, numPerPage);
-		return session.selectList("member.selectMemberListBySearchLevel", searchValue, r);
-	}
-	
-	@Override
-	public int selectMemberCountBySearchLevel(SqlSessionTemplate session, Map<String, Object> searchValue) {
-		return session.selectOne("member.selectMemberCountBySearchLevel",searchValue);
-	}
-	
-	@Override
 	public List<Member> selectMemberListBySearch(SqlSessionTemplate session, Map<String, Object> searchValue, int cPage,
 			int numPerPage) {
 		RowBounds r=new RowBounds((cPage-1)*numPerPage, numPerPage);
@@ -98,17 +87,5 @@ public class AdminDaoImpl implements AdminDao{
 	public int updateMember(SqlSessionTemplate session, Member m) {
 		return session.update("member.updateMemberByAdmin", m);
 	}
-	
-	@Override
-	public int selectMemberCount(SqlSessionTemplate session) {
-		return session.selectOne("member.selectMemberCount");
-	}
-	
-	@Override
-	public List<Member> selectMemberList(SqlSessionTemplate session, int cPage, int numPerPage) {
-		RowBounds r=new RowBounds((cPage-1)*numPerPage, numPerPage);
-		return session.selectList("member.selectMemberList", null, r);
-	}
-	
 	
 }
