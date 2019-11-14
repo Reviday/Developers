@@ -18,19 +18,19 @@ public class SearchValuesTemplate {
 	public SearchValuesTemplate(String value) {
 		// 입력받은 검색어에서 특수문자를 찾는다. 
 		String tempValue=value.trim();//공백제거
-		System.out.println(tempValue);
+
 		//특수문자 필터링 
 		if(!tempValue.matches("[0-9|a-z|A-Z|ㄱ-ㅎ|ㅏ-ㅣ|가-힝]*")){
 		    //특수문자가 있을 경우
 			tempValue=StringReplace(tempValue);
 		}
-		 System.out.println(tempValue);
+
 		//변환으로인한 연속 스페이브바 제거
 		tempValue=continueSpaceRemove(tempValue);
-		System.out.println(tempValue);
+
 		// 입력받은 검색어를 \s를 기준으로 분리하여 배열에 저장
 		String[] tempSearchStr=tempValue.split("\\s");
-		System.out.println(tempSearchStr);
+
 		// 조사 처리
 		// 로직 : 조사 포함/비포함 두 종류를 같이 검색 단어로 설정한다.
 		List<String> searchStr=new ArrayList<String>();
@@ -39,7 +39,7 @@ public class SearchValuesTemplate {
 			String temp=postpositionReplace(str);
 			if(!str.equals(temp)) searchStr.add(temp);
 		}
-		System.out.println(searchStr);
+
 		// 숫자형 검색어 찾기 
 		List<Integer> intList=new ArrayList<Integer>();
 		for(String str:searchStr) {
@@ -49,13 +49,12 @@ public class SearchValuesTemplate {
 				/*변환 불가*/
 			}
 		}
-		System.out.println(intList);
+
 		//문자형 value에서 
 		searchValue.put("searchStr",searchStr);
 		if(intList.size()>0) {
 			searchValue.put("searchInt",intList);
 		}
-		System.out.println(searchValue);
 	}
 	
 	//조사 제거 하기

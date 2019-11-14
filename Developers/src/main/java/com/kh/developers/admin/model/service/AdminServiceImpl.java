@@ -41,7 +41,6 @@ public class AdminServiceImpl implements AdminService {
 	public List<Member> selectWithdrawMemberListBySearch(String value, int cPage, int numPerPage) {
 		svt=new SearchValuesTemplate(value);
 		Map<String, Object> searchValue=svt.getSearchValue();
-		System.out.println(searchValue);
  		return dao.selectWithdrawMemberListBySearch(session, searchValue, cPage, numPerPage);
 	}
 	
@@ -49,7 +48,6 @@ public class AdminServiceImpl implements AdminService {
 	public int selectWithdrawMemberCountBySearch(String value) {
 		svt=new SearchValuesTemplate(value);
 		Map<String, Object> searchValue=svt.getSearchValue();
-		System.out.println(searchValue);
  		return dao.selectWithdrawMemberCountBySearch(session, searchValue);
 	}
 	
@@ -106,7 +104,6 @@ public class AdminServiceImpl implements AdminService {
 		 */
 		svt=new SearchValuesTemplate(value);
 		Map<String, Object> searchValue=svt.getSearchValue();
-		System.out.println(searchValue);
  		return dao.selectMemberCountBySearch(session, searchValue);
 	}
 	
