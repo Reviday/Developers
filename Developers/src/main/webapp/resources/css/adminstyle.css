@@ -188,3 +188,9 @@ select::-ms-expand {
     background-color: transparent;
     color: #000;
 }
+
+@media (max-width : 767px) {
+	.mb-text-align-left {
+		text-align: left !important;
+	}
+}
