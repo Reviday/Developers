@@ -40,6 +40,7 @@
 			<input type="hidden" id="memEmail" value="${loginMember.memEmail }">
 		</c:if>
 	</footer>
+	<jsp:include page="/WEB-INF/views/common/loadingPage.jsp"/>
 </body>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath }/resources/js/main.js"></script>

@@ -23,6 +23,20 @@ public class AdminServiceImpl implements AdminService {
 	private SearchValuesTemplate svt;
 	
 	@Override
+	public List<MemberLoginLog> selectLoginLogListBySearch(String value, int cPage, int numPerPage) {
+		svt=new SearchValuesTemplate(value);
+		Map<String, Object> searchValue=svt.getSearchValue();
+ 		return dao.selectLoginLogListBySearch(session, searchValue, cPage, numPerPage);
+	}
+	
+	@Override
+	public int selectLoginLogCountBySearch(String value) {
+		svt=new SearchValuesTemplate(value);
+		Map<String, Object> searchValue=svt.getSearchValue();
+ 		return dao.selectLoginLogCountBySearch(session, searchValue);
+	}
+	
+	@Override
 	public List<MemberLoginLog> selectLoginLogList(int cPage, int numPerPage) {
 		return dao.selectLoginLogList(session, cPage, numPerPage);
 	}

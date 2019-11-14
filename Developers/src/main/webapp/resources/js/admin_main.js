@@ -74,6 +74,23 @@ function wd_search() {
 	}); 
 }
 
+function mll_search() {
+	var searchValue=document.getElementById('system-search').value;
+	$.ajax({
+		url:path+"/admin/loginLogSearchList.lac",
+		type:"POST",
+		data:{
+			"value":searchValue
+		},
+		success: function(result) {
+			if(result!=null) {
+				$('.mainContent').html("");
+				$('.mainContent').html(result);
+			} 
+		}
+	}); 
+}
+
 //멤버 수정
 function fn_updateMember(memNo) {
 	if(confirm('회원 정보를 수정하시겠습니까?')) {
