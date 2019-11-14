@@ -412,6 +412,17 @@ public class BusinessController {
 	}
 	
 	
+	// 광고 페이지 들어가기 
+	@RequestMapping("/business/ad.lbc")
+	public ModelAndView advertisement(HttpServletRequest req) {
+		ModelAndView mv= new ModelAndView();
+		Business bus=(Business)req.getSession().getAttribute("busInfo");
+		int busNo=Integer.parseInt(bus.getBusNo());
+		
+		mv.setViewName("business/advertisement");
+		return mv;
+	}
+	
 	
 	
 	
