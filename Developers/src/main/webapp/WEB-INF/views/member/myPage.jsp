@@ -41,7 +41,7 @@
                     
                     <c:if test="${loginMember.memIcon!=null }">
                     <div class="Aside-avatar_image" id="logoImg" 
-                    style="background-image: url('${path}/${loginMember.memIcon } ');">
+                    style="background-image: url('${path}${loginMember.memIcon } ');">
                           <div class="_1RDFX7ZROHIIPqPMgmtS2E">
                         <form id="logoFrm" name="logoFrm" enctype="multipart/form-data" method="POST">
                         <i class="icon-camera_icon" role="presentation">+</i>
@@ -313,6 +313,7 @@
 	 });
 	 
  }
+ 
 
 
 </script>
