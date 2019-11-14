@@ -13,8 +13,8 @@ update interests set DUTY=#{duty, typeHandler=strArray},EXPERIENCE=#{experience}
 <delete id="deleteResume" parameterType="resume">
 DELETE FROM RESUME WHERE resume_no=#{resumeNo}
 </delete>
-<select id="selectLike" parameterType="member" resultType="position">
-select b.bus_name,b.BUS_COUNTRY,p.position,b.bus_area,b.bus_images,(SELECT COUNT(*) FROM PO_LIKE WHERE LIKE_ID = P.LIKE_ID) AS LIKE_COUNT from ENROLL_POSITION p join po_like l on (p.like_id=l.like_id) join ta_member m on(l.mem_no=m.mem_no) join BUSINESS_INFO b on(p.bus_no=b.bus_no) where m.MEM_NO=#{memNo}
+<select id="selectLike" parameterType="member" resultMap="positionMap">
+select p.position_no,b.bus_name,b.BUS_COUNTRY,p.position,b.bus_area,b.bus_images,(SELECT COUNT(*) FROM PO_LIKE WHERE LIKE_ID = P.LIKE_ID) AS LIKE_COUNT from ENROLL_POSITION p join po_like l on (p.like_id=l.like_id) join ta_member m on(l.mem_no=m.mem_no) join BUSINESS_INFO b on(p.bus_no=b.bus_no) where m.MEM_NO=#{memNo}
 </select>
 <select id="selectMathUpResume" parameterType="member" resultMap="resumeMap">
 SELECT * FROM RESUME WHERE MEM_EMAIL=#{memEmail} and MATCHUP='Y'
@@ -127,6 +127,13 @@ SELECT * FROM RESUME WHERE MEM_EMAIL=#{memEmail} and RESUME_NO=#{resumeNo}
 <select id="selectInter" parameterType="member" resultMap="interMap">
 	SELECT * FROM interests WHERE MEM_EMAIL=#{memEmail}
 </select>
+<resultMap type="position" id="positionMap">
+		<result column="position_no" property="position_no"/>
+		<result column="bus_name" property="bus_name" />
+		<result column="BUS_COUNTRY" property="bus_country" />
+		<result column="bus_area" property="bus_area" />
+		<result column="bus_images" property="bus_images" typeHandler="StrArray"/>
+	</resultMap>
 <resultMap type="interests" id="interMap">
 	<result property="interestNo" column="INTERESTS_NO"/>
 	<result property="memEmail" column="mem_email"/>

@@ -46,7 +46,7 @@
                 <ul class="content">
                 <c:if test="${not empty  app }">
                 <c:forEach items="${bus }" var="b" varStatus="bt">
-                <a href=#" class="a">
+                <a href="#" class="a">
                         <li>
                             <h2 role="presentation">
                                 <div class="thumbnail"
