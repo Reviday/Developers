@@ -21,6 +21,12 @@ public class MemberDaoImpl implements MemberDao {
 	
 	
 	@Override
+	public List<Position> selectBookMark(SqlSessionTemplate session, Member m) {
+		// TODO Auto-generated method stub
+		return session.selectList("member.selectBookMark",m);
+	}
+
+	@Override
 	public int applAns(SqlSessionTemplate session, int memNo, int number) {
 		// TODO Auto-generated method stub
 		if(number==1) {
@@ -45,7 +51,7 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public List<Position> selectLike(SqlSessionTemplate session, Member m) {
 		// TODO Auto-generated method stub
-		return session.selectList("resume.selectLike",m);
+		return session.selectList("member.selectLike",m);
 	}
 
 	@Override

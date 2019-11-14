@@ -16,7 +16,7 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp">
 	<jsp:param name="pageTitle" value="메인 화면"/> 
 </jsp:include>
-
+<body style="background-color: #f8f8f8 !important;">
 <section id="content" style="height: 1000px;">
 <div style="height: 70px;" ></div>
   <div class="section">
@@ -52,8 +52,8 @@
                                            ></i></button>
                                 </div>
                                 <div class="resume-banner" >
-                                    <a href="#" target="_blank"
-                                        rel="noopener noreferrer" ">
+                                    <a href="#" 
+                                        rel="noopener noreferrer" >
                                         직무 전문가와의
                                         1:1 이력서 코칭을 통해,
                                         완성된 이력서를 만들어보세요.</a></div>
@@ -107,7 +107,7 @@
                                                                 type="button" data-toggle="dropdown">
                                                                 <i class="fas fa-ellipsis-v"></i></button>
                                                             <ul class="dropdown-menu dropdown-menu-right">
-                                                                <li><a href="#">다운로드</a></li>
+                                                               
                                                                 <c:set value="${r.resumeNo }" var="resumeNo"/>
                                                                 <c:set value="${loginMember.memEmail }" var="memEmail"/>
                                                                 <li><a href="#" onclick="deleteResume('${resumeNo }','${memEmail }');">삭제</a></li>
@@ -131,6 +131,7 @@
 
 </div>
 </section>
+</body>
 <script>
 	function deleteResume(resumeNo,memEmail) {
 		 console.log("asdadsad");

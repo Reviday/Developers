@@ -15,9 +15,10 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp">
 	<jsp:param name="pageTitle" value="메인 화면"/> 
 </jsp:include>
+<body style="background-color: #f8f8f8 !important;">
 <div style="height: 70px;"></div>
 <div class="section">
-<div id="app">
+<div id="app" style="background-color: #fff !important;">
     <main class="App-iEDHGk UeTOO">
         <div>
             <div>
@@ -582,7 +583,7 @@
     </main>
  </div>
 </div>
-
+</body>
 <script>
 	
     function careersplus(memEmail,resumeNo) {

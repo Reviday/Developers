@@ -30,4 +30,5 @@ public interface MemberService {
 	List<Applicant> selectApplicant(Member m);
 	Business selectBusOne(String busNo);
 	int applAns(int memNo,int number);
+	List<Position> selectBookMark(Member m);
 }

@@ -19,7 +19,7 @@
                 <li class="_1ft7OZSrbzL35bkI-omU2b"><a href="#" class="">포인트</a></li>
 				<li class="_1ft7OZSrbzL35bkI-omU2b"><a href="#" onclick="applicantPage('${memEmail}');" class="">제안받기 현황</a></li>	
                 <li class="_1ft7OZSrbzL35bkI-omU2b"><a href="#" onclick="likePage('${memEmail }');" class="">좋아요</a></li>
-                <li class="_1ft7OZSrbzL35bkI-omU2b"><a href="#" onclick="myBookMark('${memEmail }')" class="">북마크</a></li>
+                <li class="_1ft7OZSrbzL35bkI-omU2b"><a href="#"  class="activeNav">북마크</a></li>
               
             </ul>
         </nav>
@@ -31,7 +31,7 @@
                     <div class="_3D4OeuZHyGXN7wwibRM5BJ liked">
                     <a href="/wd/29584?referer_id=835297" target="_self" class="">
                             <header
-                                style="background-image: url();">
+                                style="background-image: url('${path}${l.bus_images[1]}');">
                                 <button type="button" class="likeButton">
                                  <i class="fas fa-heart"></i>&nbsp;&nbsp; ${l.like_count }</button></header>
                             <div class="body">

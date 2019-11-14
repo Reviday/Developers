@@ -402,9 +402,9 @@ public class MemberController {
 	public ModelAndView myBookMark(Member m) {
 		ModelAndView mv= new ModelAndView();
 		m=service.selectMemberOne(m);
-		List<Position>likeList=service.selectLike(m);
+		List<Position>likeList=service.selectBookMark(m);
 		mv.addObject("likeList",likeList);
-		mv.setViewName("member/ajax/myLike");
+		mv.setViewName("member/ajax/myBookMark");
 		return mv;
 	}
     @RequestMapping("/member/memberUpdate.lmc")

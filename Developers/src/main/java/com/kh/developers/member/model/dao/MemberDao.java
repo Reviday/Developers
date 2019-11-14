@@ -34,5 +34,6 @@ public interface MemberDao {
    List<Applicant> selectApplicant(SqlSessionTemplate session, Member m);
    Business selectBusOne(SqlSessionTemplate session,String busNo);
    int applAns(SqlSessionTemplate session,int memNo,int number);
+   List<Position> selectBookMark(SqlSessionTemplate session,Member m);
    
 }

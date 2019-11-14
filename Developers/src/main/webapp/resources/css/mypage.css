@@ -14513,7 +14513,8 @@ button._2b3tpm3Ab5C1Cgd6GaKizW {
 
 ._3Qcftta6FkVOkjFbE2NJ2v>section {
     float: left;
-    width: 75%
+    width: 70%;
+    margin-left:20px;
 }
 
 @media (max-width:767px) {
@@ -15262,7 +15263,8 @@ button._2b3tpm3Ab5C1Cgd6GaKizW {
     padding: 41px 0 30px;
     border: 1px solid #e1e2e3;
     border-radius: 3px;
-    background-color: #fff
+    background-color: #fff;
+    box-shadow: 2px 2px 3px 1px #999;
 }
 
 ._1DBZ1F8aWXUpL5ry5a_nRi+._1DBZ1F8aWXUpL5ry5a_nRi {
@@ -17538,7 +17540,9 @@ button._2b3tpm3Ab5C1Cgd6GaKizW {
     top: 0;
     left: 0;
     width: 250px;
-    position: absolute
+    position: absolute;
+    border-radius: 10px;
+    box-shadow: 2px 2px 3px 1px #999;
    
 }
 

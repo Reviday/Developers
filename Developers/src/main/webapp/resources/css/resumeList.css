@@ -1120,6 +1120,7 @@ button, .btn-group, .open, .dropdown-toggle, .btn {
 .resume-item .resume-box {
   height: 190px;
   position: relative;
+  border-radius: 13px;
  
   /* Landscape phones and down */ }
   @media (max-width: 767px) {

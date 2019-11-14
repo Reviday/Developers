@@ -38,6 +38,12 @@ public class MemberServiceImpl implements MemberService {
 	
 
 	@Override
+	public List<Position> selectBookMark(Member m) {
+		// TODO Auto-generated method stub
+		return dao.selectBookMark(session,m);
+	}
+
+	@Override
 	public int applAns(int memNo,int number) {
 		// TODO Auto-generated method stub
 		return dao.applAns(session,memNo,number);
