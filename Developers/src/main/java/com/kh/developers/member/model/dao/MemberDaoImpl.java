@@ -7,6 +7,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.kh.developers.admin.model.vo.MemberLoginLog;
+import com.kh.developers.business.model.vo.Applicant;
+import com.kh.developers.business.model.vo.Business;
 import com.kh.developers.member.model.vo.Interests;
 import com.kh.developers.member.model.vo.Member;
 import com.kh.developers.member.model.vo.MyLike;
@@ -17,6 +19,19 @@ public class MemberDaoImpl implements MemberDao {
 	
 	
 	
+	
+	@Override
+	public Business selectBusOne(SqlSessionTemplate session, String busNo) {
+		// TODO Auto-generated method stub
+		return session.selectOne("business2.selectBusOne", busNo);
+	}
+
+	@Override
+	public List<Applicant> selectApplicant(SqlSessionTemplate session, Member m) {
+		// TODO Auto-generated method stub
+		return session.selectList("member.selectApplicant",m);
+	}
+
 	@Override
 	public List<Position> selectLike(SqlSessionTemplate session, Member m) {
 		// TODO Auto-generated method stub

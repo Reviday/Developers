@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="member">
+	<select id="selectApplicant" parameterType="member" resultMap="applicantMap">
+	SELECT * FROM TA_APPL_BUS WHERE MEM_NO=#{memNo} AND APPL_STATUS=2 AND APPL_ANS_YN='O' AND APPL_DEL_YN='N'
+	</select>
+
+
 	<update id="restoreMember" parameterType="member">
 		UPDATE TA_MEMBER SET MEM_STATUS='Y', MEM_WITHDRAWAL_DATE=NULL WHERE MEM_NO=#{memNo}
 	</update>
@@ -239,5 +244,16 @@
 		<result property="mllUseragent" column="mll_useragent"/>
 		<result property="mllUrl" column="mll_url"/>
 		<result property="mllReferer" column="mll_referer"/>
+	</resultMap>
+	<resultMap type="applicant" id="applicantMap">
+		<result property="alNo" column="al_no" />
+		<result property="applNo" column="appl_no" />
+		<result property="busNo" column="bus_no" />
+		<result property="memNo" column="mem_no" />
+		<result property="positionNo" column="position_no"/>
+		<result property="resumeNo" column="resume_no" />
+		<result property="applStatus" column="appl_status"/>
+		<result property="applDate" column="appl_date" />
+		<result property="applAnsYn" column="appl_ans_yn"/>
 	</resultMap>
 </mapper>

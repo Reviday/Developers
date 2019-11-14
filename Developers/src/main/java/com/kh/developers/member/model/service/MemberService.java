@@ -3,6 +3,8 @@ package com.kh.developers.member.model.service;
 import java.util.List;
 
 import com.kh.developers.admin.model.vo.MemberLoginLog;
+import com.kh.developers.business.model.vo.Applicant;
+import com.kh.developers.business.model.vo.Business;
 import com.kh.developers.member.model.vo.Interests;
 import com.kh.developers.member.model.vo.Member;
 import com.kh.developers.search.model.vo.Position;
@@ -25,4 +27,6 @@ public interface MemberService {
 	List<Position> selectLike(Member m);
 	void insertLoginLog(MemberLoginLog mll);
 	int updateInterests(Interests i);
+	List<Applicant> selectApplicant(Member m);
+	Business selectBusOne(String busNo);
 }

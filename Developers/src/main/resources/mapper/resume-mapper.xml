@@ -2,10 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="resume">
 <update id="updateInterests" parameterType="interests">
-update interests set JOB_NAME=#{jobName},DUTY=#{duty, typeHandler=strArray},EXPERIENCE=#{experience},SALARY=#{salary},SKILL=#{skill, typeHandler=strArray} WHERE MEM_EMAIL=#{memEmail}
-
+update interests set DUTY=#{duty, typeHandler=strArray},EXPERIENCE=#{experience},SALARY=#{salary},SKILL=#{skill, typeHandler=strArray} WHERE MEM_EMAIL=#{memEmail}
 </update>
-
 <update id="updateResume" parameterType="resume">
 	UPDATE RESUME SET MEM_PHONE=#{memPhone},INTRO=#{intro} WHERE RESUME_NO=#{resumeNo}
 </update>

@@ -13,6 +13,8 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import com.kh.developers.admin.model.vo.MemberLoginLog;
+import com.kh.developers.business.model.vo.Applicant;
+import com.kh.developers.business.model.vo.Business;
 import com.kh.developers.common.authentication.MailHandler;
 import com.kh.developers.common.authentication.TempKey;
 import com.kh.developers.member.model.dao.MemberDao;
@@ -34,6 +36,18 @@ public class MemberServiceImpl implements MemberService {
 	
 	
 	
+
+	@Override
+	public Business selectBusOne(String busNo) {
+		// TODO Auto-generated method stub
+		return dao.selectBusOne(session,busNo);
+	}
+
+	@Override
+	public List<Applicant> selectApplicant(Member m) {
+		// TODO Auto-generated method stub
+		return dao.selectApplicant(session,m);
+	}
 
 	@Override
 	public int updateInterests(Interests i) {

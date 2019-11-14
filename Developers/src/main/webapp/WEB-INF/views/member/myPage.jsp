@@ -17,9 +17,7 @@
             <ul class="">
                 <li class="_1ft7OZSrbzL35bkI-omU2b"><a href="#" class="activeNav">프로필</a></li>
                 <li class="_1ft7OZSrbzL35bkI-omU2b"><a href="#" class="">포인트</a></li>
-                <li class="_1ft7OZSrbzL35bkI-omU2b"><button type="button" class="">제안받기 현황<i
-                            class="icon-arrow_bottom_fill"></i></button><a href="#" class="">제안받기 현황</a>
-                </li>
+				<li class="_1ft7OZSrbzL35bkI-omU2b"><a href="#" onclick="applicantPage('${memEmail}');" class="">제안받기 현황</a></li>	
                 <li class="_1ft7OZSrbzL35bkI-omU2b"><a href="#" onclick="likePage('${memEmail }');" class="">좋아요</a></li>
                 <li class="_1ft7OZSrbzL35bkI-omU2b"><a href="#" onclick="myBookMark('${memEmail }')" class="">북마크</a></li>
               
@@ -293,8 +291,6 @@
 			dataType:"json",
      	    contentType:false,
 			success:function(data){
-				console.log("성공");
-				console.log(data);
 				$("#logoImg").css('background-image', 'url('+data+')');
 				$("#profile_img").attr("src",data);
 			},error:function(data){
@@ -303,6 +299,20 @@
 
 		})
 	});
+ 
+ function applicantPage(memEmail){
+	 $.ajax({
+		url:"${path }/member/applicantPage.lmc",
+		data:{"memEmail":memEmail},
+		type:"POST",
+		success:function(data){
+			  $("#mainContent").html("");
+			   $("#mainContent").html(data);
+		}
+		 
+	 });
+	 
+ }
 
 
 </script>

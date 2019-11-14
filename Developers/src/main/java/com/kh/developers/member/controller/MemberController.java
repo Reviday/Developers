@@ -3,6 +3,7 @@ package com.kh.developers.member.controller;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -32,6 +33,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kh.developers.admin.model.vo.MemberLoginLog;
 import com.kh.developers.business.model.service.BusinessService;
+import com.kh.developers.business.model.vo.Applicant;
 import com.kh.developers.business.model.vo.Business;
 import com.kh.developers.common.encrypt.MyEncrypt;
 import com.kh.developers.member.model.service.MemberService;
@@ -513,7 +515,6 @@ public class MemberController {
     }
     @RequestMapping(value="/member/updateInterests.lmc",produces = "application/text; charset=utf8")
     public ModelAndView updateInterests(
-    		@RequestParam(value="jobName") String jobName, 
     		@RequestParam(value="memEmail") String memEmail,
     		@RequestParam(value="experience") String experience,
     		@RequestParam(value="duty[]") List<String> dutyList,
@@ -522,7 +523,6 @@ public class MemberController {
     		) {
     	ModelAndView mv= new ModelAndView();
     	Interests i = new Interests();
-    	i.setJobName(jobName);
     	i.setExperience(experience);
     	i.setSalary(salary);
     	i.setMemEmail(memEmail);
@@ -541,9 +541,34 @@ public class MemberController {
     	Arrays.sort(arraySkill);
     	i.setSkill(arraySkill);
     	int result =service.updateInterests(i);
-    	mv.addObject("i",i);
-    	mv.setViewName("member/myPage2");
+    	Member m2= new Member();
+    	m2.setMemEmail(memEmail);
+    	Resume resume=rService.selectMathUpResume(m2);
+		List<Career> career=rService.selectCareer(resume);
+		List<Education> ed=rService.selectEd(resume);
+		mv.addObject("ed",ed);
+		mv.addObject("resume", resume);
+		mv.addObject("career", career);
+    	mv.addObject("inter",i);
+    	mv.addObject("memEmail",memEmail);
+    	mv.setViewName("member/ajax/myPageAjax");
     	
     	return mv;
     }
+    @RequestMapping("/member/applicantPage.lmc")
+    public ModelAndView applicantPage(Member m) {
+    	ModelAndView mv=new ModelAndView();
+    	System.out.println(m.getMemEmail()+"넘어왔니");
+    	m=service.selectMemberOne(m);
+    	List<Applicant> applicant=service.selectApplicant(m);
+    	List<Business> business=new ArrayList();
+    	for(Applicant a : applicant) {
+    		business.add(service.selectBusOne(""+a.getBusNo()));
+    	}
+    	mv.addObject("app", applicant);
+    	mv.addObject("bus", business);
+    	mv.setViewName("member/ajax/myApplicant");
+    	return mv;
+    }
+    
 }

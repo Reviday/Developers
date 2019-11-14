@@ -6,10 +6,10 @@ import java.util.Map;
 import org.mybatis.spring.SqlSessionTemplate;
 
 import com.kh.developers.admin.model.vo.MemberLoginLog;
+import com.kh.developers.business.model.vo.Applicant;
+import com.kh.developers.business.model.vo.Business;
 import com.kh.developers.member.model.vo.Interests;
 import com.kh.developers.member.model.vo.Member;
-import com.kh.developers.member.model.vo.MyLike;
-import com.kh.developers.search.model.vo.LikeMember;
 import com.kh.developers.search.model.vo.Position;
 
 public interface MemberDao {
@@ -31,5 +31,7 @@ public interface MemberDao {
    List<Position> selectLike(SqlSessionTemplate session, Member m);
    void insertLoginLog(SqlSessionTemplate session, MemberLoginLog mll);
    int updateInterests(SqlSessionTemplate session, Interests i);
+   List<Applicant> selectApplicant(SqlSessionTemplate session, Member m);
+   Business selectBusOne(SqlSessionTemplate session,String busNo);
    
 }

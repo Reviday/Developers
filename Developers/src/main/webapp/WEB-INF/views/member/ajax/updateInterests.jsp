@@ -22,8 +22,8 @@
                                     <h6>직군</h6>
                                     <div class="_3Q44kHqvs_YnYQ-Edlc7V">
                                     <select name="jobName" id="jobName">
-                                            <option value="${inter.jobName }" hidden="" >${inter.jobName }</option>
-                                            <option value="개발">개발</option>
+                                            <option value="${inter.jobName }">${inter.jobName }</option>
+                                      
                                         	
                                         </select>
                                         </div>
@@ -164,14 +164,13 @@ function saveInter(memEmail){
 	   $("input[name='skill']:checked").each(function(i){   
 		   skill.push($(this).val());
 	   });
-	   var jobName =$("select[name=jobName]").val();
 	   var experience =$("select[name=career]").val();
 	   var salary =$("input[name=salary]").val();
 	   for(var i=0; i<$('.active').length; i++){
 	   duty.push($(document.getElementsByClassName('active')[i]).val());
 		 }
 	   var objParams = {
-			   "jobName":jobName,
+			  
 			   "memEmail":memEmail,
 			   "experience":experience,
 	   			"duty":duty,
