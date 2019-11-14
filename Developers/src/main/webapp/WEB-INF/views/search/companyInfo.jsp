@@ -516,24 +516,44 @@
     }
     goToSlide(0);
 </script>
-    <!-- 구글맵 api 스크립트 -->
+<!-- 카카오맵 api -->
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e2fac4a1ad7e4da1c940cda1807c7495&libraries=services"></script>
 <script>
-	 function initMap(){
-	    var latitude = '${p.lat}';
-	    var longitude = '${p.longg}';
-	    var seoul = {lat: Number(latitude), lng: Number(longitude)};
-	    var map = new google.maps.Map(document.getElementById('map'),{
-	                zoom : 15,
-	                center : seoul});
- 	    var marker = new google.maps.Marker({
-	        position : seoul,
-	        title : "Hello Marker"
-	    });
-	    marker.setMap(map); 
-	    	
-	} 
+	var address = '${p.bus_address}';
+	var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
+	var options = { //지도를 생성할 때 필요한 기본 옵션
+		center: new kakao.maps.LatLng(33.450701, 126.570667), //지도의 중심좌표.
+		level: 3 //지도의 레벨(확대, 축소 정도)
+	};
+
+	var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
+	
+	 var geocoder = new kakao.maps.services.Geocoder();
+	
+	geocoder.addressSearch('${p.bus_address}', function(result, status) {
+
+	    // 정상적으로 검색이 완료됐으면 
+	     if (status === kakao.maps.services.Status.OK) {
+
+	        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+	        // 결과값으로 받은 위치를 마커로 표시합니다
+	        var marker = new kakao.maps.Marker({
+	            map: map,
+	            position: coords
+	        });
+
+	        // 인포윈도우로 장소에 대한 설명을 표시합니다
+	        var infowindow = new kakao.maps.InfoWindow({
+	            content: '<div style="width:150px;text-align:center;padding:6px 0;">' + '${p.bus_name}' + '</div>'
+	        });
+	        infowindow.open(map, marker);
+
+	        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+	        map.setCenter(coords);
+	    } 
+	});     
 </script>
-<script async defer  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXNeoRZYBee7rZgjb0jWpmVUMsx-DPZUg&callback=initMap"></script>
 <!-- 좋아요 모달창 -->
 <script>
 	$(function(){                                     

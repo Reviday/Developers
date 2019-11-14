@@ -262,7 +262,7 @@
 			                                    <div class="resumeresume">
 			                                        <li>
 			                                            <label for="resume">
-			                                                <input type="checkbox" name="${r.resume_no }" id="resume">
+			                                                <input type="checkbox" name="resume" value="${r.resume_no }" id="resume">
 			                                            </label>
 			                                            <div>
 			                                                <h4><c:out value="${r.mem_name}"/></h4>
@@ -286,7 +286,7 @@
                                 </div>
                             </div>
                             <div class="submitFooter">
-                                <button type="button">제출하기</button>
+                                <button type="button" class="disabled1" onclick="submitPosition('${p.bus_no}', '${loginMember.memNo }', '${p.position_no }');">제출하기</button>
                             </div>
                         </div>
                     </aside>
@@ -426,26 +426,44 @@
     }
     goToSlide(0);
 </script>
-    <!-- 구글맵 api 스크립트 -->
+<!-- 카카오맵 api -->
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e2fac4a1ad7e4da1c940cda1807c7495&libraries=services"></script>
 <script>
-	 function initMap(){
-	       
-		var latitude = '${p.lat}';
-		var longitude = '${p.longg}';
+	var address = '${p.bus_address}';
+	var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
+	var options = { //지도를 생성할 때 필요한 기본 옵션
+		center: new kakao.maps.LatLng(33.450701, 126.570667), //지도의 중심좌표.
+		level: 3 //지도의 레벨(확대, 축소 정도)
+	};
+
+	var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
 	
-	    var seoul = {lat: Number(latitude), lng: Number(longitude)};
-	    var map = new google.maps.Map(document.getElementById('map'),{
-	                zoom : 15,
-	                center : seoul});
- 	    var marker = new google.maps.Marker({
-	        position : seoul,
-	        title : "Hello Marker"
-	    });
-	    marker.setMap(map); 
-	    	
-	} 
+	 var geocoder = new kakao.maps.services.Geocoder();
+	
+	geocoder.addressSearch('${p.bus_address}', function(result, status) {
+
+	    // 정상적으로 검색이 완료됐으면 
+	     if (status === kakao.maps.services.Status.OK) {
+
+	        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+	        // 결과값으로 받은 위치를 마커로 표시합니다
+	        var marker = new kakao.maps.Marker({
+	            map: map,
+	            position: coords
+	        });
+
+	        // 인포윈도우로 장소에 대한 설명을 표시합니다
+	        var infowindow = new kakao.maps.InfoWindow({
+	            content: '<div style="width:150px;text-align:center;padding:6px 0;">' + '${p.bus_name}' + '</div>'
+	        });
+	        infowindow.open(map, marker);
+
+	        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+	        map.setCenter(coords);
+	    } 
+	});     
 </script>
-<script async defer  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXNeoRZYBee7rZgjb0jWpmVUMsx-DPZUg&callback=initMap"></script>
 <!-- 좋아요 모달창 -->
 <script>
 	$(function(){                                     
@@ -547,4 +565,102 @@
 	$(document).on("click", ".icon-icon_match_list_save", function(event){
 		$("#" + $(this).parents("label").attr("for")).click();
 	})
+	$(document).on("click", "input[type='checkbox'][name='resume']", function(event){
+		if($(this).prop("checked")){
+			$("input[type='checkbox'][name='resume']").prop("checked", false);
+			$(this).prop("checked", true);
+		}
+	})
+</script>
+<!-- 포지션 지원하기  -->
+<script>
+	var nameflag = false;
+	var emailflag = false;
+	var phoneflag = false;
+	$(document).on("keyup", "input[name=name]", function(event){
+		if($("input[name=name]").val().trim().length > 0) nameflag = true;
+		else nameflag = false;
+		if($("input[name=email]").val().trim().length > 0) emailflag = true;
+		else emailflag = false;
+		if($("input[name=phone]").val().trim().length > 0) phoneflag = true;
+		else phoneflag = false;
+		if(nameflag == true && emailflag == true && phoneflag == true && $("input:checkbox[name=resume]:checked").val().length > 0) {
+			$(".submitFooter>button[type=button]").removeClass("disabled1");
+		}else{
+			$(".submitFooter>button[type=button]").addClass("disabled1");
+		}
+	})
+	$(document).on("keyup", "input[name=email]", function(event){
+		if($("input[name=name]").val().trim().length > 0) nameflag = true;
+		else nameflag = false;
+		if($("input[name=email]").val().trim().length > 0) emailflag = true;
+		else emailflag = false;
+		if($("input[name=phone]").val().trim().length > 0) phoneflag = true;
+		else phoneflag = false;
+		if(nameflag == true && emailflag == true && phoneflag == true && $("input:checkbox[name=resume]:checked").val().length > 0) {
+			$(".submitFooter>button[type=button]").removeClass("disabled1");
+		}else{
+			$(".submitFooter>button[type=button]").addClass("disabled1");
+		}
+	})
+	$(document).on("keyup", "input[name=phone]", function(event){
+		if($("input[name=name]").val().trim().length > 0) nameflag = true;
+		else nameflag = false;
+		if($("input[name=email]").val().trim().length > 0) emailflag = true;
+		else emailflag = false;
+		if($("input[name=phone]").val().trim().length > 0) phoneflag = true;
+		else phoneflag = false;
+		if(nameflag == true && emailflag == true && phoneflag == true && $("input:checkbox[name=resume]:checked").val().length > 0) {
+			$(".submitFooter>button[type=button]").removeClass("disabled1");
+		}else{
+			$(".submitFooter>button[type=button]").addClass("disabled1");
+		}
+	})
+	$(document).on("change", "input:checkbox[name=resume]", function(event){
+		if($("input[name=name]").val().trim().length > 0) nameflag = true;
+		else nameflag = false;
+		if($("input[name=email]").val().trim().length > 0) emailflag = true;
+		else emailflag = false;
+		if($("input[name=phone]").val().trim().length > 0) phoneflag = true;
+		else phoneflag = false;
+		if(nameflag == true && emailflag == true && phoneflag == true && $("input:checkbox[name=resume]").is(":checked")) {
+			$(".submitFooter>button[type=button]").removeClass("disabled1");
+		}else{
+			$(".submitFooter>button[type=button]").addClass("disabled1");
+		}
+	})
+	function submitPosition(busNo, memNo, positionNo){
+		var resumeNo = $("input:checkbox[name=resume]:checked").val();
+		var recommendId = $(".selectedC").attr("value");
+		if(recommendId != null){
+			$.ajax({
+				url: path + "/search/positionRecommendSubmit",
+				type: "POST",
+				data: {
+						busNo : busNo,
+						memNo : memNo, 
+						positionNo : positionNo,
+						resumeNo : resumeNo,
+						recommendId : recommendId
+				},	
+				success: function(data){
+					alert(data);
+				}
+			}) 	
+		}else{
+			$.ajax({
+				url: path + "/search/positionSubmit",
+				type: "POST",
+				data: {
+						busNo : busNo,
+						memNo : memNo, 
+						positionNo : positionNo,
+						resumeNo : resumeNo
+				},	
+				success: function(data){
+					alert(data);
+				}
+			}) 	
+		}
+	}
 </script>
