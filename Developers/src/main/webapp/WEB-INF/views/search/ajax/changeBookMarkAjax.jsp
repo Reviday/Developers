@@ -15,7 +15,7 @@
                             <ul class="fictureUl">
                             	<c:if test="${not empty p.bus_images }">
 	                            	<c:forEach var="p" items="${p.bus_images }">
-	                                	<li class="ficturelist" style="background-image:url(${p})"></li>
+	                                	<li class="ficturelist" style="background-image:url(${path}${p})"></li>
 	                            	</c:forEach>
                             	</c:if>
                             </ul>
@@ -69,7 +69,7 @@
                                                 <ul>
                                                 	<c:if test="${p.like_count > 0 }">
 	                                                    <c:forEach var="f" items="${list }" begin="0" end="2">
-	                                                        <li style="background-image: ${f.mem_photo}"></li>
+	                                                        <li style="background-image: url(${path}${f.mem_photo})"></li>
 	                                                    </c:forEach>
                                                     </c:if>
                                                 </ul>
@@ -117,7 +117,7 @@
                         </div>
                         <section class="companyicon">
                             <button type="button" class="left">
-                                <div class="logo" style="background-image: url(${p.bus_logo})"></div>
+                                <div class="logo" style="background-image: url(${path}${p.bus_logo})"></div>
                                 <div>
                                     <h5><c:out value="${p.bus_name }"/></h5>
                                     <h6><c:out value="${p.bus_industrial }"/></h6>
@@ -158,7 +158,7 @@
                                         <ul>
                                             <c:if test="${p.like_count > 0 }">
 	                                        	<c:forEach var="f" items="${list }" begin="0" end="2">
-	                                            	<li style="background-image: ${f.mem_photo}"></li>
+	                                            	<li style="background-image: url(${path}${f.mem_photo})"></li>
 	                                            </c:forEach>
                                             </c:if>
                                         </ul>
@@ -181,7 +181,7 @@
 	                                        <ul>
 	                                            <c:if test="${p.like_count > 0 }">
 		                                        	<c:forEach var="f" items="${list }" begin="0" end="2">
-		                                            	<li style="background-image: url(${path}/resources/upload/profile/${f.mem_photo != null ? f.mem_photo : 'no-profile-image.png'})"></li>
+		                                            	<li style="background-image: url(${path}${f.mem_photo != null ? f.mem_photo : '/resources/upload/profile/no-profile-image.png'})"></li>
 		                                            </c:forEach>
 	                                            </c:if>
 	                                        </ul>
@@ -338,7 +338,7 @@
                                     </li>
                                     <c:forEach var="f" items="${list }">
 	                                	<li>
-	                                		<div style="background-image: url(${path}/resources/upload/profile/${f.mem_photo != null ? f.mem_photo : 'no-profile-image.png'})"></div>
+	                                		<div style="background-image: url(${path}${f.mem_photo != null ? f.mem_photo : '/resources/upload/profile/no-profile-image.png'})"></div>
 	                                		<p><c:out value="${f.mem_name }"/></p>
 	                                	</li>
 	                                </c:forEach>
@@ -348,7 +348,6 @@
                         <div role="presentation" class="modalchang"></div>
                     </div>
   
-<jsp:include page="/WEB-INF/views/common/footer.jsp"/> 
 <!-- 사이드바 고정 스크립트 -->
 <script>
 	var icon = $(".companyicon").offset().top;		

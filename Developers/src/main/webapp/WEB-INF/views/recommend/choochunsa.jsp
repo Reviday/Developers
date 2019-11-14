@@ -12,7 +12,7 @@
 <section id="choochunsa">
     <div class="topSection1 topSection2 topSection3">
         <div class="profilePicWrapper">
-            <div class="profilePicture1 profilePicture2" style="background-image: url(${recommend.recommend_photo});"></div>
+            <div class="profilePicture1 profilePicture2" style="background-image: url(${path}${recommend.recommend_photo});"></div>
             <p class="userName"><c:out value="${recommend.recommend_name }"/></p>
         </div>
     </div>

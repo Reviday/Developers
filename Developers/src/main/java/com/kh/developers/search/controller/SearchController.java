@@ -180,10 +180,12 @@ public class SearchController {
 	public String companyInfoList(int positionNo, int memNo, Model model) {
 		BookMark bmList = service.selectBookMark(memNo, positionNo);
 		Position p = service.companyInfoList(positionNo);
+		List<Position> rcList = service.recommandPositionList(p);
 		List<Tag> tagList = service.companyTagList(p.getBus_no());
 		int likeId = p.getLike_id();
 		List<LikeMember> list = service.likeMemberList(likeId);
 		LikeMember lm = service.selectLikeMemberOne(memNo, likeId);
+		model.addAttribute("rcList", rcList);
 		model.addAttribute("tagList", tagList);
 		model.addAttribute("bmList", bmList);
 		model.addAttribute("lm", lm);

@@ -15,7 +15,7 @@
     	<c:if test="${not empty list }">
     		<c:forEach var="r" items="${list }">
 		        <div class="mypushList1 mypushList2 mypushList3 mypushList4">
-		            <div class="profile1 profile2" style="background-image: url(${r.recommend_photo});"></div>
+		            <div class="profile1 profile2" style="background-image: url(${path}${r.recommend_photo});"></div>
 		            <p class="sentreferName"><c:out value="${r.recommend_name }"/></p>
 		            <p class="sentreferDescription">
 		            	<c:if test="${r.realationship == 'colleague' }">(전)직장동료</c:if>

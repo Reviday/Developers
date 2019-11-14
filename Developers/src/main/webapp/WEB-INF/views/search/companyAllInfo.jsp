@@ -12,7 +12,7 @@
     <section id="conmanyInfo">
         <div class="companyHeader">
             <div class="comheader">
-                <img src="${company.bus_logo }" alt="Company Logo">
+                <img src="${path }${company.bus_logo }" alt="Company Logo">
                 <h2><c:out value="${company.bus_name }"/></h2>
             </div>
         </div>
@@ -117,7 +117,7 @@
 	                    	<c:forEach var="f" items="${company.bus_images }" begin="0" varStatus="vs">
 		                        <c:if test="${vs.count < 4 }">
 			                        <button class="fictureBtn">
-			                            <img src="${f }" alt=""/>
+			                            <img src="${path }${f }" alt=""/>
 			                        </button>
 		                        </c:if>
 	                        </c:forEach>
@@ -132,7 +132,7 @@
                                     <ul class="fictureUl">
                                     	<c:forEach var="f" items="${company.bus_images }" begin="0" varStatus="vs">
 	                                        <c:if test="${vs.count < 4 }">
-	                                        	<li><img src="${f }" alt="" class="modalficture"></li>
+	                                        	<li><img src="${path }${f }" alt="" class="modalficture"></li>
 	                                        </c:if>
                                         </c:forEach>
                                     </ul>

@@ -208,10 +208,10 @@
                             		<li>
                                 		<div class="searchHeader">
                                 			
-                                    		<div class="companyBg" style="background-image: url(${f.bus_images[0]})"></div>
+                                    		<div class="companyBg" style="background-image: url(${path }${f.bus_images[0]})"></div>
                                 		</div>
 		                                <footer>
-		                                    <div class="logoCircle" style="background-image: url(${f.bus_logo})"></div>
+		                                    <div class="logoCircle" style="background-image: url(${path }${f.bus_logo})"></div>
 		                                    <h4><c:out value="${f.bus_name }"/></h4>
 		                                    <h5><c:out value="${f.po_count }"/>개 포지션</h5>
 		                                </footer>
@@ -232,7 +232,7 @@
 		                            <c:if test="${empty loginMember }">
 		                            <a href="${path }/search/companyInfo1.do?positionNo=${p.position_no }">
 		                            </c:if>
-		                                <div class="buttonHeader" style="background-image: url(${p.bus_images[0]})">
+		                                <div class="buttonHeader" style="background-image: url(${path }${p.bus_images[0]})">
 		                                    <button class="likeButton">
 		                                        <i class="fas fa-heart"></i>
 		                                        <c:out value="${p.like_count }"/>
