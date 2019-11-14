@@ -11,18 +11,18 @@
 </head>
 <body>
 <div class="_1Gv5LM5zal-f72_XSo_qJ_">
-    <nav role="presentation" class="_3wSXAiIJQZ98fJ-Hi6G42Q"><button type="button" class="">제안받기 현황<span
-                class="subtitle"><i class="icon-arrow_right"></i>전체</span><i
-                class="icon-arrow_bottom_fill"></i></button>
-        <ul class="">
-            <li class="_1ft7OZSrbzL35bkI-omU2b"><a href="/profile/matching" class="">프로필</a></li>
-            <li class="_1ft7OZSrbzL35bkI-omU2b"><a href="/profile/point" class="">포인트</a></li>
-            <li class="_1ft7OZSrbzL35bkI-omU2b"><a href="/profile/status" class="activeNav">제안받기
-                    현황</a></li>
-            <li class="_1ft7OZSrbzL35bkI-omU2b"><a href="/profile/likes" class="">좋아요</a></li>
-            <li class="_1ft7OZSrbzL35bkI-omU2b"><a href="/profile/bookmarks" class="">북마크</a></li>
-        </ul>
-    </nav>
+     <nav role="presentation" class="_3wSXAiIJQZ98fJ-Hi6G42Q"><button type="button" class="">프로필<i
+                    class="icon-arrow_bottom_fill"></i></button>
+                    <c:set value="${loginMember.memEmail }" var="memEmail"  />
+            <ul class="">
+                <li class="_1ft7OZSrbzL35bkI-omU2b"><a href="#" class="activeNav">프로필</a></li>
+                <li class="_1ft7OZSrbzL35bkI-omU2b"><a href="#" class="">포인트</a></li>
+				<li class="_1ft7OZSrbzL35bkI-omU2b"><a href="#" onclick="applicantPage('${memEmail}');" class="">제안받기 현황</a></li>	
+                <li class="_1ft7OZSrbzL35bkI-omU2b"><a href="#" onclick="likePage('${memEmail }');" class="">좋아요</a></li>
+                <li class="_1ft7OZSrbzL35bkI-omU2b"><a href="#" onclick="myBookMark('${memEmail }')" class="">북마크</a></li>
+              
+            </ul>
+        </nav>
     <div class="_3Qcftta6FkVOkjFbE2NJ2v"><button class="statusInfoButton" type="button"><i
                 class="icon-step_info_icon"></i></button>
         <div class="DS_fYpEMhiYB3fNFb0lCn">
