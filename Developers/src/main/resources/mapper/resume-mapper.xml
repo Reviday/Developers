@@ -50,7 +50,7 @@ DELETE FROM LINKS WHERE links_no=#{deleteNo}
 DELETE FROM CAREER WHERE CAREER_NO=#{deleteNo}
 </delete>
 <insert id="insertResume" parameterType="member">
-INSERT INTO RESUME VALUES (SEQ_RESUME.NEXTVAL,#{memEmail},#{memName},#{memPhone},default,default,null,null,default)
+INSERT INTO RESUME VALUES (SEQ_RESUME.NEXTVAL,#{memEmail},#{memName},#{memPhone},default,default,null,null,default
 <selectKey keyProperty="memNo" resultType="_int" order="AFTER">
 SELECT SEQ_RESUME.CURRVAL FROM DUAL
 </selectKey>
