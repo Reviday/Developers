@@ -283,8 +283,7 @@ select {
 							<span class="Select__SelectBox-gLnYwz esQZxO">
 							<select class="Input-hxTtdt ddiEBf" id="jobGroup">
 									<option value="" disabled="disabled">직군</option>
-									<option value="j0">개발</option>
-									<option value="j1">비개발</option>
+									<option value="j0" selected="selected">개발</option>
 							</select>
 							</span>
 						</div>
@@ -293,32 +292,32 @@ select {
 							<span class="Select__SelectBox-gLnYwz esQZxO"> 
 							<select class="Input-hxTtdt ddiEBf" id="jobField">
 									<option value="" disabled="">직무</option>
-									<option value="f0">전체</option>
-									<option value="f1">C,C++개발자</option>
-									<option value="f2">CTO,Chief Technology Officer</option>
-									<option value="f3">DevOps / 시스템 관리자</option>
-									<option value="f4">iOS 개발자</option>
-									<option value="f5">.NET 개발자</option>
-									<option value="f6">Node.js 개발자</option>
-									<option value="f7">PHP 개발자</option>
-									<option value="f8">QA,테스트 엔지니어</option>
-									<option value="f9">개발 매니저</option>
-									<option value="f10">그래픽스 엔지니어</option>
-									<option value="f11">데이터 엔지니어</option>
-									<option value="f12">루비온레일즈 개발자</option>
-									<option value="f13">보안 엔지니어</option>
-									<option value="f14">서버 개발자</option>
-									<option value="f15">시스템,네트워크 관리자</option>
-									<option value="f16">안드로이드 개발자</option>
-									<option value="f17">영상,음성 엔지니어</option>
-									<option value="f18">웹 개발자</option>
-									<option value="f19">웹 퍼블리셔</option>
-									<option value="f20">임베디드 개발자</option>
-									<option value="f21">자바 개발자</option>
-									<option value="f22">파이썬 개발자</option>
-									<option value="f23">프로덕트 매니저</option>
-									<option value="f24">프론트엔드 개발자</option>
-									<option value="f25">하드웨어 엔지니어</option>
+									<option value="f0" <c:if test="${jobField eq 'f0'}">selected</c:if>>전체</option>
+									<option value="f1" <c:if test="${jobField eq 'f1'}">selected</c:if>>C,C++개발자</option>
+									<option value="f2" <c:if test="${jobField eq 'f2'}">selected</c:if>>CTO,Chief Technology Officer</option>
+									<option value="f3" <c:if test="${jobField eq 'f3'}">selected</c:if>>DevOps / 시스템 관리자</option>
+									<option value="f4" <c:if test="${jobField eq 'f4'}">selected</c:if>>iOS 개발자</option>
+									<option value="f5" <c:if test="${jobField eq 'f5'}">selected</c:if>>.NET 개발자</option>
+									<option value="f6" <c:if test="${jobField eq 'f6'}">selected</c:if>>Node.js 개발자</option>
+									<option value="f7" <c:if test="${jobField eq 'f7'}">selected</c:if>>PHP 개발자</option>
+									<option value="f8" <c:if test="${jobField eq 'f8'}">selected</c:if>>QA,테스트 엔지니어</option>
+									<option value="f9" <c:if test="${jobField eq 'f9'}">selected</c:if>>개발 매니저</option>
+									<option value="f10" <c:if test="${jobField eq 'f10'}">selected</c:if>>그래픽스 엔지니어</option>
+									<option value="f11" <c:if test="${jobField eq 'f11'}">selected</c:if>>데이터 엔지니어</option>
+									<option value="f12" <c:if test="${jobField eq 'f12'}">selected</c:if>>루비온레일즈 개발자</option>
+									<option value="f13" <c:if test="${jobField eq 'f13'}">selected</c:if>>보안 엔지니어</option>
+									<option value="f14" <c:if test="${jobField eq 'f14'}">selected</c:if>>서버 개발자</option>
+									<option value="f15" <c:if test="${jobField eq 'f15'}">selected</c:if>>시스템,네트워크 관리자</option>
+									<option value="f16" <c:if test="${jobField eq 'f16'}">selected</c:if>>안드로이드 개발자</option>
+									<option value="f17" <c:if test="${jobField eq 'f17'}">selected</c:if>>영상,음성 엔지니어</option>
+									<option value="f18" <c:if test="${jobField eq 'f18'}">selected</c:if>>웹 개발자</option>
+									<option value="f19" <c:if test="${jobField eq 'f19'}">selected</c:if>>웹 퍼블리셔</option>
+									<option value="f20" <c:if test="${jobField eq 'f20'}">selected</c:if>>임베디드 개발자</option>
+									<option value="f21" <c:if test="${jobField eq 'f21'}">selected</c:if>>자바 개발자</option>
+									<option value="f22" <c:if test="${jobField eq 'f22'}">selected</c:if>>파이썬 개발자</option>
+									<option value="f23" <c:if test="${jobField eq 'f23'}">selected</c:if>>프로덕트 매니저</option>
+									<option value="f24" <c:if test="${jobField eq 'f24'}">selected</c:if>>프론트엔드 개발자</option>
+									<option value="f25" <c:if test="${jobField eq 'f25'}">selected</c:if>>하드웨어 엔지니어</option>
 							</select>
 							</span>
 						</div>
@@ -357,17 +356,17 @@ select {
 <!-- ajax통신 -->
 <!--선택된 연봉정보 DB에서 가지고 오기 시작  -->
 <script type="text/javascript">
-$("#jobGroup").change(function(){
+/* $("#jobGroup").change(function(){
  	var jobGroup= $(this).val();
 	console.log(jobGroup);
 		location.href='${path }/salary/salaryJobGroupSelect.do?jobGroup'+jobGroup;
-});
+}); */
 
 
 $("#jobField").change(function(){
 	var jobField= $(this).val();
 	console.log(jobField);	
-	location.href='${path }/salary/salaryJobGroupSelect.do?jobField='+jobField;
+	location.href='${path }/salary/salarySelectList.do?jobField='+jobField;
 });
 
 
@@ -380,20 +379,27 @@ $("#jobField").change(function(){
 
 <!--연봉차트 생성 시작  -->
 <script type="text/javascript">
+
+	//그래프 데이터 리스트형 전처리
+	var salaryList = new Array();
+	<c:forEach items="${salaryList}" var="item">
+	salaryList.push("${item}");
+	</c:forEach>
+	salaryList.unshift("연봉");
+	console.log(salaryList);
+	
+	//그래프 데이터 리스트형 전처리 완료
+	
+	//차트 생성 시작
 	var chart = bb.generate({
 		bindto : "#salary-chart",
 		padding : {
 			top : 50
-
 		},
 		data : {
 			type : "bar",
-
 			columns : [
-
-			[ "연봉", 2696, 2986, 3249, 3497, 3742, 3989, 4232, 4480, 4707, 4873,
-					5133 ]
-
+				salaryList
 			],
 			selection : {
 				enabled : true,
@@ -414,16 +420,23 @@ $("#jobField").change(function(){
 						"7년차", "8년차", "9년차", "10년차" ]
 			},
 	
-
 		},
+        grid : {
+            x : {
+               show : true
+            },
+            y : {
+               show : true
+            }
+         },
 		legend : {
 			show : false
 		}
-
 	});
 	chart.data.names({
 		연봉 : "연봉"
 	});
+	//차트 생성 완료
 </script>
 <!--연봉차트 생성  완료 -->
 
