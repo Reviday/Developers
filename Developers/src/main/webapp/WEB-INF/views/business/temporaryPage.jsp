@@ -18,8 +18,11 @@
 	margin-top:48px;
 	}
 }
+#content>*{
+	font-size:15px;
+}
 p{
-	font-size: 14px;
+	font-size: 15px;
 }
 /* .pagination>*{
     font-size: 1.8rem;
@@ -78,6 +81,7 @@ input#searchBox{
 
 .favBtn{
 	padding: .575rem 1.75rem;
+	font-size:15px;
 }
 
 div.resume-area{
@@ -100,6 +104,7 @@ div.card>*{
 
 button.btn-outline-info{
 	margin:3px 3px 3px 3px;
+	font-size:12px;
 	border-radius: 15px;
 }
 
@@ -168,6 +173,7 @@ p#sirName:after {
 h4#noResult{
 	height:70px;
 	text-align: center;
+	font-size:20px;
 	margin-top:80px;
 }
 h4#noResult::before {
@@ -258,6 +264,11 @@ button#buttonFav{
 .btn-primary.focus, .btn-primary:focus {
     box-shadow: 0 0 0 0;
 }
+input::placeholder {
+  font-size:12px;
+  font-style: italic;
+}
+
 
 
 
@@ -350,7 +361,7 @@ button#buttonFav{
 				<div class="input-group container col-md-8">
 					<input type="text" id="searchBox" class="form-control" style="border-color: #ffffff;" placeholder="회사명, 학교, 스킬 검색 (중복검색 가능 e.g.회사명 AND 스킬, 회사명 OR 학교)" aria-label="search-bar" aria-describedby="basic-addon2">
 					<div class="input-group-append">
-						<button id="searchBtn" class="btn btn-primary" style="background-color: #02609B; border-color: #FFFFFF" type="button">검색하기</button>
+						<button id="searchBtn" class="btn btn-primary" style="background-color: #02609B; border-color: #FFFFFF; font-size:15px;" type="button">검색하기</button>
 					</div>
 				</div>
 				<!-- <div class="col-md-4">
@@ -361,7 +372,7 @@ button#buttonFav{
 		<div class="resume-area row">
 			<div class="resume-left-area col-12 col-sm-4">
 				<div class="top center forOpen" style="height: 100px;">
-					<button class="btn btn-success" style="background-color: #7B39BD; border-color: #7B39BD;">알림권 결제하기</button>
+					<button class="btn btn-success" style="background-color: #7B39BD; border-color: #7B39BD; font-size:15px;">알림권 결제하기</button>
 				</div>
 				<div class="bottom center favList">
 					<div class="list-group left-menu">

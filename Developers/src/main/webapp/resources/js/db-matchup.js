@@ -409,11 +409,11 @@ function favoriteList(cPage){
                         cardContainer+='<div style="float:left; margin-left:10px;"><img class="bus-user-profile" src="'+path+'/resources/upload/profile/no-profile-image.png"/></div>';
                         let userName=icList[i].memName.split("");
                         let sirName=userName.splice(0,1);
-                        cardContainer+='<div id="memName" style="float:left; color:#A4A4A4; margin-left:10px; padding:7px;"><p id="sirName">'+sirName+'</p></div>';
+                        cardContainer+='<div id="memName" style="float:left; color:#A4A4A4; margin-left:10px; padding:7px;"><p id="sirName" style="font-size:15px;">'+sirName+'</p></div>';
                         cardContainer+='<div id="favBtn" style="float:right; width:18%;">';
                         if(icList[i].favorite!="F"){
                             cardContainer+='<button class="btn btn-primary favBtns" id="buttonFav" style="font-size:large; margin-top:-2px; border-Color:#F2F2F2; background-Color:#F2F2F2; color:#2E2E2E;">';
-                            cardContainer+='<i class="fas fa-heart" style="color:#FF0040;"></i>&nbsp&nbsp<p style="font-size:12px; display:inline-block";>찜함</p></button></div></h5>';
+                            cardContainer+='<i class="fas fa-heart" style="color:#FF0040;"></i>&nbsp&nbsp<p style="font-size:15px; display:inline-block";>찜함</p></button></div></h5>';
                         }else{
                             cardContainer+='<button class="btn btn-primary favBtns" id="buttonFav" style="font-size:large; margin-top:-2px; border-Color:#D8D8D8; background-Color:#D8D8D8; color:#FFFFFF;">';
                             cardContainer+='<i class="fas fa-heart" style="color:#FFFFFF;"></i>&nbsp&nbsp<p style="font-size:12px; display:inline-block";>찜하기</p></button></div></h5>';

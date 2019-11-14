@@ -13,13 +13,33 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <style>
-	div.ad{
-		display: inline-block; 
-		border: 1px solid red;
-		padding:5%;
-		background-color: #FFFFFF;
-		width:25em;
+div.ad{
+	padding:5%;
+	background-color: #FFFFFF;
+
+}
+#content>*{
+	font-size:15px;
+}
+@media (min-width: 576px){
+.ad-left-area{
+	padding-left:4%;
 	}
+}
+@media (min-width: 576px){
+#ad-area{
+	padding-right:4%;
+	}
+}
+@media (max-width: 767px){
+#db-container{
+	margin-top:48px;
+	}
+}
+
+
+
+
 </style>
 
 
@@ -57,57 +77,88 @@
 		<div class="ad-area row" style="background-color: #F2F2F2;">
 			<div class="ad-left-area col-12 col-sm-4">
 				<div class="bottom center favList">
+					<div class="list-group left-menu" style="text-align:center; padding:5%;">
+						<div><h4 style="color: #848484; padding:5%; text-align: justify;">광고를 등록하기 위해서는 최소 1개의 포지션을 등록해놓아야 합니다. 포지션을 등록하지 않았다면 여기를 클릭해 주세요.</h4></div>
+						<div class="top center forOpen" style="height: 100px;">
+							<button class="btn btn-success" style="background-color: #7B39BD; border-color: #7B39BD; padding:5%; margin-top:6%; font-size:15px;">포지션 등록하기</button>
+						</div>
+					</div>
 					<div class="list-group left-menu">
 						<a href="#" class="list-group-item list-group-item-action active" onclick="location.reload()">채용 광고 홈</a>
-						<a href="#" class="list-group-item list-group-item-action" onclick="favoriteList(); return false;">직무 상단 광고<div class='countSelected'></div></a>
-						<a href="#" class="list-group-item list-group-item-action" onclick="openedList();return false;">메인 상단 광고<div class='countSelected'></div></a>
+						<a href="#" class="list-group-item list-group-item-action" onclick="categoryAd(); return false;">직무 상단 광고<div class='countSelected'></div></a>
+						<a href="#" class="list-group-item list-group-item-action" onclick="mainAd();return false;">메인 상단 광고<div class='countSelected'></div></a>
 					</div>
 				</div>
 			</div>
 			<div id="ad-area" class="col-12 col-sm-8">
 				<div class="" style="text-align: center; padding:5%">
-					<div class="ad category_ad" style="margin-right:3%;">
+					<div class="ad category_ad" >
 						<h4>회사 홍보를 특정 직무에 하고 싶으신가요?</h4>
 						<img>
 						<p>디벨로퍼스의 직무별 잠재 구직자들을 타겟팅하여
 							세분화된 직무마다 효율적으로 홍보할 수 있습니다.</p>
-						<button class="btn btn-primary">직무 상단 광고</button>
+						<button class="btn btn-primary" style="font-size:15px;">직무 상단 광고</button>
 					</div>
-					<div class="ad main_ad" style="margin-left:3%;">
+					<div class="ad main_ad" style="margin-top:20px;">
 						<h4>회사 홍보를 메인 페이지에 하고 싶으신가요?</h4>
 						<img>
 						<p>디벨로퍼스의 메인 페이지에 모든 직무에 구분 없이
 							노출하여 극도의 홍보효과를 누릴 수 있습니다.</p>
-						<button class="btn btn-primary">메인 페이지에 광고</button>
+						<button class="btn btn-primary" style="font-size:15px;">메인 페이지에 광고</button>
 					</div>
 				</div>
 				<!-- 광고 노출 효과  -->
-				<div class="category_table">
+				<div class="ad_result">
+					<div class="category_table">
+						<h2>직무 상단 광고 결과</h2>
 						<table class="table table-sm table-dark">
+							<thead>
+								<tr>
+								<th scope="col">번호</th>
+								<th scope="col">광고 내역</th>
+								<th scope="col">상태</th>
+								<th scope="col">기간</th>
+								<th scope="col">클릭수</th>
+								</tr>
+							</thead>
+							<tbody>
+								<!-- 여기부터 자바스크립트  -->
+								<tr>
+								<th scope="row">1</th>
+								<td>10020</td>
+								<td>Otto</td>
+								<td>@mdo</td>
+								<td>@mdo</td>
+								</tr>
+									<!-- 여기부터 자바스크립트  -->
+							</tbody>
+						</table>
+					</div>
+					<div class="category_table">
+							<h2>메인 상단 광고 결과</h2>
+							<table class="table table-sm table-dark">
 								<thead>
-								  <tr>
+									<tr>
 									<th scope="col">번호</th>
 									<th scope="col">광고 내역</th>
 									<th scope="col">상태</th>
 									<th scope="col">기간</th>
 									<th scope="col">클릭수</th>
-								  </tr>
+									</tr>
 								</thead>
 								<tbody>
 									<!-- 여기부터 자바스크립트  -->
-								  <tr>
+									<tr>
 									<th scope="row">1</th>
 									<td>10020</td>
 									<td>Otto</td>
 									<td>@mdo</td>
 									<td>@mdo</td>
-								  </tr>
-								 	 <!-- 여기부터 자바스크립트  -->
+									</tr>
+										<!-- 여기부터 자바스크립트  -->
 								</tbody>
-							  </table>
-				</div>
-				<div class="main_table">
-
+							</table>
+						</div>
 				</div>
 			</div>
 		</div>
