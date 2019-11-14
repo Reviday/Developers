@@ -22,7 +22,7 @@
 					<input class="form-control" id="system-search" 
 						placeholder="Search for" required> <span
 						class="input-group-btn">
-						<button type="button" class="btn btn-default" onclick="search();">
+						<button type="button" class="btn btn-default" onclick="mll_search();">
 							<i class="fas fa-search"></i>
 						</button>
 					</span>

@@ -1,6 +1,5 @@
 package com.kh.developers.admin.model.service;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.developers.admin.model.dao.AdminDao;
 import com.kh.developers.admin.model.vo.MemberLoginLog;
-import com.kh.developers.admin.model.vo.VisitCount;
+import com.kh.developers.common.util.SearchValuesTemplate;
 import com.kh.developers.member.model.vo.Member;
 
 @Service
@@ -21,6 +20,7 @@ public class AdminServiceImpl implements AdminService {
 	private AdminDao dao;
 	@Autowired
 	private SqlSessionTemplate session;
+	private SearchValuesTemplate svt;
 	
 	@Override
 	public List<MemberLoginLog> selectLoginLogList(int cPage, int numPerPage) {
@@ -39,39 +39,17 @@ public class AdminServiceImpl implements AdminService {
 	
 	@Override
 	public List<Member> selectWithdrawMemberListBySearch(String value, int cPage, int numPerPage) {
-		Map<String, Object> searchValue=new HashMap<String, Object>();
-		String[] searchStr=value.split("\\s");
-		List<Integer> intList=new ArrayList<Integer>();
-		for(String str:searchStr) {
-			try {
-				intList.add(Integer.parseInt(str));
-			} catch(Exception e) {
-				/*변환 불가*/
-			}
-		}
-		searchValue.put("searchStr",searchStr);
-		if(intList.size()>0) {
-			searchValue.put("searchInt",intList);
-		}
+		svt=new SearchValuesTemplate(value);
+		Map<String, Object> searchValue=svt.getSearchValue();
+		System.out.println(searchValue);
  		return dao.selectWithdrawMemberListBySearch(session, searchValue, cPage, numPerPage);
 	}
 	
 	@Override
 	public int selectWithdrawMemberCountBySearch(String value) {
-		Map<String, Object> searchValue=new HashMap<String, Object>();
-		String[] searchStr=value.split("\\s");
-		List<Integer> intList=new ArrayList<Integer>();
-		for(String str:searchStr) {
-			try {
-				intList.add(Integer.parseInt(str));
-			} catch(Exception e) {
-				/*변환 불가*/
-			}
-		}
-		searchValue.put("searchStr",searchStr);
-		if(intList.size()>0) {
-			searchValue.put("searchInt",intList);
-		}
+		svt=new SearchValuesTemplate(value);
+		Map<String, Object> searchValue=svt.getSearchValue();
+		System.out.println(searchValue);
  		return dao.selectWithdrawMemberCountBySearch(session, searchValue);
 	}
 	
@@ -89,19 +67,8 @@ public class AdminServiceImpl implements AdminService {
 	public List<Member> selectMemberListBySearchLevel(String value, int searchLevel, int cPage, int numPerPage) {
 		Map<String, Object> searchValue=new HashMap<String, Object>();
 		if(value != null || !value.equals("")) {
-			String[] searchStr=value.split("\\s");
-			List<Integer> intList=new ArrayList<Integer>();
-			for(String str:searchStr) {
-				try {
-					intList.add(Integer.parseInt(str));
-				} catch(Exception e) {
-					/*변환 불가*/
-				}
-			}
-			searchValue.put("searchStr",searchStr);
-			if(intList.size()>0) {
-				searchValue.put("searchInt",intList);
-			}
+			svt=new SearchValuesTemplate(value);
+			searchValue=svt.getSearchValue();
 		}
 		searchValue.put("searchLevel",searchLevel);
  		return dao.selectMemberListBySearchLevel(session, searchValue, cPage, numPerPage);
@@ -112,19 +79,8 @@ public class AdminServiceImpl implements AdminService {
 		//검색조건을 위함
 		Map<String, Object> searchValue=new HashMap<String, Object>();
 		if(value != null || !value.equals("")) {
-			String[] searchStr=value.split("\\s");
-			List<Integer> intList=new ArrayList<Integer>();
-			for(String str:searchStr) {
-				try {
-					intList.add(Integer.parseInt(str));
-				} catch(Exception e) {
-					/*변환 불가*/
-				}
-			}
-			searchValue.put("searchStr",searchStr);
-			if(intList.size()>0) {
-				searchValue.put("searchInt",intList);
-			}
+			svt=new SearchValuesTemplate(value);
+			searchValue=svt.getSearchValue();
 		}
 		searchValue.put("searchLevel",searchLevel);
  		return dao.selectMemberCountBySearchLevel(session, searchValue);
@@ -132,20 +88,8 @@ public class AdminServiceImpl implements AdminService {
 	
 	@Override
 	public List<Member> selectMemberListBySearch(String value, int cPage, int numPerPage) {
-		Map<String, Object> searchValue=new HashMap<String, Object>();
-		String[] searchStr=value.split("\\s");
-		List<Integer> intList=new ArrayList<Integer>();
-		for(String str:searchStr) {
-			try {
-				intList.add(Integer.parseInt(str));
-			} catch(Exception e) {
-				/*변환 불가*/
-			}
-		}
-		searchValue.put("searchStr",searchStr);
-		if(intList.size()>0) {
-			searchValue.put("searchInt",intList);
-		}
+		svt=new SearchValuesTemplate(value);
+		Map<String, Object> searchValue=svt.getSearchValue();
  		return dao.selectMemberListBySearch(session, searchValue, cPage, numPerPage);
 	}
 	
@@ -160,20 +104,9 @@ public class AdminServiceImpl implements AdminService {
 		 * 기준으로 3가지 검색을 모두 수행한다.
 		 * 하여, 비교적 가장 정확한 검색 루틴을 돌린다.
 		 */
-		Map<String, Object> searchValue=new HashMap<String, Object>();
-		String[] searchStr=value.split("\\s");
-		List<Integer> intList=new ArrayList<Integer>();
-		for(String str:searchStr) {
-			try {
-				intList.add(Integer.parseInt(str));
-			} catch(Exception e) {
-				/*변환 불가*/
-			}
-		}
-		searchValue.put("searchStr",searchStr);
-		if(intList.size()>0) {
-			searchValue.put("searchInt",intList);
-		}
+		svt=new SearchValuesTemplate(value);
+		Map<String, Object> searchValue=svt.getSearchValue();
+		System.out.println(searchValue);
  		return dao.selectMemberCountBySearch(session, searchValue);
 	}
 	
