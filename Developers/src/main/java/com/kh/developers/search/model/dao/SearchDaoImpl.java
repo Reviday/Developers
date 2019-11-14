@@ -7,6 +7,7 @@ import java.util.Map;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.kh.developers.business.model.vo.Applicant;
 import com.kh.developers.member.model.vo.Member;
 import com.kh.developers.recommend.model.vo.Recommend;
 import com.kh.developers.search.model.vo.BookMark;
@@ -234,4 +235,26 @@ public class SearchDaoImpl implements SearchDao {
 		// TODO Auto-generated method stub
 		return session.selectList("search.selectRecommendList", memNo);
 	}
+	
+	@Override
+	public Applicant selectApplicant(SqlSessionTemplate session, int memNo, int positionNo) {
+		Map map = new HashMap();
+		map.put("memNo", memNo);
+		map.put("positionNo", positionNo);
+		return session.selectOne("search.selectApplicant", map);
+	}
+
+	@Override
+	public int insertPositionRecommend(SqlSessionTemplate session, Map map) {
+		// TODO Auto-generated method stub
+		return session.insert("search.insertPositionRecommend", map);
+	}
+
+	@Override
+	public int insertPosition(SqlSessionTemplate session, Map map) {
+		// TODO Auto-generated method stub
+		return session.insert("search.insertPosition", map);
+	}
+	
+	
 }

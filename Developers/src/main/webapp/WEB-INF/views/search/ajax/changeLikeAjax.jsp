@@ -262,7 +262,7 @@
 			                                    <div class="resumeresume">
 			                                        <li>
 			                                            <label for="resume">
-			                                                <input type="checkbox" name="resume" id="resume">
+			                                                <input type="checkbox" name="${r.resume_no }" id="resume">
 			                                            </label>
 			                                            <div>
 			                                                <h4><c:out value="${r.mem_name}"/></h4>

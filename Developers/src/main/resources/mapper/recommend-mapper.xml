@@ -16,7 +16,7 @@
 	</select>
 	<!-- 추천 등록 -->
 	<insert id="insertRecommend" parameterType="map">
-		INSERT INTO RECOMMEND VALUES(#{memNo}, #{recommendNo}, #{name}, #{realationship}, (SELECT MEM_PHOTO FROM TA_MEMBER WHERE MEM_NO = #{memNo}), NULL, (SELECT MEM_PHOTO FROM TA_MEMBER WHERE MEM_NO = #{recommendNo}), (SELECT MEM_NAME FROM TA_MEMBER WHERE MEM_NO = #{memNo}))
+		INSERT INTO RECOMMEND VALUES(RECOMMEND_SEQ.NEXTVAL, #{memNo}, #{recommendNo}, #{name}, #{realationship}, (SELECT MEM_PHOTO FROM TA_MEMBER WHERE MEM_NO = #{memNo}), NULL, (SELECT MEM_PHOTO FROM TA_MEMBER WHERE MEM_NO = #{recommendNo}), (SELECT MEM_NAME FROM TA_MEMBER WHERE MEM_NO = #{memNo}))
 	</insert>
 	<!-- 친구 등록 -->
 	<insert id="insertFriend" parameterType="map">

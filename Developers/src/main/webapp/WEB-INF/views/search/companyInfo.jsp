@@ -253,7 +253,7 @@
 			                                    <div class="resumeresume">
 			                                        <li>
 			                                            <label for="resume">
-			                                                <input type="checkbox" name="resume" disabled id="resume">
+			                                                <input type="checkbox" disabled name="resume" id="resume">
 			                                            </label>
 			                                            <div>
 			                                                <h4><c:out value="${r.mem_name}"/></h4>
@@ -272,7 +272,7 @@
 			                                    <div class="resumeresume">
 			                                        <li>
 			                                            <label for="resume">
-			                                                <input type="checkbox" name="resume" id="resume">
+			                                                <input type="checkbox" name="resume" value="${r.resume_no }" id="resume">
 			                                            </label>
 			                                            <div>
 			                                                <h4><c:out value="${r.mem_name}"/></h4>
@@ -296,7 +296,7 @@
                                 </div>
                             </div>
                             <div class="submitFooter">
-                                <button type="button" onclick>제출하기</button>
+                                <button type="button" class="disabled1" onclick="submitPosition('${p.bus_no}', '${loginMember.memNo }', '${p.position_no }');">제출하기</button>
                             </div>
                         </div>
                     </aside>
@@ -418,7 +418,7 @@
                     	<div id="MODAL_BODY" class="modalBody">
                             <ul class="likeList1">
                                 <c:forEach var="r" items="${reList }">
-                             	<li class="choochunList" id="${r.mem_name }">
+                             	<li class="choochunList" value="${r.recommend_id }" id="${r.mem_name }">
                              		<div style="background-image: url(${path}${r.mem_photo != null ? r.mem_photo : '/resources/upload/profile/no-profile-image.png'})"></div>
                              		<p><c:out value="${r.mem_name }"/></p>
                              	</li>
@@ -627,7 +627,7 @@
 	})
 	function recommendInsert(){
 		var name = $(".selectedC").attr("id");
-		var str = "<h4>추천인</h4><button type='button' class='choochun-btn'>" + name + "<i class='fas fa-angle-right'></i></button>";
+		var str = "<h4>추천인</h4><button type='button' class='choochun-btn' value='" + name + "'>" + name + "<i class='fas fa-angle-right'></i></button>";
 		$(".choochun123").html("");
 		$(".choochun123").html(str);
 		$("#modal").css("display", "none");
@@ -635,4 +635,102 @@
 	$(document).on("click", ".icon-icon_match_list_save", function(event){
 		$("#" + $(this).parents("label").attr("for")).click();
 	})
+	$(document).on("click", "input[type='checkbox'][name='resume']", function(event){
+		if($(this).prop("checked")){
+			$("input[type='checkbox'][name='resume']").prop("checked", false);
+			$(this).prop("checked", true);
+		}
+	})
+</script>
+<!-- 포지션 지원하기  -->
+<script>
+	var nameflag = false;
+	var emailflag = false;
+	var phoneflag = false;
+	$(document).on("keyup", "input[name=name]", function(event){
+		if($("input[name=name]").val().trim().length > 0) nameflag = true;
+		else nameflag = false;
+		if($("input[name=email]").val().trim().length > 0) emailflag = true;
+		else emailflag = false;
+		if($("input[name=phone]").val().trim().length > 0) phoneflag = true;
+		else phoneflag = false;
+		if(nameflag == true && emailflag == true && phoneflag == true && $("input:checkbox[name=resume]:checked").val().length > 0) {
+			$(".submitFooter>button[type=button]").removeClass("disabled1");
+		}else{
+			$(".submitFooter>button[type=button]").addClass("disabled1");
+		}
+	})
+	$(document).on("keyup", "input[name=email]", function(event){
+		if($("input[name=name]").val().trim().length > 0) nameflag = true;
+		else nameflag = false;
+		if($("input[name=email]").val().trim().length > 0) emailflag = true;
+		else emailflag = false;
+		if($("input[name=phone]").val().trim().length > 0) phoneflag = true;
+		else phoneflag = false;
+		if(nameflag == true && emailflag == true && phoneflag == true && $("input:checkbox[name=resume]:checked").val().length > 0) {
+			$(".submitFooter>button[type=button]").removeClass("disabled1");
+		}else{
+			$(".submitFooter>button[type=button]").addClass("disabled1");
+		}
+	})
+	$(document).on("keyup", "input[name=phone]", function(event){
+		if($("input[name=name]").val().trim().length > 0) nameflag = true;
+		else nameflag = false;
+		if($("input[name=email]").val().trim().length > 0) emailflag = true;
+		else emailflag = false;
+		if($("input[name=phone]").val().trim().length > 0) phoneflag = true;
+		else phoneflag = false;
+		if(nameflag == true && emailflag == true && phoneflag == true && $("input:checkbox[name=resume]:checked").val().length > 0) {
+			$(".submitFooter>button[type=button]").removeClass("disabled1");
+		}else{
+			$(".submitFooter>button[type=button]").addClass("disabled1");
+		}
+	})
+	$(document).on("change", "input:checkbox[name=resume]", function(event){
+		if($("input[name=name]").val().trim().length > 0) nameflag = true;
+		else nameflag = false;
+		if($("input[name=email]").val().trim().length > 0) emailflag = true;
+		else emailflag = false;
+		if($("input[name=phone]").val().trim().length > 0) phoneflag = true;
+		else phoneflag = false;
+		if(nameflag == true && emailflag == true && phoneflag == true && $("input:checkbox[name=resume]").is(":checked")) {
+			$(".submitFooter>button[type=button]").removeClass("disabled1");
+		}else{
+			$(".submitFooter>button[type=button]").addClass("disabled1");
+		}
+	})
+	function submitPosition(busNo, memNo, positionNo){
+		var resumeNo = $("input:checkbox[name=resume]:checked").val();
+		var recommendId = $(".selectedC").attr("value");
+		if(recommendId != null){
+			$.ajax({
+				url: path + "/search/positionRecommendSubmit",
+				type: "POST",
+				data: {
+						busNo : busNo,
+						memNo : memNo, 
+						positionNo : positionNo,
+						resumeNo : resumeNo,
+						recommendId : recommendId
+				},	
+				success: function(data){
+					alert(data);
+				}
+			}) 	
+		}else{
+			$.ajax({
+				url: path + "/search/positionSubmit",
+				type: "POST",
+				data: {
+						busNo : busNo,
+						memNo : memNo, 
+						positionNo : positionNo,
+						resumeNo : resumeNo
+				},	
+				success: function(data){
+					alert(data);
+				}
+			}) 	
+		}
+	}
 </script>

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.developers.business.model.vo.Applicant;
 import com.kh.developers.member.model.vo.Member;
 import com.kh.developers.recommend.model.vo.Recommend;
 import com.kh.developers.resume.controller.ResumeController;
@@ -374,5 +375,44 @@ public class SearchController {
 		
 		String result = "태그 의견을 전송했습니다.";
 		return result;	
+	}
+	//포지션 지원(추천인 있음)
+	@RequestMapping(value = "/search/positionRecommendSubmit", produces = "application/text; charset=utf8")
+	@ResponseBody
+	public String positionSubmit(int busNo, int memNo, int positionNo, int resumeNo, int recommendId) {
+		String result = "";
+		Applicant appl = service.selectApplicant(memNo, positionNo);
+		if(appl != null) {
+			result = "이미 지원하신 포지션입니다.";
+		}else {
+			Map map = new HashMap();
+			map.put("busNo", busNo);
+			map.put("memNo", memNo);
+			map.put("positionNo", positionNo);
+			map.put("resumeNo", resumeNo);
+			map.put("recommendId", recommendId);
+			int insert = service.insertPositionRecommend(map);
+			result = "포지션에 지원이 완료되었습니다.";
+		}
+		return result;
+	}
+	//포지션 지원(추천인 없음)
+	@RequestMapping(value = "/search/positionSubmit", produces = "application/text; charset=utf8")
+	@ResponseBody
+	public String positionSubmit(int busNo, int memNo, int positionNo, int resumeNo) {
+		String result = "";
+		Applicant appl = service.selectApplicant(memNo, positionNo);
+		if(appl != null) {
+			result = "이미 지원하신 포지션입니다.";
+		}else {
+			Map map = new HashMap();
+			map.put("busNo", busNo);
+			map.put("memNo", memNo);
+			map.put("positionNo", positionNo);
+			map.put("resumeNo", resumeNo);
+			int insert = service.insertPosition(map);
+			result = "포지션에 지원이 완료되었습니다.";
+		}
+		return result;
 	}
 }

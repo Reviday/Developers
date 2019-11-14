@@ -242,6 +242,18 @@
 	<select id="selectRecommendList" parameterType="_int" resultType="recommend">
 		SELECT * FROM RECOMMEND WHERE RECOMMEND_NO = #{memNo}
 	</select>
+	<!-- 포지션 지원여부 확인 -->
+	<select id="selectApplicant" parameterType="map" resultMap="applMap">
+		SELECT * FROM TA_APPL_BUS WHERE MEM_NO = #{memNo} AND POSITION_NO = #{positionNo}
+	</select>
+	<!-- 포지션 등록(추천인있음) -->
+	<insert id="insertPositionRecommend" parameterType="map">
+		INSERT INTO TA_APPL_BUS VALUES(SEQ_TAB_NO.NEXTVAL, #{busNo}, #{memNo}, #{positionNo}, #{resumeNo}, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, #{recommendId})
+	</insert>
+	<!-- 포지션 등록(추천인없음) -->
+	<insert id="insertPosition" parameterType="map">
+		INSERT INTO TA_APPL_BUS VALUES(SEQ_TAB_NO.NEXTVAL, #{busNo}, #{memNo}, #{positionNo}, #{resumeNo}, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT)
+	</insert>
 	
 	<resultMap type="position" id="positionArray">
 		<result column="job_type" property="job_type" typeHandler="StrArray"/>
@@ -276,5 +288,18 @@
 		<result property="memWithdrawalDate" column="mem_withdrawal_date"/>
 		<result property="memDeniedDate" column="mem_denied_date"/>
 		<result property="filter_id" column="filter_id"/>
+	</resultMap>
+	
+	<resultMap type="applicant" id="applMap">
+		<result property="alNo" column="al_no" />
+		<result property="applNo" column="appl_no" />
+		<result property="busNo" column="bus_no" />
+		<result property="memNo" column="mem_no" />
+		<result property="positionNo" column="position_no" />
+		<result property="resumeNo" column="resume_no" />
+		<result property="applStatus" column="appl_status" />
+		<result property="applDate" column="appl_date" />
+		<result property="applAnsYn" column="appl_ans_yn" />
+		<result property="recommendId" column="recommend_id"/>
 	</resultMap>
 </mapper>

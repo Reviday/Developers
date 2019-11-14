@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @Data
 public class Recommend {
 
+	private int recommend_id; //추천넘버(프라이머리키)
 	private int mem_no; //추천할 멤버번호
 	private int recommend_no; //추천받을 멤버번호
 	private String recommend_text; //추천사

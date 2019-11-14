@@ -129,6 +129,11 @@ a {
     display: none;
 }
 
+.disabled1 {
+	background-color: lightgray !important;
+    cursor: not-allowed !important;	
+}
+
 .companyficture button i {
     display: block;
 }

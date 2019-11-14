@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.developers.business.model.vo.Applicant;
 import com.kh.developers.member.model.vo.Member;
 import com.kh.developers.recommend.model.vo.Recommend;
 import com.kh.developers.search.model.dao.SearchDao;
@@ -226,6 +227,25 @@ public class SearchServiceImpl implements SearchService {
 		List<Recommend> list = dao.selectRecommendList(session, memNo);
 		return list;
 	}
+	
+	@Override
+	public Applicant selectApplicant(int memNo, int positionNo) {
+		Applicant appl = dao.selectApplicant(session, memNo, positionNo);
+		return appl;
+	}
+
+	@Override
+	public int insertPositionRecommend(Map map) {
+		int result = dao.insertPositionRecommend(session, map);
+		return result;
+	}
+
+	@Override
+	public int insertPosition(Map map) {
+		int result = dao.insertPosition(session, map);
+		return result;
+	}
+	
 	
 	
 }

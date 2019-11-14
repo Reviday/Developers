@@ -3,6 +3,7 @@ package com.kh.developers.search.model.service;
 import java.util.List;
 import java.util.Map;
 
+import com.kh.developers.business.model.vo.Applicant;
 import com.kh.developers.member.model.vo.Member;
 import com.kh.developers.recommend.model.vo.Recommend;
 import com.kh.developers.search.model.vo.BookMark;
@@ -80,4 +81,10 @@ public interface SearchService {
 	List<ResumeSearch> selectResume(String memEmail);
 	//나를 추천한 리스트 조회
 	List<Recommend> selectRecommendList(int memNo);
+	//포지션지원여부확인
+	Applicant selectApplicant(int memNo, int positionNo);
+	//포지션지원(추천인있음)
+	int insertPositionRecommend(Map map);
+	//포지션지원(추천인없음)
+	int insertPosition(Map map);
 }

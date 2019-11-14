@@ -20,4 +20,5 @@ public class Applicant {
 	private int applStatus;
 	private Date applDate;
 	private char applAnsYn;
+	private int recommendId;
 }

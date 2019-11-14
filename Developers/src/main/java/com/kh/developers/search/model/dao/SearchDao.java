@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
+import com.kh.developers.business.model.vo.Applicant;
 import com.kh.developers.member.model.vo.Member;
 import com.kh.developers.recommend.model.vo.Recommend;
 import com.kh.developers.search.model.vo.BookMark;
@@ -54,4 +55,7 @@ public interface SearchDao {
 	Member SelectMember(SqlSessionTemplate session, int memNo);
 	List<ResumeSearch> selectResume(SqlSessionTemplate session, String memEmail);
 	List<Recommend> selectRecommendList(SqlSessionTemplate session, int memNo);
+	Applicant selectApplicant(SqlSessionTemplate session, int memNo, int positionNo);
+	int insertPositionRecommend(SqlSessionTemplate session, Map map);
+	int insertPosition(SqlSessionTemplate session, Map map);
 }
