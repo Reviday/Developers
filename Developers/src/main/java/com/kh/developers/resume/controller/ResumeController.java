@@ -39,6 +39,7 @@ public class ResumeController {
 	
 	@RequestMapping("/resume/resumeList.lmc")
 	public ModelAndView resumeList(Member m,Model model) {
+		System.out.println(m);
 		ModelAndView mv = new ModelAndView();
 		Member m2=mservice.selectMemberOne(m);
 		List<Resume> list=service.selectResume(m2);

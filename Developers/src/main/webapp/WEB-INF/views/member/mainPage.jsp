@@ -81,7 +81,7 @@
                 </button>
             </div>
         </div>
-        <a href="" class="resumematching">
+        <a href="${path }/resume/resumeList.lmc?memEmail=${loginMember.memEmail }" class="resumematching">
             <h3>
                 <div class="resumeIcon resumeIconBorder">
                     <div class="resumePercent">
@@ -92,7 +92,10 @@
                     프로필에 이력서 추가하고, 인사담당자에게 직접 면접 제안 받으세요
                 </p>
             </h3>
-            <button type="button">이력서 강화하기</button>
+            <c:set value="${loginMember.memEmail }" var="memEmail"/>
+         
+            <button type="button" class="resumePage" >이력서 강화하기</button>
+          
         </a>
         <div class="choochun">
             <div class="choochun-title">
@@ -393,5 +396,11 @@
     $(".choochun-content-btn").click(function(){
     	location.href = '${path}' + "/recommend/recommendMain.lmc?memNo=" + '${loginMember.memNo}';
     })
+    
+    
+    $(".resumePage").click(function() {
+    	console.log(memEmail);
+		location.href='${path }'+"/resume/resumeList.lmc?memEmail="+'${loginMember.memEmail }';
+	})
 
 </script>
