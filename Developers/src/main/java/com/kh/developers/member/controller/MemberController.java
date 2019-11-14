@@ -447,7 +447,7 @@ public class MemberController {
 		MultipartFile logo=mReq.getFile("logoFile");
 		Member memInfo=((Member)mReq.getSession().getAttribute("loginMember"));
 		String subDir="/resources/upload/profile";
-		String saveDir=mReq.getSession().getServletContext().getRealPath("");
+		String saveDir=new MemberController().getClass().getResource("/").getPath();
 		saveDir=saveDir.substring(0, saveDir.lastIndexOf("\\WEB-INF"));
 		/* saveDir+="/src/main/webapp"; */
 		File dir=new File(saveDir+subDir);
