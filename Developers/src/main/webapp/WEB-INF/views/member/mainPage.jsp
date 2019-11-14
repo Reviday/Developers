@@ -328,65 +328,70 @@
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 
 <script>
-        var sliderWrapper = document.getElementsByClassName("slick-list"),
-            sliderContainer = document.getElementsByClassName("slick-track"),
-            slides = document.getElementsByClassName("slick-slide"),
-            slideCount = slides.length,
-            currentIndex = 0,
-            topHeight = 0,
-            navPrev = document.getElementsByClassName("prev"),
-            navNext = document.getElementsByClassName("next");
-        function calculateTallestSlide() {
-            for (var i = 0; i < slideCount; i++) {
-                if (slides[i].offsetHeight > topHeight) {
-                    topHeight = slides[i].offsetHeight;
-                }
-            }
-            sliderWrapper[0].style.width = slideCount * $( window ).width() + "px";
-            sliderWrapper[0].style.height = '300px';
-            sliderContainer[0].style.height = '300px';
-        }
-        calculateTallestSlide();
-
+    var sliderWrapper = document.getElementsByClassName("slick-list"),
+        sliderContainer = document.getElementsByClassName("slick-track"),
+        slides = document.getElementsByClassName("slick-slide"),
+        slideCount = slides.length,
+        currentIndex = 0,
+        topHeight = 0,
+        navPrev = document.getElementsByClassName("prev"),
+        navNext = document.getElementsByClassName("next");
+    function calculateTallestSlide() {
         for (var i = 0; i < slideCount; i++) {
-            slides[i].style.left = i * 100 + '%';
-        }
-
-        function goToSlide(idx) {
-            sliderContainer[0].style.left = idx * -100 + '%';
-            currentIndex = idx;
-            // updateNav();
-        }
-
-        $(navPrev).click(function (e) {
-            e.preventDefault();
-            if (currentIndex > 0) {
-                goToSlide(currentIndex - 1);
-            } else {
-                goToSlide(slideCount - 1);
-            }
-        });
-
-        $(navNext).click(function (e) {
-            e.preventDefault();
-            if (currentIndex < slideCount - 1) {
-                goToSlide(currentIndex + 1);
-            } else {
-                goToSlide(0);
-            }
-        });
-
-        function updateNav() {
-            if (currentIndex == 0) {
-                $(navPrev).addClass('disabled');
-            } else {
-                $(navPrev).removeClass('disabled');
-            }
-            if (currentIndex == slideCount - 1) {
-                $(navNext).addClass('disabled');
-            } else {
-                $(navNext).removeClass('disabled');
+            if (slides[i].offsetHeight > topHeight) {
+                topHeight = slides[i].offsetHeight;
             }
         }
-        goToSlide(0);
-    </script>
+        sliderWrapper[0].style.width = slideCount * $( window ).width() + "px";
+        sliderWrapper[0].style.height = '300px';
+        sliderContainer[0].style.height = '300px';
+    }
+    calculateTallestSlide();
+
+    for (var i = 0; i < slideCount; i++) {
+        slides[i].style.left = i * 100 + '%';
+    }
+
+    function goToSlide(idx) {
+        sliderContainer[0].style.left = idx * -100 + '%';
+        currentIndex = idx;
+        // updateNav();
+    }
+
+    $(navPrev).click(function (e) {
+        e.preventDefault();
+        if (currentIndex > 0) {
+            goToSlide(currentIndex - 1);
+        } else {
+            goToSlide(slideCount - 1);
+        }
+    });
+
+    $(navNext).click(function (e) {
+        e.preventDefault();
+        if (currentIndex < slideCount - 1) {
+            goToSlide(currentIndex + 1);
+        } else {
+            goToSlide(0);
+        }
+    });
+
+    function updateNav() {
+        if (currentIndex == 0) {
+            $(navPrev).addClass('disabled');
+        } else {
+            $(navPrev).removeClass('disabled');
+        }
+        if (currentIndex == slideCount - 1) {
+            $(navNext).addClass('disabled');
+        } else {
+            $(navNext).removeClass('disabled');
+        }
+    }
+    goToSlide(0);
+    
+    $(".choochun-content-btn").click(function(){
+    	location.href = '${path}' + "/recommend/recommendMain.lmc?memNo=" + '${loginMember.memNo}';
+    })
+
+</script>

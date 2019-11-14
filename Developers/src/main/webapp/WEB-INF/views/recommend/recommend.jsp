@@ -15,12 +15,6 @@
             <p class="recommed-menu selected menu1">추천하기</p>
             <p class="recommed-menu menu2">내가 받은 추천</p>
             <p class="recommed-menu menu3">내가 한 추천</p>
-            <span class="hiddenspan choospan">
-                <p class="introText">developers 추천 소개 ></p>
-            </span>
-            <span class="hiddenspan hiddenspan1">
-                <i class="icon-info_icon"></i>
-            </span>
         </div>
         <!-- 추천하기 -->
         <div class="recommend-body">
@@ -77,96 +71,25 @@
                 <div class="modalpresen1 modalpresen2"></div>
             </div>
         </div>
-        <!-- 내가 받은 추천 -->
-        <div class="myrecievehun1 myrecievehun2">
-            <div class="myreciveList1 myreciveList2 myreciveList3 myreciveList4">
-                <div class="myreciveContent1 myreciveContent2 myreciveContent3 myreciveContent4">
-                    <div class="requestLogo">
-                        <i class="fas fa-user-plus"></i>
-                    </div>
-                    <p class="requestText">추천 요청</p>
-                </div>
-                <div class="mypushList1 mypushList2 mypushList3 mypushList4">
-                    <div class="profile1 profile2" style="background-image: url(null);"></div>
-                    <p class="sentreferName">이름</p>
-                    <p class="sentreferDescription">관계</p>
-                    <!-- 추천사 작성 안되어있으면 request1클래스로 변경 -->
-                    <div class="sentReferItemButton request">
-                        <!-- 추천사 작성 되어있으면 추천사 확인 -->
-                        <p>추천사 확인</p>
-                    </div>
-                </div>
-            </div>
-            <!-- 내가받은추천 모달 -->
-            <div class="requestModal1 requestModal2">
-                <div class="requestModalMain1 requestModalMain2">
-                    <div class="reModalTitle1 reModalTitle2">
-                        <span>추천 요청</span>
-                        <button type="button" class="right modalbtn close">
-                            <i class="fas fa-times"></i>
-                        </button>
-                    </div>
-                    <div class="friendSearch1 friendSearch2">
-                        <div class="searchFriends">
-                            <input type="text" class="friendSearchInput" placeholder="친구 검색">
-                            <i class="fas fa-search"></i>
-                        </div>
-                        <div style="max-height:inherit;overflow-y:scroll;height:inherit;">
-                            <div class="networkList1 networkList2">
-                                <!-- 검색결과 없을 시 -->
-                                <div>
-                                    <p class="emptyText">검색 결과가 없습니다</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- 검색결과 있을 시 enable1클래스 추가 -->
-                        <div class="buttonSelectFriend">
-                            <p>선택 완료</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="requestmodalclose1 requestmodalclose2"></div>
-            </div>
-        </div>
-        <!-- 내가 한 추천 -->
-        <div>
-            <div class="mypushrecommend1 mypushrecommend2 mypushrecommend3 mypushrecommend4">
-                <div class="mypushList1 mypushList2 mypushList3 mypushList4">
-                    <div class="profile1 profile2" style="background-image: url(null);"></div>
-                    <p class="sentreferName">이름</p>
-                    <p class="sentreferDescription">관계</p>
-                    <!-- 추천사 작성 되어있으면 request클래스 삭제 -->
-                    <div class="sentReferItemButton request">
-                        <!-- 추천사 작성 되어있으면 추천사 확인 -->
-                        <p>추천사 작성</p>
-                    </div>
-                    <i class="icon-more_vert"></i>
-                    <!-- 위의 icon 눌렀을 떄 생성 -->
-                    <div class="showMoreOverlay">
-                        <p>추천 취소</p>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 </section>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 <!-- 모달관리 -->
 <script>
-    $(".recommend-text4").click(function(){
-        $(".recommendModal2").css("display", "block");
+    $(document).on("click", ".recommend-text4", function(event){
+    	$(".recommendModal2").css("display", "block");
     })
-    $(".modalpresen2").click(function(){
-        $(".recommendModal2").css("display", "none");
+	$(document).on("click", ".modalpresen2", function(event){
+    	$(".recommendModal2").css("display", "none");
     })
-    $(".close").click(function(){
-        $(".recommendModal2").css("display", "none");
+	$(document).on("click", ".close", function(event){
+   		$(".recommendModal2").css("display", "none");
     })
-    $(".myreciveContent4").click(function(){
-        $(".requestModal2").css("display", "block");
+	$(document).on("click", ".myreciveContent4", function(event){
+   		$(".recommendModal2").css("display", "block");
     })
-    $(".requestmodalclose2").click(function(){
-        $(".requestModal2").css("display", "none");
+	$(document).on("click", ".requestmodalclose2", function(event){
+   		$(".recommendModal2").css("display", "none");
     })
     $(document).on("click", ".writeReferralLater", function(){
     	$(".recommendModal2").css("display", "none");
@@ -181,25 +104,30 @@
 </script>
 <!-- 메뉴변환 -->
 <script>
-    $(".recommed-menu").click(function(){
-        $(".recommed-menu").next().removeClass("selected");
-        $(".recommed-menu").prev().removeClass("selected");
-        $(this).addClass("selected");
+	$(document).on("click", ".menu1", function(event){
+		location.href = '${path}' + "/recommend/recommendMain.lmc?memNo=" + '${memNo}';
+	})
+    $(document).on("click", ".menu2", function(event){
+    	$.ajax({
+			url: '${path}' + "/recommend/recommendRecieve",
+			type: "POST",
+			data: {memNo : '${memNo}'},	
+			success: function(data){
+				$(".margin2").html("");
+				$(".margin2").html(data);
+			}
+		}) 
     })
-    $(".menu1").click(function(){
-        $(".myrecievehun2").css("display", "none");
-        $(".mypushrecommend2").css("display", "none");
-        $(".recommend-body").css("display", "block");
-    })
-    $(".menu2").click(function(){
-        $(".myrecievehun2").css("display", "block");
-        $(".mypushrecommend2").css("display", "none");
-        $(".recommend-body").css("display", "none");
-    })
-    $(".menu3").click(function(){
-        $(".myrecievehun2").css("display", "none");
-        $(".mypushrecommend2").css("display", "block");
-        $(".recommend-body").css("display", "none");
+    $(document).on("click", ".menu3", function(event){
+    	$.ajax({
+			url: '${path}' + "/recommend/myrecommend",
+			type: "POST",
+			data: {memNo : '${memNo}'},	
+			success: function(data){
+				$(".margin2").html("");
+				$(".margin2").html(data);
+			}
+		}) 
     })
 </script>
 <!-- 추천하기 모달 -->

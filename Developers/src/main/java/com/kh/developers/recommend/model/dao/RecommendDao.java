@@ -1,5 +1,7 @@
 package com.kh.developers.recommend.model.dao;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 
 import com.kh.developers.member.model.vo.Member;
@@ -13,4 +15,9 @@ public interface RecommendDao {
 	Member selectRecommendMember(SqlSessionTemplate session, String email);
 	int insertRecommend(SqlSessionTemplate session, int memNo, int recommendNo, String  name, String realationship);
 	int insertFriend(SqlSessionTemplate session, int memNo, int friendNo);
+	List<Recommend> selectRecommendList(SqlSessionTemplate session, int memNo);
+	List<Friend> selectFriendList(SqlSessionTemplate session, int memNo);
+	List<Recommend> selectMyRecommendList(SqlSessionTemplate session, int memNo);
+	int deleteRecommend(SqlSessionTemplate session, int memNo, int recommendNo);
+	int insertChoochunsa(SqlSessionTemplate session, int memNo, int recommendNo, String text);
 }

@@ -1046,18 +1046,18 @@ a {
     }
 }
 
-.mypushList2 .icon-more_vert {
+.mypushList2 svg {
     position: absolute;
     top: 18px;
     right: 10px;
-    font-size: 24px;
+    font-size: 18px;
     color: #ccc;
     cursor: pointer;
 }
 
 @media (max-width: 767px) {
-    .mypushList2 .icon-more_vert {
-        font-size: 20px;
+    .mypushList2 svg {
+        font-size: 14px;
     }
 }
 
@@ -1167,4 +1167,294 @@ a {
     line-height: 1;
     color: #999;
     cursor: pointer;
+}
+
+.modal2 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -999;
+    z-index: 1062;
+    overflow-x: hidden;
+    display: none;
+}
+
+.modalbody2 {
+    max-height: 90%;
+}
+
+.modalbody4 {
+    overflow: auto;
+    overflow-x: hidden;
+    max-width: 500px;
+    border-radius: 5px;
+    position: absolute;
+    left: 50%;
+    z-index: 2;
+    background-color: #FFFFFF;
+    opacity: 1;
+    top: 40%;
+    -webkit-transform: translate(-40%,-50%);
+    -ms-transform: translate(-40%,-50%);
+    transform: translate(-40%,-50%);
+    top: 50%;
+    -webkit-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+}
+
+@media (min-width: 768px) {
+    .modalbody4 {
+        -webkit-transition: top .3s ease-in-out;
+        transition: top .3s ease-in-out;
+        min-width: 500px;
+    }
+}
+
+@media (max-width: 767px) {
+    .modalbody2 {
+        max-height: initial;
+    }
+}
+
+@media (max-width: 767px) {
+    .modalbody4 {
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        -webkit-transform: none;
+        -ms-transform: none;
+        transform: none;
+        max-width: none;
+        border-radius: 0;
+    }
+}
+
+.modaltitle2 {
+    position: relative;
+    padding: 20px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border: 1px solid #EEEEEE;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    min-height: 52px;
+}
+
+@media (max-width: 767px) {
+    .modaltitle2 {
+        padding: 15px;
+    }
+}
+
+.modaltitle2 .button1.right {
+    right: 20px;
+}
+
+.modaltitle2 .button1 {
+    position: absolute;
+    font-size: 12px;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.button2 {
+    outline: none;
+    cursor: pointer;
+    border: none;
+    border-radius: 3px;
+    color: #B5B5B5;
+    background-color: transparent;
+    padding: 0;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+@media (max-width: 767px) {
+    .modaltitle2 .button1.right {
+        right: 15px;
+    }
+}
+
+.button2 > svg {
+    display: inline-block;
+}
+
+.modaltitle3 {
+    position: relative;
+    padding: 20px;
+}
+
+@media (max-width: 767px) {
+    .modaltitle3 {
+        padding: 15px;
+    }
+}
+
+.modalbody2 .recommendeeSection {
+    position: relative;
+    height: 50px;
+    padding-left: 60px;
+    padding-top: 6px;
+}
+
+.recommendPicture2 {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    display: inline-block;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background-color: #ddd;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.modalbody2 .recommendeeSection .recommendeeName {
+    margin: 0;
+    padding: 0;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1;
+    color: #333;
+    text-align: left;
+}
+
+.modalbody2 .recommendeeSection .recommendeeSubInfo {
+    position: relative;
+    margin-top: 9px;
+    padding: 0;
+    vertical-align: top;
+}
+
+.modalbody2 .recommendeeSection .recommendeeSubInfo .realationship1111 {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1;
+    color: #999;
+}
+
+.modalbody2 .modalfooter1 {
+    min-height: 238px;
+}
+
+.modalfooter3 {
+    position: relative;
+    padding: 20px;
+    min-height: 50px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-top: 1px solid #EEEEEE;
+}
+
+@media (max-width: 767px) {
+    .modalfooter3 {
+        padding: 15px;
+    }
+}
+
+.modalbody2 .modalfooter1 .referralText {
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    line-height: 1.5;
+    text-align: left;
+    color: #333;
+    white-space: pre-line;
+}
+
+.modalbtn2 {
+    position: relative;
+    padding: 20px;
+    min-height: 50px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-top: 1px solid #EEEEEE;
+}
+
+@media (max-width: 767px) {
+    .modalbtn2 {
+        padding: 15px;
+    }
+}
+
+.modalbody2 .buttonDeleteReferral {
+    position: relative;
+    height: 50px;
+    width: calc(50% - 15px);
+    display: inline-block;
+    border-radius: 3px;
+    border: solid 1px #258bf7;
+    vertical-align: bottom;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.modalbody2 .buttonDeleteReferral p {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 1;
+    text-align: center;
+    color: #258bf7;
+    margin: 0;
+    padding: 0;
+}
+
+.modalbody2 .buttonModifyReferral {
+    position: relative;
+    height: 50px;
+    width: calc(50% - 5px);
+    display: inline-block;
+    border-radius: 3px;
+    background: #258bf7;
+    vertical-align: bottom;
+    cursor: pointer;
+}
+
+.modalbody2 .buttonModifyReferral p {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 1;
+    text-align: center;
+    color: white;
+    margin: 0;
+    padding: 0;
+}
+
+.modalBigchang2 {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 1;
+    background-color: rgba(0,0,0,0.5);
+    opacity: 1;
 }

@@ -16,14 +16,32 @@
 	</select>
 	<!-- 추천 등록 -->
 	<insert id="insertRecommend" parameterType="map">
-		INSERT INTO RECOMMEND VALUES(#{memNo}, #{recommendNo}, #{name}, #{realationship}, NULL)
+		INSERT INTO RECOMMEND VALUES(#{memNo}, #{recommendNo}, #{name}, #{realationship}, (SELECT MEM_PHOTO FROM TA_MEMBER WHERE MEM_NO = #{memNo}), NULL, (SELECT MEM_PHOTO FROM TA_MEMBER WHERE MEM_NO = #{recommendNo}), (SELECT MEM_NAME FROM TA_MEMBER WHERE MEM_NO = #{memNo}))
 	</insert>
 	<!-- 친구 등록 -->
 	<insert id="insertFriend" parameterType="map">
-		INSERT INTO FRIEND VALUES(#{memNo}, #{friendNo}, DEFAULT)
+		INSERT INTO FRIEND VALUES(#{memNo}, #{friendNo}, DEFAULT, (SELECT MEM_PHOTO FROM TA_MEMBER WHERE MEM_NO = #{friendNo}))
 	</insert>
-	
-	
+	<!-- 내가받은추천리스트 -->
+	<select id="selectRecommendList" parameterType="_int" resultType="recommend">
+		SELECT * FROM RECOMMEND WHERE RECOMMEND_NO = #{memNo}
+	</select>
+	<!-- 내가 한 추천리스트 -->
+	<select id="selectMyRecommendList" parameterType="_int" resultType="recommend">
+		SELECT * FROM RECOMMEND WHERE MEM_NO = #{memNo}
+	</select>
+	<!-- 친구리스트 -->
+	<select id="selectFriendList" parameterType="_int" resultType="friend">
+		SELECT * FROM FRIEND WHERE MEM_NO = #{memNo}
+	</select>
+	<!-- 내가 한 추천 삭제 -->
+	<delete id="deleteRecommend" parameterType="map">
+		DELETE FROM RECOMMEND WHERE MEM_NO = #{memNo} AND RECOMMEND_NO = #{recommendNo}
+	</delete>
+	<!-- 추천사 추가 -->
+	<insert id="insertChoochunsa" parameterType="map">
+		UPDATE RECOMMEND SET RECOMMEND_TEXT = #{text} WHERE MEM_NO = #{memNo} AND RECOMMEND_NO = #{recommendNo}
+	</insert>
 	
 	
 	

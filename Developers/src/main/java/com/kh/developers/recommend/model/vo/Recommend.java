@@ -13,8 +13,10 @@ public class Recommend {
 
 	private int mem_no; //추천할 멤버번호
 	private int recommend_no; //추천받을 멤버번호
+	private String recommend_text; //추천사
 	private String recommend_name; //추천받는 사람 이름(임의지정 가능)
 	private String realationship; //관계
-	private String recommend_text; //추천사
-	
+	private String mem_photo; //추천인프로필
+	private String recommend_photo; //추천받은사람프로필
+	private String mem_name; //추천인 이름
 }

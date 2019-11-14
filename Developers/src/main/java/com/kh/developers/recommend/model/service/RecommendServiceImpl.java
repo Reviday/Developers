@@ -1,5 +1,7 @@
 package com.kh.developers.recommend.model.service;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,6 +46,36 @@ public class RecommendServiceImpl implements RecommendService{
 	public int insertFriend(int memNo, int friendNo) {
 		int result = dao.insertFriend(session, memNo, friendNo);
 		return result;
+	}
+	
+	@Override
+	public List<Recommend> selectRecommendList(int memNo) {
+		List<Recommend> list = dao.selectRecommendList(session, memNo);
+		return list;
+	}
+	
+	@Override
+	public List<Friend> selectFriendList(int memNo) {
+		List<Friend> list = dao.selectFriendList(session, memNo);
+		return list;
+	}
+	
+	@Override
+	public List<Recommend> selectMyRecommendList(int memNo) {
+		List<Recommend> list = dao.selectMyRecommendList(session, memNo);
+		return list;
+	}
+	
+	@Override
+	public int deleteRecommend(int memNo, int recommendNo) {
+		int delete = dao.deleteRecommend(session, memNo, recommendNo);
+		return delete;
+	}
+	
+	@Override
+	public int insertChoochunsa(int memNo, int recommendNo, String text) {
+		int insert = dao.insertChoochunsa(session, memNo, recommendNo, text);
+		return insert;
 	}
 	
 }
