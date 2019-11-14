@@ -10,7 +10,7 @@
 	<jsp:param name="pageTitle" value=""/>
 </jsp:include>
 <script>
-var path = ${path };
+var path = "${path }";
 
 </script>
 <div style="height: 50px;"></div>
@@ -261,7 +261,7 @@ var path = ${path };
 			   $("#sectionA").html(data); 
 		   }
 		   
-	   })
+	   });
    }
    function likePage(memEmail) {
 	   $.ajax({
@@ -272,7 +272,7 @@ var path = ${path };
 			   $("#mainContent").html("");
 			   $("#mainContent").html(data);
 		   }
-	   })	
+	   });	
 }
    function myBookMark(memEmail) {
 	   $.ajax({
@@ -283,12 +283,11 @@ var path = ${path };
 			   $("#mainContent").html("");
 			   $("#mainContent").html(data);
 		   }
-	   })	
+	   });	
 }   
  //로고 클릭 이벤트
 	$("#logoFile").on("change",function(){
 		var frm=new FormData($("#logoFrm")[0]);
-		 console.log("여기오니 ?");
 		$.ajax({
 			url:"${path }/member/logoChange",
 			data:frm,
@@ -314,7 +313,7 @@ var path = ${path };
 		type:"POST",
 		success:function(data){
 			  $("#mainContent").html("");
-			   $("#mainContent").html(data);
+			  $("#mainContent").html(data);
 		}
 		 
 	 });

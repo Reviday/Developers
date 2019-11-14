@@ -1,19 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
-</head>
-<body>
-<div class="_1Gv5LM5zal-f72_XSo_qJ_">
+
+
      <nav role="presentation" class="_1ft7OZSrbzL35bkI-omU2b"><button type="button" class="">프로필<i
                     class="icon-arrow_bottom_fill"></i></button>
-                    <c:set value="${loginMember.memEmail }" var="memEmail"  />
+                  <c:set value="${loginMember.memEmail }" var="memEmail"  />
             <ul class="">
                 <li class="_1ft7OZSrbzL35bkI-omU2b"><a href="#" class="activeNav">프로필</a></li>
                 <li class="_1ft7OZSrbzL35bkI-omU2b"><a href="#" class="">포인트</a></li>
@@ -56,7 +52,11 @@
                                     style="background-image: url(${b.busLogo });">
                                 </div>${b.busName }
                             </h2>
-                            <time ></time><div class="type resumeRequest">수락 / 거절</div>
+                            <time ></time><div class="type resumeRequest">
+               			
+                            
+                            
+                            </div>
                         </li>
                     </a>
                  </c:forEach>  
@@ -65,7 +65,4 @@
             </div>
         </section>
     </div>
-</div>
 
-</body>
-</html>

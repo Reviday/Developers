@@ -11,7 +11,7 @@
 </jsp:include>
 <script>
 
-var path=${path };
+var path = "${path }";
 </script>
 <div style="height: 50px;"></div>
     <div class="_1Gv5LM5zal-f72_XSo_qJ_" id="mainContent">
@@ -276,7 +276,7 @@ $('#updateResume').hide();
 			type:"POST",
 			success:function(data){
 				  $("#mainContent").html("");
-				   $("#mainContent").html(data);
+				  $("#mainContent").html(data);
 			}
 			 
 		 });

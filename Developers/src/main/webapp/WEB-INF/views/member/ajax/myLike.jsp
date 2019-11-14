@@ -1,16 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
-<body>
-    <div class="_1Gv5LM5zal-f72_XSo_qJ_">
+
+   
         <nav role="presentation" class="_1ft7OZSrbzL35bkI-omU2b"><button type="button" class="">프로필<i
                     class="icon-arrow_bottom_fill"></i></button>
                     <c:set value="${loginMember.memEmail }" var="memEmail"  />
@@ -49,7 +45,7 @@
               
             </ul>
         </div>
-    </div>
+  
     
     
     <script>
@@ -76,38 +72,6 @@
          });
     });
     
-   function saveInter(memEmail){
-	
-	   var skill = [];
-	   $("input[name='skill']:checked").each(function(i){   
-		   skill.push($(this).val());
-	   });
-	   var jobName =$("select[name=jobName]").val();
-	   var experience =$("select[name=career]").val();
-	   var salary =$("input[name=salary]").val();
-	   for(var i=0; i<$('.active').length; i++){
-	   duty.push($(document.getElementsByClassName('active')[i]).val());
-  		 }
-	   var objParams = {
-			   "jobName":jobName,
-			   "memEmail":memEmail,
-			   "experience":experience,
-	   			"duty":duty,
-	   			"salary":salary,
-	   			"skill":skill
-           };
-	   
-	   $.ajax({
-   		url:"${path }/member/insertInterests.lmc",
-   		type:"POST",
-   		data: objParams,
-   		contentType :   "application/x-www-form-urlencoded; charset=UTF-8",
-   		success: function(data) { 
-   			$("#sectionA").html("");
-			$("#sectionA").html(data);
-   		}
-   	}); 
-   }
    function updatePage(){
 	   $.ajax({
 		   url:"${path }/member/updatePage.lmc",

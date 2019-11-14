@@ -23,5 +23,6 @@ public class Resume  {
 	private String startCareer;
 	private String endCareer;
 	private String busName;
+	private String status;
 	
 }
