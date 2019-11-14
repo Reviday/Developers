@@ -13,7 +13,7 @@
 var path = "${path }";
 
 </script>
-<div style="height: 50px;"></div>
+<div style="height: 50px;"></div> 
      <div class="_1Gv5LM5zal-f72_XSo_qJ_"  id="mainContent">
         <nav role="presentation" class="_3wSXAiIJQZ98fJ-Hi6G42Q"><button type="button" class="">프로필<i
                     class="icon-arrow_bottom_fill"></i></button>
@@ -191,6 +191,7 @@ var path = "${path }";
             </section>
         </div>
     </div>
+    <div style="height: 800px;"></div>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" type="text/javascript"></script>
 <script src="http://code.jquery.com/jquery-1.11.1.min.js" type="text/javascript"></script>
@@ -270,7 +271,7 @@ var path = "${path }";
 		   data:{"memEmail":memEmail},
 		   success:function(data){
 			   $("#mainContent").html("");
-			   $("#mainContent").html(data);
+				  $("#mainContent").html(data);
 		   }
 	   });	
 }
@@ -281,7 +282,7 @@ var path = "${path }";
 		   data:{"memEmail":memEmail},
 		   success:function(data){
 			   $("#mainContent").html("");
-			   $("#mainContent").html(data);
+				$("#mainContent").html(data);
 		   }
 	   });	
 }   
@@ -319,8 +320,6 @@ var path = "${path }";
 	 });
 	 
  }
- 
-
 
 </script>
 

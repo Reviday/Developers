@@ -71,18 +71,7 @@
                                                     </div>
                                                 </button></div>
                                         </div>
-                                        <div class="resume-item Column-cKhjSj ehaaKs" >
-                                            <div class="resume-box ResumeItemBox__Box-dRwtdQ jzITim">
-                                                <div class="dropzone" >
-                                                    <div class="wrapper" >
-                                                        <div class="box"">
-                                                            <i class="fas fa-file-upload"></i></div>
-                                                        <p>파일 업로드</p>
-                                                    </div><input type="file" style="display:none;" multiple="">
-                                                       
-                                                </div>
-                                            </div>
-                                        </div>
+                                      
                                         <c:if test="${list !=null  }">
                                         <c:forEach items="${list }" var="r">
                                         <div class="resume-item Column-cKhjSj ehaaKs"

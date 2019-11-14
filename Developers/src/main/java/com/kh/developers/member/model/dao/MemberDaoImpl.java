@@ -21,6 +21,16 @@ public class MemberDaoImpl implements MemberDao {
 	
 	
 	@Override
+	public int applAns(SqlSessionTemplate session, int memNo, int number) {
+		// TODO Auto-generated method stub
+		if(number==1) {
+		return session.update("member.applAnsY", memNo);
+		}else {
+		return session.update("member.applAnsN", memNo);	
+		}
+	}
+
+	@Override
 	public Business selectBusOne(SqlSessionTemplate session, String busNo) {
 		// TODO Auto-generated method stub
 		return session.selectOne("business2.selectBusOne", busNo);

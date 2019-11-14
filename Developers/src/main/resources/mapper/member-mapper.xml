@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="member">
+	<update id="applAnsY" parameterType="_int">
+	UPDATE TA_APPL_BUS SET APPL_ANS_YN='Y',ANSWER_DATE=SYSDATE WHERE MEM_NO = #{memNo}
+	</update>
+	<update id="applAnsN" parameterType="_int">
+	UPDATE TA_APPL_BUS SET APPL_ANS_YN='N',ANSWER_DATE=SYSDATE WHERE MEM_NO = #{memNo}
+	</update>
 	<select id="selectApplicant" parameterType="member" resultMap="applicantMap">
 	SELECT * FROM TA_APPL_BUS WHERE MEM_NO=#{memNo} AND APPL_STATUS=2 AND APPL_ANS_YN='O' AND APPL_DEL_YN='N'
 	</select>

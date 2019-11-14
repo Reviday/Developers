@@ -181,6 +181,7 @@ var path = "${path }";
         </section>
     </div>
 </div>
+  <div style="height: 800px;"></div>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" type="text/javascript"></script>
 <script src="http://code.jquery.com/jquery-1.11.1.min.js" type="text/javascript"></script>
@@ -203,17 +204,7 @@ function updatePage(){
 		   
 	   })
 }
-function likePage(memEmail) {
-	   $.ajax({
-		   url:"${path }/member/likePage.lmc",
-		   type:"POST",
-		   data:{"memEmail":memEmail},
-		   success:function(data){
-			   $("#mainContent").html("");
-			   $("#mainContent").html(data);
-		   }
-	   })	
-}
+
 function myBookMark(memEmail) {
 	   $.ajax({
 		   url:"${path }/member/myBookMark.lmc",
@@ -282,6 +273,17 @@ $('#updateResume').hide();
 		 });
 		 
 	 }
+	 function likePage(memEmail) {
+		   $.ajax({
+			   url:"${path }/member/likePage.lmc",
+			   type:"POST",
+			   data:{"memEmail":memEmail},
+			   success:function(data){
+				   $("#mainContent").html("");
+				   $("#mainContent").html(data);
+			   }
+		   })	
+	}
 
 </script>
 

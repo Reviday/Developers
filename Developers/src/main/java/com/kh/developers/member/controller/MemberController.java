@@ -570,8 +570,18 @@ public class MemberController {
     	for(Applicant a : applicant) {
     		business.add(service.selectBusOne(""+a.getBusNo()));
     	}
+    	System.out.println(applicant);
+    	System.out.println(business+"컨트롤ㄹ러");
     	mv.addObject("app", applicant);
     	mv.addObject("bus", business);
+    	mv.setViewName("member/ajax/myApplicant");
+    	return mv;
+    }
+    @RequestMapping("/member/applAns.lmc")
+    public ModelAndView applAns(int memNo,int number) {
+    	ModelAndView mv = new ModelAndView();
+    	int result=service.applAns(memNo,number);
+    	mv.addObject("number", number);
     	mv.setViewName("member/ajax/myApplicant");
     	return mv;
     }

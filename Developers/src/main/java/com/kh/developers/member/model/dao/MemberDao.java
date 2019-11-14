@@ -33,5 +33,6 @@ public interface MemberDao {
    int updateInterests(SqlSessionTemplate session, Interests i);
    List<Applicant> selectApplicant(SqlSessionTemplate session, Member m);
    Business selectBusOne(SqlSessionTemplate session,String busNo);
+   int applAns(SqlSessionTemplate session,int memNo,int number);
    
 }

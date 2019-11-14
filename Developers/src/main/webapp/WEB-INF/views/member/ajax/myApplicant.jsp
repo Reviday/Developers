@@ -7,13 +7,13 @@
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 
 
-     <nav role="presentation" class="_1ft7OZSrbzL35bkI-omU2b"><button type="button" class="">프로필<i
+     <nav role="presentation" class="_3wSXAiIJQZ98fJ-Hi6G42Q"><button type="button" class="">프로필<i
                     class="icon-arrow_bottom_fill"></i></button>
                   <c:set value="${loginMember.memEmail }" var="memEmail"  />
             <ul class="">
-                <li class="_1ft7OZSrbzL35bkI-omU2b"><a href="#" class="activeNav">프로필</a></li>
+                <li class="_1ft7OZSrbzL35bkI-omU2b"><a href="#" class="">프로필</a></li>
                 <li class="_1ft7OZSrbzL35bkI-omU2b"><a href="#" class="">포인트</a></li>
-				<li class="_3wSXAiIJQZ98fJ-Hi6G42Q"><a href="#" onclick="applicantPage('${memEmail}');" class="">제안받기 현황</a></li>	
+				<li class="_1ft7OZSrbzL35bkI-omU2b"><a href="#" onclick="applicantPage('${memEmail}');" class="activeNav">제안받기 현황</a></li>	
                 <li class="_1ft7OZSrbzL35bkI-omU2b"><a href="#" onclick="likePage('${memEmail }');" class="">좋아요</a></li>
                 <li class="_1ft7OZSrbzL35bkI-omU2b"><a href="#" onclick="myBookMark('${memEmail }')" class="">북마크</a></li>
               
@@ -28,7 +28,7 @@
                 <dd>
                     <ul>
                         <li class="active"><a href="/profile/status?type=matchup-offers" class="">받은 제안
-                        <div class="label_">1
+                        <div class="label_">${app.size() }
                                 </div></a></li>
                     </ul>
                 </dd>
@@ -40,29 +40,70 @@
                     <ul>
                         <li>회사명</li>
                         <li>&nbsp; </li>
-                        <li>상태</li>
+                        <li>&nbsp;&nbsp;상태</li>
                     </ul>
                 </div>
                 <ul class="content">
+                <c:if test="${not empty  app }">
                 <c:forEach items="${bus }" var="b" varStatus="bt">
-                <a href="/profile" class="">
+                <a href=#" class="a">
                         <li>
                             <h2 role="presentation">
                                 <div class="thumbnail"
-                                    style="background-image: url(${b.busLogo });">
+                                    style="background-image: url('${path}${b.busLogo}');">
                                 </div>${b.busName }
                             </h2>
-                            <time ></time><div class="type resumeRequest">
-               			
-                            
-                            
+                            <time ></time>
+                            <div class="type resumeRequest" id="resumeRequest">
+                            <c:set value="${loginMember.memNo }" var="memNo"  />
+               				<button type="button" class="btn btn-primary btn-sm" onclick="fu_appl('${memNo}','1');">승인</button>
+							<button type="button" class="btn btn-danger btn-sm" onclick="fn_appl('${memNo}','2');">거절</button>
                             </div>
                         </li>
                     </a>
                  </c:forEach>  
+                 </c:if>
+                 <c:if test="${empty app  }">
+                 <li>
+                 <h2 role="presentation">
+                                <div class="thumbnail"
+                                    style="background-image: url();">
+                                </div>제안을 요청한 회사가 없습니다.
+                            </h2>
+                            <time ></time><div class="type resumeRequest">
+                            </div>
+                            
+				</li>                 
+                 </c:if>
                   </ul>
                    
             </div>
         </section>
     </div>
+<script>
+function fu_appl(memNo,number){
+		$.ajax({
+		url:"${path }/member/applAns.lmc",
+		type:"POST",
+		data:{"memNo":memNo,"number":number},
+		success:function(data){
+			if(number==(1)){
+				$("#resumeRequest").html("");
+				$("#resumeRequest").html(
+			'<button type="button" class="btn btn-primary btn-sm" >승인</button>'	
+				);
+			}else{
+				$("#resumeRequest").html("");
+				$("#resumeRequest").html(
+			'<button type="button" class="btn btn-danger btn-sm" >거절</button>'	
+				);	
+			}
+		}
+		
+		
+	})
+	
+}
 
+
+</script>

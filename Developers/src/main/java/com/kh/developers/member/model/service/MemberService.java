@@ -29,4 +29,5 @@ public interface MemberService {
 	int updateInterests(Interests i);
 	List<Applicant> selectApplicant(Member m);
 	Business selectBusOne(String busNo);
+	int applAns(int memNo,int number);
 }
