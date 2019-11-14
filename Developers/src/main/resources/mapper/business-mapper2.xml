@@ -41,9 +41,7 @@
 		SELECT * FROM BUSINESS_INFO WHERE BUS_NO=(SELECT BUS_NO FROM
 		MEM_BUS_CONNECTION WHERE MEM_NO=#{memberNo})
 	</select>
-	<select id="selectApplPoList" parameterType="map" resultType="_int">
-		SELECT POSITION_NO FROM TA_APPL_BUS WHERE BUS_NO=#{busNo} GROUP BY POSITION_NO ORDER BY 1
-	</select>
+
 	<update id="busLogoChange" parameterType="bus">
 		UPDATE BUSINESS_INFO
 		SET BUS_LOGO=#{busLogo} WHERE BUS_NO=#{busNo}
@@ -91,13 +89,17 @@
 		WHERE BUS_NO=#{busNo}
 	</update>
 	
+	<select id="selectPositionOne" parameterType="_int" resultType="position">
+		SELECT * FROM ENROLL_POSITION WHERE POSITION_NO=#{positionNo}
+	</select>
+	
 	<select id="selectAnswerRate" parameterType="map" resultType="_double">
 		SELECT ROUND((SELECT COUNT(*) FROM TA_APPL_BUS WHERE APPL_ANS_YN NOT LIKE 'O' AND OFFER_DATE IS NOT NULL AND BUS_NO=#{busNo}
 		<if test="applPosition!=null and applPosition!=''">
 			AND POSITION_NO=#{applPosition}
 		</if>
 		)/
-		(SELECT COUNT(*) FROM TA_APPL_BUS WHERE OFFER_DATE IS NOT NULL AND BUS_NO=#{busNo}
+		(SELECT DECODE(COUNT(*),0,1,COUNT(*)) FROM TA_APPL_BUS WHERE OFFER_DATE IS NOT NULL AND BUS_NO=#{busNo}
 		<if test="applPosition!=null and applPosition!=''">
 			AND POSITION_NO=#{applPosition}
 		</if>
@@ -220,6 +222,12 @@
 		UPDATE TA_APPL_BUS SET APPL_STATUS=2, OFFER_DATE=SYSDATE WHERE APPL_NO=#{applNo}
 	</update>
 
+
+
+
+
+
+
 	<select id="selectPositionList" parameterType="map" resultType="position">
 		SELECT * FROM ENROLL_POSITION WHERE BUS_NO=#{busNo}
 		<if test="jobType!=null and jobType!=''">
@@ -271,6 +279,7 @@
 		<result property="applStatus" column="appl_status" />
 		<result property="applDate" column="appl_date" />
 		<result property="applAnsYn" column="appl_ans_yn" />
+		<result property="recommendId" column="recommend_id"/>
 	</resultMap>
 
 	<resultMap type="member" id="memberMap">
