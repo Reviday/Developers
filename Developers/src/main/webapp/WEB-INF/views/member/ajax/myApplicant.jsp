@@ -22,8 +22,6 @@
                     현황</a></li>
             <li class="_1ft7OZSrbzL35bkI-omU2b"><a href="/profile/likes" class="">좋아요</a></li>
             <li class="_1ft7OZSrbzL35bkI-omU2b"><a href="/profile/bookmarks" class="">북마크</a></li>
-            <li class="_1ft7OZSrbzL35bkI-omU2b"><button type="button" class="">설정<i
-                        class="icon-arrow_bottom_fill"></i></button><a href="/profile/settings" class="">설정</a></li>
         </ul>
     </nav>
     <div class="_3Qcftta6FkVOkjFbE2NJ2v"><button class="statusInfoButton" type="button"><i
@@ -34,13 +32,8 @@
                 <dt>나를 원하는 회사</dt>
                 <dd>
                     <ul>
-                        <li class="active"><a href="/profile/status?type=matchup-all" class="">전체<div class="label_">4
-                                </div></a></li>
-                        <li class=""><a href="/profile/status?type=matchup-likes" class="">원해요<div class="label_">1
-                                </div></a></li>
-                        <li class=""><a href="/profile/status?type=matchup-opens" class="">프로필 열람/요청<div class="label_">
-                                    3</div></a></li>
-                        <li class=""><a href="/profile/status?type=matchup-offers" class="">받은 제안<div class="label_">0
+                        <li class="active"><a href="/profile/status?type=matchup-offers" class="">받은 제안
+                        <div class="label_">1
                                 </div></a></li>
                     </ul>
                 </dd>
@@ -51,21 +44,25 @@
                 <div class="header">
                     <ul>
                         <li>회사명</li>
-                        <li>일자</li>
+                        <li>&nbsp; </li>
                         <li>상태</li>
                     </ul>
                 </div>
                 <ul class="content">
+                <c:forEach items="${bus }" var="b" varStatus="bt">
                 <a href="/profile" class="">
                         <li>
                             <h2 role="presentation">
                                 <div class="thumbnail"
-                                    style="background-image: url(&quot;https://static.wanted.co.kr/images/wdes/0_5.1a210fbc.jpg&quot;);">
-                                </div>KH정보교육원
-                            </h2><time datetime="2019-11-12T19:37:46">2019-11-12</time>
-                            <div class="type resumeRequest">프로필 요청</div>
+                                    style="background-image: url(${b.busLogo });">
+                                </div>${b.busName }
+                            </h2>
+                            <time ></time><div class="type resumeRequest">수락 / 거절</div>
                         </li>
-                    </a></ul>
+                    </a>
+                 </c:forEach>  
+                  </ul>
+                   
             </div>
         </section>
     </div>

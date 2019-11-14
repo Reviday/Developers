@@ -52,7 +52,7 @@
                                            ></i></button>
                                 </div>
                                 <div class="resume-banner" >
-                                    <a href="//career.wanted.co.kr/product-category/rcs/" target="_blank"
+                                    <a href="#" target="_blank"
                                         rel="noopener noreferrer" ">
                                         직무 전문가와의
                                         1:1 이력서 코칭을 통해,
@@ -66,7 +66,7 @@
                                                 type="button" onclick="location.href='${path }/resume/insertResumepage.lmc?memEmail=${loginMember.memEmail }';">
                                                     <div class="wrapper" >
                                                         <div class="box blue" >
-                                                            <i class="far fa-plus-square"></i></div>
+                                                            <i class="fas fa-plus"></i></div>
                                                         <p>새 이력서 작성</p>
                                                     </div>
                                                 </button></div>

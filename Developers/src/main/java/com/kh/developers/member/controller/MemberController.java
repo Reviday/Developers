@@ -448,7 +448,7 @@ public class MemberController {
 		Member memInfo=((Member)mReq.getSession().getAttribute("loginMember"));
 		String subDir="/resources/upload/profile";
 		String saveDir=mReq.getSession().getServletContext().getRealPath("");
-		saveDir=saveDir.substring(0, saveDir.lastIndexOf("\\target"));
+		saveDir=saveDir.substring(0, saveDir.lastIndexOf("\\classes"));
 		saveDir+="/src/main/webapp";
 		File dir=new File(saveDir+subDir);
 		if(!dir.exists()) {
@@ -558,7 +558,6 @@ public class MemberController {
     @RequestMapping("/member/applicantPage.lmc")
     public ModelAndView applicantPage(Member m) {
     	ModelAndView mv=new ModelAndView();
-    	System.out.println(m.getMemEmail()+"넘어왔니");
     	m=service.selectMemberOne(m);
     	List<Applicant> applicant=service.selectApplicant(m);
     	List<Business> business=new ArrayList();
