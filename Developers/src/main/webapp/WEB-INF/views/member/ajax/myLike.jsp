@@ -15,7 +15,7 @@
                     class="icon-arrow_bottom_fill"></i></button>
                     <c:set value="${loginMember.memEmail }" var="memEmail"  />
             <ul class="">
-                <li class="_1ft7OZSrbzL35bkI-omU2b"><a href="#" class="activeNav">프로필</a></li>
+                <li class="_1ft7OZSrbzL35bkI-omU2b"><a href="#" onclick="" class="activeNav">프로필</a></li>
                 <li class="_1ft7OZSrbzL35bkI-omU2b"><a href="#" class="">포인트</a></li>
 				<li class="_1ft7OZSrbzL35bkI-omU2b"><a href="#" onclick="applicantPage('${memEmail}');" class="">제안받기 현황</a></li>	
                 <li class="_3wSXAiIJQZ98fJ-Hi6G42Q"><a href="#" onclick="likePage('${memEmail }');" class="">좋아요</a></li>

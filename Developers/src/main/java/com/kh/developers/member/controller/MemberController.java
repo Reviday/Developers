@@ -448,7 +448,7 @@ public class MemberController {
 		Member memInfo=((Member)mReq.getSession().getAttribute("loginMember"));
 		String subDir="/resources/upload/profile";
 		String saveDir=new MemberController().getClass().getResource("/").getPath();
-		saveDir=saveDir.substring(0, saveDir.lastIndexOf("\\WEB-INF"));
+		saveDir=saveDir.substring(0, saveDir.lastIndexOf("/WEB-INF"));
 		/* saveDir+="/src/main/webapp"; */
 		File dir=new File(saveDir+subDir);
 		if(!dir.exists()) {
