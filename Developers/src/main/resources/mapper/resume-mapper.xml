@@ -4,6 +4,9 @@
 <update id="updateInterests" parameterType="interests">
 update interests set DUTY=#{duty, typeHandler=strArray},EXPERIENCE=#{experience},SALARY=#{salary},SKILL=#{skill, typeHandler=strArray} WHERE MEM_EMAIL=#{memEmail}
 </update>
+<update id="EndResume" parameterType="resume">
+	UPDATE RESUME SET MEM_PHONE=#{memPhone},INTRO=#{intro},STATUS='Y' WHERE RESUME_NO=#{resumeNo}
+</update>
 <update id="updateResume" parameterType="resume">
 	UPDATE RESUME SET MEM_PHONE=#{memPhone},INTRO=#{intro} WHERE RESUME_NO=#{resumeNo}
 </update>
@@ -189,6 +192,7 @@ SELECT * FROM RESUME WHERE MEM_EMAIL=#{memEmail} and RESUME_NO=#{resumeNo}
 	<result property="memPhone" column="mem_phone"/>
 	<result property="intro" column="intro"/>
 	<result property="resumeDate" column="resume_date"/>
+	<result property="status" column="STATUS"/>
 </resultMap>
 <resultMap type="member" id="memberMap">
 		<result property="memNo" column="mem_no"/>

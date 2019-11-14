@@ -36,8 +36,13 @@
                                         </option>
                                     </select><i class="icon-arrow_bottom_fill"
                                        ></i></div>
-
-                                <div class="other-btns"><button class="hidden-xs btn btn-primary"
+										
+                                <div class="other-btns">
+                                <input type="text" name="status" id="status" value="N"/>
+                                <button class="border-primary hidden-xs btn btn-default" type="submit">
+                                	임시 저장
+                                </button>
+                                <button class="hidden-xs btn btn-primary" OnClick="return fn_status()"
                                         type="submit">작성 완료</button><button class="border-gray btn btn-default"
                                         type="button"><i class="fas fa-download"></i></button>
                                 </div>
@@ -552,7 +557,7 @@
                                     <div><button class="border-primary btn btn-default" type="button">임시 저장</button>
                                     </div>
                                     <div><button type="button" class="btn btn-primary">작성
-                                            완료</button></div>
+                                          					  완료</button></div>
                                 </div>
                             </div>
                         </div>
@@ -796,20 +801,9 @@
     	var deleteIndex = $('#deleteIndex').val();
     	location.href ="${path }/resume/deleteIndex.lmc?deleteNo="+deleteNo+"&deleteIndex="+deleteIndex+"&resumeNo="+resumeNo;
     }
-    function updateCareer(careerNo){
-    	$.ajax({
-    		url:"${path }/resume/updateCareer",
-    		type:"POST",
-    		data: { },
-    		success: { 
-    			
-    		},
-    		error: {
-    			
-    		}
-    		
-    	});
-    }
+  function fn_status(){
+	  $("#status").val("Y");
+  }
 </script>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/> 
 

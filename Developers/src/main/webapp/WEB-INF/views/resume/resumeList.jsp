@@ -93,8 +93,15 @@
 
                                                 <div class="resume-info">
                                                     <div class="resume-icon writing">한</div>
-                                                    <div class="resume-status"><span
-                                                            class="writing">작성 중</span></div>
+                                                    <div class="resume-status">
+                                                    <c:if test="${r.status == 'Y' }">
+                                                     <span class="complete">작성 완료</span>
+                                                    </c:if>
+                                                       <c:if test="${r.status != 'Y' }">
+                                                    <span class="writing">작성 중</span>
+                                                   	</c:if>
+                                                            </div>
+                                                          
                                                     <div class="dropdown">
                                                             <button class=""
                                                                 type="button" data-toggle="dropdown">
