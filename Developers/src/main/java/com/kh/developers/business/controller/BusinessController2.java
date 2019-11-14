@@ -48,9 +48,15 @@ public class BusinessController2 {
 		Business busInfo=(Business)mReq.getSession().getAttribute("busInfo");
 		String subDir="/resources/upload/images/business/bus_"+busInfo.getBusNo()+"/logo";
 		String saveDir=new BusinessController2().getClass().getResource("/").getPath();
-		saveDir=saveDir.substring(0, saveDir.lastIndexOf("/WEB-INF"));
-//		saveDir=saveDir.substring(0, saveDir.lastIndexOf("\\target"));
-//		saveDir+="/src/main/webapp";
+		
+		
+		try {
+			saveDir=saveDir.substring(0, saveDir.lastIndexOf("/WEB-INF"));
+		}catch(Exception e) {			
+			saveDir=saveDir.substring(0, saveDir.lastIndexOf("/target"));
+			saveDir+="/src/main/webapp";
+		}
+		
 		File dir=new File(saveDir+subDir);
 		if(!dir.exists()) {
 			dir.mkdirs();
@@ -88,8 +94,18 @@ public class BusinessController2 {
 		Business busInfo=(Business)mReq.getSession().getAttribute("busInfo");
 		String subDir="/resources/upload/images/business/bus_"+busInfo.getBusNo()+"/images";
 		String saveDir=new BusinessController2().getClass().getResource("/").getPath();
-		saveDir=saveDir.substring(0, saveDir.lastIndexOf("/WEB-INF"));
-//		saveDir+="/src/main/webapp";
+		
+		
+		
+		try {
+			saveDir=saveDir.substring(0, saveDir.lastIndexOf("/WEB-INF"));
+		}catch(Exception e) {			
+			saveDir=saveDir.substring(0, saveDir.lastIndexOf("/target"));
+			saveDir+="/src/main/webapp";
+		}
+		
+		
+		
 		File dir=new File(saveDir+subDir);
 		if(!dir.exists()) {
 			dir.mkdirs();
@@ -112,7 +128,22 @@ public class BusinessController2 {
 			imgHtml+="";
 			imgHtml+="<div class='bi_img_bus modi_img del_img'>";
 			imgHtml+="<label for='bus_img"+count+"'>";
-			imgHtml+="<img class='bi_img_busimg' src='${path}"+subDir+"/"+reName+"'/>";
+			
+			
+			//서버
+//			imgHtml+="<img class='bi_img_busimg' src='/19PM_Developers_final"+subDir+"/"+reName+"'/>";
+			
+			
+			
+			//로컬
+			imgHtml+="<img class='bi_img_busimg' src='/developers"+subDir+"/"+reName+"'/>";
+			
+			
+			
+			
+			
+			
+			
 			imgHtml+="<i class='fas fa-sync-alt'></i>";
 			imgHtml+="<form enctype='multipart/form-data' method='POST'>";
 			imgHtml+="<input id='bus_img"+count+"' name='bus_img' type='file' style='display:none;'>";
@@ -137,8 +168,19 @@ public class BusinessController2 {
 		Business busInfo=(Business)mReq.getSession().getAttribute("busInfo");
 		String subDir="/resources/upload/images/business/bus_"+busInfo.getBusNo()+"/images";
 		String saveDir=new BusinessController2().getClass().getResource("/").getPath();
-		saveDir=saveDir.substring(0, saveDir.lastIndexOf("/WEB-INF"));
-//		saveDir+="/src/main/webapp";
+		
+		
+		
+		try {
+			saveDir=saveDir.substring(0, saveDir.lastIndexOf("/WEB-INF"));
+		}catch(Exception e) {			
+			saveDir=saveDir.substring(0, saveDir.lastIndexOf("/target"));
+			saveDir+="/src/main/webapp";
+		}
+		
+		
+		
+		
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd_HHmmssSSS");
 		String reName="bus_img_"+sdf.format(new Date());
 		String ext=busImg.getOriginalFilename().substring(busImg.getOriginalFilename().lastIndexOf("."));
@@ -173,8 +215,20 @@ public class BusinessController2 {
 		String delImg=bus.getBusImages()[imgIndex-1];	
 		String subDir="/resources/upload/images/business/bus_"+bus.getBusNo()+"/images";
 		String saveDir=new BusinessController2().getClass().getResource("/").getPath();
-		saveDir=saveDir.substring(0, saveDir.lastIndexOf("/WEB-INF"));
-		saveDir+="/src/main/webapp";
+		
+		
+		
+		
+		try {
+			saveDir=saveDir.substring(0, saveDir.lastIndexOf("/WEB-INF"));
+		}catch(Exception e) {			
+			saveDir=saveDir.substring(0, saveDir.lastIndexOf("/target"));
+			saveDir+="/src/main/webapp";
+		}
+		
+		
+		
+		
 		File delFile=new File(saveDir+delImg.substring(delImg.lastIndexOf("/resources")));
 		if(delFile.exists()) {
 			delFile.delete();
@@ -739,7 +793,18 @@ public class BusinessController2 {
 			for(String src:bus.getBusImages()) {
 				seHtml+="<div class='bi_img_bus modi_img del_img'>";
 				seHtml+="<label for='bus_img"+count+"'>";
-				seHtml+="<img class='bi_img_busimg' src='${path}"+src+"'/>";
+				
+				
+				//서버
+//				seHtml+="<img class='bi_img_busimg' src='/19PM_Developers_final"+src+"'/>";
+				
+				//로컬
+				seHtml+="<img class='bi_img_busimg' src='/developers"+src+"'/>";
+				
+				
+				
+				
+				
 				seHtml+="<i class='fas fa-sync-alt'></i>";
 				seHtml+="<form enctype='multipart/form-data' method='POST'>";
 				seHtml+="<input id='bus_img"+count+"' name='bus_img' type='file' style='display:none;'>";
@@ -752,7 +817,21 @@ public class BusinessController2 {
 		}
 		seHtml+="<div class='bi_img_bus add_img'>";
 		seHtml+="<label for='bus_img'>";
-		seHtml+="<img class='bi_img_busimg' src='${path}/resources/images/bus_img_plus.png'/>";
+		
+		
+		//서버
+//		seHtml+="<img class='bi_img_busimg' src='/19PM_Developers_final/resources/images/bus_img_plus.png'/>";
+		
+		
+		
+		//로컬
+		seHtml+="<img class='bi_img_busimg' src='/developers/resources/images/bus_img_plus.png'/>";
+		
+		
+		
+		
+		
+		
 		seHtml+="<form enctype='multipart/form-data' method='POST'>";
 		seHtml+="<input id='bus_img' name='bus_img' type='file' style='display:none;'>";
 		seHtml+="</form>";
@@ -762,16 +841,18 @@ public class BusinessController2 {
 		seHtml+="<div>";
 		seHtml+="<span>로고 이미지</span><br/>";
 		if(bus.getBusLogo()!=null) {
-			seHtml+="<div class='bi_img_logo modi_img'>";
+			seHtml+="<div class='bi_img_logo modi_img logoImg'>";
 			seHtml+="<label for='logoFile'>";
-			seHtml+="<img class='bi_img_buslogo' src='${path}"+bus.getBusLogo()+"'/>";
+//			seHtml+="<img class='bi_img_buslogo' src='/developers"+bus.getBusLogo()+"'/>";
+			seHtml+="<img class='bi_img_buslogo' src='/19PM_Developers_final"+bus.getBusLogo()+"'/>";
 			seHtml+="<i class='fas fa-sync-alt'></i>";
 			seHtml+="</label>";
 			seHtml+="</div>";
 		}else {
-			seHtml+="<div class='bi_img_logo add_img'>";
+			seHtml+="<div class='bi_img_logo add_img logoImg'>";
 			seHtml+="<label for='logoFile'>";
-			seHtml+="<img class='bi_img_buslogo' src='${path}/resources/images/bus_img_plus.png'/>";
+//			seHtml+="<img class='bi_img_buslogo' src='/developers/resources/images/bus_img_plus.png'/>";
+			seHtml+="<img class='bi_img_buslogo' src='/19PM_Developers_final/resources/images/bus_img_plus.png'/>";
 			seHtml+="</label>";
 			seHtml+="</div>";
 		}
