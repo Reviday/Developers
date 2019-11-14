@@ -1,6 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="log">
+	<select id="selectLoginLogListBySearch" parameterType="map" resultMap="mllMap">
+		SELECT * FROM TA_MEMBER_LOGIN_LOG WHERE 1=0
+		<if test="searchStr != null">
+			OR ( 1=0
+			<foreach collection="searchStr" item="str">
+				OR UPPER(MLL_USER_EMAIL) LIKE UPPER('%'||#{str}||'%')
+				OR UPPER(MLL_REASON) LIKE UPPER('%'||#{str}||'%')
+				OR UPPER(MLL_IP) LIKE UPPER('%'||#{str}||'%')
+				OR UPPER(MLL_USERAGENT) LIKE UPPER('%'||#{str}||'%')
+			</foreach>
+			<if test="searchInt != null">
+				<foreach collection="searchInt" item="int">
+					OR MLL_NO LIKE '%'||${int}||'%'
+					OR MLL_MEM_NO LIKE '%'||${int}||'%'
+				</foreach>
+			</if>
+			) 
+		</if>	
+		ORDER BY MLL_DATETIME DESC
+	</select>
+	<select id="selectLoginLogCountBySearch" parameterType="map" resultType='_int'>
+		SELECT COUNT(*) FROM TA_MEMBER_LOGIN_LOG WHERE 1=0
+		<if test="searchStr != null">
+			OR ( 1=0
+			<foreach collection="searchStr" item="str">
+				OR UPPER(MLL_USER_EMAIL) LIKE UPPER('%'||#{str}||'%')
+				OR UPPER(MLL_REASON) LIKE UPPER('%'||#{str}||'%')
+				OR UPPER(MLL_IP) LIKE UPPER('%'||#{str}||'%')
+				OR UPPER(MLL_USERAGENT) LIKE UPPER('%'||#{str}||'%')
+			</foreach>
+			<if test="searchInt != null">
+				<foreach collection="searchInt" item="int">
+					OR MLL_NO LIKE '%'||${int}||'%'
+					OR MLL_MEM_NO LIKE '%'||${int}||'%'
+				</foreach>
+			</if>
+			)
+		</if>	
+	</select>
 	<insert id="insertVisitor" parameterType="vc">
         INSERT
         INTO TB_VISITOR

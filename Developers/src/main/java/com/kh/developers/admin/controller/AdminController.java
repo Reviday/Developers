@@ -29,6 +29,21 @@ public class AdminController {
 	private AdminService service;
 	private PaginationTemplate pt;
 	
+	@RequestMapping("/admin/loginLogSearchList.lac")
+	public String loginLogSearchList(HttpServletRequest req, Model model,
+			@RequestParam (value="value", required=true) String value) {
+		// value 조건을 가진 검색 리스트 갯수
+		int totalData=service.selectLoginLogCountBySearch(value);
+		pt=new PaginationTemplate(req, totalData, "/admin/memberSearchList.lac");
+		List<MemberLoginLog> list=service.selectLoginLogListBySearch(value, pt.getcPage(), pt.getNumPerPage());
+		model.addAttribute("logList",list);
+		model.addAttribute("searchValue", value);
+		model.addAttribute("cPage", pt.getcPage());
+		model.addAttribute("numPerPage", pt.getNumPerPage());
+		model.addAttribute("pageBar", pt.getPageBar());
+		return "admin/loginLogAjax";
+	}
+	
 	@RequestMapping("/admin/loginLog.lac")
 	public ModelAndView loginLog(HttpServletRequest req) {
 		ModelAndView mv=new ModelAndView();

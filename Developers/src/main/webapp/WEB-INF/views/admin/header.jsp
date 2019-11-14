@@ -199,12 +199,14 @@
 	                        </li>
 	                    </ul>
 	                </li>
+	                <!-- 시간 관계상 제한된 기능
 	                <li>
 	                    <a href="javascript:;">
 	                        <i class="fa fa-heart" aria-hidden="true"></i>
 	                        <span class="title">서비스</span>
 	                    </a>
 	                </li>
+	                 -->
 	            </ul>
 	        </nav>
         </nav>

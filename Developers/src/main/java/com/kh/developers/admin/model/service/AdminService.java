@@ -23,4 +23,6 @@ public interface AdminService {
 	int restoreMember(Member m);
 	int selectloginLogCount();
 	List<MemberLoginLog> selectLoginLogList(int cPage, int numPerPage);
+	int selectLoginLogCountBySearch(String value);
+	List<MemberLoginLog> selectLoginLogListBySearch(String value, int cPage, int numPerPage);
 }

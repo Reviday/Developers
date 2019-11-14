@@ -22,7 +22,7 @@
 					<input class="form-control" id="system-search" 
 						placeholder="Search for" required> <span
 						class="input-group-btn">
-						<button type="button" class="btn btn-default" onclick="search();">
+						<button type="button" class="btn btn-default" onclick="mll_search();">
 							<i class="fas fa-search"></i>
 						</button>
 					</span>
@@ -35,9 +35,10 @@
 						<th>
 							<div class="dropdown" style="display: inline-block;">
 						        <select class="dropdown-select-version select" name="mllSuccess" id="mllSuccess" style="vertical-align: top; height: 21px; width: 62px; margin: 0; margin-left: 10px; color: #dd5;">
-						        	<option value="-1" selected disabled hidden>전체</option>
-						        	<option value="Y" <c:if test="${l.mllSuccess eq 'Y'}">selected</c:if>>성공</option>
-								    <option value="N" <c:if test="${l.mllSuccess eq 'N'}">selected</c:if>>실패</option>
+						        	<option value="-1" selected disabled hidden>결과</option>
+						        	<option value="A" <c:if test="${mll_suc eq 'A'}">selected</c:if>>전체</option>
+						        	<option value="Y" <c:if test="${mll_suc eq 'Y'}">selected</c:if>>성공</option>
+								    <option value="N" <c:if test="${mll_suc eq 'N'}">selected</c:if>>실패</option>
 						        </select>
 						    </div>
 						</th>
@@ -55,11 +56,11 @@
 						<c:forEach items="${logList }" var="l">
 						<tr>
 							<td data-th="No.">${l.mllNo }</td>
-							<td data-th="수행결과" style="text-align: center">
+							<td class="mb-text-align-left" data-th="수행결과" style="text-align: center">
 								<c:if test="${l.mllSuccess eq 'Y'}">성공</c:if>
 								<c:if test="${l.mllSuccess eq 'N'}">실패</c:if>
 							</td>
-							<td class="hidden_td" data-th="사유">${l.mllReason}	</td>
+							<td class="hidden_td" data-th="사유">${l.mllReason}</td>
 							<td data-th="이메일">${l.mllUserEmail}</td>
 							<td data-th="일시">
 								<c:if test="${l.mllDatetime ne null }">
@@ -92,6 +93,9 @@
 		</div>
 	</div>
 </section>
+<style>
+
+</style>
 <jsp:include page="/WEB-INF/views/admin/footer.jsp"/>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath }/resources/js/admin_main.js"></script>

@@ -61,7 +61,7 @@ public class PaginationTemplate {
 		
 		// 페이징 처리
 		totalPage=(int) Math.ceil((double) totalData / this.numPerPage);
-		this.pageBarSize=10;
+		this.pageBarSize=5;
 		pageNo=((this.cPage - 1) / pageBarSize) * pageBarSize + 1;
 		pageEnd=pageNo + pageBarSize - 1;
 		pageBar="";

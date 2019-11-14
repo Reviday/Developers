@@ -1,6 +1,10 @@
 @charset "UTF-8";
 
 /********** reset css **********/
+body {
+	overflow-x: hidden !important;
+}
+
 a {
 	text-decoration: none !important;
     cursor: pointer;

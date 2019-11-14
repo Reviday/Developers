@@ -4,8 +4,6 @@
 	<select id="selectApplicant" parameterType="member" resultMap="applicantMap">
 	SELECT * FROM TA_APPL_BUS WHERE MEM_NO=#{memNo} AND APPL_STATUS=2 AND APPL_ANS_YN='O' AND APPL_DEL_YN='N'
 	</select>
-
-
 	<update id="restoreMember" parameterType="member">
 		UPDATE TA_MEMBER SET MEM_STATUS='Y', MEM_WITHDRAWAL_DATE=NULL WHERE MEM_NO=#{memNo}
 	</update>
@@ -14,9 +12,9 @@
 		<if test="searchStr != null">
 			OR ( 1=0
 			<foreach collection="searchStr" item="str">
-				OR MEM_EMAIL LIKE '%'||#{str}||'%'
-				OR MEM_NAME LIKE '%'||#{str}||'%'
-				OR MEM_ADMINMEMO LIKE '%'||#{str}||'%'
+				OR UPPER(MEM_EMAIL) LIKE UPPER('%'||#{str}||'%')
+				OR UPPER(MEM_NAME) LIKE UPPER('%'||#{str}||'%')
+				OR UPPER(MEM_ADMINMEMO) LIKE UPPER('%'||#{str}||'%')
 			</foreach>
 			<if test="searchInt != null">
 				<foreach collection="searchInt" item="int">
@@ -33,9 +31,9 @@
 		<if test="searchStr != null">
 			OR ( 1=0
 			<foreach collection="searchStr" item="str">
-				OR MEM_EMAIL LIKE '%'||#{str}||'%'
-				OR MEM_NAME LIKE '%'||#{str}||'%'
-				OR MEM_ADMINMEMO LIKE '%'||#{str}||'%'
+				OR UPPER(MEM_EMAIL) LIKE UPPER('%'||#{str}||'%')
+				OR UPPER(MEM_NAME) LIKE UPPER('%'||#{str}||'%')
+				OR UPPER(MEM_ADMINMEMO) LIKE UPPER('%'||#{str}||'%')
 			</foreach>
 			<if test="searchInt != null">
 				<foreach collection="searchInt" item="int">
@@ -61,9 +59,9 @@
 		<if test="searchStr != null">
 			OR ( 1=0
 			<foreach collection="searchStr" item="str">
-				OR MEM_EMAIL LIKE '%'||#{str}||'%'
-				OR MEM_NAME LIKE '%'||#{str}||'%'
-				OR MEM_ADMINMEMO LIKE '%'||#{str}||'%'
+				OR UPPER(MEM_EMAIL) LIKE UPPER('%'||#{str}||'%')
+				OR UPPER(MEM_NAME) LIKE UPPER('%'||#{str}||'%')
+				OR UPPER(MEM_ADMINMEMO) LIKE UPPER('%'||#{str}||'%')
 			</foreach>
 			<if test="searchInt != null">
 				<foreach collection="searchInt" item="int">
@@ -82,9 +80,9 @@
 		<if test="searchStr != null">
 			OR ( 1=0
 			<foreach collection="searchStr" item="str">
-				OR MEM_EMAIL LIKE '%'||#{str}||'%'
-				OR MEM_NAME LIKE '%'||#{str}||'%'
-				OR MEM_ADMINMEMO LIKE '%'||#{str}||'%'
+				OR UPPER(MEM_EMAIL) LIKE UPPER('%'||#{str}||'%')
+				OR UPPER(MEM_NAME) LIKE UPPER('%'||#{str}||'%')
+				OR UPPER(MEM_ADMINMEMO) LIKE UPPER('%'||#{str}||'%')
 			</foreach>
 			<if test="searchInt != null">
 				<foreach collection="searchInt" item="int">
@@ -103,9 +101,9 @@
 		<if test="searchStr != null">
 			OR ( 1=0
 			<foreach collection="searchStr" item="str">
-				OR MEM_EMAIL LIKE '%'||#{str}||'%'
-				OR MEM_NAME LIKE '%'||#{str}||'%'
-				OR MEM_ADMINMEMO LIKE '%'||#{str}||'%'
+				OR UPPER(MEM_EMAIL) LIKE UPPER('%'||#{str}||'%')
+				OR UPPER(MEM_NAME) LIKE UPPER('%'||#{str}||'%')
+				OR UPPER(MEM_ADMINMEMO) LIKE UPPER('%'||#{str}||'%')
 			</foreach>
 			<if test="searchInt != null">
 				<foreach collection="searchInt" item="int">
@@ -122,9 +120,9 @@
 		<if test="searchStr != null">
 			OR ( 1=0
 			<foreach collection="searchStr" item="str">
-				OR MEM_EMAIL LIKE '%'||#{str}||'%'
-				OR MEM_NAME LIKE '%'||#{str}||'%'
-				OR MEM_ADMINMEMO LIKE '%'||#{str}||'%'
+				OR UPPER(MEM_EMAIL) LIKE UPPER('%'||#{str}||'%')
+				OR UPPER(MEM_NAME) LIKE UPPER('%'||#{str}||'%')
+				OR UPPER(MEM_ADMINMEMO) LIKE UPPER('%'||#{str}||'%')
 			</foreach>
 			<if test="searchInt != null">
 				<foreach collection="searchInt" item="int">

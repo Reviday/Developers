@@ -53,7 +53,7 @@ innerTag+='<h2>디벨로퍼는 친구에게 좋은 회사를 추천하고,<br>�
 innerTag+='</div>';
 innerTag+='<div class="le_form">';
 innerTag+='<input class="le_password" type="password" autocomplete="password">';
-innerTag+='<input class="le_email" type="email" autocomplete="username" placeholder="이메일을 입력해 주세요." value="">';
+innerTag+='<input class="le_email" type="email" autocomplete="username" placeholder="이메일을 입력해 주세요." value="" focus>';
 innerTag+='<button class="emailLoginButton" type="button">';
 innerTag+='<i class="far fa-envelope"></i>이메일로 시작하기';
 innerTag+='</button>';
@@ -74,6 +74,8 @@ var errorMessage='<p class="errorMessage"></p>';
 $('.suBtn').on('click',function() {
 	$($div).html(innerTag);
 	$('#header').after($div);
+	$('body').css("overflow","hidden");
+	$(".login_enroll").css("overflow","auto");
 	var userEmail=$('.le_email');
 	userEmail.after(errorMessage);
 	
@@ -81,12 +83,14 @@ $('.suBtn').on('click',function() {
 		userEmail.val("");
 		userEmail.css("border","1px solid #dbdbdb");
 		$('.errorMessage').text("");
+		$('body').css("overflow","auto");
     	$($div).remove();
 	}));
 	$('#modal_close').on('click',(function() {
 		userEmail.val("");
 		userEmail.css("border","1px solid #dbdbdb");
 		$('.errorMessage').text("");
+		$('body').css("overflow","auto");
     	$($div).remove();
 	}));
 	

@@ -15,6 +15,18 @@ import com.kh.developers.member.model.vo.Member;
 public class AdminDaoImpl implements AdminDao{
 	
 	@Override
+	public List<MemberLoginLog> selectLoginLogListBySearch(SqlSessionTemplate session, Map<String, Object> searchValue,
+			int cPage, int numPerPage) {
+		RowBounds r=new RowBounds((cPage-1)*numPerPage, numPerPage);
+		return session.selectList("log.selectLoginLogListBySearch", searchValue, r);
+	}
+	
+	@Override
+	public int selectLoginLogCountBySearch(SqlSessionTemplate session, Map<String, Object> searchValue) {
+		return session.selectOne("log.selectLoginLogCountBySearch",searchValue);
+	}
+	
+	@Override
 	public List<MemberLoginLog> selectLoginLogList(SqlSessionTemplate session, int cPage, int numPerPage) {
 		RowBounds r=new RowBounds((cPage-1)*numPerPage, numPerPage);
 		return session.selectList("log.selectLoginLogList", null, r);

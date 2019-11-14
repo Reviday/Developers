@@ -26,4 +26,6 @@ public interface AdminDao {
 	int restoreMember(SqlSessionTemplate session, Member m);
 	int selectloginLogCount(SqlSessionTemplate session);
 	List<MemberLoginLog> selectLoginLogList(SqlSessionTemplate session, int cPage, int numPerPage);
+	int selectLoginLogCountBySearch(SqlSessionTemplate session, Map<String, Object> searchValue);
+	List<MemberLoginLog> selectLoginLogListBySearch(SqlSessionTemplate session, Map<String, Object> searchValue, int cPage, int numPerPage);
 }
