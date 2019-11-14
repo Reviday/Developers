@@ -20,17 +20,17 @@ import javax.crypto.Cipher;
 import org.springframework.stereotype.Component;
 
 @Component
-public class RSAEncrupto implements MyEncrypt{
+public class RSAEncrypto implements MyEncrypt{
 
 	//key 값을 변수로 보관
 	//key가 2개 존재함
 	private PublicKey publicKey;
 	private PrivateKey privateKey;
 	
-	public RSAEncrupto() {
+	public RSAEncrypto() {
 		String path=this.getClass().getResource("/").getPath();
-		path=path.substring(0,path.lastIndexOf("/target"));
-		File f=new File(path+"/src/main/webapp/WEB-INF/keys.bs");
+		path=path.substring(0,path.lastIndexOf("/classes"));
+		File f=new File(path+"/keys.bs");
 		if(f.exists()) {
 			try(ObjectInputStream ois=new ObjectInputStream(new FileInputStream(f))){
 				Map<String,Object> keys=(Map)ois.readObject();
