@@ -119,7 +119,7 @@ function cPageSearch(cPage) {
 
 
 function ajaxLogic(searchPackage){
-    $('div#cards-area').html("<img id='loading' src='"+path+"/resources/images/Developers_black_loading.gif' width='30px;'/>");
+    // $('div#cards-area').html("<img id='loading' src='"+path+"/resources/images/Developers_black_loading.gif' width='30px;'/>");
     $.ajax({
         url:path+"/business/selectResume",
         type:"post",
@@ -378,7 +378,7 @@ favBtns.forEach(function(e){
 
 // 찜하기 불러오기
 function favoriteList(cPage){
-    $('div#cards-area').html("<img src='"+path+"/resources/images/Developers_black_loading.gif' width='30px;'/>");
+    // $('div#cards-area').html("<img src='"+path+"/resources/images/Developers_black_loading.gif' width='30px;'/>");
     $.ajax({
         url:path+"/business/favoriteList",
         type:"post",

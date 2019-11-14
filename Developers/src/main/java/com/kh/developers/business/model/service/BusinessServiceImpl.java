@@ -12,6 +12,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import com.kh.developers.business.model.dao.BusinessDao;
+import com.kh.developers.business.model.vo.Advertisement;
 import com.kh.developers.business.model.vo.Business;
 import com.kh.developers.business.model.vo.CareerInCard;
 import com.kh.developers.business.model.vo.EducationInCard;
@@ -209,5 +210,13 @@ public class BusinessServiceImpl implements BusinessService {
 		// TODO Auto-generated method stub
 		return dao.selectFavorites(session,busNo, cPage, numPerPage);
 	}
+	
+	//광고 포지션 불러오기 로직 
+	@Override
+	public List<Advertisement> selectPositionInfo(int busNo) {
+		// TODO Auto-generated method stub
+		return dao.selectPositionInfo(session, busNo);
+	}
+	
 
 }

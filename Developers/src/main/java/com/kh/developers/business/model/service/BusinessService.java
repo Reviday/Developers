@@ -2,6 +2,7 @@ package com.kh.developers.business.model.service;
 
 import java.util.List;
 
+import com.kh.developers.business.model.vo.Advertisement;
 import com.kh.developers.business.model.vo.Business;
 import com.kh.developers.business.model.vo.CareerInCard;
 import com.kh.developers.business.model.vo.EducationInCard;
@@ -53,4 +54,7 @@ public interface BusinessService {
 	//Favorites 불러오기 로직
 	int selectCountFav(int busNo);
 	List<IntroCard>selectFavorites(int busNo,int cPage, int numPerPage);
+	
+	//광고 포지션 불러오기 로직 
+	List<Advertisement>selectPositionInfo(int busNo);
 }

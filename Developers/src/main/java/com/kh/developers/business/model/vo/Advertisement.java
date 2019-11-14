@@ -12,13 +12,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Advertisement {
 	
-	private int postionNo;
-	private int postion;
+	private int positionNo;
+	private String position;
 	private Date deadDate;
 	
 	private int advertisementNo;
-	private Date startDate;
-	private Date endDate;
+	private Date adStartDate;
+	private Date adeEndDate;
 	private String adType;
 	private int clickTimes;
 	private String adOn;

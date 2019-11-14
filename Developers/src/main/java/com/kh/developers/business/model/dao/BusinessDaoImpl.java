@@ -8,6 +8,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.kh.developers.business.model.vo.Advertisement;
 import com.kh.developers.business.model.vo.Business;
 import com.kh.developers.business.model.vo.CareerInCard;
 import com.kh.developers.business.model.vo.EducationInCard;
@@ -167,6 +168,13 @@ public class BusinessDaoImpl implements BusinessDao {
 		// TODO Auto-generated method stub
 		RowBounds r=new RowBounds((cPage-1)*numPerPage, numPerPage);
 		return session.selectList("business.selectFavorites",busNo,r);
+	}
+	
+	//광고 포지션 불러오기 로직 
+	@Override
+	public List<Advertisement> selectPositionInfo(SqlSessionTemplate session, int busNo) {
+		// TODO Auto-generated method stub
+		return session.selectList("business.selectPositionInfo",busNo);
 	}
 
 }

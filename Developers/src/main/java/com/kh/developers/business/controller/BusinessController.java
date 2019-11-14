@@ -27,6 +27,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kh.developers.business.model.service.BusinessService;
+import com.kh.developers.business.model.vo.Advertisement;
 import com.kh.developers.business.model.vo.Business;
 import com.kh.developers.business.model.vo.IntroCard;
 import com.kh.developers.common.util.PaginationTemplateFunction;
@@ -421,6 +422,29 @@ public class BusinessController {
 		
 		mv.setViewName("business/advertisement");
 		return mv;
+	}
+	
+	//광고 페이지 직무 상단/메인 상단 페이지 
+	@RequestMapping(value = "/business/selectPositionInfo", produces = "application/text; charset=utf-8")
+	@ResponseBody
+	public String positionInfo(@RequestParam (value="flag", required=true) String flag, HttpServletRequest req,HttpServletResponse res) {
+		Map<String,Object>resultMap=new HashMap<String,Object>();
+		Business bus=(Business)req.getSession().getAttribute("busInfo");
+		int busNo=Integer.parseInt(bus.getBusNo());
+		ObjectMapper mapper=new ObjectMapper(); //잭슨 객체 - json자바스크립트 객체 매핑시킴
+		String jsonStr="";
+		List<Advertisement>polist=new ArrayList<Advertisement>();
+		polist=bService.selectPositionInfo(busNo);
+		System.out.println(polist.get(0).getDeadDate());
+		resultMap.put("polist", polist);
+		resultMap.put("flag", flag);
+		try {
+			jsonStr=mapper.writeValueAsString(resultMap);
+		}catch(JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		res.setContentType("application/json;charset=utf-8");
+		return jsonStr;
 	}
 	
 	

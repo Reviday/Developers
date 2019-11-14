@@ -141,6 +141,10 @@
 		JOIN MATCHUP_FAV USING (RESUME_NO) WHERE RESUME.MATCHUP='Y' AND MATCHUP_FAV.BUS_NO=#{busNo}
 	</select>
 	
+	<select id="selectPositionInfo" parameterType="integer" resultMap="advertisement">
+		SELECT POSITION_NO, POSITION, DEAD_DATE FROM ENROLL_POSITION WHERE BUS_NO=#{busNo} AND DEAD_DATE>=SYSDATE
+	</select>
+	
 	
 	
 	<resultMap type="com.kh.developers.business.model.vo.CareerInCard" id="careerMap">
@@ -229,5 +233,17 @@
    	   <result property="memEmail" column="mem_email"></result>
    	   <result property="memPhone" column="mem_Phone"></result>
    </resultMap> 
+   
+   <resultMap type="com.kh.developers.business.model.vo.Advertisement" id="advertisement">
+   		<result property="positionNo" column="position_no"></result>
+   		<result property="position" column="position"></result>
+   		<result property="deadDate" column="dead_date"></result>
+   		<result property="advertisementNo" column="advertisement_no"></result>
+   		<result property="adStartDate" column="ad_start_date"></result>
+   		<result property="adEndDate" column="ad_end_date"></result>
+   		<result property="adType" column="ad_type"></result>
+   		<result property="clickTimes" column="click_times"></result>
+   		<result property="adOn" column="ad_On"></result>
+   </resultMap>
 	
 </mapper>
