@@ -24,7 +24,8 @@
 			</if>
 			)
 		</if>	
-		AND MEM_STATUS='N'
+		AND MEM_STATUS='N' 
+		ORDER BY MEM_ENROLL_DATETIME DESC
 	</select>
 	<select id="selectWithdrawMemberCountBySearch" parameterType="map" resultType="_int">
 		SELECT COUNT(*) FROM TA_MEMBER WHERE 1=0
@@ -74,6 +75,7 @@
 		<if test="searchLevel != null">
 			AND (MEM_LEVEL=${searchLevel} AND MEM_STATUS='Y')
 		</if>
+		ORDER BY MEM_ENROLL_DATETIME DESC
 	</select>
 	<select id="selectMemberCountBySearchLevel" parameterType="map" resultType="_int">
 		SELECT COUNT(*) FROM TA_MEMBER WHERE 1=0
@@ -113,7 +115,8 @@
 			</if>
 			)
 		</if>	
-		AND MEM_STATUS='Y'
+		AND MEM_STATUS='Y' 
+		ORDER BY MEM_ENROLL_DATETIME DESC
 	</select>
 	<select id="selectMemberCountBySearch" parameterType="map" resultType="_int">
 		SELECT COUNT(*) FROM TA_MEMBER WHERE 1=0

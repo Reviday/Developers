@@ -28,7 +28,8 @@
 				<th>등급
 					<div class="dropdown" style="display: inline-block;">
 				        <select class="dropdown-select-version select" name="memLevel" id="searchlevel" style="vertical-align: top; height: 21px; width: 100px; margin: 0; margin-left: 10px;">
-				        	<option value="-1" selected disabled hidden>등급별검색</option>
+				        	<option selected disabled hidden>등급별검색</option>
+						    <option value="-1" <c:if test="${searchLevel eq -1}">selected</c:if>>전체</option>
 				        	<option value="5" <c:if test="${searchLevel eq 5}">selected</c:if>>관리자</option>
 						    <option value="4" <c:if test="${searchLevel eq 4}">selected</c:if>>기업관리자</option>
 						    <option value="3" <c:if test="${searchLevel eq 3}">selected</c:if>>기업매니저</option>

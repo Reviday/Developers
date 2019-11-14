@@ -82,7 +82,9 @@ public class AdminServiceImpl implements AdminService {
 			svt=new SearchValuesTemplate(value);
 			searchValue=svt.getSearchValue();
 		}
-		searchValue.put("searchLevel",searchLevel);
+		if(searchLevel>=0) {
+			searchValue.put("searchLevel",searchLevel);
+		}
  		return dao.selectMemberListBySearchLevel(session, searchValue, cPage, numPerPage);
 	}
 	
@@ -94,7 +96,9 @@ public class AdminServiceImpl implements AdminService {
 			svt=new SearchValuesTemplate(value);
 			searchValue=svt.getSearchValue();
 		}
-		searchValue.put("searchLevel",searchLevel);
+		if(searchLevel>=0) {
+			searchValue.put("searchLevel",searchLevel);
+		}
  		return dao.selectMemberCountBySearchLevel(session, searchValue);
 	}
 	

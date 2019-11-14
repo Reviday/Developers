@@ -12,7 +12,7 @@
 		<div class="input-group">
 			<!-- USE TWITTER TYPEAHEAD JSON WITH API TO SEARCH -->
 			<input class="form-control" id="system-search" 
-				placeholder="Search for" required> <span
+				placeholder="Search for" required value="${searchValue}"> <span
 				class="input-group-btn">
 				<button type="button" class="btn btn-default" onclick="mll_search();">
 					<i class="fas fa-search"></i>
