@@ -21,6 +21,8 @@ public interface BusinessService2 {
 	
 	//busNo로 비지니스 정보 가져오기
 	Business selectBusOne(String busNo);	
+	
+	List<Integer> selectApplPoList(Map map);
 	//지원자 리스트
 	List<Applicant> selectBusAppl(Map map, int cPage, int numPerPage);
 
@@ -46,6 +48,10 @@ public interface BusinessService2 {
 	
 	//회사 포지션 가져오기
 	List<Position> selectPositionList(Map map);
+	
+	Applicant selectApplOne(int applNo);
+	
+	int updateApplOffer(int applNo);
 	
 	
 

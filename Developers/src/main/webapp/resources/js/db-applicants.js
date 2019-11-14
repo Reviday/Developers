@@ -7,14 +7,15 @@ $(function(){
     if(appl_like=='true'){
         $("#like_check").prop("checked",true);
     }
-    //리스트 가져오는 함수
-    fn_appl_nav(appl_index, appl_page);
-   
     //인덱스 선택
     if(appl_index<1){
         appl_index=1;
     }
-    $($('.appl-main-nav>ul>li')[appl_index-1]).children().addClass('ca2');
+    
+    
+    //리스트 가져오는 함수
+    fn_appl_nav(appl_index, appl_page, appl_position);
+    // $($('.appl-main-nav>ul>li')[appl_index-1]).children().addClass('ca2');
 
     //사이드내비
     $('.appl-leftside>h5').on('click',function(){
@@ -29,8 +30,8 @@ $(function(){
     });
     //지원자 내비
     $('.appl-main-nav>ul>li>a').on('click',function(){
-        $($(this).parent().siblings()).children().removeClass('ca2');
-        $(this).addClass('ca2');
+        // $($(this).parent().siblings()).children().removeClass('ca2');
+        // $(this).addClass('ca2');
         fn_appl_nav($(this).parent().index()+1, 1);
     });
     $('.appl-main-nav>ul>li>a').hover(function(){
@@ -47,20 +48,29 @@ $(function(){
         appl_page=1;
         fn_appl_nav(appl_index, appl_page);
     });
-
+    $(document).on("click", ".appl-del-btn", function(){
+        del_applNo=$(this).parents('.appl-aList').children('input[type="hidden"]').val();
+        var del_memName=$(this).parents('.aList-right').siblings('.aList-left').children('.aList-info').children(':last').html();
+        $(".del-mem").html(del_memName);
+        $(".del-modal").show();
+    });
 });
   
-function fn_appl_nav(index, page){
+function fn_appl_nav(index, page, po){
     appl_index=index;
     appl_page=page;
+    appl_position=po;
+    console.log(appl_position);
     $(".appl-applicant-list").html("<img src='"+path+"/resources/images/Developers_black_loading.gif' width='30px;'/>");
     $.ajax({
         url:path+"/business/applChange.lbc",
-        data:{"applIndex":index, "applLike":$("#like_check").prop("checked"),"search":$("[name='search_em']").val(), "cPage":page},
+        data:{"applIndex":index, "applLike":$("#like_check").prop("checked"),"search":$("[name='search_em']").val(),"applPosition":appl_position, "cPage":page},
         success:function(data){
             $(".appl-applicant-list").html(data.applInnerHtml);
             $(".appl-applicant-list").append(data.pageBar);
             $("#content").append(data.delModal);
+            $('.appl-main-nav>ul>li').children().removeClass('ca2');
+            $($('.appl-main-nav>ul>li')[appl_index-1]).children().addClass('ca2');
              //좋아요 버튼 클릭
             $(".aList-like-btn").on("click",function(){
                 if($(this).hasClass("like_on")){
@@ -79,16 +89,16 @@ function fn_appl_nav(index, page){
 
              //지원자 이력서 보기. 지원자클릭
             $(".appl-aList").on("click",function(){
-                
-                $.ajax({
-                    url:path+"/business/applView.lbc",
-                    data:{"applNo":$(this).children(".aList-appl-no").val()},
-                    datatype:'post',
-                    success:function(data){
-                        $(".appl-main").html(data.viewHtml);
-                        $('.appl-leftside').css("top","0");
-                    }
-                });
+                location.href=path+"/business/applView.lbc?applNo="+$(this).children(".aList-appl-no").val();
+                // $.ajax({
+                //     url:path+"/business/applView.lbc",
+                //     data:{"applNo":$(this).children(".aList-appl-no").val()},
+                //     datatype:'post',
+                //     success:function(data){
+                //         $(".appl-main").html(data.viewHtml);
+                //         // $('.appl-leftside').css("top","0");
+                //     }
+                // });
             });
         }
     });
@@ -105,42 +115,16 @@ function fn_appl_like(event, flag){
 }
 
 function fn_del_modal(event){
-    del_applNo=$(event.target).parents('.appl-aList').children('input[type="hidden"]').val();
-    var del_memName=$(event.target).parents('.aList-right').siblings('.aList-left').children('.aList-info').children(':last').html();
-    $(".del-mem").html(del_memName);
-    $(".del-modal").show();
+   
 }
 
 function fn_appl_del(){
     location.href=path+"/business/applDel.lbc?applNo="+del_applNo;
 }
 
-function fn_appl_offer(){
-    
-}
 
 
-    
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    //반응형 처리
+//반응형 처리
 $(function(){
     $(window).resize(function(){
         if(window.innerWidth<767){
@@ -154,6 +138,7 @@ $(function(){
     });
 
     $('.appl-leftside>ul>li').on('click', function(){
+        fn_appl_nav(1, 1, $(this).attr('data'));
         $(this).parent().parent().children('ul').children().removeClass('aList-click');
         if(!$(this).hasClass('aList-click')){
             $(this).addClass('aList-click');

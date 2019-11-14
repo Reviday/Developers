@@ -43,6 +43,13 @@ public class BusinessDaoImpl2 implements BusinessDao2 {
 		return session.selectOne("business2.selectBusOne", busNo);
 	}
 
+	
+	@Override
+	public List<Integer> selectApplPoList(SqlSession session, Map map) {
+		return session.selectList("business2.selectApplPoList", map);
+	}
+
+
 	@Override
 	public List<Applicant> selectBusAppl(SqlSession session, Map map,  int cPage, int numPerPage) {
 		RowBounds row=new RowBounds((cPage-1)*numPerPage, numPerPage);
@@ -125,6 +132,17 @@ public class BusinessDaoImpl2 implements BusinessDao2 {
 	@Override
 	public Member selectApplicant(SqlSession session, int memNo) {
 		return session.selectOne("business2.selectApplicant", memNo);
+	}
+
+	@Override
+	public Applicant selectApplOne(SqlSession session, int applNo) {
+		return session.selectOne("business2.selectApplOne", applNo);
+	}
+
+	
+	@Override
+	public int updateApplOffer(SqlSession session, int applNo) {
+		return session.update("business2.updateApplOffer", applNo);
 	}
 
 

@@ -21,7 +21,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.kh.developers.business.model.service.BusinessService;
 import com.kh.developers.business.model.service.BusinessService2;
 import com.kh.developers.business.model.vo.Applicant;
 import com.kh.developers.business.model.vo.Business;
@@ -38,7 +37,7 @@ import com.kh.developers.search.model.vo.Position;
 
 @Controller
 public class BusinessController2 {
-	
+
 	@Autowired
 	private BusinessService2 service;
 
@@ -48,9 +47,10 @@ public class BusinessController2 {
 		MultipartFile logo=mReq.getFile("logoFile");
 		Business busInfo=(Business)mReq.getSession().getAttribute("busInfo");
 		String subDir="/resources/upload/images/business/bus_"+busInfo.getBusNo()+"/logo";
-		String saveDir=mReq.getSession().getServletContext().getRealPath("");
-		saveDir=saveDir.substring(0, saveDir.lastIndexOf("\\target"));
-		saveDir+="/src/main/webapp";
+		String saveDir=new BusinessController2().getClass().getResource("/").getPath();
+		saveDir=saveDir.substring(0, saveDir.lastIndexOf("/WEB-INF"));
+//		saveDir=saveDir.substring(0, saveDir.lastIndexOf("\\target"));
+//		saveDir+="/src/main/webapp";
 		File dir=new File(saveDir+subDir);
 		if(!dir.exists()) {
 			dir.mkdirs();
@@ -62,7 +62,7 @@ public class BusinessController2 {
 		//기존 로고 지우기
 		if(busInfo.getBusLogo()!=null) {			
 			String oriLogo=busInfo.getBusLogo();	
-			File oriFile=new File(saveDir+oriLogo.substring(oriLogo.lastIndexOf("/resources")));
+			File oriFile=new File(saveDir+oriLogo);
 			if(oriFile.exists()) {
 				oriFile.delete();
 			}
@@ -71,7 +71,7 @@ public class BusinessController2 {
 		try {		
 			String logoFullName=saveDir+subDir+"/"+reName;
 			logo.transferTo(new File(logoFullName));
-			busInfo.setBusLogo("/developers"+subDir+"/"+reName);
+			busInfo.setBusLogo(subDir+"/"+reName);
 			int result=service.busLogoChange(busInfo);
 		}catch(IOException e) {
 			e.printStackTrace();
@@ -80,16 +80,16 @@ public class BusinessController2 {
 		mv.setViewName("jsonView");
 		return mv;
 	}
-	
+
 	@RequestMapping("/business/busImgAdd")
 	public ModelAndView busImgAdd(MultipartHttpServletRequest mReq) {
 		ModelAndView mv=new ModelAndView();
 		MultipartFile busImg=mReq.getFile("bus_img");
 		Business busInfo=(Business)mReq.getSession().getAttribute("busInfo");
 		String subDir="/resources/upload/images/business/bus_"+busInfo.getBusNo()+"/images";
-		String saveDir=mReq.getSession().getServletContext().getRealPath("");
-		saveDir=saveDir.substring(0, saveDir.lastIndexOf("\\target"));
-		saveDir+="/src/main/webapp";
+		String saveDir=new BusinessController2().getClass().getResource("/").getPath();
+		saveDir=saveDir.substring(0, saveDir.lastIndexOf("/WEB-INF"));
+//		saveDir+="/src/main/webapp";
 		File dir=new File(saveDir+subDir);
 		if(!dir.exists()) {
 			dir.mkdirs();
@@ -106,13 +106,13 @@ public class BusinessController2 {
 			Map map=new HashMap();
 			map.put("busNo", busInfo.getBusNo());
 			map.put("count",count);
-			map.put("busImg","/developers"+subDir+"/"+reName);
+			map.put("busImg",subDir+"/"+reName);
 			int result=service.busImgAdd(map);
 			String imgHtml="";
 			imgHtml+="";
 			imgHtml+="<div class='bi_img_bus modi_img del_img'>";
 			imgHtml+="<label for='bus_img"+count+"'>";
-			imgHtml+="<img class='bi_img_busimg' src='/developers"+subDir+"/"+reName+"'/>";
+			imgHtml+="<img class='bi_img_busimg' src='${path}"+subDir+"/"+reName+"'/>";
 			imgHtml+="<i class='fas fa-sync-alt'></i>";
 			imgHtml+="<form enctype='multipart/form-data' method='POST'>";
 			imgHtml+="<input id='bus_img"+count+"' name='bus_img' type='file' style='display:none;'>";
@@ -128,7 +128,7 @@ public class BusinessController2 {
 		mv.setViewName("jsonView");
 		return mv;
 	}
-	
+
 	@RequestMapping("/business/busImgModify")
 	public ModelAndView busImgModify(MultipartHttpServletRequest mReq) {
 		ModelAndView mv=new ModelAndView();
@@ -136,9 +136,9 @@ public class BusinessController2 {
 		MultipartFile busImg=mReq.getFile("bus_img");
 		Business busInfo=(Business)mReq.getSession().getAttribute("busInfo");
 		String subDir="/resources/upload/images/business/bus_"+busInfo.getBusNo()+"/images";
-		String saveDir=mReq.getSession().getServletContext().getRealPath("");
-		saveDir=saveDir.substring(0, saveDir.lastIndexOf("\\target"));
-		saveDir+="/src/main/webapp";
+		String saveDir=new BusinessController2().getClass().getResource("/").getPath();
+		saveDir=saveDir.substring(0, saveDir.lastIndexOf("/WEB-INF"));
+//		saveDir+="/src/main/webapp";
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd_HHmmssSSS");
 		String reName="bus_img_"+sdf.format(new Date());
 		String ext=busImg.getOriginalFilename().substring(busImg.getOriginalFilename().lastIndexOf("."));
@@ -146,16 +146,16 @@ public class BusinessController2 {
 		//기존 이미지 지우기
 		String[] busImages=busInfo.getBusImages();
 		String delImg=busImages[imgIndex-1];	
-		File delFile=new File(saveDir+delImg.substring(delImg.lastIndexOf("/resources")));
+		File delFile=new File(saveDir+delImg);
 		if(delFile.exists()) {
 			delFile.delete();
 		}
-		
+
 		//새로운 이미지 저장
 		try {		
 			String imgFullName=saveDir+subDir+"/"+reName;
 			busImg.transferTo(new File(imgFullName));
-			busImages[imgIndex-1]="/developers"+subDir+"/"+reName;
+			busImages[imgIndex-1]=subDir+"/"+reName;
 			busInfo.setBusImages(busImages);
 			int result=service.updateBusInfo(busInfo);
 		}catch(IOException e) {
@@ -165,15 +165,15 @@ public class BusinessController2 {
 		mv.setViewName("jsonView");
 		return mv;
 	}
-	
+
 	@RequestMapping("business/busImgDelete")
 	public ModelAndView busImgDelete(HttpSession session, @RequestParam int imgIndex) {
 		ModelAndView mv= new ModelAndView();
 		Business bus=(Business)session.getAttribute("busInfo");			
 		String delImg=bus.getBusImages()[imgIndex-1];	
 		String subDir="/resources/upload/images/business/bus_"+bus.getBusNo()+"/images";
-		String saveDir=session.getServletContext().getRealPath("");
-		saveDir=saveDir.substring(0, saveDir.lastIndexOf("\\target"));
+		String saveDir=new BusinessController2().getClass().getResource("/").getPath();
+		saveDir=saveDir.substring(0, saveDir.lastIndexOf("/WEB-INF"));
 		saveDir+="/src/main/webapp";
 		File delFile=new File(saveDir+delImg.substring(delImg.lastIndexOf("/resources")));
 		if(delFile.exists()) {
@@ -192,16 +192,16 @@ public class BusinessController2 {
 		mv.setViewName("jsonView");
 		return mv;
 	}
-	
+
 	@RequestMapping("/business/dashboard.lbc")
 	public ModelAndView dashboard(HttpSession session) {
 		ModelAndView mv=new ModelAndView();
 		String view="";
 		Member loginMember=(Member)session.getAttribute("loginMember");
 		Business busInfo=(Business)session.getAttribute("busInfo");
-		
-		
-		
+
+
+
 		if(loginMember!=null && loginMember.getMemLevel()>=3 && busInfo!=null) {
 			if(busInfo.getBusStatus().charAt(0)=='Y') {
 				view="business/dashboard";
@@ -212,7 +212,7 @@ public class BusinessController2 {
 		mv.setViewName(view);
 		return mv;
 	}
-	
+
 	@RequestMapping("/business/applicants.lbc")
 	public ModelAndView dbApplications(Model model,HttpServletRequest req) {
 		ModelAndView mv=new ModelAndView();
@@ -223,8 +223,12 @@ public class BusinessController2 {
 		applHtml+="<h5>채용중<i class='fas fa-angle-up'></i></h5>";
 		applHtml+="<hr/>";
 		applHtml+="<ul class='apply-ing'>";
-		applHtml+="<li class='aList-click'><span class='aList-type'>포지션 전체</span> <span class='aList-count'>11</span></li>";
-		applHtml+="<li><span class='aList-type'>매치업</span> <span class='aList-count'>11</span></li>";
+		applHtml+="<li data='' class='aList-click'><span class='aList-type'>포지션 전체</span> <span class='aList-count'>"+service.selectBusApplCount(map)+"</span></li>";
+		List<Integer> poList=service.selectApplPoList(map);
+		for(int po:poList) {
+			map.put("applPosition", po);
+			applHtml+="<li data='"+po+"'><span class='aList-type'>매치업</span> <span class='aList-count'>"+service.selectBusApplCount(map)+"</span></li>";
+		}
 		applHtml+="</ul>";
 		applHtml+="<br/>";
 		applHtml+="<h5>마감된 포지션<i class='fas fa-angle-up'></i></h5>";
@@ -278,50 +282,18 @@ public class BusinessController2 {
 		applHtml+="<input type='checkbox' class='' id='like_check' name='like_check'/><label for='like_check'>별표한 지원자만 보기</label>";
 		applHtml+="</div>";
 		applHtml+="<div class='appl-applicant-list'>";
-		
 		applHtml+="</div>";
-/*<div class='appl-applicant-list'>
-				<c:if test='${empty aList}'>
-					<!-- <c:forEach items='${aList}' var='l' varStatus='v'>
-						
-					</c:forEach> -->
-					<div class='appl-aList'>
-						<div class='aList-left'>
-							<div class='aList-like-btn'><i class='fas fa-star'></i></div>
-							<div class='aList-info'>
-								<div class='aList-info-no'>No_1</div>
-								<div class='aList-info-name'>송<i class='far fa-circle'></i><i class='far fa-circle'></i></div>
-							</div>
-							<div class='aList-type'>
-								<span>매치업</span>
-							</div>
-						</div>
-						<div class='aList-right'>
-							<div class='aList-del-btn'>
-								<button type='button' class='del-btn' onclick='fn_aList_del()'>삭제</button>
-							</div>
-						</div>
-					</div>
-				</c:if>
-				<c:if test='${not empty aList}'>
-					<br/>
-					<h4>포지션에 적합한 후보자가 없으신가요?</h4>
-					<h4><a href='#'>매치업</a> 탭에서 인재를 검색하고 직접 면접제안을 해보세요!</h4>
-				</c:if>
-			</div> */
-		
-		
 		applHtml+="</div>";
-		
-		
+
+
 		mv.addObject("dbIndex",1);
 		mv.addObject("dbHtml", applHtml);
 		mv.setViewName("business/dashboard");
 		return mv;
 	}
-	
+
 	@RequestMapping("/business/applChange.lbc")
-	public ModelAndView applChange(HttpSession session, @RequestParam int applIndex, @RequestParam boolean applLike, @RequestParam String search, @RequestParam(value="cPage", required=false, defaultValue="1")int cPage) {
+	public ModelAndView applChange(HttpSession session, @RequestParam int applIndex, @RequestParam boolean applLike, @RequestParam String search, @RequestParam(value="applPosition", required=false, defaultValue="") String applPosition,@RequestParam(value="cPage", required=false, defaultValue="1")int cPage) {
 		ModelAndView mv=new ModelAndView();
 		Map map=new HashMap();
 		map.put("busNo", ((Business)session.getAttribute("busInfo")).getBusNo());
@@ -333,9 +305,9 @@ public class BusinessController2 {
 		int totalData=0;
 		//list 가져오기
 		applList=service.selectBusAppl(map, cPage,numPerPage); totalData=service.selectBusApplCount(map);
-		
 
-		
+
+
 		if(applList.isEmpty()) {
 			html+="<br/>";
 			html+="<h4>포지션에 적합한 후보자가 없으신가요?</h4>";
@@ -351,7 +323,7 @@ public class BusinessController2 {
 				if(applLike||service.selectCheckLike(likeMap)>0) {
 					html+="<div class='aList-like-btn like_on'><i class='fas fa-star'></i></div>";
 				}else {
-					
+
 					html+="<div class='aList-like-btn'><i class='fas fa-star'></i></div>";
 				}
 				html+="<div class='aList-info'>";
@@ -364,14 +336,15 @@ public class BusinessController2 {
 				html+="</div>";
 				html+="<div class='aList-right'>";
 				html+="<div class='aList-del-btn'>";
-				html+="<button type='button' class='del-btn' onclick='fn_del_modal(event);'>삭제</button>";
+				html+="<button type='button' class='appl-del-btn'>삭제</button>";
+//				html+="<button type='button' class='del-btn' onclick='fn_del_modal(event);'>삭제</button>";
 				html+="</div>";
 				html+="</div>";
 				html+="<input type='hidden' class='aList-appl-no' value='"+appl.getApplNo()+"'/>";
 				html+="</div><br/>";
 			}
 			mv.addObject("pageBar", PageFactory2.getApplPageBar(totalData, cPage, numPerPage));
-			
+
 			String delModal="";
 			delModal+="<div class='del-modal'>";
 			delModal+="<div class='close-modal modal-background'></div>";
@@ -389,27 +362,28 @@ public class BusinessController2 {
 			delModal+="<button class='del-modal-button close-modal'>취소</button>";
 			delModal+="</div>";
 			delModal+="</div>";
-			
+
 			delModal+="</div>";
 			mv.addObject("delModal", delModal);
-					
+
 		}
 		session.setAttribute("applIndex", applIndex);
 		session.setAttribute("applcPage", cPage);
 		session.setAttribute("applLike", applLike);
+		session.setAttribute("applPoistion", applPosition);
 		mv.addObject("applInnerHtml", html);
-		
+
 		mv.setViewName("jsonView");
 		return mv; 
 	}
-	
+
 	@RequestMapping("/business/applLike.lbc")
 	public ModelAndView applLike(HttpSession session, @RequestParam int applNo, @RequestParam boolean flag) {
 		ModelAndView mv=new ModelAndView();
 		Map map=new HashMap();
 		map.put("busNo", ((Business)session.getAttribute("busInfo")).getBusNo());
 		map.put("applNo", applNo);
-		
+
 		int result=0;
 		if(flag) {			
 			result=service.deleteApplLike(map);
@@ -419,7 +393,7 @@ public class BusinessController2 {
 		mv.setViewName("jsonView");
 		return mv;
 	}
-	
+
 	@RequestMapping("/business/applDel.lbc")
 	public ModelAndView applDel(HttpSession session, @RequestParam int applNo) {
 		ModelAndView mv=new ModelAndView();
@@ -432,21 +406,57 @@ public class BusinessController2 {
 		mv.setViewName("common/msg");
 		return mv;
 	}
-	
+
 	@RequestMapping("/business/applView.lbc")
 	public ModelAndView applView(@RequestParam int applNo) {
 		ModelAndView mv=new ModelAndView();
-		IntroCard ic=service.selectResumeOne(applNo);
 		String viewHtml="";
+		try {
+		IntroCard ic=service.selectResumeOne(applNo);
+//		viewHtml+="<div id='appl-leftside' class='appl-leftside'>";
+//		viewHtml+="<h5>채용중<i class='fas fa-angle-up'></i></h5>";
+//		viewHtml+="<hr/>";
+//		viewHtml+="<ul class='apply-ing'>";
+//		viewHtml+="<li data=''";
+//		if(session.getAttribute("applPosition")!=null && session.getAttribute("applPosition").equals("")) {			
+//			viewHtml+="class='aList-click'";
+//		}
+//		viewHtml+="><span class='aList-type'>포지션 전체</span> <span class='aList-count'>"+service.selectBusApplCount(map)+"</span></li>";
+//		List<Integer> poList=service.selectApplPoList(map);
+//		for(int po:poList) {
+//			map.put("applPosition", po);
+//			viewHtml+="<li data='"+po+"'";
+//			if(session.getAttribute("applPosition")==null || session.getAttribute("applPosition").equals(po)) {			
+//				viewHtml+="class='aList-click'";
+//			}
+//			viewHtml+="><span class='aList-type'>매치업</span> <span class='aList-count'>"+service.selectBusApplCount(map)+"</span></li>";
+//		}
+//		viewHtml+="</ul>";
+//		viewHtml+="<br/>";
+//		viewHtml+="<h5>마감된 포지션<i class='fas fa-angle-up'></i></h5>";
+//		viewHtml+="<hr/>";
+//		viewHtml+="<ul>";
+//		viewHtml+="</ul>";
+//		viewHtml+="</div>";
 		viewHtml+="<div class='appl_view_container'>";
 		viewHtml+="<div class='appl_view_header'>";
-		viewHtml+="<button type='button' class='appl_offer_btn' onclick='fn_appl_offer'>제안하기</button>";
+		Applicant appl=service.selectApplOne(applNo);
+		int index=appl.getApplStatus();
+		switch(index) {
+		case 1:viewHtml+="<button type='button' class='appl_offer_btn' onclick='fn_appl_offer();'>제안하기</button>"; break;
+		case 2:
+			if(appl.getApplAnsYn()=='O') {
+				viewHtml+="<div class='appl_offering'>제안 중...</div>";
+			}else {
+				viewHtml+="<button type='button' class='appl_offer_btn' onclick='fn_appl_pass();'>합격</button><button type='button' class='appl_offer_btn' onclick='fn_appl_fail'>불합격</button>"; break;
+			}
+		}
 		viewHtml+="</div>";
 		viewHtml+="<div class='appl_view_section'>";
 		viewHtml+="<div class='appl_name'>"+ic.getMemName()+"</div>";
 		viewHtml+="<div class='appl_info'>"+ic.getMemEmail()+"</div>";
 		viewHtml+="<div class='appl_info'>"+ic.getMemPhone()+"</div>";
-		viewHtml+="<div class='appl_intro'>"+ic.getIntro()+"</div>";
+		viewHtml+="<div class='appl_intro'><pre>"+ic.getIntro()+"</pre></div>";
 		viewHtml+="<hr style='width:95%; border-top:groove;'>";
 		if(ic.getCareers()!=null) {
 			viewHtml+="<div class='appl_careers'>";			
@@ -458,7 +468,7 @@ public class BusinessController2 {
 				viewHtml+="<div class='appl_view_date'>"+cic.getEndCareer()+"</div>";
 				viewHtml+="<div class='appl_view_date'>"+cic.getStartCareer()+"  ~</div>";
 				viewHtml+="<br>";
-				viewHtml+="<div class='appl_view_intro'>"+cic.getCareerIntro()+"</div>";
+				viewHtml+="<div class='appl_view_intro'><pre>"+cic.getCareerIntro()+"</pre></div>";
 				viewHtml+="<hr style='width:95%;'>";
 			}
 			viewHtml+="</div>";
@@ -473,7 +483,7 @@ public class BusinessController2 {
 				viewHtml+="<div class='appl_view_date'>"+eic.getEndEd()+"</div>";
 				viewHtml+="<div class='appl_view_date'>"+eic.getStartEd()+"  ~</div>";
 				viewHtml+="<br>";
-				viewHtml+="<div class='appl_view_intro'>"+eic.getSubjectName()+"</div>";
+				viewHtml+="<div class='appl_view_intro'><pre>"+eic.getSubjectName()+"</pre></div>";
 				viewHtml+="<hr style='width:95%;'>";
 			}
 			viewHtml+="</div>";
@@ -486,7 +496,7 @@ public class BusinessController2 {
 				viewHtml+="<div><span class='aline' style='float:left; margin-left:1%; margin-right:1%;'>"+" | "+"</span></div>";
 				viewHtml+="<div class='appl_view_date'>"+ac.getStartAct()+"</div>";
 				viewHtml+="<br>";
-				viewHtml+="<div class='appl_view_intro'>"+ac.getActDetail()+"</div>";
+				viewHtml+="<div class='appl_view_intro'><pre>"+ac.getActDetail()+"</pre></div>";
 				viewHtml+="<hr style='width:95%;'>";
 			}
 			viewHtml+="</div>";
@@ -509,22 +519,31 @@ public class BusinessController2 {
 			for(Links lk:ic.getLinks()) {
 				viewHtml+="<div class='appl_view_title' style='font-weight:bold;'>링크</div>";
 				viewHtml+="<div class='appl_view_name'>"+lk.getLinksAddr()+"</div>";
-				viewHtml+="<div><span class='aline' style='float:left; margin-left:1%; margin-right:1%;'>"+" | "+"</span></div>";
-				viewHtml+="<div class='appl_view_date'>"+lk.getLinksDate()+"</div>";
 				viewHtml+="<hr style='width:95%;'>";
 			}
 			viewHtml+="</div>";
 		}
 		viewHtml+="</div>";
-
+		viewHtml+="<input type='hidden' class='appl_applNo' value='"+applNo+"'/>";
 		viewHtml+="</div>";
-		
-		mv.addObject("viewHtml", viewHtml);
-		mv.setViewName("jsonView");
+		}catch(Exception e) {
+			viewHtml+="<div>등록된 이력서가 없습니다.</div>";
+		}
+		mv.addObject("dbHtml", viewHtml);
+		mv.addObject("dbIndex",11);
+		mv.setViewName("business/dashboard");
 		return mv;
 	}
 	
-//비지니스 포지션
+	@RequestMapping("business/applOffer.lbc")
+	public ModelAndView applOffer(@RequestParam int applNo) {
+		ModelAndView mv=new ModelAndView();
+		int result=service.updateApplOffer(applNo);
+		mv.setViewName("jsonView");
+		return mv;
+	}
+
+	//비지니스 포지션
 	@RequestMapping("/business/position.lbc")
 	public ModelAndView dbBusPosition(HttpSession session) {
 		ModelAndView mv=new ModelAndView();
@@ -535,16 +554,16 @@ public class BusinessController2 {
 		String poHtml="";
 		if(poList.size()>0) {
 			poHtml+="<div class='position_header'>";
-//			poHtml+="<div class='position_nav>";
-//			poHtml+="<ul>";
-//			poHtml+="<li class='position_all>";
-//			poHtml+="</li>";
-//			for(Position po:poList) {
-//				poHtml+="<li class='position_"++"'>";
-//				poHtml+="</li>";
-//			}
-//			poHtml+="</ul>";
-//			poHtml+="</div>";
+			//			poHtml+="<div class='position_nav>";
+			//			poHtml+="<ul>";
+			//			poHtml+="<li class='position_all>";
+			//			poHtml+="</li>";
+			//			for(Position po:poList) {
+			//				poHtml+="<li class='position_"++"'>";
+			//				poHtml+="</li>";
+			//			}
+			//			poHtml+="</ul>";
+			//			poHtml+="</div>";
 			poHtml+="<button type='button' class='position_add_btn' onclick='fn_add_position();'>포지션 추가</button>";
 			poHtml+="</div>";
 			poHtml+="<div class='position_section'>";
@@ -568,28 +587,28 @@ public class BusinessController2 {
 				}
 				poHtml+="</div>";
 				poHtml+="</div>";
-				
+
 			}
 			poHtml+="</div>";
 			poHtml+="</div>";
 		}
-		
-//		
-		
+
+		//		
+
 		mv.addObject("dbHtml", poHtml);
 		mv.addObject("dbIndex",3);
 		mv.setViewName("business/dashboard");
 		return mv;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-//비지니스 정보	
+
+
+
+
+
+
+
+
+	//비지니스 정보	
 	@RequestMapping("/business/busInfo.lbc")
 	public ModelAndView dbBusInfo(HttpSession session) {
 		ModelAndView mv=new ModelAndView();
@@ -671,7 +690,7 @@ public class BusinessController2 {
 			}
 			biHtml+=">"+i+"년</option>";;
 		}
-		
+
 		biHtml+="</select>";
 		biHtml+="</div>";
 		biHtml+="<div class='bi_right'>";
@@ -698,9 +717,9 @@ public class BusinessController2 {
 		biHtml+="</div>";
 		biHtml+="</form>";
 		biHtml+="</div>";
-		
+
 		String seHtml="";
-		
+
 		seHtml+="<div class='bi_bottom_bar'>";
 		seHtml+="<div class='bi_bottom_con'>";
 		seHtml+="<button type='button' class='btn bi_info_modify' onclick='fn_update_bus();'>수정</button>";
@@ -720,7 +739,7 @@ public class BusinessController2 {
 			for(String src:bus.getBusImages()) {
 				seHtml+="<div class='bi_img_bus modi_img del_img'>";
 				seHtml+="<label for='bus_img"+count+"'>";
-				seHtml+="<img class='bi_img_busimg' src='"+src+"'/>";
+				seHtml+="<img class='bi_img_busimg' src='${path}"+src+"'/>";
 				seHtml+="<i class='fas fa-sync-alt'></i>";
 				seHtml+="<form enctype='multipart/form-data' method='POST'>";
 				seHtml+="<input id='bus_img"+count+"' name='bus_img' type='file' style='display:none;'>";
@@ -733,7 +752,7 @@ public class BusinessController2 {
 		}
 		seHtml+="<div class='bi_img_bus add_img'>";
 		seHtml+="<label for='bus_img'>";
-		seHtml+="<img class='bi_img_busimg' src='/developers/resources/images/bus_img_plus.png'/>";
+		seHtml+="<img class='bi_img_busimg' src='${path}/resources/images/bus_img_plus.png'/>";
 		seHtml+="<form enctype='multipart/form-data' method='POST'>";
 		seHtml+="<input id='bus_img' name='bus_img' type='file' style='display:none;'>";
 		seHtml+="</form>";
@@ -745,14 +764,14 @@ public class BusinessController2 {
 		if(bus.getBusLogo()!=null) {
 			seHtml+="<div class='bi_img_logo modi_img'>";
 			seHtml+="<label for='logoFile'>";
-			seHtml+="<img class='bi_img_buslogo' src='"+bus.getBusLogo()+"'/>";
+			seHtml+="<img class='bi_img_buslogo' src='${path}"+bus.getBusLogo()+"'/>";
 			seHtml+="<i class='fas fa-sync-alt'></i>";
 			seHtml+="</label>";
 			seHtml+="</div>";
 		}else {
 			seHtml+="<div class='bi_img_logo add_img'>";
 			seHtml+="<label for='logoFile'>";
-			seHtml+="<img class='bi_img_buslogo' src='/developers/resources/images/bus_img_plus.png'/>";
+			seHtml+="<img class='bi_img_buslogo' src='${path}/resources/images/bus_img_plus.png'/>";
 			seHtml+="</label>";
 			seHtml+="</div>";
 		}
@@ -772,7 +791,7 @@ public class BusinessController2 {
 		mv.setViewName("business/dashboard");
 		return mv;
 	}
-	
+
 	//비지니스 정보 수정
 	@RequestMapping("/business/updateBusInfo.lbc")
 	public ModelAndView updateBusInfo(HttpSession session, Business bus) {
@@ -792,6 +811,6 @@ public class BusinessController2 {
 		session.setAttribute("busInfo", busInfo);
 		mv.setViewName("jsonView");
 		return mv;
-		
+
 	}
 }

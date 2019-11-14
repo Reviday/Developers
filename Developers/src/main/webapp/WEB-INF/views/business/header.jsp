@@ -144,7 +144,7 @@
 					<ul class="nav_us">
 						<li class="ls1 ls2" id="logo">
 							<label for="logoFile" style="cursor: pointer;">
-								<img id="logoImg" src="${busInfo.busLogo}"/>
+								<img id="logoImg" src="${path}${busInfo.busLogo}"/>
 								<form id="logoFrm" name="logoFrm" enctype="multipart/form-data" method="POST">
 									<input type="file" accept="image/*" id="logoFile" name="logoFile" style="display:none"/>
 								</form>
@@ -353,7 +353,7 @@
 					processData:false,
               	    contentType:false,
 					success:function(data){
-						$("#logoImg").attr("src",data.logo);
+						$("#logoImg").attr("src",path+data.logo);
 					}
 
 				})

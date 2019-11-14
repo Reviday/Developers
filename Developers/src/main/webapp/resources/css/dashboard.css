@@ -12,10 +12,10 @@ section{
 
 /*applicants*/
 .appl-main{
-    margin: 0 10px;
+    
 }
 .appl-leftside{
-    top:-40px;
+    /* top:-40px; */
     padding:0 13px;
 }
 .appl-leftside>h5{
@@ -136,6 +136,11 @@ input[name="search_em"]::placeholder{
     background-color: white;
     border-radius: 3px;
 }
+
+.appl-aList>div>div{
+    position: relative;
+    display: inline-grid;
+}
 .aList-like-btn{
     margin:22px 20px;
     margin-left: 40px;
@@ -144,10 +149,11 @@ input[name="search_em"]::placeholder{
     color:silver;
     font-size: 1.7rem;
 }
-.aList-left>div{
+.aList-left{
     position: relative;
     display: inline-grid;
     float:left;
+    width:80%;
     
 }
 .aList-info-no{
@@ -168,11 +174,13 @@ input[name="search_em"]::placeholder{
     border:1px solid silver;
     border-radius: 2px;
 }
-.aList-right>div{
+.aList-right{
     position: relative;
     display: inline-grid;
     float:right;
+    width:20%;
 }
+
 .like_on>svg{
     color:gold !important;
 }
@@ -180,7 +188,7 @@ input[name="search_em"]::placeholder{
 .aList-del-btn{
     margin:16px 20px;
 }
-.del-btn{
+.appl-del-btn{
     border:1px solid #900020;
     color:#900020;
     border-radius: 3px;
@@ -188,7 +196,7 @@ input[name="search_em"]::placeholder{
     font-size: 1.3rem;
     font-weight: 600;
 }
-.del-btn:hover{
+.appl-del-btn:hover{
     background-color:#900020;
     color:white;
 }
@@ -282,11 +290,48 @@ input[name="search_em"]::placeholder{
     background: rgba(0, 0, 0, 0.5);
     z-index:990;
 }
+
+.appl_offer_btn{
+    position: relative;
+    padding:4px 5px;
+    background-color: #900020;
+    color:white;
+    border-radius: 3px;
+    font-size: 1.8rem;
+    float: right;
+    margin:0 20px;
+    top:80px;
+    border:1px solid #6e0000;
+    font-weight:bold;
+}
+.appl_offer_btn:hover{
+    background-color: white;
+    color:#900020;
+    border:1px solid #6e0000;
+}
+.appl_offer_btn:active{
+    background-color: lightgrey;
+}
+
+.appl_offering{
+    background-color: white;
+    color:#900020;
+    border:1px solid #6e0000;
+    position: relative;
+    padding:4px 5px;
+    border-radius: 3px;
+    font-size: 1.8rem;
+    float: right;
+    margin:0 20px;
+    top:80px;
+   
+    font-weight:bold;
+}
 .appl_view_section{
     background-color: white;
 }
 .appl_name{
-    font-size: 35px;
+    font-size: 3.8rem;
     padding: 25px;
     padding-left: 30px;
     font-weight: bold;
@@ -294,14 +339,14 @@ input[name="search_em"]::placeholder{
 
 .appl_info{
     padding-left: 30px;
-    font-size: 15px;
+    font-size: 2rem;
     color: #A4A4A4;
 }
 
 .appl_intro{
     padding: 30px;
     padding-left: 30px;
-    font-size: 13px;
+    font-size: 1.8rem;
     color: #2E2E2E;
 }
 
@@ -309,15 +354,18 @@ input[name="search_em"]::placeholder{
     float: left;
     margin-left: 30px;
     font-weight: bold;
+    font-size:1.5rem;
 }
 
 .appl_view_name{
     float: left;
     margin-left: 20%;
+    font-size:1.3rem;
 }
 
 .appl_view_subname{
     color: #6E6E6E;
+    font-size:1.3rem;
 }
 
 .appl_view_date{
@@ -327,6 +375,7 @@ input[name="search_em"]::placeholder{
 
 .appl_view_intro{
     padding: 30px;
+    font-size:1.2rem;
 }
 /*---------------------------포지션------------------------------*/
 .position_header{
@@ -680,6 +729,9 @@ input[name='searchKeywords']{
     .appl-main{
         width:790px;
     }
+    .appl_view_container{
+        width:790px;
+    }
 
    
 
@@ -695,7 +747,9 @@ input[name='searchKeywords']{
         width:75%;
     }
 
-  
+    .appl_view_container{
+        width:75%;
+    }
     
 }
 @media (max-width: 767px){
@@ -708,7 +762,15 @@ input[name='searchKeywords']{
         top:10px;
     }
     .appl-main{
-        width:100% -25px;
+        width:98%;
+        left:50%;
+        transform: translateX(-50%);
+        top:20px;
+    }
+    .appl_view_container{
+        width:98%;
+        left:50%;
+        transform: translateX(-50%);
         top:20px;
     }
     .appl-leftside>h5>svg{

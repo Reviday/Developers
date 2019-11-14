@@ -28,6 +28,7 @@ public interface BusinessDao2 {
 	
 	//bus가져오기 번호로
 	Business selectBusOne(SqlSession session, String busNo);
+	List<Integer> selectApplPoList(SqlSession session, Map map);
 	
 	//지원자 리스트
 	List<Applicant> selectBusAppl(SqlSession session, Map map, int cPage, int numPerPage);
@@ -54,6 +55,9 @@ public interface BusinessDao2 {
 	
 	Member selectApplicant(SqlSession session, int memNo);
 	
+	Applicant selectApplOne(SqlSession session, int applNo);
+	
+	int updateApplOffer(SqlSession session, int applNo);
 	
 	List<Position> selectPositionList(SqlSession session, Map map);
 }

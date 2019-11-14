@@ -48,6 +48,12 @@ public class BusinessServiceImpl2 implements BusinessService2 {
 	}
 
 	@Override
+	public List<Integer> selectApplPoList(Map map) {
+		List<Integer> list=dao.selectApplPoList(session, map);
+		return list;
+	}
+
+	@Override
 	public List<Applicant> selectBusAppl(Map map, int cPage, int numPerPage) {
 		List<Applicant> list=dao.selectBusAppl(session, map, cPage, numPerPage);
 		return list;
@@ -107,6 +113,18 @@ public class BusinessServiceImpl2 implements BusinessService2 {
 		ic.setLanguages(dao.selectLangList(session, ic.getResumeNo()));
 		ic.setLinks(dao.selectLinkList(session, ic.getResumeNo()));
 		return ic;
+	}
+
+	@Override
+	public Applicant selectApplOne(int applNo) {
+		Applicant appl=dao.selectApplOne(session, applNo);
+		return appl;
+	}
+
+	@Override
+	public int updateApplOffer(int applNo) {
+		int result=dao.updateApplOffer(session, applNo);
+		return result;
 	}
 
 	@Override

@@ -38,6 +38,9 @@
 		SELECT * FROM BUSINESS_INFO WHERE BUS_NO=(SELECT BUS_NO FROM
 		MEM_BUS_CONNECTION WHERE MEM_NO=#{memberNo})
 	</select>
+	<select id="selectApplPoList" parameterType="map" resultType="_int">
+		SELECT POSITION_NO FROM TA_APPL_BUS WHERE BUS_NO=#{busNo} GROUP BY POSITION_NO ORDER BY 1
+	</select>
 	<update id="busLogoChange" parameterType="bus">
 		UPDATE BUSINESS_INFO
 		SET BUS_LOGO=#{busLogo} WHERE BUS_NO=#{busNo}
@@ -99,6 +102,9 @@
 		<if test="applIndex!=null and applIndex!=''">
 			AND APPL_STATUS=#{applIndex}
 		</if>
+		<if test="applPosition!=null and applPosition!=''">
+			AND POSITION_NO=#{applPosition}
+		</if>
 		ORDER BY 1 DESC
 	</select>
 
@@ -114,6 +120,9 @@
 		</if>
 		<if test="applIndex!=null and applIndex!=''">
 			and APPL_STATUS=#{applIndex}
+		</if>
+		<if test="applPosition!=null and applPosition!=''">
+			AND POSITION_NO=#{applPosition}
 		</if>
 	</select>
 
@@ -173,6 +182,13 @@
 		SELECT * FROM ACTIVITIE WHERE RESUME_NO=#{resumeNo}
 	</select>
 
+	<select id="selectApplOne" parameterType="map" resultMap="applMap">
+		SELECT * FROM TA_APPL_BUS WHERE APPL_NO=#{applNo} 
+	</select>
+	
+	<update id="updateApplOffer" parameterType="_int">
+		UPDATE TA_APPL_BUS SET APPL_STATUS=2, APPL_DATE=SYSDATE WHERE APPL_NO=#{applNo}
+	</update>
 
 	<select id="selectPositionList" parameterType="map" resultType="position">
 		SELECT * FROM ENROLL_POSITION WHERE BUS_NO=#{busNo}
@@ -180,6 +196,8 @@
 			AND JOB_TYPE=#{jobType}
 		</if>
 	</select>
+	
+	
 
 	<!-- 매치업 mapper -->
 	<!-- <select id="selectIntroCards" parameterType="String" resultType="com.kh.developers.business.model.vo.IntroCard"> 
