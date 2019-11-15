@@ -1,6 +1,7 @@
 package com.kh.developers.admin.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,14 +29,82 @@ public class AdminController {
 
 	@Autowired
 	private AdminService service;
+	private PaginationTemplate pt;
 	private PaginationTemplateFunction2nd ptf;
+	
+	@RequestMapping("/admin/tagRejection.lac")
+	public String tagRejection(HttpServletRequest req, Model model,
+			@RequestParam (value="tagNo", required=true) int tagNo) {
+		//태그 거절 로직 수행
+		int result=service.tagRejection(tagNo);
+		
+		if(result>0) {
+			int totalData=service.selectTagOpinionCount() ;
+			pt=new PaginationTemplate(req, totalData, "/admin/selectTagOpinionList.lac");
+			List<Map<String, Object>> list=service.selectTagOpinionList(pt.getcPage(), pt.getNumPerPage());
+			model.addAttribute("resultList",list);
+			model.addAttribute("cPage", pt.getcPage());
+			model.addAttribute("numPerPage", pt.getNumPerPage());
+			model.addAttribute("pageBar", pt.getPageBar());
+			return "admin/tagOpinionAjax";
+		} else {
+			String msg="에러가 발생하였습니다. \n다시 시도해 주기시 바랍니다.";
+			String loc="/admin/mainPage.jsp";
+			model.addAttribute("msg", msg);
+			model.addAttribute("loc", loc);
+			return "common/msg";
+		}
+	}
+	
+	@RequestMapping("/admin/tagApproval.lac")
+	public String tagApproval(HttpServletRequest req, Model model,
+			@RequestParam (value="tagNo", required=true) int tagNo,
+			@RequestParam (value="busNo", required=true) int busNo,
+			@RequestParam (value="tagOpinion", required=true) String tagOpinion) {
+		//태그 승인 로직 수행
+		int result=service.tagApproval(tagNo, busNo, tagOpinion);
+		
+		if(result>0) {
+			int totalData=service.selectTagOpinionCount() ;
+			pt=new PaginationTemplate(req, totalData, "/admin/selectTagOpinionList.lac");
+			List<Map<String, Object>> list=service.selectTagOpinionList(pt.getcPage(), pt.getNumPerPage());
+			model.addAttribute("resultList",list);
+			model.addAttribute("cPage", pt.getcPage());
+			model.addAttribute("numPerPage", pt.getNumPerPage());
+			model.addAttribute("pageBar", pt.getPageBar());
+			return "admin/tagOpinionAjax";
+		} else {
+			String msg="에러가 발생하였습니다. \n다시 시도해 주기시 바랍니다.";
+			String loc="/admin/mainPage.jsp";
+			model.addAttribute("msg", msg);
+			model.addAttribute("loc", loc);
+			return "common/msg";
+		}
+	}
+	
+	@RequestMapping("/admin/selectTagOpinionList.lac")
+	public ModelAndView tagOpinionList(HttpServletRequest req) {
+		ModelAndView mv=new ModelAndView();
+		
+		int totalData=service.selectTagOpinionCount() ;
+		pt=new PaginationTemplate(req, totalData, "/admin/selectTagOpinionList.lac");
+		List<Map<String, Object>> list=service.selectTagOpinionList(pt.getcPage(), pt.getNumPerPage());
+		
+		System.out.println(list);
+		
+		mv.addObject("resultList",list);
+		mv.addObject("cPage", pt.getcPage());
+		mv.addObject("numPerPage", pt.getNumPerPage());
+		mv.addObject("pageBar", pt.getPageBar());
+		mv.setViewName("admin/tagOpinionList");
+		return mv;
+	}
 	
 	@RequestMapping("/admin/loginLogSearchList.lac")
 	public String loginLogSearchList(HttpServletRequest req, Model model,
 			@RequestParam (value="value", required=false, defaultValue="") String value,
 			@RequestParam (value="mllSuccess", required=false, defaultValue="R") String mllSuccess) {
 		// value 조건을 가진 검색 리스트 갯수
-		System.out.println(value+"/ " +mllSuccess);
 		int totalData=service.selectLoginLogCountBySearch(value, mllSuccess);
 		ptf=new PaginationTemplateFunction2nd(req, totalData, "mll_search");
 		ptf.setUseParamCPage(); // cPage를 파라미터로 넘긴다.

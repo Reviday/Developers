@@ -1,5 +1,6 @@
 package com.kh.developers.admin.model.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -14,6 +15,29 @@ import com.kh.developers.member.model.vo.Member;
 
 @Repository
 public class AdminDaoImpl implements AdminDao{
+	
+	@Override
+	public int insertTag(SqlSessionTemplate session, String tag, int busNo) {
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("tag", tag);
+		map.put("busNo", busNo);
+		return session.insert("admin.insertTag", map);
+	}
+	
+	@Override
+	public int deleteTagOpinion(SqlSessionTemplate session, int tagNo) {
+		return session.delete("admin.deleteTagOpinion", tagNo);
+	}
+	
+	@Override
+	public List<Map<String, Object>> selectTagOpinionList(SqlSessionTemplate session, int cPage, int numPerPage) {
+		return session.selectList("admin.selectTagOpinionList");
+	}
+	
+	@Override
+	public int selectTagOpinionCount(SqlSessionTemplate session) {
+		return session.selectOne("admin.selectTagOpinionCount");
+	}
 	
 	@Override
 	public void insertRequestMappingLog(SqlSessionTemplate session, RequestMappingLog rml) {

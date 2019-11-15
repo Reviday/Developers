@@ -135,6 +135,12 @@
 	                            </a>
 	                        </li>
 	                        <li>
+	                            <a href="${path}/admin/selectTagOpinionList.lac">
+	                                <i class="fa fa-database" aria-hidden="true"></i>
+	                                	기업태그승인관리
+	                            </a>
+	                        </li>
+	                        <li>
 	                            <a href="javascript:;">
 	                                <i class="fa fa-amazon" aria-hidden="true"></i>
 	                                Sub Item Three							

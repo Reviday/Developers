@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="admin">
+	<insert id="insertTag" parameterType="map">
+		INSERT INTO TAG VALUES(TAG_SEQ.NEXTVAL, #{busNo}, '#'||#{tag})
+	</insert>
+	<delete id="deleteTagOpinion" parameterType="_int">
+		DELETE FROM TAG_OPINION WHERE TAG_NO=#{tagNo}
+	</delete>
+	<select id="selectTagOpinionList" resultType="map">
+		SELECT * FROM TAG_OPINION JOIN BUSINESS_INFO USING(BUS_NO) WHERE BUS_STATUS='Y'
+	</select>
+	<select id="selectTagOpinionCount" resultType="_int">
+		SELECT COUNT(*) FROM TAG_OPINION JOIN BUSINESS_INFO USING(BUS_NO) WHERE BUS_STATUS='Y'
+	</select>
+</mapper>

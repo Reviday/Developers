@@ -24,6 +24,35 @@ public class AdminServiceImpl implements AdminService {
 	private SearchValuesTemplate svt;
 	
 	@Override
+	public int tagRejection(int tagNo) {
+		return dao.deleteTagOpinion(session, tagNo);
+	}
+	
+	@Override
+	public int tagApproval(int tagNo, int busNo, String tagOpinion) {
+		//태그를 정상적으로 tag 테이블에 삽입 하기위하여
+		//문자열 처리되어있는 태그들을 분할하여 배열에 담아둔다.
+		String[] tags=tagOpinion.split(",");
+		//해당 태그를 tag 테이블에 insert 하는 작업을 거친다.
+		for(String tag: tags) {
+			dao.insertTag(session, tag, busNo);
+		}
+		
+		//끝으로 태그를 삭제처리한다.
+		return dao.deleteTagOpinion(session, tagNo);
+	}
+	
+	@Override
+	public List<Map<String, Object>> selectTagOpinionList(int cPage, int numPerPage) {
+		return dao.selectTagOpinionList(session, cPage, numPerPage);
+	}
+	
+	@Override
+	public int selectTagOpinionCount() {
+		return dao.selectTagOpinionCount(session);
+	}
+	
+	@Override
 	public void insertRequestMappingLog(RequestMappingLog rml) {
 		dao.insertRequestMappingLog(session, rml);
 	}

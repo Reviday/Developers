@@ -44,7 +44,7 @@ $(document).ready(function() {
 function search(cPage) {
 	var selectLevel=$("#searchlevel option:selected").val();
 	var searchValue=$("#system-search").val();
-	if(cPage==0) cPage=$('#cPage').val();
+	if(cPage==0) cPage=1;
 	$.ajax({
 		url:path+"/admin/memberSearchList.lac",
 		type:"POST",
@@ -66,7 +66,7 @@ function search(cPage) {
 
 function wd_search(cPage) {
 	var searchValue=document.getElementById('system-search').value;
-	if(cPage==0) cPage=$('#cPage').val();
+	if(cPage==0) cPage=1;
 	$.ajax({
 		url:path+"/admin/withdrawMemberSearchList.lac",
 		type:"POST",
@@ -87,8 +87,7 @@ function wd_search(cPage) {
 function mll_search(cPage) {
 	var searchValue=document.getElementById('system-search').value;
 	var mllSuccess=document.getElementById('mllSuccess').value;
-	if(cPage==0) cPage=$('#cPage').val();
-	console.log(mllSuccess);
+	if(cPage==0) cPage=1;
 	$.ajax({
 		url:path+"/admin/loginLogSearchList.lac",
 		type:"POST",
@@ -181,3 +180,59 @@ function fn_restoreMember(memNo) {
 		});
 	} 
 }
+
+
+//태그 승인
+function tag_approval(tag_no, bus_no) {
+	if(confirm('해당 태그 요청을 승인하시겠습니까?')) {
+		var tagOpinion=$('#tag_opinion_'+tag_no).val();
+		$.ajax({
+			url:path+"/admin/tagApproval.lac",
+			type:"POST",
+			data: {
+				"tagNo":tag_no,
+				"busNo":bus_no,
+				"tagOpinion":tagOpinion,
+				"cPage":$('#cPage').val(),
+				"numPerPage":$('#numPerPage').val()
+			},
+			success: function(result) {
+				console.log(result);
+				if(result!=null) {
+					alert("정상적으로 승인처리 되었습니다.");
+					$('.mainContent').html("");
+					$('.mainContent').html(result);
+				} else {
+					alert("태그 승인처리가 정상적으로 이루어지지 않았습니다.");
+				}
+			}
+		});
+	}
+};
+
+//태그 거절
+function tag_rejection(tag_no) {
+	if(confirm('해당 태그 요청을 거절하시겠습니까?')) {
+		$.ajax({
+			url:path+"/admin/tagRejection.lac",
+			type:"POST",
+			data: {
+				"tagNo":tag_no,
+				"cPage":$('#cPage').val(),
+				"numPerPage":$('#numPerPage').val()
+			},
+			success: function(result) {
+				console.log(result);
+				if(result!=null) {
+					alert("정상적으로 거절처리 되었습니다.");
+					$('.mainContent').html("");
+					$('.mainContent').html(result);
+				} else {
+					alert("태그 거절처리가 정상적으로 이루어지지 않았습니다.");
+				}
+			}
+		});
+	}
+};
+
+
