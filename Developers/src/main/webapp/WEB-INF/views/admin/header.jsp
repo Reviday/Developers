@@ -19,7 +19,9 @@
 	href="${pageContext.request.contextPath }/resources/css/navMenu.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/css/all.css">
-
+<!-- chart.js -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.css">
 
 <!-- jQuery library -->
 <script type="text/javascript"
@@ -32,7 +34,12 @@
 	src="${pageContext.request.contextPath }/resources/js/all.js"></script>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath }/resources/js/navMenu.js"></script>
-
+<!-- chart.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.js"></script>
+<!-- counterUp -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.js"></script>
+<!-- waypoint -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.js"></script>
 <script>
 	var path = '${path}';
 </script>
