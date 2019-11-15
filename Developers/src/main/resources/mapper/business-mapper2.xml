@@ -108,7 +108,7 @@
 	</select>
 	
 	<select id="selectAnswerPeriod" parameterType="map" resultType="_double">
-		SELECT ROUND(SUM(ANSWER_DATE-OFFER_DATE),1) FROM TA_APPL_BUS WHERE BUS_NO=#{busNo} AND APPL_ANS_YN NOT LIKE 'O'
+		SELECT ROUND(SUM(ANSWER_DATE-OFFER_DATE)/COUNT(*),1) AS PERIOD FROM TA_APPL_BUS WHERE BUS_NO=#{busNo} AND APPL_ANS_YN NOT LIKE 'O'
 		<if test="applPosition!=null and applPosition!=''">
 			AND POSITION_NO=#{applPosition}
 		</if>

@@ -32,7 +32,7 @@ public interface BusinessDao2 {
 	double selectAnswerRate(SqlSession session, Map map);
 	double selectAnswerPeriod(SqlSession session, Map map);
 	
-	List<Integer> selectApplPoList(SqlSession session, Map map);
+	Position selectPositionOne(SqlSession session, int positionNo);
 	
 	//지원자 리스트
 	List<Applicant> selectBusAppl(SqlSession session, Map map, int cPage, int numPerPage);

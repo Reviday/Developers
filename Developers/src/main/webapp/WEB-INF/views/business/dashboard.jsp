@@ -52,6 +52,9 @@
 	<c:if test='${not empty seHtml}'>
 		${seHtml}
 	</c:if>
+	<c:if test="${not empty delModal}">
+		${delModal}
+	</c:if>
 </section>
 <script>
 	var path="${path}";

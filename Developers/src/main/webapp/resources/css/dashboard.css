@@ -66,24 +66,27 @@ section{
 }
 .h-left{
     float:left;
-    
 }
 .h-right{
     float:right;
 }
+
+.appl-main-nav{
+    width:100%;
+}
+
 .appl-main-nav>ul>li{
     padding:5px 0px
 }
 .appl-main-top-left{
     border-right: 1px solid rgb(226, 224, 224);
 }
-.appl-main-nav>ul{
-    width:100%;
-}
+
 .li_input{
-    margin:7px auto;
-    float: right;
-    
+    position: relative;
+    top:20%;
+    margin:0 auto;
+    margin-right:2px;
 }
 .li_input>label>svg{
     position: relative;
@@ -124,11 +127,23 @@ input[name="search_em"]::placeholder{
     vertical-align: middle;
     cursor: pointer;
 }
+
 .appl-aList{
     width:100%;
     height:63px;
     background-color: white;
     border-radius: 3px;
+}
+.appl_no{
+    text-align: center;
+}
+.appl_no>h4>a{
+    font-size:1.8rem;
+    font-weight: bold;
+    text-decoration-line: underline;
+}
+.appl_no>h4>a:hover{
+    color:#6e0000;
 }
 .aList-like-btn{
     position: relative;
@@ -677,14 +692,15 @@ input[name='searchKeywords']{
 }
 
 .bi_img_logo{
-    width:220px;
-    height:220px;
+    width:22rem;
+    height:22rem;
     border:0.5px solid silver;
     margin:10px 8px;
 }
 .bi_img_buslogo{
-    width:100%;
-    height:100%;
+    width:22rem;
+    height:22rem;
+    margin-top:0;
 }
 .bi_img_bottom{
     position:sticky;

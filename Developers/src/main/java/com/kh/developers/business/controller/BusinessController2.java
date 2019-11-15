@@ -2,6 +2,7 @@ package com.kh.developers.business.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -9,10 +10,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +30,7 @@ import com.kh.developers.business.model.vo.Business;
 import com.kh.developers.business.model.vo.CareerInCard;
 import com.kh.developers.business.model.vo.EducationInCard;
 import com.kh.developers.business.model.vo.IntroCard;
+import com.kh.developers.common.authentication.MailHandler;
 import com.kh.developers.common.page.PageFactory2;
 import com.kh.developers.member.model.vo.Member;
 import com.kh.developers.resume.model.vo.Activitie;
@@ -40,6 +44,9 @@ public class BusinessController2 {
 
 	@Autowired
 	private BusinessService2 service;
+	
+	@Autowired
+	private JavaMailSender jms;
 
 	@RequestMapping("/business/logoChange")
 	public ModelAndView logoChange(MultipartHttpServletRequest mReq) {
@@ -263,15 +270,23 @@ public class BusinessController2 {
 			applHtml+="aList-click'";
 		}
 		applHtml+="'><span class='aList-type'>포지션 전체</span> <span class='aList-count'>"+service.selectBusApplCount(map)+"</span></li>";
-		List<Integer> poList=service.selectApplPoList(map);
-		for(int po:poList) {
-			map.put("applPosition", po);
-			applHtml+="<li data='"+po+"' class='";
-			if(cPosition.equals(""+po)) {			
+		applHtml+="<li data='0' class='";
+		if(cPosition.equals("0")) {			
+			applHtml+="aList-click'";
+		}
+		map.put("applPosition", "0");
+		applHtml+="'><span class='aList-type'>매치업</span> <span class='aList-count'>"+service.selectBusApplCount(map)+"</span></li>";
+		List<Position> poList=service.selectPositionList(map);
+		for(Position po:poList) {
+			int positionNo=po.getPosition_no();
+			map.put("applPosition", positionNo);
+			applHtml+="<li data='"+positionNo+"' class='";
+			if(cPosition.equals(""+positionNo)) {			
 				applHtml+="aList-click'";
 			}
-			applHtml+="'><span class='aList-type'>매치업</span> <span class='aList-count'>"+service.selectBusApplCount(map)+"</span></li>";
+			applHtml+="'><span class='aList-type'>"+po.getPosition()+"</span> <span class='aList-count'>"+service.selectBusApplCount(map)+"</span></li>";
 		}
+		map.remove("applPosition");
 		applHtml+="</ul>";
 		applHtml+="<br/>";
 		applHtml+="<h5>마감된 포지션<i class='fas fa-angle-up'></i></h5>";
@@ -292,34 +307,29 @@ public class BusinessController2 {
 		applHtml+="</div>";
 		applHtml+="<nav class='appl-main-nav nav'>";
 		applHtml+="<ul class='nav_us'>";
-		map.put("applIndex", 1);
 		applHtml+="<li class='ls3'>";
-		applHtml+="<a class='ei_a2'>신규&nbsp;<span>( "+service.selectBusApplCount(map)+" )</span></a>";
+		applHtml+="<a class='ei_a2'>신규&nbsp;<span>( 0 )</span></a>";
 		applHtml+="</li>";
-		map.put("applIndex", 2);
 		applHtml+="<li class='ls3'>";
-		applHtml+="<a class='ei_a2'>서류통과&nbsp;<span>( "+service.selectBusApplCount(map)+" )</span></a>";
+		applHtml+="<a class='ei_a2'>서류통과&nbsp;<span>( 0 )</span></a>";
 		applHtml+="</li>";
-		map.put("applIndex", 3);
 		applHtml+="<li class='ls3'>";
-		applHtml+="<a class='ei_a2'>최종합격&nbsp;<span>( "+service.selectBusApplCount(map)+" )</span></a>";
+		applHtml+="<a class='ei_a2'>최종합격&nbsp;<span>( 0 )</span></a>";
 		applHtml+="</li>";
-		map.put("applIndex", 4);
 		applHtml+="<li class='ls3'>";
-		applHtml+="<a class='ei_a2'>불합격&nbsp;<span>( "+service.selectBusApplCount(map)+" )</span></a>";
+		applHtml+="<a class='ei_a2'>불합격&nbsp;<span>( 0 )</span></a>";
 		applHtml+="</li>";
-		map.put("applIndex", 5);
 		applHtml+="<li class='ls3'>";
-		applHtml+="<a class='ei_a2'>기간만료&nbsp;<span>( "+service.selectBusApplCount(map)+" )</span></a>";
+		applHtml+="<a class='ei_a2'>기간만료&nbsp;<span>( 0 )</span></a>";
 		applHtml+="</li>";
-		applHtml+="<li class='ls3 li_input'>";
+		applHtml+="</ul>";
+		applHtml+="<div class='li_input'>";
 		applHtml+="<input type='text' name='search_em' placeholder='지원자, 포지션 검색'/>";
 		applHtml+="<label for='btn_search_em'>";
 		applHtml+="<i class='fas fa-search'></i>";
 		applHtml+="</label>";
-		applHtml+="<button type='button' id='btn_search_em' style='display: none;' onclick='fn_appl_nav(appl_index)'></button>";
-		applHtml+="</li>";
-		applHtml+="</ul>";
+		applHtml+="<button type='button' id='btn_search_em' style='display: none;' onclick='fn_appl_nav(appl_index, appl_page, appl_position)'></button>";
+		applHtml+="</div>";
 		applHtml+="</nav>";
 		applHtml+="<div class='appl-like-check'>";
 		applHtml+="<input type='checkbox' class='' id='like_check' name='like_check'/><label for='like_check'>별표한 지원자만 보기</label>";
@@ -340,21 +350,55 @@ public class BusinessController2 {
 		ModelAndView mv=new ModelAndView();
 		Map map=new HashMap();
 		map.put("busNo", ((Business)session.getAttribute("busInfo")).getBusNo());
+		map.put("applPosition", applPosition);
+		String navHtml="";
+
+		map.put("applIndex", 1);
+		navHtml+="<li class='ls3'>";
+		navHtml+="<a class='ei_a2'>신규&nbsp;<span>( "+service.selectBusApplCount(map)+" )</span></a>";
+		navHtml+="</li>";
+		map.put("applIndex", 2);
+		navHtml+="<li class='ls3'>";
+		navHtml+="<a class='ei_a2'>서류통과&nbsp;<span>( "+service.selectBusApplCount(map)+" )</span></a>";
+		navHtml+="</li>";
+		map.put("applIndex", 3);
+		navHtml+="<li class='ls3'>";
+		navHtml+="<a class='ei_a2'>최종합격&nbsp;<span>( "+service.selectBusApplCount(map)+" )</span></a>";
+		navHtml+="</li>";
+		map.put("applIndex", 4);
+		navHtml+="<li class='ls3'>";
+		navHtml+="<a class='ei_a2'>불합격&nbsp;<span>( "+service.selectBusApplCount(map)+" )</span></a>";
+		navHtml+="</li>";
+		map.put("applIndex", 5);
+		navHtml+="<li class='ls3'>";
+		navHtml+="<a class='ei_a2'>기간만료&nbsp;<span>( "+service.selectBusApplCount(map)+" )</span></a>";
+		navHtml+="</li>";
+	
 		map.put("applIndex", applIndex);
 		map.put("applLike", applLike);
+		
 		String html="";
 		List<Applicant> applList=new ArrayList<Applicant>();
 		int numPerPage=5;
 		int totalData=0;
 		//list 가져오기
 		applList=service.selectBusAppl(map, cPage,numPerPage); totalData=service.selectBusApplCount(map);
-
+		
 
 
 		if(applList.isEmpty()) {
+			String path="";
+			if(new BusinessController2().getClass().getResource("/").getPath().indexOf("target")<0) {
+				path="/19PM_Developers_final";
+			}else {
+				path="/developers";
+			}
+			
 			html+="<br/>";
+			html+="<div class='appl_no'>";
 			html+="<h4>포지션에 적합한 후보자가 없으신가요?</h4>";
-			html+="<h4><a href='#'>매치업</a> 탭에서 인재를 검색하고 직접 면접제안을 해보세요!</h4>";
+			html+="<h4><a href='"+path+"/business/matchup.lbc'>매치업</a> 탭에서 인재를 검색하고 직접 면접제안을 해보세요!</h4>";
+			html+="</div>";
 		}else {
 			for(Applicant appl : applList) {
 				Member m=service.selectApplicant(appl.getMemNo());
@@ -414,7 +458,7 @@ public class BusinessController2 {
 		session.setAttribute("applLike", applLike);
 		session.setAttribute("applPosition", applPosition);
 		mv.addObject("applInnerHtml", html);
-
+		mv.addObject("navHtml",navHtml);
 		mv.setViewName("jsonView");
 		return mv; 
 	}
@@ -455,7 +499,9 @@ public class BusinessController2 {
 		String viewHtml="";
 		try {
 		IntroCard ic=service.selectResumeOne(applNo);
-//		viewHtml+="<div id='appl-leftside' class='appl-leftside'>";
+		viewHtml+="<div id='appl-leftside' class='appl-leftside'>";
+		Applicant appl=service.selectApplOne(applNo);
+		viewHtml+="<h2>"+(service.selectPositionOne(appl.getPositionNo())).getPosition()+"></h2>";
 //		viewHtml+="<h5>채용중<i class='fas fa-angle-up'></i></h5>";
 //		viewHtml+="<hr/>";
 //		viewHtml+="<ul class='apply-ing'>";
@@ -479,25 +525,34 @@ public class BusinessController2 {
 //		viewHtml+="<hr/>";
 //		viewHtml+="<ul>";
 //		viewHtml+="</ul>";
-//		viewHtml+="</div>";
+		viewHtml+="</div>";
 		viewHtml+="<div class='appl_view_container'>";
 		viewHtml+="<div class='appl_view_header'>";
-		Applicant appl=service.selectApplOne(applNo);
 		int index=appl.getApplStatus();
 		switch(index) {
 		case 1:viewHtml+="<button type='button' class='appl_offer_btn' onclick='fn_appl_offer();'>제안하기</button>"; break;
 		case 2:
 			if(appl.getApplAnsYn()=='O') {
 				viewHtml+="<div class='appl_offering'>제안 중...</div>";
+			}else if(appl.getApplAnsYn()=='Y'){
+				viewHtml+="<button type='button' class='appl_offer_btn' onclick='fn_appl_pass();'>합격</button><button type='button' class='appl_offer_btn' onclick='fn_appl_fail();'>불합격</button>"; break;
 			}else {
-				viewHtml+="<button type='button' class='appl_offer_btn' onclick='fn_appl_pass();'>합격</button><button type='button' class='appl_offer_btn' onclick='fn_appl_fail'>불합격</button>"; break;
+				viewHtml+="<div class='appl_offering'>제안 거절</div>";
 			}
 		}
 		viewHtml+="</div>";
 		viewHtml+="<div class='appl_view_section'>";
-		viewHtml+="<div class='appl_name'>"+ic.getMemName()+"</div>";
-		viewHtml+="<div class='appl_info'>"+ic.getMemEmail()+"</div>";
-		viewHtml+="<div class='appl_info'>"+ic.getMemPhone()+"</div>";
+		if(appl.getApplAnsYn()=='Y') {			
+			viewHtml+="<div class='appl_name'>"+ic.getMemName()+"</div>";
+			viewHtml+="<div class='appl_info'>"+ic.getMemEmail()+"</div>";
+			viewHtml+="<div class='appl_info'>"+ic.getMemPhone()+"</div>";
+		}else if(appl.getApplAnsYn()=='O') {
+			viewHtml+="<div class='appl_name'>"+ic.getMemName().charAt(0)+"<i class='far fa-circle'></i><i class='far fa-circle'></i></div>";
+			viewHtml+="<div class='appl_info_hide'><h5>지원자가 제안을 수락할 경우,</h5> <h5>이름과 연락처를 확인할 수 있습니다.</h5></div>";
+		}else {
+			viewHtml+="<div class='appl_name'>"+ic.getMemName().charAt(0)+"<i class='far fa-circle'></i><i class='far fa-circle'></i></div>";
+			viewHtml+="<div class='appl_info_hide'>지원자가 제안을 거절하였습니다.</div>";
+		}
 		viewHtml+="<div class='appl_intro'><pre>"+ic.getIntro()+"</pre></div>";
 		viewHtml+="<hr style='width:95%; border-top:groove;'>";
 		if(ic.getCareers()!=null) {
@@ -578,9 +633,20 @@ public class BusinessController2 {
 	}
 	
 	@RequestMapping("business/applOffer.lbc")
-	public ModelAndView applOffer(@RequestParam int applNo) {
+	public ModelAndView applOffer(@RequestParam int applNo) throws MessagingException, UnsupportedEncodingException {
 		ModelAndView mv=new ModelAndView();
+		Applicant appl=service.selectApplOne(applNo);
+		Member m=service.selectApplicant(appl.getMemNo());
+		m.getMemEmail();
+		
+		MailHandler mh=new MailHandler(jms);
+		mh.setSubject("에서 제안 요청이 왔습니다.");
+		mh.setText("제안을 확인하시려면 마이페이지 제안 현황을 참고하세요");
+		mh.setTo("sjl0614@naver.com");
+		mh.setFrom("sjl0614@gmail.com", "developers");
+		mh.send();
 		int result=service.updateApplOffer(applNo);
+		
 		mv.setViewName("jsonView");
 		return mv;
 	}

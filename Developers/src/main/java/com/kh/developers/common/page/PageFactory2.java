@@ -24,7 +24,7 @@ public class PageFactory2 {
 			pageBar+="</li>";
 		}else {
 			pageBar+="<li class='page-item'>";
-			pageBar+="<a class='page-link' href='javascript:fn_appl_nav(appl_index,"+(cPage-1)+")'>이전</a>";
+			pageBar+="<a class='page-link' href='javascript:fn_appl_nav(appl_index,"+(cPage-1)+", appl_position)'>이전</a>";
 			pageBar+="</li>";
 		}
 		while(!(pageNo>pageEnd||pageNo>totalPage)) {
@@ -34,7 +34,7 @@ public class PageFactory2 {
 				pageBar+="</li>";
 			}else {
 				pageBar+="<li class='page-item'>";
-				pageBar+="<a class='page-link' href='javascript:fn_appl_nav(appl_index,"+pageNo+")'>"+pageNo+"</a>";
+				pageBar+="<a class='page-link' href='javascript:fn_appl_nav(appl_index,"+pageNo+", appl_position)'>"+pageNo+"</a>";
 				pageBar+="</li>";
 			}
 			pageNo++;
@@ -45,7 +45,7 @@ public class PageFactory2 {
 			pageBar+="</li>";
 		}else {
 			pageBar+="<li class='page-item'>";
-			pageBar+="<a class='page-link' href='javascript:fn_appl_nav(appl_index,"+(cPage+1)+")'>다음</a>";
+			pageBar+="<a class='page-link' href='javascript:fn_appl_nav(appl_index,"+(cPage+1)+", appl_position)'>다음</a>";
 			pageBar+="</li>";
 		}
 		pageBar+="</ul>";

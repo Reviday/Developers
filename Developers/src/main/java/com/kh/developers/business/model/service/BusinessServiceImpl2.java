@@ -61,9 +61,9 @@ public class BusinessServiceImpl2 implements BusinessService2 {
 	}
 
 	@Override
-	public List<Integer> selectApplPoList(Map map) {
-		List<Integer> list=dao.selectApplPoList(session, map);
-		return list;
+	public Position selectPositionOne(int positionNo) {
+		Position po=dao.selectPositionOne(session, positionNo);
+		return po;
 	}
 
 	@Override
