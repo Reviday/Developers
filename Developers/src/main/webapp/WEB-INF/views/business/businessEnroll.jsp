@@ -55,6 +55,24 @@ textarea.form-control{
     vertical-align: middle; 
 } */
 
+div.container>*{
+	font-size:15px;
+	
+}
+
+button{
+	font-size:15px !important;
+	font-weight: bold !important;
+}
+input{
+	font-size:15px !important;
+}
+select{
+	font-size:15px !important;
+}
+textarea{
+	font-size: 15px !important;
+}
 
 
 
@@ -69,7 +87,7 @@ textarea.form-control{
  <br>
  	<form class="form" action="${pageContext.request.contextPath}/business/businessEnroll" method="post">
 	 <div>
-		<div><h3>회사정보를 등록해주세요.</h3></div>
+		<div><h2>안녕하세요 회원님 먼저 회사정보를 등록해주세요.</h2></div>
 		<br>
 		<div><p>저희 디벨로퍼스 블랙은 추천인/후보자들에게 좋은 일자리를 제공하기 위해, 다음 정보를 리뷰하여 회사 등록을 승인하고 있습니다.
 	 	<small>(승인 기준은 팀원 10명, 매출액/투자유치 5억원 이상입니다.)</small></p></div>
@@ -248,9 +266,9 @@ textarea.form-control{
  		<br>
 	</div>
 </section>
- 		<div class="fixed-bottom position-sticky">
+ 		<div class="fixed-bottom position-sticky" style="height:6em;">
 		    <div class="sticky-button">
-		       <button type="button" id="startButton" color="#258BF7" class="btn btn-outline-primary">시작하기</button>
+		       <button type="button" id="startButton" style="color:#258BF7; width:7em; padding:8px; margin-top:8px; float:right; margin-right:8%;" class="btn btn-outline-primary">시작하기</button>
 		    </div>
 	    </div> 
 	    
@@ -258,7 +276,7 @@ textarea.form-control{
 	  <div class="modal-dialog modal-dialog-centered">
 	    <div class="modal-content">
 	      <div class="modal-header" style="background-color: #151515;">
-	      	  <img src="${path }/resources/images/Developers_black_logo.png" style="height:20px; width:35%; margin-left:5px;"/>
+	      	  <img src="${path }/resources/images/Developers_black_logo.png" style="height:30px; width:30%; margin-left:5px;"/>
 	      </div>
 	      <div class="modal-body" id="customeSize">
 	        <h3> 회사이름 수정 시 입력 한 회사 정보가 초기화 됩니다.</h3>
