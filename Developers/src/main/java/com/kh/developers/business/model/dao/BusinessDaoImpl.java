@@ -176,5 +176,15 @@ public class BusinessDaoImpl implements BusinessDao {
 		// TODO Auto-generated method stub
 		return session.selectList("business.selectPositionInfo",busNo);
 	}
+	@Override
+	public List<Advertisement> selectAdvertisement(SqlSessionTemplate session, int busNo) {
+		// TODO Auto-generated method stub
+		return session.selectList("business.selectAdvertisement",busNo);
+	}
+	@Override
+	public String selectPositionName(SqlSessionTemplate session, int positionNo) {
+		// TODO Auto-generated method stub
+		return session.selectOne("business.selectPositionName",positionNo);
+	}
 
 }

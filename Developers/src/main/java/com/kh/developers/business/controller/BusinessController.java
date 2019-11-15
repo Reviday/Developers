@@ -417,9 +417,25 @@ public class BusinessController {
 	@RequestMapping("/business/ad.lbc")
 	public ModelAndView advertisement(HttpServletRequest req) {
 		ModelAndView mv= new ModelAndView();
+		List<Advertisement>adList=new ArrayList<Advertisement>();
+		List<Advertisement>categoryList=new ArrayList<Advertisement>();
+		List<Advertisement>mainList=new ArrayList<Advertisement>();
 		Business bus=(Business)req.getSession().getAttribute("busInfo");
 		int busNo=Integer.parseInt(bus.getBusNo());
-		
+		//직무, 메인 광고 결과 가지고 오기 
+		adList=bService.selectAdvertisement(busNo);
+		if(adList.size()>0) {
+			for(Advertisement ad: adList) {
+				ad.setPosition(bService.selectPositionName(ad.getPositionNo()));
+				if(ad.getAdType().equals("category")){
+					categoryList.add(ad);
+				}else {
+					mainList.add(ad);
+				}
+			}
+		}
+		mv.addObject("categoryList",categoryList);
+		mv.addObject("mainList",mainList);
 		mv.setViewName("business/advertisement");
 		return mv;
 	}
@@ -435,7 +451,6 @@ public class BusinessController {
 		String jsonStr="";
 		List<Advertisement>polist=new ArrayList<Advertisement>();
 		polist=bService.selectPositionInfo(busNo);
-		System.out.println(polist.get(0).getDeadDate());
 		resultMap.put("polist", polist);
 		resultMap.put("flag", flag);
 		try {

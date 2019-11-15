@@ -61,5 +61,6 @@ public interface BusinessDao {
 	
 	//광고 포지션 불러오기 로직 
 	List<Advertisement>selectPositionInfo(SqlSessionTemplate session, int busNo);
-	
+	List<Advertisement>selectAdvertisement(SqlSessionTemplate session, int busNo);
+	String selectPositionName(SqlSessionTemplate session, int positionNo);
 }

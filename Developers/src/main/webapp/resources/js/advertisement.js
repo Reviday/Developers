@@ -126,14 +126,18 @@ function ajaxLogic(flag){
             AdCon+='<div id="explanation" style="text-align:center";><p><b>광고 비용</b><hr>[ 7일 ] &nbsp&nbsp&nbsp<small>150,000원</small> <hr>[ 14일 ] &nbsp&nbsp&nbsp<small>290,000원</small> <hr>[ 21일 ] &nbsp&nbsp&nbsp<small>430,000원</small> <hr>[ 29일 ] &nbsp&nbsp&nbsp<small>520,000원</small></div>';
             AdCon+='<div id="bottom-info" style="padding:2em; text-align:-webkit-center;"><div>';
             AdCon+='<p style="background-color:#2E2E2E; color:#FFFFFF; border-radius:15px 15px 15px 15px; font-size:12px; width:25%; padding:2px; text-align: -webkit-center;">노출 직무</p></div>';
-            AdCon+='<input id="positionName" disabled>';
+            AdCon+='<input class="poName" id="positionName" disabled>';
             AdCon+='<div><p style="background-color:#2E2E2E; color:#FFFFFF; border-radius:15px 15px 15px 15px; font-size:12px; width:25%; padding:2px; text-align: -webkit-center;">등록 기간</p></div>';
-            AdCon+='<input id="until" disabled>';
+            AdCon+='<input class="untilWhen" id="until" disabled>';
             AdCon+='<div><p style="background-color:#2E2E2E; color:#FFFFFF; border-radius:15px 15px 15px 15px; font-size:12px; width:25%; padding:2px; text-align: -webkit-center;">노출 일 수</p></div>';
-            AdCon+='<input id="adDate" disabled>';
+            AdCon+='<input class="adUntil" id="adDate" disabled>';
             AdCon+='<div><p style="background-color:#2E2E2E; color:#FFFFFF; border-radius:15px 15px 15px 15px; font-size:12px; width:25%; padding:2px; text-align: -webkit-center;">노출 위치</p></div>';
             AdCon+='<input id="adType" value="직무 페이지 상단" disabled></div>';
-            AdCon+='<div id="payment" style="text-align:center";><button class="btn btn-primary" style="padding:9px; width:30%; font-size:18px";>결제하기</button>'
+            AdCon+='<div class="" style="text-align:center; margin-top:-20px; margin-bottom:20px;">';
+            AdCon+='<input class="agree" type="checkbox" aria-label="Checkbox for agreement">';
+            AdCon+='<h4 style="margin-left:10px; display:inline-block";>결제 정보를 확인하였으며, 이에 동의합니다. (필수)</h4>';
+            AdCon+='</div>';
+            AdCon+='<div id="category-payment pay" style="text-align:center";><button class="btn btn-primary paym" style="padding:9px; width:30%; font-size:18px"; disabled onclick="payment(1);">결제하기</button>'
             
             AdCon+='<div>';
 
@@ -229,17 +233,21 @@ function ajaxLogic(flag){
             AdCon+='<div class="card-body">';
             AdCon+='<div><p style="text-align:center; color:#848484;">신중한 확인 후 결재 바랍니다.</p></div><hr>';
             AdCon+='<div class="";>';
-            AdCon+='<div id="explanation" style="text-align:center";><p><b>광고 비용</b><hr>[ 7일 ] &nbsp&nbsp&nbsp<small>350,000원</small> <hr>[ 14일 ] &nbsp&nbsp&nbsp<small>660,000원</small> <hr>[ 21일 ] &nbsp&nbsp&nbsp<small>990,000원</small> <hr>[ 29일 ] &nbsp&nbsp&nbsp<small>1,200,000원</small></div>';
+            AdCon+='<div id="explanation" style="text-align:center";><p><b>광고 비용</b><hr>[ 7일 ] &nbsp&nbsp&nbsp<small>300,000원</small> <hr>[ 14일 ] &nbsp&nbsp&nbsp<small>550,000원</small> <hr>[ 21일 ] &nbsp&nbsp&nbsp<small>890,000원</small> <hr>[ 29일 ] &nbsp&nbsp&nbsp<small>1,100,000원</small></div>';
             AdCon+='<div id="bottom-info" style="padding:2em; text-align:-webkit-center;"><div>';
             AdCon+='<p style="background-color:#2E2E2E; color:#FFFFFF; border-radius:15px 15px 15px 15px; font-size:12px; width:25%; padding:2px; text-align: -webkit-center;">노출 직무</p></div>';
-            AdCon+='<input id="positionName" disabled>';
+            AdCon+='<input class="poName" id="positionName" disabled>';
             AdCon+='<div><p style="background-color:#2E2E2E; color:#FFFFFF; border-radius:15px 15px 15px 15px; font-size:12px; width:25%; padding:2px; text-align: -webkit-center;">등록 기간</p></div>';
-            AdCon+='<input id="until" disabled>';
+            AdCon+='<input class="untilWhen" id="until" disabled>';
             AdCon+='<div><p style="background-color:#2E2E2E; color:#FFFFFF; border-radius:15px 15px 15px 15px; font-size:12px; width:25%; padding:2px; text-align: -webkit-center;">노출 일 수</p></div>';
-            AdCon+='<input id="adDate" disabled>';
+            AdCon+='<input class="adUntil" id="adDate" disabled>';
             AdCon+='<div><p style="background-color:#2E2E2E; color:#FFFFFF; border-radius:15px 15px 15px 15px; font-size:12px; width:25%; padding:2px; text-align: -webkit-center;">노출 위치</p></div>';
-            AdCon+='<input id="adType" value="메인 페이지 상단" disabled></div></div>';
-            AdCon+='<div id="payment" style="text-align:center";><button class="btn btn-primary" style="padding:9px; width:30%; font-size:18px";>결제하기</button>'
+            AdCon+='<input id="adType" value="메인 페이지 상단" disabled></div>';
+            AdCon+='<div class="" style="text-align:center; margin-top:-20px; margin-bottom:20px;">';
+            AdCon+='<input class="agree" type="checkbox" aria-label="Checkbox for agreement">';
+            AdCon+='<h4 style="margin-left:10px; display:inline-block";>결제 정보를 확인하였으며, 이에 동의합니다. (필수)</h4>';
+            AdCon+='</div>';
+            AdCon+='<div id="category-payment pay" style="text-align:center";><button class="btn btn-primary paym" style="padding:9px; width:30%; font-size:18px"; disabled onclick="payment(2);">결제하기</button>'
             
             AdCon+='<div>';
 
@@ -261,6 +269,18 @@ function ajaxLogic(flag){
         AdCon+='var con=document.querySelector(".custom-select");';
         AdCon+='con.addEventListener("change",function(e){';
         AdCon+='clickOptions(e.target.value);});';
+
+        
+        AdCon+='var checked=document.querySelectorAll(".agree");';
+        AdCon+='checked.forEach(function(e){';
+        AdCon+='e.addEventListener("click",function(e){';
+        AdCon+='agreeCheck(e)})});';
+
+        AdCon+='function payment(num){';
+        AdCon+='if($("#positionName").val()!=""&&$("#until").val()!=""&&$("#adDate").val()!=""){ console.log("결제하기로");';
+        AdCon+='}else{ alert("선택이 안된 정보가 있습니다. 단계별로 진행해 주세요.")}};';
+
+
 
         AdCon+='</script>';
         AdArea.html(AdCon);

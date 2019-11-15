@@ -186,13 +186,22 @@ div#bottom-info>input{
 							</thead>
 							<tbody>
 								<!-- 여기부터 자바스크립트  -->
-								<tr>
-								<th scope="row">1</th>
-								<td>10020</td>
-								<td>Otto</td>
-								<td>@mdo</td>
-								<td>@mdo</td>
-								</tr>
+								<c:if test="${not empty categoryList}">
+									<c:forEach items="${categoryList}" var="c" varStatus="s">
+										<tr>
+										<th scope="row">${s.index}</th>
+										<td>${c.position}</td>
+										<td>${c.adEndDate}</td>
+										<td>${c.adStartDate}+" ~ "+${c.adEndDate}</td>
+										<td>${c.clickTimes}</td>
+										</tr>
+									</c:forEach>
+								</c:if>
+								<c:if test="${empty categoryList}">
+									<tr>
+										
+									</tr>
+								</c:if>
 									<!-- 여기부터 자바스크립트  -->
 							</tbody>
 						</table>
@@ -211,6 +220,7 @@ div#bottom-info>input{
 								</thead>
 								<tbody>
 									<!-- 여기부터 자바스크립트  -->
+									<c:if test="${not empty mainList}">
 									<tr>
 									<th scope="row">1</th>
 									<td>10020</td>
@@ -218,6 +228,7 @@ div#bottom-info>input{
 									<td>@mdo</td>
 									<td>@mdo</td>
 									</tr>
+									</c:if>
 										<!-- 여기부터 자바스크립트  -->
 								</tbody>
 							</table>
@@ -256,6 +267,30 @@ div#bottom-info>input{
 			document.querySelector('#adDate').value="";
 		}
 	}
+
+	function agreeCheck(checked){
+		console.log(checked);
+		if(checked.target.checked!=true){
+			checked.path[2].children[3].firstChild.setAttribute("disabled","disabled");
+		}else{
+			checked.path[2].children[3].firstChild.removeAttribute("disabled");
+		}
+
+	}
+	
+	// function payment(num){
+    // if($("#positionName").val()!=""&&$("#until").val()!=""&&$("#adDate").val()!=""){ console.log("결제하기로");
+    // }else{ alert("선택이 안된 정보가 있습니다. 단계별로 진행해 주세요.")}};
+
+
+	// var agreeCheck=document.querySelectorAll('.agree');
+	// var paymentBtn=document.querySelectorAll('.pay');
+	
+	// agreeCheck.forEach(function(e){
+	// 	console.log(e);
+	// 	});
+
+	// alert("1단계 2단계 모두 선택해야 결재가 가능합니다.");
 
 
 </script>

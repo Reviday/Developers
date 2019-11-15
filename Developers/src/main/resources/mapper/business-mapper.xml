@@ -144,6 +144,12 @@
 	<select id="selectPositionInfo" parameterType="integer" resultMap="advertisement">
 		SELECT POSITION_NO, POSITION, DEAD_DATE FROM ENROLL_POSITION WHERE BUS_NO=#{busNo} AND DEAD_DATE>=SYSDATE
 	</select>
+	<select id="selectAdvertisement" parameterType="integer" resultMap="advertisement">
+		SELECT AD_NO, POSITION_NO, AD_START_DATE, AD_END_DATE, AD_TYPE, CLICK_TIMES FROM ADVERTISEMENT WHERE BUS_NO=#{busNo}
+	</select>
+	<select id="selectPositionName" parameterType="integer" resultType="String">
+		SELECT POSITION FROM ENROLL_POSITION WHERE POSITION_NO=#{positionNo}
+	</select>
 	
 	
 	

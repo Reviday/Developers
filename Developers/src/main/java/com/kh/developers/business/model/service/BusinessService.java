@@ -57,4 +57,6 @@ public interface BusinessService {
 	
 	//광고 포지션 불러오기 로직 
 	List<Advertisement>selectPositionInfo(int busNo);
+	List<Advertisement>selectAdvertisement(int busNo);
+	String selectPositionName(int positionNo);
 }

@@ -217,6 +217,17 @@ public class BusinessServiceImpl implements BusinessService {
 		// TODO Auto-generated method stub
 		return dao.selectPositionInfo(session, busNo);
 	}
+	@Override
+	public List<Advertisement> selectAdvertisement(int busNo) {
+		// TODO Auto-generated method stub
+		return dao.selectAdvertisement(session, busNo);
+	}
+	
+	@Override
+	public String selectPositionName(int positionNo) {
+		// TODO Auto-generated method stub
+		return dao.selectPositionName(session, positionNo);
+	}
 	
 
 }
