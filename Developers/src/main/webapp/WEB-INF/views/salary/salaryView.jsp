@@ -326,17 +326,17 @@ select {
 							<span class="Select__SelectBox-gLnYwz esQZxO"> 
 							<select class="Input-hxTtdt ddiEBf" id="jobYears">
 									<option value="" disabled="">경력</option>
-									<option value="0">신입</option>
-									<option value="1">1년</option>
-									<option value="2">2년</option>
-									<option value="3">3년</option>
-									<option value="4">4년</option>
-									<option value="5">5년</option>
-									<option value="6">6년</option>
-									<option value="7">7년</option>
-									<option value="8">8년</option>
-									<option value="9">9년</option>
-									<option value="10">10년</option>
+									<option value="0" <c:if test="${jobYears eq 0}">selected</c:if>>신입</option>
+									<option value="1" <c:if test="${jobYears eq 1}">selected</c:if>>1년</option>
+									<option value="2" <c:if test="${jobYears eq 2}">selected</c:if>>2년</option>
+									<option value="3" <c:if test="${jobYears eq 3}">selected</c:if>>3년</option>
+									<option value="4" <c:if test="${jobYears eq 4}">selected</c:if>>4년</option>
+									<option value="5" <c:if test="${jobYears eq 5}">selected</c:if>>5년</option>
+									<option value="6" <c:if test="${jobYears eq 6}">selected</c:if>>6년</option>
+									<option value="7" <c:if test="${jobYears eq 7}">selected</c:if>>7년</option>
+									<option value="8" <c:if test="${jobYears eq 8}">selected</c:if>>8년</option>
+									<option value="9" <c:if test="${jobYears eq 9}">selected</c:if>>9년</option>
+									<option value="10" <c:if test="${jobYears eq 10}">selected</c:if>>10년</option>
 							</select>
 							</span>
 						</div>
@@ -403,6 +403,7 @@ $("#jobYears").change(function(){
 	</c:forEach>
 	jobYearsResultList.unshift("경력")
 	console.log(jobYearsResultList);
+	console.log(typeof(jobYears));
 	
 	//그래프 데이터 리스트형 전처리 완료
 	

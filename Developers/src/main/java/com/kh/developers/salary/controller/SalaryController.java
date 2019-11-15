@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import com.kh.developers.salary.model.service.SalaryService;
 import com.kh.developers.salary.model.vo.Salary;
 
-@SessionAttributes(value= {"jobField", "salaryList", "jobYearsResultList"})
+@SessionAttributes(value= {"jobField", "salaryList", "jobYearsResultList", "jobYears"})
 
 @Controller
 public class SalaryController {
@@ -77,6 +77,7 @@ public class SalaryController {
 		
 
 		String jobField=s.getJobField();
+		int jobYears=s.getJobYears();
 	
 		
 		List<Salary> list=service.salarySelectList(jobField);
@@ -129,6 +130,7 @@ public class SalaryController {
 		model.addAttribute("salaryList",salaryList);
 		model.addAttribute("jobField",jobField);
 		model.addAttribute("jobYearsResultList",jobYearsResultList);
+		model.addAttribute("jobYears",jobYears);
 		
 		return "salary/salaryView";
 	}
