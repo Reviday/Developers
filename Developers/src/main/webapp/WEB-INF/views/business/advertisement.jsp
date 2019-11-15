@@ -252,6 +252,8 @@ div#bottom-info>input{
 		let num=parseInt(option);
 		if(num>0){
 			document.querySelector('#adDate').value=num+"일";
+		}else{
+			document.querySelector('#adDate').value="";
 		}
 	}
 
