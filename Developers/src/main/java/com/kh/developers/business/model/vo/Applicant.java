@@ -18,7 +18,11 @@ public class Applicant {
 	private int positionNo;
 	private int resumeNo;
 	private int applStatus;
-	private Date applDate;
 	private char applAnsYn;
+	private Date offerDate;
+	private Date answerDate;
+	private Date applDate;
 	private int recommendId;
+	private Date finalDate;
+	
 }

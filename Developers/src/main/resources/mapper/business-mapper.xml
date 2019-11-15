@@ -238,12 +238,12 @@
    		<result property="positionNo" column="position_no"></result>
    		<result property="position" column="position"></result>
    		<result property="deadDate" column="dead_date"></result>
-   		<result property="advertisementNo" column="advertisement_no"></result>
+   		<result property="adNo" column="ad_no"></result>
+   		<result property="busNo" column="bus_no"></result>
    		<result property="adStartDate" column="ad_start_date"></result>
    		<result property="adEndDate" column="ad_end_date"></result>
    		<result property="adType" column="ad_type"></result>
    		<result property="clickTimes" column="click_times"></result>
-   		<result property="adOn" column="ad_On"></result>
    </resultMap>
 	
 </mapper>

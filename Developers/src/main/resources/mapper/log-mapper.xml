@@ -1,57 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="log">
-	<select id="selectLoginLogListBySuccess" parameterType="map" resultMap="mllMap">
-		SELECT * FROM TA_MEMBER_LOGIN_LOG WHERE
-		<if test="mllSuccess != null">
-			MLL_SUCCESS=#{mllSuccess}
-		</if>
-		<if test="searchStr != null">
-			OR ( 1=0
-			<foreach collection="searchStr" item="str">
-				OR UPPER(MLL_USER_EMAIL) LIKE UPPER('%'||#{str}||'%')
-				OR UPPER(MLL_REASON) LIKE UPPER('%'||#{str}||'%')
-				OR UPPER(MLL_IP) LIKE UPPER('%'||#{str}||'%')
-				OR UPPER(MLL_USERAGENT) LIKE UPPER('%'||#{str}||'%')
-			</foreach>
-			<if test="searchInt != null">
-				<foreach collection="searchInt" item="int">
-					OR MLL_NO LIKE '%'||${int}||'%'
-					OR MLL_MEM_NO LIKE '%'||${int}||'%'
-				</foreach>
-			</if>
-			)
-		</if>
-		
-		ORDER BY MLL_DATETIME DESC
-	</select>
-	<select id="selectLoginLogCountBySuccess" parameterType="map" resultType='_int'>
-		SELECT COUNT(*) FROM TA_MEMBER_LOGIN_LOG WHERE
-		<if test="mllSuccess != null">
-			MLL_SUCCESS=#{mllSuccess}
-		</if>
-		<if test="searchStr != null">
-			OR ( 1=0
-			<foreach collection="searchStr" item="str">
-				OR UPPER(MLL_USER_EMAIL) LIKE UPPER('%'||#{str}||'%')
-				OR UPPER(MLL_REASON) LIKE UPPER('%'||#{str}||'%')
-				OR UPPER(MLL_IP) LIKE UPPER('%'||#{str}||'%')
-				OR UPPER(MLL_USERAGENT) LIKE UPPER('%'||#{str}||'%')
-			</foreach>
-			<if test="searchInt != null">
-				<foreach collection="searchInt" item="int">
-					OR MLL_NO LIKE '%'||${int}||'%'
-					OR MLL_MEM_NO LIKE '%'||${int}||'%'
-				</foreach>
-			</if>
-			)
-		</if>
-		
-	</select>
+	<insert id="insertRequestMappingLog" parameterType="rml">
+		INSERT INTO TA_REQUEST_MAPPING_LOG VALUES(REQ_MAP_SEQ.NEXTVAL, #{rmlMemNo}, #{rmlUserEmail}, SYSDATE, #{rmlIp}, #{rmlUseragent}, #{rmlUrl}, #{rmlReferer})
+	</insert>
 	<select id="selectLoginLogListBySearch" parameterType="map" resultMap="mllMap">
-		SELECT * FROM TA_MEMBER_LOGIN_LOG WHERE 1=0
+		SELECT * FROM TA_MEMBER_LOGIN_LOG WHERE
 		<if test="searchStr != null">
-			OR ( 1=0
+			( 1=0
 			<foreach collection="searchStr" item="str">
 				OR UPPER(MLL_USER_EMAIL) LIKE UPPER('%'||#{str}||'%')
 				OR UPPER(MLL_REASON) LIKE UPPER('%'||#{str}||'%')
@@ -64,14 +20,20 @@
 					OR MLL_MEM_NO LIKE '%'||${int}||'%'
 				</foreach>
 			</if>
-			) 
-		</if>	
+			)
+		</if>
+		<if test="searchStr == null">
+			1=1 
+		</if>
+		<if test="mllSuccess != null">
+			AND MLL_SUCCESS=#{mllSuccess}
+		</if>
 		ORDER BY MLL_DATETIME DESC
 	</select>
 	<select id="selectLoginLogCountBySearch" parameterType="map" resultType='_int'>
-		SELECT COUNT(*) FROM TA_MEMBER_LOGIN_LOG WHERE 1=0
+		SELECT COUNT(*) FROM TA_MEMBER_LOGIN_LOG WHERE 
 		<if test="searchStr != null">
-			OR ( 1=0
+			( 1=0
 			<foreach collection="searchStr" item="str">
 				OR UPPER(MLL_USER_EMAIL) LIKE UPPER('%'||#{str}||'%')
 				OR UPPER(MLL_REASON) LIKE UPPER('%'||#{str}||'%')
@@ -85,7 +47,13 @@
 				</foreach>
 			</if>
 			)
-		</if>	
+		</if>
+		<if test="searchStr == null">
+			1=1 
+		</if>
+		<if test="mllSuccess != null">
+			AND MLL_SUCCESS=#{mllSuccess}
+		</if>
 	</select>
 	<insert id="insertVisitor" parameterType="vc">
         INSERT
@@ -102,12 +70,6 @@
             SYSDATE
         )
     </insert>
-	<select id="selectLoginLogList" resultMap="mllMap">
-		SELECT * FROM TA_MEMBER_LOGIN_LOG ORDER BY MLL_DATETIME DESC
-	</select>
-	<select id="selectLoginLogCount" resultType="_int">
-		SELECT COUNT(*) FROM TA_MEMBER_LOGIN_LOG
-	</select>
 	
 	<resultMap type="mll" id="mllMap">
 		<result property="mllNo" column="mll_no"/>
@@ -120,5 +82,15 @@
 		<result property="mllUseragent" column="mll_useragent"/>
 		<result property="mllUrl" column="mll_url"/>
 		<result property="mllReferer" column="mll_referer"/>
+	</resultMap>
+	<resultMap type="rml" id="rmlMap">
+		<result property="rmlNo" column="rml_no"/>
+		<result property="rmlMemNo" column="rml_mem_no"/>
+		<result property="rmlUserEmail" column="rml_user_email"/>
+		<result property="rmlDatetime" column="rml_datetime"/>
+		<result property="rmlIp" column="rml_ip"/>
+		<result property="rmlUseragent" column="rml_useragent"/>
+		<result property="rmlUrl" column="rml_url"/>
+		<result property="rmlReferer" column="rml_referer"/>
 	</resultMap>
 </mapper>

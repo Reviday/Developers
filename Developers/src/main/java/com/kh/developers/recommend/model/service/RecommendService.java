@@ -30,4 +30,6 @@ public interface RecommendService {
 	int insertChoochunsa(int memNo, int recommendNo, String text);
 	//추천하기-> 추천사
 	Member selectMember(String recommendEmail);
+	//추천하기 -> 이메일 검색 에이작스
+	List<Member> searchEmail(String email);
 }

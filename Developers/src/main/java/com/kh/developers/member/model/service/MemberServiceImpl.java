@@ -36,6 +36,19 @@ public class MemberServiceImpl implements MemberService {
 	
 	
 	
+	
+
+	@Override
+	public List<Applicant> selectMemAppl(Member m, int cPage, int numPerPage) {
+		// TODO Auto-generated method stub
+		return dao.selectMemAppl(session,m,cPage,numPerPage);
+	}
+
+	@Override
+	public int selectMemApplCount(Member m) {
+		// TODO Auto-generated method stub
+		return dao.selectMemApplCount(session,m);
+	}
 
 	@Override
 	public List<Position> selectBookMark(Member m) {

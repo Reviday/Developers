@@ -6,6 +6,7 @@ import java.util.Map;
 import org.mybatis.spring.SqlSessionTemplate;
 
 import com.kh.developers.admin.model.vo.MemberLoginLog;
+import com.kh.developers.admin.model.vo.RequestMappingLog;
 import com.kh.developers.admin.model.vo.VisitCount;
 import com.kh.developers.member.model.vo.Member;
 
@@ -20,10 +21,8 @@ public interface AdminDao {
 	int selectWithdrawMemberCountBySearch(SqlSessionTemplate session, Map<String, Object> searchValue);
 	List<Member> selectWithdrawMemberListBySearch(SqlSessionTemplate session, Map<String, Object> searchValue, int cPage, int numPerPage);
 	int restoreMember(SqlSessionTemplate session, Member m);
-	int selectloginLogCount(SqlSessionTemplate session);
-	List<MemberLoginLog> selectLoginLogList(SqlSessionTemplate session, int cPage, int numPerPage);
 	int selectLoginLogCountBySearch(SqlSessionTemplate session, Map<String, Object> searchValue);
 	List<MemberLoginLog> selectLoginLogListBySearch(SqlSessionTemplate session, Map<String, Object> searchValue, int cPage, int numPerPage);
-	int selectLoginLogCountBySuccess(SqlSessionTemplate session, Map<String, Object> searchValue);
-	List<MemberLoginLog> selectLoginLogListBySuccess(SqlSessionTemplate session, Map<String, Object> searchValue, int cPage, int numPerPage);
+	
+	void insertRequestMappingLog(SqlSessionTemplate session, RequestMappingLog rml);
 }

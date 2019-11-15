@@ -22,7 +22,7 @@
 					<input class="form-control" id="system-search" 
 						placeholder="Search for" required> <span
 						class="input-group-btn">
-						<button type="button" class="btn btn-default" onclick="mll_search();">
+						<button type="button" class="btn btn-default" onclick="mll_search(0);">
 							<i class="fas fa-search"></i>
 						</button>
 					</span>
@@ -35,7 +35,7 @@
 						<th>
 							<div class="dropdown" style="display: inline-block;">
 						        <select class="dropdown-select-version select" name="mllSuccess" id="mllSuccess" style="vertical-align: top; height: 21px; width: 62px; margin: 0; margin-left: 10px; color: #dd5;">
-						        	<option value="-1" selected disabled hidden>결과</option>
+						        	<option value="R" selected disabled hidden>결과</option>
 						        	<option value="A" <c:if test="${mllSuccess eq 'A'}">selected</c:if>>전체</option>
 						        	<option value="Y" <c:if test="${mllSuccess eq 'Y'}">selected</c:if>>성공</option>
 								    <option value="N" <c:if test="${mllSuccess eq 'N'}">selected</c:if>>실패</option>
@@ -92,21 +92,7 @@
 			<input type="hidden" value="${numPerPage}" id="numPerPage"/> 
 			<script>
 				$('#mllSuccess').on('change', function() {
-					var mllSuccess=$("#mllSuccess option:selected").val();
-					var searchValue=$("#system-search").val();
-					$.ajax({
-						url:path+"/admin/mllSearchBySuccess.lac",
-						type:"POST",
-						data: {
-							"mllSuccess":mllSuccess
-						},
-						success: function(result) {
-							if(result!=null) {
-								$('.mainContent').html("");
-								$('.mainContent').html(result);
-							} 
-						}
-					});
+					mll_search(0);
 				});
 			</script>
 		</div>

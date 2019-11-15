@@ -28,54 +28,42 @@ public class AdminController {
 
 	@Autowired
 	private AdminService service;
-	private PaginationTemplate pt;
 	private PaginationTemplateFunction2nd ptf;
-	
-	@RequestMapping("/admin/mllSearchBySuccess.lac")
-	public String mllSearchBySuccess(HttpServletRequest req, Model model,
-			@RequestParam (value="value", required=false, defaultValue="") String value,
-			@RequestParam (value="mllSuccess", required=true) String mllSuccess) {
-		int totalData=service.selectLoginLogCountBySuccess(value, mllSuccess);
-		pt=new PaginationTemplate(req, totalData, "/admin/mllSearchBySuccess.lac");
-		pt.setQueryString("value", value);
-		pt.setQueryString("mllSuccess", mllSuccess);
-		List<MemberLoginLog> list=service.selectLoginLogListBySuccess(value, mllSuccess, pt.getcPage(), pt.getNumPerPage());
-		model.addAttribute("logList",list);
-		model.addAttribute("searchValue", value);
-		model.addAttribute("mllSuccess", mllSuccess);
-		model.addAttribute("cPage", pt.getcPage());
-		model.addAttribute("numPerPage", pt.getNumPerPage());
-		model.addAttribute("pageBar", pt.getPageBar());
-		return "admin/loginLogAjax";
-	}
 	
 	@RequestMapping("/admin/loginLogSearchList.lac")
 	public String loginLogSearchList(HttpServletRequest req, Model model,
-			@RequestParam (value="value", required=true) String value) {
+			@RequestParam (value="value", required=false, defaultValue="") String value,
+			@RequestParam (value="mllSuccess", required=false, defaultValue="R") String mllSuccess) {
 		// value 조건을 가진 검색 리스트 갯수
-		int totalData=service.selectLoginLogCountBySearch(value);
-		pt=new PaginationTemplate(req, totalData, "/admin/loginLogSearchList.lac");
-		pt.setQueryString("value", value);
-		List<MemberLoginLog> list=service.selectLoginLogListBySearch(value, pt.getcPage(), pt.getNumPerPage());
+		System.out.println(value+"/ " +mllSuccess);
+		int totalData=service.selectLoginLogCountBySearch(value, mllSuccess);
+		ptf=new PaginationTemplateFunction2nd(req, totalData, "mll_search");
+		ptf.setUseParamCPage(); // cPage를 파라미터로 넘긴다.
+		List<MemberLoginLog> list=service.selectLoginLogListBySearch(value, mllSuccess, ptf.getcPage(), ptf.getNumPerPage());
 		model.addAttribute("logList",list);
 		model.addAttribute("searchValue", value);
-		model.addAttribute("cPage", pt.getcPage());
-		model.addAttribute("numPerPage", pt.getNumPerPage());
-		model.addAttribute("pageBar", pt.getPageBar());
+		model.addAttribute("mllSuccess", mllSuccess);
+		model.addAttribute("cPage", ptf.getcPage());
+		model.addAttribute("numPerPage", ptf.getNumPerPage());
+		model.addAttribute("pageBar", ptf.getPageBar(true));
 		return "admin/loginLogAjax";
 	}
 	
 	@RequestMapping("/admin/loginLog.lac")
 	public ModelAndView loginLog(HttpServletRequest req) {
 		ModelAndView mv=new ModelAndView();
-		int totalData=service.selectloginLogCount();
-		pt=new PaginationTemplate(req, totalData, "/admin/loginLog.lac");
-		List<MemberLoginLog> list=service.selectLoginLogList(pt.getcPage(),pt.getNumPerPage());
+		
+		int totalData=service.selectLoginLogCountBySearch("", "R") ;
+		ptf=new PaginationTemplateFunction2nd(req, totalData, "mll_search");
+		ptf.setUseParamCPage(); // cPage를 파라미터로 넘긴다.
+		List<MemberLoginLog> list=service.selectLoginLogListBySearch("", "R", ptf.getcPage(), ptf.getNumPerPage());
 		
 		mv.addObject("logList",list);
-		mv.addObject("cPage",pt.getcPage());
-		mv.addObject("numPerPage",pt.getNumPerPage());
-		mv.addObject("pageBar",pt.getPageBar());
+		mv.addObject("searchValue", "");
+		mv.addObject("mllSuccess", "R");
+		mv.addObject("cPage", ptf.getcPage());
+		mv.addObject("numPerPage", ptf.getNumPerPage());
+		mv.addObject("pageBar", ptf.getPageBar(true));
 		return mv;
 	}
 	
@@ -89,9 +77,9 @@ public class AdminController {
 		
 		model.addAttribute("memList",list);
 		model.addAttribute("searchValue", value);
-		model.addAttribute("cPage", pt.getcPage());
-		model.addAttribute("numPerPage", pt.getNumPerPage());
-		model.addAttribute("pageBar", pt.getPageBar());
+		model.addAttribute("cPage", ptf.getcPage());
+		model.addAttribute("numPerPage", ptf.getNumPerPage());
+		model.addAttribute("pageBar", ptf.getPageBar(true));
 		return "admin/memberListAjax";
 	}
 	
@@ -157,16 +145,15 @@ public class AdminController {
 		int result=service.deleteMember(m);
 		if(result>0) {
 			totalData=service.selectMemberCountBySearch(value, searchLevel);
-			pt=new PaginationTemplate(req, totalData, "/admin/searchByLevel.lac"); 
-			pt.setQueryString("value", value);
-			pt.setQueryString("searchLevel", searchLevel);
-			list=service.selectMemberListBySearch(value, searchLevel, pt.getcPage(), pt.getNumPerPage());
+			ptf=new PaginationTemplateFunction2nd(req, totalData, "search");
+			ptf.setUseParamCPage(); // cPage를 파라미터로 넘긴다.
+			list=service.selectMemberListBySearch(value, searchLevel, ptf.getcPage(), ptf.getNumPerPage());
 			model.addAttribute("memList",list);
 			model.addAttribute("searchValue", value);
 			model.addAttribute("searchLevel", searchLevel);
-			model.addAttribute("cPage", pt.getcPage());
-			model.addAttribute("numPerPage", pt.getNumPerPage());
-			model.addAttribute("pageBar", pt.getPageBar());
+			model.addAttribute("cPage", ptf.getcPage());
+			model.addAttribute("numPerPage", ptf.getNumPerPage());
+			model.addAttribute("pageBar", ptf.getPageBar(true));
 			return "admin/memberListAjax";
 		} else {
 			String msg="에러가 발생하였습니다. \n다시 시도해 주기시 바랍니다.";

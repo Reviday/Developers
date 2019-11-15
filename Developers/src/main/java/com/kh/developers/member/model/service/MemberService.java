@@ -31,4 +31,6 @@ public interface MemberService {
 	Business selectBusOne(String busNo);
 	int applAns(int memNo,int number);
 	List<Position> selectBookMark(Member m);
+	List<Applicant> selectMemAppl(Member m,int cPage,int numPerPage);
+	int selectMemApplCount(Member m);
 }

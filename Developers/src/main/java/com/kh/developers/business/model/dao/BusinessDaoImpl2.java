@@ -157,6 +157,12 @@ public class BusinessDaoImpl2 implements BusinessDao2 {
 
 
 	@Override
+	public int updateApplPf(SqlSession session, Map map) {
+		return session.update("business2.updateApplPf",map);
+	}
+
+
+	@Override
 	public List<Position> selectPositionList(SqlSession session, Map map) {
 		return session.selectList("business2.selectPositionList", map);
 	}

@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.kh.developers.admin.model.vo.MemberLoginLog;
+import com.kh.developers.admin.model.vo.RequestMappingLog;
 import com.kh.developers.admin.model.vo.VisitCount;
 import com.kh.developers.member.model.vo.Member;
 
@@ -15,15 +16,8 @@ import com.kh.developers.member.model.vo.Member;
 public class AdminDaoImpl implements AdminDao{
 	
 	@Override
-	public List<MemberLoginLog> selectLoginLogListBySuccess(SqlSessionTemplate session, Map<String, Object> searchValue,
-			int cPage, int numPerPage) {
-		RowBounds r=new RowBounds((cPage-1)*numPerPage, numPerPage);
-		return session.selectList("log.selectLoginLogListBySuccess", searchValue, r);
-	}
-	
-	@Override
-	public int selectLoginLogCountBySuccess(SqlSessionTemplate session, Map<String, Object> searchValue) {
-		return session.selectOne("log.selectLoginLogCountBySuccess",searchValue);
+	public void insertRequestMappingLog(SqlSessionTemplate session, RequestMappingLog rml) {
+		session.insert("log.insertRequestMappingLog", rml);
 	}
 	
 	@Override
@@ -36,17 +30,6 @@ public class AdminDaoImpl implements AdminDao{
 	@Override
 	public int selectLoginLogCountBySearch(SqlSessionTemplate session, Map<String, Object> searchValue) {
 		return session.selectOne("log.selectLoginLogCountBySearch",searchValue);
-	}
-	
-	@Override
-	public List<MemberLoginLog> selectLoginLogList(SqlSessionTemplate session, int cPage, int numPerPage) {
-		RowBounds r=new RowBounds((cPage-1)*numPerPage, numPerPage);
-		return session.selectList("log.selectLoginLogList", null, r);
-	}
-	
-	@Override
-	public int selectloginLogCount(SqlSessionTemplate session) {
-		return session.selectOne("log.selectLoginLogCount");
 	}
 	
 	@Override

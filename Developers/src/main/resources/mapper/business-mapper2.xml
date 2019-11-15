@@ -221,6 +221,9 @@
 	<update id="updateApplOffer" parameterType="_int">
 		UPDATE TA_APPL_BUS SET APPL_STATUS=2, OFFER_DATE=SYSDATE WHERE APPL_NO=#{applNo}
 	</update>
+	<update id="updateApplPf" parameterType="map">
+		UPDATE TA_APPL_BUS SET APPL_STATUS=#{applStatus}, FINAL_DATE=SYSDATE WHERE APPL_NO=#{applNo}
+	</update>
 
 
 
@@ -280,6 +283,9 @@
 		<result property="applDate" column="appl_date" />
 		<result property="applAnsYn" column="appl_ans_yn" />
 		<result property="recommendId" column="recommend_id"/>
+		<result property="offerDate" column="offer_date"/>
+		<result property="answerDate" column="answer_date"/>
+		<result property="finalDate" column="final_date"/>
 	</resultMap>
 
 	<resultMap type="member" id="memberMap">

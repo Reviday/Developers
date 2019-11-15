@@ -22,6 +22,7 @@ body {
 #choochunsa {
     position: relative;
     min-height: 1000px;
+    margin-top: 50px;
 }
 
 #choochunsa .topSection1 {

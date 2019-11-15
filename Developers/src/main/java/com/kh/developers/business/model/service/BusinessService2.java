@@ -55,6 +55,7 @@ public interface BusinessService2 {
 	Applicant selectApplOne(int applNo);
 	
 	int updateApplOffer(int applNo);
+	int updateApplPf(Map map);
 	
 	
 

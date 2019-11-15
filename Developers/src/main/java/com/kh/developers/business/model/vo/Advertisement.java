@@ -16,12 +16,13 @@ public class Advertisement {
 	private String position;
 	private Date deadDate;
 	
-	private int advertisementNo;
+	private int adNo;
+	private int busNo;
 	private Date adStartDate;
 	private Date adeEndDate;
 	private String adType;
 	private int clickTimes;
-	private String adOn;
+	
 	
 
 }

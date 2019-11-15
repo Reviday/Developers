@@ -95,4 +95,10 @@ public class RecommendDaoImpl implements RecommendDao {
 		// TODO Auto-generated method stub
 		return session.selectOne("recommend.selectMember", recommendEmail);
 	}
+	
+	@Override
+	public List<Member> searchEmail(SqlSessionTemplate session, String email) {
+		// TODO Auto-generated method stub
+		return session.selectList("recommend.searchEmail", email);
+	}
 }

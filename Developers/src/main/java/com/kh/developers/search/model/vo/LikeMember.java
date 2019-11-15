@@ -13,6 +13,6 @@ public class LikeMember {
 	private int like_id; //좋아요 id
 	private int mem_no; //좋아요 한 멤버 id
 	private String mem_name; //좋아요 한 멤버 이름
-	private String mem_photo; //좋아요 한 멤버 프로필 사진
+	private String mem_icon; //좋아요 한 멤버 프로필 사진
 	
 }

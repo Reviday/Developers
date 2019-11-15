@@ -9,7 +9,7 @@
     <!-- 합쳐지고 최소화된 최신 CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 
 <jsp:include page="/WEB-INF/views/common/header.jsp">
@@ -43,8 +43,8 @@
                                 	임시 저장
                                 </button>   
                                     <c:set value="${resume.resumeNo }" var="resumeNo"/>  
-                                        <button class="hidden-xs btn btn-primary" OnClick="return fn_status()"
-                                      type="submit">작성 완료</button>
+                                        <button class="hidden-xs btn btn-primary" OnClick="return fn_status();" id="endFinsh"
+                                      type="button">작성 완료</button>
                                      <button class="border-gray btn btn-default"
                                         type="button"><i class="fas fa-download"></i></button>
                                 </div>
@@ -56,12 +56,12 @@
                            			  
                            			 <input type="hidden" id="resumeNo" value="${resume.resumeNo }"/>
                                 <div width="40" class="Content-zwkXZ dzZUIS" id="deleteModal2">
-                                    <div class="Div-hTZHGu fEVoGZ">
+                                    <div class="Div-hTZHGu fEVoGZ" id="modalContent2">
                                     
                                         <p class="Confirm__ConfirmMessage-fNOBqL cHGGot" id=".0.3.0.$/=11.0">
-                                            삭제하시겠습니까?</p>
+                                            	삭제하시겠습니까?</p>
                                     </div>
-                                    <div class="Div-hTZHGu dXKeOh"><button color="#B5B5B5"
+                                    <div class="Div-hTZHGu dXKeOh" id="modalContent3"><button color="#B5B5B5"
                                             class="Button-kDSBcD hzWWar" type="button" onclick="madalclose();">닫기</button>
                                             <button
                  color="#258BF7" class="Button-kDSBcD ebVQvc" type="button"
@@ -325,7 +325,7 @@
                   </c:if>
                   <c:if test="${e.subjectName!=null }">
                  <textarea style="height:34px;" class="resume-input description"
-                         maxlength="1000" placeholder="이수과목 또는 연구내용">${e.subjectName }</textarea>
+                     name="subjectName" maxlength="1000" placeholder="이수과목 또는 연구내용">${e.subjectName }</textarea>
                   </c:if>
                          <textarea class="textarea-clone"
                          readonly=""
@@ -814,9 +814,43 @@
     	var deleteIndex = $('#deleteIndex').val();
     	location.href ="${path }/resume/deleteIndex.lmc?deleteNo="+deleteNo+"&deleteIndex="+deleteIndex+"&resumeNo="+resumeNo;
     }
-    function fn_status(){
-  	  $("#status").val("Y");
-    }
+
+	    
+    
+   	  function fn_status(){
+   		  if( ($('input[name=memPhone]')).val().trim().length > 0 &&
+   	  			($('input[name=memPhone]')).val().trim().length > 0 &&
+   	  			($('textarea[name=intro]')).val().trim().length > 0 &&
+   	  			($('input[name=startCareer]')).val().trim().length > 0 &&
+   	  			($('input[name=endCareer]')).val().trim().length > 0 &&
+   	  			($('textarea[name=careerIntro]')).val().trim().length > 0 &&
+   	  			($('input[name=busName]')).val().trim().length > 0 &&
+   	  			($('input[name=depName]')).val().trim().length > 0 &&
+   	  			($('input[name=startAct]')).val().trim().length > 0 &&
+   	  			($('input[name=actName]')).val().trim().length > 0 &&
+   	  			($('textarea[name=actDetail]')).val().trim().length > 0 &&
+   	  			($('input[name=startEd]')).val().trim().length > 0 &&
+   	  			($('input[name=endEd]')).val().trim().length > 0 &&
+   	  			($('input[name=schoolName]')).val().trim().length > 0 &&
+   	  			($('input[name=majorName]')).val().trim().length > 0 &&
+   	  			($('textarea[name=subjectName]')).val().trim().length > 0 &&
+   	  			($('select[name=langName]')).val().length > 0 &&
+   	  			($('select[name=langLevel]')).val().length > 0 &&
+   	  			($('input[name=linksAddr]')).val().trim().length > 0 ){
+   			  	$("#status").val("Y");
+   	  			return true;
+   	  	}else{
+   	     $("#deleteModal").removeClass('iKzpWM');
+   	    $("#deleteModal3").removeClass('gMLFic'); 
+   	    $("#deleteModal").addClass('bLaSri');
+   	    $("#deleteModal2").addClass('grXykz');
+   	    $("#deleteModal3").addClass('emhpxA');
+   	    $("body").addClass('stop-scrolling');
+   		 document.getElementById('modalContent2').innerHTML='<p class="Confirm__ConfirmMessage-fNOBqL cHGGot" id=".0.3.0.$/=11.0">이력서가 다 작성되지않았습니다.내용을 전부 적어주세요</p>';
+   		document.getElementById('modalContent3').innerHTML='<button color="#B5B5B5"class="Button-kDSBcD hzWWar" style="width:100%" type="button" onclick="madalclose();">닫기</button>';
+   	  		return false;
+   	  	}
+   	  }
 </script>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/> 
 

@@ -12,7 +12,7 @@
                   <c:set value="${loginMember.memEmail }" var="memEmail"  />
             <ul class="">
                 <li class="_1ft7OZSrbzL35bkI-omU2b"><a href="#" class="" onclick="profilePage('${memEmail }')">프로필</a></li>
-                <li class="_1ft7OZSrbzL35bkI-omU2b"><a href="#" class="">포인트</a></li>
+                <li class="_1ft7OZSrbzL35bkI-omU2b"><a href="#"  onclick="myPointPage('${memEmail}')" class="">포인트</a></li>
 				<li class="_1ft7OZSrbzL35bkI-omU2b"><a href="#" onclick="applicantPage('${memEmail}');" class="activeNav">제안받기 현황</a></li>	
                 <li class="_1ft7OZSrbzL35bkI-omU2b"><a href="#" onclick="likePage('${memEmail }');" class="">좋아요</a></li>
                 <li class="_1ft7OZSrbzL35bkI-omU2b"><a href="#" onclick="myBookMark('${memEmail }')" class="">북마크</a></li>

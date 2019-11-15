@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.developers.admin.model.dao.AdminDao;
 import com.kh.developers.admin.model.vo.MemberLoginLog;
+import com.kh.developers.admin.model.vo.RequestMappingLog;
 import com.kh.developers.common.util.SearchValuesTemplate;
 import com.kh.developers.member.model.vo.Member;
 
@@ -21,6 +22,11 @@ public class AdminServiceImpl implements AdminService {
 	@Autowired
 	private SqlSessionTemplate session;
 	private SearchValuesTemplate svt;
+	
+	@Override
+	public void insertRequestMappingLog(RequestMappingLog rml) {
+		dao.insertRequestMappingLog(session, rml);
+	}
 	
 	@Override
 	public List<Member> selectMemberListBySearch(String value, int searchLevel, int cPage, int numPerPage) {
@@ -50,54 +56,29 @@ public class AdminServiceImpl implements AdminService {
 	}
 	
 	@Override
-	public List<MemberLoginLog> selectLoginLogListBySuccess(String value, String mllSuccess, int cPage,
-			int numPerPage) {
+	public List<MemberLoginLog> selectLoginLogListBySearch(String value, String mllSuccess, int cPage, int numPerPage) {
 		Map<String, Object> searchValue=new HashMap<String, Object>();
 		if(value != null && !value.equals("")) {
 			svt=new SearchValuesTemplate(value);
 			searchValue=svt.getSearchValue();
 		}
-		if(!mllSuccess.equals("A")) {
+		if(!(mllSuccess.equals("A") || mllSuccess.equals("R")) ) {
 			searchValue.put("mllSuccess",mllSuccess);
 		}
- 		return dao.selectLoginLogListBySuccess(session, searchValue, cPage, numPerPage);
-	}
-	
-	@Override
-	public int selectLoginLogCountBySuccess(String value, String mllSuccess) {
-		Map<String, Object> searchValue=new HashMap<String, Object>();
-		if(value != null && !value.equals("")) {
-			svt=new SearchValuesTemplate(value);
-			searchValue=svt.getSearchValue();
-		}
-		if(!mllSuccess.equals("A")) {
-			searchValue.put("mllSuccess",mllSuccess);
-		}
- 		return dao.selectLoginLogCountBySuccess(session, searchValue);
-	}
-	
-	@Override
-	public List<MemberLoginLog> selectLoginLogListBySearch(String value, int cPage, int numPerPage) {
-		svt=new SearchValuesTemplate(value);
-		Map<String, Object> searchValue=svt.getSearchValue();
  		return dao.selectLoginLogListBySearch(session, searchValue, cPage, numPerPage);
 	}
 	
 	@Override
-	public int selectLoginLogCountBySearch(String value) {
-		svt=new SearchValuesTemplate(value);
-		Map<String, Object> searchValue=svt.getSearchValue();
+	public int selectLoginLogCountBySearch(String value, String mllSuccess) {
+		Map<String, Object> searchValue=new HashMap<String, Object>();
+		if(value != null && !value.equals("")) {
+			svt=new SearchValuesTemplate(value);
+			searchValue=svt.getSearchValue();
+		}
+		if(!(mllSuccess.equals("A") || mllSuccess.equals("R")) ) {
+			searchValue.put("mllSuccess",mllSuccess);
+		}
  		return dao.selectLoginLogCountBySearch(session, searchValue);
-	}
-	
-	@Override
-	public List<MemberLoginLog> selectLoginLogList(int cPage, int numPerPage) {
-		return dao.selectLoginLogList(session, cPage, numPerPage);
-	}
-	
-	@Override
-	public int selectloginLogCount() {
-		return dao.selectloginLogCount(session);
 	}
 	
 	@Override

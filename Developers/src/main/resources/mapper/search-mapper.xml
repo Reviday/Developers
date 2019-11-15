@@ -19,7 +19,7 @@
 	</select>
 	<!-- 포지션정보페이지(좋아요정보) -->
 	<select id="likeMemberList" resultType="likemember" parameterType="_int">
-		SELECT P.*, MEM_NAME, MEM_PHOTO FROM PO_LIKE P JOIN TA_MEMBER M ON P.MEM_NO = M.MEM_NO WHERE LIKE_ID = #{likeNo} ORDER BY LIKE_NO DESC
+		SELECT P.*, MEM_NAME, MEM_ICON FROM PO_LIKE P JOIN TA_MEMBER M ON P.MEM_NO = M.MEM_NO WHERE LIKE_ID = #{likeNo} ORDER BY LIKE_NO DESC
 	</select>
 	<!-- 적극채용중인 회사 리스트 -->
 	<select id="firstPsList" resultType="position" resultMap="positionArray">
@@ -27,7 +27,7 @@
 	</select>
 	<!-- 회원의 좋아요 여부 -->
 	<select id="selectLikeMemberOne" resultType="likemember" parameterType="map">
-		SELECT P.*, M.MEM_NAME AS MEM_NAME, M.MEM_PHOTO AS MEM_PHOTO FROM PO_LIKE P JOIN TA_MEMBER M ON P.MEM_NO = M.MEM_NO WHERE P.LIKE_ID = #{likeId} AND P.MEM_NO = #{memNo}
+		SELECT P.*, M.MEM_NAME AS MEM_NAME, M.MEM_ICON AS MEM_PHOTO FROM PO_LIKE P JOIN TA_MEMBER M ON P.MEM_NO = M.MEM_NO WHERE P.LIKE_ID = #{likeId} AND P.MEM_NO = #{memNo}
 	</select>
 	<!-- 포지션 글 좋아요 회원 추가 -->
 	<insert id="insertLikeButton" parameterType="map">

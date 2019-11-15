@@ -44,9 +44,30 @@ public class BusinessController2 {
 
 	@Autowired
 	private BusinessService2 service;
-	
+
 	@Autowired
 	private JavaMailSender jms;
+
+	private String saveDir;
+
+	private String path;
+
+	public BusinessController2() {
+		saveDir=this.getClass().getResource("/").getPath();
+		try {
+			saveDir=saveDir.substring(0, saveDir.lastIndexOf("/WEB-INF"));
+		}catch(Exception e) {			
+			saveDir=saveDir.substring(0, saveDir.lastIndexOf("/target"));
+			saveDir+="/src/main/webapp";
+		}
+
+		if(this.getClass().getResource("/").getPath().indexOf("target")<0) {
+			path="/19PM_Developers_final";
+		}else {
+			path="/developers";
+		}
+
+	}
 
 	@RequestMapping("/business/logoChange")
 	public ModelAndView logoChange(MultipartHttpServletRequest mReq) {
@@ -54,16 +75,6 @@ public class BusinessController2 {
 		MultipartFile logo=mReq.getFile("logoFile");
 		Business busInfo=(Business)mReq.getSession().getAttribute("busInfo");
 		String subDir="/resources/upload/images/business/bus_"+busInfo.getBusNo()+"/logo";
-		String saveDir=new BusinessController2().getClass().getResource("/").getPath();
-		
-		
-		try {
-			saveDir=saveDir.substring(0, saveDir.lastIndexOf("/WEB-INF"));
-		}catch(Exception e) {			
-			saveDir=saveDir.substring(0, saveDir.lastIndexOf("/target"));
-			saveDir+="/src/main/webapp";
-		}
-		
 		File dir=new File(saveDir+subDir);
 		if(!dir.exists()) {
 			dir.mkdirs();
@@ -100,19 +111,8 @@ public class BusinessController2 {
 		MultipartFile busImg=mReq.getFile("bus_img");
 		Business busInfo=(Business)mReq.getSession().getAttribute("busInfo");
 		String subDir="/resources/upload/images/business/bus_"+busInfo.getBusNo()+"/images";
-		String saveDir=new BusinessController2().getClass().getResource("/").getPath();
-		
-		
-		
-		try {
-			saveDir=saveDir.substring(0, saveDir.lastIndexOf("/WEB-INF"));
-		}catch(Exception e) {			
-			saveDir=saveDir.substring(0, saveDir.lastIndexOf("/target"));
-			saveDir+="/src/main/webapp";
-		}
-		
-		
-		
+
+
 		File dir=new File(saveDir+subDir);
 		if(!dir.exists()) {
 			dir.mkdirs();
@@ -148,20 +148,7 @@ public class BusinessController2 {
 		MultipartFile busImg=mReq.getFile("bus_img");
 		Business busInfo=(Business)mReq.getSession().getAttribute("busInfo");
 		String subDir="/resources/upload/images/business/bus_"+busInfo.getBusNo()+"/images";
-		String saveDir=new BusinessController2().getClass().getResource("/").getPath();
-		
-		
-		
-		try {
-			saveDir=saveDir.substring(0, saveDir.lastIndexOf("/WEB-INF"));
-		}catch(Exception e) {			
-			saveDir=saveDir.substring(0, saveDir.lastIndexOf("/target"));
-			saveDir+="/src/main/webapp";
-		}
-		
-		
-		
-		
+
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd_HHmmssSSS");
 		String reName="bus_img_"+sdf.format(new Date());
 		String ext=busImg.getOriginalFilename().substring(busImg.getOriginalFilename().lastIndexOf("."));
@@ -195,21 +182,7 @@ public class BusinessController2 {
 		Business bus=(Business)session.getAttribute("busInfo");			
 		String delImg=bus.getBusImages()[imgIndex-1];	
 		String subDir="/resources/upload/images/business/bus_"+bus.getBusNo()+"/images";
-		String saveDir=new BusinessController2().getClass().getResource("/").getPath();
-		
-		
-		
-		
-		try {
-			saveDir=saveDir.substring(0, saveDir.lastIndexOf("/WEB-INF"));
-		}catch(Exception e) {			
-			saveDir=saveDir.substring(0, saveDir.lastIndexOf("/target"));
-			saveDir+="/src/main/webapp";
-		}
-		
-		
-		
-		
+
 		File delFile=new File(saveDir+delImg.substring(delImg.lastIndexOf("/resources")));
 		if(delFile.exists()) {
 			delFile.delete();
@@ -257,9 +230,9 @@ public class BusinessController2 {
 		String cPosition="";
 		try {
 			cPosition=(String)req.getSession().getAttribute("applPosition");
-			
+
 		}catch(Exception e) {
-			
+
 		}
 		applHtml+="<div id='appl-leftside' class='appl-leftside'>";
 		applHtml+="<h5>채용중<i class='fas fa-angle-up'></i></h5>";
@@ -373,27 +346,21 @@ public class BusinessController2 {
 		navHtml+="<li class='ls3'>";
 		navHtml+="<a class='ei_a2'>기간만료&nbsp;<span>( "+service.selectBusApplCount(map)+" )</span></a>";
 		navHtml+="</li>";
-	
+
 		map.put("applIndex", applIndex);
 		map.put("applLike", applLike);
-		
+
 		String html="";
 		List<Applicant> applList=new ArrayList<Applicant>();
 		int numPerPage=5;
 		int totalData=0;
 		//list 가져오기
 		applList=service.selectBusAppl(map, cPage,numPerPage); totalData=service.selectBusApplCount(map);
-		
+
 
 
 		if(applList.isEmpty()) {
-			String path="";
-			if(new BusinessController2().getClass().getResource("/").getPath().indexOf("target")<0) {
-				path="/19PM_Developers_final";
-			}else {
-				path="/developers";
-			}
-			
+
 			html+="<br/>";
 			html+="<div class='appl_no'>";
 			html+="<h4>포지션에 적합한 후보자가 없으신가요?</h4>";
@@ -409,7 +376,7 @@ public class BusinessController2 {
 				if(applLike||service.selectCheckLike(likeMap)>0) {
 					html+="<div class='aList-like-btn like_on'><i class='fas fa-star'></i></div>";
 				}else {
-					
+
 					html+="<div class='aList-like-btn'><i class='fas fa-star'></i></div>";
 				}
 				html+="<div class='aList-left'>";
@@ -498,131 +465,125 @@ public class BusinessController2 {
 		ModelAndView mv=new ModelAndView();
 		String viewHtml="";
 		try {
-		IntroCard ic=service.selectResumeOne(applNo);
-		viewHtml+="<div id='appl-leftside' class='appl-leftside'>";
-		Applicant appl=service.selectApplOne(applNo);
-		viewHtml+="<h2>"+(service.selectPositionOne(appl.getPositionNo())).getPosition()+"></h2>";
-//		viewHtml+="<h5>채용중<i class='fas fa-angle-up'></i></h5>";
-//		viewHtml+="<hr/>";
-//		viewHtml+="<ul class='apply-ing'>";
-//		viewHtml+="<li data=''";
-//		if(session.getAttribute("applPosition")!=null && session.getAttribute("applPosition").equals("")) {			
-//			viewHtml+="class='aList-click'";
-//		}
-//		viewHtml+="><span class='aList-type'>포지션 전체</span> <span class='aList-count'>"+service.selectBusApplCount(map)+"</span></li>";
-//		List<Integer> poList=service.selectApplPoList(map);
-//		for(int po:poList) {
-//			map.put("applPosition", po);
-//			viewHtml+="<li data='"+po+"'";
-//			if(session.getAttribute("applPosition")==null || session.getAttribute("applPosition").equals(po)) {			
-//				viewHtml+="class='aList-click'";
-//			}
-//			viewHtml+="><span class='aList-type'>매치업</span> <span class='aList-count'>"+service.selectBusApplCount(map)+"</span></li>";
-//		}
-//		viewHtml+="</ul>";
-//		viewHtml+="<br/>";
-//		viewHtml+="<h5>마감된 포지션<i class='fas fa-angle-up'></i></h5>";
-//		viewHtml+="<hr/>";
-//		viewHtml+="<ul>";
-//		viewHtml+="</ul>";
-		viewHtml+="</div>";
-		viewHtml+="<div class='appl_view_container'>";
-		viewHtml+="<div class='appl_view_header'>";
-		int index=appl.getApplStatus();
-		switch(index) {
-		case 1:viewHtml+="<button type='button' class='appl_offer_btn' onclick='fn_appl_offer();'>제안하기</button>"; break;
-		case 2:
-			if(appl.getApplAnsYn()=='O') {
-				viewHtml+="<div class='appl_offering'>제안 중...</div>";
-			}else if(appl.getApplAnsYn()=='Y'){
-				viewHtml+="<button type='button' class='appl_offer_btn' onclick='fn_appl_pass();'>합격</button><button type='button' class='appl_offer_btn' onclick='fn_appl_fail();'>불합격</button>"; break;
+			IntroCard ic=service.selectResumeOne(applNo);
+			viewHtml+="<div id='appl-leftside' class='appl-leftside'>";
+			Applicant appl=service.selectApplOne(applNo);
+			viewHtml+="<h2>"+(service.selectPositionOne(appl.getPositionNo())).getPosition()+"></h2>";
+			if(appl.getPositionNo()==0) {
+				viewHtml+="<span>매칭일 : "+appl.getApplDate()+"</span>";	
 			}else {
-				viewHtml+="<div class='appl_offering'>제안 거절</div>";
+				viewHtml+="<span>지원일 : "+appl.getApplDate()+"</span>";
 			}
-		}
-		viewHtml+="</div>";
-		viewHtml+="<div class='appl_view_section'>";
-		if(appl.getApplAnsYn()=='Y') {			
-			viewHtml+="<div class='appl_name'>"+ic.getMemName()+"</div>";
-			viewHtml+="<div class='appl_info'>"+ic.getMemEmail()+"</div>";
-			viewHtml+="<div class='appl_info'>"+ic.getMemPhone()+"</div>";
-		}else if(appl.getApplAnsYn()=='O') {
-			viewHtml+="<div class='appl_name'>"+ic.getMemName().charAt(0)+"<i class='far fa-circle'></i><i class='far fa-circle'></i></div>";
-			viewHtml+="<div class='appl_info_hide'><h5>지원자가 제안을 수락할 경우,</h5> <h5>이름과 연락처를 확인할 수 있습니다.</h5></div>";
-		}else {
-			viewHtml+="<div class='appl_name'>"+ic.getMemName().charAt(0)+"<i class='far fa-circle'></i><i class='far fa-circle'></i></div>";
-			viewHtml+="<div class='appl_info_hide'>지원자가 제안을 거절하였습니다.</div>";
-		}
-		viewHtml+="<div class='appl_intro'><pre>"+ic.getIntro()+"</pre></div>";
-		viewHtml+="<hr style='width:95%; border-top:groove;'>";
-		if(ic.getCareers()!=null) {
-			viewHtml+="<div class='appl_careers'>";			
-			for(CareerInCard cic:ic.getCareers()) {			
-				viewHtml+="<div class='appl_view_title' style='font-weight:bold;'>경력</div>";
-				viewHtml+="<div class='appl_view_name'>"+cic.getBusName()+"</div>";
-				viewHtml+="<div><span class='aline' style='float:left; margin-left:1%; margin-right:1%;'>"+" | "+"</span></div>";
-				viewHtml+="<div class='appl_view_subname' style='color:#6E6E6E';>"+cic.getDeptName()+"</div>";
-				viewHtml+="<div class='appl_view_date'>"+cic.getEndCareer()+"</div>";
-				viewHtml+="<div class='appl_view_date'>"+cic.getStartCareer()+"  ~</div>";
-				viewHtml+="<br>";
-				viewHtml+="<div class='appl_view_intro'><pre>"+cic.getCareerIntro()+"</pre></div>";
-				viewHtml+="<hr style='width:95%;'>";
+			if(appl.getOfferDate()!=null) {
+				viewHtml+="<span>면접 제안일 : "+appl.getOfferDate()+"</span>";
+			}
+			if(appl.getAnswerDate()!=null) {
+				viewHtml+="<span>제안 응답일 : "+appl.getAnswerDate()+"</span>";
+			}
+			if(appl.getFinalDate()!=null && appl.getApplStatus()==3) {
+
+				viewHtml+="<span>최종 합격일 : "+appl.getFinalDate()+"</span>";
+
+			}
+
+			viewHtml+="<span></span>";
+			viewHtml+="</div>";
+			viewHtml+="<div class='appl_view_container'>";
+			viewHtml+="<div class='appl_view_header'>";
+			int index=appl.getApplStatus();
+			switch(index) {
+			case 1:viewHtml+="<button type='button' class='appl_offer_btn' onclick='fn_appl_offer();'>제안하기</button>"; break;
+			case 2:
+				if(appl.getApplAnsYn()=='O') {
+					viewHtml+="<div class='appl_offering'>제안 중...</div>";
+				}else if(appl.getApplAnsYn()=='Y'){
+					viewHtml+="<button type='button' class='appl_offer_btn' onclick='fn_appl_pf(3);'>합격</button><button type='button' class='appl_offer_btn' onclick='fn_appl_pf(4);'>불합격</button>"; break;
+				}else {
+					viewHtml+="<div class='appl_offering'>제안 거절</div>";
+				}
 			}
 			viewHtml+="</div>";
-		}
-		if(ic.getEducations()!=null) {			
-			viewHtml+="<div class='appl_edus'>";
-			for(EducationInCard eic:ic.getEducations()) {
-				viewHtml+="<div class='appl_view_title' style='font-weight:bold;'>학력</div>";
-				viewHtml+="<div class='appl_view_name'>"+eic.getSchoolName()+"</div>";
-				viewHtml+="<div><span class='aline' style='float:left; margin-left:1%; margin-right:1%;'>"+" | "+"</span></div>";
-				viewHtml+="<div class='appl_view_subname' style='color:#6E6E6E';>"+eic.getMajorName()+"</div>";
-				viewHtml+="<div class='appl_view_date'>"+eic.getEndEd()+"</div>";
-				viewHtml+="<div class='appl_view_date'>"+eic.getStartEd()+"  ~</div>";
-				viewHtml+="<br>";
-				viewHtml+="<div class='appl_view_intro'><pre>"+eic.getSubjectName()+"</pre></div>";
-				viewHtml+="<hr style='width:95%;'>";
+			viewHtml+="<div class='appl_view_section'>";
+			if(appl.getApplAnsYn()=='Y') {			
+				viewHtml+="<div class='appl_name'>"+ic.getMemName()+"</div>";
+				viewHtml+="<div class='appl_info'>"+ic.getMemEmail()+"</div>";
+				viewHtml+="<div class='appl_info'>"+ic.getMemPhone()+"</div>";
+			}else if(appl.getApplAnsYn()=='O') {
+				viewHtml+="<div class='appl_name'>"+ic.getMemName().charAt(0)+"<i class='far fa-circle'></i><i class='far fa-circle'></i></div>";
+				viewHtml+="<div class='appl_info_hide'><h5>지원자가 제안을 수락할 경우,</h5> <h5>이름과 연락처를 확인할 수 있습니다.</h5></div>";
+			}else {
+				viewHtml+="<div class='appl_name'>"+ic.getMemName().charAt(0)+"<i class='far fa-circle'></i><i class='far fa-circle'></i></div>";
+				viewHtml+="<div class='appl_info_hide'>지원자가 제안을 거절하였습니다.</div>";
+			}
+			viewHtml+="<div class='appl_intro'><pre>"+ic.getIntro()+"</pre></div>";
+			viewHtml+="<hr style='width:95%; border-top:groove;'>";
+			if(ic.getCareers()!=null) {
+				viewHtml+="<div class='appl_careers'>";			
+				for(CareerInCard cic:ic.getCareers()) {			
+					viewHtml+="<div class='appl_view_title' style='font-weight:bold;'>경력</div>";
+					viewHtml+="<div class='appl_view_name'>"+cic.getBusName()+"</div>";
+					viewHtml+="<div><span class='aline' style='float:left; margin-left:1%; margin-right:1%;'>"+" | "+"</span></div>";
+					viewHtml+="<div class='appl_view_subname' style='color:#6E6E6E';>"+cic.getDeptName()+"</div>";
+					viewHtml+="<div class='appl_view_date'>"+cic.getEndCareer()+"</div>";
+					viewHtml+="<div class='appl_view_date'>"+cic.getStartCareer()+"  ~</div>";
+					viewHtml+="<br>";
+					viewHtml+="<div class='appl_view_intro'><pre>"+cic.getCareerIntro()+"</pre></div>";
+					viewHtml+="<hr style='width:95%;'>";
+				}
+				viewHtml+="</div>";
+			}
+			if(ic.getEducations()!=null) {			
+				viewHtml+="<div class='appl_edus'>";
+				for(EducationInCard eic:ic.getEducations()) {
+					viewHtml+="<div class='appl_view_title' style='font-weight:bold;'>학력</div>";
+					viewHtml+="<div class='appl_view_name'>"+eic.getSchoolName()+"</div>";
+					viewHtml+="<div><span class='aline' style='float:left; margin-left:1%; margin-right:1%;'>"+" | "+"</span></div>";
+					viewHtml+="<div class='appl_view_subname' style='color:#6E6E6E';>"+eic.getMajorName()+"</div>";
+					viewHtml+="<div class='appl_view_date'>"+eic.getEndEd()+"</div>";
+					viewHtml+="<div class='appl_view_date'>"+eic.getStartEd()+"  ~</div>";
+					viewHtml+="<br>";
+					viewHtml+="<div class='appl_view_intro'><pre>"+eic.getSubjectName()+"</pre></div>";
+					viewHtml+="<hr style='width:95%;'>";
+				}
+				viewHtml+="</div>";
+			}
+			if(ic.getActivities()!=null) {
+				viewHtml+="<div class='appl_acts'>";
+				for(Activitie ac:ic.getActivities()) {
+					viewHtml+="<div class='appl_view_title' style='font-weight:bold;'>대외활동</div>";
+					viewHtml+="<div class='appl_view_name'>"+ac.getActName()+"</div>";
+					viewHtml+="<div><span class='aline' style='float:left; margin-left:1%; margin-right:1%;'>"+" | "+"</span></div>";
+					viewHtml+="<div class='appl_view_date'>"+ac.getStartAct()+"</div>";
+					viewHtml+="<br>";
+					viewHtml+="<div class='appl_view_intro'><pre>"+ac.getActDetail()+"</pre></div>";
+					viewHtml+="<hr style='width:95%;'>";
+				}
+				viewHtml+="</div>";
+			}
+			if(ic.getLanguages()!=null) {			
+				viewHtml+="<div class='appl_langs'>";
+				for(Lang ln:ic.getLanguages()) {
+					viewHtml+="<div class='appl_view_title' style='font-weight:bold;'>언어</div>";
+					viewHtml+="<div class='appl_view_name'>"+ln.getLangName()+"</div>";
+					viewHtml+="<div><span class='aline' style='float:left; margin-left:1%; margin-right:1%;'>"+" | "+"</span></div>";
+					viewHtml+="<div class='appl_view_subname' style='color:#6E6E6E';>"+ln.getLangLevel()+"</div>";
+					viewHtml+="<br>";
+					viewHtml+="<hr style='width:95%;'>";
+				}
+				viewHtml+="</div>";
+			}
+			if(ic.getLinks()!=null) {
+				viewHtml+="<div class='appl_links'>";
+				for(Links lk:ic.getLinks()) {
+					viewHtml+="<div class='appl_view_title' style='font-weight:bold;'>링크</div>";
+					viewHtml+="<div class='appl_view_name'>"+lk.getLinksAddr()+"</div>";
+					viewHtml+="<hr style='width:95%;'>";
+				}
+				viewHtml+="</div>";
 			}
 			viewHtml+="</div>";
-		}
-		if(ic.getActivities()!=null) {
-			viewHtml+="<div class='appl_acts'>";
-			for(Activitie ac:ic.getActivities()) {
-				viewHtml+="<div class='appl_view_title' style='font-weight:bold;'>대외활동</div>";
-				viewHtml+="<div class='appl_view_name'>"+ac.getActName()+"</div>";
-				viewHtml+="<div><span class='aline' style='float:left; margin-left:1%; margin-right:1%;'>"+" | "+"</span></div>";
-				viewHtml+="<div class='appl_view_date'>"+ac.getStartAct()+"</div>";
-				viewHtml+="<br>";
-				viewHtml+="<div class='appl_view_intro'><pre>"+ac.getActDetail()+"</pre></div>";
-				viewHtml+="<hr style='width:95%;'>";
-			}
+			viewHtml+="<input type='hidden' class='appl_applNo' value='"+applNo+"'/>";
 			viewHtml+="</div>";
-		}
-		if(ic.getLanguages()!=null) {			
-			viewHtml+="<div class='appl_langs'>";
-			for(Lang ln:ic.getLanguages()) {
-				viewHtml+="<div class='appl_view_title' style='font-weight:bold;'>언어</div>";
-				viewHtml+="<div class='appl_view_name'>"+ln.getLangName()+"</div>";
-				viewHtml+="<div><span class='aline' style='float:left; margin-left:1%; margin-right:1%;'>"+" | "+"</span></div>";
-				viewHtml+="<div class='appl_view_subname' style='color:#6E6E6E';>"+ln.getLangLevel()+"</div>";
-				viewHtml+="<div class='appl_view_date'>"+ln.getLangDate()+"</div>";
-				viewHtml+="<br>";
-				viewHtml+="<hr style='width:95%;'>";
-			}
-			viewHtml+="</div>";
-		}
-		if(ic.getLinks()!=null) {
-			viewHtml+="<div class='appl_links'>";
-			for(Links lk:ic.getLinks()) {
-				viewHtml+="<div class='appl_view_title' style='font-weight:bold;'>링크</div>";
-				viewHtml+="<div class='appl_view_name'>"+lk.getLinksAddr()+"</div>";
-				viewHtml+="<hr style='width:95%;'>";
-			}
-			viewHtml+="</div>";
-		}
-		viewHtml+="</div>";
-		viewHtml+="<input type='hidden' class='appl_applNo' value='"+applNo+"'/>";
-		viewHtml+="</div>";
 		}catch(Exception e) {
 			viewHtml+="<div>등록된 이력서가 없습니다.</div>";
 		}
@@ -631,25 +592,97 @@ public class BusinessController2 {
 		mv.setViewName("business/dashboard");
 		return mv;
 	}
-	
+
 	@RequestMapping("business/applOffer.lbc")
-	public ModelAndView applOffer(@RequestParam int applNo) throws MessagingException, UnsupportedEncodingException {
+	public ModelAndView applOffer(HttpServletRequest req, @RequestParam int applNo) throws MessagingException, UnsupportedEncodingException {
 		ModelAndView mv=new ModelAndView();
 		Applicant appl=service.selectApplOne(applNo);
 		Member m=service.selectApplicant(appl.getMemNo());
-		m.getMemEmail();
-		
-		MailHandler mh=new MailHandler(jms);
-		mh.setSubject("에서 제안 요청이 왔습니다.");
-		mh.setText("제안을 확인하시려면 마이페이지 제안 현황을 참고하세요");
-		mh.setTo("sjl0614@naver.com");
-		mh.setFrom("sjl0614@gmail.com", "developers");
-		mh.send();
+		String email=m.getMemEmail();
+		String url=req.getRequestURL().toString();
+		int target=url.indexOf("developers");
+		String frontUrl=url.substring(0,target);
+		String poName=((Position)service.selectPositionOne(appl.getPositionNo())).getPosition();
+		//메일 전송
+		MailHandler sendMail = new MailHandler(jms);
+		sendMail.setSubject("[Developers] "+poName+" 면접 제안 안내");
+		sendMail.setText(
+				new StringBuffer().append("<div style=\"font-family: 'Apple SD Gothic Neo', 'sans-serif' !important; width: 540px; height: 600px; border-top: 4px solid rgb(67,138,255); margin: 100px auto; padding: 30px 0; box-sizing: border-box;\">")
+				.append("<h1 style=\"margin: 0; padding: 0 5px; font-size: 28px; font-weight: 400;\">")
+				.append("<span style=\"font-size: 15px; margin: 0 0 10px 3px;\"><img src=\""+frontUrl+path+"/resources/images/Developers_logo.png"+"\" style=\"height:40px;\"/></span><br />")
+				.append("<span style=\"color: rgb(67,138,255);\">면접 제안</span> 안내입니다.</h1>")
+				.append("<p style=\"font-size: 16px; line-height: 26px; margin-top: 50px; padding: 0 5px;\">")
+				.append("안녕하세요.<br />")
+				.append(((Business)req.getSession().getAttribute("busInfo")).getBusName()+"에서 면접 제안을 하였습니다.<br />")
+				.append("아래 <b style=\"color: rgb(67,138,255);\">'제안 확인'</b> 버튼을 클릭하여 받은 제안을 확인하세요.<br />")
+				.append("감사합니다.</p>")
+				.append("<a style=\"color: #FFF; text-decoration: none; text-align: center;\" href=\"")
+				.append(frontUrl+path+"/member/myPage.lmc?memEmail=")
+				.append(email)
+				.append("\" target=\"_blank\">")
+				.append("<span style=\"display: inline-block; width: 210px; height: 45px; margin: 30px 5px 40px; background-color: rgb(67,138,255); line-height: 45px; vertical-align: middle; font-size: 16px;\">제안 확인</span></a>")
+				.append("<div style=\"border-top: 1px solid #DDD; padding: 5px;\"></div>")
+				.toString());
+		sendMail.setFrom("sjl0614@gmail.com", "디벨로퍼스 ");
+		//		sendMail.setTo(email);
+		sendMail.setTo("sjl0614@naver.com");
+		sendMail.send();
 		int result=service.updateApplOffer(applNo);
-		
+
 		mv.setViewName("jsonView");
 		return mv;
 	}
+
+	@RequestMapping("/business/applPassFail.lbc")
+	public ModelAndView applPassFail(HttpServletRequest req, @RequestParam int applPf, @RequestParam int applNo) throws MessagingException, UnsupportedEncodingException {
+		ModelAndView mv=new ModelAndView();
+		Applicant appl=service.selectApplOne(applNo);
+		Member m=service.selectApplicant(appl.getMemNo());
+		String email=m.getMemEmail();
+		String url=req.getRequestURL().toString();
+		int target=url.indexOf("developers");
+		String frontUrl=url.substring(0,target);
+		String poName=((Position)service.selectPositionOne(appl.getPositionNo())).getPosition();
+		//메일 전송
+		MailHandler sendMail = new MailHandler(jms);
+		sendMail.setSubject("[Developers] "+poName+" 합격여부 안내");
+		sendMail.setText(
+				new StringBuffer().append("<div style=\"font-family: 'Apple SD Gothic Neo', 'sans-serif' !important; width: 540px; height: 600px; border-top: 4px solid rgb(67,138,255); margin: 100px auto; padding: 30px 0; box-sizing: border-box;\">")
+				.append("<h1 style=\"margin: 0; padding: 0 5px; font-size: 28px; font-weight: 400;\">")
+				.append("<span style=\"font-size: 15px; margin: 0 0 10px 3px;\"><img src=\""+frontUrl+path+"/resources/images/Developers_logo.png"+"\" style=\"height:40px;\"/></span><br />")
+				.append("<span style=\"color: rgb(67,138,255);\">합격여부</span> 안내입니다.</h1>")
+				.append("<p style=\"font-size: 16px; line-height: 26px; margin-top: 50px; padding: 0 5px;\">")
+				.append("안녕하세요.<br />")
+				.append(((Business)req.getSession().getAttribute("busInfo")).getBusName()+"기업의 "+poName+" 합격 여부가 전달되었습니다.<br/>")
+				.append("아래 <b style=\"color: rgb(67,138,255);\">'합격여부 확인'</b> 버튼을 클릭하여 확인하세요.<br />")
+				.append("감사합니다.</p>")
+				.append("<a style=\"color: #FFF; text-decoration: none; text-align: center;\" href=\"")
+				.append(frontUrl+path+"/member/myPage.lmc?memEmail=")
+				.append(email)
+				.append("\" target=\"_blank\">")
+				.append("<span style=\"display: inline-block; width: 210px; height: 45px; margin: 30px 5px 40px; background-color: rgb(67,138,255); line-height: 45px; vertical-align: middle; font-size: 16px;\">합격여부 확인</span></a>")
+				.append("<div style=\"border-top: 1px solid #DDD; padding: 5px;\"></div>")
+				.toString());
+		sendMail.setFrom("sjl0614@gmail.com", "디벨로퍼스 ");
+		sendMail.setTo(email);
+		//		sendMail.setTo("sjl0614@naver.com");
+		sendMail.send();
+		Map map=new HashMap();
+		map.put("applNo", applNo);
+		map.put("applStatus",applPf);
+		int result=service.updateApplPf(map);
+
+		mv.setViewName("jsonView");
+		return mv;
+	}
+
+
+
+
+
+
+
+
 
 	//비지니스 포지션
 	@RequestMapping("/business/position.lbc")
@@ -709,6 +742,15 @@ public class BusinessController2 {
 		return mv;
 	}
 
+	@RequestMapping("/business/insertPosition.lbc")
+	public ModelAndView insertPosition() {
+		ModelAndView mv=new ModelAndView();
+		String html="";
+		
+		mv.addObject("dbHtml",html);
+		mv.setViewName("business/dashboard");
+		return mv;
+	}
 
 
 
@@ -818,7 +860,7 @@ public class BusinessController2 {
 			for(String kw:bus.getSearchKeywords()) {
 				biHtml+="<div class='bi_keyword'>";	
 				biHtml+="<input type='checkbox' value='"+kw+"' name='searchKeywords' checked/>";
-				biHtml+="<span>#"+kw+"</span><button type='button' onclick='fn_del_keyword();'><i class='fas fa-times'></i></button></div>";
+				biHtml+="<span>"+kw+"</span><button type='button' onclick='fn_del_keyword();'><i class='fas fa-times'></i></button></div>";
 			}
 		}
 		biHtml+="</div>";
@@ -826,13 +868,6 @@ public class BusinessController2 {
 		biHtml+="</form>";
 		biHtml+="</div>";
 
-		String path="";
-		if(new BusinessController2().getClass().getResource("/").getPath().indexOf("target")<0) {
-			path="/19PM_Developers_final";
-		}else {
-			path="/developers";
-		}
-		
 		String seHtml="";
 
 		seHtml+="<div class='bi_bottom_bar'>";

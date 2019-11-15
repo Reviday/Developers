@@ -16,13 +16,14 @@
 	<jsp:param name="pageTitle" value="메인 화면"/> 
 </jsp:include>
 <div style="height: 70px;"></div>
+<form action="${path }/resume/updateResume.lmc" method="post" id="resumeForm">
 <div class="section">
 <div id="app">
     <main class="App-iEDHGk UeTOO">
         <div>
             <div>
                 <div id="resume-app" class="react-container background-white">
-                 <form action="${path }/resume/updateResume.lmc" method="post">
+                 
                     <div class="container">
                         <div id="resume-detail" class="">
                             <div class="resume-toolbar">
@@ -38,11 +39,11 @@
                                        ></i></div>
 										
                                 <div class="other-btns">
-                                <input type="text" name="status" id="status" value="N"/>
+                                <input type="hidden" name="status" id="status" value="N"/>
                                 <button class="border-primary hidden-xs btn btn-default" type="submit">
                                 	임시 저장
                                 </button>
-                                <button class="hidden-xs btn btn-primary" OnClick="return fn_status()"
+                                <button class="hidden-xs btn btn-primary" OnClick="return fn_status()" id="endFinsh"
                                         type="submit">작성 완료</button><button class="border-gray btn btn-default"
                                         type="button"><i class="fas fa-download"></i></button>
                                 </div>
@@ -53,14 +54,14 @@
                            			  <c:set value="${resume.resumeNo }" var="resumeNo"/>
                            			  
                            			 <input type="hidden" id="resumeNo" value="${resume.resumeNo }"/>
-                                <div width="40" class="Content-zwkXZ dzZUIS" id="deleteModal2">
-                                    <div class="Div-hTZHGu fEVoGZ">
+                                 <div width="40" class="Content-zwkXZ dzZUIS" id="deleteModal2">
+                                    <div class="Div-hTZHGu fEVoGZ" id="modalContent2">
                                     
                                         <p class="Confirm__ConfirmMessage-fNOBqL cHGGot" id=".0.3.0.$/=11.0">
-                                            삭제하시겠습니까?</p>
+                                            	삭제하시겠습니까?</p>
                                     </div>
-                                    <div class="Div-hTZHGu dXKeOh"><button color="#B5B5B5" type="button"
-                                            class="Button-kDSBcD hzWWar" onclick="madalclose();">닫기</button>
+                                    <div class="Div-hTZHGu dXKeOh" id="modalContent3"><button color="#B5B5B5"
+                                            class="Button-kDSBcD hzWWar" type="button" onclick="madalclose();">닫기</button>
                                             <button
                  color="#258BF7" class="Button-kDSBcD ebVQvc" type="button"
                  onclick="deleteList('${resumeNo }');">확인</button>
@@ -95,7 +96,7 @@
          </div>
      </div>
  </div>
-</form>
+
  <div class="resume-lists">
      <div class="resume-list careers">
          <div class="resume-list-header"><span>경력</span></div>
@@ -569,8 +570,8 @@
         </div>
     </main>
  </div>
-</div>
-
+ </div>
+</form>
 <script>
 	
     function careersplus(memEmail,resumeNo) {
@@ -801,9 +802,45 @@
     	var deleteIndex = $('#deleteIndex').val();
     	location.href ="${path }/resume/deleteIndex.lmc?deleteNo="+deleteNo+"&deleteIndex="+deleteIndex+"&resumeNo="+resumeNo;
     }
-  function fn_status(){
-	  $("#status").val("Y");
-  }
+    
+
+    
+  
+
+    function fn_status(){
+ 		  if( ($('input[name=memPhone]')).val().trim().length > 0 &&
+ 	  			($('input[name=memPhone]')).val().trim().length > 0 &&
+ 	  			($('textarea[name=intro]')).val().trim().length > 0 &&
+ 	  			($('input[name=startCareer]')).val().trim().length > 0 &&
+ 	  			($('input[name=endCareer]')).val().trim().length > 0 &&
+ 	  			($('textarea[name=careerIntro]')).val().trim().length > 0 &&
+ 	  			($('input[name=busName]')).val().trim().length > 0 &&
+ 	  			($('input[name=depName]')).val().trim().length > 0 &&
+ 	  			($('input[name=startAct]')).val().trim().length > 0 &&
+ 	  			($('input[name=actName]')).val().trim().length > 0 &&
+ 	  			($('textarea[name=actDetail]')).val().trim().length > 0 &&
+ 	  			($('input[name=startEd]')).val().trim().length > 0 &&
+ 	  			($('input[name=endEd]')).val().trim().length > 0 &&
+ 	  			($('input[name=schoolName]')).val().trim().length > 0 &&
+ 	  			($('input[name=majorName]')).val().trim().length > 0 &&
+ 	  			($('textarea[name=subjectName]')).val().trim().length > 0 &&
+ 	  			($('select[name=langName]')).val().length > 0 &&
+ 	  			($('select[name=langLevel]')).val().length > 0 &&
+ 	  			($('input[name=linksAddr]')).val().trim().length > 0 ){
+ 			  	$("#status").val("Y");
+ 	  			return true;
+ 	  	}else{
+ 	     $("#deleteModal").removeClass('iKzpWM');
+ 	    $("#deleteModal3").removeClass('gMLFic'); 
+ 	    $("#deleteModal").addClass('bLaSri');
+ 	    $("#deleteModal2").addClass('grXykz');
+ 	    $("#deleteModal3").addClass('emhpxA');
+ 	    $("body").addClass('stop-scrolling');
+ 		 document.getElementById('modalContent2').innerHTML='<p class="Confirm__ConfirmMessage-fNOBqL cHGGot" id=".0.3.0.$/=11.0">이력서가 다 작성되지않았습니다.내용을 전부 적어주세요</p>';
+ 		document.getElementById('modalContent3').innerHTML='<button color="#B5B5B5"class="Button-kDSBcD hzWWar" style="width:100%" type="button" onclick="madalclose();">닫기</button>';
+ 	  		return false;
+ 	  	}
+ 	  }
 </script>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/> 
 
