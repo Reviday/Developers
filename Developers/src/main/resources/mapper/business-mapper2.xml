@@ -280,6 +280,8 @@
 		<result property="applDate" column="appl_date" />
 		<result property="applAnsYn" column="appl_ans_yn" />
 		<result property="recommendId" column="recommend_id"/>
+		<result property="offerDate" column="offer_date"/>
+		<result property="answerDate" column="answer_date"/>
 	</resultMap>
 
 	<resultMap type="member" id="memberMap">

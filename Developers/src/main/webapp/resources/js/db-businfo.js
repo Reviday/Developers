@@ -10,9 +10,6 @@ $(function(){
         $('body').css('overflow','');
     });
 
-    
-
-
     //회사정보-메인사진 클릭
     $("[name=bus_img]").on("change",function(){
         var frm=new FormData($(this).parent()[0]);
@@ -37,6 +34,8 @@ $(function(){
                     imgHtml+="<button type='button' class='img_del_btn' onclick='fn_del_img(event);'><i class='far fa-times-circle'></i></botton>";
                     imgHtml+="</div>";
                     $(".add_img").before(imgHtml);
+                    $(img).attr("src",path+data.busImg);
+                    fn_modi_finish();
                 }
             });
         }else{
@@ -50,6 +49,7 @@ $(function(){
                 contentType:false,
                 success:function(data){
                     $(img).attr("src",path+data.busImg);
+                    fn_modi_finish();
                     
                 }
             });
@@ -61,15 +61,22 @@ $(function(){
     });
     $('.modi_img').attr('title','이미지 변경');
     $('.add_img').attr('title', '이미지 추가');
+
+    
 });
 
 function fn_del_img(event){
     $.ajax({
         url:path+"/business/busImgDelete",
         data:{"imgIndex":($(event.target).parents('.modi_img').index())-1},
-        type:"post"
+        type:"post",
+        success:function(){
+            fn_modi_finish();
+        }
     });
     $($(event.target).parents('.modi_img')).remove();
+    
+   
 }
 
 function fn_update_bus(){
@@ -81,10 +88,7 @@ function fn_update_bus(){
         processData:false,
         contentType:false,
         success:function(){
-            $(".modi_text").show();
-            setTimeout(function(){
-                $(".modi_text").fadeOut();
-            },2000);
+            fn_modi_finish();
         }
     });
 }
@@ -96,11 +100,31 @@ function fn_keyword_add(){
             $(event.target).attr('disabled','disabled');
         }else{
             var kw=$('[name="add_keyword"]').val();
-            var keyHtml="<div class='bi_keyword'>";
-            keyHtml+="<input type='checkbox' value='"+kw+"' name='searchKeywords' checked/>";
-            keyHtml+="<span>#"+kw+"</span><button type='button' onclick='fn_del_keyword();'><i class='fas fa-times'></i></button></div>";
-            $('.bi_info_keywords').append(keyHtml);
-            $('[name="add_keyword"]').val('');
+            var count=0;
+            $('[name="searchKeywords"]').each(function(){
+                var sk=this;
+                if($(sk).val()==kw){
+                    $($(sk).parent()).addClass("blinking_btn");
+                    setTimeout(function(){
+                        $($(sk).parent()).removeClass("blinking_btn")},2000);
+                    
+                    count++;
+                }
+            });
+            if(count<1){
+                var keyHtml="<div class='bi_keyword'>";
+                keyHtml+="<input type='checkbox' value='"+kw+"' name='searchKeywords' checked/>";
+                keyHtml+="<span>"+kw+"</span><button type='button' onclick='fn_del_keyword();'><i class='fas fa-times'></i></button></div>";
+                $('.bi_info_keywords').append(keyHtml);
+                $('[name="add_keyword"]').val('');
+            }else{
+                $(".modi_text").text("키워드가 중복되었습니다. ("+kw+")");
+                $(".modi_text").show();
+                setTimeout(function(){
+                $(".modi_text").fadeOut();
+                },2000);
+                $('[name="add_keyword"]').val('');
+            }
         }
     }else{
         $('[name="add_keyword"]').addClass('key_o');
@@ -116,4 +140,14 @@ function fn_del_keyword(){
     $(event.target).parents('.bi_keyword').remove();
     $('.key_over').css("color","black");
     $('.bi_keyword_add').prop("disabled",false);
+}
+
+
+function fn_modi_finish(){
+    
+    $(".modi_text").text("변경사항이 저장 되었습니다.");
+    $(".modi_text").show();
+    setTimeout(function(){
+        $(".modi_text").fadeOut();
+    },2000);
 }
