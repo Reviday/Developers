@@ -4,5 +4,7 @@
 	<select id="salarySelectList" resultType="salary">
 		SELECT JOBAVGSALARY FROM SALARY WHERE JOBFIELD=#{jobField}
 	</select>
-  
+	<select id="selectedJobYears" resultType="_int">
+		SELECT JOBAVGSALARY FROM SALARY WHERE JOBFIELD=#{jobField} AND JOBYEARS=${jobYears}
+	</select>
 </mapper>

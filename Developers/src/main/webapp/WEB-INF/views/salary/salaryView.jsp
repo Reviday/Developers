@@ -323,9 +323,9 @@ select {
 						</div>
 
 						<div class="InputBox-eMDCpm lhajdW">
-							<span class="Select__SelectBox-gLnYwz esQZxO"> <select
-								class="Input-hxTtdt ddiEBf">
-									<option selected="" value="" disabled="">경력</option>
+							<span class="Select__SelectBox-gLnYwz esQZxO"> 
+							<select class="Input-hxTtdt ddiEBf" id="jobYears">
+									<option value="" disabled="">경력</option>
 									<option value="0">신입</option>
 									<option value="1">1년</option>
 									<option value="2">2년</option>
@@ -369,6 +369,15 @@ $("#jobField").change(function(){
 	location.href='${path }/salary/salarySelectList.do?jobField='+jobField;
 });
 
+$("#jobYears").change(function(){
+	var jobField= $("#jobField option:selected").val();
+	var jobYears= $(this).val();
+	console.log("--------");	
+	console.log(jobField);	
+	console.log(jobYears);	
+	location.href='${path }/salary/salaryYears.do?jobField='+jobField +'&jobYears='+jobYears;
+});
+
 
 
 
@@ -388,6 +397,13 @@ $("#jobField").change(function(){
 	salaryList.unshift("연봉");
 	console.log(salaryList);
 	
+	var jobYearsResultList = new Array();
+	<c:forEach items="${jobYearsResultList}" var="item">
+	jobYearsResultList.push("${item}");
+	</c:forEach>
+	jobYearsResultList.unshift("경력")
+	console.log(jobYearsResultList);
+	
 	//그래프 데이터 리스트형 전처리 완료
 	
 	//차트 생성 시작
@@ -396,21 +412,45 @@ $("#jobField").change(function(){
 		padding : {
 			top : 50
 		},
+		title: {
+		    text: "연봉정보"
+		  },
+		tooltip : {
+			grouped : false,
+			format : {
+
+				value : function(value, ratio, id) {
+					var format = id === "data1" ? d3.format(','): d3.format(',') 
+					var str='만원'
+					return format(value)+str;
+				}
+			}
+		},
 		data : {
 			type : "bar",
-			columns : [
-				salaryList
+			columns : [ salaryList, jobYearsResultList
+
 			],
+
+			groups : [ [ "연봉", "경력" ] ],
 			selection : {
 				enabled : true,
 				draggable : true
 			},
 			types : {
 				연봉 : "bar",
+				경력 : "bar",
 				data2 : "line"
 			},
 			colors : {
-				연봉 : "#333333"
+				연봉 : "#333333",
+				경력 : "#ffffff"
+			}
+		},
+		bar : {
+			width : {
+				ratio : 0.9,
+				max : 30
 			}
 		},
 		axis : {
@@ -418,17 +458,16 @@ $("#jobField").change(function(){
 				type : "category",
 				categories : [ "신입", "1년차", "2년차", "3년차", "4년차", "5년차", "6년차",
 						"7년차", "8년차", "9년차", "10년차" ]
-			},
-	
+			}
 		},
-        grid : {
-            x : {
-               show : true
-            },
-            y : {
-               show : true
-            }
-         },
+		grid : {
+			x : {
+				show : true
+			},
+			y : {
+				show : true
+			}
+		},
 		legend : {
 			show : false
 		}

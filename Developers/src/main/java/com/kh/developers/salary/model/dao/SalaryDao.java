@@ -10,4 +10,6 @@ public interface SalaryDao {
 
 	List<Salary> salarySelectList(SqlSessionTemplate session, String jobField);
 
+	int selectedJobYears(SqlSessionTemplate session, Salary s);
+
 }

@@ -23,6 +23,14 @@ public class SalaryServiceImpl implements SalaryService {
 		// TODO Auto-generated method stub
 		return dao.salarySelectList(session,jobField);
 	}
+
+	@Override
+	public int selectedJobYears(Salary s) {
+		// TODO Auto-generated method stub
+		return dao.selectedJobYears(session,s);
+	}
+	
+	
 	
 	
 

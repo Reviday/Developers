@@ -15,6 +15,12 @@ public class SalaryDaoImpl implements SalaryDao {
 		// TODO Auto-generated method stub
 		return session.selectList("salary.salarySelectList",jobField);
 	}
+
+	@Override
+	public int selectedJobYears(SqlSessionTemplate session, Salary s) {
+		// TODO Auto-generated method stub
+		return session.selectOne("salary.selectedJobYears",s);
+	}
 	
 	
 

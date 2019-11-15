@@ -8,4 +8,6 @@ public interface SalaryService {
 
 	List<Salary> salarySelectList(String jobField);
 
+	int selectedJobYears(Salary s);
+
 }

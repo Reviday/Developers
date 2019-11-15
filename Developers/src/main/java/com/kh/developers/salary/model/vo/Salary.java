@@ -12,7 +12,7 @@ public class Salary {
 	
 	private String jobGroup;
 	private String jobField;
-	private int jobYear;
+	private int jobYears;
 	private int jobAvgSalary;
 	
 	
