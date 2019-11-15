@@ -15,7 +15,7 @@
         <c:if test="${not empty list }">
         	<c:forEach var="r" items="${list }">
 		        <div class="mypushList1 mypushList2 mypushList3 mypushList4">
-		            <div class="profile1 profile2" style="background-image: url(${path}${r.mem_photo});"></div>
+		            <div class="profile1 profile2" style="background-image: url(${path}${r.mem_photo != null ? r.mem_photo : '/resources/upload/profile/no-profile-image.png'});"></div>
 		            <p class="sentreferName"><c:out value="${r.mem_name }"/></p>
 		            <p class="sentreferDescription">
 		            	<c:if test="${r.realationship == 'colleague' }">(전)직장동료</c:if>
@@ -50,7 +50,7 @@
 			            </div>
 			            <div class="modaltitle1 modaltitle3">
 			                <div class="recommendeeSection">
-			                    <div class="recommendPicture1 recommendPicture2" style="background-image: url(${r.mem_photo});"></div>
+			                    <div class="recommendPicture1 recommendPicture2" style="background-image: url(${path}${r.mem_photo != null ? r.mem_photo : '/resources/upload/profile/no-profile-image.png'});"></div>
 			                    <p class="recommendeeName"><c:out value="${r.mem_name }"/></p>
 			                    <div class="recommendeeSubInfo">
 			                        <p class="realationship1111">

@@ -1458,3 +1458,20 @@ a {
     background-color: rgba(0,0,0,0.5);
     opacity: 1;
 }
+
+.searchEmail {
+	position: absolute;
+    z-index: 99;
+    width: 92%;
+    padding: 0 20px;
+    text-align: left;
+    border-radius: 6px;
+    box-shadow: 3px 3px 3px lightgrey;
+    background-color: white;
+}
+
+.searchEmail > ul > li:hover {
+	cursor: pointer;
+    background-color: lightgray;
+    padding: 3px 0;
+}

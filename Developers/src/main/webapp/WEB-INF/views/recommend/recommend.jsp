@@ -47,6 +47,7 @@
                             </p>
                             <input type="text" class="recommendName" placeholder="지인의 이름">
                             <input type="email"class="recommendEmail" placeholder="지인의 이메일">
+                            <div class="searchEmail"></div>
                             <div class="realationship">
                                 <select name="" id="recommendSelect">
                                     <option value="none" selected>추천하실 분과의 관계를 선택해 주세요</option>
@@ -155,6 +156,20 @@
 		}else{
 			$(".submitreferButton").removeClass("enable");
 		}
+		var email = $("input[class=recommendEmail]").val();
+		if(email.length > 0 ){
+			$.ajax({
+				url: '${path}' + "/recommend/searchEmail",
+				type: "POST",
+				data: {email : email},	
+				success: function(data){
+					$(".searchEmail").html("");
+					$(".searchEmail").html(data);
+				}
+			}) 
+		}else{
+			$(".searchEmail").html("");
+		}
 	})
 	$(document).on("change", ".realationship", function(event){
 		if($("input[class=recommendEmail]").val().trim().length > 0) emailflag = true;
@@ -195,11 +210,17 @@
 				if(data == "추천받는 사람이 Developers회원이 아닙니다."){
 					alert(data);
 				}
+				if(data == "본인을 추천할 수는 없습니다."){
+					alert(data);
+				}
 			}
 		}) 
 	})
 	$(document).on("click", ".writeReferralButton", function(event){
 		location.href = '${path}' + "/recommend/choochunsaFirst?memNo=" + '${memNo}' + "&recommendEmail=" + recommendEmail;
+	})
+	$(document).on("click", ".emailLi", function(event){
+		$(".recommendEmail").val($(this).text());
 	})
 
 </script>

@@ -79,7 +79,7 @@
                                                 <ul>
                                                 	<c:if test="${p.like_count > 0 }">
 	                                                    <c:forEach var="f" items="${list }" begin="0" end="2">
-	                                                        <li style="background-image: url(${path }${f.mem_photo})"></li>
+	                                                        <li style="background-image: url(${path }${f.mem_icon})"></li>
 	                                                    </c:forEach>
                                                     </c:if>
                                                 </ul>
@@ -168,7 +168,7 @@
                                         <ul>
                                             <c:if test="${p.like_count > 0 }">
 	                                        	<c:forEach var="f" items="${list }" begin="0" end="2">
-	                                            	<li style="background-image: url(${path }${f.mem_photo})"></li>
+	                                            	<li style="background-image: url(${path }${f.mem_icon})"></li>
 	                                            </c:forEach>
                                             </c:if>
                                         </ul>
@@ -191,7 +191,7 @@
 	                                        <ul>
 	                                            <c:if test="${p.like_count > 0 }">
 		                                        	<c:forEach var="f" items="${list }" begin="0" end="2">
-		                                            	<li style="background-image: url(${path}${f.mem_photo != null ? f.mem_photo : '/resources/upload/profile/no-profile-image.png'})"></li>
+		                                            	<li style="background-image: url(${path}${f.mem_icon != null ? f.mem_icon : '/resources/upload/profile/no-profile-image.png'})"></li>
 		                                            </c:forEach>
 	                                            </c:if>
 	                                        </ul>
@@ -345,7 +345,7 @@
                                     </li>
                                     <c:forEach var="f" items="${list }">
 	                                	<li>
-	                                		<div style="background-image: url(${path}${f.mem_photo != null ? f.mem_photo : '/resources/upload/profile/no-profile-image.png'})"></div>
+	                                		<div style="background-image: url(${path}${f.mem_icon != null ? f.mem_icon : '/resources/upload/profile/no-profile-image.png'})"></div>
 	                                		<p><c:out value="${f.mem_name }"/></p>
 	                                	</li>
 	                                </c:forEach>
@@ -419,7 +419,7 @@
                             <ul class="likeList1">
                                 <c:forEach var="r" items="${reList }">
                              	<li class="choochunList" value="${r.recommend_id }" id="${r.mem_name }">
-                             		<div style="background-image: url(${path}${r.mem_photo != null ? r.mem_photo : '/resources/upload/profile/no-profile-image.png'})"></div>
+                             		<div style="background-image: url(${path}${r.mem_icon != null ? r.mem_icon : '/resources/upload/profile/no-profile-image.png'})"></div>
                              		<p><c:out value="${r.mem_name }"/></p>
                              	</li>
                              </c:forEach>

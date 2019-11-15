@@ -84,4 +84,10 @@ public class RecommendServiceImpl implements RecommendService{
 		return m;
 	}
 	
+	@Override
+	public List<Member> searchEmail(String email) {
+		List<Member> list = dao.searchEmail(session, email);
+		return list;
+	}
+	
 }

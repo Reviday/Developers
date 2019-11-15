@@ -38,17 +38,21 @@ public class RecommendController {
 		if(recommendMember != null) {		
 			Recommend recommend = service.selectRecommend(memNo, recommendMember.getMemNo());
 			Friend friend = service.selectFriend(memNo, recommendMember.getMemNo());
-			if(recommend != null) {
-				result = "이미 추천한 친구입니다.";
+			if(memNo == recommendMember.getMemNo()) {
+				result = "본인을 추천할 수는 없습니다.";
 			}else {			
-				if(friend != null) {					
-					int insert = service.insertRecommend(memNo, recommendMember.getMemNo(), name, realationship);
-					result = "추천추가";
-				}else {
-					int insert = service.insertRecommend(memNo, recommendMember.getMemNo(), name, realationship);
-					int insertFriend = service.insertFriend(memNo, recommendMember.getMemNo());
-					result = "추천친구추가";
-				}						
+				if(recommend != null) {
+					result = "이미 추천한 친구입니다.";
+				}else {			
+					if(friend != null) {					
+						int insert = service.insertRecommend(memNo, recommendMember.getMemNo(), name, realationship);
+						result = "추천추가";
+					}else {
+						int insert = service.insertRecommend(memNo, recommendMember.getMemNo(), name, realationship);
+						int insertFriend = service.insertFriend(memNo, recommendMember.getMemNo());
+						result = "추천친구추가";
+					}						
+				}
 			}
 		}else {
 			result = "추천받는 사람이 Developers회원이 아닙니다.";
@@ -104,5 +108,22 @@ public class RecommendController {
 		Recommend recommend = service.selectRecommend(memNo, m.getMemNo());
 		model.addAttribute("recommend", recommend);
 		return "/recommend/choochunsa";
+	}
+	//추천하기 모달 -> 이메일 검색 에이작스
+	@RequestMapping(value = "/recommend/searchEmail", produces = "application/text; charset=utf8")
+	@ResponseBody
+	public String searchEmail(String email) {
+		List<Member> list = service.searchEmail(email);
+		String result = "";
+		if(list != null) {
+			result = "<ul>";
+			for(int i = 0; i < list.size(); i++) {
+				result += "<li class='emailLi'>";
+				result += list.get(i).getMemEmail();
+				result += "</li>";
+			}
+			result += "</ul>";
+		}
+		return result;
 	}
 }

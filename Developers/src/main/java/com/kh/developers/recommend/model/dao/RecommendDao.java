@@ -21,4 +21,5 @@ public interface RecommendDao {
 	int deleteRecommend(SqlSessionTemplate session, int memNo, int recommendNo);
 	int insertChoochunsa(SqlSessionTemplate session, int memNo, int recommendNo, String text);
 	Member selectMember(SqlSessionTemplate session, String recommendEmail);
+	List<Member> searchEmail(SqlSessionTemplate session, String email);
 }
