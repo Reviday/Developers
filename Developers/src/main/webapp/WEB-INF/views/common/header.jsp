@@ -96,7 +96,7 @@
                <aside class="aside_menu">
                   <ul>
                      <li class="smMoreVisible sible">
-                        <button class="searchButton" type="button">
+                        <button class="searchButton" type="button" onclick="searchModal(); this.onclick=null;">
                            <i class="fas fa-search"></i>
                         </button>
                      </li>
@@ -151,7 +151,7 @@
                <aside class="aside_menu">
                   <ul>
                      <li class="smMoreVisible sible">
-                        <button class="searchButton" type="button">
+                        <button class="searchButton" type="button" onclick="searchModal(); this.onclick=null;">
                            <i class="fas fa-search"></i>
                         </button>
                      </li>
@@ -247,9 +247,21 @@
                </aside>
             </c:if>
          </nav>
-      </div>
+      </div>      
    </header>
    <c:if test="${script ne null}">
 	${script }
 	</c:if>
+<!-- 검색창 모달 -->
+<script>
+	function searchModal(){
+		$.ajax({
+			url: path + "/mainSearch/mainSearchModal",
+			type: "POST",	
+			success: function(data){
+				$(".heaer_fm").append(data);
+			}
+		})
+	}
+</script>
    

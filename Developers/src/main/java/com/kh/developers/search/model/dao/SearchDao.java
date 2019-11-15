@@ -58,4 +58,6 @@ public interface SearchDao {
 	Applicant selectApplicant(SqlSessionTemplate session, int memNo, int positionNo);
 	int insertPositionRecommend(SqlSessionTemplate session, Map map);
 	int insertPosition(SqlSessionTemplate session, Map map);
+	List<Tag> selectTagList(SqlSessionTemplate session);
+	List<Tag> selectCompanyTagList(SqlSessionTemplate session, String text);
 }

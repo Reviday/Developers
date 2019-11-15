@@ -246,6 +246,17 @@ public class SearchServiceImpl implements SearchService {
 		return result;
 	}
 	
+	@Override
+	public List<Tag> selectTagList() {
+		List<Tag> list = dao.selectTagList(session);
+		return list;
+	}
+	
+	@Override
+	public List<Tag> selectCompanyTagList(String text) {
+		List<Tag> list = dao.selectCompanyTagList(session, text);
+		return list;
+	}
 	
 	
 }

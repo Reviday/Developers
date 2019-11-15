@@ -87,4 +87,8 @@ public interface SearchService {
 	int insertPositionRecommend(Map map);
 	//포지션지원(추천인없음)
 	int insertPosition(Map map);
+	//헤더->검색모달(첫검색)
+	List<Tag> selectTagList();
+	//헤더 -> 태그검색(태그가 있는 회사 검색)
+	List<Tag> selectCompanyTagList(String text);
 }

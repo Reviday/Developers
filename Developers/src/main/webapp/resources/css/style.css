@@ -1003,6 +1003,336 @@ header #mouse_shadow {
     background: #258bf7;
     color: white;
 }
+
+.searchHeader {
+    left: 0;
+    top: 0;
+    width: 100%;
+    position: absolute;
+    background-color: white;
+}
+
+.searchHeader form {
+    width: 100%;
+    max-width: 1060px;
+    margin: 0 auto;
+    padding: 7px 0;
+    position: relative;
+    background-color: #fff;
+}
+
+@media (max-width: 1199px) and (min-width: 992px) {
+    .searchHeader form {
+        width: 90%;
+    }
+}
+
+@media (max-width: 991px) and (min-width: 768px) {
+    .searchHeader form {
+        width: 90%;
+    }
+}
+
+.searchHeader form input {
+    height: 36px;
+    width: 100%;
+    margin: 0;
+    padding: 0 36px 0 46px;
+    border: 0;
+    border-radius: 3px;
+    font-size: 16px;
+    font-weight: 300;
+    color: #333;
+    background-color: #e8e8e8;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+input, input:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+@media (max-width: 767px) {
+    .searchHeader form input {
+        background-color: #fff;
+        border-radius: 0;
+    }
+}
+
+.searchHeader form > svg {
+    position: absolute;
+    font-size: 16px;
+    left: 20px;
+    top: 35%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    color: #999;
+}
+
+.searchBody {
+    position: fixed;
+    left: 0;
+    right: 0;
+    background-color: #fff;
+}
+
+@media (max-width: 767px) {
+    .searchBody {
+        height: calc(100% - 50px);
+        background: #fff;
+        border-top: 1px solid #eee;
+        overflow-y: auto;
+    }
+}
+
+.searchBody .container1 {
+    position: relative;
+    margin: 0 auto;
+    padding: 0;
+    max-width: 1060px;
+}
+
+.container1 {
+    padding: 0;
+    max-width: 1060px;
+}
+
+@media (min-width: 1200px) {
+    .container1 {
+        width: 87.72%;
+    }
+}
+
+@media (min-width: 992px) {
+    .container1 {
+        width: 90%;
+    }
+}
+
+@media (min-width: 768px) {
+    .container1 {
+        width: 90%;
+    }
+}
+
+.container1 {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+@media (max-width: 767px) {
+    .searchBody .container1 {
+        padding: 20px;
+    }
+}
+
+.recommendTag {
+    display: inline-block;
+    font-size: 16px;
+    line-height: 1;
+    font-weight: 400;
+    color: #999;
+}
+
+@media (max-width: 767px) {
+    .recommendTag {
+        font-size: 13px;
+        position: relative;
+        top: -3px;
+    }
+}
+
+.tagList {
+    padding: 20px 0 75px;
+}
+
+@media (max-width: 767px) {
+    .tagList {
+        padding-top: 10px;
+        padding-bottom: 50px;
+    }
+}
+
+.tagList>.tagListItem {
+    float: left;
+    width: auto;
+}
+
+.tagList>li {
+    width: 100%;
+    position: relative;
+    display: block;
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 1;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+@media (max-width: 767px) {
+    .tagList>.tagListItem {
+        font-size: 16px;
+        margin-bottom: 0;
+    }
+}
+
+@media (max-width: 767px) {
+    .tagList>li {
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+}
+
+.tagList>.tagListItem:first-of-type>button {
+    margin-left: 0;
+}
+
+.tagListBtn {
+    display: inline-block;
+    height: 50px;
+    line-height: 50px;
+    font-size: 15px;
+    font-weight: 400;
+    color: #333;
+    border-radius: 3px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    padding: 0 26px;
+    background-color: #f3f5f8;
+    border-radius: 25px;
+}
+
+@media (max-width: 767px) {
+    .tagList>.tagListItem>button {
+        margin-top: 5px;
+        margin-bottom: 3px;
+    }
+}
+
+@media (max-width: 767px) {
+    .tagListBtn {
+        margin: 10px 4px 0 0;
+        font-size: 13px;
+        padding: 0 12px;
+        height: 34px;
+        line-height: 34px;
+    }
+}
+
+.latelysearch {
+    display: inline-block;
+    font-size: 16px;
+    line-height: 1;
+    font-weight: 400;
+    color: #999;
+}
+
+@media (max-width: 767px) {
+    .latelysearch {
+        font-size: 13px;
+        position: relative;
+        top: -3px;
+    }
+}
+
+.searchDelete {
+    float: right;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1;
+    color: #268bf7!important;
+}
+
+@media (max-width: 767px) {
+    .searchDelete {
+        font-size: 13px;
+    }
+}
+
+.latelysearchList {
+    padding: 20px 0 25px;
+}
+
+@media (max-width: 767px) {
+    .latelysearchList {
+        padding-top: 10px;
+        padding-bottom: 30px;
+    }
+}
+
+.latelysearchList>li {
+    width: 100%;
+    position: relative;
+    display: block;
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 1;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+@media (max-width: 767px) {
+    .latelysearchList>li {
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+}
+
+.disBtn {
+    display: none;
+}
+
+@media (max-width: 767px) {
+    .disBtn {
+        display: inline-block;
+        position: absolute;
+        right: -6px;
+        top: 50%;
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%);
+        padding: 6px;
+        line-height: 1;
+        font-size: 11px;
+    }
+}
+
+.searchHeader form button svg {
+    display: none;
+    position: absolute;
+    font-size: 45px;
+    right: 10px;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    color: #999;
+    padding: 10px;
+}
+
+@media (max-width: 767px) {
+    .searchHeader form button svg {
+        display: block;
+    }
+}
+
+.latelysearchList:after {
+    display: block;
+    content: "";
+    clear: both;
+}
+
+.searchBody .container1:after {
+    content: "";
+    display: block;
+    position: fixed;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,.4);
+}
 /********** header css End **********/
 
 

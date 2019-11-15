@@ -256,5 +256,15 @@ public class SearchDaoImpl implements SearchDao {
 		return session.insert("search.insertPosition", map);
 	}
 	
+	@Override
+	public List<Tag> selectTagList(SqlSessionTemplate session) {
+		// TODO Auto-generated method stub
+		return session.selectList("search.selectTagList");
+	}
 	
+	@Override
+	public List<Tag> selectCompanyTagList(SqlSessionTemplate session, String text) {
+		// TODO Auto-generated method stub
+		return session.selectList("search.selectCompanyTagList", text);
+	}
 }

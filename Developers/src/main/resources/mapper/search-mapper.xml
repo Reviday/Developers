@@ -254,6 +254,14 @@
 	<insert id="insertPosition" parameterType="map">
 		INSERT INTO TA_APPL_BUS VALUES(SEQ_TAB_NO.NEXTVAL, #{busNo}, #{memNo}, #{positionNo}, #{resumeNo}, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT)
 	</insert>
+	<!-- 헤더 -> 검색(첫 검색) 추천태그리스트 -->
+	<select id="selectTagList" resultType="tag">
+		SELECT * FROM (SELECT ROWNUM AS RNUM, A.* FROM TAG A ORDER BY TAG_NO DESC) WHERE RNUM BETWEEN 1 AND 5
+	</select>
+	<!-- 헤더->태그검색 -->
+	<select id="selectCompanyTagList" parameterType="string" resultType="tag">
+		SELECT * FROM TAG WHERE TAG LIKE '%' || #{text} || '%'
+	</select>
 	
 	<resultMap type="position" id="positionArray">
 		<result column="job_type" property="job_type" typeHandler="StrArray"/>
