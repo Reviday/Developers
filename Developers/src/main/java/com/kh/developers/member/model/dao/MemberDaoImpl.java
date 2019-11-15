@@ -22,6 +22,12 @@ public class MemberDaoImpl implements MemberDao {
 	
 	
 	@Override
+	public Member selectMemNo(SqlSessionTemplate session, int memNo) {
+		// TODO Auto-generated method stub
+		return session.selectOne("member.selectMemNo",memNo);
+	}
+
+	@Override
 	public List<Applicant> selectMemAppl(SqlSessionTemplate session, Member m, int cPage, int numPerPage) {
 		// TODO Auto-generated method stub
 		RowBounds row=new RowBounds((cPage-1)*numPerPage, numPerPage);

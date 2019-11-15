@@ -2,12 +2,17 @@ package com.kh.developers.member.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import javax.inject.Inject;
+import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -15,6 +20,7 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,6 +41,7 @@ import com.kh.developers.admin.model.vo.MemberLoginLog;
 import com.kh.developers.business.model.service.BusinessService;
 import com.kh.developers.business.model.vo.Applicant;
 import com.kh.developers.business.model.vo.Business;
+import com.kh.developers.common.authentication.MailHandler;
 import com.kh.developers.common.encrypt.MyEncrypt;
 import com.kh.developers.common.page.PageFactory2;
 import com.kh.developers.member.model.service.MemberService;
@@ -64,6 +71,8 @@ public class MemberController {
 	private ResumeService rService;
 	@Autowired
 	private BCryptPasswordEncoder pwEncoder;
+	@Inject
+    private JavaMailSender mailSender;
 	@Autowired
 	private MyEncrypt enc;
 	
@@ -571,17 +580,47 @@ public class MemberController {
     	for(Applicant a : applicant) {
     		business.add(service.selectBusOne(""+a.getBusNo()));
     	}
-    	System.out.println(applicant);
-    	System.out.println(business+"컨트롤ㄹ러");
     	mv.addObject("app", applicant);
     	mv.addObject("bus", business);
     	mv.setViewName("member/ajax/myApplicant");
     	return mv;
     }
     @RequestMapping("/member/applAns.lmc")
-    public ModelAndView applAns(int memNo,int number) {
+    public ModelAndView applAns(int memNo,int number,HttpServletRequest req) throws MessagingException, UnsupportedEncodingException {
     	ModelAndView mv = new ModelAndView();
     	int result=service.applAns(memNo,number);
+    	
+    	Member m = service.selectMemNo(memNo);
+    	String url=req.getRequestURL().toString();
+		int target=url.indexOf("developers");
+		String frontUrl=url.substring(0,target);
+    	Map<String, Object> map = new HashMap<String, Object>();
+		map.put("memNo", m.getMemNo());
+		//메일 전송
+		MailHandler sendMail = new MailHandler(mailSender);
+		sendMail.setSubject("[Developers] 서비스 이메일 인증");
+        sendMail.setText(
+                new StringBuffer().append("<div style=\"font-family: 'Apple SD Gothic Neo', 'sans-serif' !important; width: 540px; height: 600px; border-top: 4px solid rgb(67,138,255); margin: 100px auto; padding: 30px 0; box-sizing: border-box;\">")
+                .append("<h1 style=\"margin: 0; padding: 0 5px; font-size: 28px; font-weight: 400;\">")
+                .append("<span style=\"font-size: 15px; margin: 0 0 10px 3px;\"><img src=\""+frontUrl+"developers/resources/images/Developers_logo.png"+"\" style=\"height:40px;\"/></span><br />")
+                .append("<span style=\"color: rgb(67,138,255);\">메일인증</span> 안내입니다.</h1>")
+                .append("<p style=\"font-size: 16px; line-height: 26px; margin-top: 50px; padding: 0 5px;\">")
+                .append("안녕하세요.<br />")
+                .append("지원자가 응답을 완료하였습니다.<br />")
+                .append("어떤 응답을 하였는지 로그인하여 확인해주세요.<br />")
+                .append("감사합니다.</p>")
+                .append("<a style=\"color: #FFF; text-decoration: none; text-align: center;\" href=\"")
+                .append(frontUrl+"developers/member/emailConfirm?memNo=")
+                .append(m.getMemNo())
+                .append("&memEmail=")
+                .append(m.getMemEmail())
+                .append("\" target=\"_blank\">")
+                .append("<span style=\"display: inline-block; width: 210px; height: 45px; margin: 30px 5px 40px; background-color: rgb(67,138,255); line-height: 45px; vertical-align: middle; font-size: 16px;\">메일 인증</span></a>")
+                .append("<div style=\"border-top: 1px solid #DDD; padding: 5px;\"></div>")
+                .toString());
+        sendMail.setFrom("ysk.testacc@gmail.com", "디벨로퍼스 ");
+        sendMail.setTo(frontUrl);
+        sendMail.send();
     	mv.addObject("number", number);
     	mv.setViewName("member/ajax/myApplicant");
     	return mv;

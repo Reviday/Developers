@@ -441,9 +441,9 @@
 						        <div class="col-sm-9 col-sm-offset-3">
 						
 						            <div class="dropdown custom-dropdown i18n_language resume-dropdown">
-						            <c:if test="${la.langName==null }">
+						           <c:if test="${la.langName==null }">
 						                <select class="mdb-select md-form colorful-select dropdown-primary" name="langName">
-						                    <option selected="selected" disabled value=null >언어</option>
+						                    <option selected="selected" value=null >언어</option>
 						                    <option value="영어">영어</option>
 						                    <option value="독일어">독일어</option>
 						                    <option value="스페인어">스페인어</option>
@@ -454,7 +454,14 @@
 									</c:if>
 									 <c:if test="${la.langName!=null }">
 						                <select class="mdb-select md-form colorful-select dropdown-primary" name="langName">
-						                    <option selected="selected"  value="${la.langName }" >${la.langName }</option>
+						                    <option selected="selected"  value="${la.langName }" >
+						                    <c:if test="${la.langName!=null }">
+						                    ${la.langName }
+						                    </c:if>
+						                    <c:if test="${la.langName==null }">
+									                    언어
+						                    </c:if>
+						                    </option>
 						                    <option value="영어">영어</option>
 						                    <option value="독일어">독일어</option>
 						                    <option value="스페인어">스페인어</option>

@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="member">
+	<select id="selectMemNo" parameterType="_int" resultMap="memberMap">
+		SELECT * FROM TA_MEMBER WHERE mem_no=#{memNo} AND MEM_STATUS='Y'
+	</select>
 	<select id="selectMemAppl" parameterType="member" resultMap="memberMap">
 		SELECT * FROM TA_APPL_BUS where mem_no=#{memNo} ORDER BY offer_Date desc 
 	</select>

@@ -37,5 +37,6 @@ public interface MemberDao {
    List<Position> selectBookMark(SqlSessionTemplate session,Member m);
    List<Applicant> selectMemAppl(SqlSessionTemplate session,Member m, int cPage,int numPerPage);
    int selectMemApplCount(SqlSessionTemplate session,Member m);
+   Member selectMemNo(SqlSessionTemplate session,int memNo);
    
 }

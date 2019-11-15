@@ -33,4 +33,5 @@ public interface MemberService {
 	List<Position> selectBookMark(Member m);
 	List<Applicant> selectMemAppl(Member m,int cPage,int numPerPage);
 	int selectMemApplCount(Member m);
+	Member selectMemNo(int memNo);
 }

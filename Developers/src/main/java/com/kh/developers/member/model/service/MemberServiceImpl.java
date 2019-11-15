@@ -39,6 +39,12 @@ public class MemberServiceImpl implements MemberService {
 	
 
 	@Override
+	public Member selectMemNo(int memNo) {
+		// TODO Auto-generated method stub
+		return dao.selectMemNo(session,memNo);
+	}
+
+	@Override
 	public List<Applicant> selectMemAppl(Member m, int cPage, int numPerPage) {
 		// TODO Auto-generated method stub
 		return dao.selectMemAppl(session,m,cPage,numPerPage);
@@ -59,6 +65,7 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public int applAns(int memNo,int number) {
 		// TODO Auto-generated method stub
+		
 		return dao.applAns(session,memNo,number);
 	}
 
