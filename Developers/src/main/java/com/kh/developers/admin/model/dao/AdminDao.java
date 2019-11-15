@@ -20,10 +20,6 @@ public interface AdminDao {
 	int selectWithdrawMemberCountBySearch(SqlSessionTemplate session, Map<String, Object> searchValue);
 	List<Member> selectWithdrawMemberListBySearch(SqlSessionTemplate session, Map<String, Object> searchValue, int cPage, int numPerPage);
 	int restoreMember(SqlSessionTemplate session, Member m);
-	int selectloginLogCount(SqlSessionTemplate session);
-	List<MemberLoginLog> selectLoginLogList(SqlSessionTemplate session, int cPage, int numPerPage);
 	int selectLoginLogCountBySearch(SqlSessionTemplate session, Map<String, Object> searchValue);
 	List<MemberLoginLog> selectLoginLogListBySearch(SqlSessionTemplate session, Map<String, Object> searchValue, int cPage, int numPerPage);
-	int selectLoginLogCountBySuccess(SqlSessionTemplate session, Map<String, Object> searchValue);
-	List<MemberLoginLog> selectLoginLogListBySuccess(SqlSessionTemplate session, Map<String, Object> searchValue, int cPage, int numPerPage);
 }

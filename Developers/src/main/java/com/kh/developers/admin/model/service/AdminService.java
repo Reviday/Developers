@@ -13,12 +13,8 @@ public interface AdminService {
 	int selectWithdrawMemberCountBySearch(String value);
 	List<Member> selectWithdrawMemberListBySearch(String value, int cPage, int numPerPage);
 	int restoreMember(Member m);
-	int selectloginLogCount();
-	List<MemberLoginLog> selectLoginLogList(int cPage, int numPerPage);
-	int selectLoginLogCountBySearch(String value);
-	List<MemberLoginLog> selectLoginLogListBySearch(String value, int cPage, int numPerPage);
-	int selectLoginLogCountBySuccess(String value, String mllSuccess);
-	List<MemberLoginLog> selectLoginLogListBySuccess(String value, String mllSuccess, int cPage, int numPerPage);
+	int selectLoginLogCountBySearch(String value, String mllSuccess);
+	List<MemberLoginLog> selectLoginLogListBySearch(String value, String mllSuccess, int cPage, int numPerPage);
 	
 	int selectMemberCountBySearch(String value, int searchLevel);
 	List<Member> selectMemberListBySearch(String value, int searchLevel, int cPage, int numPerPage);

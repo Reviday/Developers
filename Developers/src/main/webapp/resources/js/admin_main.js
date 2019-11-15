@@ -84,13 +84,18 @@ function wd_search(cPage) {
 	}); 
 }
 
-function mll_search() {
+function mll_search(cPage) {
 	var searchValue=document.getElementById('system-search').value;
+	var mllSuccess=document.getElementById('mllSuccess').value;
+	if(cPage==0) cPage=$('#cPage').val();
+	console.log(mllSuccess);
 	$.ajax({
 		url:path+"/admin/loginLogSearchList.lac",
 		type:"POST",
 		data:{
-			"value":searchValue
+			"value":searchValue,
+			"cPage":cPage,
+			"mllSuccess":mllSuccess
 		},
 		success: function(result) {
 			if(result!=null) {
