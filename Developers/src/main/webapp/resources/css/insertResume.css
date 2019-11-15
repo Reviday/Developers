@@ -6560,3 +6560,7 @@ body.stop-scrolling {
 .custom-select{
 	width: 100px !important;
 }
+.hidden-xs btn btn-primary disabled{
+	    background-color: #999;
+    cursor: not-allowed;
+}

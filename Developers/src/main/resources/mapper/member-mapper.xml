@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="member">
+	<select id="selectMemAppl" parameterType="member" resultMap="memberMap">
+		SELECT * FROM TA_APPL_BUS where mem_no=#{memNo} ORDER BY offer_Date desc 
+	</select>
+	<select id="selectMemApplCount" parameterType="member" resultType="_int">
+		SELECT COUNT(*) FROM TA_APPL_BUS WHERE mem_no=#{memNo}
+	</select>
 	<select id="selectBookMark" parameterType="member" resultMap="positionMap" >
-		select * from BUSINESS_INFO i join enroll_position e on (i.bus_no=e.bus_no) join BOOK_MARK b on (e.position_no=b.position_no) join ta_member m on(b.mem_no=m.mem_no) where m.mem_no=#{memNo}
+		SELECT * FROM BUSINESS_INFO i join enroll_position e on (i.bus_no=e.bus_no) join BOOK_MARK b on (e.position_no=b.position_no) join ta_member m on(b.mem_no=m.mem_no) where m.mem_no=#{memNo}
 	</select>
 	<select id="selectLike" parameterType="member" resultMap="positionMap">
 		select p.position_no,b.bus_name,b.BUS_COUNTRY,p.position,b.bus_area,b.bus_images,(SELECT COUNT(*) FROM PO_LIKE WHERE LIKE_ID = P.LIKE_ID) AS LIKE_COUNT from ENROLL_POSITION p join po_like l on (p.like_id=l.like_id) join ta_member m on(l.mem_no=m.mem_no) join BUSINESS_INFO b on(p.bus_no=b.bus_no) where m.MEM_NO=#{memNo}

@@ -11977,11 +11977,12 @@ screen and (-ms-high-contrast:active) {
 }
 
 ._2oEXS1kAsO9i_0mkxCxkCA>ul li {
-    width: 25%;
+    width: 23%;
+    magin-right: 10px;
     padding: 10px;
     list-style: none;
     display: inline-block;
-    vertical-align: top
+    vertical-align: top;
 }
 
 @media (max-width:767px) {

@@ -36,6 +36,7 @@ import com.kh.developers.business.model.service.BusinessService;
 import com.kh.developers.business.model.vo.Applicant;
 import com.kh.developers.business.model.vo.Business;
 import com.kh.developers.common.encrypt.MyEncrypt;
+import com.kh.developers.common.page.PageFactory2;
 import com.kh.developers.member.model.service.MemberService;
 import com.kh.developers.member.model.vo.Interests;
 import com.kh.developers.member.model.vo.Member;
@@ -613,5 +614,31 @@ public class MemberController {
 			return mv;
 		}
 	}
+    @RequestMapping("/member/myPointPage.lmc")
+    public ModelAndView myPoint(Member m) {
+    	ModelAndView mv = new ModelAndView();
+    	m=service.selectMemberOne(m);
+    	
+    	
+    	mv.setViewName("member/ajax/myPoint");
+    	return mv;
+    }
+    @RequestMapping("/member/dashBoard.lmc")
+    public ModelAndView dashBoard(Member m,
+    		@RequestParam(value="cPage", required=false, defaultValue="1")int cPage) {
+    	ModelAndView mv= new ModelAndView();
+    	m=service.selectMemberOne(m);
+    	int numPerPage=5;
+		int totalData=0;
+		//list 가져오기
+		List<Applicant>applList=service.selectMemAppl(m,cPage,numPerPage); 
+		totalData=service.selectMemApplCount(m);
+		
+		mv.addObject("pageBar", PageFactory2.getApplPageBar(totalData, cPage, numPerPage));
+    	mv.addObject("applList", applList);
+    	mv.addObject("totalData", totalData);
+    	mv.setViewName("member/dashBoard");
+    	return mv;
+    }
     
 }

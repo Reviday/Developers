@@ -3,6 +3,7 @@ package com.kh.developers.member.model.dao;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -20,6 +21,19 @@ public class MemberDaoImpl implements MemberDao {
 	
 	
 	
+	@Override
+	public List<Applicant> selectMemAppl(SqlSessionTemplate session, Member m, int cPage, int numPerPage) {
+		// TODO Auto-generated method stub
+		RowBounds row=new RowBounds((cPage-1)*numPerPage, numPerPage);
+		return session.selectList("member.selectMemAppl",m,row);
+	}
+
+	@Override
+	public int selectMemApplCount(SqlSessionTemplate session, Member m) {
+		// TODO Auto-generated method stub
+		return session.selectOne("member.selectMemApplCount",m);
+	}
+
 	@Override
 	public List<Position> selectBookMark(SqlSessionTemplate session, Member m) {
 		// TODO Auto-generated method stub
