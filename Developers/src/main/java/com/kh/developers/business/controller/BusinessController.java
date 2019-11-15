@@ -427,7 +427,7 @@ public class BusinessController {
 		if(adList.size()>0) {
 			for(Advertisement ad: adList) {
 				ad.setPosition(bService.selectPositionName(ad.getPositionNo()));
-				if(ad.getAdType().equals("category")){
+				if(ad.getAdType().equals("CATEGORY")){
 					categoryList.add(ad);
 				}else {
 					mainList.add(ad);
@@ -460,6 +460,15 @@ public class BusinessController {
 		}
 		res.setContentType("application/json;charset=utf-8");
 		return jsonStr;
+	}
+	
+	
+//	광고 클릭 수 저장 함수 
+	@RequestMapping("/business/AdClick")
+	public String adClick(@RequestParam(value="adNo", required=true) int adNo,HttpServletRequest req) {
+		
+		
+		return "";
 	}
 	
 	

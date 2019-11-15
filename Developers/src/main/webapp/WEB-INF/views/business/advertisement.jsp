@@ -172,9 +172,9 @@ div#bottom-info>input{
 				</div>
 				<!-- 광고 노출 효과  -->
 				<div class="ad_result">
-					<div class="category_table">
-						<h4 style="background-color: #FFFFFF; font-weight:bold; text-align:center; padding:0.5em;">직무 상단 광고 결과</h4>
-						<table class="table table-sm table-dark">
+					<h4 style="background-color: #FFFFFF; font-weight:bold; text-align:center; padding:0.5em;">직무 상단 광고 결과</h4>
+					<div class="category_table" style="height: 11em; overflow:scroll;">
+						<table class="table table-sm table-dark" style="text-align:center;">
 							<thead>
 								<tr>
 								<th scope="col">번호</th>
@@ -189,26 +189,33 @@ div#bottom-info>input{
 								<c:if test="${not empty categoryList}">
 									<c:forEach items="${categoryList}" var="c" varStatus="s">
 										<tr>
-										<th scope="row">${s.index}</th>
+										<th scope="row">${s.index+1}</th>
 										<td>${c.position}</td>
-										<td>${c.adEndDate}</td>
-										<td>${c.adStartDate}+" ~ "+${c.adEndDate}</td>
+										<td>
+											<c:set var = "now" value = "<%= new java.util.Date()%>"/>
+											<c:if test="${c.adEndDate ge now }">계제중</c:if>
+											<c:if test="${c.adEndDate lt now }">종료</c:if>
+										</td>
+										<td><fmt:formatDate type = "date" 
+											value = "${c.adStartDate}" /> ~ <fmt:formatDate type = "date" 
+											value = "${c.adEndDate}" /></td>
 										<td>${c.clickTimes}</td>
 										</tr>
 									</c:forEach>
 								</c:if>
-								<c:if test="${empty categoryList}">
-									<tr>
-										
-									</tr>
-								</c:if>
-									<!-- 여기부터 자바스크립트  -->
 							</tbody>
 						</table>
+						<c:if test="${empty categoryList}">
+							<div class="emptyCategory" style="text-align: center; padding:5em;">
+								<p style="color:#585858">아직 집행중인 직무 상단 광고가 없습니다.<br>
+									상단의 광고버튼으로 광고를 시작해보세요
+								</p>
+							</div>
+						</c:if>
 					</div>
-					<div class="category_table">
-							<h4 style="background-color: #FFFFFF; font-weight:bold; text-align:center; padding:0.5em;">메인 상단 광고 결과</h4>
-							<table class="table table-sm table-dark">
+					<h4 style="background-color: #FFFFFF; font-weight:bold; text-align:center; padding:0.5em; margin-top:2em;">메인 상단 광고 결과</h4>
+						<div class="category_table" style="height: 11em; overflow:scroll;">
+							<table class="table table-sm table-dark" style="text-align:center;">
 								<thead>
 									<tr>
 									<th scope="col">번호</th>
@@ -221,17 +228,31 @@ div#bottom-info>input{
 								<tbody>
 									<!-- 여기부터 자바스크립트  -->
 									<c:if test="${not empty mainList}">
-									<tr>
-									<th scope="row">1</th>
-									<td>10020</td>
-									<td>Otto</td>
-									<td>@mdo</td>
-									<td>@mdo</td>
-									</tr>
+										<c:forEach items="${mainList}" var="m" varStatus="s">
+											<tr>
+											<th scope="row">${s.index+1}</th>
+											<td>${m.position}</td>
+											<td>
+												<c:set var = "now" value = "<%= new java.util.Date()%>"/>
+												<c:if test="${m.adEndDate ge now }">계제중</c:if>
+												<c:if test="${m.adEndDate lt now }">종료</c:if>
+											</td>
+											<td><fmt:formatDate type = "date" 
+												value = "${m.adStartDate}" /> ~ <fmt:formatDate type = "date" 
+												value = "${m.adEndDate}" /></td>
+											<td>${m.clickTimes}</td>
+											</tr>
+										</c:forEach>
 									</c:if>
-										<!-- 여기부터 자바스크립트  -->
 								</tbody>
 							</table>
+							<c:if test="${empty categoryList}">
+								<div class="emptyCategory" style="text-align: center; padding:5em;">
+									<p style="color:#585858">아직 집행중인 직무 상단 광고가 없습니다.<br>
+										상단의 광고버튼으로 광고를 시작해보세요
+									</p>
+								</div>
+							</c:if>
 						</div>
 				</div>
 			</div>

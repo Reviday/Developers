@@ -19,7 +19,7 @@ public class Advertisement {
 	private int adNo;
 	private int busNo;
 	private Date adStartDate;
-	private Date adeEndDate;
+	private Date adEndDate;
 	private String adType;
 	private int clickTimes;
 	
