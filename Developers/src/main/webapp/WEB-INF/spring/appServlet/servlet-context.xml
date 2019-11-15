@@ -53,6 +53,11 @@
 			<mapping path="/business/*"/>
 			<beans:bean class="com.kh.developers.common.interceptor.BusinessIndexReset"/>
 		</interceptor>
+		<interceptor>
+			<mapping path="/*"/>
+			<mapping path="/*/*"/>
+			<beans:bean class="com.kh.developers.common.interceptor.InsertRequestMappingLog"/>
+		</interceptor>
 	</interceptors>
 	
 	<!-- 파일업로드처리 resolver등록 -->

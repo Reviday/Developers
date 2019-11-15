@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="log">
+	<insert id="insertRequestMappingLog" parameterType="rml">
+		INSERT INTO TA_REQUEST_MAPPING_LOG VALUES(REQ_MAP_SEQ.NEXTVAL, #{rmlMemNo}, #{rmlUserEmail}, SYSDATE, #{rmlIp}, #{rmlUseragent}, #{rmlUrl}, #{rmlReferer})
+	</insert>
 	<select id="selectLoginLogListBySearch" parameterType="map" resultMap="mllMap">
 		SELECT * FROM TA_MEMBER_LOGIN_LOG WHERE
 		<if test="searchStr != null">
@@ -79,5 +82,15 @@
 		<result property="mllUseragent" column="mll_useragent"/>
 		<result property="mllUrl" column="mll_url"/>
 		<result property="mllReferer" column="mll_referer"/>
+	</resultMap>
+	<resultMap type="rml" id="rmlMap">
+		<result property="rmlNo" column="rml_no"/>
+		<result property="rmlMemNo" column="rml_mem_no"/>
+		<result property="rmlUserEmail" column="rml_user_email"/>
+		<result property="rmlDatetime" column="rml_datetime"/>
+		<result property="rmlIp" column="rml_ip"/>
+		<result property="rmlUseragent" column="rml_useragent"/>
+		<result property="rmlUrl" column="rml_url"/>
+		<result property="rmlReferer" column="rml_referer"/>
 	</resultMap>
 </mapper>

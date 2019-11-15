@@ -3,7 +3,7 @@ package com.kh.developers.admin.model.service;
 import java.util.List;
 
 import com.kh.developers.admin.model.vo.MemberLoginLog;
-import com.kh.developers.admin.model.vo.VisitCount;
+import com.kh.developers.admin.model.vo.RequestMappingLog;
 import com.kh.developers.member.model.vo.Member;
 
 public interface AdminService {
@@ -18,4 +18,6 @@ public interface AdminService {
 	
 	int selectMemberCountBySearch(String value, int searchLevel);
 	List<Member> selectMemberListBySearch(String value, int searchLevel, int cPage, int numPerPage);
+	
+	void insertRequestMappingLog(RequestMappingLog rml);
 }

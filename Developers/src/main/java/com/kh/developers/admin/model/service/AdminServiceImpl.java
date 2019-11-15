@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.developers.admin.model.dao.AdminDao;
 import com.kh.developers.admin.model.vo.MemberLoginLog;
+import com.kh.developers.admin.model.vo.RequestMappingLog;
 import com.kh.developers.common.util.SearchValuesTemplate;
 import com.kh.developers.member.model.vo.Member;
 
@@ -21,6 +22,11 @@ public class AdminServiceImpl implements AdminService {
 	@Autowired
 	private SqlSessionTemplate session;
 	private SearchValuesTemplate svt;
+	
+	@Override
+	public void insertRequestMappingLog(RequestMappingLog rml) {
+		dao.insertRequestMappingLog(session, rml);
+	}
 	
 	@Override
 	public List<Member> selectMemberListBySearch(String value, int searchLevel, int cPage, int numPerPage) {
