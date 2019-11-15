@@ -139,6 +139,13 @@ public class BusinessServiceImpl2 implements BusinessService2 {
 		int result=dao.updateApplOffer(session, applNo);
 		return result;
 	}
+	
+
+	@Override
+	public int updateApplPf(Map map) {
+		int result=dao.updateApplPf(session, map);
+		return result;
+	}
 
 	@Override
 	public Member selectApplicant(int memNo) {

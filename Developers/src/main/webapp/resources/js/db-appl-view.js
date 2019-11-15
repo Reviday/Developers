@@ -27,6 +27,21 @@ $(function(){
 function fn_appl_offer(){   
     $.ajax({
         url:path+"/business/applOffer.lbc",
-        data:{"applNo":$(".appl_applNo").val()}
+        data:{"applNo":$(".appl_applNo").val()},
+        success:function(data){
+            alert("지원자에게 제안을 보냈습니다.");
+        }
+    });
+}
+
+function fn_appl_pf(flag){
+    $(event.target).siblings().remove();
+    $.ajax({
+        url:path+"/business/applPassFail.lbc",
+        data:{"applNo":$(".appl_applNo").val(),"applPf":flag},
+        success:function(){
+            alert("지원자에게 합격여부를 전달했습니다.");
+           $('.appl_offer_btn').attr("disabled","disabled");
+        }
     });
 }

@@ -62,6 +62,7 @@ public interface BusinessDao2 {
 	Applicant selectApplOne(SqlSession session, int applNo);
 	
 	int updateApplOffer(SqlSession session, int applNo);
+	int updateApplPf(SqlSession session, Map map);
 	
 	List<Position> selectPositionList(SqlSession session, Map map);
 }

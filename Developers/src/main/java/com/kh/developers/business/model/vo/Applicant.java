@@ -23,5 +23,6 @@ public class Applicant {
 	private Date answerDate;
 	private Date applDate;
 	private int recommendId;
+	private Date finalDate;
 	
 }

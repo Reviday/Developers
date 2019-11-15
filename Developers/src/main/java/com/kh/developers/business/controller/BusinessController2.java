@@ -471,7 +471,21 @@ public class BusinessController2 {
 			viewHtml+="<h2>"+(service.selectPositionOne(appl.getPositionNo())).getPosition()+"></h2>";
 			if(appl.getPositionNo()==0) {
 				viewHtml+="<span>매칭일 : "+appl.getApplDate()+"</span>";	
+			}else {
+				viewHtml+="<span>지원일 : "+appl.getApplDate()+"</span>";
 			}
+			if(appl.getOfferDate()!=null) {
+				viewHtml+="<span>면접 제안일 : "+appl.getOfferDate()+"</span>";
+			}
+			if(appl.getAnswerDate()!=null) {
+				viewHtml+="<span>제안 응답일 : "+appl.getAnswerDate()+"</span>";
+			}
+			if(appl.getFinalDate()!=null && appl.getApplStatus()==3) {
+
+				viewHtml+="<span>최종 합격일 : "+appl.getFinalDate()+"</span>";
+
+			}
+
 			viewHtml+="<span></span>";
 			viewHtml+="</div>";
 			viewHtml+="<div class='appl_view_container'>";
@@ -483,7 +497,7 @@ public class BusinessController2 {
 				if(appl.getApplAnsYn()=='O') {
 					viewHtml+="<div class='appl_offering'>제안 중...</div>";
 				}else if(appl.getApplAnsYn()=='Y'){
-					viewHtml+="<button type='button' class='appl_offer_btn' onclick='fn_appl_pass();'>합격</button><button type='button' class='appl_offer_btn' onclick='fn_appl_fail();'>불합격</button>"; break;
+					viewHtml+="<button type='button' class='appl_offer_btn' onclick='fn_appl_pf(3);'>합격</button><button type='button' class='appl_offer_btn' onclick='fn_appl_pf(4);'>불합격</button>"; break;
 				}else {
 					viewHtml+="<div class='appl_offering'>제안 거절</div>";
 				}
@@ -493,7 +507,7 @@ public class BusinessController2 {
 			if(appl.getApplAnsYn()=='Y') {			
 				viewHtml+="<div class='appl_name'>"+ic.getMemName()+"</div>";
 				viewHtml+="<div class='appl_info'>"+ic.getMemEmail()+"</div>";
-				viewHtml+="<div class='appl_info'>"+ic.getMemPhone()!=null?ic.getMemPhone():""+"</div>";
+				viewHtml+="<div class='appl_info'>"+ic.getMemPhone()+"</div>";
 			}else if(appl.getApplAnsYn()=='O') {
 				viewHtml+="<div class='appl_name'>"+ic.getMemName().charAt(0)+"<i class='far fa-circle'></i><i class='far fa-circle'></i></div>";
 				viewHtml+="<div class='appl_info_hide'><h5>지원자가 제안을 수락할 경우,</h5> <h5>이름과 연락처를 확인할 수 있습니다.</h5></div>";
@@ -588,9 +602,10 @@ public class BusinessController2 {
 		String url=req.getRequestURL().toString();
 		int target=url.indexOf("developers");
 		String frontUrl=url.substring(0,target);
+		String poName=((Position)service.selectPositionOne(appl.getPositionNo())).getPosition();
 		//메일 전송
 		MailHandler sendMail = new MailHandler(jms);
-		sendMail.setSubject("[Developers] 면접 제안 안내");
+		sendMail.setSubject("[Developers] "+poName+" 면접 제안 안내");
 		sendMail.setText(
 				new StringBuffer().append("<div style=\"font-family: 'Apple SD Gothic Neo', 'sans-serif' !important; width: 540px; height: 600px; border-top: 4px solid rgb(67,138,255); margin: 100px auto; padding: 30px 0; box-sizing: border-box;\">")
 				.append("<h1 style=\"margin: 0; padding: 0 5px; font-size: 28px; font-weight: 400;\">")
@@ -609,14 +624,65 @@ public class BusinessController2 {
 				.append("<div style=\"border-top: 1px solid #DDD; padding: 5px;\"></div>")
 				.toString());
 		sendMail.setFrom("sjl0614@gmail.com", "디벨로퍼스 ");
-//		sendMail.setTo(email);
+		//		sendMail.setTo(email);
 		sendMail.setTo("sjl0614@naver.com");
 		sendMail.send();
 		int result=service.updateApplOffer(applNo);
-		
+
 		mv.setViewName("jsonView");
 		return mv;
 	}
+
+	@RequestMapping("/business/applPassFail.lbc")
+	public ModelAndView applPassFail(HttpServletRequest req, @RequestParam int applPf, @RequestParam int applNo) throws MessagingException, UnsupportedEncodingException {
+		ModelAndView mv=new ModelAndView();
+		Applicant appl=service.selectApplOne(applNo);
+		Member m=service.selectApplicant(appl.getMemNo());
+		String email=m.getMemEmail();
+		String url=req.getRequestURL().toString();
+		int target=url.indexOf("developers");
+		String frontUrl=url.substring(0,target);
+		String poName=((Position)service.selectPositionOne(appl.getPositionNo())).getPosition();
+		//메일 전송
+		MailHandler sendMail = new MailHandler(jms);
+		sendMail.setSubject("[Developers] "+poName+" 합격여부 안내");
+		sendMail.setText(
+				new StringBuffer().append("<div style=\"font-family: 'Apple SD Gothic Neo', 'sans-serif' !important; width: 540px; height: 600px; border-top: 4px solid rgb(67,138,255); margin: 100px auto; padding: 30px 0; box-sizing: border-box;\">")
+				.append("<h1 style=\"margin: 0; padding: 0 5px; font-size: 28px; font-weight: 400;\">")
+				.append("<span style=\"font-size: 15px; margin: 0 0 10px 3px;\"><img src=\""+frontUrl+path+"/resources/images/Developers_logo.png"+"\" style=\"height:40px;\"/></span><br />")
+				.append("<span style=\"color: rgb(67,138,255);\">합격여부</span> 안내입니다.</h1>")
+				.append("<p style=\"font-size: 16px; line-height: 26px; margin-top: 50px; padding: 0 5px;\">")
+				.append("안녕하세요.<br />")
+				.append(((Business)req.getSession().getAttribute("busInfo")).getBusName()+"기업의 "+poName+" 합격 여부가 전달되었습니다.<br/>")
+				.append("아래 <b style=\"color: rgb(67,138,255);\">'합격여부 확인'</b> 버튼을 클릭하여 확인하세요.<br />")
+				.append("감사합니다.</p>")
+				.append("<a style=\"color: #FFF; text-decoration: none; text-align: center;\" href=\"")
+				.append(frontUrl+path+"/member/myPage.lmc?memEmail=")
+				.append(email)
+				.append("\" target=\"_blank\">")
+				.append("<span style=\"display: inline-block; width: 210px; height: 45px; margin: 30px 5px 40px; background-color: rgb(67,138,255); line-height: 45px; vertical-align: middle; font-size: 16px;\">합격여부 확인</span></a>")
+				.append("<div style=\"border-top: 1px solid #DDD; padding: 5px;\"></div>")
+				.toString());
+		sendMail.setFrom("sjl0614@gmail.com", "디벨로퍼스 ");
+		sendMail.setTo(email);
+		//		sendMail.setTo("sjl0614@naver.com");
+		sendMail.send();
+		Map map=new HashMap();
+		map.put("applNo", applNo);
+		map.put("applStatus",applPf);
+		int result=service.updateApplPf(map);
+
+		mv.setViewName("jsonView");
+		return mv;
+	}
+
+
+
+
+
+
+
+
 
 	//비지니스 포지션
 	@RequestMapping("/business/position.lbc")
@@ -676,6 +742,15 @@ public class BusinessController2 {
 		return mv;
 	}
 
+	@RequestMapping("/business/insertPosition.lbc")
+	public ModelAndView insertPosition() {
+		ModelAndView mv=new ModelAndView();
+		String html="";
+		
+		mv.addObject("dbHtml",html);
+		mv.setViewName("business/dashboard");
+		return mv;
+	}
 
 
 

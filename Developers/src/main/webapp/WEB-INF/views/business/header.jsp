@@ -144,15 +144,21 @@
 					<ul class="nav_us">
 						<li class="ls1 ls2" id="logo">
 							<label for="logoFile" style="cursor: pointer;">
+								<c:if test="${empty busInfo}">
+									<img class="Dev_black_logo" src="${path}/resources/images/Developers_black_logo.png" style="height:30px; margin-top:10px;"/>
+								</c:if>
 								<c:if test="${not empty busInfo.busLogo}">
 									<img class="logoImg" src="${path}${busInfo.busLogo}"/>
+									<form id="logoFrm" name="logoFrm" enctype="multipart/form-data" method="POST">
+										<input type="file" accept="image/*" id="logoFile" name="logoFile" style="display:none"/>
+									</form>
 								</c:if>
-								<c:if test="${empty busInfo.busLogo}">
-									<img class="logoImg" src=""/>
+								<c:if test="${not empty busInfo && empty busInfo.busLogo}">
+									<img class="logoImg" src="${path}/resources/images/bus_logo_plus.png" title="로고를 등록하세요"/>
+									<form id="logoFrm" name="logoFrm" enctype="multipart/form-data" method="POST">
+										<input type="file" accept="image/*" id="logoFile" name="logoFile" style="display:none"/>
+									</form>
 								</c:if>
-								<form id="logoFrm" name="logoFrm" enctype="multipart/form-data" method="POST">
-									<input type="file" accept="image/*" id="logoFile" name="logoFile" style="display:none"/>
-								</form>
 							</label>
 						</li>
 						<li class="ls1 ls2">
