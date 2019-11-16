@@ -1004,7 +1004,7 @@ header #mouse_shadow {
     color: white;
 }
 
-.searchHeader {
+.searchHeader11 {
     left: 0;
     top: 0;
     width: 100%;
@@ -1012,7 +1012,7 @@ header #mouse_shadow {
     background-color: white;
 }
 
-.searchHeader form {
+.searchHeader11 form {
     width: 100%;
     max-width: 1060px;
     margin: 0 auto;
@@ -1022,18 +1022,18 @@ header #mouse_shadow {
 }
 
 @media (max-width: 1199px) and (min-width: 992px) {
-    .searchHeader form {
+    .searchHeader11 form {
         width: 90%;
     }
 }
 
 @media (max-width: 991px) and (min-width: 768px) {
-    .searchHeader form {
+    .searchHeader11 form {
         width: 90%;
     }
 }
 
-.searchHeader form input {
+.searchHeader11 form input {
     height: 36px;
     width: 100%;
     margin: 0;
@@ -1055,13 +1055,13 @@ input, input:focus {
 }
 
 @media (max-width: 767px) {
-    .searchHeader form input {
+    .searchHeader11 form input {
         background-color: #fff;
         border-radius: 0;
     }
 }
 
-.searchHeader form > svg {
+.searchHeader11 form > svg {
     position: absolute;
     font-size: 16px;
     left: 20px;
@@ -1071,7 +1071,7 @@ input, input:focus {
     color: #999;
 }
 
-.searchBody {
+.searchBody11 {
     position: fixed;
     left: 0;
     right: 0;
@@ -1079,7 +1079,7 @@ input, input:focus {
 }
 
 @media (max-width: 767px) {
-    .searchBody {
+    .searchBody11 {
         height: calc(100% - 50px);
         background: #fff;
         border-top: 1px solid #eee;
@@ -1087,37 +1087,37 @@ input, input:focus {
     }
 }
 
-.searchBody .container1 {
+.searchBody11 .container111 {
     position: relative;
     margin: 0 auto;
     padding: 0;
     max-width: 1060px;
 }
 
-.container1 {
+.container111 {
     padding: 0;
     max-width: 1060px;
 }
 
 @media (min-width: 1200px) {
-    .container1 {
+    .container111 {
         width: 87.72%;
     }
 }
 
 @media (min-width: 992px) {
-    .container1 {
+    .container111 {
         width: 90%;
     }
 }
 
 @media (min-width: 768px) {
-    .container1 {
+    .container111 {
         width: 90%;
     }
 }
 
-.container1 {
+.container111 {
     margin-right: auto;
     margin-left: auto;
     padding-left: 10px;
@@ -1125,12 +1125,12 @@ input, input:focus {
 }
 
 @media (max-width: 767px) {
-    .searchBody .container1 {
+    .searchBody11 .container111 {
         padding: 20px;
     }
 }
 
-.recommendTag {
+.recommendTag11 {
     display: inline-block;
     font-size: 16px;
     line-height: 1;
@@ -1139,30 +1139,30 @@ input, input:focus {
 }
 
 @media (max-width: 767px) {
-    .recommendTag {
+    .recommendTag11 {
         font-size: 13px;
         position: relative;
         top: -3px;
     }
 }
 
-.tagList {
+.tagList11 {
     padding: 20px 0 75px;
 }
 
 @media (max-width: 767px) {
-    .tagList {
+    .tagList11 {
         padding-top: 10px;
         padding-bottom: 50px;
     }
 }
 
-.tagList>.tagListItem {
+.tagList11>.tagListItem11 {
     float: left;
     width: auto;
 }
 
-.tagList>li {
+.tagList11>li {
     width: 100%;
     position: relative;
     display: block;
@@ -1174,24 +1174,24 @@ input, input:focus {
 }
 
 @media (max-width: 767px) {
-    .tagList>.tagListItem {
+    .tagList11>.tagListItem11 {
         font-size: 16px;
         margin-bottom: 0;
     }
 }
 
 @media (max-width: 767px) {
-    .tagList>li {
+    .tagList11>li {
         font-size: 16px;
         margin-bottom: 20px;
     }
 }
 
-.tagList>.tagListItem:first-of-type>button {
+.tagList11>.tagListItem11:first-of-type>button {
     margin-left: 0;
 }
 
-.tagListBtn {
+.tagListBtn11 {
     display: inline-block;
     height: 50px;
     line-height: 50px;
@@ -1207,14 +1207,14 @@ input, input:focus {
 }
 
 @media (max-width: 767px) {
-    .tagList>.tagListItem>button {
+    .tagList11>.tagListItem11>button {
         margin-top: 5px;
         margin-bottom: 3px;
     }
 }
 
 @media (max-width: 767px) {
-    .tagListBtn {
+    .tagListBtn11 {
         margin: 10px 4px 0 0;
         font-size: 13px;
         padding: 0 12px;
@@ -1223,7 +1223,7 @@ input, input:focus {
     }
 }
 
-.latelysearch {
+.latelysearch11 {
     display: inline-block;
     font-size: 16px;
     line-height: 1;
@@ -1232,14 +1232,14 @@ input, input:focus {
 }
 
 @media (max-width: 767px) {
-    .latelysearch {
+    .latelysearch11 {
         font-size: 13px;
         position: relative;
         top: -3px;
     }
 }
 
-.searchDelete {
+.searchDelete11 {
     float: right;
     font-size: 16px;
     font-weight: 600;
@@ -1248,23 +1248,23 @@ input, input:focus {
 }
 
 @media (max-width: 767px) {
-    .searchDelete {
+    .searchDelete11 {
         font-size: 13px;
     }
 }
 
-.latelysearchList {
+.latelysearchList11 {
     padding: 20px 0 25px;
 }
 
 @media (max-width: 767px) {
-    .latelysearchList {
+    .latelysearchList11 {
         padding-top: 10px;
         padding-bottom: 30px;
     }
 }
 
-.latelysearchList>li {
+.latelysearchList11>li {
     width: 100%;
     position: relative;
     display: block;
@@ -1276,18 +1276,18 @@ input, input:focus {
 }
 
 @media (max-width: 767px) {
-    .latelysearchList>li {
+    .latelysearchList11>li {
         font-size: 16px;
         margin-bottom: 20px;
     }
 }
 
-.disBtn {
+.disBtn11 {
     display: none;
 }
 
 @media (max-width: 767px) {
-    .disBtn {
+    .disBtn11 {
         display: inline-block;
         position: absolute;
         right: -6px;
@@ -1300,7 +1300,7 @@ input, input:focus {
     }
 }
 
-.searchHeader form button svg {
+.searchHeader11 form button svg {
     display: none;
     position: absolute;
     font-size: 45px;
@@ -1313,18 +1313,18 @@ input, input:focus {
 }
 
 @media (max-width: 767px) {
-    .searchHeader form button svg {
+    .searchHeader11 form button svg {
         display: block;
     }
 }
 
-.latelysearchList:after {
+.latelysearchList11:after {
     display: block;
     content: "";
     clear: both;
 }
 
-.searchBody .container1:after {
+.searchBody11 .container111:after {
     content: "";
     display: block;
     position: fixed;

@@ -1,5 +1,6 @@
 package com.kh.developers.search.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -349,7 +350,6 @@ public class SearchController {
 		//회사소개 정보 
 		Company company = service.companyInfo(busNo);
 		model.addAttribute("company", company);
-		System.out.println(company);
 		return "search/companyAllInfo";
 	}
 	//회사소개페이지에서의 태그모달창 태그버튼생성
@@ -414,5 +414,39 @@ public class SearchController {
 			result = "포지션에 지원이 완료되었습니다.";
 		}
 		return result;
+	}
+	//헤더 검색 -> 검색 모달(첫 클릭)
+	@RequestMapping(value = "/mainSearch/mainSearchModal", produces = "application/text; charest=utf-8")
+	public ModelAndView mainSearchModal(ModelAndView mv) {
+		List<Tag> list = service.selectTagList();
+		mv.addObject("list", list);
+		mv.setViewName("common/search");
+		return mv;
+	}
+	//헤더 검색 -> 페이지 전환
+	@RequestMapping("/mainSearch/changePage")
+	public String mainSearchChangePage(String text, Model model) {
+		if(text.substring(0,1).equals("#")) {
+			//태그검색(회사만 검색)
+			//태그가 있는 회사의 회사번호리스트 검색
+			List<Integer> busNoList = service.selectCompanyTagList(text.substring(1));
+			//태그가 포함되어있는 회사 태그리스트 검색
+			List<Tag> tagList = service.selectTagCompanyList(busNoList);
+			//추천할 태그 5개 검색
+			List<Tag> reList = service.selectTagList();
+			//태그가 있는 회사리스트 검색
+			List<Company> cList = new ArrayList();
+			for(Integer i : busNoList) {
+				cList.add(service.selectCompanyList(i));
+			}
+			model.addAttribute("reList", reList);
+			model.addAttribute("tag", text);
+			model.addAttribute("tagList", tagList);
+			model.addAttribute("cList", cList);
+			return "common/tagSearch";
+		}else {
+			//회사, 포지션, 키워드 검색(회사, 포지션 검색)
+			return "common/otherSearch";
+		}
 	}
 }

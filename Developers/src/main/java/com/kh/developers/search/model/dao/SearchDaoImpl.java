@@ -263,8 +263,21 @@ public class SearchDaoImpl implements SearchDao {
 	}
 	
 	@Override
-	public List<Tag> selectCompanyTagList(SqlSessionTemplate session, String text) {
+	public List<Integer> selectCompanyTagList(SqlSessionTemplate session, String text) {
 		// TODO Auto-generated method stub
 		return session.selectList("search.selectCompanyTagList", text);
+	}
+	
+	@Override
+	public Company selectCompanyList(SqlSessionTemplate session, int busNo) {
+		// TODO Auto-generated method stub
+		return session.selectOne("search.selectCompanyList", busNo);
+	}
+	
+	@Override
+	public List<Tag> selectTagCompanyList(SqlSessionTemplate session, List<Integer> list) {
+		Map map = new HashMap();
+		map.put("list", list);
+		return session.selectList("search.selectTagCompanyList", map);
 	}
 }

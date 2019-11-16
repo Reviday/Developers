@@ -259,8 +259,19 @@
 		SELECT * FROM (SELECT ROWNUM AS RNUM, A.* FROM TAG A ORDER BY TAG_NO DESC) WHERE RNUM BETWEEN 1 AND 5
 	</select>
 	<!-- 헤더->태그검색 -->
-	<select id="selectCompanyTagList" parameterType="string" resultType="tag">
-		SELECT * FROM TAG WHERE TAG LIKE '%' || #{text} || '%'
+	<select id="selectCompanyTagList" parameterType="string" resultType="int">
+		SELECT BUS_NO FROM TAG WHERE TAG LIKE '%' || #{text} || '%' GROUP BY BUS_NO
+	</select>
+	<!-- 헤더->태그로 회사리스트 조회 -->
+	<select id="selectCompanyList" parameterType="_int" resultMap="companyArray">
+		SELECT BUS_NO, BUS_NAME, BUS_COUNTRY, BUS_AREA, BUS_TOTAL_EMP, BUS_INTRODUCE, BUS_LOGO, BUS_IMAGES, NEW_INCOME, ALL_INCOME FROM BUSINESS_INFO WHERE BUS_NO = #{busNo}  
+	</select>
+	<!-- 헤더->태그검색(태그리스트) -->
+	<select id="selectTagCompanyList" parameterType="map" resultType="tag">
+		SELECT * FROM TAG WHERE BUS_NO IN 
+		<foreach collection="list" item="b" open="(" close=")" separator=",">
+			#{b.value}
+		</foreach>
 	</select>
 	
 	<resultMap type="position" id="positionArray">

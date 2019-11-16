@@ -22,7 +22,7 @@
                 <ul>
                 	<c:if test="${not empty tagList }">
                     	<c:forEach var="t" items="${tagList }">
-                    		<li><a href="">#<c:out value="${t }"/></a></li>
+                    		<li><a href=""><c:out value="${t.tag }"/></a></li>
                     	</c:forEach>
                     </c:if>
                     <li>

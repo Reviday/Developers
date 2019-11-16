@@ -59,5 +59,7 @@ public interface SearchDao {
 	int insertPositionRecommend(SqlSessionTemplate session, Map map);
 	int insertPosition(SqlSessionTemplate session, Map map);
 	List<Tag> selectTagList(SqlSessionTemplate session);
-	List<Tag> selectCompanyTagList(SqlSessionTemplate session, String text);
+	List<Integer> selectCompanyTagList(SqlSessionTemplate session, String text);
+	Company selectCompanyList(SqlSessionTemplate session, int busNo);
+	List<Tag> selectTagCompanyList(SqlSessionTemplate session, List<Integer> list);
 }

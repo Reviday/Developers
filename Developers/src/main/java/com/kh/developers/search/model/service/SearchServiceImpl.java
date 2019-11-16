@@ -253,10 +253,21 @@ public class SearchServiceImpl implements SearchService {
 	}
 	
 	@Override
-	public List<Tag> selectCompanyTagList(String text) {
-		List<Tag> list = dao.selectCompanyTagList(session, text);
+	public List<Integer> selectCompanyTagList(String text) {
+		List<Integer> list = dao.selectCompanyTagList(session, text);
 		return list;
 	}
 	
+	@Override
+	public Company selectCompanyList(int busNo) {
+		Company c = dao.selectCompanyList(session, busNo);
+		return c;
+	}
+	
+	@Override
+	public List<Tag> selectTagCompanyList(List<Integer> list) {
+		List<Tag> list1 = dao.selectTagCompanyList(session, list);
+		return list1;
+	}
 	
 }

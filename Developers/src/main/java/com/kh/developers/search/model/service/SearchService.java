@@ -90,5 +90,9 @@ public interface SearchService {
 	//헤더->검색모달(첫검색)
 	List<Tag> selectTagList();
 	//헤더 -> 태그검색(태그가 있는 회사 검색)
-	List<Tag> selectCompanyTagList(String text);
+	List<Integer> selectCompanyTagList(String text);
+	//헤더 -> 태그검색(태그로 회사리스트 조회)
+	Company selectCompanyList(int busNo);
+	//헤더 -> 태그검색(태그리스트)
+	List<Tag> selectTagCompanyList(List<Integer> list);
 }
