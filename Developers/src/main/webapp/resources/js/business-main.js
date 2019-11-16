@@ -7,13 +7,15 @@ var warning=document.getElementById("warning");
 
 logPw.addEventListener('keyup',function(e){
     if(e.target.selectionEnd>3){
-        logBtn.style.color="";
-        logBtn.style.borderColor="";
+        logBtn.style.color="#FFFFFF";
+        logBtn.style.backgroundColor="";
+        logBtn.style.borderColor="#0080FF";
         logBtn.removeAttribute("disabled");
     }else if(e.target.selectionEnd<=3){
-        logBtn.style.color="#D0D3D4";
-        logBtn.style.borderColor="#D0D3D4";
-        logBtn.setAttribute("disabled",true);
+        logBtn.style.color="##FAFAFA";
+        logBtn.style.backgroundColor="#E6E6E6";
+        logBtn.style.borderColor="#FAFAFA";
+        logBtn.setAttribute("disabled","disabled");
     }
 });
 
@@ -80,7 +82,7 @@ phone.addEventListener('change',function(e){
         phoneCheck=0;
         phoneCheck++;
     }else{
-        $('#warning-area').append("<p style='color:#F57F17'>전화번호를 정확히 입력해주세요.</p>")
+        $('#warning-area').append("<p style='color:#F57F17'>전화번호를 정확하게 입력해주세요.</p>")
         phoneCheck=0;
     }
 });

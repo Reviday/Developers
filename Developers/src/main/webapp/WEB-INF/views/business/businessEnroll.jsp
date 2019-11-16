@@ -315,10 +315,10 @@ max-height: 10em;
 						     <!-- ::after -->
 						   </div>
 						   <div>
-						 	 	 <c:if test="${not empty sessionScope.loginMember}">
-						     		 <input type="text" class="form-control dis must" name="busEmail" placeholder="기존에 적었던 이메일 primary key 불러오기" value="${sessionScope.loginMember.memEmail }" required>
+						 	 	 <c:if test="${not empty loginMember}">
+						     		 <input type="text" class="form-control dis must" name="busEmail" placeholder="기존에 적었던 이메일 primary key 불러오기" value="${loginMember.memEmail}" required>
 						     	</c:if> 
-   						 	 	 <c:if test="${empty sessionScope.loginMember}">
+   						 	 	 <c:if test="${empty loginMember}">
 						     		 <input type="text" class="form-control dis must" name="busEmail" placeholder="기존에 적었던 이메일 primary key 불러오기" required>
 						     	</c:if> 
 						   </div>
@@ -332,10 +332,10 @@ max-height: 10em;
 					     <!-- ::after -->
 					   </div>
 					   <div>
-					  	  	<c:if test="${not empty sessionScope.loginMember}">
-					      		<input type="text" class="form-control dis must" name="busPhone" placeholder="기존에 적었던 전화번호 불러오기" value="${sessionScope.loginMember.memPhone}" required>
+					  	  	<c:if test="${not empty loginMember}">
+					      		<input type="text" class="form-control dis must" name="busPhone" placeholder="기존에 적었던 전화번호 불러오기" value="${loginMember.memPhone}" required>
 					      	</c:if>
-				      		 <c:if test="${ empty sessionScope.loginMember}">
+				      		 <c:if test="${ empty loginMember}">
 				       			 <input type="text" class="form-control dis must" name="busPhone" placeholder="기존에 적었던 전화번호 불러오기" required>
 					      	</c:if>
 					   </div>

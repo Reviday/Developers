@@ -17,10 +17,10 @@ function openSearch(){
 }
 
 function disabledOn(){
-    allInfo=$('.dis');
-    for(var a in allInfo){
-        allInfo[a].value="";
-    }
+    // allInfo=$('.dis');
+    // for(var a in allInfo){
+    //     allInfo[a].value="";
+    // }
     
     bnt.setAttribute("disabled", true);
     bnt.style.color="#A4A4A4";

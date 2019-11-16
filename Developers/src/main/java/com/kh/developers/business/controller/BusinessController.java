@@ -134,7 +134,6 @@ public class BusinessController {
 				if(result!=null&&result.getMemEmailCert().equals("N")) {
 					model.addAttribute("ldc", "noemailcert"); // ldc : login Deny Code 
 				}else if(result!=null&&result.getMemLevel()<3) {
-
 					 // 아직 bussinessEnroll 안한 회원 
 					model.addAttribute("loginMember",result); 
 					mv.setViewName("business/businessEnroll");
