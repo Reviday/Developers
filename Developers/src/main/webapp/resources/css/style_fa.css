@@ -717,15 +717,15 @@ small, .small {
 	left: 0;
 	z-index: 1030;
 	height: 40px;
-	background-color: #ffffff;
+	background-color: #F2F2F2;
 	border-top: solid 1px;;
-	border-top-color: #E6E6E6;
+	border-top-color: #F2F2F2;
 	width: 100%;
 }
 
 .sticky-button>.btn {
 	margin-top: 0.8em;
-	margin-left: 86%;
+	margin-left: 82%;
 }
 
 /********** header css End **********/

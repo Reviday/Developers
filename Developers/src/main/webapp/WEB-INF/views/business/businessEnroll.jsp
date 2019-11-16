@@ -56,38 +56,134 @@ textarea.form-control{
 } */
 
 div.container>*{
-	font-size:15px;
+	font-size:17px;
 	
 }
 
 button{
-	font-size:15px !important;
+	font-size:17px !important;
 	font-weight: bold !important;
 }
 input{
-	font-size:15px !important;
+	font-size:17px !important;
 }
 select{
-	font-size:15px !important;
+	font-size:17px !important;
 }
 textarea{
-	font-size: 15px !important;
+	font-size: 17px !important;
 }
+
+#list-area{
+	border: 1px solid #E6E6E6;
+    border-top-style: none;
+    position: absolute;
+    z-index: 2;
+	background-color: #FFFFFF;
+	border-color: #FFFFFF;
+}
+
+
+.dis:focus{
+	border-width: 1px;
+	border-color:#0080FF;
+	box-shadow: none;
+    outline: 0 none;
+}  
+.result_button{
+	padding:6px;
+}
+#list-area{
+	width: 100%;
+	display: contents;
+	overflow: scroll;
+	height:10em;
+}
+#search-business{
+max-height: 10em;
+    overflow: scroll;
+}
+
+
+.shadow-drop-bottom-first:hover, .shadow-drop-bottom-first:focus {
+	/* box-shadow: 5px 10px #BDBDBD; */
+	border-color:#0080FF;
+
+
+	/* -webkit-animation: shadow-drop-bottom 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: shadow-drop-bottom 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both; */
+}
+.shadow-drop-bottom>* {
+	/* box-shadow: 0 0 10px #D8D8D8; */
+	background-color: #FFFFFF;
+	border:1px solid #D8D8D8;
+	cursor:pointer;
+	border-radius: 5px 5px 5px 5px;
+	/* -webkit-animation: shadow-drop-bottom 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: shadow-drop-bottom 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both; */
+}
+
+
+ @-webkit-keyframes shadow-drop-center {
+  0% {
+    -webkit-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+            box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
+  100% {
+    -webkit-box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
+            box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
+  }
+}
+@keyframes shadow-drop-center {
+  0% {
+    -webkit-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+            box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
+  100% {
+    -webkit-box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
+            box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
+  }
+}
+
+ @-webkit-keyframes shadow-drop-bottom {
+  0% {
+    -webkit-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+            box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
+  100% {
+    -webkit-box-shadow: 0 12px 20px -12px rgba(0, 0, 0, 0.35);
+            box-shadow: 0 12px 20px -12px rgba(0, 0, 0, 0.35);
+  }
+}
+@keyframes shadow-drop-bottom {
+  0% {
+    -webkit-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+            box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
+  100% {
+    -webkit-box-shadow: 0 12px 20px -12px rgba(0, 0, 0, 0.35);
+            box-shadow: 0 12px 20px -12px rgba(0, 0, 0, 0.35);
+  }
+}
+
+
+
+
 
 
 
 </style>
 
-
-
-
+<script>
+	var path='${path}';
+</script>
 
 <section id="content-enroll">
  <div class="container">
  <br>
  	<form class="form" action="${pageContext.request.contextPath}/business/businessEnroll" method="post">
 	 <div>
-		<div><h2>안녕하세요 회원님 먼저 회사정보를 등록해주세요.</h2></div>
+		<div><h2>안녕하세요 회원님!<br> 먼저 회사정보를 등록해주세요.</h2></div>
 		<br>
 		<div><p>저희 디벨로퍼스 블랙은 추천인/후보자들에게 좋은 일자리를 제공하기 위해, 다음 정보를 리뷰하여 회사 등록을 승인하고 있습니다.
 	 	<small>(승인 기준은 팀원 10명, 매출액/투자유치 5억원 이상입니다.)</small></p></div>
@@ -103,9 +199,9 @@ textarea{
 				   <div>
 					   <div class="search-business" id="search-business">
 					   		<input id="busSearch" type="text" placeholder="회사 이름" 
-								   class="form-control search-bar" name="busName" 
+								   class="shadow-drop-bottom-first form-control search-bar" name="busName" 
 								   onclick="bus_reset();" onkeypress="bus_search();" autofocus>
-								<div class="list-area" id="list-area"></div>					   			
+								<div class="list-area shadow-drop-bottom" id="list-area"></div>					   			
 					   			<!-- <button type="button" class="search-cancle">
 					   			<i class="icon-close"></i>
 					   			</button> -->
@@ -115,7 +211,7 @@ textarea{
 				   </div>
 			     </div>
 			    				 <br>
-			    <div class="row">
+			    <div class="row" style="z-index: 1;">
 			    	<div class="form-group col-md-6">
 					   <div class="subtitles star">
 					     국가
@@ -219,20 +315,30 @@ textarea{
 						     <!-- ::after -->
 						   </div>
 						   <div>
-						      <input type="text" class="form-control dis must" name="busEmail" placeholder="기존에 적었던 이메일 primary key 불러오기" required>
+						 	 	 <c:if test="${not empty sessionScope.loginMember}">
+						     		 <input type="text" class="form-control dis must" name="busEmail" placeholder="기존에 적었던 이메일 primary key 불러오기" value="${sessionScope.loginMember.memEmail }" required>
+						     	</c:if> 
+   						 	 	 <c:if test="${empty sessionScope.loginMember}">
+						     		 <input type="text" class="form-control dis must" name="busEmail" placeholder="기존에 적었던 이메일 primary key 불러오기" required>
+						     	</c:if> 
 						   </div>
 					</div>	   
 			     </div>
-			     			     			     <br>
+			     	<br>
 			    <div class="row">
 			    	<div class="form-group col-md-6">
-						   <div class="subtitles star">
-						     담당자 연락처  
-						     <!-- ::after -->
-						   </div>
-						   <div>
-						      <input type="text" class="form-control dis must" name="busPhone" placeholder="기존에 적었던 전화번호 불러오기" required>
-						   </div>
+					   <div class="subtitles star">
+					     담당자 연락처  
+					     <!-- ::after -->
+					   </div>
+					   <div>
+					  	  	<c:if test="${not empty sessionScope.loginMember}">
+					      		<input type="text" class="form-control dis must" name="busPhone" placeholder="기존에 적었던 전화번호 불러오기" value="${sessionScope.loginMember.memPhone}" required>
+					      	</c:if>
+				      		 <c:if test="${ empty sessionScope.loginMember}">
+				       			 <input type="text" class="form-control dis must" name="busPhone" placeholder="기존에 적었던 전화번호 불러오기" required>
+					      	</c:if>
+					   </div>
 					</div>	   
 					<div class="form-group col-md-6">	   
 						   <div class="subtitles">
@@ -266,9 +372,9 @@ textarea{
  		<br>
 	</div>
 </section>
- 		<div class="fixed-bottom position-sticky" style="height:6em;">
+ 		<div class="fixed-bottom position-sticky" style="height:6em; background-color: #F2F2F2;">
 		    <div class="sticky-button">
-		       <button type="button" id="startButton" style="color:#258BF7; width:7em; padding:8px; margin-top:8px; float:right; margin-right:8%;" class="btn btn-outline-primary">시작하기</button>
+		       <button type="button" id="startButton" style="width:7em; padding:8px; margin-top:8px; float:right; margin-right:7%;" class="btn btn-primary">시작하기</button>
 		    </div>
 	    </div> 
 	    
@@ -283,206 +389,14 @@ textarea{
 	      </div>
 	      <div class="modal-footer">
 	      	<button type="button" class="btn btn-outline-secondary btn-lg col-md-6" onclick="modalClose()">취소</button>
-	      	<button type="button" class="btn btn-primary btn-lg col-md-6" onclick="modalClose(),disabledOn(),openSearch()">초기화</button>
+	      	<button type="button" class="btn btn-primary btn-lg col-md-6" onclick="location.reload()">초기화</button>
 	      </div>
 	    </div>
 	  </div>
 	</div>
 
 
-<script>
-	$(function(){
-		disabledOn();
-	});
-	
-	var titles=document.getElementsByClassName('subtitles');
-	var bars=document.getElementsByClassName('dis');
-	var bnt=document.querySelector('#startButton');
-	
-	function openSearch(){
-		var searchBar=document.querySelector('#busSearch');
-		searchBar.value="";
-		searchBar.style.borderColor="";
-		searchBar.style.color="";
-		searchBar.style.backgroundColor="";
-		searchBar.removeAttribute('readonly');	
-		//autofocus 가 안먹힘
-	}
-	
-	function disabledOn(){
-		allInfo=$('.dis');
-		for(var a in allInfo){
-			allInfo[a].value="";
-		}
-		
-		bnt.setAttribute("disabled", true);
-		bnt.style.color="#A4A4A4";
-		bnt.style.borderColor="#A4A4A4";
-		for(var i in titles){
-			if(titles[i].style!=undefined){
-				titles[i].style.color="#A4A4A4"; 					
-			}
-		}
-		for(var ba in bars){
-			if(bars[ba].style!=undefined){
-				bars[ba].style.borderColor="#E6E6E6";
-				bars[ba].style.color="#A4A4A4";
-				bars[ba].style.backgroundColor="#FFFFFF";
-				bars[ba].setAttribute("disabled", true);			
-			}
-		}
-	}
-	
-	function bus_reset(){
-		var searchBar=document.querySelector('#busSearch');
-		if(searchBar.getAttribute('readonly')=='true'){
-
-			$('#confirmModal').modal('show');
-		}
-	}
-	
-	
-	
-	function bus_search(){
-		
-		 var searchBus=document.getElementById('search-business');
-		 var listGroup=document.getElementById('list-area');
-		 $(listGroup).html("");
-		 /* var listGroup=document.createElement('div'); */ 
-		 //listGroup.id="list-group";
-		 /* searchBus.html(listGroup); */
-		
-		var input=$("#busSearch").val()
-		$.ajax({
-			type: "post",
-			 url:"${path}/business/APISearch.do",
-			 data:{"input": input},
-			 success:function(data){
-				 console.log(data);
-				
-				
-			 	for(var i in data.items){
-					 var resultBtn=document.createElement('div');
-					 resultBtn.className="result_button";
-					 var hiddenA=document.createElement('input');
-					 var hiddenB=document.createElement('input');
-					 var hiddenC=document.createElement('input');
-					 hiddenA.type="hidden";
-					 hiddenB.type="hidden";
-					 hiddenC.type="hidden";
-					 hiddenA.id="address";
-					 hiddenB.id="industry";
-					 hiddenC.id="website";
-					 //api로 가져온 값 출력하는 로직
-					 resultBtn.innerHTML=data.items[i].title; 
-					 hiddenA.value=data.items[i].roadAddress
-					 hiddenB.value=data.items[i].category
-					 hiddenC.value=data.items[i].link	
-					 resultBtn.append(hiddenA);
-					 resultBtn.append(hiddenB);
-					 resultBtn.append(hiddenC);
-					 listGroup.append(resultBtn);
-					 
-		 		}
-				 var resultBtn=document.createElement('div');
-				 resultBtn.className="result_button";
-				 resultBtn.innerHTML=input;
-				 listGroup.append(resultBtn);
-				 
-				var buttons=document.querySelectorAll('.result_button');
-				buttons.forEach(function(event){
-					event.addEventListener('click',function(){
-					document.querySelector('#busSearch').value=this.innerText;	
-					if($(this).children().length>0){
-						var cityChoice=($($(this).children("#address")).val()).substring(0,2); 
-						var options=$('#city>option');
-						
-						for(var o in options){
-	 						if(options[o].innerText==cityChoice){
-	 							options[o].setAttribute('selected',true);
-							}
-						} 
-						document.querySelector('#busAddress').value=$($(this).children("#address")).val();
-						document.querySelector('#category').value=$($(this).children('#industry')).val();
-						document.querySelector('#busSite').value=$($(this).children('#website')).val();
-					}
-					document.querySelector('#busCountry').value="한국";
-					bnt.removeAttribute("disabled");
-					bnt.style.color="";
-					bnt.style.borderColor="";
-					for(var i in titles){
-						if(titles[i].style!=undefined){
-							titles[i].style.color=""; 					
-						}
-					}
-					for(var ba in bars){
-						if(bars[ba].style!=undefined){
-							bars[ba].style.borderColor="";
-							bars[ba].style.color="";
-							bars[ba].style.backgroundColor="";
-							bars[ba].removeAttribute("disabled");			
-						}
-					}
-					
-					listGroup.remove();
-					var searchBar=document.querySelector('#busSearch');
-					searchBar.style.borderColor="#E6E6E6";
-					searchBar.style.color="#A4A4A4";
-					searchBar.style.backgroundColor="#FFFFFF";
-					searchBar.setAttribute('readonly',true);
-					})
-				})
-				}
-			});
-		}
-		
-		function modalClose(){
-			$(".modal").modal('hide');			
-		};
-		
-		// submit버튼 이벤트
-		$("#startButton").click(function(){
-			if(validateForm()){
-				$('form.form').submit();
-			}
-		});
-
-		// Validate Form 메소드 
-		function validateForm(){
-			var mendatory=$(".must");
-			for(var i=0;i<mendatory.length;i++){
- 				if(mendatory[i].value!=""){
-					if(mendatory[i].style.borderColor!=""){
-						mendatory[i].style.borderColor="";									
-					}
-				}else if(mendatory[i].value==""){
-					if(mendatory[i].style.borderColor!="#FF0000"){
-						mendatory[i].style.borderColor="#FF0000";
-						mendatory[i].addEventListener('change',function(e){
-							e.target.style.borderColor="";
-						});
-						mendatory[i].addEventListener('keyup',function(e){
-							e.target.style.borderColor="";
-						});
-					}	
-				}
-			}
-			var temp=0;
-			for(var i=0;i<mendatory.length;i++){
-				if(mendatory[i].value!=""){
-					temp++;
-				}
-			}
-			console.log(temp);
-			if(temp==mendatory.length){
-				return true;
-			}else{
-				return false;														
-			}
-		}
-		
-		
-</script>
+<script type="text/javascript" src="${path}/resources/js/business-enroll.js"></script>
 
 
 <!-- 접속자 통계 API 네이버 애널리스트 -->
