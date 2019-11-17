@@ -28,4 +28,5 @@ public interface AdminDao {
 	int insertTag(SqlSessionTemplate session, String tag, int busNo);
 	List<Integer> selectLoginLogStats(SqlSessionTemplate session);
 	List<Map<String, Integer>> selectLoginLogChartData(SqlSessionTemplate session, String data);
+	List<Map<String, Integer>> selectMemberStats(SqlSessionTemplate session);
 }

@@ -3,6 +3,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
+<c:if test="${statsList ne null}">
+	<c:forEach items="statsList" var="sl">
+	</c:forEach>
+</c:if>
 
 <jsp:include page="/WEB-INF/views/admin/header.jsp">
 	<jsp:param name="pageTitle" value=""/>
@@ -12,6 +16,41 @@
 <section id="content">
 	<div class="container" style="height: 60px"></div>
 	<div class="container mainContent">
+		<div class="row" style="margin-bottom: 20px">
+			<div class="middle">
+		        <div class="counting-sec">
+		            <div class="inner-width">
+		                <div class="col">
+		                    <i class="far fa-smile-wink"></i>
+		                    <div class="num">${statsMap.total} }</div>
+		                    	총 회원
+		                </div>
+		
+		                <div class="col">
+		                    <i class="fas fa-briefcase"></i>
+		                    <div class="num">${statsMap.business }</div>
+		                    	기업 회원
+		                </div>
+		
+		                <div class="col">
+		                    <i class="far fa-money-bill-alt"></i>
+		                    <div class="num">${statsMap.common }</div>
+		                    	일반 회원
+		                </div>
+		
+		                <div class="col">
+		                    <i class="far fa-object-group"></i>
+		                    <div class="num">${statsMap.unfinished }</div>
+		                    	가입 미완료
+		                </div>
+		            </div>
+		        </div>
+		    </div>
+		
+		    <script>
+		        $(".num").counterUp({delay:10, time:1000});
+		    </script>
+		</div>
 		<div class="row">
 			<h1 class="title">회원 정보 - 기본 정보</h1>
 		</div>

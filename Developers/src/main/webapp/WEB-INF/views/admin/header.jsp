@@ -184,6 +184,10 @@
 	    
 	                    </a>
 	                    <ul>
+	                    	<li>
+	                            <a href="${path}/admin/visitorLog.lac">방문자 통계
+	                            </a>
+	                        </li>
 	                        <li>
 	                            <a href="${path}/admin/loginLog.lac">로그인 로그
 	                            </a>

@@ -9,7 +9,7 @@
 		 margin: 0 auto;
 	}
 	#Progress_Loading {
-		position: absolute;
+		position: fixed;
 		left: 50%;
 		top: 50%;
 		background: transparent;

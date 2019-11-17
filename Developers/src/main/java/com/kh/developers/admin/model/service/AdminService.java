@@ -25,4 +25,5 @@ public interface AdminService {
 	int tagRejection(int tagNo);
 	List<Integer> selectLoginLogStats();
 	List<Map<String, Integer>> selectLoginLogChartData(String data);
+	List<Map<String, Integer>> selectMemberStats();
 }

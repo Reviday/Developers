@@ -1,5 +1,7 @@
 package com.kh.developers.admin.controller;
 
+import java.math.BigDecimal;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -31,6 +33,14 @@ public class AdminController {
 	private AdminService service;
 	private PaginationTemplate pt;
 	private PaginationTemplateFunction2nd ptf;
+	
+	@RequestMapping("/admin/visitorLog.lac")
+	public ModelAndView visitorLog() {
+		ModelAndView mv=new ModelAndView();
+		
+		
+		return mv;
+	}
 	
 	@RequestMapping("/admin/mllChangeChart.lac")
 	public String mllChangeChart(HttpServletRequest req, Model model,
@@ -291,12 +301,38 @@ public class AdminController {
 		 * viewName을 설정하지 않으면 실행중인 메소드 명(memberList)과 일치하는 view를 찾아간다.
 		 */
 		ModelAndView mv=new ModelAndView();
+		
+		//회원 통계
+		List<Map<String, Integer>> statsList=service.selectMemberStats();
+		Map<String, Integer> statsMap=new HashMap<String, Integer>(); 
+		int total=0, unfinished=0, common=0, business=0;
+		System.out.println(statsList);
+		for(int i=0; i<statsList.size(); i++) {
+			int level=Integer.parseInt(String.valueOf(statsList.get(i).get("LEVEL")+""));
+			int count=Integer.parseInt(String.valueOf(statsList.get(i).get("COUNT")+""));
+			total+=count;
+			switch(level) {
+			case 0: unfinished+=count; break;
+			case 1: common+=count; break;
+			case 2: common+=count; break;
+			case 3: business+=count; break;
+			case 4: business+=count; break;
+			case 5: /*관리자 Pass*/ break;
+			}
+		}
+		
+		statsMap.put("total", total);
+		statsMap.put("business", business);
+		statsMap.put("common", common);
+		statsMap.put("unfinished", unfinished);
+		
 		int totalData=service.selectMemberCountBySearch("", -2);
 		ptf=new PaginationTemplateFunction2nd(req, totalData, "search");
 		ptf.setUseParamCPage(); // cPage를 파라미터로 넘긴다.
 		List<Member> list=service.selectMemberListBySearch("", -2, ptf.getcPage(), ptf.getNumPerPage());
 		
 		mv.addObject("memList",list);
+		mv.addObject("statsMap",statsMap);
 		mv.addObject("searchValue", "");
 		mv.addObject("searchLevel", -2);
 		mv.addObject("cPage", ptf.getcPage());

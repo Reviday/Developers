@@ -24,6 +24,11 @@ public class AdminServiceImpl implements AdminService {
 	private SearchValuesTemplate svt;
 	
 	@Override
+	public List<Map<String, Integer>> selectMemberStats() {
+		return dao.selectMemberStats(session);
+	}
+	
+	@Override
 	public List<Map<String, Integer>> selectLoginLogChartData(String data) {
 		if(!(data.equals("Y")||data.equals("N"))) data=null;
 		return dao.selectLoginLogChartData(session, data);
