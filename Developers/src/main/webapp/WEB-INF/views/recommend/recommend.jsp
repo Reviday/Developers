@@ -221,6 +221,7 @@
 	})
 	$(document).on("click", ".emailLi", function(event){
 		$(".recommendEmail").val($(this).text());
+		$(".searchEmail").html("");
 	})
 
 </script>
