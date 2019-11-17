@@ -32,6 +32,28 @@ public class AdminController {
 	private PaginationTemplate pt;
 	private PaginationTemplateFunction2nd ptf;
 	
+	@RequestMapping("/admin/mllChangeChart.lac")
+	public String mllChangeChart(HttpServletRequest req, Model model,
+			@RequestParam (value="data", required=false, defaultValue="all") String data,
+			@RequestParam (value="chart", required=false, defaultValue="bar") String chart) {
+		//로그인 차트용
+		if(!(data.equals("Y")||data.equals("N"))) {
+			//전체 통계값
+			List<Map<String, Integer>> chartListS=service.selectLoginLogChartData("Y");
+			List<Map<String, Integer>> chartListF=service.selectLoginLogChartData("N");
+			model.addAttribute("chartListS", chartListS);
+			model.addAttribute("chartListF", chartListF);
+		} else {
+			//단일 값
+			List<Map<String, Integer>> chartList=service.selectLoginLogChartData(data);
+			model.addAttribute("chartList", chartList);
+		}
+		
+		model.addAttribute("data",data);
+		model.addAttribute("chart",chart);
+		return "admin/loginLogCharAjax";
+	}
+	
 	@RequestMapping("/admin/tagRejection.lac")
 	public String tagRejection(HttpServletRequest req, Model model,
 			@RequestParam (value="tagNo", required=true) int tagNo) {
@@ -125,7 +147,8 @@ public class AdminController {
 		List<Integer> statsList=service.selectLoginLogStats();
 		
 		//로그인 차트용
-		List<Map<String, Integer>> chartList=service.selectLoginLogChartData();
+		List<Map<String, Integer>> chartListS=service.selectLoginLogChartData("Y");
+		List<Map<String, Integer>> chartListF=service.selectLoginLogChartData("N");
 		
 		//로그인 테이블 자료
 		int totalData=service.selectLoginLogCountBySearch("", "R") ;
@@ -134,8 +157,11 @@ public class AdminController {
 		List<MemberLoginLog> list=service.selectLoginLogListBySearch("", "R", ptf.getcPage(), ptf.getNumPerPage());
 		
 		mv.addObject("statsList", statsList);
-		mv.addObject("chartList", chartList);
+		mv.addObject("chartListS", chartListS);
+		mv.addObject("chartListF", chartListF);
 		mv.addObject("logList",list);
+		mv.addObject("data","all");
+		mv.addObject("chart","bar");
 		mv.addObject("searchValue", "");
 		mv.addObject("mllSuccess", "R");
 		mv.addObject("cPage", ptf.getcPage());

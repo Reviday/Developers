@@ -12,18 +12,6 @@
 <section id="content">
 	<div class="container" style="height: 60px"></div>
 	<div class="container chart_area">
-		<div class="row">
-			<h1 class="title">로그인 로그 - 통계(7Days)
-		        <select class="dropdown-select-version select ad_select_style1" name="chartSelect" id="chartSelect">
-		        	<option value="-2" selected disabled hidden>차트선택</option>
-				    <option value="-1" <c:if test="${searchLevel eq -1}">selected</c:if>>로그인통계</option>
-		        	<option value="5" <c:if test="${searchLevel eq 5}">selected</c:if>>로그인성공</option>
-				    <option value="4" <c:if test="${searchLevel eq 4}">selected</c:if>>로그인실패</option>
-				    <!--<option value="2">-미정-</option> -->
-		        </select>
-			</h1>
-			
-		</div>
 		<div class="row" style="margin-bottom: 20px">
 			<div class="middle">
 		        <div class="counting-sec">
@@ -60,7 +48,28 @@
 		    </script>
 		</div>
 		<div class="row">
-			<canvas id="memberLoginLogChar" aria-label="Hello ARIA World"></canvas>
+			<h1 class="title">로그인 로그 - 통계(7Days)
+		        <select class="dropdown-select-version select ad_select_style1 chartTrigger" name="chartDataSelect" id="chartDataSelect">
+		        	<option selected disabled hidden>데이터선택</option>
+				    <option value="all" <c:if test="${data eq 'all'}">selected</c:if>>전체</option>
+		        	<option value="Y" <c:if test="${data eq 'Y'}">selected</c:if>>로그인성공</option>
+				    <option value="N" <c:if test="${data eq 'N'}">selected</c:if>>로그인실패</option>
+		        </select>
+		        <select class="dropdown-select-version select ad_select_style1 chartTrigger" name="chartSelect" id="chartSelect" style="width:auto">
+		        	<option selected disabled hidden>차트선택</option>
+		        	<option value="bar" <c:if test="${chart eq 'bar'}">selected</c:if>>막대(Bar)</option>
+				    <option value="line" <c:if test="${chart eq 'line'}">selected</c:if>>라인(Line)</option>
+				    <option value="doughnut" <c:if test="${chart eq 'doughnut'}">selected</c:if>>도넛(Doughnut)</option>
+				    <option value="pie" <c:if test="${chart eq 'doughnut'}">selected</c:if>>파이(Pie)</option>
+				    <option value="radar" <c:if test="${chart eq 'doughnut'}">selected</c:if>>레이더(Radar)</option>
+				    <option value="polarArea" <c:if test="${chart eq 'doughnut'}">selected</c:if>>극지방(Polar Area)</option>
+		        </select>
+			</h1>
+			
+		</div>
+		
+		<div class="row" id="chartArea">
+			<canvas id="memberLoginLogChart" aria-label="Hello ARIA World"></canvas>
 			<script>
 				//날짜 저장용 배열
 				var arrDate = new Array(); //배열선언
@@ -79,12 +88,94 @@
 					
 					arrDate[i]=year+"-"+month+"-"+day;
 				}
-				
+			</script>
+			<c:if test="${data eq 'all'}">
+			<script>	
 				//chart 작성
-				var ctx = document.getElementById('memberLoginLogChar');
+				var ctx = document.getElementById('memberLoginLogChart');
 				
 				var myChart = new Chart(ctx, {
-				    type: 'bar',
+				    type: '${chart}',
+				    data: {
+				        labels: [arrDate[6], arrDate[5], arrDate[4], arrDate[3], arrDate[2], arrDate[1], arrDate[0]+'(Today)'],
+				        datasets: [{
+				            label: '로그인 성공',
+				            data: [${chartListS[6].COUNT},
+				            	${chartListS[5].COUNT},
+				            	${chartListS[4].COUNT},
+				            	${chartListS[3].COUNT},
+				            	${chartListS[2].COUNT},
+				            	${chartListS[1].COUNT},
+				            	${chartListS[0].COUNT}],
+				            backgroundColor: [
+				                'rgba(255, 99, 132, 0.2)',
+				                'rgba(255, 96, 6, 0.2)',
+				                'rgba(255, 206, 86, 0.2)',
+				                'rgba(75, 192, 192, 0.2)',
+				                'rgba(153, 102, 255, 0.2)',
+				                'rgba(255, 159, 64, 0.2)',
+				                'rgba(54, 162, 235, 0.2)'
+				            ],
+				            borderColor: [
+				                'rgba(255, 99, 132, 1)',
+				                'rgba(255, 96, 6, 1)',
+				                'rgba(255, 206, 86, 1)',
+				                'rgba(75, 192, 192, 1)',
+				                'rgba(153, 102, 255, 1)',
+				                'rgba(255, 159, 64, 1)',
+				                'rgba(54, 162, 235, 1)'
+				            ],
+				            borderWidth: 1
+				        },
+				        {
+				            label: '로그인 실패',
+				            data: [${chartList[6].COUNT},
+				            	${chartListF[5].COUNT},
+				            	${chartListF[4].COUNT},
+				            	${chartListF[3].COUNT},
+				            	${chartListF[2].COUNT},
+				            	${chartListF[1].COUNT},
+				            	${chartListF[0].COUNT}],
+				            backgroundColor: [
+				                'rgba(255, 206, 86, 0.5)',
+				                'rgba(255, 159, 64, 0.5)',
+				                'rgba(153, 102, 255, 0.5)',
+				                'rgba(75, 192, 192, 0.5)',
+				                'rgba(54, 162, 235, 0.5)',
+				                'rgba(255, 96, 6, 0.5)',
+				                'rgba(255, 99, 132, 0.5)'
+				            ],
+				            borderColor: [
+				                'rgba(54, 162, 235, 1)',
+				                'rgba(255, 159, 64, 1)',
+				                'rgba(153, 102, 255, 1)',
+				                'rgba(75, 192, 192, 1)',
+				                'rgba(255, 206, 86, 1)',
+				                'rgba(255, 96, 6, 1)',
+				                'rgba(255, 99, 132, 1)'
+				            ],
+				            borderWidth: 1
+				        }]
+				    },
+				    options: {
+				        scales: {
+				            yAxes: [{
+				                ticks: {
+				                    beginAtZero: true
+				                }
+				            }]
+				        }
+				    }
+				});
+			</script>
+			</c:if>
+			<c:if test="${data ne 'all'}">
+			<script>	
+				//chart 작성
+				var ctx = document.getElementById('memberLoginLogChart');
+				
+				var myChart = new Chart(ctx, {
+				    type: '${chart}',
 				    data: {
 				        labels: [arrDate[6], arrDate[5], arrDate[4], arrDate[3], arrDate[2], arrDate[1], arrDate[0]+'(Today)'],
 				        datasets: [{
@@ -128,6 +219,7 @@
 				    }
 				});
 			</script>
+			</c:if>
 		</div>
 	</div>
 	<div class="container mainContent">

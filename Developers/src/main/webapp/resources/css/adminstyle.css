@@ -208,16 +208,35 @@ select::-ms-expand {
     width: 100%;
 }
 
+@media (max-width : 767px) {
+	.ad_select_style1 {
+		margin: 15px 20px 0 0;
+	}
+}
+
 .counting-sec {
     padding: 0;
     width: 100%;
     background: linear-gradient(90edg, #3c7382, #82ccdd);
+    
 }
 
 .inner-width {
     max-width: 1200px;
     margin: auto;
     display: flex;
+    border: 1px solid;
+    border-radius: 20px;
+    background: rgba(75, 192, 192, 0.2);
+    font-weight: 600;
+    color: white;
+}
+
+@media (max-width : 767px) {
+	.inner-width {
+		text-align: left !important;
+		font-weight: 500;
+	}
 }
 
 .col {
