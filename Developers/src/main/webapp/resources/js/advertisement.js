@@ -231,9 +231,9 @@ function ajaxLogic(flag){
             AdCon+='</div>';
             AdCon+='<div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">';
             AdCon+='<div class="card-body">';
-            AdCon+='<div><p style="text-align:center; color:#848484;">신중한 확인 후 결재 바랍니다.</p></div><hr>';
+            AdCon+='<div><p style="text-align:center; color:#848484;">신중한 확인 후 결제 바랍니다.</p></div><hr>';
             AdCon+='<div class="";>';
-            AdCon+='<div id="explanation" style="text-align:center";><p><b>광고 비용</b><hr>[ 7일 ] &nbsp&nbsp&nbsp<small>390,000원</small> <hr>[ 14일 ] &nbsp&nbsp&nbsp<small>630,000원</small> <hr>[ 21일 ] &nbsp&nbsp&nbsp<small>980,000원</small> <hr>[ 29일 ] &nbsp&nbsp&nbsp<small>1,200,000원</small></div>';
+            AdCon+='<div id="explanation" style="text-align:center";><p><b>광고 비용</b><hr>[ 7일 ] &nbsp&nbsp&nbsp<small>390,000원</small> <hr>[ 14일 ] &nbsp&nbsp&nbsp<small>680,000원</small> <hr>[ 21일 ] &nbsp&nbsp&nbsp<small>970,000원</small> <hr>[ 29일 ] &nbsp&nbsp&nbsp<small>1,200,000원</small></div>';
             AdCon+='<div id="bottom-info" style="padding:2em; text-align:-webkit-center;"><div>';
             AdCon+='<p style="background-color:#2E2E2E; color:#FFFFFF; border-radius:15px 15px 15px 15px; font-size:12px; width:25%; padding:2px; text-align: -webkit-center;">노출 직무</p></div>';
             AdCon+='<input class="poName" id="positionName" disabled>';

@@ -80,58 +80,6 @@
 		color:"";
 	}
 	
-	.modal>*{
-	 font-size:15px;
-	 
-	}
-	.navbar-brand-small{
-		color: #0080FF;
-	}
-	.btn-primary{
-		font-size: 17px;
-	}
-	input.form-control::placeholder, input.form-control{
-		font-size:15px;
-		margin-bottom:10px;
-		height:2.8em;
-	}
-	.modal-body{
-		padding:1.2em;
-	}
-	/* .modal-content{
-		background-image: url("${path}/resources/images/forModal2.jpeg");
-		background-size:cover;
-	} */
-	/* .modal-content {
-  content: "";
-  position: fixed; 
-  left: 0;
-  right: 0;
-  z-index: -1;
-
-  display: block;
-  background-image: url("${path}/resources/images/forModal2.jpeg");
-  background-size:cover;
-  width: 100%;
-  height: 100%;
-
-  -webkit-filter: blur(5px);
-  -moz-filter: blur(5px);
-  -o-filter: blur(5px);
-  -ms-filter: blur(5px);
-  filter: blur(5px);
-} */
-
-.modal-content{
- background-color: #F2F2F2;
- opacity: 0.95;
-}
-.modal-content>*{
-	
-}
-#exampleModalLabel{
-	font-size:16px;
-}
 
 
 
@@ -265,123 +213,6 @@
 				</div>
 			</div>
 		</c:if>
-		<!-- 회원가입 모달 창 -->
-	<div class="modal fade" id="empEnrollModal" tabindex="-1" role="dialog" 
-	aria-labelledby="exampleModalLabel" aria-hidden="true">
-	  <div class="modal-dialog modal-dialog-centered" role="document">
-	    <div class="modal-content" style="height:25em; overflow: scroll;">
-		  <div class="modal-header" style="background-color: #1C1C1C;">
-			<img src="${path }/resources/images/Developers_black_logo.png" style="height:30px; margin-left:10px;"/>
-	        <h5 class="modal-title" style="color: #ffffff; margin: auto auto;" id="exampleModalLabel">Recruiting Developers</h5>
-	        <button type="button" style="color:#ffffff; padding-top: 15px;" class="close" data-dismiss="modal" aria-label="Close">
-	          <span aria-hidden="true">X</span>
-	        </button>
-	      </div>
-          <!-- <form id="registerForm" action="${pageContext.request.contextPath}/business/register" onsubmit="return registerValidate()" method="post"> -->
-	      <div class="modal-body">
-			    <input type="text" id="regname" class="form-control must" name="memName" placeholder="담당자 성함" required>
-			    <!-- <br />
-			    <input type="text" class="form-control" placeholder="직책(부서)"> -->
-			    
-			    <input type="text" id="phone" class="form-control must" name="memPhone" placeholder="연락처 (-)없이" required>
-			    <hr>
-			    <input type="text" id='reg-email' class="form-control must" name="memEmail" placeholder="회사 이메일(로그인 아이디로 사용)" required>
-			    
-				<input type="password" id="pswd" class="form-control must" name="memPassword" placeholder="특수문자 /문자 /숫자 포함 형태의 8~15자리 이내의 암호로 설정해주세요." required>
-				
-				<input type="password" id="pswd2" class="form-control must remov" placeholder="암호를 확인하세요." style="border-color: #E6E6E6; color: #A4A4A4; background-color: #FFFFFF;" disabled required>
-			</div>
-		<!-- </form> -->
-			<div class="modal-footer">
-				<div id="warning-area" style="display:inline-block; margin-right:22%;"></div>
-				<div><button type="submit" id="registerBtn" class="btn btn-primary" style="height:3em; width:8em; margin-right:0.5em;" >계정 생성</button></div>
-			</div>
-	     <div>
-	     	 <p style="margin-left:3%">회원가입시 개인정보 <a class="navbar-brand-small" href="#">취급방침</a>을 읽었으며, <br> <a class="navbar-brand-small" href="#">이용약관</a>에 동의하신 것으로 간주합니다.</p>
-	     </div>
-	     	<div>
-	     		<hr>
-		  		<p style="margin-left:3%; margin-bottom:9px;">이미 가입되어 있으신가요?&nbsp;&nbsp;<a class="navbar-brand-small" href="#" onclick="changeModal('toLogin'); return false">로그인하기</a></p>
-		  	</div>
-	    </div>
-	  </div>
-	</div>
-	
-	
-	<!-- 로그인 창  -->
-		<div class="modal fade" id="empLoginModal" tabindex="-1" role="dialog" 
-	aria-labelledby="exampleModalLabel" aria-hidden="true">
-	  <div class="modal-dialog modal-dialog-centered" role="document">
-	    <div class="modal-content bgBlur">
-		  <div class="modal-header" style="background-color: #1C1C1C;" >
-			<img src="${path }/resources/images/Developers_black_logo.png" style="height:30px; margin-left:10px;"/>
-	        <h5 class="modal-title" style="color: #ffffff; margin: auto auto;"  id="exampleModalLabel">Recruiting Developers</h5>
-	        <button type="button" class="close" style="color:#ffffff; padding-top: 15px;" data-dismiss="modal" aria-label="Close">
-	          <span aria-hidden="true">X</span>
-	        </button>
-	      </div>
-          <form id="login" action="${pageContext.request.contextPath}/business/login" onsubmit="return loginValidate()" method="post">
-	      <div class="modal-body">
-			<input type="text" class="form-control login-email" name="memEmail" placeholder="회사 이메일(로그인 아이디로 사용)" required>
-			
-			<input type="password" id="login-password" class="form-control login-password" name="memPassword" placeholder="비밀번호" required>
-			
-			<div style="text-align: center;">
-				<button type="submit" id="loginBtn" class="btn btn-primary" 
-				style="border-color: #FAFAFA; color:#FAFAFA; background-color: #E6E6E6; height:3em; width:6em; margin-bottom:6px;" disabled>로그인</button>
-			</div>	
-			</form>
-				<div style="text-align: center;">
-					<p><a class="navbar-brand-small" href="#">비밀번호 초기화/변경</a><P>
-				</div>
-				<!-- <div>
-					<button class="btn btn-outline-success" > 페이스북으로 시작하기</button>
-				</div> -->
-				<div class="access-denied" style="text-align: center;">
-					<p id="warning" style="display: none; color:#E53935">이메일 혹은 비밀번호가 틀렸습니다</p>
-				</div>
-		  </div>
-	     	<div class="modal-footer">
-		  		<p>계정이 없으신가요?&nbsp&nbsp<a class="navbar-brand-small" href="#" onclick="changeModal('toReg'); return false">채용담당자 계정 만들기</a></p>
-		  	</div>
-	    </div>
-	  </div>
-	</div>
-
-
-	<!-- 이메일 인증 창 -->
-	<div class="modal fade" id="emailConfirmModal" tabindex="-1" role="dialog" 
-	aria-labelledby="exampleModalLabel" aria-hidden="true">
-	  <div class="modal-dialog modal-dialog-centered" role="document">
-	    <div class="modal-content">
-		  <div class="modal-header" style="background-color: #151515;" >
-			<img src="${path }/resources/images/Developers_black_logo.png" style="height:30px; margin-left:10px;"/>
-	        <h5 class="modal-title" style="color: #ffffff; margin: auto auto;"  id="exampleModalLabel">Recruiting Developers</h5>
-	        <button type="button" class="close" style="color:#ffffff; padding-top: 15px;" data-dismiss="modal" aria-label="Close">
-	          <span aria-hidden="true">X</span>
-	        </button>
-	      </div>
-          <!-- <form id="loginEnd" action="${pageContext.request.contextPath}/business/login" onsubmit="return loginValidate()" method="post"> -->
-	      <div class="modal-body">
-			<div>
-				<!-- 여기에 이메일 출력해주기. -->
-				<p id="emailTitle"></p>
-			</div> 
-			<input type="text" class="form-control confirmation" name="confirmationNo" placeholder="인증번호 입력" required>
-			
-			<button type="submit" id="confirm" class="btn btn-primary" style="height:3em; width:8em; margin-top:8px; float:right;">인증번호 확인</button>
-			<!-- </form> -->
-				<div style="padding:1em; padding-left:20%; float:left;">
-					<p><a class="navbar-brand-small" href="#" onclick="resendEmail(); return false">인증번호 재발송</a><P>
-				</div>
-				<div class="access-denied">
-					<p id="warning" style="display: none; color:#E53935">인증번호가 맞지 않습니다.</p>
-				</div>
-		  </div>
-	    </div>
-	  </div>
-	</div>
-	
 	
 	
 	</header>
@@ -433,12 +264,12 @@
 			
 		});
 
+
+
 		// var logPw=document.querySelector("input#login-password");
 		// console.log(logPw);
 		
-		
 	</script>
 	<!-- custom js -->
-<script type="text/javascript"
-src="${pageContext.request.contextPath }/resources/js/business-main.js"></script>	
+
 <jsp:include page="/WEB-INF/views/business/busloadingPage.jsp"/>

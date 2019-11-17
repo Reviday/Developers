@@ -28,14 +28,26 @@ function loginValidate(){
         data:{"memEmail":logEml.value,
             "memPassword":logPw.value},
         success:function(result){
+            console.log(result);
             if(!result.flag){
                 warning.style.display='block';
                 logPw.style.borderColor='#E53935';
                 logEml.style.borderColor='#E53935';
                 temp= false;
             }else{
-                temp= true;
+                temp=true;
             }
+            // }else{
+            //     console.log(result);
+            //     JSON.parse(result);
+            //     // if(){
+            //         // $("#empLoginModal").modal('hide');
+            //         // $("#emailConfirmModal").modal('show');
+            //         temp=false;
+            //     // }else{
+            //     //     // temp= true;
+            //     // }
+            // }
         }
     });
     return temp;
@@ -276,6 +288,8 @@ function changeModal(a){
         $('#empLoginModal').modal('show');
     }
 }
+
+
 
 
 

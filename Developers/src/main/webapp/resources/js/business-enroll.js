@@ -67,6 +67,13 @@ function bus_search(){
          success:function(data){
              console.log(data);
                 var busTitle="";
+                // let listArea=document.querySelector("#list-area");
+                // listArea.style.borderColor="#0080FF";
+                let dropBottom=document.querySelector(".shadow-drop-bottom-first");
+                dropBottom.style.borderColor="#FFFFFF";
+                let searchBusiness=document.querySelector("#search-business");
+                searchBusiness.style.border="1px solid #0080FF";
+                
             
              for(var i in data.items){
                  var resultBtn=document.createElement('div');
@@ -97,14 +104,15 @@ function bus_search(){
                  
              }
              var resultBtn=document.createElement('div');
-             resultBtn.className="result_button";
+             resultBtn.className="result_button veryLast";
              resultBtn.innerHTML='<p style="margin-left:1%;">'+input+'</p>';
              listGroup.append(resultBtn);
              
             var buttons=document.querySelectorAll('.result_button');
             buttons.forEach(function(event){
                 event.addEventListener('click',function(){
-                    console.log(this);
+                    searchBusiness.style.border="";
+                
                 document.querySelector('#busSearch').value=this.children[5].innerText;	
                 if($(this).children().length>0){
                     var cityChoice=($($(this).children("#address")).val()).substring(0,2); 
@@ -164,7 +172,9 @@ function bus_search(){
     // Validate Form 메소드 
     function validateForm(){
         var mendatory=$(".must");
+        
         for(var i=0;i<mendatory.length;i++){
+            console.log(mendatory[i]);
              if(mendatory[i].value!=""){
                 if(mendatory[i].style.borderColor!=""){
                     mendatory[i].style.borderColor="";									
@@ -188,6 +198,7 @@ function bus_search(){
             }
         }
         console.log(temp);
+        console.log(mendatory.length);
         if(temp==mendatory.length){
             return true;
         }else{

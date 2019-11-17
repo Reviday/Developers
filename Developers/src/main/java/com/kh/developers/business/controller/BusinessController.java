@@ -81,10 +81,11 @@ public class BusinessController {
 		int target=url.indexOf("developers");
 		String frontUrl=url.substring(0,target);
 		int result=0;
+		int result1=0;
 		String msg="";
 		try {
 			result=bService.insertMember(m, frontUrl);
-			logger.debug("결과는 "+result);
+			result1 = service.insertFilter();
 		} catch (Exception e) {
 			msg="회원가입에 실패하였습니다. 다시 확인해주시기 바랍니다.";
 			rttr.addFlashAttribute("msg",msg);
@@ -111,19 +112,35 @@ public class BusinessController {
 	}
 	
 	@RequestMapping("/business/businessEnroll")
-	public String businessEnroll(
-			Business bus
-			) {
-		int result=bService.insertBusiness(bus);
+	public ModelAndView businessEnroll(Business bus, RedirectAttributes rttr){
+		ModelAndView mv=new ModelAndView();
+		String msg="";
+		int result=0;
+		try {
+			result=bService.insertBusiness(bus);			
+		}catch(Exception e) {
+			msg= "기업등록에 실패하셨습니다. 다시한번 시도하여 주시기 바랍니다";
+			rttr.addFlashAttribute("msg",msg);
+			mv.setViewName("redirect:/business");
+		}
+		if(result>0) {
+			mv.setViewName("/business/confirming");			
+		}else {
+			msg= "기업등록 도중 에러가 발생하였습니다.";
+			rttr.addFlashAttribute("msg",msg);
+			mv.setViewName("redirect:/business");
+		}
 		//관리자 한테도 보내줘야함
-		return "/business/confirming";
+		return mv;		
 	}
 	
 	@RequestMapping("/business/login")
-	public ModelAndView empLogin(Member m, Model model, HttpServletRequest request) {
+	@ResponseBody
+	public ModelAndView empLogin(Member m, Model model, HttpServletRequest request,RedirectAttributes rttr) {
 			ModelAndView mv=new ModelAndView();
 			logger.debug(""+m);
 			Member result=service.selectMemberOne(m);
+			boolean confirmed=true;
 			boolean flag=false;
 			if(result != null) {
 				if(pwEncoder.matches(m.getMemPassword(), result.getMemPassword())) {
@@ -132,7 +149,13 @@ public class BusinessController {
 			}
 			if(flag) {
 				if(result!=null&&result.getMemEmailCert().equals("N")) {
-					model.addAttribute("ldc", "noemailcert"); // ldc : login Deny Code 
+//					model.addAttribute("ldc", "noemailcert"); // ldc : login Deny Code
+					confirmed=false;
+					rttr.addFlashAttribute("confirmed",confirmed);
+					 mv.addObject("confirmed", confirmed);
+//				     mv.setViewName("business");
+//					return "redirect:/business/{confirmed}";
+					mv.setViewName("redirect:/business");
 				}else if(result!=null&&result.getMemLevel()<3) {
 					 // 아직 bussinessEnroll 안한 회원 
 					model.addAttribute("loginMember",result); 

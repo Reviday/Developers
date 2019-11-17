@@ -69,6 +69,7 @@ input{
 }
 select{
 	font-size:17px !important;
+	height:2.8em !important;
 }
 textarea{
 	font-size: 17px !important;
@@ -91,23 +92,27 @@ textarea{
     outline: 0 none;
 }  
 .result_button{
-	padding:6px;
+	padding:8px;
+	border-top:1px solid #E6E6E6;
 }
 #list-area{
 	width: 100%;
 	display: contents;
-	overflow: scroll;
+	/* overflow: scroll; */
 	height:10em;
 }
 #search-business{
-max-height: 10em;
-    overflow: scroll;
+	max-height: 10em;
+	overflow-y: scroll;
 }
+/* #search-business{
+	border:1px solid #0080FF;
+} */
 
 
 .shadow-drop-bottom-first:hover, .shadow-drop-bottom-first:focus {
 	/* box-shadow: 5px 10px #BDBDBD; */
-	border-color:#0080FF;
+	border:1px solid #0080FF;
 
 
 	/* -webkit-animation: shadow-drop-bottom 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
@@ -116,9 +121,9 @@ max-height: 10em;
 .shadow-drop-bottom>* {
 	/* box-shadow: 0 0 10px #D8D8D8; */
 	background-color: #FFFFFF;
-	border:1px solid #D8D8D8;
+	/* border:1px solid #D8D8D8; */
 	cursor:pointer;
-	border-radius: 5px 5px 5px 5px;
+	/* border-radius: 5px 5px 5px 5px; */
 	/* -webkit-animation: shadow-drop-bottom 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 	        animation: shadow-drop-bottom 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both; */
 }
@@ -166,6 +171,16 @@ max-height: 10em;
   }
 }
 
+/* div.result_button{
+	border-left-color:#0080FF;
+	border-right-color:#0080FF;
+} */
+
+input.form-control{
+	margin-bottom:0;
+	height:2.8em;
+}
+
 
 
 
@@ -199,7 +214,7 @@ max-height: 10em;
 				   <div>
 					   <div class="search-business" id="search-business">
 					   		<input id="busSearch" type="text" placeholder="회사 이름" 
-								   class="shadow-drop-bottom-first form-control search-bar" name="busName" 
+								   class="shadow-drop-bottom-first form-control search-bar must" name="busName" 
 								   onclick="bus_reset();" onkeypress="bus_search();" autofocus>
 								<div class="list-area shadow-drop-bottom" id="list-area"></div>					   			
 					   			<!-- <button type="button" class="search-cancle">
@@ -288,7 +303,7 @@ max-height: 10em;
 			     </div>
 			     			     <br>
 			    <div>
-				   <div class="subtitles">
+				   <div class="subtitles star">
 				     회사/서비스 소개 
 				     <!-- ::after -->
 				   </div>
