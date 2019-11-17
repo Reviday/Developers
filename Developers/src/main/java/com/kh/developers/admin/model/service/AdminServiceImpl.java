@@ -24,6 +24,16 @@ public class AdminServiceImpl implements AdminService {
 	private SearchValuesTemplate svt;
 	
 	@Override
+	public List<Map<String, Integer>> selectLoginLogChartData() {
+		return dao.selectLoginLogChartData(session);
+	}
+	
+	@Override
+	public List<Integer> selectLoginLogStats() {
+		return dao.selectLoginLogStats(session);
+	}
+	
+	@Override
 	public int tagRejection(int tagNo) {
 		return dao.deleteTagOpinion(session, tagNo);
 	}

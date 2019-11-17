@@ -26,4 +26,6 @@ public interface AdminDao {
 	List<Map<String, Object>> selectTagOpinionList(SqlSessionTemplate session, int cPage, int numPerPage);
 	int deleteTagOpinion(SqlSessionTemplate session, int tagNo);
 	int insertTag(SqlSessionTemplate session, String tag, int busNo);
+	List<Integer> selectLoginLogStats(SqlSessionTemplate session);
+	List<Map<String, Integer>> selectLoginLogChartData(SqlSessionTemplate session);
 }

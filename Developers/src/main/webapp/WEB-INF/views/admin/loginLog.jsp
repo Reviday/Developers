@@ -30,26 +30,26 @@
 		            <div class="inner-width">
 		                <div class="col">
 		                    <i class="far fa-smile-wink"></i>
-		                    <div class="num">1246</div>
-		                    Speakers
+		                    <div class="num">${statsList[3]}</div>
+		                    	로그인 시도<br>(누계)
 		                </div>
 		
 		                <div class="col">
 		                    <i class="fas fa-briefcase"></i>
-		                    <div class="num">19</div>
-		                    Services
+		                    <div class="num">${statsList[2]}</div>
+		                    	로그인 성공<br>(누계)
 		                </div>
 		
 		                <div class="col">
 		                    <i class="far fa-money-bill-alt"></i>
-		                    <div class="num">687</div>
-		                    Sells
+		                    <div class="num">${statsList[1]}</div>
+		                    	로그인 시도<br>(금일)
 		                </div>
 		
 		                <div class="col">
 		                    <i class="far fa-object-group"></i>
-		                    <div class="num">84</div>
-		                    Templates
+		                    <div class="num">${statsList[0]}</div>
+		                    	로그인 성공<br>(금일)
 		                </div>
 		            </div>
 		        </div>
@@ -83,21 +83,19 @@
 				//chart 작성
 				var ctx = document.getElementById('memberLoginLogChar');
 				
-				$.ajax({
-					url:path+"admin/loginLogChart.lac",
-					type:"POST",
-					success:function(result) {
-						
-					}
-				});
-				
 				var myChart = new Chart(ctx, {
 				    type: 'bar',
 				    data: {
 				        labels: [arrDate[6], arrDate[5], arrDate[4], arrDate[3], arrDate[2], arrDate[1], arrDate[0]+'(Today)'],
 				        datasets: [{
 				            label: '일일 로그인 통계',
-				            data: [12, 19, 3, 5, 2, 3, 10],
+				            data: [${chartList[6].COUNT},
+				            	${chartList[5].COUNT},
+				            	${chartList[4].COUNT},
+				            	${chartList[3].COUNT},
+				            	${chartList[2].COUNT},
+				            	${chartList[1].COUNT},
+				            	${chartList[0].COUNT}],
 				            backgroundColor: [
 				                'rgba(255, 99, 132, 0.2)',
 				                'rgba(54, 162, 235, 0.2)',

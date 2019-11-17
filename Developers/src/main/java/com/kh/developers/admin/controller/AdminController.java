@@ -121,12 +121,20 @@ public class AdminController {
 	@RequestMapping("/admin/loginLog.lac")
 	public ModelAndView loginLog(HttpServletRequest req) {
 		ModelAndView mv=new ModelAndView();
+		//로그인 통계용 
+		List<Integer> statsList=service.selectLoginLogStats();
 		
+		//로그인 차트용
+		List<Map<String, Integer>> chartList=service.selectLoginLogChartData();
+		
+		//로그인 테이블 자료
 		int totalData=service.selectLoginLogCountBySearch("", "R") ;
 		ptf=new PaginationTemplateFunction2nd(req, totalData, "mll_search");
 		ptf.setUseParamCPage(); // cPage를 파라미터로 넘긴다.
 		List<MemberLoginLog> list=service.selectLoginLogListBySearch("", "R", ptf.getcPage(), ptf.getNumPerPage());
 		
+		mv.addObject("statsList", statsList);
+		mv.addObject("chartList", chartList);
 		mv.addObject("logList",list);
 		mv.addObject("searchValue", "");
 		mv.addObject("mllSuccess", "R");

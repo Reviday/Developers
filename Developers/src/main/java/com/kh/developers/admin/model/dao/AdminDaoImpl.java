@@ -17,6 +17,16 @@ import com.kh.developers.member.model.vo.Member;
 public class AdminDaoImpl implements AdminDao{
 	
 	@Override
+	public List<Map<String, Integer>> selectLoginLogChartData(SqlSessionTemplate session) {
+		return session.selectList("log.selectLoginLogChartData");
+	}
+	
+	@Override
+	public List<Integer> selectLoginLogStats(SqlSessionTemplate session) {
+		return session.selectList("log.selectLoginLogStats");
+	}
+	
+	@Override
 	public int insertTag(SqlSessionTemplate session, String tag, int busNo) {
 		Map<String, Object> map=new HashMap<String, Object>();
 		map.put("tag", tag);

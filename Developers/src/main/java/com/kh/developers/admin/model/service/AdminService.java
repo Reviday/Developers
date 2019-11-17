@@ -23,4 +23,6 @@ public interface AdminService {
 	List<Map<String, Object>> selectTagOpinionList(int cPage, int numPerPage);
 	int tagApproval(int tagNo, int busNo, String tagOpinion);
 	int tagRejection(int tagNo);
+	List<Integer> selectLoginLogStats();
+	List<Map<String, Integer>> selectLoginLogChartData();
 }
