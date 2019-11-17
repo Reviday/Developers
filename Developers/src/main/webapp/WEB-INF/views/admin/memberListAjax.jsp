@@ -8,18 +8,16 @@
 	<h1 class="title">회원 정보 - 기본 정보</h1>
 </div>
 <div class="row">
-	<form action="#" method="get" style="width: 50%;">
-		<div class="input-group">
-			<!-- USE TWITTER TYPEAHEAD JSON WITH API TO SEARCH -->
-			<input class="form-control" id="system-search"
-				placeholder="Search for" required value="${searchValue}"> <span
-				class="input-group-btn">
-				<button type="button" class="btn btn-default" onclick="search(0);">
-					<i class="fas fa-search"></i>
-				</button>
-			</span>
-		</div>
-	</form>
+	<div class="input-group" style="width: 50%;">
+		<!-- USE TWITTER TYPEAHEAD JSON WITH API TO SEARCH -->
+		<input class="form-control" id="system-search"
+			placeholder="Search for" required value="${searchValue}"> <span
+			class="input-group-btn">
+			<button type="button" class="btn btn-default" onclick="search(0);">
+				<i class="fas fa-search"></i>
+			</button>
+		</span>
+	</div>
 	<table class="table table-list-search rwd-table" id="memberListTB">
 		<thead>
 			<tr>
@@ -105,6 +103,11 @@
 	<input type="hidden" value="${cPage}" id="cPage"/>
 	<input type="hidden" value="${numPerPage}" id="numPerPage"/> 
 	<script>
+		$('#system-search').on("keyup", function(key) {
+			if(key.keyCode == 13) {
+				search(0);
+			}
+		});
 		$('.memoBtn').on('click', function() {
 			var choId=$(this).next('.memo_area');
 			var memoArr=$(".memo_area");

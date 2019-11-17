@@ -8,18 +8,16 @@
 	<h1 class="title">로그인 로그</h1>
 </div>
 <div class="row">
-	<form action="#" method="get" style="width: 50%;">
-		<div class="input-group">
-			<!-- USE TWITTER TYPEAHEAD JSON WITH API TO SEARCH -->
-			<input class="form-control" id="system-search" 
-				placeholder="Search for" required value="${searchValue}"> <span
-				class="input-group-btn">
-				<button type="button" class="btn btn-default" onclick="mll_search(0);">
-					<i class="fas fa-search"></i>
-				</button>
-			</span>
-		</div>
-	</form>
+	<div class="input-group" style="width: 50%;">
+		<!-- USE TWITTER TYPEAHEAD JSON WITH API TO SEARCH -->
+		<input class="form-control" id="system-search" 
+			placeholder="Search for" required value="${searchValue}"> <span
+			class="input-group-btn">
+			<button type="button" class="btn btn-default" onclick="mll_search(0);">
+				<i class="fas fa-search"></i>
+			</button>
+		</span>
+	</div>
 	<table class="table table-list-search rwd-table">
 		<thead>
 			<tr>
@@ -83,6 +81,11 @@
 	<input type="hidden" value="${cPage}" id="cPage"/>
 	<input type="hidden" value="${numPerPage}" id="numPerPage"/> 
 	<script>
+		$('#system-search').on("keyup", function(key) {
+			if(key.keyCode == 13) {
+				mll_search(0);
+			}
+		});
 		$('#mllSuccess').on('change', function() {
 			mll_search(0);
 		});
