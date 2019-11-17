@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
-import javax.mail.MessagingException;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +19,7 @@ import com.kh.developers.common.authentication.TempKey;
 import com.kh.developers.member.model.dao.MemberDao;
 import com.kh.developers.member.model.vo.Interests;
 import com.kh.developers.member.model.vo.Member;
-import com.kh.developers.member.model.vo.MyLike;
-import com.kh.developers.search.model.vo.LikeMember;
+import com.kh.developers.member.model.vo.MyApp;
 import com.kh.developers.search.model.vo.Position;
 
 @Service
@@ -39,13 +37,25 @@ public class MemberServiceImpl implements MemberService {
 	
 
 	@Override
+	public int selectMaCount(MyApp ma) {
+		// TODO Auto-generated method stub
+		return dao.selectMaCount(session,ma);
+	}
+
+	@Override
+	public List<MyApp> selectMa(MyApp ma, int cPage, int numPerPage) {
+		// TODO Auto-generated method stub
+		return dao.selectMa(session,ma,cPage,numPerPage);
+	}
+
+	@Override
 	public Member selectMemNo(int memNo) {
 		// TODO Auto-generated method stub
 		return dao.selectMemNo(session,memNo);
 	}
 
 	@Override
-	public List<Applicant> selectMemAppl(Member m, int cPage, int numPerPage) {
+	public List<MyApp> selectMemAppl(Member m, int cPage, int numPerPage) {
 		// TODO Auto-generated method stub
 		return dao.selectMemAppl(session,m,cPage,numPerPage);
 	}

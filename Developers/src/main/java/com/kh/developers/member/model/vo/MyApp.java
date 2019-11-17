@@ -15,4 +15,5 @@ public class MyApp {
 	private Date applDate;
 	private String applStatus;
 	private String busLogo;
+	private int memNo;
 }

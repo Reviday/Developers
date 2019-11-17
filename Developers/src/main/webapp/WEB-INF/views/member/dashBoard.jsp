@@ -45,11 +45,13 @@
                         <div class="inputWrapper">
                             <i class="icon-search" style="color:#505050;margin-left:10px;">
                             </i>
-                            <input class="Input-hxTtdt searchbox" type="text" placeholder="회사  검색">
+                            <input class="Input-hxTtdt searchbox" type="text" id="searchBox" placeholder="회사  검색">
+                            <input type="hidden" id="memNo" value="${loginMember.memNo }"/>
                         </div>
                     </div>
 
                 </div>
+                <div id="dashTable">
                 <table class="table table-hover" id="status" style="background-color: #fff;">
                     <thead>
                         <tr>
@@ -61,19 +63,43 @@
                     </thead>
                     <tbody>
                     <c:if test="${not empty applList }">
-                    <c:forEach items="${appList }" var="a">
+                   
+                    <c:forEach items="${applList }" var="app" >
                         <tr>
-                            <td>${a.bus_logo }</td>
-                            <td>${a.position }</td>
-                            <td></td>
-                            <td>회사 상태</td>
+                            <td> 
+                            <img src="${path }${app.busLogo }" class="company-logo">
+                            ${app.busName }
+                            </td>
+                            <td>${app.position }</td>
+                            <td>
+                            ${app.applDate } 
+                            </td>
+                            <td>
+                           <c:if test='${app.applStatus eq 1 }'>
+                            	기업 확인중
+                            </c:if>
+                            <c:if test='${app.applStatus eq 2 }'>
+                            	서류 통과
+                            </c:if>
+                            <c:if test='${app.applStatus eq 3 }'>
+                            	최종 합격
+                            </c:if>
+                            <c:if test='${app.applStatus eq 4 }'>
+                            	불합격
+                            </c:if>
+                            <c:if test='${app.applStatus eq 5 }'>
+                            	기간 만료
+                            </c:if>
+                         
+                            </td>
                         </tr>
                      </c:forEach>
+                  
                     </c:if>
                     <c:if test="${empty applList }">
                     	<tr>
                     		<td colspan="4" class="emptyApp">
-                    			 요청하신 결과가 없습니다.
+                    			 지원하신 결과가 없습니다.
                     		</td>
                     	</tr>
                     </c:if>
@@ -86,6 +112,7 @@
                 	<c:if test="${pageBar ne null }">
 				${pageBar}
 			</c:if>
+			</div>
             </div>
 
 
@@ -94,4 +121,27 @@
 <div style="height: 400px"></div>
 </body>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>	
+<script>
+$(document).ready(function(){
+    $("#searchBox").keypress(function (e) {
+     if (e.which == 13){
+          var busName =$("#searchBox").val();
+          var memNo=$("#memNo").val();
+          $.ajax({
+     		 url:"${path }/member/dashBoardSearch.lmc",
+     		 data:{"busName":busName,
+     			 	"memNo":memNo},
+     		 type:"POST",
+     		 success:function(data){
+     			 $("#dashTable").html("");
+     			 $("#dashTable").html(data);	  
+     		 }
+     	 });
+     }
+ });
+});
+
+
+
+</script>
 </html>

@@ -67,3 +67,9 @@ width:10%;
     font-weight: 400;
     opacity: 0.4;
 }
+.company-logo{
+	width: 24px;
+    height: 24px;
+    margin-right: 5px;
+    vertical-align: middle;
+}

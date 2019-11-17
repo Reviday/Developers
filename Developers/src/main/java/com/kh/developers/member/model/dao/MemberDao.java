@@ -10,6 +10,7 @@ import com.kh.developers.business.model.vo.Applicant;
 import com.kh.developers.business.model.vo.Business;
 import com.kh.developers.member.model.vo.Interests;
 import com.kh.developers.member.model.vo.Member;
+import com.kh.developers.member.model.vo.MyApp;
 import com.kh.developers.search.model.vo.Position;
 
 public interface MemberDao {
@@ -35,8 +36,9 @@ public interface MemberDao {
    Business selectBusOne(SqlSessionTemplate session,String busNo);
    int applAns(SqlSessionTemplate session,int memNo,int number);
    List<Position> selectBookMark(SqlSessionTemplate session,Member m);
-   List<Applicant> selectMemAppl(SqlSessionTemplate session,Member m, int cPage,int numPerPage);
+   List<MyApp> selectMemAppl(SqlSessionTemplate session,Member m, int cPage,int numPerPage);
    int selectMemApplCount(SqlSessionTemplate session,Member m);
    Member selectMemNo(SqlSessionTemplate session,int memNo);
-   
+   List<MyApp> selectMa(SqlSessionTemplate session,MyApp ma,int cPage,int numPerPage);
+   int selectMaCount(SqlSessionTemplate session,MyApp ma);
 }

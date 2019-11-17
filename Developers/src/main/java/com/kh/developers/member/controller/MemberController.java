@@ -43,10 +43,11 @@ import com.kh.developers.business.model.vo.Applicant;
 import com.kh.developers.business.model.vo.Business;
 import com.kh.developers.common.authentication.MailHandler;
 import com.kh.developers.common.encrypt.MyEncrypt;
-import com.kh.developers.common.page.PageFactory2;
+import com.kh.developers.common.page.PageFactory;
 import com.kh.developers.member.model.service.MemberService;
 import com.kh.developers.member.model.vo.Interests;
 import com.kh.developers.member.model.vo.Member;
+import com.kh.developers.member.model.vo.MyApp;
 import com.kh.developers.resume.model.service.ResumeService;
 import com.kh.developers.resume.model.vo.Activitie;
 import com.kh.developers.resume.model.vo.Career;
@@ -670,14 +671,30 @@ public class MemberController {
     	int numPerPage=5;
 		int totalData=0;
 		//list 가져오기
-		List<Applicant>applList=service.selectMemAppl(m,cPage,numPerPage); 
+		String url="";
+		List<MyApp>applList=service.selectMemAppl(m,cPage,numPerPage); 
 		totalData=service.selectMemApplCount(m);
-		
-		mv.addObject("pageBar", PageFactory2.getApplPageBar(totalData, cPage, numPerPage));
+		mv.addObject("pageBar", PageFactory.getPageBar(totalData, cPage, numPerPage,url));
     	mv.addObject("applList", applList);
     	mv.addObject("totalData", totalData);
     	mv.setViewName("member/dashBoard");
     	return mv;
     }
+    @RequestMapping("/member/dashBoardSearch.lmc")
+    public ModelAndView dashBoardSearch(MyApp ma,
+    		@RequestParam(value="cPage", required=false, defaultValue="1")int cPage) {
+    	ModelAndView mv= new ModelAndView();
+    	int numPerPage=5;
+    	int totalData=0;
+    	String url="";
+    	List<MyApp> applList =service.selectMa(ma,cPage,numPerPage);
+    	totalData=service.selectMaCount(ma);
+    	mv.addObject("pageBar", PageFactory.getPageBar(totalData, cPage, numPerPage,url));
+    	mv.addObject("applList", applList);
+    	mv.addObject("totalData", totalData);
+    	mv.setViewName("member/ajax/dashBoardList");
+    	return mv;
+    }
+    
     
 }

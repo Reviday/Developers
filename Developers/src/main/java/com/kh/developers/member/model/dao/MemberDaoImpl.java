@@ -12,7 +12,7 @@ import com.kh.developers.business.model.vo.Applicant;
 import com.kh.developers.business.model.vo.Business;
 import com.kh.developers.member.model.vo.Interests;
 import com.kh.developers.member.model.vo.Member;
-import com.kh.developers.member.model.vo.MyLike;
+import com.kh.developers.member.model.vo.MyApp;
 import com.kh.developers.search.model.vo.Position;
 
 @Repository
@@ -22,13 +22,26 @@ public class MemberDaoImpl implements MemberDao {
 	
 	
 	@Override
+	public int selectMaCount(SqlSessionTemplate session, MyApp ma) {
+		// TODO Auto-generated method stub
+		return session.selectOne("member.selectMaCount",ma);
+	}
+
+	@Override
+	public List<MyApp> selectMa(SqlSessionTemplate session,MyApp ma, int cPage, int numPerPage) {
+		// TODO Auto-generated method stub
+		RowBounds row=new RowBounds((cPage-1)*numPerPage, numPerPage);
+		return session.selectList("member.selectMa",ma,row);
+	}
+
+	@Override
 	public Member selectMemNo(SqlSessionTemplate session, int memNo) {
 		// TODO Auto-generated method stub
 		return session.selectOne("member.selectMemNo",memNo);
 	}
 
 	@Override
-	public List<Applicant> selectMemAppl(SqlSessionTemplate session, Member m, int cPage, int numPerPage) {
+	public List<MyApp> selectMemAppl(SqlSessionTemplate session, Member m, int cPage, int numPerPage) {
 		// TODO Auto-generated method stub
 		RowBounds row=new RowBounds((cPage-1)*numPerPage, numPerPage);
 		return session.selectList("member.selectMemAppl",m,row);
