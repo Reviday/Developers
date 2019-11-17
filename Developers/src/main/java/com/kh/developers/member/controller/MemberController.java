@@ -603,7 +603,7 @@ public class MemberController {
                 new StringBuffer().append("<div style=\"font-family: 'Apple SD Gothic Neo', 'sans-serif' !important; width: 540px; height: 600px; border-top: 4px solid rgb(67,138,255); margin: 100px auto; padding: 30px 0; box-sizing: border-box;\">")
                 .append("<h1 style=\"margin: 0; padding: 0 5px; font-size: 28px; font-weight: 400;\">")
                 .append("<span style=\"font-size: 15px; margin: 0 0 10px 3px;\"><img src=\""+frontUrl+"developers/resources/images/Developers_logo.png"+"\" style=\"height:40px;\"/></span><br />")
-                .append("<span style=\"color: rgb(67,138,255);\">메일인증</span> 안내입니다.</h1>")
+                .append("<span style=\"color: rgb(67,138,255);\">응답 </span> 안내입니다.</h1>")
                 .append("<p style=\"font-size: 16px; line-height: 26px; margin-top: 50px; padding: 0 5px;\">")
                 .append("안녕하세요.<br />")
                 .append("지원자가 응답을 완료하였습니다.<br />")
@@ -615,7 +615,7 @@ public class MemberController {
                 .append("&memEmail=")
                 .append(m.getMemEmail())
                 .append("\" target=\"_blank\">")
-                .append("<span style=\"display: inline-block; width: 210px; height: 45px; margin: 30px 5px 40px; background-color: rgb(67,138,255); line-height: 45px; vertical-align: middle; font-size: 16px;\">메일 인증</span></a>")
+                .append("<span style=\"display: inline-block; width: 210px; height: 45px; margin: 30px 5px 40px; background-color: rgb(67,138,255); line-height: 45px; vertical-align: middle; font-size: 16px;\">확인하러 가기</span></a>")
                 .append("<div style=\"border-top: 1px solid #DDD; padding: 5px;\"></div>")
                 .toString());
         sendMail.setFrom("ysk.testacc@gmail.com", "디벨로퍼스 ");

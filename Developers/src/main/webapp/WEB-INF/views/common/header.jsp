@@ -218,7 +218,7 @@
                            <a href="/referral" class="">추천</a>
                         </li>
                         <li class="">
-                           <a href="/status/applications" class="">지원 현황</a>
+                           <a href="${path }/member/dashBoard.lmc?memEmail=${loginMember.memEmail }" class="">지원 현황</a>
                         </li>
                         <div class="divider xsOnly"></div>
                         <li class="microOnly">

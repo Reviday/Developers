@@ -24,7 +24,6 @@ var path = "${path }";
             <li class="_1ft7OZSrbzL35bkI-omU2b"><a href="#" onclick="applicantPage('${memEmail }')" class="">제안받기 현황</a></li>
             <li class="_1ft7OZSrbzL35bkI-omU2b"><a href="#" onclick="likePage('${memEmail }');" class="">좋아요</a></li>
             <li class="_1ft7OZSrbzL35bkI-omU2b"><a href="#" onclick="myBookMark('${memEmail }')" class="">북마크</a></li>
-            <li class="_1ft7OZSrbzL35bkI-omU2b"><a href="#" onclick="dashBoard('${memEmail }')" class="">지원현황</a></li>
         </ul>
     </nav>
     <div class="_14NzdD9Zqjq8ocf6TORWoN">

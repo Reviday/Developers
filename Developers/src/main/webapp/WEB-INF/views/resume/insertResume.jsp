@@ -823,17 +823,11 @@
  	  			($('textarea[name=careerIntro]')).val().trim().length > 0 &&
  	  			($('input[name=busName]')).val().trim().length > 0 &&
  	  			($('input[name=depName]')).val().trim().length > 0 &&
- 	  			($('input[name=startAct]')).val().trim().length > 0 &&
- 	  			($('input[name=actName]')).val().trim().length > 0 &&
- 	  			($('textarea[name=actDetail]')).val().trim().length > 0 &&
  	  			($('input[name=startEd]')).val().trim().length > 0 &&
  	  			($('input[name=endEd]')).val().trim().length > 0 &&
  	  			($('input[name=schoolName]')).val().trim().length > 0 &&
  	  			($('input[name=majorName]')).val().trim().length > 0 &&
- 	  			($('textarea[name=subjectName]')).val().trim().length > 0 &&
- 	  			($('select[name=langName]')).val().length > 0 &&
- 	  			($('select[name=langLevel]')).val().length > 0 &&
- 	  			($('input[name=linksAddr]')).val().trim().length > 0 ){
+ 	  			($('textarea[name=subjectName]')).val().trim().length > 0 ){
  			  	$("#status").val("Y");
  	  			return true;
  	  	}else{

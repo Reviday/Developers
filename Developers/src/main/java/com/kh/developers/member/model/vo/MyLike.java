@@ -1,5 +1,14 @@
 package com.kh.developers.member.model.vo;
 
+import java.util.Date;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 public class MyLike {
 	private int position_no; //포지션 넘버
 	private String bus_name; //회사 이름

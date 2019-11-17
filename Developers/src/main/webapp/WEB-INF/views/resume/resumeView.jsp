@@ -44,7 +44,7 @@
                                 </button>   
                                     <c:set value="${resume.resumeNo }" var="resumeNo"/>  
                                         <button class="hidden-xs btn btn-primary" OnClick="return fn_status();" id="endFinsh"
-                                      type="button">작성 완료</button>
+                                      type="submit">작성 완료</button>
                                      <button class="border-gray btn btn-default"
                                         type="button"><i class="fas fa-download"></i></button>
                                 </div>
@@ -833,17 +833,11 @@
    	  			($('textarea[name=careerIntro]')).val().trim().length > 0 &&
    	  			($('input[name=busName]')).val().trim().length > 0 &&
    	  			($('input[name=depName]')).val().trim().length > 0 &&
-   	  			($('input[name=startAct]')).val().trim().length > 0 &&
-   	  			($('input[name=actName]')).val().trim().length > 0 &&
-   	  			($('textarea[name=actDetail]')).val().trim().length > 0 &&
    	  			($('input[name=startEd]')).val().trim().length > 0 &&
    	  			($('input[name=endEd]')).val().trim().length > 0 &&
    	  			($('input[name=schoolName]')).val().trim().length > 0 &&
    	  			($('input[name=majorName]')).val().trim().length > 0 &&
-   	  			($('textarea[name=subjectName]')).val().trim().length > 0 &&
-   	  			($('select[name=langName]')).val().length > 0 &&
-   	  			($('select[name=langLevel]')).val().length > 0 &&
-   	  			($('input[name=linksAddr]')).val().trim().length > 0 ){
+   	  			($('textarea[name=subjectName]')).val().trim().length > 0 ){
    			  	$("#status").val("Y");
    	  			return true;
    	  	}else{

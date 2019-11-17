@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="member">
-	<select id="selectMemNo" parameterType="_int" resultMap="memberMap">
+	<select id="selectMemNo" parameterType="_int" resultMap="myapplMap">
 		SELECT * FROM TA_MEMBER WHERE mem_no=#{memNo} AND MEM_STATUS='Y'
 	</select>
 	<select id="selectMemAppl" parameterType="member" resultMap="memberMap">
-		SELECT * FROM TA_APPL_BUS where mem_no=#{memNo} ORDER BY offer_Date desc 
+		SELECT E.BUS_NAME,E.POSITION,T.APPL_DATE,T.APPL_STATUS,B.BUS_LOGO FROM TA_APPL_BUS T JOIN ENROLL_POSITION E ON (T.BUS_NO=E.BUS_NO) JOIN BUSINESS_INFO B ON(T.BUS_NO=B.BUS_NO) WHERE T.POSITION_NO!=0 AND T.MEM_NO=#{memNo} ORDER BY APPL_DATE DESC
 	</select>
 	<select id="selectMemApplCount" parameterType="member" resultType="_int">
-		SELECT COUNT(*) FROM TA_APPL_BUS WHERE mem_no=#{memNo}
+		SELECT COUNT(*) FROM TA_APPL_BUS WHERE mem_no=#{memNo} AND POSITION_NO!=0
 	</select>
 	<select id="selectBookMark" parameterType="member" resultMap="positionMap" >
 		SELECT * FROM BUSINESS_INFO i join enroll_position e on (i.bus_no=e.bus_no) join BOOK_MARK b on (e.position_no=b.position_no) join ta_member m on(b.mem_no=m.mem_no) where m.mem_no=#{memNo}
@@ -259,5 +259,13 @@
 		<result property="applStatus" column="appl_status"/>
 		<result property="applDate" column="appl_date" />
 		<result property="applAnsYn" column="appl_ans_yn"/>
+	</resultMap>
+	<resultMap type="com.kh.developers.member.model.vo.MyApp" id="myapplMap">
+		<result column="busName" property="BUS_NAME"/>
+		<result column="position" property="POSITION"/>
+		<result column="applDate" property="APPL_DATE"/>
+		<result column="applStatus" property="APPL_STATUS"/>
+		<result column="busLogo" property="BUS_LOGO"/>
+		
 	</resultMap>
 </mapper>
