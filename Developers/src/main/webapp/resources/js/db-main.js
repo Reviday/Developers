@@ -1,6 +1,5 @@
 //dashborad-main
 $(window).ready(function(){
-  
     if(db_index!=''){
         $($(".ei_nav>li>a")[db_index-1]).addClass("ca1");
         if(db_index==11){

@@ -58,6 +58,10 @@ public interface BusinessService2 {
 	int updateApplPf(Map map);
 	
 	
+	
+	int insertPosition(Map map);
+	
+	
 
 	
 

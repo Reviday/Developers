@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -705,7 +706,7 @@ public class BusinessController2 {
 			//			}
 			//			poHtml+="</ul>";
 			//			poHtml+="</div>";
-			poHtml+="<button type='button' class='position_add_btn' onclick='fn_add_position();'>포지션 추가</button>";
+			poHtml+="<button type='button' class='position_add_btn' onclick='fn_enroll_position();'>포지션 추가</button>";
 			poHtml+="</div>";
 			poHtml+="<div class='position_section'>";
 			poHtml+="<div class='position_list'>";
@@ -742,20 +743,131 @@ public class BusinessController2 {
 		return mv;
 	}
 
-	@RequestMapping("/business/insertPosition.lbc")
-	public ModelAndView insertPosition() {
+	@RequestMapping("/business/enrollPosition.lbc")
+	public ModelAndView insertPosition(HttpSession session) {
 		ModelAndView mv=new ModelAndView();
 		String html="";
+		html="<div class='po_main'>";
+		html+="<div class='po_main_header'>";
+		html+="<div class='po_header_title'>포지션 추가</div>";
+		html+="</div>";
+		html+="<form name='po_frm' class='po_frm'>";
+		html+="<div class='po_form_left'>";
+		html+="<div class='po_title'>직군/직무</div>";
+		html+="<div class='po_con1'>";
+		String[] skills= {"웹 개발자","서버 개발자","프론트엔드 개발자","자바 개발자","안드로이드 개발자","iOS 개발자","파이썬 개발자","데이터엔지니어","시스템,네트워크 관리자","DevOps // 시스템 관리자","Node.js개발자","C/C++ 개발자","데이터 사이언티스트","개발 매니저","PHP 개발자","기술지원","머신러닝 엔지니어","보안 엔지니어","QA/테스트 엔지니어","프로덕트 매니저","빅데이터 엔지니어","루비온레일즈 개발자",".NET개발자","웹 퍼블리셔","임베디드 개발자","블록체인 플랫폼 엔지니어","하드웨어 엔지니어","CTO/Chief TechnologyOfficer","영상,음성 엔지니어","BI 엔지니어","그래픽스엔지니어","CIO,Chief InformationOfficer"};
+		html+="<select class='po_type_list form-control' name='job_type'>";
+		html+="<option selected disabled>직군/직무 선택</option>";
+		for(String skill:skills) {
+			html+="<option value'"+skill+"'>"+skill+"</option>";
+		}
+		html+="</select>";
+		
+		html+="</div>";
+		html+="<div class='po_title'>경력</div>";
+		html+="<div class='po_con2'>";
+		html+="<label for=''>";
+		html+="<input type='checkbox' class='po_junior' name='po_junior' value='junior'/>신입";
+		html+="</label>";
+		html+="<div class='po_career'>";
+		html+="<input type='number' class='form-control' name='po_career' min='0' max='100'/>";
+		html+="<span> ~ </span>";
+		html+="<input type='number' class='form-control' name='po_career' min='0' max='100'/>&nbsp;<span>년</span>";
+		html+="</div>";
+		html+="</div>";
+		html+="<div class='po_title'>채용시 예상 연봉 (최소~최대)</div>";
+		html+="<div class='po_con3'>";
+		html+="<input type='text' class='po_salary form-control' name='po_salary' onkeypress='onlyNumber();' value='0'/>만원";
+		html+=" ~ ";
+		html+="<input type='text' class='po_salary form-control' name='po_salary' onkeypress='onlyNumber();' value='0'/>만원";
+		html+="</div>";
+		html+="<div class='po_title'>마감일</div>";
+		html+="<div class='po_con2'>";
+		html+="<label for=''>";
+		html+="<input type='checkbox' class='' name='po_period' value='always'/>상시";
+		html+="</label>";
+		html+="<input type='date' class='form-control' name='po_date' />";
+		html+="</div>";
+		html+="<div class='po_title'>근무지</div>";
+		html+="<div class='po_con1'>";
+		html+="<input type='text' class='form-control' name='' value='"+((Business)session.getAttribute("busInfo")).getBusAddress()+"' disabled/>";
+		html+="</div>";
+		html+="<div class='po_title'>포지션 명</div>";
+		html+="<div class='po_con1'>";
+		html+="<input type='text' class='form-control' name='position' />";
+		html+="</div>";
+		html+="<div class='po_title'>포지션 공고,서론</div>";
+		html+="<div class='po_con4'>";
+		html+="<textarea name='position_info' class='form-control'></textarea>";
+		html+="</div>";
+		html+="<div class='po_title'>주요 업무</div>";
+		html+="<div class='po_con4'>";
+		html+="<textarea name='mainbusiness' class='form-control'></textarea>";
+		html+="</div>";
+		html+="<div class='po_title'>자격요건</div>";
+		html+="<div class='po_con4'>";
+		html+="<textarea name='qualification' class='form-control'></textarea>";
+		html+="</div>";
+		html+="<div class='po_title'>우대사항(선택)</div>";
+		html+="<div class='po_con4'>";
+		html+="<textarea name='preference' class='form-control'></textarea>";
+		html+="</div>";
+		html+="<div class='po_title'>혜택 및 복지</div>";
+		html+="<div class='po_con4'>";
+		html+="<textarea name='benefit' class='form-control'></textarea>";
+		html+="</div>";
+		html+="</div>";
+		html+="<div class='po_form_right'>";
+		html+="<div class='po_title'>지원 알림 이메일</div>";
+		html+="<div class='po_con1'>";
+		html+="<input type='email' class='form-control po_email' name='apply_email' placeholder='example@developer.com'/>";
+		html+="</div>";
+		html+="</div>";
+		html+="</form>";
+		html+="</div>";
+		
+		String footHtml="";
+		footHtml+="<div class='po_footer'>";
+		footHtml+="<div class='po_footer_con'>";
+		footHtml+="<button type='button' class='po_btn po_del'>삭제</button>";
+		footHtml+="<button type='button' class='po_btn po_temp' data='T' onclick='fn_add_position();'>임시 저장</button>";
+		footHtml+="<button type='button' class='po_btn' data='N' onclick='fn_add_position();'>승인요청</button>";
+		footHtml+="</div>";
+		footHtml+="</div>";
+		
 		
 		mv.addObject("dbHtml",html);
+		mv.addObject("seHtml",footHtml);
+		mv.addObject("dbIndex",3);
 		mv.setViewName("business/dashboard");
 		return mv;
 	}
-
-
-
-
-
+	
+	
+	@RequestMapping("/business/insertPosition.lbc")
+	public ModelAndView insertPosition(HttpSession session, Position po, @RequestParam String poStatus, @RequestParam String po_date, @RequestParam String[] po_salary, @RequestParam String[] po_career) {
+		ModelAndView mv=new ModelAndView();
+		Business bus=(Business)session.getAttribute("busInfo");
+		Map map=new HashMap();
+		po.setBus_no(Integer.parseInt(bus.getBusNo()));
+		po.setBus_name(bus.getBusName());
+		map.put("po",po);
+		map.put("poStatus",poStatus);
+		map.put("poDate",po_date);
+		int poSalary=(Integer.parseInt(po_salary[0])+Integer.parseInt(po_salary[1]))/2;
+		map.put("poSalary",poSalary);
+		String career=po_career[0]+"~"+po_career[1]+"년";
+		map.put("poCareer",career);
+		
+		System.out.println(po);
+		int result=service.insertPosition(map);
+		
+		
+		
+		
+		mv.setViewName("jsonView");
+		return mv;
+	}
 
 
 	//비지니스 정보	

@@ -238,6 +238,35 @@
 		</if>
 	</select>
 	
+	<insert id="insertPosition" parameterType="map">
+		INSERT INTO ENROLL_POSITION 
+		VALUES(EN_PO_SEQ.NEXTVAL, 
+			   #{po.bus_no}, 
+			   #{po.bus_name}, 
+			   #{po.apply_email}, 
+			   #{po.job_type, typeHandler=strArray}, 
+			   #{poCareer}, 
+			   NULL,
+			   TO_DATE(#{poDate}), 
+			   #{po.position}, 
+			   #{po.position_info}, 
+			   #{po.mainbusiness}, 
+			   #{po.qualification},
+		<if test="po.preference!=null and po.preference!=''">
+		 	   #{po.preference},
+		</if>
+		<if test="po.preference==null">
+			   NULL,
+		</if>
+			   #{po.benefit}, 
+			   SYSDATE, 
+			   NULL, 
+			   NULL, 
+			   NULL, 
+			   #{poStatus}, 
+			   #{poSalary})
+	</insert>
+	
 	
 
 	<!-- 매치업 mapper -->

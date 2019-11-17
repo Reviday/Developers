@@ -166,6 +166,13 @@ public class BusinessDaoImpl2 implements BusinessDao2 {
 	public List<Position> selectPositionList(SqlSession session, Map map) {
 		return session.selectList("business2.selectPositionList", map);
 	}
+
+
+	@Override
+	public int insertPosition(SqlSession session, Map map) {
+		return session.insert("business2.insertPosition",map);
+	}
+	
 	
 
 	

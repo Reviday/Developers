@@ -158,6 +158,13 @@ public class BusinessServiceImpl2 implements BusinessService2 {
 		List<Position> poList=dao.selectPositionList(session, map); 
 		return poList;
 	}
+
+	@Override
+	public int insertPosition(Map map) {
+		int result=dao.insertPosition(session, map);
+		return result;
+	}
+	
 	
 	
 	

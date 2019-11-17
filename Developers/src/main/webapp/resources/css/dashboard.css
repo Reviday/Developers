@@ -101,7 +101,7 @@ section {
     top: 20%;
     margin: 0 auto;
     margin-right: 2px;
-    height:30px;
+    height: 30px;
 }
 
 .li_input>label>svg {
@@ -371,7 +371,7 @@ input[name="search_em"]::placeholder {
     border-radius: 3px;
     font-size: 1.8rem;
     float: right;
-    margin-right:20px;
+    margin-right: 20px;
     top: 80px;
     border: 1px solid #6e0000;
     font-weight: bold;
@@ -455,13 +455,16 @@ input[name="search_em"]::placeholder {
 }
 
 
-.appl_info_hide{
+
+
+.appl_info_hide {
     background-color: #6e0000;
-    color:white;
-    padding:10px 10px;
-    width:230px;
-    margin:0 30px;
+    color: white;
+    padding: 10px 10px;
+    width: 230px;
+    margin: 0 30px;
     border-radius: 3px;
+
 }
 
 /*---------------------------포지션------------------------------*/
@@ -519,7 +522,173 @@ input[name="search_em"]::placeholder {
 }
 
 
+.po_main {
+    width: 100%;
+    max-width: 1024px;
+    margin: 0 auto;
+}
 
+.po_main_header>div {
+    font-size: 3rem;
+    font-weight: 900;
+    margin: 10px 0;
+
+}
+
+.po_frm>div>div {
+    margin: 5px 0;
+    width: 100%;
+    padding: 10px 0;
+}
+
+.po_frm>div {
+    display: inline-grid;
+}
+
+.po_form_left {
+    width: 65%;
+    margin-right: 2%;
+}
+
+.po_form_right {
+    width: 30%;
+}
+
+.po_title {
+    display: inline-block;
+    font-size: 1.7rem;
+    font-weight: bold;
+    border-bottom:0.5px solid silver;
+
+}
+
+.po_con1>input {
+    width: 90%;
+    height: 50px;
+}
+
+.po_con1>* {
+    display: inline-block;
+    font-size: 1.5rem;
+}
+
+.po_type_list {
+    width: 90%;
+    height: 50px;
+}
+
+.po_email {
+    width: 100%;
+    height: 50px;
+
+
+}
+
+.po_con2 {
+    font-size: 1.5rem;
+}
+
+.po_con2>div {
+    display: inline-block;
+    position: relative;
+}
+
+.po_con2>label {
+    float: right;
+    margin-right: 11%;
+}
+
+.po_con2>input[name='po_date'] {
+    width: 170px;
+    height: 50px;
+    padding: 1.2rem 1.3rem;
+}
+
+.po_career>input {
+    width: 65px;
+    height: 50px;
+    position: relative;
+    display: inline-block;
+    font-size: 1.5rem;
+}
+
+.po_con3 {
+    font-size: 1.5rem;
+}
+
+.po_con3>* {
+    position: relative;
+    display: inline-block;
+}
+
+.po_con3>input {
+    width: 100px;
+    height: 50px;
+}
+
+.po_con4>textarea {
+    width: 90%;
+    height: 150px;
+    resize: none;
+}
+
+
+.po_footer {
+    position: sticky;
+    width: 100%;
+    height: 55px;
+    bottom: 0;
+    background-color:#f4f4f4;
+    border-top:1px solid silver;
+}
+
+.po_footer_con{
+    width:85%;
+    height: 100%;
+    margin: 0 auto;
+    max-width: 1024px;
+}
+
+.po_btn {
+    position: relative;
+    float: right;
+    font-size: 2rem;
+    margin-right: 1%;
+    transform: translateY(25%);
+    background-color: #900020;
+    color: white;
+    font-weight: bold;
+    border: 1px solid silver;
+    border-radius: 3px;
+    padding:1px 4px;
+}
+
+.po_btn:hover {
+    background-color: #6e0000;
+}
+
+.po_temp{
+    background-color: white;
+    color: #6e0000;
+    border:1px solid silver;
+}
+
+.po_temp:hover {
+    background-color: silver;
+    
+}
+
+.po_del{
+    background-color: white;
+    color: #6e0000;
+    float: left;
+    border:1px solid #900020;
+}
+
+.po_del:hover {
+    background-color: red;
+    color: white;
+}
 
 /*---------------bus info-----------------*/
 .bi_main {
@@ -841,8 +1010,8 @@ input[name='searchKeywords'] {
     padding: 10px 0;
     font-size: 1.8rem;
     font-weight: 900;
-    z-index:1000;
-    background-color:rgba(255,255,255,0.7);
+    z-index: 1000;
+    background-color: rgba(255, 255, 255, 0.7);
 }
 
 .blinking_btn {
