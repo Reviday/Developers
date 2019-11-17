@@ -22,7 +22,7 @@
 		            <div class="inner-width">
 		                <div class="col">
 		                    <i class="far fa-smile-wink"></i>
-		                    <div class="num">${statsMap.total} }</div>
+		                    <div class="num">${statsMap.total }</div>
 		                    	총 회원
 		                </div>
 		
