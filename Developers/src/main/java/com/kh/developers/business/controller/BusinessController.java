@@ -112,12 +112,13 @@ public class BusinessController {
 	}
 	
 	@RequestMapping("/business/businessEnroll")
-	public ModelAndView businessEnroll(Business bus, RedirectAttributes rttr){
+	public ModelAndView businessEnroll(Business bus,HttpServletRequest req, RedirectAttributes rttr){
 		ModelAndView mv=new ModelAndView();
+		Member m=(Member)req.getSession().getAttribute("loginMember");
 		String msg="";
 		int result=0;
 		try {
-			result=bService.insertBusiness(bus);			
+			result=bService.insertBusiness(bus,m.getMemNo());			
 		}catch(Exception e) {
 			msg= "기업등록에 실패하셨습니다. 다시한번 시도하여 주시기 바랍니다";
 			rttr.addFlashAttribute("msg",msg);
@@ -156,18 +157,22 @@ public class BusinessController {
 //				     mv.setViewName("business");
 //					return "redirect:/business/{confirmed}";
 					mv.setViewName("redirect:/business");
-				}else if(result!=null&&result.getMemLevel()<3) {
+				}else if(result!=null&&result.getMemLevel()<2) {
 					 // 아직 bussinessEnroll 안한 회원 
 					model.addAttribute("loginMember",result); 
 					mv.setViewName("business/businessEnroll");
-				}else if(result!=null&&result.getMemLevel()>=3 && result.getMemLevel()<5){
-					// businessEnroll 마친 회원
-					int memberNo=result.getMemNo();
-					Business bus=bService.selectBusInfo(memberNo); //사업장 정보 불러오는 로직 
-					logger.debug(""+bus);
+				}else if(result!=null&&result.getMemLevel()==2){
+					//기업 등록은 했지만 confirm 이 안난 회원 
 					model.addAttribute("loginMember",result); 
-					model.addAttribute("busInfo",bus);
-					mv.setViewName("redirect:/business/dashboard.lbc");											
+					mv.setViewName("business/confirming");
+				}else if(result!=null&&result.getMemLevel()>=3 && result.getMemLevel()<5){
+				// businessEnroll 마친 회원
+				int memberNo=result.getMemNo();
+				Business bus=bService.selectBusInfo(memberNo); //사업장 정보 불러오는 로직 
+				logger.debug(""+bus);
+				model.addAttribute("loginMember",result); 
+				model.addAttribute("busInfo",bus);
+				mv.setViewName("redirect:/business/dashboard.lbc");											
 			} else {
 				/*로그인 로직 상, login.do를 실행할떄 비밀번호가 틀릴 수가 없기 때문*/
 				mv.addObject("msg","잘못된 경로입니다.");

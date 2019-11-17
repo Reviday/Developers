@@ -103,9 +103,18 @@ public class BusinessServiceImpl implements BusinessService {
 	
 	
 	@Override
-	public int insertBusiness(Business bus) {
-
-		return dao.insertBusiness(session, bus);
+	public int insertBusiness(Business bus, int memNo) {
+		int result=dao.insertBusiness(session, bus);
+		if(result>0) {
+			int busNo=Integer.parseInt(bus.getBusNo());
+			result=dao.insertConnection(session,busNo,memNo);
+			if(result>0) {
+				result=dao.updateMemLevel(session,memNo);
+			}
+		}else {
+			result=-1;
+		}
+		return result;
 	}
 	
 	@Override

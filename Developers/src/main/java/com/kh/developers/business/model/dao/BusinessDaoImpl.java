@@ -48,6 +48,22 @@ public class BusinessDaoImpl implements BusinessDao {
 	}
 	
 	@Override
+	public int insertConnection(SqlSessionTemplate session, int busNo, int memNo) {
+		// TODO Auto-generated method stub
+		Map<String,Object>values=new HashMap<String,Object>();
+		values.put("busNo", busNo);
+		values.put("memNo",memNo);
+		return session.insert("business.insertConnection",values);
+	}
+	
+	@Override
+	public int updateMemLevel(SqlSessionTemplate session, int memNo) {
+		// TODO Auto-generated method stub
+		return session.update("business.updateMemLevel",memNo);
+	}
+	
+	
+	@Override
 	public Business selectBusInfo(SqlSessionTemplate session, int memberNo) {
 
 		return session.selectOne("business.selectBusInfo",memberNo);

@@ -17,7 +17,7 @@ public interface BusinessService {
 	
 	void sendMail(Member m, String url) throws Exception;
 	
-	int insertBusiness(Business bus);
+	int insertBusiness(Business bus, int memNo);
 	
 	Business selectBusInfo(int memberNo);
 	

@@ -26,6 +26,10 @@ public interface BusinessDao {
 //	사업장 로직
 	int insertBusiness (SqlSessionTemplate session, Business bus);
 	
+	int insertConnection (SqlSessionTemplate session,int busNo,int memNo);
+	
+	int updateMemLevel(SqlSessionTemplate session, int memNo);
+	
 	Business selectBusInfo (SqlSessionTemplate session, int memberNo);
 	
 	
