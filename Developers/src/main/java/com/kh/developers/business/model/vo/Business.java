@@ -1,6 +1,7 @@
 package com.kh.developers.business.model.vo;
 
-import java.sql.Date;
+
+import java.util.Date;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
