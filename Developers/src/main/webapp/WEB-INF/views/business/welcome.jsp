@@ -51,6 +51,9 @@ background-repeat: no-repeat;
 background-position: center center;
 background-size: cover;
 }
+button#startBtn{
+	width:5em;
+}
 
 .modal>*{
 	 font-size:15px;

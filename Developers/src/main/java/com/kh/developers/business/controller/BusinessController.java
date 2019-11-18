@@ -59,14 +59,22 @@ public class BusinessController {
 	
 	@RequestMapping("/business")
 	public String empPage(HttpSession session){
-		//redirect 로 매핑값 서블릿으로
-		if(session.getAttribute("loginMember")!=null&&session.getAttribute("busInfo")!=null) {
-			return "redirect:/business/dashboard.lbc";			
-		}else if(session.getAttribute("loginMember")!=null&&session.getAttribute("busInfo")==null) {
-			return "business/businessEnroll";
-		}else {
-			return "business/welcome";			
+		if(session.getAttribute("loginMember")!=null) {
+			Member m=(Member)session.getAttribute("loginMember");
+			int level = m.getMemLevel();
+			//redirect 로 매핑값 서블릿으로
+			if(session.getAttribute("loginMember")!=null&&level>2&&session.getAttribute("busInfo")!=null) {
+				return "redirect:/business/dashboard.lbc";			
+			}else if(session.getAttribute("loginMember")!=null&&level==2) {
+				return "business/confirming";
+				
+			}else if(session.getAttribute("loginMember")!=null&&level<1&&session.getAttribute("busInfo")==null) {
+				return "business/businessEnroll";
+			}else {
+				return "business/welcome";			
+			}	
 		}
+		return "business/welcome";		
 	}
 	
 	@RequestMapping("/business/register")
@@ -173,7 +181,11 @@ public class BusinessController {
 				model.addAttribute("loginMember",result); 
 				model.addAttribute("busInfo",bus);
 				mv.setViewName("redirect:/business/dashboard.lbc");											
-			} else {
+				}else if(result!=null&&result.getMemLevel()>=5) {
+				model.addAttribute("loginMember",result); 
+	            mv.setViewName("admin/mainPage");
+				}
+				else {
 				/*로그인 로직 상, login.do를 실행할떄 비밀번호가 틀릴 수가 없기 때문*/
 				mv.addObject("msg","잘못된 경로입니다.");
 				mv.addObject("loc","/");
