@@ -272,7 +272,7 @@ select {
 			<div id="salary-chart"></div>
 			<div>연봉정보</div>
 		</div>
-		<!--연봉 그래프 완료 -->
+		    <!--연봉 그래프 완료 -->
 	
 		<!--직군별 연봉 검색시작  -->
 		<div class="salary-header-mid">
@@ -350,10 +350,49 @@ select {
 			<!--직군별 연봉 검색완료  -->
 		</div>
 	</div>
-
 </section>
+<section id="companyInfo">
+        <div class="InfoMain">
+            <div class="infoMid">      
+                <div class="choochun">
+                    <h5 class="choochun-title">추천 채용</h5>
+                    <div class="choochun-content">
+                        <ul class="clearfix">
+                        	<c:forEach var="c" items="${rcList }">
+	                            <li>
+	                                <div class="choochun-content-context">
+	                                    <a href="${path }/search/companyInfo1.do?positionNo=${c.position_no }">
+	                                        <div class="contextHeader" style="background-image:url(${path}${c.bus_images[0]});">
+	                                            <button class="likeButton">
+	                                                <i class="fas fa-heart" style="margin-right: 10px"></i>
+	                                                <c:out value="${c.like_count }"></c:out>
+	                                            </button>
+	                                        </div>
+	                                        <div class="body">
+	                                            <dl>
+	                                                <dt><c:out value="${c.position }"></c:out></dt>
+	                                                <dd>
+	                                                    <c:out value="${c.bus_name }"></c:out>
+	                                                    <br>
+	                                                    <span><c:out value="${c.bus_area }"></c:out></span>
+	                                                    <span class="addressDot">.</span>
+	                                                    <span><c:out value="${c.bus_country }"></c:out></span>
+	                                                </dd>
+	                                            </dl>
+	                                            <div class="reward">채용보상금 1,000,000원</div>
+	                                        </div>
+	                                    </a>
+	                                </div>
+	                            </li>
+                            </c:forEach>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<!-- ajax통신 -->
+
 <!--선택된 연봉정보 DB에서 가지고 오기 시작  -->
 <script type="text/javascript">
 /* $("#jobGroup").change(function(){
@@ -376,6 +415,7 @@ $("#jobYears").change(function(){
 	console.log(jobField);	
 	console.log(jobYears);	
 	location.href='${path }/salary/salaryYears.do?jobField='+jobField +'&jobYears='+jobYears;
+	/* location.href='${path }/search/companyInfo.do?positionNo='+${p.position_no }+'&memNo='+${loginMember.memNo}; */
 });
 
 
