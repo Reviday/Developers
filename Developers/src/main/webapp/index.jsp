@@ -25,7 +25,7 @@ Developers에서 찾아보세요!</h1>
                     <div class="content card-content card-1">
                         <h2>면접 제안</h2>
                         <p>프로필 등록 한번으로 인사담당자에게 
-직접 면접 제안을 받으세요.</p><a href="/matchup/intro" class="">더 알아보기</a>
+직접 면접 제안을 받으세요.</p>
                     </div>
                     <div class="content card-content card-2">
                         <h2>탐색</h2>
