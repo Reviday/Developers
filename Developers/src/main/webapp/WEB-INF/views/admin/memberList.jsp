@@ -15,7 +15,6 @@
 <link href="${path}/resources/css/adminstyle.css" rel="stylesheet" id="bootstrap-css">
 <section id="content">
 	<div class="container" style="height: 60px"></div>
-	<div class="container mainContent">
 		<div class="row" style="margin-bottom: 20px">
 			<div class="middle">
 		        <div class="counting-sec">
@@ -51,6 +50,7 @@
 		        $(".num").counterUp({delay:10, time:1000});
 		    </script>
 		</div>
+	<div class="container mainContent">
 		<div class="row">
 			<h1 class="title">회원 정보 - 기본 정보</h1>
 		</div>
