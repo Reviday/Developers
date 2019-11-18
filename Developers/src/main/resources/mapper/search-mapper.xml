@@ -22,8 +22,8 @@
 		SELECT P.*, MEM_NAME, MEM_ICON FROM PO_LIKE P JOIN TA_MEMBER M ON P.MEM_NO = M.MEM_NO WHERE LIKE_ID = #{likeNo} ORDER BY LIKE_NO DESC
 	</select>
 	<!-- 적극채용중인 회사 리스트 -->
-	<select id="firstPsList" resultType="position" resultMap="positionArray">
-		SELECT * FROM (SELECT ROWNUM AS RNUM, A.* FROM (SELECT (SELECT COUNT(BUS_NO) FROM ENROLL_POSITION) AS PO_COUNT, P.*, BUS_LOGO, BUS_IMAGES, BUS_ADDRESS, BUS_INDUSTRIAL, BUS_AREA, BUS_COUNTRY,(SELECT COUNT(*) FROM PO_LIKE WHERE LIKE_ID = P.LIKE_ID) AS LIKE_COUNT FROM ENROLL_POSITION P JOIN BUSINESS_INFO B ON P.BUS_NO = B.BUS_NO WHERE SYSDATE <![CDATA[<]]> DEAD_DATE AND STATUS = 'Y' ORDER BY 1)A) WHERE RNUM BETWEEN 1 AND 5
+	<select id="firstPsList" resultType="adcompany" resultMap="adcompanyArray" parameterType="string">
+		SELECT B.BUS_NO, B.BUS_LOGO, B.BUS_IMAGES, (SELECT COUNT(B.BUS_NO) FROM ENROLL_POSITION) AS PO_COUNT FROM BUSINESS_INFO B JOIN ADVERTISEMENT A ON (B.BUS_NO = A.BUS_NO) JOIN ENROLL_POSITION P ON (B.BUS_NO = P.BUS_NO) WHERE A.AD_TYPE = 'CATEGORY' AND SYSDATE <![CDATA[<]]> AD_END_DATE AND P.JOB_TYPE IN (#{jobName}) GROUP BY (B.BUS_NO, B.BUS_LOGO, B.BUS_IMAGES)
 	</select>
 	<!-- 회원의 좋아요 여부 -->
 	<select id="selectLikeMemberOne" resultType="likemember" parameterType="map">
@@ -290,6 +290,10 @@
 	</resultMap>
 	
 	<resultMap type="company" id="companyArray">
+		<result column="bus_images" property="bus_images" typeHandler="StrArray"/>
+	</resultMap>
+	
+	<resultMap type="adcompany" id="adcompanyArray">
 		<result column="bus_images" property="bus_images" typeHandler="StrArray"/>
 	</resultMap>
 	

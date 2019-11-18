@@ -199,10 +199,10 @@
                 </div>
                 
                 
-                <h3 class="firstCompany">적극 채용 중인 회사</h3>
-                <div class="firstCompany-list">
-                    <ul>
-                    	<c:if test="${not empty firstPsList }">
+                <c:if test="${not empty firstPsList }">
+	                <h3 class="firstCompany">적극 채용 중인 회사</h3>
+	                <div class="firstCompany-list">
+	                    <ul>
                     		<c:forEach var="f" items="${firstPsList }">
                         		<a href="${path }/search/companyAllInfo?busNo=${f.bus_no}">
                             		<li>
@@ -218,9 +218,9 @@
                             		</li>
                         		</a>
                         	</c:forEach>
-                        </c:if>
-                    </ul>
-                </div>
+	                    </ul>
+	                </div>
+                </c:if>
                 <ul class="clearfix">
                 	<c:if test="${not empty psList }">
 	                	<c:forEach var="p" items="${psList }">

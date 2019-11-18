@@ -5,8 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.Cookie;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +19,7 @@ import com.kh.developers.member.model.vo.Member;
 import com.kh.developers.recommend.model.vo.Recommend;
 import com.kh.developers.resume.controller.ResumeController;
 import com.kh.developers.search.model.service.SearchService;
+import com.kh.developers.search.model.vo.AdCompany;
 import com.kh.developers.search.model.vo.BookMark;
 import com.kh.developers.search.model.vo.Company;
 import com.kh.developers.search.model.vo.Filter;
@@ -46,9 +45,6 @@ public class SearchController {
 	// 탐색메뉴 눌렀을 때의 첫 회사리스트페이지(비로그인)
 	@RequestMapping("/search/mainSearch.do")
 	public String mainSearchList(Model model) {
-		// 적극채용중인 회사
-		List<Position> firstPsList = service.firstPsList();
-		model.addAttribute("firstPsList", firstPsList);
 		// 일반 리스트
 		List<JobField> list = service.jobfieldList();
 		List<Position> psList = service.positionList();
@@ -59,9 +55,6 @@ public class SearchController {
 	// 탐색메뉴 눌렀을 때의 첫 회사리스트페이지(로그인)
 	@RequestMapping("/search/mainSearch.lmc")
 	public String mainSearchLoginList(Model model, int memNo) {
-		// 적극채용중인 회사
-		List<Position> firstPsList = service.firstPsList();
-		model.addAttribute("firstPsList", firstPsList);
 		// 직무 리스트
 		List<JobField> list = service.jobfieldList();
 		model.addAttribute("list", list);
@@ -85,9 +78,7 @@ public class SearchController {
 	// 회원필터 적용한 탐색 리스트(로그인)
 	@RequestMapping(value = "/search/changeFilterLoginAjax", produces = "application/text; charset=utf8")
 	public ModelAndView changeFilterLoginAjax(int memNo, String order, String career, String filtersave, String country, String location, ModelAndView mv) {
-		// 적극채용중인 회사
-		List<Position> firstPsList = service.firstPsList();
-		mv.addObject("firstPsList", firstPsList);
+
 		// 직무 리스트
 		List<JobField> list = service.jobfieldList();
 		mv.addObject("list", list);
@@ -135,7 +126,7 @@ public class SearchController {
 	@RequestMapping(value = "/search/changeFilterJobNameLoginAjax", produces = "application/text; charset=utf8")
 	public ModelAndView changeFilterJobNameLoginAjax(int memNo, String jobName, String order, String career, String filtersave, String country, String location, ModelAndView mv) {
 		// 적극채용중인 회사
-		List<Position> firstPsList = service.firstPsList();
+		List<AdCompany> firstPsList = service.firstPsList(jobName);
 		mv.addObject("firstPsList", firstPsList);
 		// 직무 리스트
 		List<JobField> list = service.jobfieldAjaxList(jobName);
@@ -225,7 +216,7 @@ public class SearchController {
 	// 탐색 -> 직무클릭했을 때의 페이지 전환(비로그인)
 	@RequestMapping(value = "/search/changeJobAjax", produces = "application/text; charset=utf8")
 	public ModelAndView changeJobAjax(String jobName, ModelAndView mv) {
-		List<Position> firstPsList = service.firstPsList();
+		List<AdCompany> firstPsList = service.firstPsList(jobName);
 		List<JobField> list = service.jobfieldAjaxList(jobName);	
 		List<Position> psList = service.positionAjaxList(jobName);
 	
@@ -239,7 +230,7 @@ public class SearchController {
 	// 탐색 -> 직무클릭했을 때의 페이지 전환(로그인)
 	@RequestMapping(value = "/search/changeJobLoginAjax", produces = "application/text; charset=utf8")
 	public ModelAndView changeJobLoginAjax(String jobName, int memNo, ModelAndView mv) {
-		List<Position> firstPsList = service.firstPsList();
+		List<AdCompany> firstPsList = service.firstPsList(jobName);
 		List<JobField> list = service.jobfieldAjaxList(jobName);
 		Filter filter = service.SelectMemberFilter(memNo);
 		List<Position> psList = service.positionAjaxLoginList(jobName, filter);

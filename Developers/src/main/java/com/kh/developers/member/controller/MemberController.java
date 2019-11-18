@@ -112,7 +112,7 @@ public class MemberController {
 			List<Position> psList = service.selectPositionList();	
 			mv.addObject("psList", psList);
 			//신규 채용 회사
-			List<Position> firstList = service1.firstPsList();
+			List<Position> firstList = service1.firstPsList11();
 			mv.addObject("firstList", firstList);
 			//금주의 추천
 			List<Position> weekList = service.selectWeekPositionList();
@@ -124,7 +124,7 @@ public class MemberController {
 			List<Position> psList1 = service.selectPositionList();	
 			mv.addObject("psList1", psList1);
 			//신규 채용 회사
-			List<Position> firstList = service1.firstPsList();
+			List<Position> firstList = service1.firstPsList11();
 			mv.addObject("firstList", firstList);
 			//금주의 추천
 			List<Position> weekList = service.selectWeekPositionList();
@@ -228,7 +228,7 @@ public class MemberController {
 				List<Position> psList = service.selectPositionList();	
 				mv.addObject("psList", psList);
 				//신규 채용 회사
-				List<Position> firstList = service1.firstPsList();
+				List<Position> firstList = service1.firstPsList11();
 				mv.addObject("firstList", firstList);
 				//금주의 추천
 				List<Position> weekList = service.selectWeekPositionList();
@@ -240,7 +240,7 @@ public class MemberController {
 				List<Position> psList1 = service.selectPositionList();	
 				mv.addObject("psList1", psList1);
 				//신규 채용 회사
-				List<Position> firstList = service1.firstPsList();
+				List<Position> firstList = service1.firstPsList11();
 				mv.addObject("firstList", firstList);
 				//금주의 추천
 				List<Position> weekList = service.selectWeekPositionList();

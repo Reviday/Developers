@@ -11,6 +11,7 @@ import com.kh.developers.business.model.vo.Applicant;
 import com.kh.developers.member.model.vo.Member;
 import com.kh.developers.recommend.model.vo.Recommend;
 import com.kh.developers.search.model.dao.SearchDao;
+import com.kh.developers.search.model.vo.AdCompany;
 import com.kh.developers.search.model.vo.BookMark;
 import com.kh.developers.search.model.vo.Company;
 import com.kh.developers.search.model.vo.Filter;
@@ -68,8 +69,8 @@ public class SearchServiceImpl implements SearchService {
 	}
 	
 	@Override
-	public List<Position> firstPsList() {
-		List<Position> firstPsList = dao.firstPsList(session);
+	public List<AdCompany> firstPsList(String jobName) {
+		List<AdCompany> firstPsList = dao.firstPsList(session, jobName);
 		return firstPsList;
 	}
 	

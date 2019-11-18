@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import com.kh.developers.business.model.vo.Applicant;
 import com.kh.developers.member.model.vo.Member;
 import com.kh.developers.recommend.model.vo.Recommend;
+import com.kh.developers.search.model.vo.AdCompany;
 import com.kh.developers.search.model.vo.BookMark;
 import com.kh.developers.search.model.vo.Company;
 import com.kh.developers.search.model.vo.Filter;
@@ -29,7 +30,7 @@ public interface SearchDao {
 	List<Position> positionList(SqlSessionTemplate session);
 	Position companyInfoList(SqlSessionTemplate session, int positionNo);
 	List<LikeMember> likeMemberList(SqlSessionTemplate session, int likeNo);
-	List<Position> firstPsList(SqlSessionTemplate session);
+	List<AdCompany> firstPsList(SqlSessionTemplate session, String jobName);
 	LikeMember selectLikeMemberOne(SqlSessionTemplate session, int memNo, int likeId);
 	int insertLikeButton(SqlSessionTemplate session, int memNo, int likeId);
 	int selectLikeCount(SqlSessionTemplate session, int likeId);

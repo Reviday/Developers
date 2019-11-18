@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.kh.developers.business.model.vo.Applicant;
 import com.kh.developers.member.model.vo.Member;
 import com.kh.developers.recommend.model.vo.Recommend;
+import com.kh.developers.search.model.vo.AdCompany;
 import com.kh.developers.search.model.vo.BookMark;
 import com.kh.developers.search.model.vo.Company;
 import com.kh.developers.search.model.vo.Filter;
@@ -58,9 +59,9 @@ public class SearchDaoImpl implements SearchDao {
 	}
 	
 	@Override
-	public List<Position> firstPsList(SqlSessionTemplate session) {
+	public List<AdCompany> firstPsList(SqlSessionTemplate session, String jobName) {
 		// TODO Auto-generated method stub
-		return session.selectList("search.firstPsList");
+		return session.selectList("search.firstPsList", jobName);
 	}
 	
 	@Override

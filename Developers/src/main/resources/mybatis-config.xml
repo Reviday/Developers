@@ -35,5 +35,6 @@
 		<typeAlias type="com.kh.developers.search.model.vo.ResumeSearch" alias="resumesearch"/>
 		<typeAlias type="com.kh.developers.member.model.vo.MyApp" alias="myapp"/>
 		<typeAlias type="com.kh.developers.search.model.vo.SearchCompany" alias="searchcompany"/>
+		<typeAlias type="com.kh.developers.search.model.vo.AdCompany" alias="adcompany"/>
 	</typeAliases>
 </configuration>

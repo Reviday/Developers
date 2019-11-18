@@ -6,6 +6,7 @@ import java.util.Map;
 import com.kh.developers.business.model.vo.Applicant;
 import com.kh.developers.member.model.vo.Member;
 import com.kh.developers.recommend.model.vo.Recommend;
+import com.kh.developers.search.model.vo.AdCompany;
 import com.kh.developers.search.model.vo.BookMark;
 import com.kh.developers.search.model.vo.Company;
 import com.kh.developers.search.model.vo.Filter;
@@ -32,7 +33,7 @@ public interface SearchService {
 	//포지션정보페이지 좋아요 리스트
 	List<LikeMember> likeMemberList(int likeNo);
 	//적극채용중인회사 리스트
-	List<Position> firstPsList();
+	List<AdCompany> firstPsList(String jobName);
 	//회원의 포지션 글 좋아요 여부
 	LikeMember selectLikeMemberOne(int memNo, int likeId);
 	//포지션 좋아요 회원 추가

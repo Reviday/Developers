@@ -194,29 +194,7 @@
                     </div>
                     <div role="presentation" class="modalBig"></div>
                 </div>
-                
-                <h3 class="firstCompany">적극 채용 중인 회사</h3>
-                <div class="firstCompany-list">
-                    <ul>
-                    	<c:if test="${not empty firstPsList }">
-                    		<c:forEach var="f" items="${firstPsList }">
-                        		<a href="${path }/search/companyAllInfo?busNo=${f.bus_no}">
-                            		<li>
-                                		<div class="searchHeader">
-                                			
-                                    		<div class="companyBg" style="background-image: url(${path }${f.bus_images[0]})"></div>
-                                		</div>
-		                                <footer>
-		                                    <div class="logoCircle" style="background-image: url(${path }${f.bus_logo})"></div>
-		                                    <h4><c:out value="${f.bus_name }"/></h4>
-		                                    <h5><c:out value="${f.po_count }"/>개 포지션</h5>
-		                                </footer>
-                            		</li>
-                        		</a>
-                        	</c:forEach>
-                        </c:if>
-                    </ul>
-                </div>
+          
                 <ul class="clearfix">
                 	<c:if test="${not empty psList }">
 	                	<c:forEach var="p" items="${psList }">
