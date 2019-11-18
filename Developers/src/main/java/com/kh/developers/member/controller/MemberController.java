@@ -44,6 +44,7 @@ import com.kh.developers.business.model.vo.Business;
 import com.kh.developers.common.authentication.MailHandler;
 import com.kh.developers.common.encrypt.MyEncrypt;
 import com.kh.developers.common.page.PageFactory;
+import com.kh.developers.common.page.PageFactory3;
 import com.kh.developers.member.model.service.MemberService;
 import com.kh.developers.member.model.vo.Interests;
 import com.kh.developers.member.model.vo.Member;
@@ -671,10 +672,10 @@ public class MemberController {
     	int numPerPage=5;
 		int totalData=0;
 		//list 가져오기
-		String url="";
+		String url="/developers/member/dashBoard.lmc?memEmail="+m.getMemEmail();
 		List<MyApp>applList=service.selectMemAppl(m,cPage,numPerPage); 
 		totalData=service.selectMemApplCount(m);
-		mv.addObject("pageBar", PageFactory.getPageBar(totalData, cPage, numPerPage,url));
+		mv.addObject("pageBar", PageFactory3.getPageBar(totalData, cPage, numPerPage,url));
     	mv.addObject("applList", applList);
     	mv.addObject("totalData", totalData);
     	mv.setViewName("member/dashBoard");
@@ -685,13 +686,18 @@ public class MemberController {
     		@RequestParam(value="cPage", required=false, defaultValue="1")int cPage) {
     	ModelAndView mv= new ModelAndView();
     	int numPerPage=5;
-    	int totalData=0;
-    	String url="";
+    	int SearchTotalData=0;
+    	String url="/developers/member/dashBoard.lmc?memEmail="+ma.getMemEmail()+"&busName="+ma.getBusName();
     	List<MyApp> applList =service.selectMa(ma,cPage,numPerPage);
-    	totalData=service.selectMaCount(ma);
-    	mv.addObject("pageBar", PageFactory.getPageBar(totalData, cPage, numPerPage,url));
+    	Member m=new Member();
+    	m.setMemNo((ma.getMemNo()));
+    	int totalData=service.selectMemApplCount(m);
+    	SearchTotalData=service.selectMaCount(ma);
+    	mv.addObject("pageBar", PageFactory3.getPageBar(SearchTotalData, cPage, numPerPage,url));
+    	mv.addObject("busName", ma.getBusName());
     	mv.addObject("applList", applList);
     	mv.addObject("totalData", totalData);
+    	mv.addObject("SearchTotalData", SearchTotalData);
     	mv.setViewName("member/ajax/dashBoardList");
     	return mv;
     }

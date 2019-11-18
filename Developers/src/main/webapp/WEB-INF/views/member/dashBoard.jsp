@@ -8,6 +8,7 @@
 </head>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 <link rel="stylesheet"
@@ -23,7 +24,7 @@
 <body style="background-color: #f8f8f8;">
     <main class="container-fluid">
         <div class="col-md-3"></div>
-        <div class="content">
+        <div class="content" id="content">
             <div class="col-md-8 content">
                 <div>
                     <div class="status-header">
@@ -40,13 +41,14 @@
                     <div class="status-table-nav">
                         <h4>
                         	
-                            <span class="count">총 ${totalData }건</span>
+                            <span class="count" id="count">총 ${totalData }건</span>
                         </h4>
                         <div class="inputWrapper">
                             <i class="icon-search" style="color:#505050;margin-left:10px;">
                             </i>
                             <input class="Input-hxTtdt searchbox" type="text" id="searchBox" placeholder="회사  검색">
                             <input type="hidden" id="memNo" value="${loginMember.memNo }"/>
+                            <input type="hidden" id="memEmail" value="${loginMember.memEmail }"/>
                         </div>
                     </div>
 
@@ -72,7 +74,10 @@
                             </td>
                             <td>${app.position }</td>
                             <td>
-                            ${app.applDate } 
+                            <c:if test="${app.applDate ne null}">
+                          <fmt:parseDate value=" ${app.applDate }" var="dateFmt" pattern="yyyy-MM-dd"/>
+                          </c:if>
+                          
                             </td>
                             <td>
                            <c:if test='${app.applStatus eq 1 }'>
@@ -104,18 +109,12 @@
                     	</tr>
                     </c:if>
                     </tbody>
-
-
-
-
                 </table>
-                	<c:if test="${pageBar ne null }">
+               	<c:if test="${pageBar ne null }">
 				${pageBar}
-			</c:if>
+				</c:if>
 			</div>
             </div>
-
-
         </div>
     </main>
 <div style="height: 400px"></div>
@@ -127,14 +126,16 @@ $(document).ready(function(){
      if (e.which == 13){
           var busName =$("#searchBox").val();
           var memNo=$("#memNo").val();
+          var memEmail=$("#memEmail").val();
           $.ajax({
      		 url:"${path }/member/dashBoardSearch.lmc",
      		 data:{"busName":busName,
-     			 	"memNo":memNo},
+     			 	"memNo":memNo,
+     			 	"memEmail":memEmail},
      		 type:"POST",
      		 success:function(data){
-     			 $("#dashTable").html("");
-     			 $("#dashTable").html(data);	  
+     			 $("#content").html("");
+     			 $("#content").html(data);	  
      		 }
      	 });
      }

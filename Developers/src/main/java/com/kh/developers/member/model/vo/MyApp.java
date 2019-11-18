@@ -16,4 +16,5 @@ public class MyApp {
 	private String applStatus;
 	private String busLogo;
 	private int memNo;
+	private String memEmail;
 }

@@ -4,8 +4,39 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
+ <div class="col-md-8 content">
+                <div>
+                    <div class="status-header">
+                        <h2>
+                            <sup>
+                                <span>지원</span>
+                            </sup>
+                            <sup>
+                                <span> ∙ </span>
+                                <span>작성 중</span>
+                            </sup>
+                        </h2>
+                    </div>
+                    <div class="status-table-nav">
+                        <h4>
+                        	
+                            <span class="count" id="count">총 ${totalData }건</span><br>
+                            <span class="count">검색 수 ${SearchTotalData }건</span>
+                        </h4>
+                        <div class="inputWrapper">
+                            <i class="icon-search" style="color:#505050;margin-left:10px;">
+                            </i>
+                            <input class="Input-hxTtdt searchbox" type="text" id="searchBox"
+                            value="${busName }"
+                             placeholder="회사  검색">
+                            <input type="hidden" id="memNo" value="${loginMember.memNo }"/>
+                            <input type="hidden" id="memEmail" value="${loginMember.memEmail }"/>
+                        </div>
+                    </div>
 
-  <table class="table table-hover" id="status" style="background-color: #fff;">
+                </div>
+                <div id="dashTable">
+                <table class="table table-hover" id="status" style="background-color: #fff;">
                     <thead>
                         <tr>
                             <th class="apl_bus">지원 회사</th> 
@@ -25,7 +56,10 @@
                             </td>
                             <td>${app.position }</td>
                             <td>
-                            ${app.applDate } 
+                            <c:if test="${app.applDate ne null}">
+                          <fmt:parseDate value=" ${app.applDate }" var="dateFmt" pattern="yyyy-MM-dd"/>
+                          </c:if>
+                          
                             </td>
                             <td>
                            <c:if test='${app.applStatus eq 1 }'>
@@ -57,11 +91,35 @@
                     	</tr>
                     </c:if>
                     </tbody>
-
-
-
-
                 </table>
-                	<c:if test="${pageBar ne null }">
+               	<c:if test="${pageBar ne null }">
 				${pageBar}
-			</c:if>
+				</c:if>
+			</div>
+            </div>
+            
+            <script>
+$(document).ready(function(){
+    $("#searchBox").keypress(function (e) {
+     if (e.which == 13){
+          var busName =$("#searchBox").val();
+          var memNo=$("#memNo").val();
+          var memEmail=$("#memEmail").val();
+          $.ajax({
+     		 url:"${path }/member/dashBoardSearch.lmc",
+     		 data:{"busName":busName,
+     			 	"memNo":memNo,
+     			 	"memEmail":memEmail},
+     		 type:"POST",
+     		 success:function(data){
+     			 $("#content").html("");
+     			 $("#content").html(data);	  
+     		 }
+     	 });
+     }
+ });
+});
+
+
+
+</script>
