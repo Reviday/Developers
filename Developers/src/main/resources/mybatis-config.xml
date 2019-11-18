@@ -28,6 +28,7 @@
 		<typeAlias type="com.kh.developers.admin.model.vo.MemberLoginLog" alias="mll"/>
 		<typeAlias type="com.kh.developers.admin.model.vo.VisitCount" alias="vc"/>
 		<typeAlias type="com.kh.developers.admin.model.vo.RequestMappingLog" alias="rml"/>
+		<typeAlias type="com.kh.developers.admin.model.vo.BusinessRequest" alias="br"/>
 		<typeAlias type="com.kh.developers.recommend.model.vo.Recommend" alias="recommend"/>
 		<typeAlias type="com.kh.developers.recommend.model.vo.Friend" alias="friend"/>
 		<typeAlias type="com.kh.developers.salary.model.vo.Salary" alias="salary"/>
