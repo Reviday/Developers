@@ -164,11 +164,11 @@
                                         	<i class="far fa-heart"></i>
                                         	<span><c:out value="${p.like_count }"/></span>
                                     </button>
-                                    <button type="button" class="people suBtn">
+                                    <button type="button" class="people1 suBtn">
                                         <ul>
                                             <c:if test="${p.like_count > 0 }">
 	                                        	<c:forEach var="f" items="${list }" begin="0" end="2">
-	                                            	<li style="background-image: url(${path }${f.mem_icon})"></li>
+	                                            	<li style="background-image: url(${path}${f.mem_icon != null ? f.mem_icon : '/resources/upload/profile/no-profile-image.png'})"></li>
 	                                            </c:forEach>
                                             </c:if>
                                         </ul>

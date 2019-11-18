@@ -1020,6 +1020,33 @@ a {
     z-index: 0;
 }
 
+.people1>ul {
+    padding: 2px 0;
+}
+
+.people1>ul>li:first-of-type {
+    z-index: 2;
+    margin-left: 0;
+}
+
+.people1>ul>li {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: 1px solid #fff;
+    float: left;
+    position: relative;
+    margin-left: -10px;
+    z-index: 1;
+    background-position: 50%;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.people1>ul>li:last-of-type {
+    z-index: 0;
+}
+
 .share-btn {
     width: 30px;
     height: 30px;

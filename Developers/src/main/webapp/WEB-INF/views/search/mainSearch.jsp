@@ -204,7 +204,7 @@
                 </div>
                 
                 
-                <h3 class="firstCompany">적극 채용 중인 회사</h3>
+<%--                 <h3 class="firstCompany">적극 채용 중인 회사</h3>
                 <div class="firstCompany-list">
                     <ul>
                     	<c:if test="${not empty firstPsList }">
@@ -225,7 +225,7 @@
                         	</c:forEach>
                         </c:if>
                     </ul>
-                </div>
+                </div> --%>
                 <ul class="clearfix">
                 	<c:if test="${not empty psList }">
 	                	<c:forEach var="p" items="${psList }">

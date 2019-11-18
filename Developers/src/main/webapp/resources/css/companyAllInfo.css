@@ -318,6 +318,7 @@ a {
 
 .companyContent {
     margin-bottom: 70px;
+    margin-top: 21%;
 }
 
 @media (max-width: 767px) {
@@ -342,7 +343,6 @@ a {
 
 .companyFicture {
     position: relative;
-    margin-left: -10px;
     margin-bottom: 20px;
     height: 124px;
     overflow: hidden;

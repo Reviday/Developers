@@ -102,7 +102,7 @@
                 <div>
                     <h2 class="choochun-title-text">
                         추천할만한 사람
-                        <a href="">
+                        <a href="${path}/recommend/recommendMain.lmc?memNo=${loginMember.memNo}">
                             <i class="fas fa-cog"></i>
                         </a>
                     </h2>
@@ -127,8 +127,8 @@
             <div class="position-content">
                 <ul class="clearfix">
 	                <c:if test="${not empty psList }">
-	                	<c:forEach var="p" items="${psList }" begin="1" varStatus="s">
-		                    <c:if test="${s.count < 5 }">
+	                	<c:forEach var="p" items="${psList }" begin="0" varStatus="s">
+		                    <c:if test="${s.count < 4 }">
 			                    <li>
 			                        <div class="position-content-company">
 			                            <a href="${path }/search/companyInfo.do?positionNo=${p.position_no }&memNo=${loginMember.memNo}">
@@ -226,8 +226,8 @@
             <div class="weekchoochun-content">
                 <ul class="clearfix">
                 	<c:if test="${not empty weekList }">
-	                    <c:forEach var="w" items="${weekList }" begin="1" varStatus="s">
-	                    	<c:if test="${s.count < 5 }">
+	                    <c:forEach var="w" items="${weekList }" begin="0" varStatus="s">
+	                    	<c:if test="${s.count < 4 }">
 			                    <li>
 			                        <div class="weekchoochun-company">
 			                            <a href="${path }/search/companyInfo.do?positionNo=${w.position_no }&memNo=${loginMember.memNo}">
@@ -259,8 +259,8 @@
 	                    </c:forEach>
                     </c:if>
                     <c:if test="${empty weekList && not empty psList }">
-	                    <c:forEach var="w" items="${psList }" begin="1" varStatus="s">
-	                    	<c:if test="${s.count < 5 }">
+	                    <c:forEach var="w" items="${psList }" begin="0" varStatus="s">
+	                    	<c:if test="${s.count < 4 }">
 			                    <li>
 			                        <div class="weekchoochun-company">
 			                            <a href="${path }/search/companyInfo.do?positionNo=${w.position_no }&memNo=${loginMember.memNo}">
@@ -292,8 +292,8 @@
 	                    </c:forEach>
                     </c:if>
                     <c:if test="${empty weekList && empty psList }">
-	                    <c:forEach var="w" items="${psList1 }" begin="1" varStatus="s">
-	                    	<c:if test="${s.count < 5 }">
+	                    <c:forEach var="w" items="${psList1 }" begin="0" varStatus="s">
+	                    	<c:if test="${s.count < 4 }">
 			                    <li>
 			                        <div class="weekchoochun-company">
 			                            <a href="${path }/search/companyInfo.do?positionNo=${w.position_no }&memNo=${loginMember.memNo}">
