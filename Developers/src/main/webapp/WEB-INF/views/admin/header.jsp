@@ -130,9 +130,9 @@
 	                    <!-- Level Two-->
 	                    <ul>
 	                        <li>
-	                            <a href="javascript:;">
+	                            <a href="${path }/admin/businessRequest.lac">
 	                                <i class="fa fa-graduation-cap" aria-hidden="true"></i>
-	                                	기업등록승인관리				
+	                                	기업등록승인관리
 	                            </a>
 	                        </li>
 	                        <li>

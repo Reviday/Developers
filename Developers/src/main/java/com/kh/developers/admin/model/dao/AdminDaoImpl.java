@@ -8,6 +8,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.kh.developers.admin.model.vo.BusinessRequest;
 import com.kh.developers.admin.model.vo.MemberLoginLog;
 import com.kh.developers.admin.model.vo.RequestMappingLog;
 import com.kh.developers.admin.model.vo.VisitCount;
@@ -15,6 +16,16 @@ import com.kh.developers.member.model.vo.Member;
 
 @Repository
 public class AdminDaoImpl implements AdminDao{
+	
+	@Override
+	public int selectbusinessRequestCount(SqlSessionTemplate session) {
+		return session.selectOne("admin.selectbusinessRequestCount");
+	}
+	
+	@Override
+	public List<BusinessRequest> selectbusinessRequestList(SqlSessionTemplate session, int cPage, int numPerPage) {
+		return session.selectList("admin.selectbusinessRequestList");
+	}
 	
 	@Override
 	public List<Map<String, Integer>> selectMemberStats(SqlSessionTemplate session) {

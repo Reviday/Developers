@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.developers.admin.model.dao.AdminDao;
+import com.kh.developers.admin.model.vo.BusinessRequest;
 import com.kh.developers.admin.model.vo.MemberLoginLog;
 import com.kh.developers.admin.model.vo.RequestMappingLog;
 import com.kh.developers.common.util.SearchValuesTemplate;
@@ -22,6 +23,16 @@ public class AdminServiceImpl implements AdminService {
 	@Autowired
 	private SqlSessionTemplate session;
 	private SearchValuesTemplate svt;
+	
+	@Override
+	public int selectbusinessRequestCount() {
+		return dao.selectbusinessRequestCount(session);
+	}
+	
+	@Override
+	public List<BusinessRequest> selectbusinessRequestList(int cPage, int numPerPage) {
+		return dao.selectbusinessRequestList(session, cPage, numPerPage);
+	}
 	
 	@Override
 	public List<Map<String, Integer>> selectMemberStats() {

@@ -1,6 +1,5 @@
 package com.kh.developers.admin.controller;
 
-import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kh.developers.admin.model.service.AdminService;
+import com.kh.developers.admin.model.vo.BusinessRequest;
 import com.kh.developers.admin.model.vo.MemberLoginLog;
 import com.kh.developers.common.util.PaginationTemplate;
 import com.kh.developers.common.util.PaginationTemplateFunction2nd;
@@ -34,11 +34,28 @@ public class AdminController {
 	private PaginationTemplate pt;
 	private PaginationTemplateFunction2nd ptf;
 	
+	@RequestMapping("/admin/businessRequest.lac")
+	public ModelAndView businessRequest(HttpServletRequest req) {
+		ModelAndView mv=new ModelAndView();
+		
+		// 페이지네이션
+		int totalData=service.selectbusinessRequestCount() ;
+		pt=new PaginationTemplate(req, totalData, "/admin/businessRequest.lac");
+		//기업등록 요청 내용 이력을 가져온다.
+		List<BusinessRequest> list=service.selectbusinessRequestList(pt.getcPage(), pt.getNumPerPage());
+		
+		
+		
+		mv.setViewName("admin/businessRequest");
+		return mv;
+	}
+	
 	@RequestMapping("/admin/visitorLog.lac")
 	public ModelAndView visitorLog() {
 		ModelAndView mv=new ModelAndView();
 		
 		
+		mv.setViewName("admin/visitorLog");
 		return mv;
 	}
 	

@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="admin">
+	<select id="selectbusinessRequest" resultMap="brMap">
+		SELECT * FROM BUSINESS_REQUEST A JOIN BUSINESS_INFO B ON A.BUS_NO=B.BUS_NO JOIN TA_MEMBER C ON A.MEM_NO=C.MEM_NO;
+	</select>
 	<insert id="insertTag" parameterType="map">
 		INSERT INTO TAG VALUES(TAG_SEQ.NEXTVAL, #{busNo}, '#'||#{tag})
 	</insert>
@@ -13,4 +16,53 @@
 	<select id="selectTagOpinionCount" resultType="_int">
 		SELECT COUNT(*) FROM TAG_OPINION JOIN BUSINESS_INFO USING(BUS_NO) WHERE BUS_STATUS='Y'
 	</select>
+	<resultMap type="br" id="brMap">
+		<result property="requestNo" column="request_no"/>
+		<result property="requestDate" column="request_date"/>
+		<result property="busNo" column="BUS_NO"/>
+		<result property="busName" column="BUS_NAME"/>
+		<result property="busCountry" column="BUS_COUNTRY"/>
+		<result property="busArea" column="BUS_AREA"/>
+		<result property="busAddress" column="BUS_ADDRESS"/>
+		<result property="busRegNo" column="BUS_REG_NO"/>
+		<result property="busIncome" column="BUS_INCOME"/>
+		<result property="busIndustrial" column="BUS_INDUSTRIAL"/>
+		<result property="busTotalEmp" column="BUS_TOTAL_EMP"/>
+		<result property="busIntroduce" column="BUS_INTRODUCE"/>
+		<result property="busEstablishment" column="BUS_ESTABLISHMENT"/>
+		<result property="busEmail" column="BUS_EMAIL"/>
+		<result property="busPhone" column="BUS_PHONE"/>
+		<result property="busWebsite" column="BUS_WEBSITE"/>
+		<result property="searchKeywords" column="BUS_SEARCH_KEYWORDS" typeHandler="strArray"/>
+		<result property="RegPath" column="Reg_PATH"/>
+		<result property="busEnrollDate" column="BUS_ENROLLDATE"/>
+		<result property="busLogo" column="BUS_LOGO"/>
+		<result property="busImages" column="BUS_IMAGES" typeHandler="strArray"/>
+		<result property="busStatus" column="BUS_STATUS"/>
+		<result property="newIncome" column="NEW_INCOME"/>
+		<result property="allIncome" column="ALL_INCOME"/>
+		<result property="memNo" column="mem_no"/>
+		<result property="memNo" column="mem_no"/>
+		<result property="memEmail" column="mem_email"/>
+		<result property="memLevel" column="mem_level"/>
+		<result property="memPassword" column="mem_password"/>
+		<result property="memName" column="mem_name"/>
+		<result property="memPhone" column="mem_phone"/>
+		<result property="memPoint" column="mem_point"/>
+		<result property="memDenied" column="mem_denied"/>
+		<result property="memEmailCert" column="mem_email_cert"/>
+		<result property="memReceiveEmail" column="mem_receive_email"/>
+		<result property="memEnrollDatetime" column="mem_enroll_datetime"/>
+		<result property="memEnrollIp" column="mem_enroll_ip"/>
+		<result property="memLastloginDatetime" column="mem_lastlogin_datetime"/>
+		<result property="memLastloginIp" column="mem_lastlogin_ip"/>
+		<result property="memProgileContent" column="mem_profile_content"/>
+		<result property="memAdminmemo" column="mem_adminmemo"/>
+		<result property="memIcon" column="mem_icon"/>
+		<result property="memPhoto" column="mem_photo"/>
+		<result property="memStatus" column="mem_status"/>
+		<result property="memWithdrawalDate" column="mem_withdrawal_date"/>
+		<result property="memDeniedDate" column="mem_denied_date"/>
+		<result property="filter_id" column="filter_id"/>
+	</resultMap>
 </mapper>

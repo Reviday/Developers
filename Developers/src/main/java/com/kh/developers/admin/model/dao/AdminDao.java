@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
+import com.kh.developers.admin.model.vo.BusinessRequest;
 import com.kh.developers.admin.model.vo.MemberLoginLog;
 import com.kh.developers.admin.model.vo.RequestMappingLog;
 import com.kh.developers.admin.model.vo.VisitCount;
@@ -29,4 +30,6 @@ public interface AdminDao {
 	List<Integer> selectLoginLogStats(SqlSessionTemplate session);
 	List<Map<String, Integer>> selectLoginLogChartData(SqlSessionTemplate session, String data);
 	List<Map<String, Integer>> selectMemberStats(SqlSessionTemplate session);
+	int selectbusinessRequestCount(SqlSessionTemplate session);
+	List<BusinessRequest> selectbusinessRequestList(SqlSessionTemplate session, int cPage, int numPerPage);
 }
