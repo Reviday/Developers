@@ -11,6 +11,7 @@ import com.kh.developers.business.model.vo.Business;
 import com.kh.developers.member.model.vo.Interests;
 import com.kh.developers.member.model.vo.Member;
 import com.kh.developers.member.model.vo.MyApp;
+import com.kh.developers.member.model.vo.Point;
 import com.kh.developers.search.model.vo.Position;
 
 public interface MemberDao {
@@ -41,4 +42,6 @@ public interface MemberDao {
    Member selectMemNo(SqlSessionTemplate session,int memNo);
    List<MyApp> selectMa(SqlSessionTemplate session,MyApp ma,int cPage,int numPerPage);
    int selectMaCount(SqlSessionTemplate session,MyApp ma);
+   List<Point> selectMyPoint(SqlSessionTemplate session,Member m);
+   int addPoint(SqlSessionTemplate session,Point p);
 }

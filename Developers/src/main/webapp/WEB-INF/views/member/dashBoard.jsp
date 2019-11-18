@@ -81,7 +81,7 @@
                             </td>
                             <td>
                            <c:if test='${app.applStatus eq 1 }'>
-                            	기업 확인중
+                            	기업확인중
                             </c:if>
                             <c:if test='${app.applStatus eq 2 }'>
                             	서류 통과
@@ -111,7 +111,9 @@
                     </tbody>
                 </table>
                	<c:if test="${pageBar ne null }">
+               	<c:if test="${totalData >4 }">
 				${pageBar}
+				</c:if>
 				</c:if>
 			</div>
             </div>

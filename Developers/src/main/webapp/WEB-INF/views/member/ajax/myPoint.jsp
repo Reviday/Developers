@@ -23,10 +23,12 @@
             <div class="status">
                 <div class="numbers">
                     <div class="clearfix">
-                        <div class="point"><a href="/points/welcome" target="_blank" class="introLink">포인트 안내</a>
+                        <div class="point">
+                          <input type="hidden" id="memNo" value="${loginMember.memNo }"/>
+                  		<input type="button" onclick="addPoint();"/>
                             <dl>
                                 <dt>포인트</dt>
-                                <dd>1,000<sub>p</sub></dd>
+                                <dd>${loginMember.memPoint }<sub>p</sub></dd>
                             </dl>
                         </div>
                         <div class="refunds">
@@ -42,24 +44,44 @@
         </div>
         <div xs="12" sm="8" class="_3fymZO37jWS_MEUN4hKK1x">
             <section>
-                <div><time class="month">2019.10</time>
+            <c:forEach items="${pointList }" var="p">
+                <div><time class="month">
+               <c:if test="${p.pointDate ne null}">
+            
+              <fmt:formatDate value="${p.pointDate}" pattern="yyyy.MM"/>
+               </c:if> 
+                </time>
                     <ul>
-                        <li><time class="day">10.11</time>
+                        <li><time class="day">
+                       
+                          <c:if test="${p.pointDate ne null}">
+                              <fmt:formatDate value="${p.pointDate}" pattern="MM.dd"/>
+                       	</c:if>
+                        </time>
                             <dl class="description">
-                                <dt>회원가입</dt>
+                                <dt>${p.pointIntro }</dt>
                                 <dd> </dd>
                             </dl>
                             <dl class="value earn">
-                                <dt>1,000</dt>
-                                <dd>1,000</dd>
+                                <dt>${p.memPointPlus }</dt>
+                                <dd>${p.memPoint }</dd>
                             </dl>
                         </li>
                     </ul>
                 </div>
+              </c:forEach>
             </section>
         </div>
         <div class="_2WhBEdcqd_iAu05grmMED5">
-            <div class="message">포인트 환급신청은 모바일 앱에서!</div><a href="wanted://points">[앱에서 환급]</a>
+            <div class="message">포인트 환급신청은 모바일 앱에서!</div><a href="#">[앱에서 환급]</a>
         </div>
     </div>
 </div>
+<script>
+function addPoint() {
+	var memNo=$("#memNo").val();
+	location.href="${path }/member/addPoint?memNo="+memNo;
+}
+
+
+</script>

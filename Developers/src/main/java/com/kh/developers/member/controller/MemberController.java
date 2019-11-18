@@ -9,6 +9,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -43,12 +44,12 @@ import com.kh.developers.business.model.vo.Applicant;
 import com.kh.developers.business.model.vo.Business;
 import com.kh.developers.common.authentication.MailHandler;
 import com.kh.developers.common.encrypt.MyEncrypt;
-import com.kh.developers.common.page.PageFactory;
 import com.kh.developers.common.page.PageFactory3;
 import com.kh.developers.member.model.service.MemberService;
 import com.kh.developers.member.model.vo.Interests;
 import com.kh.developers.member.model.vo.Member;
 import com.kh.developers.member.model.vo.MyApp;
+import com.kh.developers.member.model.vo.Point;
 import com.kh.developers.resume.model.service.ResumeService;
 import com.kh.developers.resume.model.vo.Activitie;
 import com.kh.developers.resume.model.vo.Career;
@@ -659,8 +660,8 @@ public class MemberController {
     public ModelAndView myPoint(Member m) {
     	ModelAndView mv = new ModelAndView();
     	m=service.selectMemberOne(m);
-    	
-    	
+    	List<Point>pointList=service.selectMyPoint(m);
+    	mv.addObject("pointList", pointList);
     	mv.setViewName("member/ajax/myPoint");
     	return mv;
     }
@@ -699,6 +700,17 @@ public class MemberController {
     	mv.addObject("totalData", totalData);
     	mv.addObject("SearchTotalData", SearchTotalData);
     	mv.setViewName("member/ajax/dashBoardList");
+    	return mv;
+    }
+    @RequestMapping("/member/addPoint")
+    public ModelAndView addPoint(Point p) {
+    	ModelAndView mv= new ModelAndView();
+    	p.setMemPoint(1000);
+    	p.setPointIntro("생일축하");
+    	
+    	int result=service.addPoint(p);
+    	
+    	mv.setViewName("/");
     	return mv;
     }
     

@@ -35,7 +35,7 @@ input[type="text"], textarea {
     border-bottom-style: solid;
 }
 .apl_bus{
-width: 50%;
+width: 45%;
 
 }
 .appl_postion{
@@ -46,7 +46,7 @@ width: 20%;
 width: 20%;	
 }
 .appl_status{
-width:10%;
+width:15%;
 }
 .searchbox .searchbox {
     display: inline-block;

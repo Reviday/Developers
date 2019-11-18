@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="member">
+	<insert id="addPoint" parameterType="com.kh.developers.member.model.vo.Point" >
+		insert into TA_POINT values (#{memEmail},#{memPointPlus},#{pointIntro},default);
+		<selectKey >
+		
+		</selectKey>
+	</insert>
+	<select id="selectMyPoint" parameterType="member" resultMap="pointMap">
+	SELECT P.*,M.mem_point FROM TA_MEMBER M JOIN TA_POINT P ON(M.MEM_NO=P.MEM_NO) WHERE M.MEM_NO=#{memNo} ORDER BY POINT_DATE DESC
+	</select>
 	<select id="selectMemberStats" resultType="map">
 		SELECT A.MEM_LEVEL AS "LEVEL", COUNT(B.MEM_NO) AS "COUNT" FROM TA_MEMBER_LEVEL A LEFT JOIN (SELECT * FROM TA_MEMBER WHERE MEM_STATUS='Y') B ON A.MEM_LEVEL=B.MEM_LEVEL GROUP BY A.MEM_LEVEL
 	</select>
@@ -275,5 +284,13 @@
 		<result column="appl_date" property="applDate"/>
 		<result column="appl_status" property="applStatus"/>
 		<result column="bus_logo" property="busLogo"/>	
+	</resultMap>
+	<resultMap type="com.kh.developers.member.model.vo.Point" id="pointMap">
+		<result column="point_no" property="pointNo"/>
+		<result column="mem_no" property="memNo"/>
+		<result column="mem_point_plus" property="memPointPlus"/>
+		<result column="point_intro" property="pointIntro"/>
+		<result column="point_date" property="pointDate"/>
+		<result column="mem_point" property="memPoint"/>
 	</resultMap>
 </mapper>

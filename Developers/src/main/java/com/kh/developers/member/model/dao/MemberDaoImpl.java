@@ -13,6 +13,7 @@ import com.kh.developers.business.model.vo.Business;
 import com.kh.developers.member.model.vo.Interests;
 import com.kh.developers.member.model.vo.Member;
 import com.kh.developers.member.model.vo.MyApp;
+import com.kh.developers.member.model.vo.Point;
 import com.kh.developers.search.model.vo.Position;
 
 @Repository
@@ -21,6 +22,18 @@ public class MemberDaoImpl implements MemberDao {
 	
 	
 	
+	@Override
+	public int addPoint(SqlSessionTemplate session, Point p) {
+		// TODO Auto-generated method stub
+		return session.insert("member.addPoint",p);
+	}
+
+	@Override
+	public List<Point> selectMyPoint(SqlSessionTemplate session, Member m) {
+		// TODO Auto-generated method stub
+		return session.selectList("member.selectMyPoint",m);
+	}
+
 	@Override
 	public int selectMaCount(SqlSessionTemplate session, MyApp ma) {
 		// TODO Auto-generated method stub

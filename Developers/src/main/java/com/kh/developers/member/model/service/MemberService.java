@@ -8,6 +8,7 @@ import com.kh.developers.business.model.vo.Business;
 import com.kh.developers.member.model.vo.Interests;
 import com.kh.developers.member.model.vo.Member;
 import com.kh.developers.member.model.vo.MyApp;
+import com.kh.developers.member.model.vo.Point;
 import com.kh.developers.search.model.vo.Position;
 
 public interface MemberService {
@@ -37,4 +38,7 @@ public interface MemberService {
 	Member selectMemNo(int memNo);
 	List<MyApp> selectMa(MyApp ma,int cPage,int numPerPage);
 	int selectMaCount(MyApp ma);
+	List<Point> selectMyPoint(Member m);
+	int addPoint(Point p);
+	
 }

@@ -20,6 +20,7 @@ import com.kh.developers.member.model.dao.MemberDao;
 import com.kh.developers.member.model.vo.Interests;
 import com.kh.developers.member.model.vo.Member;
 import com.kh.developers.member.model.vo.MyApp;
+import com.kh.developers.member.model.vo.Point;
 import com.kh.developers.search.model.vo.Position;
 
 @Service
@@ -35,6 +36,18 @@ public class MemberServiceImpl implements MemberService {
 	
 	
 	
+
+	@Override
+	public int addPoint(Point p) {
+		// TODO Auto-generated method stub
+		return dao.addPoint(session,p);
+	}
+
+	@Override
+	public List<Point> selectMyPoint(Member m) {
+		// TODO Auto-generated method stub
+		return dao.selectMyPoint(session,m);
+	}
 
 	@Override
 	public int selectMaCount(MyApp ma) {
