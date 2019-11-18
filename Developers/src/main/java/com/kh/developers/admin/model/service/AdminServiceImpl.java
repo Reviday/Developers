@@ -12,6 +12,7 @@ import com.kh.developers.admin.model.dao.AdminDao;
 import com.kh.developers.admin.model.vo.BusinessRequest;
 import com.kh.developers.admin.model.vo.MemberLoginLog;
 import com.kh.developers.admin.model.vo.RequestMappingLog;
+import com.kh.developers.business.model.vo.Business;
 import com.kh.developers.common.util.SearchValuesTemplate;
 import com.kh.developers.member.model.vo.Member;
 
@@ -23,6 +24,16 @@ public class AdminServiceImpl implements AdminService {
 	@Autowired
 	private SqlSessionTemplate session;
 	private SearchValuesTemplate svt;
+	
+	@Override
+	public Member selectMemberOne(int memNo) {
+		return dao.selectMemberOne(session, memNo);
+	}
+	
+	@Override
+	public Business selectBusinessOne(int busNo) {
+		return dao.selectBusinessOne(session, busNo);
+	}
 	
 	@Override
 	public int selectbusinessRequestCount() {

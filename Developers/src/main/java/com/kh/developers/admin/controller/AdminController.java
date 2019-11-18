@@ -21,6 +21,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kh.developers.admin.model.service.AdminService;
 import com.kh.developers.admin.model.vo.BusinessRequest;
 import com.kh.developers.admin.model.vo.MemberLoginLog;
+import com.kh.developers.business.model.vo.Business;
 import com.kh.developers.common.util.PaginationTemplate;
 import com.kh.developers.common.util.PaginationTemplateFunction2nd;
 import com.kh.developers.member.model.vo.Member;
@@ -34,6 +35,31 @@ public class AdminController {
 	private PaginationTemplate pt;
 	private PaginationTemplateFunction2nd ptf;
 	
+	@RequestMapping("/admin/memberInfo.lac")
+	public ModelAndView memberInfo(HttpServletRequest req, Model model,
+			@RequestParam (value="memNo", required=true) int memNo) {
+		ModelAndView mv=new ModelAndView();
+		
+		//회원정보를 가져온다.
+		Member m=service.selectMemberOne(memNo);
+		mv.addObject("Member", m);
+		mv.setViewName("/admin/memberInfo");
+		return mv;
+	}
+	
+	@RequestMapping("/admin/businessInfo.lac")
+	public ModelAndView businessInfo(HttpServletRequest req, Model model,
+			@RequestParam (value="busNo", required=true) int busNo) {
+		ModelAndView mv=new ModelAndView();
+		
+		//기업정보를 가져온다.
+		Business b=service.selectBusinessOne(busNo);
+		mv.addObject("business", b);
+		mv.setViewName("/admin/businessInfo");
+		return mv;
+	}
+	
+	
 	@RequestMapping("/admin/businessRequest.lac")
 	public ModelAndView businessRequest(HttpServletRequest req) {
 		ModelAndView mv=new ModelAndView();
@@ -44,8 +70,10 @@ public class AdminController {
 		//기업등록 요청 내용 이력을 가져온다.
 		List<BusinessRequest> list=service.selectbusinessRequestList(pt.getcPage(), pt.getNumPerPage());
 		
-		
-		
+		mv.addObject("resultList",list);
+		mv.addObject("cPage", pt.getcPage());
+		mv.addObject("numPerPage", pt.getNumPerPage());
+		mv.addObject("pageBar", pt.getPageBar());
 		mv.setViewName("admin/businessRequest");
 		return mv;
 	}

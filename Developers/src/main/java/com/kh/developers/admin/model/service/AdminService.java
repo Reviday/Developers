@@ -6,6 +6,7 @@ import java.util.Map;
 import com.kh.developers.admin.model.vo.BusinessRequest;
 import com.kh.developers.admin.model.vo.MemberLoginLog;
 import com.kh.developers.admin.model.vo.RequestMappingLog;
+import com.kh.developers.business.model.vo.Business;
 import com.kh.developers.member.model.vo.Member;
 
 public interface AdminService {
@@ -29,4 +30,6 @@ public interface AdminService {
 	List<Map<String, Integer>> selectMemberStats();
 	int selectbusinessRequestCount();
 	List<BusinessRequest> selectbusinessRequestList(int cPage, int numPerPage);
+	Business selectBusinessOne(int busNo);
+	Member selectMemberOne(int memNo);
 }

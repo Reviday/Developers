@@ -260,3 +260,16 @@ select::-ms-expand {
     font-size: 40px;
     margin: 20px 0;
 }
+
+@media (max-width : 1199px) and (min-width: 768px) {
+	.visible-only-lg {
+		width: 0px !important;
+    	display: none !important;
+	}
+}
+@media (max-width : 991px) and (min-width: 768px) {
+	.visible-over-md {
+		width: 0px !important;
+    	display: none !important;
+	}
+}

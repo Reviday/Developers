@@ -9,6 +9,7 @@ import com.kh.developers.admin.model.vo.BusinessRequest;
 import com.kh.developers.admin.model.vo.MemberLoginLog;
 import com.kh.developers.admin.model.vo.RequestMappingLog;
 import com.kh.developers.admin.model.vo.VisitCount;
+import com.kh.developers.business.model.vo.Business;
 import com.kh.developers.member.model.vo.Member;
 
 public interface AdminDao {
@@ -32,4 +33,6 @@ public interface AdminDao {
 	List<Map<String, Integer>> selectMemberStats(SqlSessionTemplate session);
 	int selectbusinessRequestCount(SqlSessionTemplate session);
 	List<BusinessRequest> selectbusinessRequestList(SqlSessionTemplate session, int cPage, int numPerPage);
+	Business selectBusinessOne(SqlSessionTemplate session, int busNo);
+	Member selectMemberOne(SqlSessionTemplate session, int memNo);
 }

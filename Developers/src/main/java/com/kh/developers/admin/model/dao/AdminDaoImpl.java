@@ -12,10 +12,21 @@ import com.kh.developers.admin.model.vo.BusinessRequest;
 import com.kh.developers.admin.model.vo.MemberLoginLog;
 import com.kh.developers.admin.model.vo.RequestMappingLog;
 import com.kh.developers.admin.model.vo.VisitCount;
+import com.kh.developers.business.model.vo.Business;
 import com.kh.developers.member.model.vo.Member;
 
 @Repository
 public class AdminDaoImpl implements AdminDao{
+	
+	@Override
+	public Member selectMemberOne(SqlSessionTemplate session, int memNo) {
+		return session.selectOne("admin.selectMemberOne", memNo);
+	}
+	
+	@Override
+	public Business selectBusinessOne(SqlSessionTemplate session, int busNo) {
+		return session.selectOne("admin.selectBusinessOne", busNo);
+	}
 	
 	@Override
 	public int selectbusinessRequestCount(SqlSessionTemplate session) {
@@ -24,7 +35,8 @@ public class AdminDaoImpl implements AdminDao{
 	
 	@Override
 	public List<BusinessRequest> selectbusinessRequestList(SqlSessionTemplate session, int cPage, int numPerPage) {
-		return session.selectList("admin.selectbusinessRequestList");
+		RowBounds r=new RowBounds((cPage-1)*numPerPage, numPerPage);
+		return session.selectList("admin.selectbusinessRequestList", null, r);
 	}
 	
 	@Override

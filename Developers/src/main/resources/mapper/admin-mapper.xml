@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="admin">
-	<select id="selectbusinessRequest" resultMap="brMap">
-		SELECT * FROM BUSINESS_REQUEST A JOIN BUSINESS_INFO B ON A.BUS_NO=B.BUS_NO JOIN TA_MEMBER C ON A.MEM_NO=C.MEM_NO;
+	<select id="selectMemberOne" parameterType="_int" resultMap="memberMap">
+		SELECT * FROM TA_MEMBER WHERE MEM_NO=#{memNo}
+	</select>
+	<select id="selectBusinessOne" parameterType="_int" resultMap="busMap">
+		SELECT * FROM BUSINESS_INFO WHERE BUS_NO=#{busNo}
+	</select>
+	<select id="selectbusinessRequestCount" resultType="_int">
+		SELECT COUNT(*) FROM BUSINESS_REQUEST A JOIN BUSINESS_INFO B ON A.BUS_NO=B.BUS_NO JOIN TA_MEMBER C ON A.MEM_NO=C.MEM_NO WHERE C.MEM_STATUS='Y'
+	</select>
+	<select id="selectbusinessRequestList" resultMap="brMap">
+		SELECT * FROM BUSINESS_REQUEST A JOIN BUSINESS_INFO B ON A.BUS_NO=B.BUS_NO JOIN TA_MEMBER C ON A.MEM_NO=C.MEM_NO WHERE C.MEM_STATUS='Y'
 	</select>
 	<insert id="insertTag" parameterType="map">
 		INSERT INTO TAG VALUES(TAG_SEQ.NEXTVAL, #{busNo}, '#'||#{tag})
@@ -21,27 +30,39 @@
 		<result property="requestDate" column="request_date"/>
 		<result property="busNo" column="BUS_NO"/>
 		<result property="busName" column="BUS_NAME"/>
-		<result property="busCountry" column="BUS_COUNTRY"/>
-		<result property="busArea" column="BUS_AREA"/>
 		<result property="busAddress" column="BUS_ADDRESS"/>
-		<result property="busRegNo" column="BUS_REG_NO"/>
 		<result property="busIncome" column="BUS_INCOME"/>
 		<result property="busIndustrial" column="BUS_INDUSTRIAL"/>
-		<result property="busTotalEmp" column="BUS_TOTAL_EMP"/>
-		<result property="busIntroduce" column="BUS_INTRODUCE"/>
-		<result property="busEstablishment" column="BUS_ESTABLISHMENT"/>
-		<result property="busEmail" column="BUS_EMAIL"/>
-		<result property="busPhone" column="BUS_PHONE"/>
-		<result property="busWebsite" column="BUS_WEBSITE"/>
-		<result property="searchKeywords" column="BUS_SEARCH_KEYWORDS" typeHandler="strArray"/>
-		<result property="RegPath" column="Reg_PATH"/>
-		<result property="busEnrollDate" column="BUS_ENROLLDATE"/>
-		<result property="busLogo" column="BUS_LOGO"/>
-		<result property="busImages" column="BUS_IMAGES" typeHandler="strArray"/>
-		<result property="busStatus" column="BUS_STATUS"/>
-		<result property="newIncome" column="NEW_INCOME"/>
-		<result property="allIncome" column="ALL_INCOME"/>
 		<result property="memNo" column="mem_no"/>
+		<result property="memEmail" column="mem_email"/>
+	</resultMap>
+	
+	<resultMap type="bus" id="busMap">
+		<result property="busNo" column="BUS_NO"></result>
+		<result property="busName" column="BUS_NAME"></result>
+		<result property="busCountry" column="BUS_COUNTRY"></result>
+		<result property="busArea" column="BUS_AREA"></result>
+		<result property="busAddress" column="BUS_ADDRESS"></result>
+		<result property="busRegNo" column="BUS_REG_NO"></result>
+		<result property="busIncome" column="BUS_INCOME"></result>
+		<result property="busIndustrial" column="BUS_INDUSTRIAL"></result>
+		<result property="busTotalEmp" column="BUS_TOTAL_EMP"></result>
+		<result property="busIntroduce" column="BUS_INTRODUCE"></result>
+		<result property="busEstablishment" column="BUS_ESTABLISHMENT"></result>
+		<result property="busEmail" column="BUS_EMAIL"></result>
+		<result property="busPhone" column="BUS_PHONE"></result>
+		<result property="busWebsite" column="BUS_WEBSITE"></result>
+		<result property="searchKeywords" column="BUS_SEARCH_KEYWORDS" typeHandler="strArray"></result>
+		<result property="RegPath" column="Reg_PATH"></result>
+		<result property="busEnrollDate" column="BUS_ENROLLDATE"></result>
+		<result property="busLogo" column="BUS_LOGO"></result>
+		<result property="busImages" column="BUS_IMAGES" typeHandler="strArray"></result>
+		<result property="busStatus" column="BUS_STATUS"></result>
+		<result property="newIncome" column="NEW_INCOME"></result>
+		<result property="allIncome" column="ALL_INCOME"></result>
+	</resultMap>
+	
+	<resultMap type="member" id="memberMap">
 		<result property="memNo" column="mem_no"/>
 		<result property="memEmail" column="mem_email"/>
 		<result property="memLevel" column="mem_level"/>
