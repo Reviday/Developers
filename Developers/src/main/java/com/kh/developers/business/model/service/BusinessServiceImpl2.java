@@ -160,10 +160,26 @@ public class BusinessServiceImpl2 implements BusinessService2 {
 	}
 
 	@Override
-	public int insertPosition(Map map) {
-		int result=dao.insertPosition(session, map);
+	public int insertPosition(Position po) {
+		int result=dao.insertPosition(session, po);
+		if(result>0) {
+			result=po.getPosition_no();
+		}
 		return result;
 	}
+
+	@Override
+	public int updatePosition(Map map) {
+		int result=dao.updatePosition(session, map);
+		return result;
+	}
+
+	@Override
+	public int deletePosition(int poNo) {
+		int result=dao.deletePosition(session, poNo);
+		return result;
+	}
+	
 	
 	
 	

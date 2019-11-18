@@ -563,7 +563,7 @@ input[name="search_em"]::placeholder {
 }
 
 .po_con1>input {
-    width: 90%;
+    width: 100%;
     height: 50px;
 }
 
@@ -573,7 +573,7 @@ input[name="search_em"]::placeholder {
 }
 
 .po_type_list {
-    width: 90%;
+    width: 100%;
     height: 50px;
 }
 
@@ -627,7 +627,7 @@ input[name="search_em"]::placeholder {
 }
 
 .po_con4>textarea {
-    width: 90%;
+    width: 100%;
     height: 150px;
     resize: none;
 }
@@ -688,6 +688,42 @@ input[name="search_em"]::placeholder {
 .po_del:hover {
     background-color: red;
     color: white;
+}
+
+.po_info_null{
+    box-shadow: 0 0 0 .2rem rgba(255, 0, 0, .5) !important;
+    border-color: rgba(255, 0, 0, .2) !important;
+}
+
+.po_type {
+    margin-top: 3px;
+    margin-right: 5px;
+    padding: 2px 5px;
+    color: white;
+    background-color: #6e0000;
+    position: relative;
+    display: inline-block;
+    border-radius: 4px;
+}
+
+/* .key_o {
+    box-shadow: 0 0 0 .2rem rgba(255, 0, 0, .5) !important;
+    border-color: rgba(255, 0, 0, .2) !important;
+} */
+
+.po_type>span {
+    margin-right: 5px;
+    font-size: 1.6rem;
+}
+
+.po_type>button {
+    font-size: 1.3rem;
+    color: silver;
+}
+.po_three{
+    font-size: 1.3rem;
+    font-weight: 400;
+    margin-left:0.5%;
 }
 
 /*---------------bus info-----------------*/
@@ -808,10 +844,6 @@ input[name="search_em"]::placeholder {
 .key_o {
     box-shadow: 0 0 0 .2rem rgba(255, 0, 0, .5) !important;
     border-color: rgba(255, 0, 0, .2) !important;
-}
-
-input[name='searchKeywords'] {
-    display: none;
 }
 
 .bi_keyword>span {

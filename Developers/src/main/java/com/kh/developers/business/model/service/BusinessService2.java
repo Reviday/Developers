@@ -59,7 +59,9 @@ public interface BusinessService2 {
 	
 	
 	
-	int insertPosition(Map map);
+	int insertPosition(Position po);
+	int updatePosition(Map map);
+	int deletePosition(int poNo);
 	
 	
 

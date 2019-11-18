@@ -113,7 +113,7 @@ function fn_keyword_add(){
             });
             if(count<1){
                 var keyHtml="<div class='bi_keyword'>";
-                keyHtml+="<input type='checkbox' value='"+kw+"' name='searchKeywords' checked/>";
+                keyHtml+="<input type='hidden' value='"+kw+"' name='searchKeywords'/>";
                 keyHtml+="<span>"+kw+"</span><button type='button' onclick='fn_del_keyword();'><i class='fas fa-times'></i></button></div>";
                 $('.bi_info_keywords').append(keyHtml);
                 $('[name="add_keyword"]').val('');

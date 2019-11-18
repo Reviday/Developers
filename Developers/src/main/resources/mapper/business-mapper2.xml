@@ -89,7 +89,7 @@
 		WHERE BUS_NO=#{busNo}
 	</update>
 	
-	<select id="selectPositionOne" parameterType="_int" resultType="position">
+	<select id="selectPositionOne" parameterType="_int" resultMap="positionArray">
 		SELECT * FROM ENROLL_POSITION WHERE POSITION_NO=#{positionNo}
 	</select>
 	
@@ -232,40 +232,62 @@
 
 
 	<select id="selectPositionList" parameterType="map" resultType="position">
-		SELECT * FROM ENROLL_POSITION WHERE BUS_NO=#{busNo}
+		SELECT * FROM ENROLL_POSITION WHERE BUS_NO=#{busNo} AND STATUS=#{status}
 		<if test="jobType!=null and jobType!=''">
 			AND JOB_TYPE=#{jobType}
 		</if>
+		ORDER BY POSITION_NO DESC
 	</select>
 	
-	<insert id="insertPosition" parameterType="map">
+	<insert id="insertPosition" parameterType="position">
 		INSERT INTO ENROLL_POSITION 
-		VALUES(EN_PO_SEQ.NEXTVAL, 
-			   #{po.bus_no}, 
-			   #{po.bus_name}, 
-			   #{po.apply_email}, 
-			   #{po.job_type, typeHandler=strArray}, 
-			   #{poCareer}, 
-			   NULL,
-			   TO_DATE(#{poDate}), 
-			   #{po.position}, 
-			   #{po.position_info}, 
-			   #{po.mainbusiness}, 
-			   #{po.qualification},
-		<if test="po.preference!=null and po.preference!=''">
-		 	   #{po.preference},
-		</if>
-		<if test="po.preference==null">
-			   NULL,
-		</if>
-			   #{po.benefit}, 
-			   SYSDATE, 
-			   NULL, 
-			   NULL, 
-			   NULL, 
-			   #{poStatus}, 
-			   #{poSalary})
+		VALUES(EN_PO_SEQ.NEXTVAL, #{bus_no}, #{bus_name}, NULL, NULL, NULL, NULL, '2999/12/31', NULL, NULL, NULL, NULL, NULL, NULL, 
+		SYSDATE, NULL, NULL, NULL, 'T', '0,0')
+		<selectKey keyProperty="position_no" resultType="_int" order="AFTER">
+			SELECT EN_PO_SEQ.CURRVAL FROM DUAL
+		</selectKey>
 	</insert>
+	
+	<update id="updatePosition" parameterType='map'>
+		UPDATE ENROLL_POSITION SET
+		<if test="po.apply_email!=null and po.apply_email!=''">
+			APPLY_EMAIL= #{po.apply_email}, 
+		</if>
+		<if test="po.job_type!=null and po.job_type!=''">			
+			JOB_TYPE=#{po.job_type, typeHandler=strArray}, 
+		</if>	
+		<if test="poCareer!=null and poCareer[0]!=''">			
+			CAREER=#{poCareer, typeHandler=strArray}, 
+		</if>
+   		<if test="poDate!=null and poDate!=''">			
+			DEAD_DATE=TO_DATE(#{poDate}),
+		</if>
+			<if test="po.position!=null and po.position!=''">			
+			 POSITION= #{po.position},  
+		</if>		   
+		<if test="po.position_info!=null and po.position_info!=''">			
+			 POSITION_INFO=#{po.position_info},  
+		</if>		   
+		<if test="po.mainbusiness!=null and po.mainbusiness!=''">			
+			 MAINBUSINESS=#{po.mainbusiness},  
+		</if>		   
+		<if test="po.qualification!=null and po.qualification!=''">			
+			 QUALIFICATION=#{po.qualification},  
+		</if>		   
+		<if test="po.preference!=null and po.preference!=''">
+			PREFERENCE=#{po.preference},
+		</if>
+		<if test="po.benefit!=null and po.benefit!=''">
+			BENEFIT=#{po.benefit}, 
+		</if>
+		STATUS=#{poStatus}
+		WHERE POSITION_NO=#{po.position_no}
+
+	</update>
+	
+	<update id="deletePosition" parameterType="_int">
+		UPDATE FROM ENROLL_POISTION STATUS='N' WHERE POSITION_NO=#{poNo}
+	</update>
 	
 	
 
@@ -401,5 +423,10 @@
 		<result property="actDate" column="act_date" />
 		<result property="resumeNo" column="resume_no" />
 	</resultMap>
-
+	<resultMap type="position" id="positionArray">
+		<result column="job_type" property="job_type" typeHandler="StrArray"/>
+		<result column="tag" property="tag" typeHandler="StrArray"/>
+		<result column="bus_images" property="bus_images" typeHandler="StrArray"/>
+		<result column="position_salary" property="position_salary" typeHandler="StrArray"/>
+	</resultMap>
 </mapper>

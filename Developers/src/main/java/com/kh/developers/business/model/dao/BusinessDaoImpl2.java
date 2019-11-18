@@ -169,8 +169,19 @@ public class BusinessDaoImpl2 implements BusinessDao2 {
 
 
 	@Override
-	public int insertPosition(SqlSession session, Map map) {
-		return session.insert("business2.insertPosition",map);
+	public int insertPosition(SqlSession session, Position po) {
+		return session.insert("business2.insertPosition",po);
+	}
+
+
+	@Override
+	public int updatePosition(SqlSession session, Map map) {
+		return session.update("business2.updatePosition", map);
+	}
+
+	@Override
+	public int deletePosition(SqlSession session, int poNo) {
+		return session.update("business.deletePosition", poNo);
 	}
 	
 	
