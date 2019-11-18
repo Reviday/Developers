@@ -137,7 +137,7 @@ function ajaxLogic(flag){
             AdCon+='<input class="agree" type="checkbox" aria-label="Checkbox for agreement">';
             AdCon+='<h4 style="margin-left:10px; display:inline-block";>결제 정보를 확인하였으며, 이에 동의합니다. (필수)</h4>';
             AdCon+='</div>';
-            AdCon+='<div id="category-payment pay" style="text-align:center";><button class="btn btn-primary paym" style="padding:9px; width:30%; font-size:18px"; disabled onclick="payment(1);">결제하기</button>'
+            AdCon+='<div id="category-payment pay" style="text-align:center";><button class="btn btn-primary paym" style="padding:9px; width:30%; font-size:18px"; disabled onclick="fn_payment(1);">결제하기</button>'
             
             AdCon+='<div>';
 
@@ -247,7 +247,7 @@ function ajaxLogic(flag){
             AdCon+='<input class="agree" type="checkbox" aria-label="Checkbox for agreement">';
             AdCon+='<h4 style="margin-left:10px; display:inline-block";>결제 정보를 확인하였으며, 이에 동의합니다. (필수)</h4>';
             AdCon+='</div>';
-            AdCon+='<div id="category-payment pay" style="text-align:center";><button class="btn btn-primary paym" style="padding:9px; width:30%; font-size:18px"; disabled onclick="payment(2);">결제하기</button>'
+            AdCon+='<div id="category-payment pay" style="text-align:center";><button class="btn btn-primary paym" style="padding:9px; width:30%; font-size:18px"; disabled onclick="fn_payment(2);">결제하기</button>'
             
             AdCon+='<div>';
 
@@ -287,4 +287,11 @@ function ajaxLogic(flag){
         }
     });
 }
+
+
+
+
+
+
+
 

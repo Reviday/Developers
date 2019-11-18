@@ -261,12 +261,15 @@ div#bottom-info>input{
 
 </section>
 
-
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script>
 	var path = "${path}";
 	var db_index = "${dbIndex}";
 	var db_html = "${dbHtml}";
 	var appl_index = "${applIndex}";
+
+	
 
 
 	function clickPositions(position){
@@ -276,18 +279,29 @@ div#bottom-info>input{
 		});
 		position[0].style.opacity="1.0";
 		console.log(position);
-		document.querySelector('#positionName').value=position[0].children[2].innerText;
+		positionName=position[0].children[2].innerText;
+		document.querySelector('#positionName').value=positionName;
 		document.querySelector('#until').value=position[0].children[4].innerText;
 	}
 
 	function clickOptions(option){
 		let num=parseInt(option);
 		if(num>0){
+			adLength=num;
 			document.querySelector('#adDate').value=num+"일";
 		}else{
 			document.querySelector('#adDate').value="";
 		}
 	}
+	
+	// var payment = function(email, name, phone, price, position, adLength){
+	// 	this.email=memEmail;
+	// 	this.name=memName;
+	// 	this.phone=memPhone;
+	// 	this.price=price;
+	// 	this.positionName=positionName;
+	// 	this.adLength=adLength;
+	// }
 
 	function agreeCheck(checked){
 		console.log(checked);
@@ -296,8 +310,84 @@ div#bottom-info>input{
 		}else{
 			checked.path[2].children[3].firstChild.removeAttribute("disabled");
 		}
-
 	}
+
+	var memEmail="${loginMember.memEmail}";
+	var memName="${loginMember.memName}";
+	var memPhone="${loginMember.memPhone}";
+	var positionName="";
+	var adLength="";
+	console.log(memEmail);
+	console.log(memName);
+	console.log(memPhone);
+
+	
+	// 결제 로직 
+	function fn_payment(type){
+		var finalPrice=0;
+		var adType="";
+		if($("#positionName").val()!=""&&$("#until").val()!=""&&$("#adDate").val()!=""){ 
+		if(type>1){
+			// 메인 광고 
+			let firstPrice=390000;
+			let secondPrice= 680000;
+			let thirdPrice= 970000;
+			let forthPrice= 1200000;
+			adType="메인 페이지 상단 광고";
+			switch(type){
+				case 7: finalPrice=firstPrice; break;
+				case 14: finalPrice=secondPrice; break;
+				case 21: finalPrice=thirdPrice; break;
+				case 29: finalPrice=forthPrice; break;
+				default: finalPrice=0;
+					break;
+			}
+		}else{
+			// 직무(category) 광고 
+			let firstPrice=150000;
+			let secondPrice= 290000;
+			let thirdPrice= 430000;
+			let forthPrice= 520000;
+			adType="직무 페이지 상단 광고";
+			switch(type){
+				case 7: finalPrice=firstPrice; break;
+				case 14: finalPrice=secondPrice; break;
+				case 21: finalPrice=thirdPrice; break;
+				case 29: finalPrice=forthPrice; break;
+				default: finalPrice=0;
+					break;
+			}
+		} 
+		console.log(typeof finalPrice);
+		console.log(finalPrice);
+	   var IMP = window.IMP;
+	   IMP.init('iamport');
+	   IMP.request_pay({
+		   pg : 'html5_inicis',
+		   pay_method : 'vbank',
+		   merchant_uid : 'merchant_' + new Date().getTime(),
+		   name : 'asdfsdf',
+		   amount : 123123,
+		   buyer_email : memEmail,
+		   buyer_name : memName,
+		   buyer_tel : memPhone,
+		   buyer_addr : "",
+		   buyer_postcode :""
+	   }, function(rsp) {
+		   if ( rsp.success ) {
+			   var msg = '결제가 완료되었습니다.';
+			  location.href="${path}/business/ad.ldc";
+			  alert(msg);
+		   } 
+		});
+	}else{
+			alert("선택하지 않은 정보가 있습니다. 단계별로 진행해 주세요.");
+		}
+	};
+
+
+
+
 	
 	// function payment(num){
     // if($("#positionName").val()!=""&&$("#until").val()!=""&&$("#adDate").val()!=""){ console.log("결제하기로");
