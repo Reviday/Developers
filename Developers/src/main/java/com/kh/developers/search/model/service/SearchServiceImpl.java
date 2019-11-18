@@ -284,5 +284,11 @@ public class SearchServiceImpl implements SearchService {
 		return list;
 	}
 	
+	@Override
+	public List<Position> firstPsList11() {
+		List<Position> list = dao.firstPsList11(session);
+		return list;
+	}
+	
 	
 }

@@ -201,7 +201,7 @@
                 
                 <c:if test="${not empty firstPsList }">
 	                <h3 class="firstCompany">적극 채용 중인 회사</h3>
-	                <div class="firstCompany-list">
+	                <div class="firstCompany-list" style="margin-bottom: 340px;">
 	                    <ul>
                     		<c:forEach var="f" items="${firstPsList }">
                         		<a href="${path }/search/companyAllInfo?busNo=${f.bus_no}">

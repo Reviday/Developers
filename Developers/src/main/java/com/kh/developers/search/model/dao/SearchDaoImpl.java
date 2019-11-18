@@ -295,5 +295,10 @@ public class SearchDaoImpl implements SearchDao {
 		return session.selectList("search.positionKeywordList", text);
 	}
 	
+	@Override
+	public List<Position> firstPsList11(SqlSessionTemplate session) {
+		// TODO Auto-generated method stub
+		return session.selectList("search.firstPsList11");
+	}
 	
 }

@@ -101,4 +101,6 @@ public interface SearchService {
 	List<SearchCompany> companyKeywordList(String text);
 	//헤더 -> 회사이름, 회사키워드, 포지션 검색(포지션리스트)
 	List<Position> positionKeywordList(String text);
+	//신규채용회사
+	List<Position> firstPsList11();
 }

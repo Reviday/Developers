@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 public class AdCompany {
 
 	private int bus_no;
+	private String bus_name;
 	private String bus_logo;
 	private String[] bus_images;
 	private int po_count;

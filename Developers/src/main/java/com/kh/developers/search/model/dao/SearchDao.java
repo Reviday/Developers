@@ -66,4 +66,5 @@ public interface SearchDao {
 	List<Tag> selectTagCompanyList(SqlSessionTemplate session, List<Integer> list);
 	List<SearchCompany> companyKeywordList(SqlSessionTemplate session, String text);
 	List<Position> positionKeywordList(SqlSessionTemplate session, String text);
+	List<Position> firstPsList11(SqlSessionTemplate session);
 }
