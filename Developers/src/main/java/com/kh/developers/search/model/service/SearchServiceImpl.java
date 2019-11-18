@@ -22,6 +22,7 @@ import com.kh.developers.search.model.vo.JobField;
 import com.kh.developers.search.model.vo.LikeMember;
 import com.kh.developers.search.model.vo.Position;
 import com.kh.developers.search.model.vo.ResumeSearch;
+import com.kh.developers.search.model.vo.SearchCompany;
 import com.kh.developers.search.model.vo.Tag;
 
 @Service
@@ -269,5 +270,18 @@ public class SearchServiceImpl implements SearchService {
 		List<Tag> list1 = dao.selectTagCompanyList(session, list);
 		return list1;
 	}
+
+	@Override
+	public List<SearchCompany> companyKeywordList(String text) {
+		List<SearchCompany> list = dao.companyKeywordList(session, text);
+		return list;
+	}
+
+	@Override
+	public List<Position> positionKeywordList(String text) {
+		List<Position> list = dao.positionKeywordList(session, text);
+		return list;
+	}
+	
 	
 }

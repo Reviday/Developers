@@ -30,6 +30,7 @@ import com.kh.developers.search.model.vo.JobField;
 import com.kh.developers.search.model.vo.LikeMember;
 import com.kh.developers.search.model.vo.Position;
 import com.kh.developers.search.model.vo.ResumeSearch;
+import com.kh.developers.search.model.vo.SearchCompany;
 import com.kh.developers.search.model.vo.Tag;
 
 @Controller
@@ -446,6 +447,13 @@ public class SearchController {
 			return "common/tagSearch";
 		}else {
 			//회사, 포지션, 키워드 검색(회사, 포지션 검색)
+			//회사 리스트 검색(회사이름, 회사키워드)
+			List<SearchCompany> cList = service.companyKeywordList(text);
+			//포지션리스트 검색(포지션이름)
+			List<Position> pList = service.positionKeywordList(text);
+			model.addAttribute("cList", cList);
+			model.addAttribute("pList", pList);
+			model.addAttribute("text", text);
 			return "common/otherSearch";
 		}
 	}

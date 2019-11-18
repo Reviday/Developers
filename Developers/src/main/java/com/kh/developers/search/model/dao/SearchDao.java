@@ -19,6 +19,7 @@ import com.kh.developers.search.model.vo.JobField;
 import com.kh.developers.search.model.vo.LikeMember;
 import com.kh.developers.search.model.vo.Position;
 import com.kh.developers.search.model.vo.ResumeSearch;
+import com.kh.developers.search.model.vo.SearchCompany;
 import com.kh.developers.search.model.vo.Tag;
 
 public interface SearchDao {
@@ -62,4 +63,6 @@ public interface SearchDao {
 	List<Integer> selectCompanyTagList(SqlSessionTemplate session, String text);
 	Company selectCompanyList(SqlSessionTemplate session, int busNo);
 	List<Tag> selectTagCompanyList(SqlSessionTemplate session, List<Integer> list);
+	List<SearchCompany> companyKeywordList(SqlSessionTemplate session, String text);
+	List<Position> positionKeywordList(SqlSessionTemplate session, String text);
 }

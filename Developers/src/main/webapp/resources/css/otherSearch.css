@@ -1,0 +1,372 @@
+@charset "UTF-8";
+
+a, a:active, a:hover, a:visited {
+    color: inherit;
+}
+
+button {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: none;
+}
+
+a {
+    text-decoration: inherit;
+    cursor: pointer;
+}
+
+body {
+    background-color: #f8f8fa;
+}
+
+#companyJobSearch {
+    margin-top: 50px;
+    background-color: #f8f8fa;
+}
+
+.cjsTitle {
+    position: relative;
+    width: 100%;
+    height: 160px;
+    background: #fff;
+    border-bottom: 1px solid #e1e2e3;
+    z-index: 1;
+}
+
+@media (max-width: 767px) {
+    .cjsTitle {
+        height: 80px;
+    }
+}
+
+.cjsTitle-btn {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    max-width: 90%;
+    font-size: 48px;
+    line-height: 2;
+    color: #333;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    cursor: pointer;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+@media (max-width: 767px) {
+    .cjsTitle-btn {
+        font-size: 22px;
+    }
+}
+
+.cjsBody {
+    position: relative;
+    max-width: 1060px;
+}
+
+@media (min-width: 1200px) {
+    .cjsBody {
+        margin: 20px auto 80px;
+        width: 87.72%;
+    }
+}
+
+@media (max-width: 1199px) and (min-width: 992px) {
+    .cjsBody {
+        margin: 20px auto 80px;
+        width: 90%;
+    }
+}
+
+@media (max-width: 991px) and (min-width: 768px) {
+    .cjsBody {
+        margin: 20px auto 80px;
+        width: 90%;
+    }
+}
+
+.cjsBody-title {
+    margin-top: 50px;
+    margin-bottom: 20px;
+    font-size: 26px;
+    font-weight: 400;
+    color: #333;
+}
+
+@media (max-width: 767px) {
+    .cjsBody-title {
+        font-size: 18px;
+        margin: 30px 20px 20px;
+    }
+}
+
+@media (max-width: 767px) {
+    .companyList {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+}
+
+.companyInfo {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 20px;
+    background: #fff;
+    -webkit-box-shadow: 0 1px 1px 0 rgba(0,0,0,.05);
+    box-shadow: 0 1px 1px 0 rgba(0,0,0,.05);
+    margin-top: 20px;
+}
+
+.companyContent {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    width: calc(100% - 148px);
+}
+
+@media (max-width: 767px) {
+    .companyContent {
+        width: calc(100% - 138px);
+    }
+}
+
+.companyLogo {
+    width: 60px;
+    height: 60px;
+    border: 1px solid rgba(0,0,0,.1);
+    margin-right: 20px;
+    background-size: 100%;
+    background-position: 50%;
+    background-repeat: no-repeat;
+}
+
+@media (max-width: 767px) {
+    .companyLogo {
+        margin-right: 10px;
+        width: 40px;
+        height: 40px;
+    }
+}
+
+.companyIntro {
+    width: calc(100% - 80px);
+    height: 60px;
+}
+
+@media (max-width: 767px) {
+    .companyIntro {
+        width: calc(100% - 50px);
+        height: 40px;
+    }
+}
+
+.companyIntro h5 {
+    color: #333;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 24px;
+    margin: 6px 0;
+}
+
+.companyIntro h5, .companyIntro h6 {
+    margin: 0;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+@media (max-width: 767px) {
+    .companyIntro h5 {
+        font-size: 16px;
+        line-height: 20px;
+        margin: 2px 0;
+    }
+}
+
+.companyIntro h6 {
+    color: #999;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 20px;
+}
+
+@media (max-width: 767px) {
+    .companyIntro h6 {
+        font-size: 12px;
+        line-height: 16px;
+    }
+}
+
+@media (max-width: 767px) {
+    .positionList {
+        margin: 20px;
+    }
+}
+
+.positionList>ul {
+    margin: -10px;
+    padding: 0;
+}
+
+.positionList>ul li {
+    width: 24%;
+    padding: 10px;
+    list-style: none;
+    display: inline-block;
+    vertical-align: top;
+}
+
+@media (max-width: 991px) and (min-width: 768px) {
+    .positionList>ul li {
+        width: 49%;
+    }
+}
+
+@media (max-width: 767px) {
+    .positionList>ul li {
+        width: 49%;
+    }
+}
+
+.positionInfo .positionInfoHeader {
+    padding-bottom: 75%;
+    position: relative;
+    background-size: cover;
+    background-position: 50%;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 0 0 1px rgba(0,0,0,.1);
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,.1);
+}
+
+.positionInfo .positionInfoHeader .likeButton {
+    right: 10px;
+    top: 10px;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+}
+
+.positionInfo .positionInfoHeader button {
+    width: 60px;
+    height: 30px;
+    border-radius: 3px;
+    position: absolute;
+    background: rgba(0,0,0,.3);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 400;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+@media (max-width: 767px) {
+    .positionInfo .positionInfoHeader .likeButton {
+        top: 5px;
+        right: 5px;
+    }
+}
+
+@media (max-width: 767px) {
+    .positionInfo .positionInfoHeader button {
+        width: 52px;
+        height: 25px;
+    }
+}
+
+.positionInfo .positionInfoHeader .likeButton svg {
+    margin-right: 5px;
+    color: hsla(0,0%,100%,.3);
+}
+
+.positionInfo .positionBody {
+    padding: 14px 10px;
+    height: 12.5em;
+}
+
+@media (max-width: 767px) {
+    .positionInfo .positionBody {
+        padding: 10px 5px;
+        height: 9.7em;
+    }
+}
+
+.positionInfo .positionBody dl {
+    margin: 0;
+}
+
+.positionInfo .positionBody .reward, .positionInfo .positionBody dl dd, .positionInfo .positionBody dl dt {
+    text-align: left;
+    word-break: break-word;
+    overflow: hidden;
+}
+
+.positionInfo .positionBody dl dt {
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    position: relative;
+    color: #333;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.4;
+    max-height: 2.8em;
+}
+
+.positionInfo .positionBody .reward, .positionInfo .positionBody dl dd {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.positionInfo .positionBody dl dd {
+    margin-top: 8px;
+    color: #999;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.6;
+}
+
+.positionInfo .positionBody .addressDot {
+    margin: 0 3px;
+    top: -4px;
+    position: relative;
+}
+
+.positionInfo .positionBody .reward {
+    margin-top: 10px;
+    color: #666;
+    font-size: 13px;
+    font-weight: 400;
+}

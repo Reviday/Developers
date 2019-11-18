@@ -17,6 +17,7 @@ import com.kh.developers.search.model.vo.JobField;
 import com.kh.developers.search.model.vo.LikeMember;
 import com.kh.developers.search.model.vo.Position;
 import com.kh.developers.search.model.vo.ResumeSearch;
+import com.kh.developers.search.model.vo.SearchCompany;
 import com.kh.developers.search.model.vo.Tag;
 
 public interface SearchService {
@@ -95,4 +96,8 @@ public interface SearchService {
 	Company selectCompanyList(int busNo);
 	//헤더 -> 태그검색(태그리스트)
 	List<Tag> selectTagCompanyList(List<Integer> list);
+	//헤더 -> 회사이름, 회사키워드, 포지션 검색(회사리스트)
+	List<SearchCompany> companyKeywordList(String text);
+	//헤더 -> 회사이름, 회사키워드, 포지션 검색(포지션리스트)
+	List<Position> positionKeywordList(String text);
 }

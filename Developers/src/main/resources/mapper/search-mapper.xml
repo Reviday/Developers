@@ -273,6 +273,14 @@
 			#{b.value}
 		</foreach>
 	</select>
+	<!-- 헤더->회사, 포지션, 회사키워드 검색(회사리스트) -->
+	<select id="companyKeywordList" parameterType="string" resultType="searchcompany">
+		SELECT BUS_NO, BUS_NAME, BUS_COUNTRY, BUS_AREA, BUS_TOTAL_EMP, BUS_INTRODUCE, BUS_LOGO, BUS_IMAGES, NEW_INCOME, ALL_INCOME, BUS_INDUSTRIAL FROM BUSINESS_INFO WHERE BUS_NAME LIKE '%' || #{text} || '%'
+	</select>
+	<!-- 헤더->회사, 포지션, 회사키워드 검색(포지션리스트) -->
+	<select id="positionKeywordList" parameterType="string" resultType="position">
+		SELECT P.*, BUS_LOGO, BUS_IMAGES, BUS_ADDRESS, BUS_INDUSTRIAL, BUS_AREA, BUS_COUNTRY, (SELECT COUNT(*) FROM PO_LIKE WHERE LIKE_ID = P.LIKE_ID) AS LIKE_COUNT FROM ENROLL_POSITION P JOIN BUSINESS_INFO B ON P.BUS_NO = B.BUS_NO WHERE SYSDATE <![CDATA[<]]> DEAD_DATE AND STATUS = 'Y' AND POSITION LIKE '%' || #{text} || '%' ORDER BY POSITION_NO DESC
+	</select>
 	
 	<resultMap type="position" id="positionArray">
 		<result column="job_type" property="job_type" typeHandler="StrArray"/>

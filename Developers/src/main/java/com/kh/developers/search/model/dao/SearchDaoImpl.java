@@ -21,6 +21,7 @@ import com.kh.developers.search.model.vo.JobField;
 import com.kh.developers.search.model.vo.LikeMember;
 import com.kh.developers.search.model.vo.Position;
 import com.kh.developers.search.model.vo.ResumeSearch;
+import com.kh.developers.search.model.vo.SearchCompany;
 import com.kh.developers.search.model.vo.Tag;
 
 @Repository
@@ -280,4 +281,18 @@ public class SearchDaoImpl implements SearchDao {
 		map.put("list", list);
 		return session.selectList("search.selectTagCompanyList", map);
 	}
+
+	@Override
+	public List<SearchCompany> companyKeywordList(SqlSessionTemplate session, String text) {
+		// TODO Auto-generated method stub
+		return session.selectList("search.companyKeywordList", text);
+	}
+
+	@Override
+	public List<Position> positionKeywordList(SqlSessionTemplate session, String text) {
+		// TODO Auto-generated method stub
+		return session.selectList("search.positionKeywordList", text);
+	}
+	
+	
 }

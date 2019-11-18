@@ -419,7 +419,7 @@
                             <ul class="likeList1">
                                 <c:forEach var="r" items="${reList }">
                              	<li class="choochunList" value="${r.recommend_id }" id="${r.mem_name }">
-                             		<div style="background-image: url(${path}${r.mem_icon != null ? r.mem_icon : '/resources/upload/profile/no-profile-image.png'})"></div>
+                             		<div style="background-image: url(${path}${r.mem_photo != null ? r.mem_photo : '/resources/upload/profile/no-profile-image.png'})"></div>
                              		<p><c:out value="${r.mem_name }"/></p>
                              	</li>
                              </c:forEach>
