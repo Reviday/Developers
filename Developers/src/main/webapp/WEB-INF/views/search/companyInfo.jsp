@@ -674,7 +674,7 @@
 		else emailflag = false;
 		if($("input[name=phone]").val().trim().length > 0) phoneflag = true;
 		else phoneflag = false;
-		if(nameflag == true && emailflag == true && phoneflag == true && $("input:checkbox[name=resume]:checked").val().length > 0) {
+		if(nameflag == true && emailflag == true && phoneflag == true && $("input:checkbox[name=resume]:checked").val() != null) {
 			$(".submitFooter>button[type=button]").removeClass("disabled1");
 		}else{
 			$(".submitFooter>button[type=button]").addClass("disabled1");
@@ -687,7 +687,7 @@
 		else emailflag = false;
 		if($("input[name=phone]").val().trim().length > 0) phoneflag = true;
 		else phoneflag = false;
-		if(nameflag == true && emailflag == true && phoneflag == true && $("input:checkbox[name=resume]:checked").val().length > 0) {
+		if(nameflag == true && emailflag == true && phoneflag == true && $("input:checkbox[name=resume]:checked").val() != null) {
 			$(".submitFooter>button[type=button]").removeClass("disabled1");
 		}else{
 			$(".submitFooter>button[type=button]").addClass("disabled1");
@@ -700,7 +700,7 @@
 		else emailflag = false;
 		if($("input[name=phone]").val().trim().length > 0) phoneflag = true;
 		else phoneflag = false;
-		if(nameflag == true && emailflag == true && phoneflag == true && $("input:checkbox[name=resume]:checked").val().length > 0) {
+		if(nameflag == true && emailflag == true && phoneflag == true && $("input:checkbox[name=resume]:checked").val() != null) {
 			$(".submitFooter>button[type=button]").removeClass("disabled1");
 		}else{
 			$(".submitFooter>button[type=button]").addClass("disabled1");

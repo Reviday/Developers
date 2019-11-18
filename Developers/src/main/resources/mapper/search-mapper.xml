@@ -248,11 +248,11 @@
 	</select>
 	<!-- 포지션 등록(추천인있음) -->
 	<insert id="insertPositionRecommend" parameterType="map">
-		INSERT INTO TA_APPL_BUS VALUES(SEQ_TAB_NO.NEXTVAL, #{busNo}, #{memNo}, #{positionNo}, #{resumeNo}, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, #{recommendId})
+		INSERT INTO TA_APPL_BUS VALUES(SEQ_TAB_NO.NEXTVAL, #{busNo}, #{memNo}, #{positionNo}, #{resumeNo}, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, #{recommendId}, NULL)
 	</insert>
 	<!-- 포지션 등록(추천인없음) -->
 	<insert id="insertPosition" parameterType="map">
-		INSERT INTO TA_APPL_BUS VALUES(SEQ_TAB_NO.NEXTVAL, #{busNo}, #{memNo}, #{positionNo}, #{resumeNo}, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT)
+		INSERT INTO TA_APPL_BUS VALUES(SEQ_TAB_NO.NEXTVAL, #{busNo}, #{memNo}, #{positionNo}, #{resumeNo}, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, NULL)
 	</insert>
 	<!-- 헤더 -> 검색(첫 검색) 추천태그리스트 -->
 	<select id="selectTagList" resultType="tag">
@@ -278,6 +278,7 @@
 		<result column="job_type" property="job_type" typeHandler="StrArray"/>
 		<result column="tag" property="tag" typeHandler="StrArray"/>
 		<result column="bus_images" property="bus_images" typeHandler="StrArray"/>
+		<result column="position_salary" property="position_salary" typeHandler="StrArray"/>
 	</resultMap>
 	
 	<resultMap type="company" id="companyArray">
@@ -320,5 +321,8 @@
 		<result property="applDate" column="appl_date" />
 		<result property="applAnsYn" column="appl_ans_yn" />
 		<result property="recommendId" column="recommend_id"/>
+		<result property="offerDate" column="offer_date"/>
+		<result property="answerDate" column="answer_date"/>
+		<result property="finalDate" column="final_date"/>
 	</resultMap>
 </mapper>

@@ -36,5 +36,6 @@ public class Position {
 	private int po_count; //이 회사의 전체 포지션글 갯수
 	private String lat; //회사주소 위도
 	private String longg; //회사주소 경도
+	private String[] position_salary; //회사 채용시 예상연봉 시작, 끝
 	
 }
