@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.developers.salary.model.dao.SalaryDao;
 import com.kh.developers.salary.model.vo.Salary;
+import com.kh.developers.search.model.vo.Position;
 
 @Service
 public class SalaryServiceImpl implements SalaryService {
@@ -29,6 +30,14 @@ public class SalaryServiceImpl implements SalaryService {
 		// TODO Auto-generated method stub
 		return dao.selectedJobYears(session,s);
 	}
+
+	@Override
+	public List<Position> salaryRecommandPositionList(String type) {
+		// TODO Auto-generated method stub
+		return dao.salaryRecommandPositionList(session,type);
+	}
+	
+	
 	
 	
 	

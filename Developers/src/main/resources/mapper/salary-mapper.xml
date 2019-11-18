@@ -1,10 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="salary">
+	
 	<select id="salarySelectList" resultType="salary">
 		SELECT JOBAVGSALARY FROM SALARY WHERE JOBFIELD=#{jobField}
 	</select>
+	
 	<select id="selectedJobYears" resultType="_int">
 		SELECT JOBAVGSALARY FROM SALARY WHERE JOBFIELD=#{jobField} AND JOBYEARS=${jobYears}
 	</select>
+	
+
+	<select id="salaryRecommandPositionList" parameterType="position" resultType="position" resultMap="positionArray">
+		SELECT * FROM (SELECT ROWNUM AS RNUM, A.* FROM (SELECT (SELECT COUNT(BUS_NO) FROM ENROLL_POSITION) AS PO_COUNT, P.*, BUS_LOGO, BUS_IMAGES, BUS_ADDRESS, BUS_INDUSTRIAL, BUS_AREA, BUS_COUNTRY,(SELECT COUNT(*) FROM PO_LIKE WHERE LIKE_ID = P.LIKE_ID) AS LIKE_COUNT FROM ENROLL_POSITION P JOIN BUSINESS_INFO B ON P.BUS_NO = B.BUS_NO WHERE SYSDATE <![CDATA[<]]> DEAD_DATE AND STATUS = 'Y' AND JOB_TYPE = #{type} ORDER BY 1)A) WHERE RNUM BETWEEN 1 AND 8
+	</select>
+	
+	<resultMap type="position" id="positionArray">
+		<result column="job_type" property="job_type" typeHandler="StrArray"/>
+		<result column="tag" property="tag" typeHandler="StrArray"/>
+		<result column="bus_images" property="bus_images" typeHandler="StrArray"/>
+		<result column="position_salary" property="position_salary" typeHandler="StrArray"/>
+	</resultMap>
+	
+	
+	
 </mapper>

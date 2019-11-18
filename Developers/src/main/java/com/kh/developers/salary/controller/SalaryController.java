@@ -11,8 +11,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.kh.developers.member.model.vo.Member;
+import com.kh.developers.recommend.model.vo.Recommend;
 import com.kh.developers.salary.model.service.SalaryService;
 import com.kh.developers.salary.model.vo.Salary;
+import com.kh.developers.search.model.vo.BookMark;
+import com.kh.developers.search.model.vo.LikeMember;
+import com.kh.developers.search.model.vo.Position;
+import com.kh.developers.search.model.vo.ResumeSearch;
+import com.kh.developers.search.model.vo.Tag;
 
 @SessionAttributes(value= {"jobField", "salaryList", "jobYearsResultList", "jobYears"})
 
@@ -34,17 +41,17 @@ public class SalaryController {
 	}
 	
 	@RequestMapping("/salary/salarySelectList.do")
-	public String salarySelectList(Salary s,Model model) {
+	public String salarySelectList(Salary s,String job_type,Model model) {
 		
 		
 		
 		String jobField=s.getJobField();
-	
+		String type=job_type;
 		
 		List<Salary> list=service.salarySelectList(jobField);
 	
 		System.out.println("jobField:"+jobField);
-	
+		System.out.println("추천기업 포지션:"+type);
 		
 		System.out.println(list);
 		
@@ -65,7 +72,16 @@ public class SalaryController {
 			
 		}
 		
+		//포지션 추천 기업 가지고 오기
 		
+		//해당하는 직무의 추천기업 불러오기
+		List<Position> rcList = service.salaryRecommandPositionList(type);
+		
+		System.out.println("rcList:"+rcList);
+		
+		
+		
+		model.addAttribute("rcList", rcList);
 		model.addAttribute("jobYearsResultList",jobYearsResultList);
 		model.addAttribute("salaryList",salaryList);
 		model.addAttribute("jobField",jobField);
@@ -73,7 +89,7 @@ public class SalaryController {
 		return "salary/salaryView";
 	}
 	@RequestMapping("/salary/salaryYears.do")
-	public String salaryYears(Salary s,Model model) {
+	public String salaryYears(Salary s, Position p, Model model) {
 		
 
 		String jobField=s.getJobField();
@@ -121,11 +137,16 @@ public class SalaryController {
 				salaryList.add(i, list.get(i).getJobAvgSalary());
 			}
 		}
-		
-		
-		
 		System.out.println("jobYearsResult:"+jobYearsResult);
 		System.out.println("jobYearsResultList:"+jobYearsResultList);
+		
+		//해당하는 직무의 추천기업 불러오기
+//		List<Position> rcList = service.recommandPositionList(p);
+//		
+//		System.out.println("기업 추천리스트 무엇이 넘어 오는지:"+p);
+//		
+//		model.addAttribute("rcList", rcList);
+		
 		
 		model.addAttribute("salaryList",salaryList);
 		model.addAttribute("jobField",jobField);
@@ -134,7 +155,6 @@ public class SalaryController {
 		
 		return "salary/salaryView";
 	}
-	
 	
 	
 

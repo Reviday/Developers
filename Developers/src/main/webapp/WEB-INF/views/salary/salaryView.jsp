@@ -14,6 +14,7 @@
 <script src="${path }/resources/js/billboard.js"></script>
 <!-- Load with base style -->
 <link rel="stylesheet" href="${path }/resources/css/billboard.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/companyInfo.css">
 <style>
 div {
 	margin: 0;
@@ -404,23 +405,18 @@ select {
 
 $("#jobField").change(function(){
 	var jobField= $(this).val();
-	console.log(jobField);	
-	location.href='${path }/salary/salarySelectList.do?jobField='+jobField;
+	var type= $("#jobField option:selected").text();
+	location.href='${path }/salary/salarySelectList.do?jobField='+jobField+'&job_type='+type;
 });
 
 $("#jobYears").change(function(){
 	var jobField= $("#jobField option:selected").val();
+	var job_type= $("#jobField option:selected").text();
 	var jobYears= $(this).val();
-	console.log("--------");	
-	console.log(jobField);	
-	console.log(jobYears);	
-	location.href='${path }/salary/salaryYears.do?jobField='+jobField +'&jobYears='+jobYears;
+	
+	location.href='${path }/salary/salaryYears.do?jobField='+jobField +'&jobYears='+jobYears+'&job_type='+job_type;
 	/* location.href='${path }/search/companyInfo.do?positionNo='+${p.position_no }+'&memNo='+${loginMember.memNo}; */
 });
-
-
-
-
 
 
 </script>
