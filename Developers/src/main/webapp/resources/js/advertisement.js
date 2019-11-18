@@ -287,3 +287,4 @@ function ajaxLogic(flag){
         }
     });
 }
+

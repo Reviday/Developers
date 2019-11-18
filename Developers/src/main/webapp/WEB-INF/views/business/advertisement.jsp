@@ -143,7 +143,7 @@ div#bottom-info>input{
 					<div class="list-group left-menu" style="text-align:center; padding:5%;">
 						<div><h4 style="color: #848484; padding:5%; text-align: justify;">광고를 등록하기 위해서는 최소 1개의 포지션을 등록해 놓아야 합니다. 포지션을 등록하지 않았다면 여기를 클릭해 주세요.</h4></div>
 						<div class="top center forOpen" style="height: 100px;">
-							<button class="btn btn-success" style="background-color: #7B39BD; border-color: #7B39BD; padding:5%; margin-top:6%; font-size:15px;">포지션 등록하기</button>
+							<button id="enrollPosition" class="btn btn-success" style="background-color: #7B39BD; border-color: #7B39BD; padding:5%; margin-top:6%; font-size:15px;" onclick="location.href='${path}/business/enrollPosition.lbc'">포지션 등록하기</button>
 						</div>
 					</div>
 					<div class="list-group left-menu">

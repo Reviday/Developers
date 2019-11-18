@@ -216,7 +216,8 @@ function ajaxLogic(searchPackage){
                         }
                         cardContainer+='<hr>';
                         let intro=icList[i].intro!=null?icList[i].intro:"";
-                        cardContainer+='<p class="card-text intro">'+intro+'</p>';
+                        let shortenIntro=intro.substring(0,20);
+                        cardContainer+='<p class="card-text intro">'+shortenIntro+"..."+'</p>';
 
                         //스킬 
                         cardContainer+='<div class="skill-list">';
@@ -324,10 +325,13 @@ function openResume(resumeNo){
                     let career=$('div#ResuCareers');
                     let education=$('div#ResuEducation');
                     info=JSON.parse(result);
+                    let userName=info.memName.split("");
+                    let sirName=userName.splice(0,1);
+                    let firstName=userName.join("");
                     
-                    name.html('<div id="memName">'+info.memName+'</div>');
-                    email.html('<div class="personalInfo">이메일: '+info.memEmail+'</div>');
-                    phone.html('<div class="personalInfo">전화번호: '+info.memPhone+'</div>');
+                    name.html('<div id="memName"><p>'+sirName+'<span id="firstName">'+firstName+'</span></p></div>');
+                    email.html('<div class="personalInfo"><p>이메일: <span id="memEmail">'+info.memEmail+'</span></p></div>');
+                    phone.html('<div class="personalInfo"><p>전화번호: <span id="memPhone">'+info.memPhone+'</span></p></div>');
                     intro.html('<div id="memIntro">'+info.intro+'</div>');
 
                     let careerss="";
@@ -339,7 +343,7 @@ function openResume(resumeNo){
                         careerss+='<div class="endCareer">'+info.careers[i].endCareer+'</div>';
                         careerss+='<div class="startCareer">'+info.careers[i].startCareer+'  ~'+'</div>';
                         careerss+='<br>';
-                        careerss+='<div class="careerIntro">'+info.careers[i].careerIntro+'</div>';
+                        careerss+='<div class="careerIntro"><p id="careerIntro">'+info.careers[i].careerIntro+'</p></div>';
                         careerss+='<hr style="width:95%;">';
                     }
                     career.html(careerss);
@@ -353,7 +357,7 @@ function openResume(resumeNo){
                         educationss+='<div class="endEd">'+info.educations[i].endEd+'</div>';
                         educationss+='<div class="startEd">'+info.educations[i].startEd+'  ~'+'</div>';
                         educationss+='<br>';
-                        educationss+='<div class="subjectName">'+info.educations[i].subjectName+'</div>';
+                        educationss+='<div class="subjectName"><p id="subjectName">'+info.educations[i].subjectName+'</p></div>';
                         educationss+='<hr style="width:95%;">';
                     }
                     education.html(educationss);

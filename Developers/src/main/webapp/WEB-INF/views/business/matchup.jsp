@@ -417,7 +417,7 @@ input::placeholder {
 	    		<div class="modal-footer">
 					<div class="resume-footer row" style="width:100%">
 						<div class="footer-intro col-12 col-sm-9" style="color: #fff; margin:auto auto;"><p style="font-size:20px;">이력서 상세보기 시, 열람권 1회가 차감됩니다.</p></div>
-						<div class="resumePayment col-12 col-sm-3"><button type="button" id="resumePayment" color="#258BF7" class="btn btn-primary" style="background-color: #fff; border-color: #fff; color: #2E2E2E; padding:20px;">이력서 상세보기</button></div>
+						<div class="resumePayment col-12 col-sm-3"><button type="button" id="resumePayment" color="#258BF7" class="btn btn-primary" style="font-size:18px; height:2.6em;">이력서 상세보기</button></div>
 					</div>	
 		  		<!-- <p>계정이 없으신가요?<a class="navbar-brand-small" href="#" onclick="changeModal('toReg'); return false">채용담당자 계정 만들기</a></p> -->
 				</div>

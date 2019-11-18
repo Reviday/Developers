@@ -202,7 +202,7 @@ button#startBtn{
 						
 						<input type="text" id="phone" class="form-control must" name="memPhone" placeholder="연락처 (-)없이" required>
 						<hr>
-						<input type="text" id='reg-email' class="form-control must" name="memEmail" placeholder="회사 이메일(로그인 아이디로 사용)" required>
+						<input type="text" id='reg-email' class="form-control must" name="memEmail" placeholder="담당자 이메일(로그인 아이디로 사용)" required>
 						
 						<input type="password" id="pswd" class="form-control must" name="memPassword" placeholder="특수문자 /문자 /숫자 포함 형태의 8~15자리 이내의 암호로 설정해주세요." required>
 						

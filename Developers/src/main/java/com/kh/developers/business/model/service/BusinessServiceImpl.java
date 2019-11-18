@@ -109,7 +109,10 @@ public class BusinessServiceImpl implements BusinessService {
 			int busNo=Integer.parseInt(bus.getBusNo());
 			result=dao.insertConnection(session,busNo,memNo);
 			if(result>0) {
-				result=dao.updateMemLevel(session,memNo);
+				result=dao.insertRequest(session,busNo,memNo);
+				if(result>0) {
+					result=dao.updateMemLevel(session,memNo);
+				}
 			}
 		}else {
 			result=-1;

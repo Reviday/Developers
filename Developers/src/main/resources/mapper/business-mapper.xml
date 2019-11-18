@@ -21,14 +21,16 @@
 	
 	
 	<insert id="insertBusiness" parameterType="bus">
-		INSERT INTO BUSINESS_INFO VALUES (SEQ_BUS_NO.NEXTVAL,#{busName},#{busCountry},#{busArea},#{busAddress},#{busRegNo},#{busIncome},#{busIndustrial},#{busTotalEmp},#{busIntroduce},#{busEstablishment},#{busEmail},#{busPhone},#{busWebsite},#{searchKeywords, typeHandler=strArray},#{regPath},DEFAULT,NULL,NULL,DEFAULT,NULL,NULL)
+		INSERT INTO BUSINESS_INFO VALUES (SEQ_BUS_NO.NEXTVAL,#{busName},#{busCountry},#{busArea},#{busAddress},#{busRegNo},#{busIncome},#{busIndustrial},#{busTotalEmp},#{busIntroduce},#{busEstablishment},#{busEmail},#{busPhone},#{busWebsite},#{searchKeywords, typeHandler=strArray},#{regPath},DEFAULT,NULL,NULL,DEFAULT,NULL,NULL,DEFAULT)
 		<selectKey keyProperty="busNo" resultType="string" order="AFTER">
 			SELECT SEQ_BUS_NO.CURRVAL FROM DUAL
 		</selectKey>
 	</insert>
-	
 	<insert id="insertConnection" parameterType="map" >
 		INSERT INTO MEM_BUS_CONNECTION VALUES(SEQ_CONNECTION_NO.NEXTVAL,#{memNo},#{busNo},'N')
+	</insert>
+	<insert id="insertRequest" parameterType="map">
+		INSERT INTO BUSINESS_REQUEST VALUES (SEQ_REQ_NO.NEXTVAL,#{busNo},#{memNo},DEFAULT)
 	</insert>
 	<update id="updateMemLevel" parameterType="integer">
 		UPDATE TA_MEMBER SET MEM_LEVEL=2 WHERE MEM_NO=#{memNo}

@@ -222,7 +222,7 @@ public class BusinessController {
 //		mv.addObject("career", career);
 		mv.addObject("dbIndex",2);
 //		mv.addObject("dbHtml",matchHTML);
-		mv.setViewName("business/temporaryPage");
+		mv.setViewName("business/matchup");
 		return mv;
 	}
 	
