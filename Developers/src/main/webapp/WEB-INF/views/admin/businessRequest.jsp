@@ -37,6 +37,7 @@
 									<button type="button" class="btn btn-success" style="font-weight: 600" onclick="blank_bus_info(${l.busNo});">
 										${l.busName }
 									</button>
+									<input type="hidden" value="${l.busName }" id="busName_${l.busNo }"/>
 								</td>
 								<td class="visible-over-md" data-th="기업주소">${l.busAddress }</td>
 								<td class="visible-only-lg" data-th="산업">${l.busIndustrial }</td>
@@ -45,6 +46,7 @@
 									<button type="button" class="btn btn-success" style="font-weight: 600" onclick="blank_mem_info(${l.memNo});">
 										${l.memEmail }
 									</button>
+									<input type="hidden" value="${l.memEmail }" id="memEmail_${l.memNo }"/>
 								</td>
 								<td data-th="신청일시">
 									<c:if test="${l.requestDate ne null }">

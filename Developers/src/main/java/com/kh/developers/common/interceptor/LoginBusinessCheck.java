@@ -14,13 +14,13 @@ public class LoginBusinessCheck extends HandlerInterceptorAdapter {
 			throws Exception {
 		if(request.getSession().getAttribute("loginMember")==null) {
 			request.setAttribute("msg", "로그인 후 이용가능합니다.");
-			request.setAttribute("loc", "/");
+			request.setAttribute("loc", "/business");
 			request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp").forward(request, response);
 			return false;
 		} else if(request.getSession().getAttribute("loginMember")!=null 
 				&& ((Member)request.getSession().getAttribute("loginMember")).getMemLevel()<3) {
 			request.setAttribute("msg", "페이지 접근 권한이 없습니다.");
-			request.setAttribute("loc", "/");
+			request.setAttribute("loc", "/business");
 			request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp").forward(request, response);
 			return false;
 		}  else {

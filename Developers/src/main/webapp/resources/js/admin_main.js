@@ -268,16 +268,15 @@ function bus_req_approval(requestNo, busNo, memNo) {
 		data:{
 			"requestNo":requestNo,
 			"busNo":busNo,
-			"memNo":memNo
+			"busName":$("#busName_"+busNo).val(),
+			"memNo":memNo,
+			"memEmail":$("#memEmail_"+memNo).val()
 		},
 		success:function(result) {
 			if(result!=null) {
-				alert("정상적으로 승인처리 되었습니다.");
 				$('.mainContent').html("");
 				$('.mainContent').html(result);
-			} else {
-				alert("승인처리가 정상적으로 이루어지지 않았습니다.");
-			}
+			} 
 		}
 	})
 };
@@ -290,7 +289,9 @@ function bus_req_rejection(requestNo, busNo, memNo) {
 		data:{
 			"requestNo":requestNo,
 			"busNo":busNo,
-			"memNo":memNo
+			"busName":$("#busName_"+busNo).val(),
+			"memNo":memNo,
+			"memEmail":$("#memEmail_"+memNo).val()
 		},
 		success:function(result) {
 			if(result!=null) {

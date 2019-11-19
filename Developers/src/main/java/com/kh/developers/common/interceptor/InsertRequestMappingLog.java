@@ -44,7 +44,6 @@ public class InsertRequestMappingLog extends HandlerInterceptorAdapter{
 			if(request.getRequestURI().indexOf("/developers")>=0) {
 				//일반 로컬 서버
 				check="/developers";
-				
 			} else if(request.getRequestURI().indexOf("/19PM_Developers_final")>=0) {
 				//학원 서버용
 				check="/19PM_Developers_final";

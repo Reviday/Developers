@@ -1,13 +1,17 @@
 package com.kh.developers.admin.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.inject.Inject;
+import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +26,7 @@ import com.kh.developers.admin.model.service.AdminService;
 import com.kh.developers.admin.model.vo.BusinessRequest;
 import com.kh.developers.admin.model.vo.MemberLoginLog;
 import com.kh.developers.business.model.vo.Business;
+import com.kh.developers.common.authentication.MailHandler;
 import com.kh.developers.common.util.PaginationTemplate;
 import com.kh.developers.common.util.PaginationTemplateFunction2nd;
 import com.kh.developers.member.model.vo.Member;
@@ -32,6 +37,8 @@ public class AdminController {
 
 	@Autowired
 	private AdminService service;
+	@Inject
+    private JavaMailSender mailSender;
 	private PaginationTemplate pt;
 	private PaginationTemplateFunction2nd ptf;
 	
@@ -39,7 +46,9 @@ public class AdminController {
 	public String mllChangeChart(HttpServletRequest req, Model model,
 			@RequestParam (value="requestNo", required=true) int requestNo,
 			@RequestParam (value="busNo", required=true) int busNo,
-			@RequestParam (value="memNo", required=true) int memNo) {
+			@RequestParam (value="busName", required=true) String busName,
+			@RequestParam (value="memNo", required=true) int memNo,
+			@RequestParam (value="memEmail", required=true) String memEmail) throws MessagingException, UnsupportedEncodingException {
 		// 승인 처리 서비스
 		int result=0;
 		try {
@@ -50,9 +59,46 @@ public class AdminController {
 		
 		// 승인 메일 송신 로직
 		if(result>0) {
-			
+			String url=req.getRequestURL().toString();
+			int target=url.indexOf("developers");
+			String frontUrl="";url.substring(0,target);
+			if(req.getRequestURI().indexOf("/developers")>=0) {
+				//일반 로컬 서버
+				frontUrl=url.substring(0,target)+"developers";
+			} else if(req.getRequestURI().indexOf("/19PM_Developers_final")>=0) {
+				//학원 서버용
+				frontUrl=url.substring(0,target)+"19PM_Developers_final";
+			} else {
+				//보통 있을 수 없지만 만약 위 두가지 중 예외가 존재한다면 
+				//server에서 설정을 기본값인 spring으로 했을 경우.
+				frontUrl=url.substring(0,target)+"spring";
+				//위가 아닌 다른 예외 상황이 온다고 한다면, 기록은 하되 조인할때 기타 값이 null로 출력될 것임.
+			}
+			System.out.println(frontUrl);
+			//메일 전송
+			MailHandler sendMail = new MailHandler(mailSender);
+			sendMail.setSubject("[Developers] 기업등록 승인 관련 안내");
+			sendMail.setText(
+					new StringBuffer().append("<div style=\"font-family: 'Apple SD Gothic Neo', 'sans-serif' !important; width: 540px; height: 600px; border-top: 4px solid rgb(67,138,255); margin: 100px auto; padding: 30px 0; box-sizing: border-box;\">")
+					.append("<h1 style=\"margin: 0; padding: 0 5px; font-size: 28px; font-weight: 400;\">")
+					.append("<span style=\"font-size: 15px; margin: 0 0 10px 3px;\"><img src=\""+frontUrl+"/resources/images/Developers_logo.png"+"\" style=\"height:40px;\"/></span><br />")
+					.append("<span style=\"color: rgb(67,138,255);\">"+busName+"</span> 회사 등록이 완료되었습니다.</h1>")
+					.append("<p style=\"font-size: 16px; line-height: 26px; margin-top: 50px; padding: 0 5px;\">")
+					.append("<b style=\"color: rgb(67,138,255);\">'디벨로퍼스 대시보드로 이동'</b>")
+					.append("을 클릭하여 <br/>회사 정보를 자세하게 업데이트 해주세요.<br/><br/>")
+					.append("회사 정보는 언제든지 수정하실 수 있으며<br/>")
+					.append("기업 페이지에서 확인이 가능합니다.<br/>")
+					.append("<a style=\"color: #fff; text-decoration: none; text-align: center;\"")
+					.append("href=\""+frontUrl+"/business\"")
+					.append("target=\"_blank\" rel=\"noreferrer noopener\">")
+					.append("<span style=\"display: inline-block; border-radius: 5px; width: 210px; height: 45px; margin: 30px 5px 40px; background-color: rgb(67,138,255); line-height: 45px; vertical-align: middle; font-size: 16px; font-weight: 600;\">")
+					.append("디벨로퍼스 대시보드로 이동</span></a>")
+					.append("<div style=\"border-top: 1px solid #DDD; padding: 5px;\"></div>")
+					.toString());
+			sendMail.setFrom("ysk.testacc@gmail.com", "디벨로퍼스 ");
+			sendMail.setTo(memEmail);
+			sendMail.send();
 		}
-		
 		
 		// 페이지네이션
 		int totalData=service.selectbusinessRequestCount() ;
@@ -60,6 +106,7 @@ public class AdminController {
 		//기업등록 요청 내용 이력을 가져온다.
 		List<BusinessRequest> list=service.selectbusinessRequestList(pt.getcPage(), pt.getNumPerPage());
 		
+		model.addAttribute("resultS",result);
 		model.addAttribute("resultList",list);
 		model.addAttribute("cPage", pt.getcPage());
 		model.addAttribute("numPerPage", pt.getNumPerPage());
