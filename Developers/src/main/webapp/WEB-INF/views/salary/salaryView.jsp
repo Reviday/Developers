@@ -411,10 +411,10 @@ $("#jobField").change(function(){
 
 $("#jobYears").change(function(){
 	var jobField= $("#jobField option:selected").val();
-	var job_type= $("#jobField option:selected").text();
+	var type= $("#jobField option:selected").text();
 	var jobYears= $(this).val();
 	
-	location.href='${path }/salary/salaryYears.do?jobField='+jobField +'&jobYears='+jobYears+'&job_type='+job_type;
+	location.href='${path }/salary/salaryYears.do?jobField='+jobField +'&jobYears='+jobYears+'&job_type='+type;
 	/* location.href='${path }/search/companyInfo.do?positionNo='+${p.position_no }+'&memNo='+${loginMember.memNo}; */
 });
 
