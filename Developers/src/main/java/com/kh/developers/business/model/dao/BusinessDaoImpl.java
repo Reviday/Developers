@@ -238,5 +238,15 @@ public class BusinessDaoImpl implements BusinessDao {
 		// TODO Auto-generated method stub
 		return session.update("business.useTicket",busNo);
 	}
+	
+//	읽은거 불러오기 
+		@Override
+		public String selectReaded(SqlSessionTemplate session, int busNo, int resumeNo) {
+		// TODO Auto-generated method stub
+		Map<String,Object>map=new HashMap<String,Object>();
+		map.put("busNo",busNo);
+		map.put("resumeNo",resumeNo);
+		return session.selectOne("business.selectReaded",map);
+	}
 
 }

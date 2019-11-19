@@ -287,12 +287,18 @@ public class BusinessController {
 			for(IntroCard ic:icList) {
 				ic.setCareers(bService.selectCareers(ic.getResumeNo()));
 				ic.setEducations(bService.selectEducations(ic.getResumeNo()));
-				System.out.println(busNo);
-				System.out.println(ic.getResumeNo());
-				if(bService.selectFavorite(busNo,ic.getResumeNo())!=null){
-					ic.setFavorite(bService.selectFavorite(busNo,ic.getResumeNo()));					
+				
+				String fav=bService.selectFavorite(busNo,ic.getResumeNo());
+				if(fav!=null){
+					ic.setFavorite(fav);					
 				}else {
 					ic.setFavorite("F");
+				}
+				String readed=bService.selectReaded(busNo,ic.getResumeNo());
+				if(readed!=null) {
+					ic.setReaded(readed);
+				}else {
+					ic.setReaded("F");
 				}
 			}
 		}
@@ -306,10 +312,18 @@ public class BusinessController {
 			for(IntroCard ic:icList) {
 				ic.setCareers(bService.selectCareers(ic.getResumeNo()));
 				ic.setEducations(bService.selectEducations(ic.getResumeNo()));
-				if(bService.selectFavorite(busNo,ic.getResumeNo())!=null){
-					ic.setFavorite(bService.selectFavorite(busNo,ic.getResumeNo()));					
+				
+				String fav=bService.selectFavorite(busNo,ic.getResumeNo());
+				if(fav!=null){
+					ic.setFavorite(fav);					
 				}else {
 					ic.setFavorite("F");
+				}
+				String readed=bService.selectReaded(busNo,ic.getResumeNo());
+				if(readed!=null) {
+					ic.setReaded(readed);
+				}else {
+					ic.setReaded("F");
 				}
 			}
 		}
@@ -322,10 +336,18 @@ public class BusinessController {
 			for(IntroCard ic:icList) {
 				ic.setCareers(bService.selectCareers(ic.getResumeNo()));
 				ic.setEducations(bService.selectEducations(ic.getResumeNo()));
-				if(bService.selectFavorite(busNo,ic.getResumeNo())!=null){
-					ic.setFavorite(bService.selectFavorite(busNo,ic.getResumeNo()));					
+				
+				String fav=bService.selectFavorite(busNo,ic.getResumeNo());
+				if(fav!=null){
+					ic.setFavorite(fav);					
 				}else {
 					ic.setFavorite("F");
+				}
+				String readed=bService.selectReaded(busNo,ic.getResumeNo());
+				if(readed!=null) {
+					ic.setReaded(readed);
+				}else {
+					ic.setReaded("F");
 				}
 			}
 		}
@@ -338,10 +360,18 @@ public class BusinessController {
 			for(IntroCard ic:icList) {
 				ic.setCareers(bService.selectCareers(ic.getResumeNo()));
 				ic.setEducations(bService.selectEducations(ic.getResumeNo()));
-				if(bService.selectFavorite(busNo,ic.getResumeNo())!=null){
-					ic.setFavorite(bService.selectFavorite(busNo,ic.getResumeNo()));					
+				
+				String fav=bService.selectFavorite(busNo,ic.getResumeNo());
+				if(fav!=null){
+					ic.setFavorite(fav);					
 				}else {
 					ic.setFavorite("F");
+				}
+				String readed=bService.selectReaded(busNo,ic.getResumeNo());
+				if(readed!=null) {
+					ic.setReaded(readed);
+				}else {
+					ic.setReaded("F");
 				}
 			}
 		}
@@ -364,9 +394,10 @@ public class BusinessController {
 //	이력서 미리보기 로직 
 	@RequestMapping(value = "/business/openResume", produces = "application/text; charset=utf-8")
 	@ResponseBody
-	public String openResume(@RequestParam (value="resumeNo", required=true) int resumeNo, HttpServletResponse res) {
+	public String openResume(@RequestParam (value="resumeNo", required=true) int resumeNo, @RequestParam(value="level",required=true) int level, HttpServletResponse res) {
 		ObjectMapper mapper=new ObjectMapper(); //잭슨 객체 - json자바스크립트 객체 매핑시킴
 		String jsonStr="";
+//		Map<String,Object>resultMap=new HashMap<String,Object>();
 		IntroCard ic=bService.selectOneIntroCard(resumeNo);
 		if(ic!=null) {
 			ic.setCareers(bService.selectCareers(resumeNo));
@@ -377,52 +408,54 @@ public class BusinessController {
 		List<EducationInCard>ed=new ArrayList<EducationInCard>();
 		ed=ic.getEducations();
 		
-		if (ca.size()>0) {
-			String [] caArray;
-			for(CareerInCard c : ca) {
-				String caIntro=c.getCareerIntro();
-				if(caIntro!=null&&!caIntro.equals("")) {
-					caArray=caIntro.split("");
-					for(int i=0;i<caArray.length;i++) {
-						caArray[i]="♥";
+		if(level<2) {
+			if (ca.size()>0) {
+				String [] caArray;
+				for(CareerInCard c : ca) {
+					String caIntro=c.getCareerIntro();
+					if(caIntro!=null&&!caIntro.equals("")) {
+						caArray=caIntro.split("");
+						for(int i=0;i<caArray.length;i++) {
+							caArray[i]="♥";
+						}
+						caIntro=String.join("", caArray);
+						c.setCareerIntro(caIntro);					
 					}
-					caIntro=String.join("", caArray);
-					c.setCareerIntro(caIntro);					
-				}
-			}		
-		}
-		if(ed.size()>0) {
-			String [] edArray;
-			for(EducationInCard e : ed) {
-				String edIntro=e.getSubjectName();
-				System.out.println(edIntro);
-				if(edIntro!=null&&!edIntro.equals("")) {
-					edArray=edIntro.split("");
-					for(int i=0;i<edArray.length;i++) {
-						edArray[i]="♥";
+				}		
+			}
+			if(ed.size()>0) {
+				String [] edArray;
+				for(EducationInCard e : ed) {
+					String edIntro=e.getSubjectName();
+					System.out.println(edIntro);
+					if(edIntro!=null&&!edIntro.equals("")) {
+						edArray=edIntro.split("");
+						for(int i=0;i<edArray.length;i++) {
+							edArray[i]="♥";
+						}
+						edIntro=String.join("", edArray);
+						e.setSubjectName(edIntro);					
 					}
-					edIntro=String.join("", edArray);
-					e.setSubjectName(edIntro);					
-				}
-			}			
+				}			
+			}
 		}
 		
-		String[] emailArray;
-		if(ic.getMemEmail()!=null) {
-		emailArray=ic.getMemEmail().split("");
-			for(int i=0;i<emailArray.length;i++) {
-				emailArray[i]="*";			
-			}
-			ic.setMemEmail(String.join("", emailArray));
-		}
-		String[] phoneArray;
-		if(ic.getMemPhone()!=null) {
-		phoneArray=ic.getMemPhone().split("");
-			for(int i=0;i<phoneArray.length;i++) {
-				phoneArray[i]="*";
-			}			
-			ic.setMemPhone(String.join("", phoneArray));
-		}
+//		String[] emailArray;
+//		if(ic.getMemEmail()!=null) {
+//		emailArray=ic.getMemEmail().split("");
+//			for(int i=0;i<emailArray.length;i++) {
+//				emailArray[i]="*";			
+//			}
+//			ic.setMemEmail(String.join("", emailArray));
+//		}
+//		String[] phoneArray;
+//		if(ic.getMemPhone()!=null) {
+//		phoneArray=ic.getMemPhone().split("");
+//			for(int i=0;i<phoneArray.length;i++) {
+//				phoneArray[i]="*";
+//			}			
+//			ic.setMemPhone(String.join("", phoneArray));
+//		}
 		
 		
 		try {
@@ -485,6 +518,12 @@ public class BusinessController {
 			for(IntroCard ic:icList) {
 				ic.setCareers(bService.selectCareers(ic.getResumeNo()));
 				ic.setEducations(bService.selectEducations(ic.getResumeNo()));
+				String readed=bService.selectReaded(busNo,ic.getResumeNo());
+				if(readed!=null) {
+					ic.setReaded(readed);
+				}else {
+					ic.setReaded("F");
+				}
 			}
 			String pageBar="";
 			pageBar=ptf.getPageBar();			
@@ -669,7 +708,7 @@ public class BusinessController {
 //	열람권 사용
 	@RequestMapping(value = "/business/useTicket", produces = "application/text; charset=utf-8")
 	@ResponseBody
-	public String paySuccess(
+	public String useTicket(
 			HttpServletRequest req,
 			HttpServletResponse res) 
 	{

@@ -269,5 +269,12 @@ public class BusinessServiceImpl implements BusinessService {
 		return dao.useTicket(session, busNo);
 	}
 	
+//	읽은거 불러오기
+	@Override
+	public String selectReaded(int busNo, int resumeNo) {
+		// TODO Auto-generated method stub
+		return dao.selectReaded(session, busNo, resumeNo);
+	}
+	
 
 }

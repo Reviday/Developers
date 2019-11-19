@@ -181,6 +181,9 @@
 	<update id="useTicket" parameterType="integer">
 		UPDATE BUSINESS_INFO SET TICKET=TICKET-1 WHERE BUS_NO=#{busNo}
 	</update>
+	<select id="selectReaded" parameterType="map" resultType="String">
+		SELECT READED FROM MATCHUP_READED WHERE BUS_NO=#{busNo} AND RESUME_NO=#{resumeNo}
+	</select>
 	
 	
 	<resultMap type="com.kh.developers.business.model.vo.CareerInCard" id="careerMap">
