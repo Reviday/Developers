@@ -127,7 +127,7 @@
 		<if test="applLike!=null and applLike!='' or applLike==true">
 			JOIN TA_APPL_LIKE B ON (A.BUS_NO=B.BUS_NO)
 		</if>
-		WHERE A.APPL_DEL_YN='N'
+		WHERE A.APPL_DEL_YN='Y'
 		<if test="applLike!=null and applLike!='' or applLike==true">
 			AND A.APPL_NO=B.APPL_NO
 		</if>
@@ -146,7 +146,7 @@
 		<if test="applLike!=null and applLike!='' or applLike==true">
 			JOIN TA_APPL_LIKE B ON (A.BUS_NO=B.BUS_NO)
 		</if>
-		WHERE A.BUS_NO=#{busNo} AND A.APPL_DEL_YN='N'
+		WHERE A.BUS_NO=#{busNo} AND A.APPL_DEL_YN='Y'
 		<if test="applLike!=null and applLike!='' or applLike==true">
 			AND A.APPL_NO=B.APPL_NO
 		</if>
@@ -165,7 +165,7 @@
 
 	<update id="deleteApplicant" parameterType="map">
 		UPDATE TA_APPL_BUS
-		SET APPL_DEL_YN='Y' WHERE BUS_NO=#{busNo} AND APPL_NO=#{applNo}
+		SET APPL_DEL_YN='N' WHERE BUS_NO=#{busNo} AND APPL_NO=#{applNo}
 	</update>
 
 	<select id="selectCheckLike" parameterType="map"
@@ -185,13 +185,13 @@
 
 	<select id="selectApplicant" parameterType="_int"
 		resultMap="memberMap">
-		SELECT * FROM TA_MEMBER WHERE MEM_NO=#{memNo}
+		SELECT * FROM TA_MEMBER WHERE MEM_NO=#{memNo} AND MEM_STATUS='Y'
 	</select>
 
 	<select id="selectResumeOne" parameterType="_int"
 		resultMap="introCardMap">
 		SELECT * FROM RESUME WHERE RESUME_NO=(SELECT RESUME_NO FROM TA_APPL_BUS
-		WHERE APPL_NO=#{applNo})
+		WHERE APPL_NO=#{applNo} AND APPL_DEL_YN='Y')
 	</select>
 	
 	<select id="selectCareerList" parameterType="_int" resultMap="careerMap">
@@ -215,14 +215,14 @@
 	</select>
 
 	<select id="selectApplOne" parameterType="map" resultMap="applMap">
-		SELECT * FROM TA_APPL_BUS WHERE APPL_NO=#{applNo} 
+		SELECT * FROM TA_APPL_BUS WHERE APPL_NO=#{applNo} AND APPL_DEL_YN='Y'
 	</select>
 	
 	<update id="updateApplOffer" parameterType="_int">
-		UPDATE TA_APPL_BUS SET APPL_STATUS=2, OFFER_DATE=SYSDATE WHERE APPL_NO=#{applNo}
+		UPDATE TA_APPL_BUS SET APPL_STATUS=2, OFFER_DATE=SYSDATE WHERE APPL_NO=#{applNo} AND APPL_DEL_YN='Y'
 	</update>
 	<update id="updateApplPf" parameterType="map">
-		UPDATE TA_APPL_BUS SET APPL_STATUS=#{applStatus}, FINAL_DATE=SYSDATE WHERE APPL_NO=#{applNo}
+		UPDATE TA_APPL_BUS SET APPL_STATUS=#{applStatus}, FINAL_DATE=SYSDATE WHERE APPL_NO=#{applNo} AND APPL_DEL_YN='Y'
 	</update>
 
 
@@ -288,6 +288,10 @@
 	<update id="deletePosition" parameterType="_int">
 		UPDATE ENROLL_POSITION SET STATUS='N' WHERE POSITION_NO=#{poNo}
 	</update>
+	
+	<select id="selectBusMemList" parameterType="_int" resultMap='memberMap'>
+		SELECT * FROM TA_MEMBER WHERE MEM_NO IN (SELECT MEM_NO FROM MEM_BUS_CONNECTION WHERE BUS_NO=#{busNo})
+	</select>
 	
 	
 

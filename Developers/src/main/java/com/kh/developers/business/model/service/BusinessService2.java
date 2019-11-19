@@ -64,6 +64,8 @@ public interface BusinessService2 {
 	int deletePosition(int poNo);
 	
 	
+	
+	List<Member> selectBusMemList(int busNo);
 
 	
 

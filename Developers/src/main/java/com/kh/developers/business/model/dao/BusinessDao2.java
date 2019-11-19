@@ -69,4 +69,7 @@ public interface BusinessDao2 {
 	int insertPosition(SqlSession session, Position po);
 	int updatePosition(SqlSession session, Map map);
 	int deletePosition(SqlSession session, int poNo);
+	
+	
+	List<Member> selectBusMemList(SqlSession session, int busNo);
 }

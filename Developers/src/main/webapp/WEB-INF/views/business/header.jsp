@@ -174,7 +174,12 @@
 							<div class="dropdown bus-user-info">
 								<button class="bl_1"
 									type="button" data-toggle="dropdown">
-									<img class="bus-user-profile" src="${path}/resources/upload/profile/no-profile-image.png"/>
+									<c:if test="${not empty loginMember.memIcon}">
+										<img class="bus-user-profile" src="${path}${loginMember.memIcon}"/>	
+									</c:if>
+									<c:if test="${empty loginMember.memIcon}">
+										<img class="bus-user-profile" src="${path}/resources/upload/profile/no-profile-image.png"/>
+									</c:if>
 									&nbsp;<c:out value="${loginMember.memName}"/>&nbsp;<i class="fas fa-angle-down"></i></button>
 								<div class="dropdown-menu ddm-log">
 									<a class="dropdown-item" href="#">내 프로필</a>

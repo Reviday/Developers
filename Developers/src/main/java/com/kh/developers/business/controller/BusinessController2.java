@@ -277,7 +277,14 @@ public class BusinessController2 {
 		applHtml+="</div>";
 		applHtml+="<div>";
 		applHtml+="<h4 class='h-left'>평균 응답일</h4>";
-		applHtml+="<h4 class='h-right'>"+service.selectAnswerPeriod(map)+"일</h4>";
+		applHtml+="<h4 class='h-right'>";
+		try {
+			applHtml+=service.selectAnswerPeriod(map);
+		}catch(Exception e) {
+			applHtml+="0";
+		}
+		
+		applHtml+="일</h4>";
 		applHtml+="</div>";
 		applHtml+="</div>";
 		applHtml+="<nav class='appl-main-nav nav'>";
@@ -470,7 +477,7 @@ public class BusinessController2 {
 		try {			
 			ic=service.selectResumeOne(applNo);
 		}catch(Exception e) {
-			
+
 		}
 		if(ic!=null) {
 			viewHtml+="<div id='appl-leftside' class='appl-leftside'>";
@@ -627,7 +634,7 @@ public class BusinessController2 {
 		}else {			
 			viewHtml+="<div>등록된 이력서가 없습니다.</div>";
 		}
-		
+
 		mv.addObject("dbHtml", viewHtml);
 		mv.addObject("dbIndex",11);
 		mv.setViewName("business/dashboard");
@@ -739,19 +746,20 @@ public class BusinessController2 {
 		map.put("busNo", bus.getBusNo());
 		String poHtml="";
 		String[] status= {"Y","T"};
+		poHtml+="<h2>포지션</h2>";
+		poHtml+="<div class='position_header'>";
+		poHtml+="<button type='button' class='position_add_btn' onclick='fn_enroll_position();'>포지션 추가</button>";
+		poHtml+="</div>";
 		for(String s:status) {
 			map.put("status", s);
 			List<Position> poList=service.selectPositionList(map);
 			if(poList.size()>0) {
 				if(s.equals("Y")) {
 					poHtml+="<h3>채용 진행중인 포지션</h3>";
-					poHtml+="<div class='position_header'>";
-					poHtml+="<button type='button' class='position_add_btn' onclick='fn_enroll_position();'>포지션 추가</button>";
-					poHtml+="</div>";
 				}else {
 					poHtml+="<h3>임시 저장된 포지션</h3>";
 				}
-				
+
 				poHtml+="<div class='position_section'>";
 				poHtml+="<div class='position_list'>";
 				for(Position po:poList) {
@@ -774,7 +782,7 @@ public class BusinessController2 {
 					}
 					poHtml+="</div>";
 					poHtml+="</div>";
-					
+
 				}
 				poHtml+="</div>";
 				poHtml+="</div>";
@@ -947,12 +955,19 @@ public class BusinessController2 {
 			seHtml+="style='display:none'";
 		}
 		seHtml+=">삭제</button>";
-		if(!po.getStatus().equals("Y")) {			
+		if(po!=null && !po.getStatus().equals("Y")) {			
 			seHtml+="<button type='button' class='po_btn po_temp' data='";
 			seHtml+=po.getStatus().equals("O")?"O":"T";
 			seHtml+="' onclick='fn_add_position();'>임시 저장</button>";
 			seHtml+="<button type='button' class='po_btn' data='O' onclick='fn_add_position();'";
 			seHtml+=po.getStatus().equals("O")?" disabled>승인 요청 중":">승인요청";
+			seHtml+="</button>";
+		}else {
+			seHtml+="<button type='button' class='po_btn po_temp' data='";
+			seHtml+="T";
+			seHtml+="' onclick='fn_add_position();'>임시 저장</button>";
+			seHtml+="<button type='button' class='po_btn' data='O' onclick='fn_add_position();'>";
+			seHtml+="승인요청";
 			seHtml+="</button>";
 		}
 		seHtml+="</div>";
@@ -977,8 +992,8 @@ public class BusinessController2 {
 		seHtml+="</div>";
 		seHtml+="</div>";
 		seHtml+="</div>";
-		
-		
+
+
 		mv.addObject("dbHtml",html);
 		mv.addObject("seHtml",seHtml);
 		mv.addObject("dbIndex",3);
@@ -1030,7 +1045,7 @@ public class BusinessController2 {
 		mv.addObject("msg","해당 포지션이 삭제되었습니다.");
 		mv.addObject("loc","/business/position.lbc");
 		mv.setViewName("common/msg");
-		
+
 		return mv;
 	}
 
@@ -1242,8 +1257,8 @@ public class BusinessController2 {
 		return mv;
 
 	}
-	
-	
+
+
 	//비지니스 계정 관리
 	@RequestMapping("/business/settings.lbc")
 	public ModelAndView settiongs(HttpSession session) {
@@ -1255,20 +1270,43 @@ public class BusinessController2 {
 		setHtml+="<button type='button' class='set_invite_btn' onclick='fn_invite_member();'><i class='far fa-envelope'></i>계정 초대</button>";
 		setHtml+="</div>";
 		setHtml+="<div class='set_main'>";
-		setHtml+="<div class='set_administrators'>";
-		
+		setHtml+="<div class='set_super_admin'>";
+		setHtml+="<div class='super_admin_header'>";
+		setHtml+="관리자";
 		setHtml+="</div>";
+		setHtml+="<div class='set_admin_mem>";
+		Business bus=(Business)session.getAttribute("busInfo");
+		List<Member> busMemList=service.selectBusMemList(Integer.parseInt(bus.getBusNo()));
+		String adminHtml="";
+		String semiHtml="";
+		int count=0;
+		for(Member m:busMemList) {
+			if(m.getMemLevel()==4) {
+				adminHtml+="<div class='admin_icon'>";
+				adminHtml+="<img src='"+path+m.getMemIcon()!=null?m.getMemIcon():"/resources/upload/profile/no-profile-image.png";
+				adminHtml+="'/>";	
+				adminHtml+="</div>";
+				adminHtml+="<div class='admin_name'>";
+				adminHtml+="<span >"+m.getMemName()+"</span>";
+				adminHtml+="</div>";
+				adminHtml+="</div>";
+			}else{
+				count++;
+			}	
+		}
+		setHtml+=adminHtml;
 		setHtml+="</div>";
-		
-		
-		
-		
-		
-		
+
+		if(count>0) {				
+			setHtml+="<div class='set_semi_admin'>";
+			setHtml+=semiHtml;
+			setHtml+="</div>";
+		}
+
 		setHtml+="</div>";
-		
-		
-		
+
+
+
 		mv.addObject("dbHtml",setHtml);
 		mv.addObject("dbIndex",6);
 		mv.setViewName("business/dashboard");

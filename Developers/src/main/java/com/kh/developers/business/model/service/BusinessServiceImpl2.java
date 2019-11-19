@@ -179,6 +179,12 @@ public class BusinessServiceImpl2 implements BusinessService2 {
 		int result=dao.deletePosition(session, poNo);
 		return result;
 	}
+
+	@Override
+	public List<Member> selectBusMemList(int busNo) {
+		List<Member> memList=dao.selectBusMemList(session, busNo);
+		return memList;
+	}
 	
 	
 	

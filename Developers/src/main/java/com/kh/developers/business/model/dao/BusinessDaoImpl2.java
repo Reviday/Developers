@@ -183,6 +183,13 @@ public class BusinessDaoImpl2 implements BusinessDao2 {
 	public int deletePosition(SqlSession session, int poNo) {
 		return session.update("business2.deletePosition", poNo);
 	}
+
+
+	@Override
+	public List<Member> selectBusMemList(SqlSession session, int busNo) {
+		return session.selectList("business2.selectBusMemList", busNo);
+	}
+	
 	
 	
 
