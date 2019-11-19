@@ -610,6 +610,95 @@ public class BusinessController {
 	}
 	
 	
+	@RequestMapping(value = "/business/numOfTicket", produces = "application/text; charset=utf-8")
+	@ResponseBody
+	public String numOfTicket(HttpServletRequest req,HttpServletResponse res) {
+		String jsonStr="";
+		int result=0;
+		ObjectMapper mapper=new ObjectMapper();
+		Business bus=(Business)req.getSession().getAttribute("busInfo");
+		int busNo=Integer.parseInt(bus.getBusNo());
+		try {
+			result=bService.numOfTicket(busNo);			
+		}catch(Exception e) {
+			
+		}
+		try {
+			jsonStr=mapper.writeValueAsString(result);
+		}catch(JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		res.setContentType("application/json;charset=utf-8");
+		return jsonStr;
+	}
+	
+	
+//	열람권 결재 
+	@RequestMapping(value = "/business/packagePay", produces = "application/text; charset=utf-8")
+	@ResponseBody
+	public String paySuccess(@RequestParam(value="numOfTicket",required=true)int num,
+			HttpServletRequest req,
+			HttpServletResponse res) 
+	{
+		String jsonStr="";
+		ObjectMapper mapper=new ObjectMapper();
+		String msg="";
+		int result=0;
+		Business bus=(Business)req.getSession().getAttribute("busInfo");
+		int busNo=Integer.parseInt(bus.getBusNo());
+
+		try {
+			result=bService.insertTicket(busNo,num);			
+		}catch(Exception e) {
+			msg="신청 도중 에러가 발생했습니다. 다시한번 시도해 주시기 바랍니다.";
+		}
+		if(result>0) {
+			msg="결재가 완료되었습니다.";
+		}else {
+			msg="신청 도중 에러가 발생했습니다. 다시한번 시도해 주시기 바랍니다.";
+		}
+		try {
+			jsonStr=mapper.writeValueAsString(msg);
+		}catch(JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		res.setContentType("application/json;charset=utf-8");
+		return jsonStr;
+	}
+	
+//	열람권 사용
+	@RequestMapping(value = "/business/useTicket", produces = "application/text; charset=utf-8")
+	@ResponseBody
+	public String paySuccess(
+			HttpServletRequest req,
+			HttpServletResponse res) 
+	{
+		String jsonStr="";
+		ObjectMapper mapper=new ObjectMapper();
+		String msg="";
+		int result=0;
+		Business bus=(Business)req.getSession().getAttribute("busInfo");
+		int busNo=Integer.parseInt(bus.getBusNo());
+
+		try {
+			result=bService.useTicket(busNo);			
+		}catch(Exception e) {
+			msg="열람 도중 에러가 발생했습니다. 다시한번 시도해 주시기 바랍니다.";
+		}
+		if(result>0) {
+			msg="T";
+		}else {
+			msg="열람 도중 에러가 발생했습니다. 다시한번 시도해 주시기 바랍니다.";
+		}
+		try {
+			jsonStr=mapper.writeValueAsString(msg);
+		}catch(JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		res.setContentType("application/json;charset=utf-8");
+		return jsonStr;
+	}
+	
 	
 	
 	

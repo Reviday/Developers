@@ -133,8 +133,8 @@ div.forOpen{
 
 div.forOpen>.btn{
 	width: 90%;
-	height: 55px;
-	margin-top: 30px;
+	height: 4em;
+	/* margin-top: 30px; */
 }
 /* div.left-menu{
 	margin-left: 15px;
@@ -192,6 +192,11 @@ div.modal-footer{
 @media (min-width: 576px){
 	.modal-dialog {
 		max-width: 700px;
+	}
+}
+@media (min-width: 576px){
+	#ticket-modal {
+		max-width: 630px;
 	}
 }
 
@@ -268,6 +273,75 @@ input::placeholder {
   font-style: italic;
 }
 
+div.left-side{
+	border:1px solid #D8D8D8;
+	float:left;
+}
+
+div.right-side{
+	border:1px solid #D8D8D8;
+	float:right;
+}
+
+div.packageEx>*{
+	padding:6px;
+}
+
+@media (max-width: 767px){
+	div.left-side{
+		text-align: center !important;
+		width:100% !important;
+		margin-left: 0 !important;
+		margin-bottom:10px;
+	}
+	div.right-side{
+		text-align: center !important;
+		width:100% !important;
+		margin-right: 0 !important;
+	}
+}
+.custom-control-label::before, 
+.custom-control-label::after {
+top:0.5rem;
+width: 2.7rem;
+height: 2.7rem;
+}
+div.left-side:hover{
+	background: #E0ECF8;
+	border:1.5px solid #2E64FE;
+	cursor: pointer;
+}
+div.right-side:hover{
+	background: #ECE0F8;
+	border:1.5px solid #7401DF;
+	cursor: pointer;
+}
+
+/* div.left-side>h2,h4,p{
+	color:#585858
+} */
+
+/* #rightCheck::before{
+	background-color: #7401DF !important;
+	border-color: #5E23D3;
+} */
+/* #rightCheck::after{
+	background-color: #7401DF !important;
+	border-color:#5E23D3; */
+/* } */
+.custom-control-input:checked~#rightCheck::before{
+	background-color: #7401DF !important;
+	border-color:#5F04B4 !important;
+}
+/* .custom-control-input:checked~#rightCheck:focus{
+	box-shadow:#5F04B4 !important;
+} */
+
+button#toTicketMo:hover{
+	background-color: #5F04B4 !important;
+	border-color: #5F04B4 !important;
+}
+
 
 
 
@@ -279,6 +353,7 @@ input::placeholder {
 
 
 </style>
+
 
 <section id="content">
 	<div class="header_fe hidden-xs">
@@ -370,14 +445,13 @@ input::placeholder {
 		</div>
 		<div class="resume-area row">
 			<div class="resume-left-area col-12 col-sm-4">
-				<div class="top center forOpen" style="height: 100px;">
-					<c:set var="ticket" value="${busInfo.ticket}"/>
-						<c:if test="${ticket>0}">
-							<div class="numOfTicket"><p>"${ticket}"+남음</p></div>
+				<div class="top center forOpen" id="ticketArea" style="height: 100px; padding-top:20px;">
+						<!-- <c:if test="${ticket>0}">
+							<div class="numOfTicket"><p>남은 열람권 갯수: <span id="numOfTicket">${ticket}</span>개 </p></div>
 						</c:if>
 						<c:if test="${ticket<1}">
 							<button class="btn btn-success" style="background-color: #7B39BD; border-color: #7B39BD; font-size:15px;">알림권 결제하기</button>
-						</c:if>
+						</c:if> -->
 				</div>
 				<div class="bottom center favList">
 					<div class="list-group left-menu">
@@ -422,22 +496,82 @@ input::placeholder {
 	    		<div class="modal-footer">
 					<div class="resume-footer row" style="width:100%">
 						<div class="footer-intro col-12 col-sm-9" style="color: #fff; margin:auto auto;"><p style="font-size:20px;">이력서 상세보기 시, 열람권 1회가 차감됩니다.</p></div>
-						<div class="resumePayment col-12 col-sm-3"><button type="button" id="resumePayment" color="#258BF7" class="btn btn-primary" style="font-size:18px; height:2.6em;">이력서 상세보기</button></div>
+						<div class="resumePayment col-12 col-sm-3"><button type="button" id="useTicket" color="#258BF7" class="btn btn-primary" style="font-size:18px; height:2.6em;" onclick="useTicket();">이력서 상세보기</button></div>
 					</div>	
-		  		<!-- <p>계정이 없으신가요?<a class="navbar-brand-small" href="#" onclick="changeModal('toReg'); return false">채용담당자 계정 만들기</a></p> -->
 				</div>
 			</div>
 		</div>
 	</div>
 
-</section>
 
+	<!-- 열람권 구매 모달-->
+	<div class="modal fade" id="ticketModal" tabindex="-1" role="dialog" 
+	aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div id="ticket-modal" class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+		  <div class="modal-header" style="background-color: #1C1C1C;" >
+			<img src="${path }/resources/images/Developers_black_logo.png" style="height:30px; margin-left:10px;"/>
+			<h2 class="modal-title" style="color: #ffffff; margin: auto auto;"  id="exampleModalLabel">열람권 구매</h2>
+			<button type="button" class="close" style="color:#ffffff; padding-top: 15px;" data-dismiss="modal" aria-label="Close">
+			  <span aria-hidden="true">X</span>
+			</button>
+		  </div>
+		  <div class="modal-body">
+			<div class="explain" style="text-align: center; color:#FF0040; font-size:15px; padding:1.5em; margin-top:-5px;">이력서 <b>상세보기</b> 및 <b>면접 제안</b>을 하기 위해서는 열람권을 구매 하셔야 합니다.</div>
+			<div class="button-area">
+				<div class="custom-control custom-checkbox left-side" style="width:48%; margin-left:1%; text-align:center; height:15em;">
+					<input type="checkbox" class="custom-control-input" id="basicPack">
+						<label class="custom-control-label" for="basicPack">
+							<div class="hov packageEx">
+								<h2 class="hov">기본 패키지</h2> 
+								<h4 class="hov">300,000원 / 50건</h4>
+								
+								<p class="hov">50건의 이력서 열람 및 면접 제안 가능</p>
+								<p>학력/경력 등 상세 정보 확인</p>
+								<p>20건의 이력서 상세보기</p>
+								<p>20건의 면접 제안 가능</p>
+							</div>
+						</label>
+				</div>
+				<div class="custom-control custom-checkbox right-side" style="width:48%; margin-right:1%; text-align: center; height:15em;">
+					<input type="checkbox" class="custom-control-input" id="advancedPack">
+						<label class="custom-control-label" id="rightCheck" for="advancedPack">
+							<div class="hov packageEx">
+								<h2 class="hov">고급 패키지</h2> 
+								<h4 class="hov">500,000원 / 100건</h4>
+								
+								<p class="hov">100건의 이력서 열람 및 면접 제안 가능</p>
+								<p>학력/경력 등 상세 정보 확인</p>
+								<p>50건의 이력서 상세보기</p>
+								<p>50건의 면접 제안 가능</p>
+							</div>
+						</label>
+					</div>
+				</div>	
+		  </div>
+			 <div class="modal-footer" style="justify-content: center; background-color: #FFFFFF; padding:0.5em;">
+				<input type="hidden" id="hiddenType">
+				<button class="btn btn-primary" id="ticket-pay"style="font-size:1.5em; padding:10px; width:7em; background-color: #F2F2F2; border-color: #F2F2F2;" onclick="fn_payment();" disabled>결재하기</button>
+			  </div>
+		</div>
+	  </div>
+	</div>
+
+
+
+</section>
+<!-- <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script> -->
+<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 
 <script>
 	var path = "${path}";
 	var db_index = "${dbIndex}";
 	var db_html = "${dbHtml}";
 	var appl_index = "${applIndex}";
+
+	var memEmail="${loginMember.memEmail}";
+	var memName="${loginMember.memName}";
+	var memPhone="${loginMember.memPhone}";
 
 </script>
 <!-- <script src="${path}/resources/js/db-main.js"></script>  -->

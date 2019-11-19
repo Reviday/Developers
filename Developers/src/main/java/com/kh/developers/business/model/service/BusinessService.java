@@ -62,4 +62,12 @@ public interface BusinessService {
 	
 	//광고 insert 로직 
 	int insertAd(Advertisement ad);
+	
+//	열람권 갯수 가져오기 
+	int numOfTicket(int busNo);
+	
+//	열람권 insert 
+	int insertTicket(int busNo, int num);
+//	열람권 사용 
+	int useTicket(int busNo);
 }

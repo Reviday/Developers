@@ -218,5 +218,25 @@ public class BusinessDaoImpl implements BusinessDao {
 		// TODO Auto-generated method stub
 		return session.insert("business.insertAd",ad);
 	}
+	
+//	열람권 갯수 가져오기 
+	@Override
+	public int numOfTicket(SqlSessionTemplate session, int busNo) {
+		// TODO Auto-generated method stub
+		return session.selectOne("business.selectTicket",busNo);
+	}
+	@Override
+	public int insertTicket(SqlSessionTemplate session, int busNo, int num) {
+		// TODO Auto-generated method stub
+		Map<String,Object>map=new HashMap<String,Object>();
+		map.put("busNo",busNo);
+		map.put("ticket",num);
+		return session.update("business.insertTicket",map);
+	}
+	@Override
+	public int useTicket(SqlSessionTemplate session, int busNo) {
+		// TODO Auto-generated method stub
+		return session.update("business.useTicket",busNo);
+	}
 
 }

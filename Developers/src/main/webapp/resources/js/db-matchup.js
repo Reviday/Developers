@@ -634,6 +634,181 @@ function clickFav(e){
 }
 
 
+$(function(){
+    let num=getNumOfTicket();
+    // let num=0;
+    let ticketA="";
+    if(num>0){
+        $('div#ticketArea').html();
+        ticketA='<div class="numOfTicket_area" style="background-color: #8000FF; border-color:#8000FF; width:90%; height:4.3em; margin:auto; color:#FFFFFF; ; border-radius:3px 3px 3px 3px;"><p style="font-size:17px;padding-top:1.1em;">남은 열람권 갯수 : <span style="font-weight:bold;">'+num+'</span> 개</p></div>';
+        $('div#ticketArea').html(ticketA);
+    }else{
+        $('div#ticketArea').html();
+        ticketA='<button class="btn btn-success" id="toTicketMo" style="background-color: #8000FF; border-color: #8000FF; font-size:17px;" onclick="toTicketModal();">열람권 결제하기</button>';
+        $('div#ticketArea').html(ticketA);
+    }
+})
+
+function getNumOfTicket(){
+    let num=0;
+    $.ajax({
+        url:path+"/business/numOfTicket",
+        type:"post",
+        async: false,
+        data:{
+        },
+        success:function(result){
+            JSON.parse(result);
+            console.log(result);
+            num=result;
+        }
+    });
+    return num;
+}
+
+function toTicketModal(){
+    $('#ticketModal').modal('show');
+}
+
+var checkBox=document.querySelectorAll(".custom-control-input");
+var checkLabel=document.querySelectorAll(".custom-control-label");
+
+
+
+    checkLabel[0].addEventListener("click",function(e){
+        if(checkBox[0].checked!=true){
+            document.querySelector('.left-side').style.background='#E0ECF8';
+            document.querySelector('.left-side').style.border='1.5px solid #2E64FE';
+            document.querySelector('.right-side').style.background="";
+            document.querySelector('.right-side').style.border="";
+            checkBox[1].checked=false;
+            document.querySelector('#ticket-pay').removeAttribute("disabled");
+            document.querySelector('#ticket-pay').style.borderColor='#2E64FE';
+            document.querySelector('#ticket-pay').style.backgroundColor='#2E64FE';
+            document.querySelector("#hiddenType").value=0;
+        }
+        if(checkBox[0].checked==true){
+            document.querySelector('.left-side').style.background="";
+            document.querySelector('.left-side').style.border="";
+            document.querySelector('.right-side').style.background="";
+            document.querySelector('.right-side').style.border="";
+            document.querySelector('#ticket-pay').setAttribute("disabled","disabled");
+            document.querySelector('#ticket-pay').style.borderColor='#F2F2F2';
+            document.querySelector('#ticket-pay').style.backgroundColor='#F2F2F2';
+            document.querySelector("#hiddenType").value="";
+        }
+    });   
+    checkLabel[1].addEventListener("click",function(e){
+        if(checkBox[1].checked!=true){
+            document.querySelector('.right-side').style.background='#ECE0F8';
+            document.querySelector('.right-side').style.border='1.5px solid #7401DF';
+            document.querySelector('.left-side').style.background="";
+            document.querySelector('.left-side').style.border="";
+            checkBox[0].checked=false;
+            document.querySelector('#ticket-pay').removeAttribute("disabled");
+            document.querySelector('#ticket-pay').style.borderColor='#7401DF';
+            document.querySelector('#ticket-pay').style.backgroundColor='#7401DF';
+            document.querySelector("#hiddenType").value=2;
+        }
+        if(checkBox[1].checked==true){
+            document.querySelector('.right-side').style.background="";
+            document.querySelector('.right-side').style.border="";
+            document.querySelector('.left-side').style.background="";
+            document.querySelector('.left-side').style.border="";
+            document.querySelector('#ticket-pay').setAttribute("disabled","disabled");
+            document.querySelector('#ticket-pay').style.borderColor='#F2F2F2';
+            document.querySelector('#ticket-pay').style.backgroundColor='#F2F2F2';
+            document.querySelector("#hiddenType").value="";
+        }
+    });   
+
+
+    // 열람권 결제 로직 
+    function fn_payment(){
+		var finalPrice=0;
+        var packageType="";
+        var num=0;
+        var msg="";
+        let hiddenType=document.querySelector('#hiddenType').value;
+        if(hiddenType>0){
+            packageType="고급 패키지";
+            finalPrice=500000;
+            num=50;
+        }else{
+            packageType="기본 패키지";
+            finalPrice=300000;
+            num=20;
+        }
+        console.log(hiddenType);
+	   var IMP = window.IMP;
+	   IMP.init('iamport');
+	   IMP.request_pay({
+		   pg : 'html5_inicis',
+		   pay_method : 'vbank',
+		   merchant_uid : 'merchant_' + new Date().getTime(),
+		   name : packageType,
+		   amount : finalPrice,
+		   buyer_email : memEmail,
+		   buyer_name : memName,
+		   buyer_tel : memPhone,
+		   buyer_addr : "",
+		   buyer_postcode :""
+	   }, function(rsp) {
+		   if ( rsp.success ) {
+			$.ajax({
+				url:path+"/business/packagePay",
+				type:"post",
+				async:false,
+				data:{
+					"numOfTicket":num
+				},
+				success:function(result){
+					msg=JSON.parse(result);
+				}
+			});
+			//   location.href="${path}/business/paySuccess?adType="+adType+"&days="+adLength+"&positionNo="+positionNumber;
+			  alert(msg);
+			  location.reload()
+		   } 
+		});
+	};
+
+        
+
+function useTicket(){
+    let num=getNumOfTicket();
+    if(num<1){
+        $("#openRoughResume").modal("hide");
+        toTicketModal();
+    }else{
+        $.ajax({
+            url:path+"/business/useTicket",
+            type:"post",
+            async: false,
+            data:{
+            },
+            success:function(result){
+                JSON.parse(result);
+                console.log(result);
+                if(result=="T"){
+                    // 티켓 하나 사용했한거암 
+                    openResume()
+                }else{
+                    alert(result);
+                }
+            }
+        });
+    }
+}
+
+
+
+
+// checkBox.forEach(function(e){
+//     e.addEventListener("click",function(e){
+//         console.log(e);
+//     })
+// });
 
 
 

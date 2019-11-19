@@ -72,4 +72,9 @@ public interface BusinessDao {
 	
 	//광고 insert 로직 
 	int insertAd(SqlSessionTemplate session, Advertisement ad);
+	
+//	열람권 갯수 가져오기 
+	int numOfTicket(SqlSessionTemplate session, int busNo);
+	int insertTicket(SqlSessionTemplate sesion, int busNo, int num);
+	int useTicket(SqlSessionTemplate session, int busNo);
 }

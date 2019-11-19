@@ -170,7 +170,17 @@
 		INSERT INTO ADVERTISEMENT VALUES(SEQ_AD_NO.NEXTVAL,#{busNo},#{positionNo},SYSDATE,SYSDATE+#{days},#{adType},0)
 	</insert>
 	
-	
+		
+	<!-- 열람권 갯수 가져오기 --> 
+	<select id="selectTicket" parameterType="integer" resultType="integer">
+		SELECT TICKET FROM BUSINESS_INFO WHERE BUS_NO=#{busNo}
+	</select>
+	<update id="insertTicket" parameterType="map">
+		UPDATE BUSINESS_INFO SET TICKET=#{ticket} WHERE BUS_NO=#{busNo}
+	</update>
+	<update id="useTicket" parameterType="integer">
+		UPDATE BUSINESS_INFO SET TICKET=TICKET-1 WHERE BUS_NO=#{busNo}
+	</update>
 	
 	
 	<resultMap type="com.kh.developers.business.model.vo.CareerInCard" id="careerMap">

@@ -252,5 +252,22 @@ public class BusinessServiceImpl implements BusinessService {
 		return dao.insertAd(session, ad);
 	}
 	
+//	열람권 갯수 가져오기 
+	@Override
+	public int numOfTicket(int busNo) {
+		// TODO Auto-generated method stub
+		return dao.numOfTicket(session, busNo);
+	}
+	@Override
+	public int insertTicket(int busNo, int num) {
+		// TODO Auto-generated method stub
+		return dao.insertTicket(session, busNo, num);
+	}
+	@Override
+	public int useTicket(int busNo) {
+		// TODO Auto-generated method stub
+		return dao.useTicket(session, busNo);
+	}
+	
 
 }
