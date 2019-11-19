@@ -239,6 +239,7 @@ select {
     width: 23%;
 }
 .fhqaWK::after {
+	
     content: "만원";
     position: absolute;
     top: 50%;
@@ -271,7 +272,6 @@ select {
 		<div class="salary-header-mid">
 			<!--연봉 그래프 시작  -->
 			<div id="salary-chart"></div>
-			<div>연봉정보</div>
 		</div>
 		    <!--연봉 그래프 완료 -->
 	
@@ -343,7 +343,7 @@ select {
 						</div>
 						<div class="SalaryInputBox-ktBCnJ fhqaWK InputBox-eMDCpm DxufZ"
 							style="width: 25%;">
-							<input class="Input-hxTtdt eSpziA" type="text" placeholder="연봉">
+							<input class="Input-hxTtdt eSpziA" id="salarySearch" value="<fmt:formatNumber type="number" maxFractionDigits="3" value="${jobYearsResult}"/>" type="text" placeholder="연봉"/>	
 						</div>
 					</div>
 				</div>
@@ -405,8 +405,10 @@ select {
 
 $("#jobField").change(function(){
 	var jobField= $(this).val();
+	var jobYears= $("#jobYears option:selected").val();
 	var type= $("#jobField option:selected").text();
-	location.href='${path }/salary/salarySelectList.do?jobField='+jobField+'&job_type='+type;
+	
+	location.href='${path }/salary/salaryYears.do?jobField='+jobField +'&jobYears='+jobYears+'&job_type='+type;
 });
 
 $("#jobYears").change(function(){
@@ -417,6 +419,21 @@ $("#jobYears").change(function(){
 	location.href='${path }/salary/salaryYears.do?jobField='+jobField +'&jobYears='+jobYears+'&job_type='+type;
 	/* location.href='${path }/search/companyInfo.do?positionNo='+${p.position_no }+'&memNo='+${loginMember.memNo}; */
 });
+
+$("#salarySearch").keydown(function(key){
+	
+	if(key.keyCode == 13){
+	var salarySearch= $(this).val();
+	var jobYears= $("#jobYears option:selected").val();
+	var jobField= $("#jobField option:selected").val();
+	var type= $("#jobField option:selected").text();
+	
+	location.href='${path }/salary/salaryYears.do?jobField='+jobField +'&jobYears='+jobYears+'&job_type='+type+'&salarySearch='+salarySearch;
+	/* location.href='${path }/search/companyInfo.do?positionNo='+${p.position_no }+'&memNo='+${loginMember.memNo}; */
+	
+	};
+});
+
 
 
 </script>
@@ -433,6 +450,7 @@ $("#jobYears").change(function(){
 	salaryList.unshift("연봉");
 	console.log(salaryList);
 	
+	//선택한 경력의 연봉 정보
 	var jobYearsResultList = new Array();
 	<c:forEach items="${jobYearsResultList}" var="item">
 	jobYearsResultList.push("${item}");
@@ -440,6 +458,14 @@ $("#jobYears").change(function(){
 	jobYearsResultList.unshift("경력")
 	console.log(jobYearsResultList);
 	console.log(typeof(jobYears));
+	
+	//검색할 연봉값 처리
+	var salarySearchResultList = new Array();
+	<c:forEach items="${salarySearchResultList}" var="item">
+	salarySearchResultList.push("${item}");
+	</c:forEach>
+	salarySearchResultList.unshift("검색")
+	
 	
 	//그래프 데이터 리스트형 전처리 완료
 	
@@ -465,11 +491,11 @@ $("#jobYears").change(function(){
 		},
 		data : {
 			type : "bar",
-			columns : [ salaryList, jobYearsResultList
+			columns : [ salaryList, jobYearsResultList, salarySearchResultList
 
 			],
 
-			groups : [ [ "연봉", "경력" ] ],
+			groups : [ [ "연봉", "경력", "검색" ] ],
 			selection : {
 				enabled : true,
 				draggable : true
@@ -477,6 +503,7 @@ $("#jobYears").change(function(){
 			types : {
 				연봉 : "bar",
 				경력 : "bar",
+				검색 : "line",
 				data2 : "line"
 			},
 			colors : {

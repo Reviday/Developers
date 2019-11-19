@@ -58,7 +58,7 @@
                <c:if test="${not empty loginMember }">
                <li class=""><a href="${path }/search/mainSearch.lmc?memNo=${loginMember.memNo}" class="">탐색</a></li>
                </c:if>
-               <li class="microMoreVisible"><a href="${path }/salary/salaryYears.do?jobField=f0&jobYears=0&job_type=전체" class="">직군별 연봉</a></li>
+               <li class="microMoreVisible"><a href="${path }/salary/salaryYears.do?jobField=f0&jobYears=0&job_type=전체&salarySearch=0" class="">직군별 연봉</a></li>
                 <c:if test="${loginMember!=null }">  
                <li class="smMoreVisible"><a href="${path }/resume/resumeList.lmc?memEmail=${loginMember.memEmail }" class="">이력서</a></li>
                </c:if>
@@ -138,7 +138,7 @@
                         <li class="hideForAnonymous"><a href="/status/applications"
                            class="">지원 현황</a></li>
                         <div class="divider xsOnly"></div>
-                        <li class="microOnly"><a href="${path }/salary/salaryYears.do?jobField=f0&jobYears=0&job_type=전체" class="">직군별 연봉</a></li>
+                        <li class="microOnly"><a href="${path }/salary/salaryYears.do?jobField=f0&jobYears=0&job_type=전체&salarySearch=0" class="">직군별 연봉</a></li>
                         <li class="xsOnly"><a href="/events" class="">커리어/이벤트</a></li>
                         <div class="divider xsOnly"></div>
                         <li class="xsOnly"><a href="${path }/business">기업 서비스</a></li>
@@ -222,7 +222,7 @@
                         </li>
                         <div class="divider xsOnly"></div>
                         <li class="microOnly">
-                           <a href="${path }/salary/salaryYears.do?jobField=f0&jobYears=0&job_type=전체" class="">직군별 연봉</a>
+                           <a href="${path }/salary/salaryYears.do?jobField=f0&jobYears=0&job_type=전체&salarySearch=0" class="">직군별 연봉</a>
                         </li>
                         <li class="xsOnly">
                            <a href="/events" class="">커리어/이벤트</a>

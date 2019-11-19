@@ -21,7 +21,9 @@ import com.kh.developers.search.model.vo.Position;
 import com.kh.developers.search.model.vo.ResumeSearch;
 import com.kh.developers.search.model.vo.Tag;
 
-@SessionAttributes(value = { "jobField", "salaryList", "jobYearsResultList", "jobYears", "rcList" })
+@SessionAttributes(value = { "jobField", "salaryList", "jobYearsResultList", "jobYears", "rcList", "jobYearsResult",
+		"salarySearchResultList", "salarySearchResult"
+})
 
 @Controller
 public class SalaryController {
@@ -84,11 +86,12 @@ public class SalaryController {
 	}
 
 	@RequestMapping("/salary/salaryYears.do")
-	public String salaryYears(Salary s, String job_type, Model model) {
+	public String salaryYears(Salary s, String job_type,int salarySearch, Model model) {
 
 		String jobField = s.getJobField();
 		int jobYears = s.getJobYears();
 		String type = job_type;
+		int salarySearchResult=salarySearch;
 
 		List<Salary> list = service.salarySelectList(jobField);
 
@@ -129,24 +132,36 @@ public class SalaryController {
 		}
 		System.out.println("jobYearsResult:" + jobYearsResult);
 		System.out.println("jobYearsResultList:" + jobYearsResultList);
+		
+		
 
 		// 포지션 추천 기업 가지고 오기
-
-		// 해당하는 직무의 추천기업 불러오기
-//		List<Position> rcList = service.salaryRecommandPositionList(type);
-
-	//	System.out.println("rcList:" + rcList);
-
-		//model.addAttribute("rcList", rcList);
-		
 		List<Position> rcList = service.salaryRecommandPositionList(type);
 		System.out.println("rcList:" + rcList);
+		
+		//평균연봉 대비 내 연봉 검색하기
+		
+		List<Integer> salarySearchResultList = new ArrayList<Integer>();
+
+		for (int i = 0; i < 11; i++) {
+
+			if (i == s.getJobYears()) {
+				salarySearchResultList.add(i, salarySearchResult);
+			} else {
+				salarySearchResultList.add(i, 0);
+			}
+		}
+		
+		
 		
 		model.addAttribute("rcList", rcList);
 		model.addAttribute("salaryList", salaryList);
 		model.addAttribute("jobField", jobField);
 		model.addAttribute("jobYearsResultList", jobYearsResultList);
 		model.addAttribute("jobYears", jobYears);
+		model.addAttribute("jobYearsResult", jobYearsResult);
+		model.addAttribute("salarySearchResultList", salarySearchResultList);
+		model.addAttribute("salarySearchResult", salarySearchResult);
 
 		return "salary/salaryView";
 	}
