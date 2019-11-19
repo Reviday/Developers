@@ -343,7 +343,17 @@ select {
 						</div>
 						<div class="SalaryInputBox-ktBCnJ fhqaWK InputBox-eMDCpm DxufZ"
 							style="width: 25%;">
-							<input class="Input-hxTtdt eSpziA" id="salarySearch" value="<fmt:formatNumber type="number" maxFractionDigits="3" value="${jobYearsResult}"/>" type="text" placeholder="연봉"/>	
+							<input class="Input-hxTtdt eSpziA" id="salarySearch" 
+							<c:choose>
+							<c:when test="${salarySearchResult == 0 }"> 
+							value="<fmt:formatNumber type="number" maxFractionDigits="3" value="${jobYearsResult}"/>"
+							</c:when>
+							<c:when test="${salarySearchResult > 0 }"> 
+							value="<fmt:formatNumber type="number" maxFractionDigits="3" value="${salarySearchResult}"/>"
+							</c:when>
+							</c:choose>
+							type="text" placeholder="연봉"/>
+							
 						</div>
 					</div>
 				</div>
@@ -404,19 +414,22 @@ select {
 
 
 $("#jobField").change(function(){
+	var salarySearch=0;
 	var jobField= $(this).val();
 	var jobYears= $("#jobYears option:selected").val();
 	var type= $("#jobField option:selected").text();
 	
-	location.href='${path }/salary/salaryYears.do?jobField='+jobField +'&jobYears='+jobYears+'&job_type='+type;
+	location.href='${path }/salary/salaryYears.do?jobField='+jobField +'&jobYears='+jobYears+'&job_type='+type+'&salarySearch='+salarySearch;
 });
 
 $("#jobYears").change(function(){
+	var salarySearch=0;
 	var jobField= $("#jobField option:selected").val();
 	var type= $("#jobField option:selected").text();
 	var jobYears= $(this).val();
 	
-	location.href='${path }/salary/salaryYears.do?jobField='+jobField +'&jobYears='+jobYears+'&job_type='+type;
+	
+	location.href='${path }/salary/salaryYears.do?jobField='+jobField +'&jobYears='+jobYears+'&job_type='+type+'&salarySearch='+salarySearch;
 	/* location.href='${path }/search/companyInfo.do?positionNo='+${p.position_no }+'&memNo='+${loginMember.memNo}; */
 });
 
@@ -503,12 +516,13 @@ $("#salarySearch").keydown(function(key){
 			types : {
 				연봉 : "bar",
 				경력 : "bar",
-				검색 : "line",
+				검색 : "scatter",
 				data2 : "line"
 			},
 			colors : {
 				연봉 : "#333333",
-				경력 : "#ffffff"
+				경력 : "#ffffff",
+				검색 : "#333333"
 			}
 		},
 		bar : {
@@ -517,6 +531,14 @@ $("#salarySearch").keydown(function(key){
 				max : 30
 			}
 		},
+    	 point: {
+			    pattern: [
+
+			      "<g><circle cx='10' cy='10' r='10'></circle><rect x='5' y='5' width='10' height='10' style='fill:#333333'></rect></g>"
+
+			    ]
+	    },
+
 		axis : {
 			x : {
 				type : "category",
