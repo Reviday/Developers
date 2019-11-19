@@ -328,11 +328,20 @@ function openResume(resumeNo){
                     let userName=info.memName.split("");
                     let sirName=userName.splice(0,1);
                     let firstName=userName.join("");
-                    
-                    name.html('<div id="memName"><p>'+sirName+'<span id="firstName">'+firstName+'</span></p></div>');
-                    email.html('<div class="personalInfo"><p>이메일: <span id="memEmail">'+info.memEmail+'</span></p></div>');
-                    phone.html('<div class="personalInfo"><p>전화번호: <span id="memPhone">'+info.memPhone+'</span></p></div>');
-                    intro.html('<div id="memIntro">'+info.intro+'</div>');
+                    let fn=firstName.split("");
+                    for(let i=0;i<fn.length;i++){
+                        fn[i]='◯ ';
+                    }
+                    fn=fn.join("");
+                    name.html('<div id="memName" ><p style="font-size:0.9em;">'+sirName+'<span id="firstName" style="margin-left:3px;">'+fn+'</span></p></div>');
+                    //결제 했을경우 안했을 경우 분기처리 해야함 
+                    // info.memEmail
+                    let finEmail="◯◯◯◯◯◯◯◯◯";
+                    email.html('<div class="personalInfo"><p>이메일: <span id="memEmail">'+finEmail+'</span></p></div>');
+                    // info.memPhone
+                    let finPhone="◯◯◯◯◯◯◯◯◯";
+                    phone.html('<div class="personalInfo"><p>전화번호: <span id="memPhone">'+finPhone+'</span></p></div>');
+                    intro.html('<div id="memIntro"><p style="color:#848484;">'+info.intro+'</p></div>');
 
                     let careerss="";
                     for(let i in info.careers){
@@ -340,10 +349,20 @@ function openResume(resumeNo){
                         careerss+='<div class="busName">'+info.careers[i].busName+'</div>';
                         careerss+='<div><span class="aline" style="float:left; margin-left:1%; margin-right:1%;">'+" | "+'</span></div>';
                         careerss+='<div class="deptName" style="color:#6E6E6E";>'+info.careers[i].deptName+'</div>';
-                        careerss+='<div class="endCareer">'+info.careers[i].endCareer+'</div>';
-                        careerss+='<div class="startCareer">'+info.careers[i].startCareer+'  ~'+'</div>';
+                        let endDate=info.careers[i].endCareer
+                        endDate=endDate.slice(0,4)+"."+endDate.slice(4,6);
+                        let startDate=info.careers[i].startCareer
+                        startDate=startDate.slice(0,4)+"."+startDate.slice(4,6);
+                        careerss+='<div class="endCareer">'+endDate+'</div>';
+                        careerss+='<div class="startCareer">'+startDate+'  ~'+'</div>';
                         careerss+='<br>';
-                        careerss+='<div class="careerIntro"><p id="careerIntro">'+info.careers[i].careerIntro+'</p></div>';
+                        let finalCareer="";
+                        info.careers[i].careerIntro!=null?finalCareer=info.careers[i].careerIntro:finalCareer="";
+                        if(finalCareer!=""&&finalCareer.slice(0,1)=="♥"){
+                            careerss+='<div class="careerIntro"><p id="careerIntro" style="width:fit-content;background-color:#D8D8D8;color:#D8D8D8;">'+finalCareer+'</p></div>';
+                        }else{
+                            careerss+='<div class="careerIntro"><p id="careerIntro">'+finalCareer+'</p></div>';
+                        }
                         careerss+='<hr style="width:95%;">';
                     }
                     career.html(careerss);
@@ -354,10 +373,21 @@ function openResume(resumeNo){
                         educationss+='<div class="schoolName">'+info.educations[i].schoolName+'</div>';
                         educationss+='<span class="aline" style="float:left; margin-left:1%; margin-right:1%;">'+" | "+'</span>';
                         educationss+='<div class="majorName" style="color:#6E6E6E;">'+info.educations[i].majorName+'</div>';
-                        educationss+='<div class="endEd">'+info.educations[i].endEd+'</div>';
-                        educationss+='<div class="startEd">'+info.educations[i].startEd+'  ~'+'</div>';
+                        let endDate=info.educations[i].endEd
+                        endDate=endDate.slice(0,4)+"."+endDate.slice(4,6);
+                        let startDate=info.educations[i].startEd
+                        startDate=startDate.slice(0,4)+"."+startDate.slice(4,6);
+                        educationss+='<div class="endEd">'+endDate+'</div>';
+                        educationss+='<div class="startEd">'+startDate+'  ~'+'</div>';
                         educationss+='<br>';
-                        educationss+='<div class="subjectName"><p id="subjectName">'+info.educations[i].subjectName+'</p></div>';
+                        let finalEd="";
+                        info.educations[i].subjectName!=null?finalEd=info.educations[i].subjectName:finalEd="";
+                        if(finalEd!=""&&finalEd.slice(0,1)=="♥"){
+                            educationss+='<div class="subjectName"><p id="subjectName" style="width:fit-content;background-color:#D8D8D8;color:#D8D8D8;">'+finalEd+'</p></div>';
+                        }else{
+                            educationss+='<div class="subjectName"><p id="subjectName">'+finalEd+'</p></div>';
+                        }
+                        // educationss+='<div class="subjectName"><p id="subjectName">'+finalEd+'</p></div>';
                         educationss+='<hr style="width:95%;">';
                     }
                     education.html(educationss);
@@ -472,8 +502,10 @@ function favoriteList(cPage){
                             cardContainer+='<div class="exp-career" style="display:inline-block"><small>('+getMonths(careers[ca].startCareer,careers[ca].endCareer)+'개월)</small></div>';
                         }
                         cardContainer+='<hr>';
+
                         let intro=icList[i].intro!=null?icList[i].intro:"";
-                        cardContainer+='<p class="card-text intro">'+intro+'</p>';
+                        let shortenIntro=intro.substring(0,20);
+                        cardContainer+='<p class="card-text intro">'+shortenIntro+"..."+'</p>';
                         
                         //스킬 
                         cardContainer+='<div class="skill-list">';

@@ -381,7 +381,7 @@ public class BusinessController {
 			String [] caArray;
 			for(CareerInCard c : ca) {
 				String caIntro=c.getCareerIntro();
-				if(!caIntro.equals("")) {
+				if(caIntro!=null&&!caIntro.equals("")) {
 					caArray=caIntro.split("");
 					for(int i=0;i<caArray.length;i++) {
 						caArray[i]="♥";
@@ -395,7 +395,8 @@ public class BusinessController {
 			String [] edArray;
 			for(EducationInCard e : ed) {
 				String edIntro=e.getSubjectName();
-				if(!edIntro.equals("")) {
+				System.out.println(edIntro);
+				if(edIntro!=null&&!edIntro.equals("")) {
 					edArray=edIntro.split("");
 					for(int i=0;i<edArray.length;i++) {
 						edArray[i]="♥";
@@ -407,17 +408,21 @@ public class BusinessController {
 		}
 		
 		String[] emailArray;
+		if(ic.getMemEmail()!=null) {
 		emailArray=ic.getMemEmail().split("");
-		for(int i=0;i<emailArray.length;i++) {
-			emailArray[i]="*";
+			for(int i=0;i<emailArray.length;i++) {
+				emailArray[i]="*";			
+			}
+			ic.setMemEmail(String.join("", emailArray));
 		}
-		ic.setMemEmail(String.join("", emailArray));
 		String[] phoneArray;
+		if(ic.getMemPhone()!=null) {
 		phoneArray=ic.getMemPhone().split("");
-		for(int i=0;i<phoneArray.length;i++) {
-			phoneArray[i]="*";
+			for(int i=0;i<phoneArray.length;i++) {
+				phoneArray[i]="*";
+			}			
+			ic.setMemPhone(String.join("", phoneArray));
 		}
-		ic.setMemPhone(String.join("", phoneArray));
 		
 		
 		try {

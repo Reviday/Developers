@@ -387,6 +387,7 @@ div#bottom-info>input{
 			});
 			//   location.href="${path}/business/paySuccess?adType="+adType+"&days="+adLength+"&positionNo="+positionNumber;
 			  alert(msg);
+			  location.reload()
 		   } 
 		});
 	}else{

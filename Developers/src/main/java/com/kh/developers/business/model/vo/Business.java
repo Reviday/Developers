@@ -32,6 +32,7 @@ public class Business {
 	private String newIncome;
 	private String allIncome;
 	private Date confirmedDate;
+	private int ticket;
 	
 	//logo & images
 	private String busLogo;

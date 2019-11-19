@@ -234,7 +234,6 @@ div#memIntro{
 	padding:30px;
 	padding-left:30px;
 	font-size:13px;
-	color:#2E2E2E
 }
 .careerTitle,.educationTitle{
 	float:left;
@@ -372,7 +371,13 @@ input::placeholder {
 		<div class="resume-area row">
 			<div class="resume-left-area col-12 col-sm-4">
 				<div class="top center forOpen" style="height: 100px;">
-					<button class="btn btn-success" style="background-color: #7B39BD; border-color: #7B39BD; font-size:15px;">알림권 결제하기</button>
+					<c:set var="ticket" value="${busInfo.ticket}"/>
+						<c:if test="${ticket>0}">
+							<div class="numOfTicket"><p>"${ticket}"+남음</p></div>
+						</c:if>
+						<c:if test="${ticket<1}">
+							<button class="btn btn-success" style="background-color: #7B39BD; border-color: #7B39BD; font-size:15px;">알림권 결제하기</button>
+						</c:if>
 				</div>
 				<div class="bottom center favList">
 					<div class="list-group left-menu">
