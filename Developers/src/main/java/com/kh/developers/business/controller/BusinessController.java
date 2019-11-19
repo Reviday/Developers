@@ -29,6 +29,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kh.developers.business.model.service.BusinessService;
 import com.kh.developers.business.model.vo.Advertisement;
 import com.kh.developers.business.model.vo.Business;
+import com.kh.developers.business.model.vo.CareerInCard;
+import com.kh.developers.business.model.vo.EducationInCard;
 import com.kh.developers.business.model.vo.IntroCard;
 import com.kh.developers.common.util.PaginationTemplateFunction;
 import com.kh.developers.member.controller.MemberController;
@@ -359,6 +361,7 @@ public class BusinessController {
 	}
 	
 	
+//	이력서 미리보기 로직 
 	@RequestMapping(value = "/business/openResume", produces = "application/text; charset=utf-8")
 	@ResponseBody
 	public String openResume(@RequestParam (value="resumeNo", required=true) int resumeNo, HttpServletResponse res) {
@@ -369,6 +372,54 @@ public class BusinessController {
 			ic.setCareers(bService.selectCareers(resumeNo));
 			ic.setEducations(bService.selectEducations(resumeNo));			
 		}
+		List<CareerInCard>ca=new ArrayList<CareerInCard>();
+		ca=ic.getCareers();
+		List<EducationInCard>ed=new ArrayList<EducationInCard>();
+		ed=ic.getEducations();
+		
+		if (ca.size()>0) {
+			String [] caArray;
+			for(CareerInCard c : ca) {
+				String caIntro=c.getCareerIntro();
+				if(!caIntro.equals("")) {
+					caArray=caIntro.split("");
+					for(int i=0;i<caArray.length;i++) {
+						caArray[i]="♥";
+					}
+					caIntro=String.join("", caArray);
+					c.setCareerIntro(caIntro);					
+				}
+			}		
+		}
+		if(ed.size()>0) {
+			String [] edArray;
+			for(EducationInCard e : ed) {
+				String edIntro=e.getSubjectName();
+				if(!edIntro.equals("")) {
+					edArray=edIntro.split("");
+					for(int i=0;i<edArray.length;i++) {
+						edArray[i]="♥";
+					}
+					edIntro=String.join("", edArray);
+					e.setSubjectName(edIntro);					
+				}
+			}			
+		}
+		
+		String[] emailArray;
+		emailArray=ic.getMemEmail().split("");
+		for(int i=0;i<emailArray.length;i++) {
+			emailArray[i]="*";
+		}
+		ic.setMemEmail(String.join("", emailArray));
+		String[] phoneArray;
+		phoneArray=ic.getMemPhone().split("");
+		for(int i=0;i<phoneArray.length;i++) {
+			phoneArray[i]="*";
+		}
+		ic.setMemPhone(String.join("", phoneArray));
+		
+		
 		try {
 			jsonStr=mapper.writeValueAsString(ic);
 		}catch(JsonProcessingException e) {
@@ -535,7 +586,6 @@ public class BusinessController {
 		ad.setBusNo(busNo);
 		ad.setPositionNo(positionNo);
 		try {
-			System.out.println("광고 인서트전 ");
 			result=bService.insertAd(ad);			
 		}catch(Exception e) {
 			msg="신청 도중 에러가 발생했습니다. 다시한번 시도해 주시기 바랍니다.";
