@@ -73,6 +73,12 @@
 			alert("승인처리가 정상적으로 이루어지지 않았습니다.");
 		}
 		
+		if(${resultF}>0) {
+			alert("정상적으로 거절처리 되었습니다.");
+		} else if(${resultF}==0) {
+			alert("거절처리가 정상적으로 이루어지지 않았습니다.");
+		}
+		
 		function blank_bus_info(busNo) {
 			var win = window.open(path+"/admin/businessInfo.lac?busNo="+busNo, "기업정보", "width=500,height=550");
 		};

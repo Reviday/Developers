@@ -42,8 +42,83 @@ public class AdminController {
 	private PaginationTemplate pt;
 	private PaginationTemplateFunction2nd ptf;
 	
+	@RequestMapping("/admin/businessRequestRejection.lac")
+	public String businessRequestRejection(HttpServletRequest req, Model model,
+			@RequestParam (value="requestNo", required=true) int requestNo,
+			@RequestParam (value="busNo", required=true) int busNo,
+			@RequestParam (value="busName", required=true) String busName,
+			@RequestParam (value="memNo", required=true) int memNo,
+			@RequestParam (value="memEmail", required=true) String memEmail) throws MessagingException, UnsupportedEncodingException {
+		// 거절 처리 서비스
+		int result=0;
+		try {
+			result=service.businessRequestRejection(requestNo, busNo, memNo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		// 승인 메일 송신 로직
+		if(result>0) {
+			String url=req.getRequestURL().toString();
+			int target=url.indexOf("developers");
+			String frontUrl="";url.substring(0,target);
+			if(req.getRequestURI().indexOf("/developers")>=0) {
+				//일반 로컬 서버
+				frontUrl=url.substring(0,target)+"developers";
+			} else if(req.getRequestURI().indexOf("/19PM_Developers_final")>=0) {
+				//학원 서버용
+				frontUrl=url.substring(0,target)+"19PM_Developers_final";
+			} else {
+				//보통 있을 수 없지만 만약 위 두가지 중 예외가 존재한다면 
+				//server에서 설정을 기본값인 spring으로 했을 경우.
+				frontUrl=url.substring(0,target)+"spring";
+				//위가 아닌 다른 예외 상황이 온다고 한다면, 기록은 하되 조인할때 기타 값이 null로 출력될 것임.
+			}
+			System.out.println(frontUrl);
+			//메일 전송
+			MailHandler sendMail = new MailHandler(mailSender);
+			sendMail.setSubject("[Developers] 기업등록 거절 관련 안내");
+			sendMail.setText(
+					new StringBuffer().append("<div style=\"font-family: 'Apple SD Gothic Neo', 'sans-serif' !important; width: 540px; height: 600px; border-top: 4px solid rgb(67,138,255); margin: 100px auto; padding: 30px 0; box-sizing: border-box;\">")
+					.append("<h1 style=\"margin: 0; padding: 0 5px; font-size: 28px; font-weight: 400;\">")
+					.append("<span style=\"font-size: 15px; margin: 0 0 10px 3px;\"><img src=\""+frontUrl+"/resources/images/Developers_logo.png"+"\" style=\"height:40px;\"/></span><br />")
+					.append("<span style=\"color: rgb(67,138,255);\">"+busName+"</span> 회사 등록이 승인되지 않았습니다.</h1>")
+					.append("<p style=\"font-size: 16px; line-height: 26px; margin-top: 50px; padding: 0 5px;\">")
+					.append("안녕하세요.<br/>")
+					.append("모두가 함께하는 지인추천 채용서비스 디벨로퍼스입니다.<br/><br/>")
+					.append("신청하신 기업에 대한 승인 거절 안내 드립니다.<br/>")
+					.append("가입해주신 개인 포털 계정으로는 회사 재직 여부를 확인 할 수 없어,<br/>")
+					.append("부득이하게 승인 거절을 했습니다.<br/><br/>")
+					.append("해당 기업 내부 인사담당자께 관리자 또는 리뷰어 권한 요청을<br/> 진행하시길 권장 드립니다.<br/>")
+					.append("추가 문의 있으시면 답신으로 남겨주시면 됩니다.<br/>")
+					.append("<a style=\"color: #fff; text-decoration: none; text-align: center;\"")
+					.append("href=\""+frontUrl+"/business\"")
+					.append("target=\"_blank\" rel=\"noreferrer noopener\">")
+					.append("<span style=\"display: inline-block; border-radius: 5px; width: 210px; height: 45px; margin: 30px 5px 40px; background-color: rgb(67,138,255); line-height: 45px; vertical-align: middle; font-size: 16px; font-weight: 600;\">")
+					.append("디벨로퍼스 대시보드로 이동</span></a>")
+					.append("<div style=\"border-top: 1px solid #DDD; padding: 5px;\"></div>")
+					.toString());
+			sendMail.setFrom("ysk.testacc@gmail.com", "디벨로퍼스 ");
+			sendMail.setTo(memEmail);
+			sendMail.send();
+		}
+		
+		// 페이지네이션
+		int totalData=service.selectbusinessRequestCount() ;
+		pt=new PaginationTemplate(req, totalData, "/admin/businessRequest.lac");
+		//기업등록 요청 내용 이력을 가져온다.
+		List<BusinessRequest> list=service.selectbusinessRequestList(pt.getcPage(), pt.getNumPerPage());
+		
+		model.addAttribute("resultF",result);
+		model.addAttribute("resultList",list);
+		model.addAttribute("cPage", pt.getcPage());
+		model.addAttribute("numPerPage", pt.getNumPerPage());
+		model.addAttribute("pageBar", pt.getPageBar());
+		return "admin/businessRequestAjax";
+	}
+	
 	@RequestMapping("/admin/businessRequestApproval.lac")
-	public String mllChangeChart(HttpServletRequest req, Model model,
+	public String businessRequestApproval(HttpServletRequest req, Model model,
 			@RequestParam (value="requestNo", required=true) int requestNo,
 			@RequestParam (value="busNo", required=true) int busNo,
 			@RequestParam (value="busName", required=true) String busName,
@@ -307,6 +382,9 @@ public class AdminController {
 	@RequestMapping("/admin/restoreMember.lac")
 	public String restoreMember(Member m, HttpServletRequest req, Model model,
 			@RequestParam (value="value", required=false, defaultValue="") String value) {
+		//계정 복구 로직 
+		int result=service.restoreMember(m);
+		
 		int totalData=service.selectWithdrawMemberCountBySearch(value);
 		ptf=new PaginationTemplateFunction2nd(req, totalData, "wd_search");
 		ptf.setUseParamCPage(); // cPage를 파라미터로 넘긴다.
@@ -317,7 +395,7 @@ public class AdminController {
 		model.addAttribute("cPage", ptf.getcPage());
 		model.addAttribute("numPerPage", ptf.getNumPerPage());
 		model.addAttribute("pageBar", ptf.getPageBar(true));
-		return "admin/memberListAjax";
+		return "admin/withdrawMemberListAjax";
 	}
 	
 	

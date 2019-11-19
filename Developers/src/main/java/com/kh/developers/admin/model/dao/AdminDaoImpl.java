@@ -19,6 +19,16 @@ import com.kh.developers.member.model.vo.Member;
 public class AdminDaoImpl implements AdminDao{
 	
 	@Override
+	public int deletMemBusConnection(SqlSessionTemplate session, int busNo) {
+		return session.delete("admin.deletMemBusConnection", busNo);
+	}
+	
+	@Override
+	public int deleteBusinessInfo(SqlSessionTemplate session, int busNo) {
+		return session.delete("admin.deleteBusinessInfo", busNo);
+	}
+	
+	@Override
 	public int updateBusinessInfoStatus(SqlSessionTemplate session, int busNo) {
 		return session.update("admin.updateBusinessInfoStatus", busNo);
 	}

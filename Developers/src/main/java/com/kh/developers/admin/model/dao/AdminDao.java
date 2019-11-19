@@ -38,4 +38,6 @@ public interface AdminDao {
 	int updateMemberLevel(SqlSessionTemplate session, int memNo, int level);
 	int deleteBusinessRequest(SqlSessionTemplate session, int requestNo);
 	int updateBusinessInfoStatus(SqlSessionTemplate session, int busNo);
+	int deleteBusinessInfo(SqlSessionTemplate session, int busNo);
+	int deletMemBusConnection(SqlSessionTemplate session, int busNo);
 }

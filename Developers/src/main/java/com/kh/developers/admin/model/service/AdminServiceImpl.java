@@ -29,6 +29,32 @@ public class AdminServiceImpl implements AdminService {
 	
 	@Override
 	@Transactional(value="transactionManager", rollbackFor=Exception.class)
+	public int businessRequestRejection(int requestNo, int busNo, int memNo) throws Exception {
+		int result=0;
+		// 거절 처리 로직 
+		// 1. 회원 레벨 1레벨로 하향
+		result=dao.updateMemberLevel(session, memNo, 1);
+		if(result>0) {
+			// 2. businessr_request 테이블에서 해당 데이터 삭제
+			result=dao.deleteBusinessRequest(session, requestNo);
+			if(result>0) {
+				//3. mem_bus_connection 테이블에서 연결된 데이터 삭제
+				result=dao.deletMemBusConnection(session, busNo);
+				if(result>0) {
+					//4. business_info 테이블에서 해당 기업 정보 삭제
+					result=dao.deleteBusinessInfo(session, busNo);
+				}
+			}
+		} 
+		
+		// 로직 수행 후, result가 0 이하인 경우 동작이 제대로 이루어지지 않았다는 의미이므로, rollback 처리를 한다.
+		if(result<=0) throw new Exception();
+		
+		return result;
+	}
+	
+	@Override
+	@Transactional(value="transactionManager", rollbackFor=Exception.class)
 	public int businessRequestApproval(int requestNo, int busNo, int memNo) throws Exception {
 		int result=0;
 		// 승인 처리 로직 

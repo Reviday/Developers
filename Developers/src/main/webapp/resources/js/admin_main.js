@@ -170,7 +170,7 @@ function fn_restoreMember(memNo) {
 			},
 			success: function(result) {
 				if(result!=null) {
-					alert("해당 게정은 사용가능한 계정으로 전환되었습니다.");
+					alert("해당 계정은 사용가능한 계정으로 전환되었습니다.");
 					$('.mainContent').html("");
 					$('.mainContent').html(result);
 				} else {
@@ -295,11 +295,8 @@ function bus_req_rejection(requestNo, busNo, memNo) {
 		},
 		success:function(result) {
 			if(result!=null) {
-				alert("정상적으로 거절처리 되었습니다.");
 				$('.mainContent').html("");
 				$('.mainContent').html(result);
-			} else {
-				alert("처리가 정상적으로 이루어지지 않았습니다.");
 			}
 		}
 	})
