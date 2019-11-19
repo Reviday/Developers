@@ -164,6 +164,12 @@
 	<select id="selectPositionName" parameterType="integer" resultType="String">
 		SELECT POSITION FROM ENROLL_POSITION WHERE POSITION_NO=#{positionNo}
 	</select>
+		
+	<!-- 광고 insert sql문 --> 
+	<insert id="insertAd" parameterType="com.kh.developers.business.model.vo.Advertisement">
+		INSERT INTO ADVERTISEMENT VALUES(SEQ_AD_NO.NEXTVAL,#{busNo},#{positionNo},SYSDATE,SYSDATE+#{days},#{adType},0)
+	</insert>
+	
 	
 	
 	

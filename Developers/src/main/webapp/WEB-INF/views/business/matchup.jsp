@@ -288,7 +288,7 @@ input::placeholder {
 				<nav class="nav">
 					<ul class="ei_nav nav_us">
 						<li class="ls1 ls3">
-							<a class="ei_a1" href="${path}/business/applications.lbc">지원자</a>
+							<a class="ei_a1" href="${path}/business/applicants.lbc">지원자</a>
 						</li>
 						<li class="ls1 ls3">
 							<a class="ei_a1" href="${path}/business/matchup.lbc">매치업</a>

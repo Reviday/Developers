@@ -211,5 +211,12 @@ public class BusinessDaoImpl implements BusinessDao {
 		// TODO Auto-generated method stub
 		return session.selectOne("business.selectPositionName",positionNo);
 	}
+	
+	//광고 insert 로직 
+	@Override
+	public int insertAd(SqlSessionTemplate session, Advertisement ad) {
+		// TODO Auto-generated method stub
+		return session.insert("business.insertAd",ad);
+	}
 
 }

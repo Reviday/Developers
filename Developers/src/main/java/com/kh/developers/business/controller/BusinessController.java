@@ -503,11 +503,55 @@ public class BusinessController {
 	
 	
 //	광고 클릭 수 저장 함수 
-	@RequestMapping("/business/AdClick")
 	public String adClick(@RequestParam(value="adNo", required=true) int adNo,HttpServletRequest req) {
 		
 		
 		return "";
+	}
+	
+
+	@RequestMapping(value = "/business/paySuccess", produces = "application/text; charset=utf-8")
+	@ResponseBody
+	public String paySuccess(@RequestParam(value="adType",required=true)String adType,
+			@RequestParam(value="days", required=true)int days, 
+			@RequestParam(value="positionNo",required=true)int positionNo,
+			HttpServletRequest req,
+			HttpServletResponse res) 
+	{
+		String jsonStr="";
+		ObjectMapper mapper=new ObjectMapper();
+		String msg="";
+		int result=0;
+		Advertisement ad=new Advertisement();
+		Business bus=(Business)req.getSession().getAttribute("busInfo");
+		int busNo=Integer.parseInt(bus.getBusNo());
+		if (adType.equals("메인 페이지 상단 광고")){
+			adType="MAIN";
+		}else {
+			adType="CATEGORY";
+		}
+		ad.setAdType(adType);
+		ad.setDays(days);
+		ad.setBusNo(busNo);
+		ad.setPositionNo(positionNo);
+		try {
+			System.out.println("광고 인서트전 ");
+			result=bService.insertAd(ad);			
+		}catch(Exception e) {
+			msg="신청 도중 에러가 발생했습니다. 다시한번 시도해 주시기 바랍니다.";
+		}
+		if(result>0) {
+			msg="결재가 완료되었습니다.";
+		}else {
+			msg="신청 도중 에러가 발생했습니다. 다시한번 시도해 주시기 바랍니다.";
+		}
+		try {
+			jsonStr=mapper.writeValueAsString(msg);
+		}catch(JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		res.setContentType("application/json;charset=utf-8");
+		return jsonStr;
 	}
 	
 	

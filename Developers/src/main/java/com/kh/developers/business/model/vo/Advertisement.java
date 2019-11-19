@@ -23,6 +23,7 @@ public class Advertisement {
 	private String adType;
 	private int clickTimes;
 	
+	int days;
 	
 
 }

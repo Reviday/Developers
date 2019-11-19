@@ -245,5 +245,12 @@ public class BusinessServiceImpl implements BusinessService {
 		return dao.selectPositionName(session, positionNo);
 	}
 	
+	//광고 insert 로직 
+	@Override
+	public int insertAd(Advertisement ad) {
+		// TODO Auto-generated method stub
+		return dao.insertAd(session, ad);
+	}
+	
 
 }

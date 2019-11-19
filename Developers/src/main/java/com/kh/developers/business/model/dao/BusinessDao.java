@@ -69,4 +69,7 @@ public interface BusinessDao {
 	List<Advertisement>selectPositionInfo(SqlSessionTemplate session, int busNo);
 	List<Advertisement>selectAdvertisement(SqlSessionTemplate session, int busNo);
 	String selectPositionName(SqlSessionTemplate session, int positionNo);
+	
+	//광고 insert 로직 
+	int insertAd(SqlSessionTemplate session, Advertisement ad);
 }

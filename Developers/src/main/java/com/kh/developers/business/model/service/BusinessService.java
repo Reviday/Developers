@@ -59,4 +59,7 @@ public interface BusinessService {
 	List<Advertisement>selectPositionInfo(int busNo);
 	List<Advertisement>selectAdvertisement(int busNo);
 	String selectPositionName(int positionNo);
+	
+	//광고 insert 로직 
+	int insertAd(Advertisement ad);
 }

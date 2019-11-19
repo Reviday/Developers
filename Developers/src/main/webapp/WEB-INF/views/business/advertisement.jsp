@@ -113,7 +113,7 @@ div#bottom-info>input{
 				<nav class="nav">
 					<ul class="ei_nav nav_us">
 						<li class="ls1 ls3">
-							<a class="ei_a1" href="${path}/business/applications.lbc">지원자</a>
+							<a class="ei_a1" href="${path}/business/applicants.lbc">지원자</a>
 						</li>
 						<li class="ls1 ls3">
 							<a class="ei_a1" href="${path}/business/matchup.lbc">매치업</a>
@@ -269,7 +269,9 @@ div#bottom-info>input{
 	var db_html = "${dbHtml}";
 	var appl_index = "${applIndex}";
 
-	
+	var adLength=0;
+	var positionName="";
+	var positionNumber=0;
 
 
 	function clickPositions(position){
@@ -278,10 +280,11 @@ div#bottom-info>input{
 			e.style.opacity="0.5";
 		});
 		position[0].style.opacity="1.0";
-		console.log(position);
 		positionName=position[0].children[2].innerText;
 		document.querySelector('#positionName').value=positionName;
 		document.querySelector('#until').value=position[0].children[4].innerText;
+		positionNumber=position[0].children[5].value;
+	
 	}
 
 	function clickOptions(option){
@@ -315,17 +318,13 @@ div#bottom-info>input{
 	var memEmail="${loginMember.memEmail}";
 	var memName="${loginMember.memName}";
 	var memPhone="${loginMember.memPhone}";
-	var positionName="";
-	var adLength="";
-	console.log(memEmail);
-	console.log(memName);
-	console.log(memPhone);
 
 	
 	// 결제 로직 
 	function fn_payment(type){
 		var finalPrice=0;
 		var adType="";
+		var msg="";
 		if($("#positionName").val()!=""&&$("#until").val()!=""&&$("#adDate").val()!=""){ 
 		if(type>1){
 			// 메인 광고 
@@ -334,7 +333,7 @@ div#bottom-info>input{
 			let thirdPrice= 970000;
 			let forthPrice= 1200000;
 			adType="메인 페이지 상단 광고";
-			switch(type){
+			switch(adLength){
 				case 7: finalPrice=firstPrice; break;
 				case 14: finalPrice=secondPrice; break;
 				case 21: finalPrice=thirdPrice; break;
@@ -349,7 +348,7 @@ div#bottom-info>input{
 			let thirdPrice= 430000;
 			let forthPrice= 520000;
 			adType="직무 페이지 상단 광고";
-			switch(type){
+			switch(adLength){
 				case 7: finalPrice=firstPrice; break;
 				case 14: finalPrice=secondPrice; break;
 				case 21: finalPrice=thirdPrice; break;
@@ -358,16 +357,14 @@ div#bottom-info>input{
 					break;
 			}
 		} 
-		console.log(typeof finalPrice);
-		console.log(finalPrice);
 	   var IMP = window.IMP;
 	   IMP.init('iamport');
 	   IMP.request_pay({
 		   pg : 'html5_inicis',
 		   pay_method : 'vbank',
 		   merchant_uid : 'merchant_' + new Date().getTime(),
-		   name : 'asdfsdf',
-		   amount : 123123,
+		   name : adType+" "+adLength+"일",
+		   amount : finalPrice,
 		   buyer_email : memEmail,
 		   buyer_name : memName,
 		   buyer_tel : memPhone,
@@ -375,8 +372,20 @@ div#bottom-info>input{
 		   buyer_postcode :""
 	   }, function(rsp) {
 		   if ( rsp.success ) {
-			   var msg = '결제가 완료되었습니다.';
-			  location.href="${path}/business/ad.ldc";
+			$.ajax({
+				url:path+"/business/paySuccess",
+				type:"post",
+				async:false,
+				data:{
+					"adType":adType,
+					"days":adLength,
+					"positionNo":positionNumber
+				},
+				success:function(result){
+					msg=JSON.parse(result);
+				}
+			});
+			//   location.href="${path}/business/paySuccess?adType="+adType+"&days="+adLength+"&positionNo="+positionNumber;
 			  alert(msg);
 		   } 
 		});
@@ -385,7 +394,16 @@ div#bottom-info>input{
 		}
 	};
 
+	
 
+// $(function(){
+// 	let msg="${msg}";
+// 	console.log(typeof "${msg}");
+// 	console.log(msg);
+// 	if(msg!=undefined||msg!=null||msg!=""){
+// 		alert(msg);
+// 	}
+// });
 
 
 	

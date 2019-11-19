@@ -68,6 +68,7 @@ function ajaxLogic(flag){
                     let month=(new Date(deadDate).getMonth()+1)+"월 ";
                     let day=new Date(deadDate).getDate()+"일";
                     let positionName=polist[i].position;
+                    let positionNo=polist[i].positionNo;
                     AdCon+='<div class="selectPosition" style="display:flex; background-color:#FAFAFA; border:1px solid #BDBDBD; padding:10px; border-radius:15px 15px 15px 15px;"><small style="width:20%">'+(i+1)+'</small>';
                     AdCon+='<p style="background-color:#2E2E2E; color:#FFFFFF; border-radius:15px 15px 15px 15px; font-size:10px; padding:3px; margin-right:3%;">등록한 포지션</p>';
                     AdCon+='<p style="width:25%;">'+positionName+'</p>';
@@ -77,6 +78,7 @@ function ajaxLogic(flag){
                     }else{
                         AdCon+='<p style="width:25%;">'+year+month+day+' 까지</p>';
                     }
+                    AdCon+='<input type="hidden" id="positionNumber" value="'+positionNo+'">';
                     AdCon+='</a></div><hr>';
                 }
             }else{
@@ -178,6 +180,7 @@ function ajaxLogic(flag){
                     let month=(new Date(deadDate).getMonth()+1)+"월 ";
                     let day=new Date(deadDate).getDate()+"일";
                     let positionName=polist[i].position;
+                    let positionNo=polist[i].positionNo;
                     AdCon+='<div class="selectPosition" style="display:flex; background-color:#FAFAFA; border:1px solid #BDBDBD; padding:10px; border-radius:15px 15px 15px 15px;"><small style="width:20%">'+(i+1)+'</small>';
                     AdCon+='<p style="background-color:#2E2E2E; color:#FFFFFF; border-radius:15px 15px 15px 15px; font-size:10px; padding:3px; margin-right:3%;">등록한 포지션</p>';
                     AdCon+='<p style="width:25%;">'+positionName+'</p>';
@@ -187,6 +190,7 @@ function ajaxLogic(flag){
                     }else{
                         AdCon+='<p style="width:25%;">'+year+month+day+' 까지</p>';
                     }
+                    AdCon+='<input type="hidden" id="positionNumber" value="'+positionNo+'">';
                     AdCon+='</a></div><hr>';
                 }
             }else{
