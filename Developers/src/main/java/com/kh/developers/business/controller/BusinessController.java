@@ -70,7 +70,7 @@ public class BusinessController {
 			}else if(session.getAttribute("loginMember")!=null&&level==2) {
 				return "business/confirming";
 				
-			}else if(session.getAttribute("loginMember")!=null&&level<1&&session.getAttribute("busInfo")==null) {
+			}else if(session.getAttribute("loginMember")!=null&&level<=1&&session.getAttribute("busInfo")==null) {
 				return "business/businessEnroll";
 			}else {
 				return "business/welcome";			
