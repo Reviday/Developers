@@ -35,6 +35,38 @@ public class AdminController {
 	private PaginationTemplate pt;
 	private PaginationTemplateFunction2nd ptf;
 	
+	@RequestMapping("/admin/businessRequestApproval.lac")
+	public String mllChangeChart(HttpServletRequest req, Model model,
+			@RequestParam (value="requestNo", required=true) int requestNo,
+			@RequestParam (value="busNo", required=true) int busNo,
+			@RequestParam (value="memNo", required=true) int memNo) {
+		// 승인 처리 서비스
+		int result=0;
+		try {
+			result=service.businessRequestApproval(requestNo, busNo, memNo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		// 승인 메일 송신 로직
+		if(result>0) {
+			
+		}
+		
+		
+		// 페이지네이션
+		int totalData=service.selectbusinessRequestCount() ;
+		pt=new PaginationTemplate(req, totalData, "/admin/businessRequest.lac");
+		//기업등록 요청 내용 이력을 가져온다.
+		List<BusinessRequest> list=service.selectbusinessRequestList(pt.getcPage(), pt.getNumPerPage());
+		
+		model.addAttribute("resultList",list);
+		model.addAttribute("cPage", pt.getcPage());
+		model.addAttribute("numPerPage", pt.getNumPerPage());
+		model.addAttribute("pageBar", pt.getPageBar());
+		return "admin/businessRequestAjax";
+	}
+	
 	@RequestMapping("/admin/memberInfo.lac")
 	public ModelAndView memberInfo(HttpServletRequest req, Model model,
 			@RequestParam (value="memNo", required=true) int memNo) {

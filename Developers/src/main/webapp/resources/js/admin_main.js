@@ -197,7 +197,6 @@ function tag_approval(tag_no, bus_no) {
 				"numPerPage":$('#numPerPage').val()
 			},
 			success: function(result) {
-				console.log(result);
 				if(result!=null) {
 					alert("정상적으로 승인처리 되었습니다.");
 					$('.mainContent').html("");
@@ -255,25 +254,52 @@ function mll_chartChange(data, chart) {
 	})
 };
 
-//날짜 저장용 배열
-var arrDate = new Array(); //배열선언
-
-//날짜 사용하기
-for(var i=0; i<7; i++) {
-	var date=new Date();
-	var tempDate=date.getTime()-(i*24*60*60*1000);
-	date.setTime(tempDate);
-	var year=date.getFullYear();
-	var month=date.getMonth()+1;
-	var day=date.getDate();
-	
-	if(month<10) { month="0"+month } 
-	if(day<10) { day="0"+day }
-	
-	arrDate[i]=year+"-"+month+"-"+day;
-}
-
+// mll 페이지 데이터/차트 선택 함수
 $(".chartTrigger").on("change", function() {
 	mll_chartChange($("#chartDataSelect option:selected").val(), $("#chartSelect option:selected").val());
 });
 
+
+//기업등록 승인
+function bus_req_approval(requestNo, busNo, memNo) {
+	$.ajax({
+		url:path+"/admin/businessRequestApproval.lac",
+		type:"POST",
+		data:{
+			"requestNo":requestNo,
+			"busNo":busNo,
+			"memNo":memNo
+		},
+		success:function(result) {
+			if(result!=null) {
+				alert("정상적으로 승인처리 되었습니다.");
+				$('.mainContent').html("");
+				$('.mainContent').html(result);
+			} else {
+				alert("승인처리가 정상적으로 이루어지지 않았습니다.");
+			}
+		}
+	})
+};
+
+//기업등록 거절
+function bus_req_rejection(requestNo, busNo, memNo) {
+	$.ajax({
+		url:path+"/admin/businessRequestRejection.lac",
+		type:"POST",
+		data:{
+			"requestNo":requestNo,
+			"busNo":busNo,
+			"memNo":memNo
+		},
+		success:function(result) {
+			if(result!=null) {
+				alert("정상적으로 거절처리 되었습니다.");
+				$('.mainContent').html("");
+				$('.mainContent').html(result);
+			} else {
+				alert("처리가 정상적으로 이루어지지 않았습니다.");
+			}
+		}
+	})
+};

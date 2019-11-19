@@ -7,6 +7,8 @@ import java.util.Map;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.kh.developers.admin.model.dao.AdminDao;
 import com.kh.developers.admin.model.vo.BusinessRequest;
@@ -24,6 +26,28 @@ public class AdminServiceImpl implements AdminService {
 	@Autowired
 	private SqlSessionTemplate session;
 	private SearchValuesTemplate svt;
+	
+	@Override
+	@Transactional(value="transactionManager", rollbackFor=Exception.class)
+	public int businessRequestApproval(int requestNo, int busNo, int memNo) throws Exception {
+		int result=0;
+		// 승인 처리 로직 
+		// 1. 회원 레벨 4레벨로 상승
+		result=dao.updateMemberLevel(session, memNo, 4);
+		if(result>0) {
+			// 2. businessr_request 테이블에서 해당 데이터 삭제
+			result=dao.deleteBusinessRequest(session, requestNo);
+			if(result>0) {
+				//3. business_info 테이블에서 status를 Y로 변경
+				result=dao.updateBusinessInfoStatus(session, busNo);
+			}
+		} 
+		
+		// 로직 수행 후, result가 0 이하인 경우 동작이 제대로 이루어지지 않았다는 의미이므로, rollback 처리를 한다.
+		if(result<=0) throw new Exception();
+		
+		return result;
+	}
 	
 	@Override
 	public Member selectMemberOne(int memNo) {

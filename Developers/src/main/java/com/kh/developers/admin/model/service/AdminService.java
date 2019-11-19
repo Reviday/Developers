@@ -32,4 +32,5 @@ public interface AdminService {
 	List<BusinessRequest> selectbusinessRequestList(int cPage, int numPerPage);
 	Business selectBusinessOne(int busNo);
 	Member selectMemberOne(int memNo);
+	int businessRequestApproval(int requestNo, int busNo, int memNo) throws Exception;
 }

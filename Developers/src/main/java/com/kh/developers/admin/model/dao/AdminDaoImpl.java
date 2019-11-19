@@ -19,6 +19,24 @@ import com.kh.developers.member.model.vo.Member;
 public class AdminDaoImpl implements AdminDao{
 	
 	@Override
+	public int updateBusinessInfoStatus(SqlSessionTemplate session, int busNo) {
+		return session.update("admin.updateBusinessInfoStatus", busNo);
+	}
+	
+	@Override
+	public int deleteBusinessRequest(SqlSessionTemplate session, int requestNo) {
+		return session.delete("admin.deleteBusinessRequest", requestNo);
+	}
+	
+	@Override
+	public int updateMemberLevel(SqlSessionTemplate session, int memNo, int level) {
+		Map<String, Integer> map=new HashMap<String, Integer>();
+		map.put("memNo", memNo);
+		map.put("level", level);
+		return session.update("admin.updateMemberLevel", map);
+	}
+	
+	@Override
 	public Member selectMemberOne(SqlSessionTemplate session, int memNo) {
 		return session.selectOne("admin.selectMemberOne", memNo);
 	}

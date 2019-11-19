@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="admin">
+	<update id="updateBusinessInfoStatus" parameterType="_int">
+		UPDATE BUSINESS_INFO SET BUS_STATUS='Y' WHERE BUS_NO=0
+	</update>
+	<delete id="deleteBusinessRequest" parameterType="_int">
+		DELETE FROM BUSINESS_REQUEST WHERE REQUEST_NO=#{requestNo}
+	</delete>	
+	<update id="updateMemberLevel" parameterType="map">
+		UPDATE TA_MEMBER SET MEM_LEVEL=#{level} WHERE MEM_NO=#{memNo}
+	</update>
 	<select id="selectMemberOne" parameterType="_int" resultMap="memberMap">
 		SELECT * FROM TA_MEMBER WHERE MEM_NO=#{memNo}
 	</select>

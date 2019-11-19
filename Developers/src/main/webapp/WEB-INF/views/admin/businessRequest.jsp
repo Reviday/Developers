@@ -52,8 +52,8 @@
 									</c:if>
 								</td>
 								<td data-th="승인/거절">
-									<button type="button" class="btn btn-primary btn-sm" onclick="bus_req_approval();">승인</button>
-									<button type="button" class="btn btn-danger btn-sm" onclick="bus_req_rejection();">거절</button>
+									<button type="button" class="btn btn-primary btn-sm" onclick="bus_req_approval(${l.requestNo }, ${l.busNo},${l.memNo});">승인</button>
+									<button type="button" class="btn btn-danger btn-sm" onclick="bus_req_rejection(${l.requestNo }, ${l.busNo},${l.memNo});">거절</button>
 								</td>
 							</tr>
 						</c:forEach>

@@ -35,4 +35,7 @@ public interface AdminDao {
 	List<BusinessRequest> selectbusinessRequestList(SqlSessionTemplate session, int cPage, int numPerPage);
 	Business selectBusinessOne(SqlSessionTemplate session, int busNo);
 	Member selectMemberOne(SqlSessionTemplate session, int memNo);
+	int updateMemberLevel(SqlSessionTemplate session, int memNo, int level);
+	int deleteBusinessRequest(SqlSessionTemplate session, int requestNo);
+	int updateBusinessInfoStatus(SqlSessionTemplate session, int busNo);
 }
