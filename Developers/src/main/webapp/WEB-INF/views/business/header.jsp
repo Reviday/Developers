@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Developers Black</title>
-
+<link rel="shortcut icon" href="${path }/resources/images/Developers_black_logo_favicon.png">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/css/bootstrap.min.css">
 <link rel="stylesheet"
@@ -147,7 +147,7 @@
 						<li class="ls1 ls2" id="logo">
 							<label for="logoFile" style="cursor: pointer;">
 								<c:if test="${empty busInfo}">
-									<img class="Dev_black_logo" src="${path}/resources/images/Developers_black_logo.png" style="height:30px; margin-top:10px;"/>
+									<img class="Dev_black_logo" src="${path}/resources/images/Developers_black_logo.png" style="height:30px; margin-top:13px;"/>
 								</c:if>
 								<c:if test="${not empty busInfo.busLogo}">
 									<img class="logoImg" src="${path}${busInfo.busLogo}" title='로고 수정하기'/>

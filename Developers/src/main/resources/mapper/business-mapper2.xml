@@ -239,6 +239,10 @@
 		ORDER BY POSITION_NO DESC
 	</select>
 	
+	<select id="selectJobField" resultType="map">
+		SELECT * FROM JOB_FIELD ORDER BY JOB_NO
+	</select>
+	
 	<insert id="insertPosition" parameterType="position">
 		INSERT INTO ENROLL_POSITION 
 		VALUES(EN_PO_SEQ.NEXTVAL, #{bus_no}, #{bus_name}, NULL, NULL, NULL, NULL, '2999/12/31', NULL, NULL, NULL, NULL, NULL, NULL, 
@@ -260,9 +264,9 @@
 			CAREER=#{poCareer, typeHandler=strArray}, 
 		</if>
    		<if test="poDate!=null and poDate!=''">			
-			DEAD_DATE=TO_DATE(#{poDate}),
+			DEAD_DATE=#{poDate},
 		</if>
-			<if test="po.position!=null and po.position!=''">			
+		<if test="po.position!=null and po.position!=''">			
 			 POSITION= #{po.position},  
 		</if>		   
 		<if test="po.position_info!=null and po.position_info!=''">			
@@ -279,6 +283,9 @@
 		</if>
 		<if test="po.benefit!=null and po.benefit!=''">
 			BENEFIT=#{po.benefit}, 
+		</if>
+		<if test="poSalary!=null and poSalary!=''">
+			POSITION_SALARY=#{poSalary, typeHandler=strArray},
 		</if>
 		STATUS=#{poStatus}
 		WHERE POSITION_NO=#{po.position_no}

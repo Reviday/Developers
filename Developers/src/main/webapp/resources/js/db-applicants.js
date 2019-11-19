@@ -21,11 +21,14 @@ $(function () {
     $('.appl-leftside>h5').on('click', function () {
         if ($($(this).children('svg')).hasClass('rotate')) {
             $($(this).children('svg')).removeClass('rotate');
+            $(this).next().next().slideToggle();
+            $(this).next().next().next().html("");
         } else {
             $($(this).children('svg')).addClass('rotate')
-        }
-        if ($(this).hasClass('slide_btn')) {
             $(this).next().next().slideToggle();
+            if($($(this).next().next().children(".aList-click")).length!=0){
+                $(this).next().next().next().html("<li class='aList-click2'>"+$(".aList-click").html()+"</li>");
+            }
         }
     });
 
@@ -41,6 +44,7 @@ $(function () {
 
 
     $('.appl-leftside>ul>li').on('click', function () {
+        $('.aList-click2').remove();
         fn_appl_nav(1, 1, $(this).attr('data'));
         $(this).parent().parent().children('ul').children().removeClass('aList-click');
         if (!$(this).hasClass('aList-click')) {
@@ -142,17 +146,17 @@ function fn_appl_del() {
 
 
 
-//반응형 처리
-$(function () {
-    $(window).resize(function () {
-        if (window.innerWidth < 767) {
-            if (!$('.appl-leftside>h5').hasClass('slide_btn')) {
-                $('.appl-leftside>h5').addClass('slide_btn');
-            }
-        } else {
-            $('.appl-leftside>h5').removeClass('slide_btn');
-            $('.appl-leftside>ul').css('display', '');
-        }
-    });
+// //반응형 처리
+// $(function () {
+//     $(window).resize(function () {
+//         if (window.innerWidth < 767) {
+//             if (!$('.appl-leftside>h5').hasClass('slide_btn')) {
+//                 $('.appl-leftside>h5').addClass('slide_btn');
+//             }
+//         } else {
+//             $('.appl-leftside>h5').removeClass('slide_btn');
+//             $('.appl-leftside>ul').css('display', '');
+//         }
+//     });
 
-});
+// });

@@ -51,6 +51,7 @@ public interface BusinessService2 {
 	
 	//회사 포지션 가져오기
 	List<Position> selectPositionList(Map map);
+	List<Map> selectJobField();
 	
 	Applicant selectApplOne(int applNo);
 	

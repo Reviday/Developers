@@ -1,18 +1,37 @@
 package com.kh.developers.business.controller;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
+import java.util.Enumeration;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.mail.MessagingException;
+import javax.servlet.AsyncContext;
+import javax.servlet.DispatcherType;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.ServletInputStream;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequestWrapper;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpUpgradeHandler;
+import javax.servlet.http.Part;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -67,7 +86,6 @@ public class BusinessController2 {
 		}else {
 			path="/developers";
 		}
-
 	}
 
 	@RequestMapping("/business/logoChange")
@@ -236,7 +254,7 @@ public class BusinessController2 {
 
 		}
 		applHtml+="<div id='appl-leftside' class='appl-leftside'>";
-		applHtml+="<h5>채용중<i class='fas fa-angle-up'></i></h5>";
+		applHtml+="<h5 class='slide_btn'>채용중<i class='fas fa-angle-up'></i></h5>";
 		applHtml+="<hr/>";
 		applHtml+="<ul class='apply-ing'>";
 		applHtml+="<li data='' class='";
@@ -263,9 +281,24 @@ public class BusinessController2 {
 		}
 		map.remove("applPosition");
 		applHtml+="</ul>";
+		applHtml+="<ul>";
+		applHtml+="</ul>";
 		applHtml+="<br/>";
-		applHtml+="<h5>마감된 포지션<i class='fas fa-angle-up'></i></h5>";
+		applHtml+="<h5 class='slide_btn'>마감된 포지션<i class='fas fa-angle-up'></i></h5>";
 		applHtml+="<hr/>";
+		applHtml+="<ul>";
+		map.put("status", "D");
+		List<Position> deadPoList=service.selectPositionList(map);
+		for(Position po:deadPoList) {
+			int positionNo=po.getPosition_no();
+			map.put("applPosition", positionNo);
+			applHtml+="<li data='"+positionNo+"' class='";
+			if(cPosition.equals(""+positionNo)) {			
+				applHtml+="aList-click'";
+			}
+			applHtml+="'><span class='aList-type'>"+po.getPosition()+"</span> <span class='aList-count'>"+service.selectBusApplCount(map)+"</span></li>";
+		}
+		applHtml+="</ul>";
 		applHtml+="<ul>";
 		applHtml+="</ul>";
 		applHtml+="</div>";
@@ -745,8 +778,8 @@ public class BusinessController2 {
 		Map map=new HashMap();
 		map.put("busNo", bus.getBusNo());
 		String poHtml="";
-		String[] status= {"Y","T"};
-		poHtml+="<h2>포지션</h2>";
+		String[] status= {"Y","M","O","T"};
+		poHtml+="<div class='position_title'>포지션</div>";
 		poHtml+="<div class='position_header'>";
 		poHtml+="<button type='button' class='position_add_btn' onclick='fn_enroll_position();'>포지션 추가</button>";
 		poHtml+="</div>";
@@ -754,13 +787,16 @@ public class BusinessController2 {
 			map.put("status", s);
 			List<Position> poList=service.selectPositionList(map);
 			if(poList.size()>0) {
+				poHtml+="<div class='position_section'>";
 				if(s.equals("Y")) {
 					poHtml+="<h3>채용 진행중인 포지션</h3>";
+				}else if(s.equals("O")){
+					poHtml+="<h3>승인 요청된 포지션</h3>";
+				}else if(s.equals("M")){
+					poHtml+="<h3>수정 요청된 포지션</h3>";
 				}else {
 					poHtml+="<h3>임시 저장된 포지션</h3>";
 				}
-
-				poHtml+="<div class='position_section'>";
 				poHtml+="<div class='position_list'>";
 				for(Position po:poList) {
 					poHtml+="<div class='position_info'>";
@@ -786,9 +822,6 @@ public class BusinessController2 {
 				}
 				poHtml+="</div>";
 				poHtml+="</div>";
-				if(s.equals("Y")) {
-					poHtml+="<hr/>";
-				}
 			}
 		}
 
@@ -832,18 +865,18 @@ public class BusinessController2 {
 		html+="<div class='po_form_left'>";
 		html+="<div class='po_title'>직군/직무<span class='po_three'>(최대 3개 까지 등록 가능)</span></div>";
 		html+="<div class='po_con1 po_type_con'>";
-		String[] skills= {"웹 개발자","서버 개발자","프론트엔드 개발자","자바 개발자","안드로이드 개발자","iOS 개발자","파이썬 개발자","데이터엔지니어","시스템/네트워크 관리자","DevOps/시스템 관리자","Node.js개발자","C/C++ 개발자","데이터 사이언티스트","개발 매니저","PHP 개발자","기술지원","머신러닝 엔지니어","보안 엔지니어","QA/테스트 엔지니어","프로덕트 매니저","빅데이터 엔지니어","루비온레일즈 개발자",".NET개발자","웹 퍼블리셔","임베디드 개발자","블록체인 플랫폼 엔지니어","하드웨어 엔지니어","CTO/Chief TechnologyOfficer","영상/음성 엔지니어","BI 엔지니어","그래픽스엔지니어","CIO/Chief InformationOfficer"};
+		List<Map> jobList=service.selectJobField();
 		html+="<select class='po_type_list form-control' name='job_type_list'>";
 		html+="<option class='type_init' selected disabled>직군/직무 선택</option>";
-		for(String skill:skills) {
-			html+="<option value='"+skill+"'>"+skill+"</option>";
+		for(Map job:jobList) {
+			html+="<option value='"+job.get("JOB_CODE")+"'>"+job.get("JOB_NAME")+"</option>";
 		}
 		html+="</select>";
 		if(po!=null && po.getJob_type()!=null) {
 			for(String type:po.getJob_type()){			
 				html+="<div class='po_type'>";
 				html+="<input type='hidden' value='"+type+"' name='job_type'/>";
-				html+="<span>"+type+"</span><button type='button' onclick='fn_del_type();'><i class='fas fa-times'></i></button>";
+				html+="<span>"+(jobList.get(Integer.parseInt(type.replace("D",""))-1)).get("JOB_NAME")+"</span><button type='button' onclick='fn_del_type();'><i class='fas fa-times'></i></button>";
 				html+="</div>";
 			}
 		}
@@ -865,7 +898,7 @@ public class BusinessController2 {
 		html+=" min='0' max='100'/>";
 		html+="<span> ~ </span>";
 		html+="<input type='number' class='po_num form-control' name='po_career' onkeypress='onlyNumber();' value=";
-		html+=poCa!=null&&poCa.length>1?"'"+poCa[1]+"'":"'0'";
+		html+=poCa!=null&&poCa.length>1?"'"+poCa[1].charAt(0)+"'":"'0'";
 		html+="min='0' max='100'/>&nbsp;<span>년</span>";
 		html+="</div>";
 		html+="</div>";
@@ -955,13 +988,25 @@ public class BusinessController2 {
 			seHtml+="style='display:none'";
 		}
 		seHtml+=">삭제</button>";
-		if(po!=null && !po.getStatus().equals("Y")) {			
-			seHtml+="<button type='button' class='po_btn po_temp' data='";
-			seHtml+=po.getStatus().equals("O")?"O":"T";
-			seHtml+="' onclick='fn_add_position();'>임시 저장</button>";
-			seHtml+="<button type='button' class='po_btn' data='O' onclick='fn_add_position();'";
-			seHtml+=po.getStatus().equals("O")?" disabled>승인 요청 중":">승인요청";
-			seHtml+="</button>";
+		if(po!=null) {
+			if(po.getStatus().equals("Y")) {
+				seHtml+="<div class='po_btn_con'>";
+				seHtml+="<button type='button' class='po_btn' data='M' onclick='fn_add_position();'>수정 요청</button>";
+				seHtml+="</div>";
+			}else if(po.getStatus().equals("T")) {
+				seHtml+="<div class='po_btn_con'>";
+				seHtml+="<button type='button' class='po_btn po_temp' data='T' onclick='fn_add_position();'>임시 저장</button>";
+				seHtml+="<button type='button' class='po_btn' data='O' onclick='fn_add_position();'>승인요청</button>";
+				seHtml+="</div>";
+			}else if(po.getStatus().equals("O")){			
+				seHtml+="<div class='po_btn_con'>";
+				seHtml+="<div class='po_ing'>승인 요청 중</div>";
+				seHtml+="</div>";
+			}else if(po.getStatus().equals("M")) {
+				seHtml+="<div class='po_btn_con'>";
+				seHtml+="<div class='po_ing'>수정 요청 중</div>";
+				seHtml+="</div>";
+			}
 		}else {
 			seHtml+="<button type='button' class='po_btn po_temp' data='";
 			seHtml+="T";
@@ -1017,14 +1062,21 @@ public class BusinessController2 {
 
 		map.put("po",po);
 		map.put("poStatus",poStatus);
+		GregorianCalendar gc=null;
 		if(po_date.length()<1) {
-			po_date="2999/12/31";
+			gc=new GregorianCalendar(2999, 11, 31, 23, 59, 59);
+		}else {
+			String[] pd=po_date.split("-");
+			gc=new GregorianCalendar(Integer.parseInt(pd[0]), Integer.parseInt(pd[1])-1, Integer.parseInt(pd[2]), 23, 59, 59);
 		}
-		map.put("poDate",po_date);
+//		map.put("poDate",new Date(gc.getTimeInMillis()));
+		map.put("poDate","2999/12/31");
 		map.put("poSalary",po_salary);
-		System.out.println(po_career.length);
 		if(po_career[0].equals("0")) {
 			po_career[0]="신입";
+		}
+		if(po_career.length>1) {
+			po_career[1]+="년";
 		}
 		map.put("poCareer",po_career);
 		int result=service.updatePosition(map);
@@ -1274,7 +1326,7 @@ public class BusinessController2 {
 		setHtml+="<div class='super_admin_header'>";
 		setHtml+="관리자";
 		setHtml+="</div>";
-		setHtml+="<div class='set_admin_mem>";
+		setHtml+="<div class='set_admin_mem'>";
 		Business bus=(Business)session.getAttribute("busInfo");
 		List<Member> busMemList=service.selectBusMemList(Integer.parseInt(bus.getBusNo()));
 		String adminHtml="";
@@ -1282,15 +1334,25 @@ public class BusinessController2 {
 		int count=0;
 		for(Member m:busMemList) {
 			if(m.getMemLevel()==4) {
-				adminHtml+="<div class='admin_icon'>";
-				adminHtml+="<img src='"+path+m.getMemIcon()!=null?m.getMemIcon():"/resources/upload/profile/no-profile-image.png";
+				adminHtml+="<div class='set_mem_icon'>";
+				adminHtml+="<img class='mem_icon_img' src='"+path;
+				adminHtml+=m.getMemIcon()!=null?m.getMemIcon():"/resources/upload/profile/no-profile-image.png";
 				adminHtml+="'/>";	
 				adminHtml+="</div>";
-				adminHtml+="<div class='admin_name'>";
+				adminHtml+="<div class='mem_name'>";
 				adminHtml+="<span >"+m.getMemName()+"</span>";
 				adminHtml+="</div>";
 				adminHtml+="</div>";
 			}else{
+				semiHtml+="<div class='set_mem_icon'>";
+				semiHtml+="<img class='mem_icon_img' src='"+path;
+				semiHtml+=m.getMemIcon()!=null?m.getMemIcon():"/resources/upload/profile/no-profile-image.png";
+				semiHtml+="'/>";	
+				semiHtml+="</div>";
+				semiHtml+="<div class='mem_name'>";
+				semiHtml+="<span >"+m.getMemName()+"</span>";
+				semiHtml+="</div>";
+				semiHtml+="</div>";
 				count++;
 			}	
 		}

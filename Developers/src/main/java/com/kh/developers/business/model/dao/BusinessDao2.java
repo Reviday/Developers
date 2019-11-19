@@ -65,6 +65,7 @@ public interface BusinessDao2 {
 	int updateApplPf(SqlSession session, Map map);
 	
 	List<Position> selectPositionList(SqlSession session, Map map);
+	List<Map> selectJobField(SqlSession session);
 	
 	int insertPosition(SqlSession session, Position po);
 	int updatePosition(SqlSession session, Map map);

@@ -160,6 +160,12 @@ public class BusinessServiceImpl2 implements BusinessService2 {
 	}
 
 	@Override
+	public List<Map> selectJobField() {
+		List<Map> job=dao.selectJobField(session);
+		return job;
+	}
+
+	@Override
 	public int insertPosition(Position po) {
 		int result=dao.insertPosition(session, po);
 		if(result>0) {

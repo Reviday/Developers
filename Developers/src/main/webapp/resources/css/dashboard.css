@@ -20,6 +20,7 @@ section {
 
 .appl-leftside>h5 {
     font-size: 1.4rem;
+    cursor: pointer;
 }
 
 .appl-leftside>ul>li {
@@ -34,7 +35,6 @@ section {
 }
 
 .appl-leftside>h5>svg {
-    display: none;
     float: right;
 }
 
@@ -51,7 +51,13 @@ section {
     color: #900020;
     font-weight: 900;
 }
-
+.aList-click2>.aList-type{
+    color: #900020;
+    font-weight: 900;
+    font-size: 1.5rem;
+    padding: 3px 0;
+    cursor: pointer;
+}
 .appl-main-top {
     width: 100%;
     border: 1px solid rgb(226, 224, 224);
@@ -295,6 +301,7 @@ input[name="search_em"]::placeholder {
     display: none;
     width: 100%;
     height: 100%;
+    z-index:990;
 }
 
 .del-modal-content {
@@ -473,6 +480,11 @@ input[name="search_em"]::placeholder {
     float: right;
 }
 
+.position_title{
+    font-size: 3rem;
+    font-weight: bold;
+}
+
 .position_add_btn {
     padding: 3px 10px;
     color: white;
@@ -492,6 +504,10 @@ input[name="search_em"]::placeholder {
 .position_section {
     margin-top: 20px;
     width: 100%;
+}
+.position_section>h3{
+    padding-bottom: 1rem;
+    border-bottom: 1px solid silver;
 }
 
 .position_info {
@@ -649,11 +665,15 @@ input[name="search_em"]::placeholder {
     max-width: 1024px;
 }
 
-.po_btn {
+.po_btn_con{
     position: relative;
     float: right;
+    width:200px;
+}
+.po_btn {
+    position: relative;
     font-size: 2rem;
-    margin-right: 1%;
+    margin-right: 2%;
     transform: translateY(25%);
     background-color: #900020;
     color: white;
@@ -665,6 +685,20 @@ input[name="search_em"]::placeholder {
 
 .po_btn:hover {
     background-color: #6e0000;
+}
+
+.po_ing{
+    position: relative;
+    float: right;
+    font-size: 2rem;
+    margin-right: 1%;
+    transform: translateY(25%);
+    background-color: #900020;
+    color: white;
+    font-weight: bold;
+    border: 1px solid silver;
+    border-radius: 3px;
+    padding:1px 4px;
 }
 
 .po_temp{
@@ -1064,6 +1098,63 @@ input[name="search_em"]::placeholder {
     }
 }
 
+/*----------------------기업관리자-----------------------------*/
+.set_header>*{
+    position: relative;
+    display: inline-block;
+}
+.set_invite_btn{
+    float: right;
+}
+.set_title{
+    font-size: 3rem;
+    font-weight: bold;
+}
+.set_main{
+    display: block !important;
+    width:85%;
+    max-width: 1024px;
+    margin:2% auto; 
+}
+
+.set_admin_mem{
+    padding:2%;
+    border:1px solid silver;
+    background-color: white;
+}
+.set_admin_mem>div{
+    position: relative;
+    display: inline-block;
+}
+
+.super_admin_header{
+    font-size: 2.2rem;
+}
+.set_mem_icon{
+    width:60px;
+    height:60px;
+    border-radius: 30px;
+    border:0.5px solid #900020;
+}
+
+.mem_icon_img{
+    position: relative;
+
+    width:56px;
+    height:56px;
+    border-radius: 30px;
+    left:50%;
+    top:50%;
+    transform: translate(-50%, -50%);
+}
+.mem_name{
+    margin-left:1%;
+    font-size: 1.8rem;
+    vertical-align: middle;
+}
+
+
+
 
 
 
@@ -1135,10 +1226,6 @@ input[name="search_em"]::placeholder {
         left: 50%;
         transform: translateX(-50%);
         top: 20px;
-    }
-
-    .appl-leftside>h5>svg {
-        display: block;
     }
 
     .bi_half>div {
