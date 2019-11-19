@@ -24,7 +24,7 @@
 	}
 </style>
 <div class="container">
-
+	<c:if test="${not empty business }">
     <div class="alert" role="alert">
     	<div class="panel panel-primary">
             <div class="panel-heading">
@@ -87,15 +87,6 @@
               <div class="clearfix"></div>
 
               <div class="col-md-12">
-                <strong>기업 소개 : <br/></strong>
-                <input id="servicio" name="servicio" 
-                  class="form-control" placeholder="servicio" type="text" 
-                  disabled="disabled" value="${business.busIntroduce}">
-              </div><!-- .col-md-12 -->
-              
-              <div class="clearfix"></div>
-
-              <div class="col-md-12">
                 <strong>기업 이메일 : </strong>
                 <span>${business.busEmail}</span>
               </div>
@@ -115,8 +106,21 @@
                 <span><a href="${business.busWebsite}">${business.busWebsite}</a></span>
               </div>
               
+              <div class="col-md-12">
+                <strong>기업 소개 : <br/></strong>
+                <textarea id="servicio" name="servicio" 
+                  class="form-control" placeholder="None" type="text" 
+                  disabled="disabled" style="height:300px;">${business.busIntroduce}</textarea>
+              </div><!-- .col-md-12 -->
+              
               <div class="clearfix"></div>
 
     	</div><!-- .panel -->
     </div><!-- .alert -->
+    </c:if>
+	<c:if test="${empty business }">
+		<h3 style="text-align: center">
+        	<span style="font-weight: 600">등록된 정보가 없습니다.</span> 
+        </h3>
+	</c:if>
 </div><!-- .container -->

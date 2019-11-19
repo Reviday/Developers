@@ -6,9 +6,9 @@ import java.util.Map;
 import org.mybatis.spring.SqlSessionTemplate;
 
 import com.kh.developers.admin.model.vo.BusinessRequest;
+import com.kh.developers.admin.model.vo.EnrollPosition;
 import com.kh.developers.admin.model.vo.MemberLoginLog;
 import com.kh.developers.admin.model.vo.RequestMappingLog;
-import com.kh.developers.admin.model.vo.VisitCount;
 import com.kh.developers.business.model.vo.Business;
 import com.kh.developers.member.model.vo.Member;
 
@@ -40,4 +40,10 @@ public interface AdminDao {
 	int updateBusinessInfoStatus(SqlSessionTemplate session, int busNo);
 	int deleteBusinessInfo(SqlSessionTemplate session, int busNo);
 	int deletMemBusConnection(SqlSessionTemplate session, int busNo);
+	int selectEnrollPositionCount(SqlSessionTemplate session);
+	List<EnrollPosition> selectEnrollPositionList(SqlSessionTemplate session, int cPage, int numPerPage);
+	EnrollPosition selectPositionOne(SqlSessionTemplate session, int positionNo);
+	int positionApproval(SqlSessionTemplate session, int positionNo);
+	int positionRejection(SqlSessionTemplate session, int positionNo);
+	List<Map<String, String>> selectJabField(SqlSessionTemplate session);
 }

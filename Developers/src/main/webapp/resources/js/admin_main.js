@@ -274,9 +274,12 @@ function bus_req_approval(requestNo, busNo, memNo) {
 		},
 		success:function(result) {
 			if(result!=null) {
+				alert("정상적으로 승인처리 되었습니다.");
 				$('.mainContent').html("");
 				$('.mainContent').html(result);
-			} 
+			} else {
+				alert("승인처리가 정상적으로 이루어지지 않았습니다.");
+			}
 		}
 	})
 };
@@ -295,8 +298,56 @@ function bus_req_rejection(requestNo, busNo, memNo) {
 		},
 		success:function(result) {
 			if(result!=null) {
+				alert("정상적으로 거절처리 되었습니다.");
 				$('.mainContent').html("");
 				$('.mainContent').html(result);
+			} else{
+				alert("거절처리가 정상적으로 이루어지지 않았습니다.");
+			}
+		}
+	})
+};
+
+
+// 포지션 등록 승인
+function position_approval(positionNo, busNo) {
+	$.ajax({
+		url:path+"/admin/positionApproval.lac",
+		type:"POST",
+		data:{
+			"positionNo":positionNo,
+			"busName":$("#busName_"+busNo).val(),
+			"applyEmail":$("#applyEmail_"+positionNo).val()
+		},
+		success:function(result) {
+			if(result!=null) {
+				alert("정상적으로 승인처리 되었습니다.");
+				$('.mainContent').html("");
+				$('.mainContent').html(result);
+			} else {
+				alert("승인처리가 정상적으로 이루어지지 않았습니다.");s
+			}
+		}
+	})
+};
+
+// 포지션 등록 거절
+function position_rejection(positionNo, busNo) {
+	$.ajax({
+		url:path+"/admin/positionRejection.lac",
+		type:"POST",
+		data:{
+			"positionNo":positionNo,
+			"busName":$("#busName_"+busNo).val(),
+			"applyEmail":$("#applyEmail_"+positionNo).val()
+		},
+		success:function(result) {
+			if(result!=null) {
+				alert("정상적으로 거절처리 되었습니다.");
+				$('.mainContent').html("");
+				$('.mainContent').html(result);
+			} else {
+				alert("거절처리가 정상적으로 이루어지지 않았습니다.");s
 			}
 		}
 	})

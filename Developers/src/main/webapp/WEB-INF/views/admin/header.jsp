@@ -136,7 +136,7 @@
 	                            </a>
 	                        </li>
 	                        <li>
-	                            <a href="#">
+	                            <a href="${path }/admin/enrollPosition.lac">
 	                                <i class="fa fa-database" aria-hidden="true"></i>
 	                                	포지션등록승인관리
 	                            </a>

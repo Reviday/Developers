@@ -9,14 +9,45 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.kh.developers.admin.model.vo.BusinessRequest;
+import com.kh.developers.admin.model.vo.EnrollPosition;
 import com.kh.developers.admin.model.vo.MemberLoginLog;
 import com.kh.developers.admin.model.vo.RequestMappingLog;
-import com.kh.developers.admin.model.vo.VisitCount;
 import com.kh.developers.business.model.vo.Business;
 import com.kh.developers.member.model.vo.Member;
 
 @Repository
 public class AdminDaoImpl implements AdminDao{
+	
+	@Override
+	public List<Map<String, String>> selectJabField(SqlSessionTemplate session) {
+		return session.selectList("admin.selectJabField");
+	}
+	
+	@Override
+	public int positionRejection(SqlSessionTemplate session, int positionNo) {
+		return session.update("admin.positionRejection", positionNo);
+	}
+	
+	@Override
+	public int positionApproval(SqlSessionTemplate session, int positionNo) {
+		return session.update("admin.positionApproval", positionNo);
+	}
+	
+	@Override
+	public EnrollPosition selectPositionOne(SqlSessionTemplate session, int positionNo) {
+		return session.selectOne("admin.selectPositionOne", positionNo);
+	}
+	
+	@Override
+	public List<EnrollPosition> selectEnrollPositionList(SqlSessionTemplate session, int cPage, int numPerPage) {
+		RowBounds r=new RowBounds((cPage-1)*numPerPage, numPerPage);
+		return session.selectList("admin.selectEnrollPositionList", null, r);
+	}
+	
+	@Override
+	public int selectEnrollPositionCount(SqlSessionTemplate session) {
+		return session.selectOne("admin.selectEnrollPositionCount");
+	}
 	
 	@Override
 	public int deletMemBusConnection(SqlSessionTemplate session, int busNo) {

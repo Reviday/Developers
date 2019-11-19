@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.kh.developers.admin.model.vo.BusinessRequest;
+import com.kh.developers.admin.model.vo.EnrollPosition;
 import com.kh.developers.admin.model.vo.MemberLoginLog;
 import com.kh.developers.admin.model.vo.RequestMappingLog;
 import com.kh.developers.business.model.vo.Business;
@@ -34,4 +35,10 @@ public interface AdminService {
 	Member selectMemberOne(int memNo);
 	int businessRequestApproval(int requestNo, int busNo, int memNo) throws Exception;
 	int businessRequestRejection(int requestNo, int busNo, int memNo) throws Exception;
+	int selectEnrollPositionCount();
+	List<EnrollPosition> selectEnrollPositionList(int cPage, int numPerPage);
+	EnrollPosition selectPositionOne(int positionNo);
+	int positionApproval(int positionNo);
+	int positionRejection(int positionNo);
+	List<Map<String, String>> selectJabField();
 }

@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="admin">
+	<select id="selectJabField" resultType="map">
+		SELECT * FROM JOB_FIELD
+	</select>
+	<update id="positionRejection" parameterType="_int">
+		UPDATE ENROLL_POSITION SET STATUS='T' WHERE POSITION_NO=#{positionNo}
+	</update>
+	<update id="positionApproval" parameterType="_int">
+		UPDATE ENROLL_POSITION SET STATUS='Y' WHERE POSITION_NO=#{positionNo}
+	</update>
+	<select id="selectPositionOne" parameterType="_int" resultMap="epArray">
+		SELECT * FROM ENROLL_POSITION WHERE STATUS IN ('O','M') AND POSITION_NO=#{positionNo}
+	</select>
+	<select id="selectEnrollPositionList" resultMap="epArray">
+		SELECT POSITION_NO, BUS_NO, BUS_NAME, JOB_TYPE, CAREER, POSITION, ENROLL_DATE, APPLY_EMAIL, STATUS  FROM ENROLL_POSITION WHERE STATUS IN ('O','M')
+	</select>
+	<select id="selectEnrollPositionCount" resultType="_int">
+		SELECT COUNT(*) FROM ENROLL_POSITION WHERE STATUS IN ('O','M') 
+	</select>
 	<delete id="deletMemBusConnection" parameterType="_int">
 		DELETE FROM MEM_BUS_CONNECTION WHERE BUS_NO=#{busNo}
 	</delete>
@@ -8,7 +26,7 @@
 		DELETE FROM BUSINESS_INFO WHERE BUS_NO=#{busNo}
 	</delete>
 	<update id="updateBusinessInfoStatus" parameterType="_int">
-		UPDATE BUSINESS_INFO SET BUS_STATUS='Y' WHERE BUS_NO=#{busNo}
+		UPDATE BUSINESS_INFO SET BUS_STATUS='Y',CONFIRMED_DATE=SYSDATE  WHERE BUS_NO=#{busNo}
 	</update>
 	<delete id="deleteBusinessRequest" parameterType="_int">
 		DELETE FROM BUSINESS_REQUEST WHERE REQUEST_NO=#{requestNo}
@@ -100,5 +118,28 @@
 		<result property="memWithdrawalDate" column="mem_withdrawal_date"/>
 		<result property="memDeniedDate" column="mem_denied_date"/>
 		<result property="filter_id" column="filter_id"/>
+	</resultMap>
+	
+	<resultMap type="ep" id="epArray">
+		<result property="positionNo" column="POSITION_NO"/>
+		<result property="busNo" column="BUS_NO"/>
+		<result property="busName" column="BUS_NAME" />
+		<result property="applyEmail" column="APPLY_EMAIL" />
+		<result property="jobType" column="JOB_TYPE" typeHandler="StrArray"/>
+		<result property="career" column="CAREER" typeHandler="StrArray"/>
+		<result property="tag" column="TAG" typeHandler="StrArray"/>
+		<result property="deadDate" column="DEAD_DATE" />
+		<result property="position" column="POSITION" />
+		<result property="positionInfo" column="POSITION_INFO" />
+		<result property="mainbusiness" column="MAINBUSINESS" />
+		<result property="qualification" column="QUALIFICATION" />
+		<result property="preference" column="PREFERENCE" />
+		<result property="benefit" column="BENEFIT" />
+		<result property="enrollDate" column="ENROLL_DATE" />
+		<result property="likeId" column="LIKE_ID" />
+		<result property="lat" column="LAT" />
+		<result property="status" column="STATUS" />
+		<result property="longg" column="LONGG" />
+		<result property="positionSalary" column="POSITION_SALARY" typeHandler="StrArray"/>
 	</resultMap>
 </mapper>

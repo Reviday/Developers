@@ -241,6 +241,14 @@ select::-ms-expand {
 	.num {
 		font-size:25px;
 	}
+	.hidden_mb {
+		width: 0px !important;
+    	display: none !important;
+	}
+	.only_mb {
+		width: auto !important;
+		display:inline-block !important;
+	}
 }
 
 .col {
@@ -273,3 +281,4 @@ select::-ms-expand {
     	display: none !important;
 	}
 }
+

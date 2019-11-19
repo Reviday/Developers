@@ -7,11 +7,11 @@ import java.util.Map;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.kh.developers.admin.model.dao.AdminDao;
 import com.kh.developers.admin.model.vo.BusinessRequest;
+import com.kh.developers.admin.model.vo.EnrollPosition;
 import com.kh.developers.admin.model.vo.MemberLoginLog;
 import com.kh.developers.admin.model.vo.RequestMappingLog;
 import com.kh.developers.business.model.vo.Business;
@@ -26,6 +26,36 @@ public class AdminServiceImpl implements AdminService {
 	@Autowired
 	private SqlSessionTemplate session;
 	private SearchValuesTemplate svt;
+	
+	@Override
+	public List<Map<String, String>> selectJabField() {
+		return dao.selectJabField(session);
+	}
+	
+	@Override
+	public int positionRejection(int positionNo) {
+		return dao.positionRejection(session, positionNo);
+	}
+	
+	@Override
+	public int positionApproval(int positionNo) {
+		return dao.positionApproval(session, positionNo);
+	}
+	
+	@Override
+	public EnrollPosition selectPositionOne(int positionNo) {
+		return dao.selectPositionOne(session, positionNo);
+	}
+	
+	@Override
+	public List<EnrollPosition> selectEnrollPositionList(int cPage, int numPerPage) {
+		return dao.selectEnrollPositionList(session, cPage, numPerPage);
+	}
+	
+	@Override
+	public int selectEnrollPositionCount() {
+		return dao.selectEnrollPositionCount(session);
+	}
 	
 	@Override
 	@Transactional(value="transactionManager", rollbackFor=Exception.class)

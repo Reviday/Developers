@@ -14,18 +14,19 @@
 	<div class="container" style="height: 60px"></div>
 	<div class="container mainContent">
 		<div class="row">
-			<h1 class="title">기업등록승인관리</h1>
+			<h1 class="title">포지션등록승인관리</h1>
 		</div>
 		<div class="row">
 			<table class="table table-list-search rwd-table">
 				<thead>
 					<tr>
-						<th>등록기업명</th>
-						<th class="visible-over-md">기업주소</th>
-						<th class="visible-only-lg">산업</th>
-						<th class="visible-only-lg">연매출</th>
-						<th>요청회원정보</th>
+						<th>구분</th>
+						<th>기업명</th>
+						<th class="visible-over-md">직무</th>
+						<th class="visible-only-lg">커리어</th>
+						<th class="visible-only-lg">포지션</th>
 						<th>신청일시</th>
+						<th>정보보기</th>
 						<th>승인/거절</th>
 					</tr>
 				</thead>
@@ -33,29 +34,48 @@
 					<c:if test="${not empty resultList}">
 						<c:forEach items="${resultList }" var="l">
 							<tr>
-								<td data-th="등록기업명">
+								<td data-th="구분">
+									<c:if test="${l.status eq 'O' }">신규등록</c:if>
+									<c:if test="${l.status eq 'M' }">수정요청</c:if>
+								</td>
+								<td data-th="기업명">
 									<button type="button" class="btn btn-success" style="font-weight: 600" onclick="blank_bus_info(${l.busNo});">
 										${l.busName }
 									</button>
 									<input type="hidden" value="${l.busName }" id="busName_${l.busNo }"/>
+									<input type="hidden" value="${l.applyEmail }" id="applyEmail_${l.positionNo }"/>
 								</td>
-								<td class="visible-over-md" data-th="기업주소">${l.busAddress }</td>
-								<td class="visible-only-lg" data-th="산업">${l.busIndustrial }</td>
-								<td class="visible-only-lg" data-th="연매출">${l.busIncome }</td>
-								<td data-th="요청회원정보">
-									<button type="button" class="btn btn-success" style="font-weight: 600" onclick="blank_mem_info(${l.memNo});">
-										${l.memEmail }
-									</button>
-									<input type="hidden" value="${l.memEmail }" id="memEmail_${l.memNo }"/>
+								<td class="visible-over-md" data-th="직무">
+									<span class="hidden_mb">
+										<c:forEach items="${l.jobType }" var="j" varStatus="s">
+											${jobFiled[j] }<c:if test="${!s.last}"><br/></c:if>
+										</c:forEach>
+									</span> 
+									<span class="only_mb" style="display:none">
+										<c:forEach items="${l.jobType }" var="j" varStatus="s">
+											${jobFiled[j] }<c:if test="${!s.last}">,</c:if>
+										</c:forEach>
+									</span>
 								</td>
+								<td class="visible-only-lg" data-th="커리어">
+									<c:forEach items="${l.career }" var="j" varStatus="s">
+										${j }<c:if test="${!s.last}">~</c:if>
+									</c:forEach> 
+								</td>
+								<td class="visible-only-lg" data-th="포지션">${l.position }</td>
 								<td data-th="신청일시">
-									<c:if test="${l.requestDate ne null }">
-										<fmt:formatDate value="${l.requestDate }" pattern="yyyy-MM-dd HH:mm:ss"/>
+									<c:if test="${l.enrollDate ne null }">
+										<fmt:formatDate value="${l.enrollDate }" pattern="yyyy-MM-dd HH:mm:ss"/>
 									</c:if>
 								</td>
+								<td data-th="정보보기">
+									<button type="button" class="btn btn-success" style="font-weight: 600" onclick="blank_pos_info(${l.positionNo});">
+										정보보기
+									</button>
+								</td>
 								<td data-th="승인/거절">
-									<button type="button" class="btn btn-primary btn-sm" onclick="bus_req_approval(${l.requestNo }, ${l.busNo},${l.memNo});">승인</button>
-									<button type="button" class="btn btn-danger btn-sm" onclick="bus_req_rejection(${l.requestNo }, ${l.busNo},${l.memNo});">거절</button>
+									<button type="button" class="btn btn-primary btn-sm" onclick="position_approval(${l.positionNo }, ${l.busNo });">승인</button>
+									<button type="button" class="btn btn-danger btn-sm" onclick="position_rejection(${l.positionNo }, ${l.busNo });">거절</button>
 								</td>
 							</tr>
 						</c:forEach>
@@ -80,8 +100,8 @@
 				function blank_bus_info(busNo) {
 					var win = window.open(path+"/admin/businessInfo.lac?busNo="+busNo, "기업정보", "width=800,height=600");
 				};
-				function blank_mem_info(memNo) {
-					var win = window.open(path+"/admin/memberInfo.lac?memNo="+memNo, "회원정보", "width=500,height=400");
+				function blank_pos_info(positionNo) {
+					var win = window.open(path+"/admin/positionInfo.lac?positionNo="+positionNo, "포지션정보", "width=800,height=600");
 				};
 			</script>
 		</div>

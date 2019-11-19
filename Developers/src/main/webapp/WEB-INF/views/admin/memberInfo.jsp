@@ -24,7 +24,7 @@
 	}
 </style>
 <div class="container">
-
+	<c:if test="${not empty Member }">
     <div class="alert" role="alert">
     	<div class="panel panel-primary">
             <div class="panel-heading">
@@ -72,13 +72,19 @@
 
               <div class="col-md-12">
                 <strong>관리자 메모 : <br/></strong>
-                <input id="servicio" name="servicio" 
+                <textarea id="servicio" name="servicio" 
                   class="form-control" placeholder="None" type="text" 
-                  disabled="disabled" value="${Member.memAdminmemo}">
+                  disabled="disabled" style="height:300px;">${Member.memAdminmemo}</textarea>
               </div><!-- .col-md-12 -->
               
               <div class="clearfix"></div>
 
     	</div><!-- .panel -->
     </div><!-- .alert -->
+    </c:if>
+	<c:if test="${empty Member }">
+		<h3 style="text-align: center">
+        	<span style="font-weight: 600">등록된 정보가 없습니다.</span> 
+        </h3>
+	</c:if>
 </div><!-- .container -->
