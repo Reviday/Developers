@@ -13,32 +13,45 @@
 	<div class="container" style="height: 60px"></div>
 	<div class="container chart_area">
 		<div class="row" style="margin-bottom: 20px">
-			<h1 class="title">방문자 통계</h1>
+			<h1 class="title">방문자 통계</h1> highestVisitor
 			<div class="middle">
 		        <div class="counting-sec">
 		            <div class="inner-width">
 		                <div class="col">
 		                    <i class="far fa-smile-wink"></i>
-		                    <div class="num">${statsList[3]}</div>
+		                    <div class="num">${visitorStats[3]}</div>
 		                    	전체 방문자
 		                </div>
 		
 		                <div class="col">
 		                    <i class="fas fa-briefcase"></i>
-		                    <div class="num">${statsList[2]}</div>
-		                    	한달 
+		                    <div class="num">${visitorStats[2]}</div>
+		                    	한 달 방문자
 		                </div>
 		
 		                <div class="col">
 		                    <i class="far fa-money-bill-alt"></i>
-		                    <div class="num">${statsList[1]}</div>
-		                    	로그인 시도<br>(금일)
+		                    <div class="num">${visitorStats[1]}</div>
+		                    	일주일 방문자
 		                </div>
 		
 		                <div class="col">
 		                    <i class="far fa-object-group"></i>
-		                    <div class="num">${statsList[0]}</div>
-		                    	로그인 성공<br>(금일)
+		                    <div class="num">${visitorStats[0]}</div>
+		                    	금일 방문자
+		                </div>
+		            </div>
+		            <div class="inner-width">
+		                <div class="col">
+		                    <i class="far fa-smile-wink"></i>
+		                    <div class="num">${highestVisitor.COUNT}</div>
+		                    	최고 방문자 수
+		                </div>
+		
+		                <div class="col">
+		                    <i class="fas fa-briefcase"></i>
+		                    <div class="num">${highestVisitor.DATE}</div>
+		                    	최고 방문 기록 일자
 		                </div>
 		            </div>
 		        </div>

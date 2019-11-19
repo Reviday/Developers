@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="log">
+	<select id="selectHighestVisitor" resultType="map">
+		SELECT *
+		FROM(SELECT ROWNUM AS RNUM, A.*
+		FROM(SELECT TO_CHAR(VISIT_TIME,'yyyy.mm.dd') AS "DATE", COUNT(*) AS "COUNT" FROM TB_VISITOR GROUP BY TO_CHAR(VISIT_TIME,'yyyy.mm.dd') ORDER BY COUNT DESC) A) B
+		WHERE RNUM=1
+	</select>
+	<select id="selectVisitorStats" resultType="_int">
+		SELECT COUNT(*) FROM TB_VISITOR
+		UNION ALL
+		SELECT COUNT(*) FROM TB_VISITOR WHERE TO_DATE(VISIT_TIME,'yyyy-mm-dd')>=TO_DATE(ADD_MONTHS(SYSDATE,-1),'yyyy-mm-dd')
+		UNION ALL
+		SELECT COUNT(*) FROM TB_VISITOR WHERE TO_DATE(VISIT_TIME,'yyyy-mm-dd')>=TO_DATE(SYSDATE-7,'yyyy-mm-dd')
+		UNION ALL
+		SELECT COUNT(*) FROM TB_VISITOR WHERE TO_DATE(VISIT_TIME,'yyyy-mm-dd')=TO_DATE(SYSDATE,'yyyy-mm-dd')
+		ORDER BY 1
+	</select>
 	<select id="selectLoginLogChartData" parameterType="map" resultType="map">
 		SELECT COUNT(*) AS "COUNT", TO_CHAR(MLL_DATETIME,'YYYY-MM-DD') AS "DATE" FROM TA_MEMBER_LOGIN_LOG WHERE 
 		<if test="data != null">MLL_SUCCESS=#{data}</if>

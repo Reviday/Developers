@@ -41,4 +41,6 @@ public interface AdminService {
 	int positionApproval(int positionNo);
 	int positionRejection(int positionNo);
 	List<Map<String, String>> selectJabField();
+	List<Integer> selectVisitorStats();
+	Map<String, Object> selectHighestVisitor();
 }

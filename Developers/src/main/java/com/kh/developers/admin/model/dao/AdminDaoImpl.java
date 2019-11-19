@@ -19,6 +19,16 @@ import com.kh.developers.member.model.vo.Member;
 public class AdminDaoImpl implements AdminDao{
 	
 	@Override
+	public Map<String, Object> selectHighestVisitor(SqlSessionTemplate session) {
+		return session.selectOne("log.selectHighestVisitor");
+	}
+	
+	@Override
+	public List<Integer> selectVisitorStats(SqlSessionTemplate session) {
+		return session.selectList("log.selectVisitorStats");
+	}
+	
+	@Override
 	public List<Map<String, String>> selectJabField(SqlSessionTemplate session) {
 		return session.selectList("admin.selectJabField");
 	}
