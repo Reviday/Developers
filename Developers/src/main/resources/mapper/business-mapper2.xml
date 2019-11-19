@@ -89,8 +89,8 @@
 		WHERE BUS_NO=#{busNo}
 	</update>
 	
-	<select id="selectPositionOne" parameterType="_int" resultMap="positionArray">
-		SELECT * FROM ENROLL_POSITION WHERE POSITION_NO=#{positionNo}
+	<select id="selectPositionOne" parameterType="map" resultMap="positionArray">
+		SELECT * FROM ENROLL_POSITION WHERE POSITION_NO=#{positionNo} AND BUS_NO=#{busNo}
 	</select>
 	
 	<select id="selectAnswerRate" parameterType="map" resultType="_double">
@@ -286,7 +286,7 @@
 	</update>
 	
 	<update id="deletePosition" parameterType="_int">
-		UPDATE FROM ENROLL_POISTION STATUS='N' WHERE POSITION_NO=#{poNo}
+		UPDATE ENROLL_POSITION SET STATUS='N' WHERE POSITION_NO=#{poNo}
 	</update>
 	
 	

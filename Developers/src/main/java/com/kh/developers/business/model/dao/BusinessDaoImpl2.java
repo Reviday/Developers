@@ -55,8 +55,8 @@ public class BusinessDaoImpl2 implements BusinessDao2 {
 	}
 
 	@Override
-	public Position selectPositionOne(SqlSession session, int positionNo) {
-		return session.selectOne("business2.selectPositionOne", positionNo);
+	public Position selectPositionOne(SqlSession session, Map map) {
+		return session.selectOne("business2.selectPositionOne",map);
 	}
 
 
@@ -181,7 +181,7 @@ public class BusinessDaoImpl2 implements BusinessDao2 {
 
 	@Override
 	public int deletePosition(SqlSession session, int poNo) {
-		return session.update("business.deletePosition", poNo);
+		return session.update("business2.deletePosition", poNo);
 	}
 	
 	

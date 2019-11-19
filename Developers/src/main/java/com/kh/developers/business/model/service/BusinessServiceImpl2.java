@@ -61,8 +61,8 @@ public class BusinessServiceImpl2 implements BusinessService2 {
 	}
 
 	@Override
-	public Position selectPositionOne(int positionNo) {
-		Position po=dao.selectPositionOne(session, positionNo);
+	public Position selectPositionOne(Map map) {
+		Position po=dao.selectPositionOne(session, map);
 		return po;
 	}
 

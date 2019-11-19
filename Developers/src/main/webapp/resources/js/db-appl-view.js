@@ -30,6 +30,7 @@ function fn_appl_offer(){
         data:{"applNo":$(".appl_applNo").val()},
         success:function(data){
             alert("지원자에게 제안을 보냈습니다.");
+            $(".appl_view_header").html("<div class='appl_offering'>제안 중...</div>");
         }
     });
 }

@@ -70,6 +70,7 @@ function fn_appl_nav(index, page, po) {
             $(".appl-main-nav>.nav_us").html(data.navHtml);
             $('.appl-main-nav>ul>li').children().removeClass('ca2');
             $($('.appl-main-nav>ul>li')[appl_index - 1]).children().addClass('ca2');
+            $("#content").append(data.delModal);
 
             //지원자 내비
             $('.appl-main-nav>ul>li>a').on('click', function () {

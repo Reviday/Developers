@@ -37,5 +37,6 @@ public class Position {
 	private String lat; //회사주소 위도
 	private String longg; //회사주소 경도
 	private String[] position_salary; //회사 채용시 예상연봉 시작, 끝
+	private String status; //포지션 상태(T:임시저장(승인안됨), O:승인요청 상태, Y:승인, N:삭제된 포지션) 
 	
 }

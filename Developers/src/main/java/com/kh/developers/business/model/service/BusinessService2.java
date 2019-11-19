@@ -25,7 +25,7 @@ public interface BusinessService2 {
 	Double selectAnswerRate(Map map);
 	Double selectAnswerPeriod(Map map);
 	
-	Position selectPositionOne(int positionNo);
+	Position selectPositionOne(Map map);
 	//지원자 리스트
 	List<Applicant> selectBusAppl(Map map, int cPage, int numPerPage);
 

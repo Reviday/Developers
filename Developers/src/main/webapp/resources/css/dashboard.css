@@ -289,7 +289,7 @@ input[name="search_em"]::placeholder {
 }
 
 .del-modal {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     display: none;
@@ -377,7 +377,7 @@ input[name="search_em"]::placeholder {
     font-weight: bold;
 }
 
-.appl_offer_btn:hover {
+.appl_offer_btn2:hover {
     background-color: white;
     color: #900020;
     border: 1px solid #6e0000;

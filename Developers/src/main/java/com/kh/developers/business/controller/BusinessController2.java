@@ -466,11 +466,19 @@ public class BusinessController2 {
 	public ModelAndView applView(@RequestParam int applNo) {
 		ModelAndView mv=new ModelAndView();
 		String viewHtml="";
-		try {
-			IntroCard ic=service.selectResumeOne(applNo);
+		IntroCard ic=null;
+		try {			
+			ic=service.selectResumeOne(applNo);
+		}catch(Exception e) {
+			
+		}
+		if(ic!=null) {
 			viewHtml+="<div id='appl-leftside' class='appl-leftside'>";
 			Applicant appl=service.selectApplOne(applNo);
-			viewHtml+="<h2>"+(service.selectPositionOne(appl.getPositionNo())).getPosition()+"></h2>";
+			Map map=new HashMap();
+			map.put("busNo", appl.getBusNo());
+			map.put("positionNo", appl.getPositionNo());
+			viewHtml+="<h2>"+(service.selectPositionOne(map)).getPosition()+"></h2>";
 			if(appl.getPositionNo()==0) {
 				viewHtml+="<span>매칭일 : "+appl.getApplDate()+"</span>";	
 			}else {
@@ -520,75 +528,106 @@ public class BusinessController2 {
 			viewHtml+="<div class='appl_intro'><pre>"+ic.getIntro()+"</pre></div>";
 			viewHtml+="<hr style='width:95%; border-top:groove;'>";
 			if(ic.getCareers()!=null) {
-				viewHtml+="<div class='appl_careers'>";			
-				for(CareerInCard cic:ic.getCareers()) {			
-					viewHtml+="<div class='appl_view_title' style='font-weight:bold;'>경력</div>";
-					viewHtml+="<div class='appl_view_name'>"+cic.getBusName()+"</div>";
-					viewHtml+="<div><span class='aline' style='float:left; margin-left:1%; margin-right:1%;'>"+" | "+"</span></div>";
-					viewHtml+="<div class='appl_view_subname' style='color:#6E6E6E';>"+cic.getDeptName()+"</div>";
-					viewHtml+="<div class='appl_view_date'>"+cic.getEndCareer()+"</div>";
-					viewHtml+="<div class='appl_view_date'>"+cic.getStartCareer()+"  ~</div>";
-					viewHtml+="<br>";
-					viewHtml+="<div class='appl_view_intro'><pre>"+cic.getCareerIntro()+"</pre></div>";
-					viewHtml+="<hr style='width:95%;'>";
+				String caHtml="";
+				try {	
+					caHtml+="<div class='appl_careers'>";			
+					for(CareerInCard cic:ic.getCareers()) {			
+						caHtml+="<div class='appl_view_title' style='font-weight:bold;'>경력</div>";
+						caHtml+="<div class='appl_view_name'>"+cic.getBusName()+"</div>";
+						caHtml+="<div><span class='aline' style='float:left; margin-left:1%; margin-right:1%;'>"+" | "+"</span></div>";
+						caHtml+="<div class='appl_view_subname' style='color:#6E6E6E';>"+cic.getDeptName()+"</div>";
+						caHtml+="<div class='appl_view_date'>"+cic.getEndCareer()+"</div>";
+						caHtml+="<div class='appl_view_date'>"+cic.getStartCareer()+"  ~</div>";
+						caHtml+="<br>";
+						caHtml+="<div class='appl_view_intro'><pre>"+cic.getCareerIntro()+"</pre></div>";
+						caHtml+="<hr style='width:95%;'>";
+					}
+					caHtml+="</div>";
+				}catch(Exception e) {
+					caHtml="";
 				}
-				viewHtml+="</div>";
+				viewHtml+=caHtml;
 			}
-			if(ic.getEducations()!=null) {			
-				viewHtml+="<div class='appl_edus'>";
-				for(EducationInCard eic:ic.getEducations()) {
-					viewHtml+="<div class='appl_view_title' style='font-weight:bold;'>학력</div>";
-					viewHtml+="<div class='appl_view_name'>"+eic.getSchoolName()+"</div>";
-					viewHtml+="<div><span class='aline' style='float:left; margin-left:1%; margin-right:1%;'>"+" | "+"</span></div>";
-					viewHtml+="<div class='appl_view_subname' style='color:#6E6E6E';>"+eic.getMajorName()+"</div>";
-					viewHtml+="<div class='appl_view_date'>"+eic.getEndEd()+"</div>";
-					viewHtml+="<div class='appl_view_date'>"+eic.getStartEd()+"  ~</div>";
-					viewHtml+="<br>";
-					viewHtml+="<div class='appl_view_intro'><pre>"+eic.getSubjectName()+"</pre></div>";
-					viewHtml+="<hr style='width:95%;'>";
+			if(ic.getEducations()!=null) {
+				String edHtml="";
+				try {
+					edHtml+="<div class='appl_edus'>";
+					for(EducationInCard eic:ic.getEducations()) {
+						edHtml+="<div class='appl_view_title' style='font-weight:bold;'>학력</div>";
+						edHtml+="<div class='appl_view_name'>"+eic.getSchoolName()+"</div>";
+						edHtml+="<div><span class='aline' style='float:left; margin-left:1%; margin-right:1%;'>"+" | "+"</span></div>";
+						edHtml+="<div class='appl_view_subname' style='color:#6E6E6E';>"+eic.getMajorName()+"</div>";
+						edHtml+="<div class='appl_view_date'>"+eic.getEndEd()+"</div>";
+						edHtml+="<div class='appl_view_date'>"+eic.getStartEd()+"  ~</div>";
+						edHtml+="<br>";
+						edHtml+="<div class='appl_view_intro'><pre>"+eic.getSubjectName()+"</pre></div>";
+						edHtml+="<hr style='width:95%;'>";
+					}
+					edHtml+="</div>";
+				}catch(Exception e) {
+					edHtml="";
 				}
-				viewHtml+="</div>";
+				viewHtml+=edHtml;
 			}
 			if(ic.getActivities()!=null) {
-				viewHtml+="<div class='appl_acts'>";
-				for(Activitie ac:ic.getActivities()) {
-					viewHtml+="<div class='appl_view_title' style='font-weight:bold;'>대외활동</div>";
-					viewHtml+="<div class='appl_view_name'>"+ac.getActName()+"</div>";
-					viewHtml+="<div><span class='aline' style='float:left; margin-left:1%; margin-right:1%;'>"+" | "+"</span></div>";
-					viewHtml+="<div class='appl_view_date'>"+ac.getStartAct()+"</div>";
-					viewHtml+="<br>";
-					viewHtml+="<div class='appl_view_intro'><pre>"+ac.getActDetail()+"</pre></div>";
-					viewHtml+="<hr style='width:95%;'>";
+				String acHtml="";
+				try {	
+					acHtml+="<div class='appl_acts'>";
+					for(Activitie ac:ic.getActivities()) {
+						acHtml+="<div class='appl_view_title' style='font-weight:bold;'>대외활동</div>";
+						acHtml+="<div class='appl_view_name'>"+ac.getActName()+"</div>";
+						acHtml+="<div><span class='aline' style='float:left; margin-left:1%; margin-right:1%;'>"+" | "+"</span></div>";
+						acHtml+="<div class='appl_view_date'>"+ac.getStartAct()+"</div>";
+						acHtml+="<br>";
+						acHtml+="<div class='appl_view_intro'><pre>"+ac.getActDetail()+"</pre></div>";
+						acHtml+="<hr style='width:95%;'>";
+					}
+					acHtml+="</div>";
+				}catch(Exception e) {
+					acHtml="";
 				}
-				viewHtml+="</div>";
+				viewHtml+=acHtml;
 			}
-			if(ic.getLanguages()!=null) {			
-				viewHtml+="<div class='appl_langs'>";
-				for(Lang ln:ic.getLanguages()) {
-					viewHtml+="<div class='appl_view_title' style='font-weight:bold;'>언어</div>";
-					viewHtml+="<div class='appl_view_name'>"+ln.getLangName()+"</div>";
-					viewHtml+="<div><span class='aline' style='float:left; margin-left:1%; margin-right:1%;'>"+" | "+"</span></div>";
-					viewHtml+="<div class='appl_view_subname' style='color:#6E6E6E';>"+ln.getLangLevel()+"</div>";
-					viewHtml+="<br>";
-					viewHtml+="<hr style='width:95%;'>";
+			if(ic.getLanguages()!=null) {
+				String langHtml="";
+				try {
+					langHtml+="<div class='appl_langs'>";
+					for(Lang ln:ic.getLanguages()) {
+						langHtml+="<div class='appl_view_title' style='font-weight:bold;'>언어</div>";
+						langHtml+="<div class='appl_view_name'>"+ln.getLangName()+"</div>";
+						langHtml+="<div><span class='aline' style='float:left; margin-left:1%; margin-right:1%;'>"+" | "+"</span></div>";
+						langHtml+="<div class='appl_view_subname' style='color:#6E6E6E';>"+ln.getLangLevel()+"</div>";
+						langHtml+="<br>";
+						langHtml+="<hr style='width:95%;'>";
+					}
+					langHtml+="</div>";
+				}catch(Exception e) {
+					langHtml="";
 				}
-				viewHtml+="</div>";
+				viewHtml+=langHtml;
 			}
 			if(ic.getLinks()!=null) {
-				viewHtml+="<div class='appl_links'>";
-				for(Links lk:ic.getLinks()) {
-					viewHtml+="<div class='appl_view_title' style='font-weight:bold;'>링크</div>";
-					viewHtml+="<div class='appl_view_name'>"+lk.getLinksAddr()+"</div>";
-					viewHtml+="<hr style='width:95%;'>";
+				String linkHtml="";
+				try {					
+					linkHtml+="<div class='appl_links'>";
+					for(Links lk:ic.getLinks()) {
+						linkHtml+="<div class='appl_view_title' style='font-weight:bold;'>링크</div>";
+						linkHtml+="<div class='appl_view_name'>"+lk.getLinksAddr()+"</div>";
+						linkHtml+="<hr style='width:95%;'>";
+					}
+					linkHtml+="</div>";
+				}catch(Exception e) {
+					linkHtml="";
 				}
-				viewHtml+="</div>";
+				viewHtml+=linkHtml;
 			}
 			viewHtml+="</div>";
 			viewHtml+="<input type='hidden' class='appl_applNo' value='"+applNo+"'/>";
 			viewHtml+="</div>";
-		}catch(Exception e) {
+		}else {			
 			viewHtml+="<div>등록된 이력서가 없습니다.</div>";
 		}
+		
 		mv.addObject("dbHtml", viewHtml);
 		mv.addObject("dbIndex",11);
 		mv.setViewName("business/dashboard");
@@ -604,7 +643,10 @@ public class BusinessController2 {
 		String url=req.getRequestURL().toString();
 		int target=url.indexOf("developers");
 		String frontUrl=url.substring(0,target);
-		String poName=((Position)service.selectPositionOne(appl.getPositionNo())).getPosition();
+		Map map=new HashMap();
+		map.put("busNo", appl.getBusNo());
+		map.put("positionNo", appl.getPositionNo());
+		String poName=((Position)service.selectPositionOne(map)).getPosition();
 		//메일 전송
 		MailHandler sendMail = new MailHandler(jms);
 		sendMail.setSubject("[Developers] "+poName+" 면접 제안 안내");
@@ -644,7 +686,10 @@ public class BusinessController2 {
 		String url=req.getRequestURL().toString();
 		int target=url.indexOf("developers");
 		String frontUrl=url.substring(0,target);
-		String poName=((Position)service.selectPositionOne(appl.getPositionNo())).getPosition();
+		Map map=new HashMap();
+		map.put("busNo", appl.getBusNo());
+		map.put("positionNo", appl.getPositionNo());
+		String poName=((Position)service.selectPositionOne(map)).getPosition();
 		//메일 전송
 		MailHandler sendMail = new MailHandler(jms);
 		sendMail.setSubject("[Developers] "+poName+" 합격여부 안내");
@@ -669,7 +714,6 @@ public class BusinessController2 {
 		sendMail.setTo(email);
 		//		sendMail.setTo("sjl0614@naver.com");
 		sendMail.send();
-		Map map=new HashMap();
 		map.put("applNo", applNo);
 		map.put("applStatus",applPf);
 		int result=service.updateApplPf(map);
@@ -752,13 +796,23 @@ public class BusinessController2 {
 	public ModelAndView insertPosition(HttpSession session, @RequestParam(value="poNo", required=false, defaultValue="-1") int poNo) {
 		ModelAndView mv=new ModelAndView();
 		Business bus=(Business)session.getAttribute("busInfo");
+		Map map=new HashMap();
+		map.put("busNo", bus.getBusNo());
 		if(poNo==-1&&session.getAttribute("po_no")!=null) {
 			poNo=(Integer)session.getAttribute("po_no");
 		}
 		Position po=null;
+		String view="business/dashboard";
 		if(poNo!=0) {
-			po=service.selectPositionOne(poNo);
-			session.setAttribute("po_no",poNo);
+			map.put("positionNo", poNo);
+			po=service.selectPositionOne(map);
+			if(po==null) {
+				mv.addObject("msg","잘못된 접근입니다.");
+				mv.addObject("loc","/business");
+				view="common/msg";
+			}else {				
+				session.setAttribute("po_no",poNo);
+			}
 		}
 		String html="";
 		html="<div class='po_main'>";
@@ -893,8 +947,14 @@ public class BusinessController2 {
 			seHtml+="style='display:none'";
 		}
 		seHtml+=">삭제</button>";
-		seHtml+="<button type='button' class='po_btn po_temp' data='T' onclick='fn_add_position();'>임시 저장</button>";
-		seHtml+="<button type='button' class='po_btn' data='N' onclick='fn_add_position();'>승인요청</button>";
+		if(!po.getStatus().equals("Y")) {			
+			seHtml+="<button type='button' class='po_btn po_temp' data='";
+			seHtml+=po.getStatus().equals("O")?"O":"T";
+			seHtml+="' onclick='fn_add_position();'>임시 저장</button>";
+			seHtml+="<button type='button' class='po_btn' data='O' onclick='fn_add_position();'";
+			seHtml+=po.getStatus().equals("O")?" disabled>승인 요청 중":">승인요청";
+			seHtml+="</button>";
+		}
 		seHtml+="</div>";
 		seHtml+="</div>";
 		seHtml+="<div class='modi_text'>";
@@ -922,7 +982,7 @@ public class BusinessController2 {
 		mv.addObject("dbHtml",html);
 		mv.addObject("seHtml",seHtml);
 		mv.addObject("dbIndex",3);
-		mv.setViewName("business/dashboard");
+		mv.setViewName(view);
 		return mv;
 	}
 
@@ -961,10 +1021,16 @@ public class BusinessController2 {
 
 
 	@RequestMapping("/business/deletePosition.lbc")
-	public ModelAndView deletePosition(@RequestParam int position_no) {
+	public ModelAndView deletePosition(HttpSession session) {
 		ModelAndView mv=new ModelAndView();
-		int result=service.deletePosition(position_no);
-		mv.setViewName("redirect:/business/position.lbc");
+		int result=service.deletePosition((Integer)session.getAttribute("po_no"));
+		if(result>0) {
+			session.setAttribute("positionNo", -1);
+		}
+		mv.addObject("msg","해당 포지션이 삭제되었습니다.");
+		mv.addObject("loc","/business/position.lbc");
+		mv.setViewName("common/msg");
+		
 		return mv;
 	}
 
@@ -1175,5 +1241,37 @@ public class BusinessController2 {
 		mv.setViewName("jsonView");
 		return mv;
 
+	}
+	
+	
+	//비지니스 계정 관리
+	@RequestMapping("/business/settings.lbc")
+	public ModelAndView settiongs(HttpSession session) {
+		ModelAndView mv=new ModelAndView();
+		String setHtml="";
+		setHtml+="<div class='set_main'>";
+		setHtml+="<div class='set_header'>";
+		setHtml+="<div class='set_title'>계정 관리</div>";
+		setHtml+="<button type='button' class='set_invite_btn' onclick='fn_invite_member();'><i class='far fa-envelope'></i>계정 초대</button>";
+		setHtml+="</div>";
+		setHtml+="<div class='set_main'>";
+		setHtml+="<div class='set_administrators'>";
+		
+		setHtml+="</div>";
+		setHtml+="</div>";
+		
+		
+		
+		
+		
+		
+		setHtml+="</div>";
+		
+		
+		
+		mv.addObject("dbHtml",setHtml);
+		mv.addObject("dbIndex",6);
+		mv.setViewName("business/dashboard");
+		return mv;
 	}
 }

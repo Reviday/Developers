@@ -89,6 +89,17 @@ $(function(){
         }
     });
 
+
+    $(".po_del").on("click",function(){
+        $(".del-modal").css("display","block");
+        $('body').css('overflow','hidden');
+    });
+
+    $(".close-modal").on("click", function () {
+        $(".del-modal").hide();
+        $('body').css('overflow','');
+    });
+
 });
 
 
@@ -106,8 +117,7 @@ function onlyNumber(){
 }
 
 function fn_add_position(){
-    console.log($($('[name="po_career"]')[0]).val());
-    if($(event.target).attr('data')=='N' 
+    if($(event.target).attr('data')=='O' 
         &&( $('.po_type_list').val()==null
         || $('[name="position"]').val()==''
         || $('[name="position_info"]').val()==''
@@ -177,6 +187,5 @@ function fn_del_type(){
 }
 
 function fn_del_position(){
-    
-
+        location.href=path+"/business/deletePosition.lbc"
 }

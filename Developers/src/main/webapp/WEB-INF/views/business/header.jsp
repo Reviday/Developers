@@ -150,7 +150,7 @@
 									<img class="Dev_black_logo" src="${path}/resources/images/Developers_black_logo.png" style="height:30px; margin-top:10px;"/>
 								</c:if>
 								<c:if test="${not empty busInfo.busLogo}">
-									<img class="logoImg" src="${path}${busInfo.busLogo}"/>
+									<img class="logoImg" src="${path}${busInfo.busLogo}" title='로고 수정하기'/>
 									<form id="logoFrm" name="logoFrm" enctype="multipart/form-data" method="POST">
 										<input type="file" accept="image/*" id="logoFile" name="logoFile" style="display:none"/>
 									</form>
@@ -164,7 +164,7 @@
 							</label>
 						</li>
 						<li class="ls1 ls2">
-							<a aria-current="page" class="as1" href="#"><c:out value="${busInfo.busName}"/></a>
+							<a aria-current="page" class="as1" href="${path}/business"><c:out value="${busInfo.busName}"/></a>
 						</li>
 					</ul>
 				</nav>
@@ -199,14 +199,14 @@
 					</nav>
 					<div class="mobile-menu">
 						<ul class="nav_us uwQaB">
-							<li class="ls4"><a class="as2">지원자</a></li>
-							<li class="ls4"><a class="as2">매치업</a></li>
-							<li class="ls4"><a class="as2">포지션</a></li>
-							<li class="ls4"><a class="as2">채용광고</a></li>
-							<li class="ls4"><a class="as2">회사정보</a></li>
-							<li class="ls4"><a class="as2">계정 관리</a></li>
+							<li class="ls4"><a class="as2" href="${path}/business/applicants.lbc">지원자</a></li>
+							<li class="ls4"><a class="as2" href="${path}/business/matchup.lbc">매치업</a></li>
+							<li class="ls4"><a class="as2" href="${path}/business/position.lbc">포지션</a></li>
+							<li class="ls4"><a class="as2" href="${path}/business/ad.lbc">채용광고</a></li>
+							<li class="ls4"><a class="as2" href="${path}/business/busInfo.lbc">회사정보</a></li>
+							<li class="ls4"><a class="as2" href="${path}/business/settings.lbc">계정 관리</a></li>
 							<li class="ls4"><a class="as2" href="${path}/business/logout">로그아웃</a></li>
-							<li class="ls4"><a class="as2">디벨로퍼스 홈</a></li>
+							<li class="ls4"><a class="as2" href="${path}">디벨로퍼스 홈</a></li>
 
 						</ul>
 					</div>
@@ -224,7 +224,6 @@
 		    menuBar.style.display="none";
 		    
 		    menuButton.onclick=function() {
-		    	console.log(menuBar.style.display);
 		    	if(menuBar.style.display!="none") {
 		    		menuBar.style.display="none";
 		    	} else {
