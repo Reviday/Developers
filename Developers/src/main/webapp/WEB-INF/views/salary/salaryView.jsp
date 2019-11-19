@@ -434,21 +434,20 @@ $("#jobYears").change(function(){
 });
 
 $("#salarySearch").keydown(function(key){
+	if($(this).val()>=0){
+	 if(key.keyCode == 13){
+	  var salarySearch= $(this).val();
+	  var jobYears= $("#jobYears option:selected").val();
+	  var jobField= $("#jobField option:selected").val();
+	  var type= $("#jobField option:selected").text();
 	
-	if(key.keyCode == 13){
-	var salarySearch= $(this).val();
-	var jobYears= $("#jobYears option:selected").val();
-	var jobField= $("#jobField option:selected").val();
-	var type= $("#jobField option:selected").text();
-	
-	location.href='${path }/salary/salaryYears.do?jobField='+jobField +'&jobYears='+jobYears+'&job_type='+type+'&salarySearch='+salarySearch;
-	/* location.href='${path }/search/companyInfo.do?positionNo='+${p.position_no }+'&memNo='+${loginMember.memNo}; */
-	
+	  location.href='${path }/salary/salaryYears.do?jobField='+jobField +'&jobYears='+jobYears+'&job_type='+type+'&salarySearch='+salarySearch;
+	  /* location.href='${path }/search/companyInfo.do?positionNo='+${p.position_no }+'&memNo='+${loginMember.memNo}; */
+	 };
+	}else {
+		
 	};
 });
-
-
-
 </script>
 <!--선택된 직군정도 DB에서 가지고 오기 완료  -->
 
@@ -522,7 +521,7 @@ $("#salarySearch").keydown(function(key){
 			colors : {
 				연봉 : "#333333",
 				경력 : "#ffffff",
-				검색 : "#333333"
+				검색  : "#333333"
 			}
 		},
 		bar : {
@@ -533,8 +532,8 @@ $("#salarySearch").keydown(function(key){
 		},
     	 point: {
 			    pattern: [
-
-			      "<g><circle cx='10' cy='10' r='10'></circle><rect x='5' y='5' width='10' height='10' style='fill:#333333'></rect></g>"
+				  
+			      "<polygon points='6 0 0 6 6 12 12 6 6 0'></polygon>"
 
 			    ]
 	    },
