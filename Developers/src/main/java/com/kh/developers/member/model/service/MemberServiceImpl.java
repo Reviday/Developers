@@ -38,6 +38,24 @@ public class MemberServiceImpl implements MemberService {
 	
 
 	@Override
+	public int RealdeleteMember(int memNo) {
+		// TODO Auto-generated method stub
+		return dao.RealdeleteMember(session,memNo);
+	}
+
+	@Override
+	public int updateMemberPoint(Point p) {
+		// TODO Auto-generated method stub
+		return dao.updateMemberPoint(session,p);
+	}
+
+	@Override
+	public Point selectaddPoint(int pointNo) {
+		// TODO Auto-generated method stub
+		return dao.selectaddPoint(session,pointNo);
+	}
+
+	@Override
 	public int addPoint(Point p) {
 		// TODO Auto-generated method stub
 		return dao.addPoint(session,p);
@@ -86,10 +104,13 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public int applAns(int memNo,int number) {
+	public int applAns(int applNo,int number) {
 		// TODO Auto-generated method stub
-		
-		return dao.applAns(session,memNo,number);
+		 if(dao.applAns(session,applNo,number)!=0) {
+			return dao.selectApplBusNo(session,applNo);
+		 }else {
+			 return dao.applAns(session,applNo,number);
+		 }
 	}
 
 	@Override

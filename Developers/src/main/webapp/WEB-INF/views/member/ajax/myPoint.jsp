@@ -25,7 +25,7 @@
                     <div class="clearfix">
                         <div class="point">
                           <input type="hidden" id="memNo" value="${loginMember.memNo }"/>
-                  		<input type="button" onclick="addPoint();"/>
+                  		
                             <dl>
                                 <dt>포인트</dt>
                                 <dd>${loginMember.memPoint }<sub>p</sub></dd>
@@ -77,11 +77,3 @@
         </div>
     </div>
 </div>
-<script>
-function addPoint() {
-	var memNo=$("#memNo").val();
-	location.href="${path }/member/addPoint?memNo="+memNo;
-}
-
-
-</script>

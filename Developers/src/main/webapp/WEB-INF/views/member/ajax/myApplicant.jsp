@@ -45,7 +45,7 @@
                 </div>
                 <ul class="content">
                 <c:if test="${not empty  app }">
-                <c:forEach items="${bus }" var="b" varStatus="bt">
+                <c:forEach items="${app }" var="b" varStatus="bt">
                 <a href="#" class="a">
                         <li>
                             <h2 role="presentation">
@@ -56,8 +56,9 @@
                             <time ></time>
                             <div class="type resumeRequest" id="resumeRequest">
                             <c:set value="${loginMember.memNo }" var="memNo"  />
-               				<button type="button" class="btn btn-primary btn-sm" onclick="fn_appl('${memNo}','1');">승인</button>
-							<button type="button" class="btn btn-danger btn-sm" onclick="fn_appl('${memNo}','2');">거절</button>
+                            <c:set value="${b.applNo }" var="applNo" />
+               				<button type="button" class="btn btn-primary btn-sm" onclick="fn_appl('${applNo}','${memNo }','1');">승인</button>
+							<button type="button" class="btn btn-danger btn-sm" onclick="fn_appl('${applNo}','${memNo }','2');">거절</button>
                             </div>
                         </li>
                     </a>
@@ -81,11 +82,11 @@
         </section>
     </div>
 <script>
-function fn_appl(memNo,number){
+function fn_appl(applNo,memNo,number){
 		$.ajax({
 		url:"${path }/member/applAns.lmc",
 		type:"POST",
-		data:{"memNo":memNo,"number":number},
+		data:{"applNo":applNo,"memNo":memNo,"number":number},
 		success:function(data){
 			if(number==(1)){
 				$("#resumeRequest").html("");

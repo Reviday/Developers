@@ -302,10 +302,15 @@ public class MemberController {
 		String frontUrl=url.substring(0,target);
 		int result=0;
 		int result1=0;
+		Point p=new Point();
+		p.setMemPointPlus(1000);
+		p.setPointIntro("회원 축하해염!");
+		
 		String msg="";
 		try {
 			result=service.insertMember(m, frontUrl);
 			result1 = service.insertFilter();
+			
 		} catch (Exception e) {
 			msg="회원가입에 실패하였습니다. 다시 확인해주시기 바랍니다.";
 			rttr.addFlashAttribute("msg",msg);
@@ -313,8 +318,13 @@ public class MemberController {
 		}
 		if(result>0) {
 			msg="기입된 이메일로 인증 메일이 전송되었습니다.";
+			p.setMemNo(m.getMemNo());
+			int result2=service.addPoint(p);
+			Point p2=service.selectaddPoint(p.getPointNo());
+			int result3=service.updateMemberPoint(p2);
 			mv.addObject("msg",msg);
 			mv.setViewName("jsonView");
+			
 		} else if(result<0) {
 			msg="인증메일 전송에 실패하였습니다. 다시 시도해 주시기 바랍니다.";
 			rttr.addFlashAttribute("msg",msg);
@@ -579,21 +589,16 @@ public class MemberController {
     	ModelAndView mv=new ModelAndView();
     	m=service.selectMemberOne(m);
     	List<Applicant> applicant=service.selectApplicant(m);
-    	List<Business> business=new ArrayList();
-    	for(Applicant a : applicant) {
-    		business.add(service.selectBusOne(""+a.getBusNo()));
-    	}
     	mv.addObject("app", applicant);
-    	mv.addObject("bus", business);
     	mv.setViewName("member/ajax/myApplicant");
     	return mv;
     }
     @RequestMapping("/member/applAns.lmc")
-    public ModelAndView applAns(int memNo,int number,HttpServletRequest req) throws MessagingException, UnsupportedEncodingException {
+    public ModelAndView applAns(int applNo,int memNo,int number,HttpServletRequest req) throws MessagingException, UnsupportedEncodingException {
     	ModelAndView mv = new ModelAndView();
-    	int result=service.applAns(memNo,number);
-    	
     	Member m = service.selectMemNo(memNo);
+    	int result=service.applAns(applNo,number);
+    	Business b =service.selectBusOne(""+result);
     	String url=req.getRequestURL().toString();
 		int target=url.indexOf("developers");
 		String frontUrl=url.substring(0,target);
@@ -601,7 +606,7 @@ public class MemberController {
 		map.put("memNo", m.getMemNo());
 		//메일 전송
 		MailHandler sendMail = new MailHandler(mailSender);
-		sendMail.setSubject("[Developers] 서비스 이메일 인증");
+		sendMail.setSubject("[Developers] 지원자 응답완료");
         sendMail.setText(
                 new StringBuffer().append("<div style=\"font-family: 'Apple SD Gothic Neo', 'sans-serif' !important; width: 540px; height: 600px; border-top: 4px solid rgb(67,138,255); margin: 100px auto; padding: 30px 0; box-sizing: border-box;\">")
                 .append("<h1 style=\"margin: 0; padding: 0 5px; font-size: 28px; font-weight: 400;\">")
@@ -622,7 +627,7 @@ public class MemberController {
                 .append("<div style=\"border-top: 1px solid #DDD; padding: 5px;\"></div>")
                 .toString());
         sendMail.setFrom("ysk.testacc@gmail.com", "디벨로퍼스 ");
-        sendMail.setTo(frontUrl);
+        sendMail.setTo(b.getBusEmail());
         sendMail.send();
     	mv.addObject("number", number);
     	mv.setViewName("member/ajax/myApplicant");
@@ -714,5 +719,23 @@ public class MemberController {
     	return mv;
     }
     
+    @RequestMapping("/member/deleteMember.lmc")
+    public ModelAndView deleteMemberPage() {
+    	ModelAndView mv= new ModelAndView();
+    	mv.setViewName("member/ajax/deleteMemeber");
+    	return mv;
+    }
+    @RequestMapping("/member/RealdeleteMember.lmc")
+    public ModelAndView RealdeleteMember(int memNo,HttpSession session,SessionStatus s) {
+    	ModelAndView mv= new ModelAndView();
+    	int result = service.RealdeleteMember(memNo);
+    	if(!s.isComplete()) {
+			s.setComplete();//로그아웃
+			session.invalidate();
+		}
+
+    	mv.setViewName("redirect:/");
+    	return mv;
+    }
     
 }

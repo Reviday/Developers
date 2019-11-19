@@ -2,17 +2,13 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
-<body>
+<body >
 	
-	
+	<div id="bodyContent">
 	<form method="post" action="${path }/member/memberUpdate.lmc" name="form1" >
          <table class="table table-striped" >
             <tr>
@@ -47,28 +43,35 @@
             </tr>
             <tr class="text-center">
               <td colspan="2">
+          
+              
+               <button type="button" class="btn btn-danger" onclick="deleteMember();">회원 탈퇴</button>
                 <button type="submit" class="btn btn-primary" id="btnRegist">정보변경하기</button>
               </td>
             </tr>
          </table>
      </form>
+    
+     </div>
      <div style="height: 400px;" ></div>
-</body>
-</html>
+     </body>
+ 
+     
+<script type="text/javascript">
+var asd;
 
-<script>
-
-var regExp = /^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/;
-if ( !regExp.test( $("#phone").val() ) ) {
-
-      alert("잘못된 휴대폰 번호입니다. 숫자, - 를 포함한 숫자만 입력하세요.");
-
-      return false
-
+function deleteMember() {
+	$.ajax({
+		url:"${path }/member/deleteMember.lmc",
+		type:"POST",
+		data:{"asd":asd},
+		success:function(data){
+		$("#bodyContent").html("");
+		$("#bodyContent").html(data);
+			
+		}
+	});
 }
 
-
-
-
-
 </script>
+</html>

@@ -22,6 +22,31 @@ public class MemberDaoImpl implements MemberDao {
 	
 	
 	
+	
+	@Override
+	public int RealdeleteMember(SqlSessionTemplate session, int memNo) {
+		// TODO Auto-generated method stub
+		return session.update("member.RealdeleteMember", memNo);
+	}
+
+	@Override
+	public int updateMemberPoint(SqlSessionTemplate session, Point p) {
+		// TODO Auto-generated method stub
+		return session.update("member.updateMemberPoint",p);
+	}
+
+	@Override
+	public Point selectaddPoint(SqlSessionTemplate session, int pointNo) {
+		// TODO Auto-generated method stub
+		return session.selectOne("member.selectaddPoint",pointNo);
+	}
+
+	@Override
+	public int selectApplBusNo(SqlSessionTemplate session, int applNo) {
+		// TODO Auto-generated method stub
+		return session.selectOne("member.selectApplBusNo",applNo);
+	}
+
 	@Override
 	public int addPoint(SqlSessionTemplate session, Point p) {
 		// TODO Auto-generated method stub
@@ -73,13 +98,14 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
-	public int applAns(SqlSessionTemplate session, int memNo, int number) {
+	public int applAns(SqlSessionTemplate session, int applNo, int number) {
 		// TODO Auto-generated method stub
 		if(number==1) {
-		return session.update("member.applAnsY", memNo);
+		 session.update("member.applAnsY", applNo);
 		}else {
-		return session.update("member.applAnsN", memNo);	
+	 session.update("member.applAnsN", applNo);	
 		}
+		return applNo;
 	}
 
 	@Override

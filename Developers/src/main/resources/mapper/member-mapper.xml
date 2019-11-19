@@ -1,47 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="member">
+	<update id="RealdeleteMember" parameterType="_int">
+	UPDATE TA_MEMBER SET MEM_STATUS='N',MEM_DENIED_DATE=SYSDATE WHERE MEM_NO=#{memNo}
+	</update>
+	<update id="updateMemberPoint" parameterType="com.kh.developers.member.model.vo.Point">
+		UPDATE TA_MEMBER SET MEM_POINT=#{memPointPlus} WHERE MEM_NO=#{memNo}
+	</update>
+	<select id="selectaddPoint" parameterType="_int" resultMap="pointMap">
+		SELECT * FROM TA_POINT WHERE point_no=#{pointNo}
+	</select>
 	<insert id="addPoint" parameterType="com.kh.developers.member.model.vo.Point" >
-		insert into TA_POINT values (#{memEmail},#{memPointPlus},#{pointIntro},default);
-		<selectKey >
-		
+		INSERT INTO TA_POINT VALUES (SEQ_POINT.NEXTVAL,#{memNo},#{memPointPlus},#{pointIntro},default)
+		<selectKey resultType="_int" order="AFTER" keyProperty="pointNo">
+			SELECT SEQ_POINT.CURRVAL FROM DUAL
 		</selectKey>
 	</insert>
 	<select id="selectMyPoint" parameterType="member" resultMap="pointMap">
-	SELECT P.*,M.mem_point FROM TA_MEMBER M JOIN TA_POINT P ON(M.MEM_NO=P.MEM_NO) WHERE M.MEM_NO=#{memNo} ORDER BY POINT_DATE DESC
+	SELECT P.*,M.mem_point FROM TA_MEMBER M JOIN TA_POINT P ON(M.MEM_NO=P.MEM_NO) WHERE M.MEM_NO=#{memNo} AND M.MEM_STATUS='Y'  ORDER BY POINT_DATE DESC
 	</select>
 	<select id="selectMemberStats" resultType="map">
 		SELECT A.MEM_LEVEL AS "LEVEL", COUNT(B.MEM_NO) AS "COUNT" FROM TA_MEMBER_LEVEL A LEFT JOIN (SELECT * FROM TA_MEMBER WHERE MEM_STATUS='Y') B ON A.MEM_LEVEL=B.MEM_LEVEL GROUP BY A.MEM_LEVEL
 	</select>
 	<select id="selectMaCount" parameterType="myapp" resultType="_int">
-		SELECT COUNT(*) FROM TA_APPL_BUS T JOIN ENROLL_POSITION E ON (T.POSITION_NO=E.POSITION_NO) JOIN BUSINESS_INFO B ON(E.BUS_NO=B.BUS_NO)WHERE T.MEM_NO=#{memNo} AND T.APPL_DEL_YN='N'AND E.BUS_NAME LIKE '%'||#{busName}||'%' ORDER BY APPL_DATE DESC
+		SELECT COUNT(*) FROM TA_APPL_BUS T JOIN ENROLL_POSITION E ON (T.POSITION_NO=E.POSITION_NO) JOIN BUSINESS_INFO B ON(E.BUS_NO=B.BUS_NO)WHERE T.MEM_NO=#{memNo} AND T.APPL_DEL_YN='Y'AND E.BUS_NAME LIKE '%'||#{busName}||'%' ORDER BY APPL_DATE DESC
 	</select>
 	<select id="selectMa" parameterType="myapp" resultMap="myapplMap">
-		SELECT T.MEM_NO,T.APPL_DEL_YN,T.APPL_STATUS,E.BUS_NAME,B.BUS_LOGO FROM TA_APPL_BUS T JOIN ENROLL_POSITION E ON (T.POSITION_NO=E.POSITION_NO) JOIN BUSINESS_INFO B ON(E.BUS_NO=B.BUS_NO)WHERE T.MEM_NO=#{memNo} AND T.APPL_DEL_YN='N'AND E.BUS_NAME LIKE '%'||#{busName}||'%' ORDER BY APPL_DATE DESC
+		SELECT T.MEM_NO,T.APPL_DEL_YN,T.APPL_STATUS,E.BUS_NAME,B.BUS_LOGO FROM TA_APPL_BUS T JOIN ENROLL_POSITION E ON (T.POSITION_NO=E.POSITION_NO) JOIN BUSINESS_INFO B ON(E.BUS_NO=B.BUS_NO)WHERE T.MEM_NO=#{memNo} AND T.APPL_DEL_YN='Y'AND E.BUS_NAME LIKE '%'||#{busName}||'%' ORDER BY APPL_DATE DESC
 	</select>
-	<select id="selectMemNo" parameterType="_int" resultMap="myapplMap">
+	<select id="selectMemNo" parameterType="_int" resultMap="memberMap">
 		SELECT * FROM TA_MEMBER WHERE mem_no=#{memNo} AND MEM_STATUS='Y'
 	</select>
 	<select id="selectMemAppl" parameterType="member" resultMap="myapplMap">
-		SELECT T.MEM_NO,T.APPL_DEL_YN,T.APPL_STATUS,E.BUS_NAME,B.BUS_LOGO FROM TA_APPL_BUS T JOIN ENROLL_POSITION E ON (T.POSITION_NO=E.POSITION_NO) JOIN BUSINESS_INFO B ON(E.BUS_NO=B.BUS_NO)WHERE T.MEM_NO=#{memNo} AND T.APPL_DEL_YN='N'
+		SELECT T.MEM_NO,T.APPL_DEL_YN,T.APPL_STATUS,E.BUS_NAME,B.BUS_LOGO FROM TA_APPL_BUS T JOIN ENROLL_POSITION E ON (T.POSITION_NO=E.POSITION_NO) JOIN BUSINESS_INFO B ON(E.BUS_NO=B.BUS_NO)WHERE T.MEM_NO=#{memNo} AND T.APPL_DEL_YN='Y'
 	</select>
 	<select id="selectMemApplCount" parameterType="member" resultType="_int">
-		SELECT COUNT(*) FROM TA_APPL_BUS T JOIN ENROLL_POSITION E ON (T.POSITION_NO=E.POSITION_NO) JOIN BUSINESS_INFO B ON(E.BUS_NO=B.BUS_NO)WHERE T.MEM_NO=#{memNo} AND T.APPL_DEL_YN='N'
+		SELECT COUNT(*) FROM TA_APPL_BUS T JOIN ENROLL_POSITION E ON (T.POSITION_NO=E.POSITION_NO) JOIN BUSINESS_INFO B ON(E.BUS_NO=B.BUS_NO)WHERE T.MEM_NO=#{memNo} AND T.APPL_DEL_YN='Y'
 	</select>
 	<select id="selectBookMark" parameterType="member" resultMap="positionMap" >
-		SELECT * FROM BUSINESS_INFO i join enroll_position e on (i.bus_no=e.bus_no) join BOOK_MARK b on (e.position_no=b.position_no) join ta_member m on(b.mem_no=m.mem_no) where m.mem_no=#{memNo}
+		SELECT * FROM BUSINESS_INFO i join enroll_position e on (i.bus_no=e.bus_no) join BOOK_MARK b on (e.position_no=b.position_no) join ta_member m on(b.mem_no=m.mem_no) where m.mem_no=#{memNo} AND E.STATUS='Y' AND M.MEM_STATUS='Y'
 	</select>
 	<select id="selectLike" parameterType="member" resultMap="positionMap">
-		select p.position_no,b.bus_name,b.BUS_COUNTRY,p.position,b.bus_area,b.bus_images,(SELECT COUNT(*) FROM PO_LIKE WHERE LIKE_ID = P.LIKE_ID) AS LIKE_COUNT from ENROLL_POSITION p join po_like l on (p.like_id=l.like_id) join ta_member m on(l.mem_no=m.mem_no) join BUSINESS_INFO b on(p.bus_no=b.bus_no) where m.MEM_NO=#{memNo}
+		select p.position_no,b.bus_name,b.BUS_COUNTRY,p.position,b.bus_area,b.bus_images,(SELECT COUNT(*) FROM PO_LIKE WHERE LIKE_ID = P.LIKE_ID) AS LIKE_COUNT from ENROLL_POSITION p join po_like l on (p.like_id=l.like_id) join ta_member m on(l.mem_no=m.mem_no) join BUSINESS_INFO b on(p.bus_no=b.bus_no) where m.MEM_NO=#{memNo} AND P.STATUS='Y' AND m.MEM_STATUS='Y' 
 	</select>
 	<update id="applAnsY" parameterType="_int">
-		UPDATE TA_APPL_BUS SET APPL_ANS_YN='Y',ANSWER_DATE=SYSDATE WHERE MEM_NO = #{memNo}
+		UPDATE TA_APPL_BUS SET APPL_ANS_YN='Y',ANSWER_DATE=SYSDATE WHERE APPL_NO = #{applNo} 
 	</update>
+	<select id="selectApplBusNo"  parameterType="_int" resultType="_int">
+		SELECT BUS_NO FROM TA_APPL_BUS WHERE APPL_NO = #{applNo}
+	</select>
 	<update id="applAnsN" parameterType="_int">
-		UPDATE TA_APPL_BUS SET APPL_ANS_YN='N',ANSWER_DATE=SYSDATE WHERE MEM_NO = #{memNo}
+		UPDATE TA_APPL_BUS SET APPL_ANS_YN='N',ANSWER_DATE=SYSDATE WHERE APPL_NO = #{applNo}
 	</update>
 	<select id="selectApplicant" parameterType="member" resultMap="applicantMap">
-		SELECT * FROM TA_APPL_BUS WHERE MEM_NO=#{memNo} AND APPL_STATUS=2 AND APPL_ANS_YN='O' AND APPL_DEL_YN='N'
+		SELECT * FROM TA_APPL_BUS T JOIN BUSINESS_INFO B ON(T.BUS_NO=B.BUS_NO) WHERE 1=1 AND T.MEM_NO=#{memNo} AND T.APPL_STATUS=2 AND T.APPL_ANS_YN='O' AND T.APPL_DEL_YN='Y'
 	</select>
 	<update id="restoreMember" parameterType="member">
 		UPDATE TA_MEMBER SET MEM_STATUS='Y', MEM_WITHDRAWAL_DATE=NULL WHERE MEM_NO=#{memNo}
@@ -152,16 +164,16 @@
 		AND MEM_STATUS='Y'
 	</select>
 	<update id="busLogoChange" parameterType="member">
-		UPDATE TA_MEMBER SET mem_icon=#{memIcon} WHERE mem_no=#{memNo}
+		UPDATE TA_MEMBER SET mem_icon=#{memIcon} WHERE mem_no=#{memNo} AND MEM_STATUS='Y'
 	</update>
 	<update id="memberUpdate" parameterType="member">
-		UPDATE TA_MEMBER SET mem_phone=#{memPhone},mem_name=#{memName} WHERE MEM_EMAIL=#{memEmail}
+		UPDATE TA_MEMBER SET mem_phone=#{memPhone},mem_name=#{memName} WHERE MEM_EMAIL=#{memEmail} AND MEM_STATUS='Y'
 	</update>
 	<update id="deleteMemberByAdmin" parameterType="member">
     	UPDATE TA_MEMBER SET MEM_STATUS='N', MEM_WITHDRAWAL_DATE=SYSDATE, MEM_ADMINMEMO=CONCAT(CONCAT(CONCAT(MEM_ADMINMEMO,'[관리자에 의한 탈퇴처리('),SYSDATE),')]') WHERE MEM_NO=#{memNo}
     </update>
     <update id="updateMemberByAdmin" parameterType="member">
-    	UPDATE TA_MEMBER SET MEM_LEVEL=#{memLevel}, MEM_ADMINMEMO=#{memAdminmemo} WHERE MEM_NO=#{memNo}
+    	UPDATE TA_MEMBER SET MEM_LEVEL=#{memLevel}, MEM_ADMINMEMO=#{memAdminmemo} WHERE MEM_NO=#{memNo} 
     </update>
 	<insert id="insertInterests" parameterType="interests">
 		INSERT INTO interests VALUES(seq_intersts.NEXTVAL,#{memEmail},#{jobName},#{duty, typeHandler=strArray},#{experience},#{salary},#{skill, typeHandler=strArray},SYSDATE,DEFAULT)
@@ -197,7 +209,7 @@
 		SELECT * FROM TA_MEMBER WHERE MEM_EMAIL = #{memEmail} AND MEM_STATUS='Y'
 	</select>
 	<select id="selectInterests" parameterType="string" resultMap="interMap">
-		SELECT * FROM INTERESTS WHERE MEM_EMAIL = #{memEmail} 
+		SELECT * FROM INTERESTS WHERE MEM_EMAIL = #{memEmail}
 	</select>
 	<select id="selectPositionList" resultType="position">
 		SELECT P.*, BUS_LOGO, BUS_IMAGES, BUS_ADDRESS, BUS_INDUSTRIAL, BUS_AREA, BUS_COUNTRY, (SELECT COUNT(*) FROM PO_LIKE WHERE LIKE_ID = P.LIKE_ID) AS LIKE_COUNT FROM ENROLL_POSITION P JOIN BUSINESS_INFO B ON P.BUS_NO = B.BUS_NO WHERE SYSDATE <![CDATA[<]]> DEAD_DATE ORDER BY POSITION_NO DESC
@@ -277,6 +289,8 @@
 		<result property="applStatus" column="appl_status"/>
 		<result property="applDate" column="appl_date" />
 		<result property="applAnsYn" column="appl_ans_yn"/>
+		<result property="busLogo" column="BUS_LOGO"/>
+		<result property="busName" column="BUS_NAME"/>
 	</resultMap>
 	<resultMap type="myapp" id="myapplMap">
 		<result column="bus_name" property="busName"/>

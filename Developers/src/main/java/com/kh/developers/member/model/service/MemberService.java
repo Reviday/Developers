@@ -31,7 +31,7 @@ public interface MemberService {
 	int updateInterests(Interests i);
 	List<Applicant> selectApplicant(Member m);
 	Business selectBusOne(String busNo);
-	int applAns(int memNo,int number);
+	int applAns(int applNo,int number);
 	List<Position> selectBookMark(Member m);
 	List<MyApp> selectMemAppl(Member m,int cPage,int numPerPage);
 	int selectMemApplCount(Member m);
@@ -40,5 +40,7 @@ public interface MemberService {
 	int selectMaCount(MyApp ma);
 	List<Point> selectMyPoint(Member m);
 	int addPoint(Point p);
-	
+	Point selectaddPoint(int pointNo);
+	int updateMemberPoint(Point p);
+	int RealdeleteMember(int memNo);
 }

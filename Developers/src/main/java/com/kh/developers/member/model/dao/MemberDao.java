@@ -35,7 +35,7 @@ public interface MemberDao {
    int updateInterests(SqlSessionTemplate session, Interests i);
    List<Applicant> selectApplicant(SqlSessionTemplate session, Member m);
    Business selectBusOne(SqlSessionTemplate session,String busNo);
-   int applAns(SqlSessionTemplate session,int memNo,int number);
+   int applAns(SqlSessionTemplate session,int applNo,int number);
    List<Position> selectBookMark(SqlSessionTemplate session,Member m);
    List<MyApp> selectMemAppl(SqlSessionTemplate session,Member m, int cPage,int numPerPage);
    int selectMemApplCount(SqlSessionTemplate session,Member m);
@@ -44,4 +44,8 @@ public interface MemberDao {
    int selectMaCount(SqlSessionTemplate session,MyApp ma);
    List<Point> selectMyPoint(SqlSessionTemplate session,Member m);
    int addPoint(SqlSessionTemplate session,Point p);
+   int selectApplBusNo(SqlSessionTemplate session,int applNo);
+   Point selectaddPoint(SqlSessionTemplate session,int pointNo);
+   int updateMemberPoint(SqlSessionTemplate session,Point p);
+   int RealdeleteMember(SqlSessionTemplate session,int memNo);
 }

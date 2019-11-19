@@ -24,5 +24,7 @@ public class Applicant {
 	private Date applDate;
 	private int recommendId;
 	private Date finalDate;
+	private String busName;
+	private String busLogo;
 	
 }
