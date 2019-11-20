@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 public class AdCompany {
 
+	private int ad_no;
 	private int bus_no;
 	private String bus_name;
 	private String bus_logo;

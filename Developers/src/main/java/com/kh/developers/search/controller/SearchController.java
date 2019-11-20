@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.developers.business.controller.BusinessController;
 import com.kh.developers.business.model.vo.Applicant;
 import com.kh.developers.member.model.vo.Member;
 import com.kh.developers.recommend.model.vo.Recommend;
@@ -335,6 +336,21 @@ public class SearchController {
 	//탐색 -> 회사소개페이지로 전환
 	@RequestMapping("/search/companyAllInfo")
 	public String companyAllInfo(int busNo, Model model) {
+		//회사 포지션 리스트
+		List<Position> psList = service.companyPositionList(busNo);
+		model.addAttribute("psList", psList);
+		//회사 태그 리스트
+		List<Tag> tagList = service.companyTagList(busNo);
+		model.addAttribute("tagList", tagList);
+		//회사소개 정보 
+		Company company = service.companyInfo(busNo);
+		model.addAttribute("company", company);
+		return "search/companyAllInfo";
+	}
+	//탐색 -> 회사소개페이지로 전환
+	@RequestMapping("/search/companyAllInfo11")
+	public String companyAllInfo(int busNo, int click, Model model) {
+		new BusinessController().adClick(click);
 		//회사 포지션 리스트
 		List<Position> psList = service.companyPositionList(busNo);
 		model.addAttribute("psList", psList);

@@ -717,7 +717,7 @@
 			$(".submitFooter>button[type=button]").removeClass("disabled1");
 		}else{
 			$(".submitFooter>button[type=button]").addClass("disabled1");
-		}
+		}	
 	})
 	function submitPosition(busNo, memNo, positionNo){
 		var resumeNo = $("input:checkbox[name=resume]:checked").val();

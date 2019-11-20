@@ -32,7 +32,7 @@
 		SELECT * FROM TA_MEMBER WHERE mem_no=#{memNo} AND MEM_STATUS='Y'
 	</select>
 	<select id="selectMemAppl" parameterType="member" resultMap="myapplMap">
-		SELECT T.MEM_NO,T.APPL_DEL_YN,T.APPL_STATUS,E.BUS_NAME,B.BUS_LOGO,E.POSITION FROM TA_APPL_BUS T JOIN ENROLL_POSITION E ON (T.POSITION_NO=E.POSITION_NO) JOIN BUSINESS_INFO B ON(E.BUS_NO=B.BUS_NO)WHERE T.MEM_NO=#{memNo} AND T.APPL_DEL_YN='Y'
+		SELECT T.MEM_NO,T.APPL_DEL_YN,T.APPL_STATUS,E.BUS_NAME,B.BUS_LOGO FROM TA_APPL_BUS T JOIN ENROLL_POSITION E ON (T.POSITION_NO=E.POSITION_NO) JOIN BUSINESS_INFO B ON(E.BUS_NO=B.BUS_NO)WHERE T.MEM_NO=#{memNo} AND T.APPL_DEL_YN='Y'
 	</select>
 	<select id="selectMemApplCount" parameterType="member" resultType="_int">
 		SELECT COUNT(*) FROM TA_APPL_BUS T JOIN ENROLL_POSITION E ON (T.POSITION_NO=E.POSITION_NO) JOIN BUSINESS_INFO B ON(E.BUS_NO=B.BUS_NO)WHERE T.MEM_NO=#{memNo} AND T.APPL_DEL_YN='Y'
@@ -176,7 +176,7 @@
     	UPDATE TA_MEMBER SET MEM_LEVEL=#{memLevel}, MEM_ADMINMEMO=#{memAdminmemo} WHERE MEM_NO=#{memNo} 
     </update>
 	<insert id="insertInterests" parameterType="interests">
-		INSERT INTO interests VALUES(seq_intersts.NEXTVAL,#{memEmail},#{jobName},#{duty, typeHandler=strArray},#{experience},#{salary},#{skill, typeHandler=strArray},SYSDATE,DEFAULT,#{memNo})
+		INSERT INTO interests VALUES(seq_intersts.NEXTVAL,#{memEmail},#{jobName},#{duty, typeHandler=strArray},#{experience},#{salary},#{skill, typeHandler=strArray},SYSDATE,DEFAULT)
 	</insert>
 	<select id="selectMemberCount" resultType="_int">
 		SELECT COUNT(*) FROM TA_MEMBER WHERE MEM_STATUS='Y'
@@ -211,7 +211,7 @@
 	<select id="selectInterests" parameterType="string" resultMap="interMap">
 		SELECT * FROM INTERESTS WHERE MEM_EMAIL = #{memEmail}
 	</select>
-	<select id="selectPositionList" resultType="position" resultMap="positionArray">
+	<select id="selectPositionList" resultType="position" >
 		SELECT P.*, BUS_LOGO, BUS_IMAGES, BUS_ADDRESS, BUS_INDUSTRIAL, BUS_AREA, BUS_COUNTRY, (SELECT COUNT(*) FROM PO_LIKE WHERE LIKE_ID = P.LIKE_ID) AS LIKE_COUNT FROM ENROLL_POSITION P JOIN BUSINESS_INFO B ON P.BUS_NO = B.BUS_NO WHERE SYSDATE <![CDATA[<]]> DEAD_DATE AND P.STATUS = 'Y' ORDER BY POSITION_NO DESC
 	</select>
 	<select id="selectInterPositionList" parameterType="interests" resultType="position" resultMap="positionArray"> 
@@ -226,7 +226,7 @@
 		SELECT P.*, BUS_LOGO, BUS_IMAGES, BUS_ADDRESS, BUS_INDUSTRIAL, BUS_AREA, BUS_COUNTRY, (SELECT COUNT(*) FROM PO_LIKE WHERE LIKE_ID = P.LIKE_ID) AS LIKE_COUNT FROM ENROLL_POSITION P JOIN BUSINESS_INFO B ON P.BUS_NO = B.BUS_NO WHERE DEAD_DATE <![CDATA[<]]> SYSDATE + 7 AND SYSDATE - 7 <![CDATA[<]]> DEAD_DATE AND P.STATUS = 'Y' ORDER BY POSITION_NO DESC 
 	</select>
 	<select id="mainAdList" resultType="mainadcompany" resultMap="mainadcompanyArray">
-		SELECT B.BUS_NO, B.BUS_NAME, B.BUS_IMAGES, POSITION, 
+		SELECT A.AD_NO, B.BUS_NO, B.BUS_NAME, B.BUS_IMAGES, POSITION, 
 	    (SELECT COUNT(B.BUS_NO) FROM ENROLL_POSITION WHERE SYSDATE <![CDATA[<]]> DEAD_DATE AND STATUS = 'Y') AS PO_COUNT 
 		FROM BUSINESS_INFO B
 		JOIN ADVERTISEMENT A ON (B.BUS_NO = A.BUS_NO)

@@ -204,7 +204,7 @@
 	                <div class="firstCompany-list" style="margin-bottom: 340px;">
 	                    <ul>
                     		<c:forEach var="f" items="${firstPsList }">
-                        		<a href="${path }/search/companyAllInfo?busNo=${f.bus_no}">
+                        		<a href="${path }/search/companyAllInfo11?busNo=${f.bus_no}&click=${f.ad_no}">
                             		<li>
                                 		<div class="searchHeader">
                                 			
