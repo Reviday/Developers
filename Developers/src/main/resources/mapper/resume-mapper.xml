@@ -57,7 +57,7 @@ SELECT SEQ_RESUME.CURRVAL FROM DUAL
 </selectKey>
 </insert>
 <insert id="insertMathupResume" parameterType="member">
-INSERT INTO RESUME VALUES (SEQ_RESUME.NEXTVAL,#{memEmail},#{memName},default,default,default,'Y',null,default)
+INSERT INTO RESUME VALUES (SEQ_RESUME.NEXTVAL,#{memEmail},#{memName},default,default,default,'Y',null,default,#{memNo})
 <selectKey keyProperty="memNo" resultType="_int" order="AFTER" >
 SELECT SEQ_RESUME.CURRVAL FROM DUAL
 </selectKey>
@@ -123,7 +123,7 @@ SELECT * FROM RESUME WHERE MEM_EMAIL=#{memEmail} and RESUME_NO=#{resumeNo}
 	SELECT * FROM RESUME WHERE resume_no=#{resumeNo}
 </select>
 <select id="selectInter" parameterType="member" resultMap="interMap">
-	SELECT * FROM interests WHERE MEM_EMAIL=#{memEmail}
+	SELECT * FROM interests WHERE mem_no=#{memNo}
 </select>
 
 <resultMap type="interests" id="interMap">
@@ -136,6 +136,7 @@ SELECT * FROM RESUME WHERE MEM_EMAIL=#{memEmail} and RESUME_NO=#{resumeNo}
 	<result property="skill" column="skill" typeHandler="strArray"/>
 	<result property="interestsDate" column="interestsDate"/>
 	<result property="resumeNo" column="resume_No"/>
+	<result property="memNo" column="mem_no"/>
 </resultMap>
 
 <resultMap type="lang" id="laMap">

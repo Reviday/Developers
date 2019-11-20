@@ -155,15 +155,20 @@
                                     </div><label for="name" class="_38j9rEy1sTS0Irgb2FcmHL">
                                         <h6>간단 소개글</h6>
                                         <p>직무 내용, 경험, 목표 등을 추가해서 더욱 멋진 소개글을 작성해보세요.</p><textarea id="name" type="text"
-                                          name="intro"   autocomplete="off" placeholder="안녕하세요. 10년차 웹 개발자 입니다."></textarea>
+                                          name="intro"   autocomplete="off" placeholder="안녕하세요. 10년차 웹 개발자 입니다.">
+                                     		     안녕하세요. 10년차 웹 개발자 입니다.
+                                          
+                                          </textarea>
                                     </label>
                                 </div>
                             </div>
                             <footer class="FormFooter _3MqXvmRsKlYS61B7NaqHUC fixedFooter">
                             <c:set value="${loginMember.memEmail }" var="memEmail"  />
                             <c:set value="${loginMember.memName }" var="memName"  />
+                            <c:set value="${loginMember.memNo }" var="memNo"/>
                             <input type="hidden" value="${memEmail }" name="memEmail"/>
                             <input type="hidden" value="${memName }" name="memName"/>
+                            <input type="hidden" value="${memNo }" name="memNo">
                                 <div class="childrenWrapper"><button
                                         type="submit" >작성 완료</button></div>
                             </footer>

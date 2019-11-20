@@ -18,4 +18,5 @@ public class Interests {
 	private String[] skill;
 	private Date interestsDate;
 	private int resumeNo;
+	private int memNo;
 }

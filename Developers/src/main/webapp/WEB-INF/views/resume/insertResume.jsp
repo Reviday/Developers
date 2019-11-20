@@ -810,14 +810,11 @@
     	location.href ="${path }/resume/deleteIndex.lmc?deleteNo="+deleteNo+"&deleteIndex="+deleteIndex+"&resumeNo="+resumeNo;
     }
     
-
-    
-  
-
     function fn_status(){
  		  if( ($('input[name=memPhone]')).val().trim().length > 0 &&
  	  			($('input[name=memPhone]')).val().trim().length > 0 &&
  	  			($('textarea[name=intro]')).val().trim().length > 0 &&
+ 	  			($('input[name=startCareer]')).val() !=null &&
  	  			($('input[name=startCareer]')).val().trim().length > 0 &&
  	  			($('input[name=endCareer]')).val().trim().length > 0 &&
  	  			($('textarea[name=careerIntro]')).val().trim().length > 0 &&

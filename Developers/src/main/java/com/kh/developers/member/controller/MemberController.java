@@ -359,13 +359,15 @@ public class MemberController {
     		@RequestParam(value="experience") String experience,
     		@RequestParam(value="duty[]") List<String> dutyList,
     		@RequestParam(value="salary") int salary ,
-    		@RequestParam(value="skill[]") List<String> skillList ) {
+    		@RequestParam(value="skill[]") List<String> skillList,
+    		@RequestParam(value="memNo") int memNo) {
     	ModelAndView mv=new ModelAndView();
     	Interests i = new Interests();
     	i.setJobName(jobName);
     	i.setExperience(experience);
     	i.setSalary(salary);
     	i.setMemEmail(memEmail);
+    	i.setMemNo(memNo);
     	int dutysize=0;
     	String[] arrayDuty = new String[dutyList.size()];
          for(String duty : dutyList) {
@@ -387,11 +389,12 @@ public class MemberController {
     }
     
 	@RequestMapping("/member/insertMathupResume.lmc")
-	public ModelAndView insertMathupResume(String schoolName,String empName,String startY,String startM,String endY,String endM,String memEmail,String memName) {
+	public ModelAndView insertMathupResume(String schoolName,String empName,String startY,String startM,String endY,String endM,String memEmail,String memName,int memNo) {
 		ModelAndView mv=new ModelAndView();
 		Member m =new Member();
 		m.setMemEmail(memEmail);
 		m.setMemName(memName);
+		m.setMemNo(memNo);
 		int result=rService.insertMathupResume(m);
 		String startCareer=startY+startM;
 		String endCareer=endY+endM;

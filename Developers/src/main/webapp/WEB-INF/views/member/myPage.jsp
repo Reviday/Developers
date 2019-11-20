@@ -183,8 +183,10 @@ var path = "${path }";
 
                         <footer class="FormFooter _3MqXvmRsKlYS61B7NaqHUC fixedFooter isChild">
                          <c:set value="${loginMember.memEmail }" var="memEmail"  />
+                          <c:set value="${loginMember.memNo }" var="memNo"  />
                         	<input type="hidden" value="${memEmail }" name="memEmail" id="memEmail"/>
-                            <div class="childrenWrapper"><button type="button" onclick="saveInter('${memEmail }' );">다음 단계</button></div>
+                        	<input type="hidden" value="${memNo }" name="memNo" id="memNo"/>
+                            <div class="childrenWrapper"><button type="button" onclick="saveInter('${memEmail }',${memNo } } );">다음 단계</button></div>
                         </footer>
                     </div>
                 </section>
@@ -221,7 +223,7 @@ var path = "${path }";
          });
     });
     
-   function saveInter(memEmail){
+   function saveInter(memEmail,memNo){
 	
 	   var skill = [];
 	   $("input[name='skill']:checked").each(function(i){   
@@ -239,7 +241,8 @@ var path = "${path }";
 			   "experience":experience,
 	   			"duty":duty,
 	   			"salary":salary,
-	   			"skill":skill
+	   			"skill":skill,
+	   			"memNo":memNo
            };
 	   
 	   $.ajax({
