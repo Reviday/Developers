@@ -675,7 +675,7 @@ public class MemberController {
     		@RequestParam(value="cPage", required=false, defaultValue="1")int cPage) {
     	ModelAndView mv= new ModelAndView();
     	m=service.selectMemberOne(m);
-    	int numPerPage=5;
+    	int numPerPage=10;
 		int totalData=0;
 		//list 가져오기
 		String url="/developers/member/dashBoard.lmc?memEmail="+m.getMemEmail();
@@ -691,7 +691,7 @@ public class MemberController {
     public ModelAndView dashBoardSearch(MyApp ma,
     		@RequestParam(value="cPage", required=false, defaultValue="1")int cPage) {
     	ModelAndView mv= new ModelAndView();
-    	int numPerPage=5;
+    	int numPerPage=10;
     	int SearchTotalData=0;
     	String url="/developers/member/dashBoard.lmc?memEmail="+ma.getMemEmail()+"&busName="+ma.getBusName();
     	List<MyApp> applList =service.selectMa(ma,cPage,numPerPage);
