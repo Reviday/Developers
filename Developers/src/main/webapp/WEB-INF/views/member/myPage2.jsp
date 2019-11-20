@@ -76,7 +76,7 @@ var path = "${path }";
                 <div class="MatchUpForm _1DBZ1F8aWXUpL5ry5a_nRi _3IED0gKfPim4KkuZ7BNhTA" id="resumeContainer">
                     <div class="Form-header">
                         <dl class="Form-title">
-                            <dt>기본 이력서</dt>
+                            <dt>매치업 이력서</dt>
                          
                         </dl>
                     </div>

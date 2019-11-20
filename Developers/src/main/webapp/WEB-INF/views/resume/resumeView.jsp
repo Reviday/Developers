@@ -49,6 +49,18 @@
                                         type="button"><i class="fas fa-download"></i></button>
                                 </div>
                             </div>
+                                    <div class="Box-cwadsP iKzpWM" id="deleteModall">
+                           			  <c:set value="${resume.resumeNo }" var="resumeNo"/>
+                                <div width="40" class="Content-zwkXZ dzZUIS" id="deleteModall2">
+                                    <div class="Div-hTZHGu fEVoGZ" id="modalContentl2">
+<p class="Confirm__ConfirmMessage-fNOBqL cHGGot" id=".0.3.0.$/=11.0">이력서가 다 작성되지않았습니다.내용을 전부 적어주세요</p>
+                                    </div>
+                                    <div class="Div-hTZHGu dXKeOh" id="modalContentl3">
+                                    <button color="#B5B5B5"class="Button-kDSBcD hzWWar" style="width:100%" type="button" onclick="madalclose2();">닫기</button>
+        							 </div>
+     </div>
+     <div class="Overlay-iWuiZb gMLFic" id="deleteModall3"></div>
+ </div>
                             <div class="Box-cwadsP iKzpWM" id="deleteModal">
                             <input type="hidden" id="deleteIndex" value=""/>
                            			 <input type="hidden" id="deleteNo" value=""/>
@@ -841,17 +853,26 @@
    			  	$("#status").val("Y");
    	  			return true;
    	  	}else{
-   	     $("#deleteModal").removeClass('iKzpWM');
-   	    $("#deleteModal3").removeClass('gMLFic'); 
-   	    $("#deleteModal").addClass('bLaSri');
-   	    $("#deleteModal2").addClass('grXykz');
-   	    $("#deleteModal3").addClass('emhpxA');
+   	  	  $("#deleteModall").removeClass('iKzpWM');
+   	    $("#deleteModall3").removeClass('gMLFic'); 
+   	    $("#deleteModall").addClass('bLaSri');
+   	    $("#deleteModall2").addClass('grXykz');
+   	    $("#deleteModall3").addClass('emhpxA');
    	    $("body").addClass('stop-scrolling');
-   		 document.getElementById('modalContent2').innerHTML='<p class="Confirm__ConfirmMessage-fNOBqL cHGGot" id=".0.3.0.$/=11.0">이력서가 다 작성되지않았습니다.내용을 전부 적어주세요</p>';
-   		document.getElementById('modalContent3').innerHTML='<button color="#B5B5B5"class="Button-kDSBcD hzWWar" style="width:100%" type="button" onclick="madalclose();">닫기</button>';
+   	 document.getElementById('modalContentl2').innerHTML='<p class="Confirm__ConfirmMessage-fNOBqL cHGGot" id=".0.3.0.$/=11.0">이력서가 다 작성되지않았습니다.내용을 전부 적어주세요</p>';
+		document.getElementById('modalContentl3').innerHTML='<button color="#B5B5B5"class="Button-kDSBcD hzWWar" style="width:100%" type="button" onclick="madalclose2();">닫기</button>';
    	  		return false;
-   	  	}
+   	  	}  
    	  }
+ 	    function  madalclose2() {
+ 	       $("#deleteModall").removeClass('bLaSri');
+ 	      $("#deleteModall2").removeClass('grXykz');
+ 	      $("#deleteModall3").removeClass('emhpxA');
+ 	      $("body").removeClass('stop-scrolling'); 
+ 	      $("#deleteModall").addClass('iKzpWM');
+ 	      $("#deleteModall2").addClass('dzZUIS');
+ 	      $("#deleteModall3").addClass('gMLFic'); 
+ 	   	     }
 </script>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/> 
 
