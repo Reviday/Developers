@@ -783,48 +783,57 @@ public class BusinessController2 {
 		poHtml+="<div class='position_header'>";
 		poHtml+="<button type='button' class='position_add_btn' onclick='fn_enroll_position();'>포지션 추가</button>";
 		poHtml+="</div>";
+		String po2="";
+		po2+="<div class='position_section'>";
+		po2+="<div class='no_po'>등록된 포지션이 없습니다.</div>";
+		po2+="</div>";
+		String po3="";
 		for(String s:status) {
 			map.put("status", s);
 			List<Position> poList=service.selectPositionList(map);
 			if(poList.size()>0) {
-				poHtml+="<div class='position_section'>";
+				po3+="<div class='position_section'>";
 				if(s.equals("Y")) {
-					poHtml+="<h3>채용 진행중인 포지션</h3>";
+					po3+="<h3>채용 진행중인 포지션</h3>";
 				}else if(s.equals("O")){
-					poHtml+="<h3>승인 요청된 포지션</h3>";
+					po3+="<h3>승인 요청된 포지션</h3>";
 				}else if(s.equals("M")){
-					poHtml+="<h3>수정 요청된 포지션</h3>";
+					po3+="<h3>수정 요청된 포지션</h3>";
 				}else {
-					poHtml+="<h3>임시 저장된 포지션</h3>";
+					po3+="<h3>임시 저장된 포지션</h3>";
 				}
-				poHtml+="<div class='position_list'>";
+				po3+="<div class='position_list'>";
 				for(Position po:poList) {
-					poHtml+="<div class='position_info'>";
-					poHtml+="<input type='hidden' class='position_no' value='"+po.getPosition_no()+"'/>";
-					poHtml+="<div class='position_name'>";
+					po3+="<div class='position_info'>";
+					po3+="<input type='hidden' class='position_no' value='"+po.getPosition_no()+"'/>";
+					po3+="<div class='position_name'>";
 					if(po.getPosition()!=null && !po.getPosition().equals("")) {
-						poHtml+=po.getPosition();
+						po3+=po.getPosition();
 					}else {
-						poHtml+="포지션명 등록";
+						po3+="포지션명 등록";
 					}
-					poHtml+="</div>";
-					poHtml+="<div class='position_date'>";
+					po3+="</div>";
+					po3+="<div class='position_date'>";
 					SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 					String date=sdf.format(po.getDead_date());
 					if(date.equals("2999-12-31")) {
-						poHtml+="상시";
+						po3+="상시";
 					}else {
-						poHtml+="~ "+date+" 까지";
+						po3+="~ "+date+" 까지";
 					}
-					poHtml+="</div>";
-					poHtml+="</div>";
+					po3+="</div>";
+					po3+="</div>";
 
 				}
-				poHtml+="</div>";
-				poHtml+="</div>";
+				po3+="</div>";
+				po3+="</div>";
 			}
 		}
-
+		if(po3.length()>0) {
+			poHtml+=po3;
+		}else {
+			poHtml+=po2;
+		}
 		//		
 
 		mv.addObject("dbHtml", poHtml);
@@ -1008,12 +1017,14 @@ public class BusinessController2 {
 				seHtml+="</div>";
 			}
 		}else {
+			seHtml+="<div class='po_btn_con'>";
 			seHtml+="<button type='button' class='po_btn po_temp' data='";
 			seHtml+="T";
 			seHtml+="' onclick='fn_add_position();'>임시 저장</button>";
 			seHtml+="<button type='button' class='po_btn' data='O' onclick='fn_add_position();'>";
 			seHtml+="승인요청";
 			seHtml+="</button>";
+			seHtml+="</div>";
 		}
 		seHtml+="</div>";
 		seHtml+="</div>";
