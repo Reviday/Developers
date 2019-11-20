@@ -31,7 +31,7 @@
                     <div class="_3D4OeuZHyGXN7wwibRM5BJ liked">
                     <a href="${path }/search/companyInfo.do?positionNo=${l.position_no }&memNo=${loginMember.memNo}" target="_self" class="">
                             <header
-                                style="background-image: url('${path}${l.bus_images[1]}');">
+                                style="background-image: url('${path}${l.bus_images[0]}');">
                                </header>
                             <div class="body">
                                 <dl>
