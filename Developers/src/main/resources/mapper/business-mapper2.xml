@@ -90,7 +90,10 @@
 	</update>
 	
 	<select id="selectPositionOne" parameterType="map" resultMap="positionArray">
-		SELECT * FROM ENROLL_POSITION WHERE POSITION_NO=#{positionNo} AND BUS_NO=#{busNo}
+		SELECT * FROM ENROLL_POSITION WHERE POSITION_NO=#{positionNo}
+		<if test="positionNo!=null and positionNo!=0">
+		 AND BUS_NO=#{busNo}
+		</if> 
 	</select>
 	
 	<select id="selectAnswerRate" parameterType="map" resultType="_double">

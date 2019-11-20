@@ -427,7 +427,12 @@ public class BusinessController2 {
 				html+="<div class='aList-info-name'>"+m.getMemName().charAt(0)+"<i class='far fa-circle'></i><i class='far fa-circle'></i></div>";
 				html+="</div>";
 				html+="<div class='aList-type'>";
-				html+="<span>매치업</span>";
+				html+="<span>";
+				Map poMap=new HashMap();
+				poMap.put("busNo", appl.getBusNo());
+				poMap.put("positionNo",appl.getPositionNo());
+				html+=(service.selectPositionOne(poMap)).getPosition();
+				html+="</span>";
 				html+="</div>";
 				String recHtml="";
 				try {
