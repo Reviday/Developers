@@ -193,7 +193,7 @@ div.modal-footer{
 }
 @media (min-width: 576px){
 	.modal-dialog {
-		max-width: 700px;
+		max-width: 800px;
 	}
 }
 @media (min-width: 576px){
@@ -345,6 +345,11 @@ button#toTicketMo:hover{
 }
 
 #useTicket{
+	font-size: 1em;
+    height: 4em;
+    width: 9em;
+}
+#offerInterview{
 	font-size: 1em;
     height: 4em;
     width: 9em;
@@ -502,10 +507,7 @@ button#toTicketMo:hover{
 				</div>
 				<!-- </form> -->
 	    		<div class="modal-footer">
-					<div class="resume-footer row" style="width:100%">
-						<div class="footer-intro col-12 col-sm-9" style="color: #fff; margin:auto auto;"><p style="font-size:20px;">이력서 상세보기 시, 열람권 1회가 차감됩니다.</p></div>
-						<div class="resumePayment col-12 col-sm-3"><button type="button" id="useTicket" color="#258BF7" class="btn btn-primary"  onclick="useTicket();">이력서 상세보기</button></div>
-					</div>	
+					<div class="resume-footer row" id="resumeFooter" style="width:100%"></div>	
 				</div>
 			</div>
 		</div>

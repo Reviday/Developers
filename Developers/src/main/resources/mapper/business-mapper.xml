@@ -156,7 +156,7 @@
 	</select>
 	
 	<select id="selectPositionInfo" parameterType="integer" resultMap="advertisement">
-		SELECT POSITION_NO, POSITION, DEAD_DATE FROM ENROLL_POSITION WHERE BUS_NO=#{busNo} AND DEAD_DATE>=SYSDATE
+		SELECT POSITION_NO, POSITION, DEAD_DATE FROM ENROLL_POSITION WHERE BUS_NO=#{busNo} AND DEAD_DATE>=SYSDATE AND STATUS="Y"
 	</select>
 	<select id="selectAdvertisement" parameterType="integer" resultMap="advertisement">
 		SELECT AD_NO, POSITION_NO, AD_START_DATE, AD_END_DATE, AD_TYPE, CLICK_TIMES FROM ADVERTISEMENT WHERE BUS_NO=#{busNo}
@@ -181,12 +181,15 @@
 	<update id="useTicket" parameterType="integer">
 		UPDATE BUSINESS_INFO SET TICKET=TICKET-1 WHERE BUS_NO=#{busNo}
 	</update>
-	<select id="selectReaded" parameterType="map" resultType="String">
-		SELECT READED FROM MATCHUP_READED WHERE BUS_NO=#{busNo} AND RESUME_NO=#{resumeNo}
+	<select id="selectReaded" parameterType="map" resultType="integer">
+		SELECT COUNT(*) FROM TA_APPL_BUS WHERE BUS_NO=#{busNo} AND RESUME_NO=#{resumeNo} AND POSITION_NO=0;
 	</select>
 	<insert id="insertReaded" parameterType="map">
-		INSERT INTO MATCHUP_READED VALUES(SEQ_MATCHUP_READED_NO.NEXTVAL, #{busNo},#{resumeNo},'T',DEFAULT)
+		INSERT INTO TA_APPL_BUS VALUES(SEQ_TAB_NO.NEXTVAL, #{busNo}, #{memNo}, 0, #{resumeNo}, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, NULL);
 	</insert>
+	<select id="selectMemNo" parameterType="integer" resultType="integer">
+		SELECT MEM_NO FROM RESUME WHERE RESUME_NO = #{resumeNo}
+	</select>
 	
 	
 	<resultMap type="com.kh.developers.business.model.vo.CareerInCard" id="careerMap">

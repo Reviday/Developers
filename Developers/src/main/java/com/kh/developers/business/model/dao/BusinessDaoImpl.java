@@ -241,7 +241,7 @@ public class BusinessDaoImpl implements BusinessDao {
 	
 //	읽은거 불러오기 
 		@Override
-		public String selectReaded(SqlSessionTemplate session, int busNo, int resumeNo) {
+		public int selectReaded(SqlSessionTemplate session, int busNo, int resumeNo) {
 		// TODO Auto-generated method stub
 		Map<String,Object>map=new HashMap<String,Object>();
 		map.put("busNo",busNo);
@@ -249,12 +249,18 @@ public class BusinessDaoImpl implements BusinessDao {
 		return session.selectOne("business.selectReaded",map);
 	}
 		@Override
-		public int insertReaded(SqlSessionTemplate session, int busNo, int resumeNo) {
+		public int insertReaded(SqlSessionTemplate session, int busNo, int resumeNo, int memNo) {
 			// TODO Auto-generated method stub
 			Map<String,Object>map=new HashMap<String,Object>();
 			map.put("busNo",busNo);
 			map.put("resumeNo",resumeNo);
+			map.put("memNo", memNo);
 			return session.insert("business.insertReaded",map);
+		}
+		@Override
+		public int selectMemNo(SqlSessionTemplate session, int resumeNo) {
+			// TODO Auto-generated method stub
+			return session.selectOne("business.selectMemNo",resumeNo);
 		}
 
 }

@@ -294,9 +294,10 @@ public class BusinessController {
 				}else {
 					ic.setFavorite("F");
 				}
-				String readed=bService.selectReaded(busNo,ic.getResumeNo());
-				if(readed!=null) {
-					ic.setReaded(readed);
+				String readed="";
+				int readedCount=bService.selectReaded(busNo,ic.getResumeNo());
+				if(readedCount>0) {
+					ic.setReaded("T");
 				}else {
 					ic.setReaded("F");
 				}
@@ -319,9 +320,10 @@ public class BusinessController {
 				}else {
 					ic.setFavorite("F");
 				}
-				String readed=bService.selectReaded(busNo,ic.getResumeNo());
-				if(readed!=null) {
-					ic.setReaded(readed);
+				String readed="";
+				int readedCount=bService.selectReaded(busNo,ic.getResumeNo());
+				if(readedCount>0) {
+					ic.setReaded("T");
 				}else {
 					ic.setReaded("F");
 				}
@@ -343,9 +345,10 @@ public class BusinessController {
 				}else {
 					ic.setFavorite("F");
 				}
-				String readed=bService.selectReaded(busNo,ic.getResumeNo());
-				if(readed!=null) {
-					ic.setReaded(readed);
+				String readed="";
+				int readedCount=bService.selectReaded(busNo,ic.getResumeNo());
+				if(readedCount>0) {
+					ic.setReaded("T");
 				}else {
 					ic.setReaded("F");
 				}
@@ -367,9 +370,10 @@ public class BusinessController {
 				}else {
 					ic.setFavorite("F");
 				}
-				String readed=bService.selectReaded(busNo,ic.getResumeNo());
-				if(readed!=null) {
-					ic.setReaded(readed);
+				String readed="";
+				int readedCount=bService.selectReaded(busNo,ic.getResumeNo());
+				if(readedCount>0) {
+					ic.setReaded("T");
 				}else {
 					ic.setReaded("F");
 				}
@@ -518,9 +522,10 @@ public class BusinessController {
 			for(IntroCard ic:icList) {
 				ic.setCareers(bService.selectCareers(ic.getResumeNo()));
 				ic.setEducations(bService.selectEducations(ic.getResumeNo()));
-				String readed=bService.selectReaded(busNo,ic.getResumeNo());
-				if(readed!=null) {
-					ic.setReaded(readed);
+				String readed="";
+				int readedCount=bService.selectReaded(busNo,ic.getResumeNo());
+				if(readedCount>0) {
+					ic.setReaded("T");
 				}else {
 					ic.setReaded("F");
 				}
@@ -744,10 +749,14 @@ public class BusinessController {
 			HttpServletResponse res) {
 		Business bus=(Business)req.getSession().getAttribute("busInfo");
 		int busNo=Integer.parseInt(bus.getBusNo());
+		int memNo=bService.selectMemNo(resumeNo);
+		System.out.println("memNo : "+memNo);
+		System.out.println("busNO : "+busNo);
+		System.out.println("resumeNo : "+resumeNo);
 		int result=0;
 		String msg="";
 		try {
-			result=bService.insertReaded(resumeNo,busNo);
+			result=bService.insertReaded(resumeNo,busNo,memNo);
 		}catch(Exception e) {
 			msg="이력서 상세 보기 도중 에러가 발생했습니다.";
 		}

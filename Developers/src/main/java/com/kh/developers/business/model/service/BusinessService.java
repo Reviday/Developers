@@ -72,7 +72,9 @@ public interface BusinessService {
 	int useTicket(int busNo);
 	
 //	읽은것들 불어오기 
-	String selectReaded(int busNo,int resumeNo);
+	int selectReaded(int busNo,int resumeNo);
 	
-	int insertReaded(int busNo, int resumeNo);
+	int insertReaded(int busNo, int resumeNo, int memNo);
+	
+	int selectMemNo(int resumeNo);
 }

@@ -271,14 +271,19 @@ public class BusinessServiceImpl implements BusinessService {
 	
 //	읽은거 불러오기
 	@Override
-	public String selectReaded(int busNo, int resumeNo) {
+	public int selectReaded(int busNo, int resumeNo) {
 		// TODO Auto-generated method stub
 		return dao.selectReaded(session, busNo, resumeNo);
 	}
 	@Override
-	public int insertReaded(int busNo, int resumeNo) {
+	public int insertReaded(int busNo, int resumeNo, int memNo) {
 		// TODO Auto-generated method stub
-		return dao.insertReaded(session,busNo,resumeNo);
+		return dao.insertReaded(session,busNo,resumeNo, memNo);
+	}
+	@Override
+	public int selectMemNo(int resumeNo) {
+		// TODO Auto-generated method stub
+		return dao.selectMemNo(session,resumeNo);
 	}
 	
 

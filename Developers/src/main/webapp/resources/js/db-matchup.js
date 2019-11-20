@@ -330,6 +330,7 @@ function openResume(resumeNo, level){
                     let intro=$('div#ResuIntro');
                     let career=$('div#ResuCareers');
                     let education=$('div#ResuEducation');
+                    let resumeFooter=$('div#resumeFooter');
                     info=JSON.parse(result);
                     let userName=info.memName.split("");
                     let sirName=userName.splice(0,1);
@@ -400,10 +401,21 @@ function openResume(resumeNo, level){
                         }else{
                             educationss+='<div class="subjectName"><p id="subjectName">'+finalEd+'</p></div>';
                         }
-                        // educationss+='<div class="subjectName"><p id="subjectName">'+finalEd+'</p></div>';
+                        
                         educationss+='<hr style="width:95%;">';
                     }
                     education.html(educationss);
+
+                    let resFooter="";
+                    if(level>1){
+                        resFooter+='<div class="footer-intro col-12 col-sm-9" style="color: #fff; margin:auto auto;"><p style="font-size:20px;">경력과 학력 확인 후 면접 제안을 할 수 있습니다.</p></div>';
+                        resFooter+='<div class="resumePayment col-12 col-sm-3"><button type="button" id="offerInterview" color="#258BF7" class="btn btn-primary"  onclick="offerInterview();">면접 제안하기</button></div>';
+                    }
+                    if(level<2){
+                        resFooter+='<div class="footer-intro col-12 col-sm-9" style="color: #fff; margin:auto auto;"><p style="font-size:20px;">이력서 상세보기 시, 열람권 1회가 차감됩니다.</p></div>';
+                        resFooter+='<div class="resumePayment col-12 col-sm-3"><button type="button" id="useTicket" color="#258BF7" class="btn btn-primary"  onclick="useTicket();">이력서 상세보기</button></div>';
+                    }
+                    resumeFooter.html(resFooter);
                 }
             }
         });   
@@ -826,6 +838,7 @@ function useTicket(){
 
 
 function insertReaded(resumeNo){
+    console.log("insertReaded 실행");
     $.ajax({
         url:path+"/business/insertReaded",
         type:"post",
