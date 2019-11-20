@@ -105,7 +105,7 @@
                         <button class="xsSignUpButton suBtn" type="button">회원가입</button>
                      </li>
                      <li class="lgMoreVisible">
-                        <a href="#" class="">서비스 소개</a>
+                        <a href="${path }/admin/erroTest" class="">서비스 소개</a>
                      </li>
                      <li class="smMoreVisible">
                         <a class="dashboardButton" href="${path }/business">기업 서비스</a>
@@ -142,7 +142,7 @@
                         <li class="xsOnly"><a href="/events" class="">커리어/이벤트</a></li>
                         <div class="divider xsOnly"></div>
                         <li class="xsOnly"><a href="${path }/business">기업 서비스</a></li>
-                        <li class="xsOnly"><a href="#" class="">서비스 소개</a></li>
+                        <li class="xsOnly"><a href="${path }/admin/erroTest" class="">서비스 소개</a></li>
                      </ul>
                   </div>
                </aside>
@@ -237,7 +237,7 @@
                      	</c:if>
                         </li>
                         <li class="xsOnly">
-                           <a href="#" class="">서비스 소개</a>
+                           <a href="${path }/admin/erroTest" class="">서비스 소개</a>
                         </li>
                         <li class="">
                            <a class="logOutAnchor" href="${path }/member/logout.do">로그아웃</a>
