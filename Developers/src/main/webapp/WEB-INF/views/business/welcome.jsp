@@ -155,12 +155,12 @@ button#startBtn{
 					<h4 class="middlesub" style="background-color: rgba(0, 0, 0, 0.6); text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;">채용 확정 전까지 아무런 비용 부담없이,<br> 80만 명의 추천인들로부터 최적의 인재를 추천 받으세요</h4>
 					</div>
 					<div id="image2" class="carousel-item">
-					<h2 class="middleTitle" style="color:#FAFAFA; background-color: rgba(0, 0, 0, 0.7); text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;">매치업</h2>
+					<h2 class="middleTitle" style="color:#FAFAFA; background-color: rgba(0, 0, 0, 0.7); text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;">인재풀</h2>
 					<h4 class="middlesub " style="background-color: rgba(0, 0, 0, 0.6); text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;">100,000+명의 엄선된 경력자들 중에 <br>맘에 드는 후보자에게 직접 면접을 제안하세요</h4>
 					</div>
 					<div id="image3" class="carousel-item">
 					<h2 class="middleTitle" style="color:#FAFAFA; background-color: rgba(0, 0, 0, 0.7); text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;">네트워크 광고</h2>
-					<h4 class="middlesub"style="background-color: rgba(0, 0, 0, 0.6); text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;" >한번의 신청으로 최대 500만명의<br> 적극적, 잠재적 구직자들에게 채용정보를 알리세요</h4>
+					<h4 class="middlesub"style="background-color: rgba(0, 0, 0, 0.6); text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;" >한번의 신청으로 최대 100만명의<br> 적극적, 잠재적 구직자들에게 채용정보를 알리세요</h4>
 					</div>
 				</div>
 				<a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">

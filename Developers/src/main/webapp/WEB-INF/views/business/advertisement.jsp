@@ -116,13 +116,13 @@ div#bottom-info>input{
 							<a class="ei_a1" href="${path}/business/applicants.lbc">지원자</a>
 						</li>
 						<li class="ls1 ls3">
-							<a class="ei_a1" href="${path}/business/matchup.lbc">매치업</a>
+							<a class="ei_a1" href="${path}/business/matchup.lbc">인재풀</a>
 						</li>
 						<li class="ls1 ls3">
-							<a class="ei_a1" href="${path}/business/position.lbc">포지션</a>
+							<a class="ei_a1" href="${path}/business/position.lbc">채용 공고</a>
 						</li>
 						<li class="ls1 ls3">
-							<a class="ei_a1" href="${path}/business/ad.lbc">채용 광고</a>
+							<a class="ei_a1" href="${path}/business/ad.lbc">네트워크 광고</a>
 						</li>
 						<li class="ls1 ls3">
 							<a class="ei_a1" href="${path}/business/busInfo.lbc">회사정보</a>

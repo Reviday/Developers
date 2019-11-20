@@ -79,5 +79,5 @@ public interface BusinessService {
 	int selectMemNo(int resumeNo);
 	
 //	클릭 
-	int insertClick(int adNo);
+//	int insertClick(int adNo);
 }

@@ -285,10 +285,10 @@ public class BusinessServiceImpl implements BusinessService {
 		// TODO Auto-generated method stub
 		return dao.selectMemNo(session,resumeNo);
 	}
-	 @Override
-	public int insertClick(int adNo) {
-		// TODO Auto-generated method stub
-		return dao.insertClick(session,adNo);
-	}
+//	 @Override
+//	public int insertClick(int adNo) {
+//		// TODO Auto-generated method stub
+//		return dao.insertClick(session,adNo);
+//	}
 
 }

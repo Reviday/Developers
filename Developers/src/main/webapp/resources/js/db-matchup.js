@@ -241,27 +241,31 @@ function ajaxLogic(searchPackage){
                         cardContainer+='</div><hr>';
 
                         // 학교 + 미리보기 버튼
+                        if(icList[i].educations!=null||icList[i].educations!=undefined){
                         cardContainer+='<div class="bottom row"><p class="education-list col-12 col-sm-8">';
-                        let education=icList[i].educations;
-                        for(var ed=0;ed<education.length;ed++){
-                            if(searchValue!=""){
-                                for(var u=0;u<sValues.length;u++){
-                                    if(education[ed].schoolName.match(sValues[u])){
-                                        cardContainer+='<mark><b>';
+                            let education=icList[i].educations;
+                            for(var ed=0;ed<education.length;ed++){
+                                if(searchValue!=""){
+                                    for(var u=0;u<sValues.length;u++){
+                                        if(education[ed].schoolName.match(sValues[u])){
+                                            cardContainer+='<mark><b>';
+                                        }
                                     }
                                 }
+                                if(education[ed]!=null||education[ed]!=undefined){
+                                    cardContainer+=education[ed].schoolName;
+                                }
+                                if(searchValue!=""){
+                                    cardContainer+='</b></mark>';
+                                }
+                                cardContainer+='<span class="aline">'+" | "+'</span>';    
+                                cardContainer+='<small>'+education[ed].majorName+'</small>';
                             }
-                            cardContainer+=education[ed].schoolName;
-                            if(searchValue!=""){
-                                cardContainer+='</b></mark>';
-                            }
-                            cardContainer+='<span class="aline">'+" | "+'</span>';    
-                            cardContainer+='<small>'+education[ed].majorName+'</small>';
+                            cardContainer+='</p>';
                         }
-                        cardContainer+='</p>'
                         // 이력서 미리보기 버튼 
                         if(icList[i].readed=="T"){
-                            cardContainer+='<a href="#" class="btn btn-primary favBtn openResume col-6 col-sm-4" data-toggle="modal" data-target="#openRoughResume" onclick="openResume('+icList[i].resumeNo+","+2+');">이력서 상세보기</a></div>';
+                            cardContainer+='<a href="#" class="btn btn-outline-primary favBtn openResume col-6 col-sm-4" data-toggle="modal" data-target="#openRoughResume" onclick="openResume('+icList[i].resumeNo+","+2+');">이력서 상세보기</a></div>';
                         }else{
                             cardContainer+='<a href="#" class="btn btn-primary favBtn openResume col-6 col-sm-4" data-toggle="modal" data-target="#openRoughResume" onclick="openResume('+icList[i].resumeNo+","+1+');">이력서 미리보기</a></div>';
                         }
@@ -574,7 +578,7 @@ function favoriteList(cPage){
                         cardContainer+='</p>'
                         // 이력서 미리보기 버튼 
                         if(icList[i].readed=="T"){
-                            cardContainer+='<a href="#" class="btn btn-primary favBtn openResume col-6 col-sm-4" data-toggle="modal" data-target="#openRoughResume" onclick="openResume('+icList[i].resumeNo+","+2+');">이력서 상세보기</a></div>';
+                            cardContainer+='<a href="#" class="btn btn-outline-primary favBtn openResume col-6 col-sm-4" data-toggle="modal" data-target="#openRoughResume" onclick="openResume('+icList[i].resumeNo+","+2+');">이력서 상세보기</a></div>';
                         }else{
                             cardContainer+='<a href="#" class="btn btn-primary favBtn openResume col-6 col-sm-4" data-toggle="modal" data-target="#openRoughResume" onclick="openResume('+icList[i].resumeNo+","+1+');">이력서 미리보기</a></div>';
                         }
@@ -825,9 +829,11 @@ function useTicket(){
                 if(type=="T"){
                     let resumeNo=document.querySelector("#hiddenResumeNo").value;
                     let res=insertReaded(resumeNo);
-                    if(res!="T"){
-                        alert(res);
-                    }else{
+                    console.log(res);
+                    let temp=JSON.parse(res);
+                    if(res.msg!="T"){
+                        alert(res.msg);
+                    }else if(res.msg=="T"&&res.applNo!=null){
                         updateNumOfTicket();
                         alert("열람권 1개를 사용하셨습니다. 남은 갯수 : "+(num-1)+"개");
                         openResume(resumeNo,2);

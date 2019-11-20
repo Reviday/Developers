@@ -255,7 +255,8 @@ public class BusinessDaoImpl implements BusinessDao {
 			map.put("busNo",busNo);
 			map.put("resumeNo",resumeNo);
 			map.put("memNo", memNo);
-			return session.insert("business.insertReaded",map);
+			session.insert("business.insertReaded",map);
+			return (int) map.get("APPL_NO");
 		}
 		@Override
 		public int selectMemNo(SqlSessionTemplate session, int resumeNo) {

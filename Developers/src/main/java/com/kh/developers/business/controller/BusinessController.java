@@ -603,9 +603,11 @@ public class BusinessController {
 	
 	
 //	광고 클릭 수 저장 함수 
-	public void adClick(int adNo) {
-		bService.insertClick(adNo);
-	}
+//	public void adClick(int adNo) {
+//		if(adNo>0) {
+//			int result=bService.insertClick(adNo);			
+//		}
+//	}
 	
 
 	@RequestMapping(value = "/business/paySuccess", produces = "application/text; charset=utf-8")
@@ -749,6 +751,7 @@ public class BusinessController {
 		Business bus=(Business)req.getSession().getAttribute("busInfo");
 		int busNo=Integer.parseInt(bus.getBusNo());
 		int memNo=bService.selectMemNo(resumeNo);
+		Map<String,Object>val=new HashMap<String,Object>();
 		String jsonStr="";
 		ObjectMapper mapper=new ObjectMapper();
 		int result=0;
@@ -758,13 +761,16 @@ public class BusinessController {
 		}catch(Exception e) {
 			msg="이력서 상세 보기 도중 에러가 발생했습니다.";
 		}
+		System.out.println(result);
 		if(result>0) {
 			msg="T";
 		}else {
 			msg="이력서 상세 보기 도중 에러가 발생했습니다.";
 		}
+		val.put("applNo", result);
+		val.put("msg",msg);
 		try {
-			jsonStr=mapper.writeValueAsString(msg);
+			jsonStr=mapper.writeValueAsString(val);
 		}catch(JsonProcessingException e) {
 			e.printStackTrace();
 		}
