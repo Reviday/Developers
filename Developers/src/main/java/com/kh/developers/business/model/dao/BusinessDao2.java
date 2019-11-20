@@ -50,6 +50,8 @@ public interface BusinessDao2 {
 	
 	int selectCheckLike(SqlSession session, Map map);
 	
+	Map selectRecommend(SqlSession session, int reNo);
+	
 	IntroCard selectResumeOne(SqlSession session, int applNo);
 	List<CareerInCard> selectCareerList(SqlSession session, int resumeNo);
 	List<EducationInCard> selectEducationList(SqlSession session, int resumeNo);

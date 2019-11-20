@@ -115,7 +115,12 @@ public class BusinessServiceImpl2 implements BusinessService2 {
 		return result;
 	}
 	
-	
+
+	@Override
+	public Map selectRecommend(int reNo) {
+		Map rec=dao.selectRecommend(session, reNo);
+		return rec;
+	}
 
 	@Override
 	public IntroCard selectResumeOne(int applNo) {

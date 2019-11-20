@@ -187,6 +187,12 @@
 		resultMap="memberMap">
 		SELECT * FROM TA_MEMBER WHERE MEM_NO=#{memNo} AND MEM_STATUS='Y'
 	</select>
+	
+	<select id="selectRecommend" parameterType="_int" resultType="map">
+		SELECT * FROM RECOMMEND WHERE RECOMMEND_ID=#{reNo} 
+	</select>
+	
+	
 
 	<select id="selectResumeOne" parameterType="_int"
 		resultMap="introCardMap">
@@ -246,7 +252,7 @@
 	<insert id="insertPosition" parameterType="position">
 		INSERT INTO ENROLL_POSITION 
 		VALUES(EN_PO_SEQ.NEXTVAL, #{bus_no}, #{bus_name}, NULL, NULL, NULL, NULL, '2999/12/31', NULL, NULL, NULL, NULL, NULL, NULL, 
-		SYSDATE, NULL, NULL, NULL, 'T', '0,0')
+		SYSDATE, EN_PO_LIKE_SEQ.NEXTVAL, NULL, NULL, 'T', '0,0')
 		<selectKey keyProperty="position_no" resultType="_int" order="AFTER">
 			SELECT EN_PO_SEQ.CURRVAL FROM DUAL
 		</selectKey>

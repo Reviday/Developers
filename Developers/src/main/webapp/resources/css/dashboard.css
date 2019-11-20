@@ -1,6 +1,9 @@
 section {
     background-color: #f4f4f4 !important;
     height: auto;
+    min-height:783px;
+    margin-bottom: -20px;
+    padding-bottom: 20px;
 }
 
 .db-container {
@@ -234,7 +237,10 @@ input[name="search_em"]::placeholder {
     border: 1px solid silver;
     border-radius: 2px;
 }
-
+.aList-rec{
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+}
 .aList-right {
     position: relative;
     float: right;
@@ -1107,8 +1113,13 @@ input[name="search_em"]::placeholder {
     display: inline-block;
 }
 .set_invite_btn{
+    position: relative;
     float: right;
-    padding:1% 3%;
+    top:10px;
+    padding:0.5% 1%;
+    border:1px solid dodgerblue;
+    background-color:white;
+    font-size:1.5rem;
 }
 .set_title{
     font-size: 3rem;
@@ -1131,7 +1142,7 @@ input[name="search_em"]::placeholder {
     display: inline-block;
 }
 
-.super_admin_header{
+.admin_header{
     font-size: 2.2rem;
 }
 .set_mem_icon{
@@ -1155,6 +1166,18 @@ input[name="search_em"]::placeholder {
     margin-left:1%;
     font-size: 1.8rem;
     vertical-align: middle;
+}
+
+.set_semi_admin{
+    margin-top:2%;
+}
+
+.semi_add{
+    background-color: white;
+    padding:4.5% 0;
+    font-size:1.8rem;
+    text-align: center;
+    border:1px solid silver;
 }
 
 

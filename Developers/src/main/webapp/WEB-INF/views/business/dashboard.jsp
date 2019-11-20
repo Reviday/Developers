@@ -78,4 +78,7 @@
 <c:if test="${dbIndex eq 5}">	
 	<script src="${path}/resources/js/db-businfo.js"></script>
 </c:if>
+<c:if test="${dbIndex eq 6}">	
+	<script src="${path}/resources/js/db-settings.js"></script>
+</c:if>
 <jsp:include page="/WEB-INF/views/business/footer.jsp"/> 

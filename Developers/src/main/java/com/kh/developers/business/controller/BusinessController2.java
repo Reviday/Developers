@@ -429,6 +429,16 @@ public class BusinessController2 {
 				html+="<div class='aList-type'>";
 				html+="<span>매치업</span>";
 				html+="</div>";
+				String recHtml="";
+				try {
+					int rec=appl.getRecommendId();
+					recHtml+="<div class='aList-rec'>";
+					recHtml+="<span>추천인 : "+service.selectRecommend(rec).get("MEM_NAME")+"</span>";
+					recHtml+="</div>";
+				}catch(Exception e) {
+					recHtml="";
+				}
+				html+=recHtml;
 				html+="</div>";
 				html+="<div class='aList-right'>";
 				html+="<div class='aList-del-btn'>";
@@ -1330,7 +1340,7 @@ public class BusinessController2 {
 		setHtml+="</div>";
 		setHtml+="<div class='set_main'>";
 		setHtml+="<div class='set_super_admin'>";
-		setHtml+="<div class='super_admin_header'>";
+		setHtml+="<div class='admin_header'>";
 		setHtml+="관리자";
 		setHtml+="</div>";
 		setHtml+="<div class='set_admin_mem'>";
@@ -1365,18 +1375,32 @@ public class BusinessController2 {
 		}
 		setHtml+=adminHtml;
 		setHtml+="</div>";
-
+		
+		setHtml+="<div class='set_semi_admin'>";
+		setHtml+="<div class='admin_header'>";
+		setHtml+="포지션 관리자";
+		setHtml+="</div>";
 		if(count>0) {				
-			setHtml+="<div class='set_semi_admin'>";
 			setHtml+=semiHtml;
-			setHtml+="</div>";
+		}else {
+			setHtml+="<div class='semi_add' >포지션 관리자를 등록하세요</div>";
 		}
-
 		setHtml+="</div>";
 
-
+		setHtml+="</div>";
+		
+		String seHtml="";
+		seHtml+="<div class='set_invite_modal'>";
+		
+		
+		
+		
+		
+		seHtml+="</div>";
+		
 
 		mv.addObject("dbHtml",setHtml);
+		mv.addObject("seHtml",seHtml);
 		mv.addObject("dbIndex",6);
 		mv.setViewName("business/dashboard");
 		return mv;

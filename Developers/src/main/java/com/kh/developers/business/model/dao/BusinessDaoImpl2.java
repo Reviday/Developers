@@ -101,8 +101,14 @@ public class BusinessDaoImpl2 implements BusinessDao2 {
 	public int selectCheckLike(SqlSession session, Map map) {
 		return session.selectOne("business2.selectCheckLike", map);
 	}
-
 	
+	
+	@Override
+	public Map selectRecommend(SqlSession session, int reNo) {
+		return session.selectOne("business2.selectRecommend", reNo);
+	}
+
+
 	@Override
 	public IntroCard selectResumeOne(SqlSession session, int applNo) {
 		return session.selectOne("business2.selectResumeOne", applNo);

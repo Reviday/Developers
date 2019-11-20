@@ -43,6 +43,9 @@ public interface BusinessService2 {
 	//지원자 좋아요 유무
 	int selectCheckLike(Map map);
 	
+	//지원자 추천인 가져오기
+	Map selectRecommend(int reNo);
+	
 	//지원자 이력서 가져오기
 	IntroCard selectResumeOne(int applNo);
 	
