@@ -211,19 +211,19 @@
 	<select id="selectInterests" parameterType="string" resultMap="interMap">
 		SELECT * FROM INTERESTS WHERE MEM_EMAIL = #{memEmail}
 	</select>
-	<select id="selectPositionList" resultType="position">
-		SELECT P.*, BUS_LOGO, BUS_IMAGES, BUS_ADDRESS, BUS_INDUSTRIAL, BUS_AREA, BUS_COUNTRY, (SELECT COUNT(*) FROM PO_LIKE WHERE LIKE_ID = P.LIKE_ID) AS LIKE_COUNT FROM ENROLL_POSITION P JOIN BUSINESS_INFO B ON P.BUS_NO = B.BUS_NO WHERE SYSDATE <![CDATA[<]]> DEAD_DATE ORDER BY POSITION_NO DESC
+	<select id="selectPositionList" resultType="position" resultMap="positionArray">
+		SELECT P.*, BUS_LOGO, BUS_IMAGES, BUS_ADDRESS, BUS_INDUSTRIAL, BUS_AREA, BUS_COUNTRY, (SELECT COUNT(*) FROM PO_LIKE WHERE LIKE_ID = P.LIKE_ID) AS LIKE_COUNT FROM ENROLL_POSITION P JOIN BUSINESS_INFO B ON P.BUS_NO = B.BUS_NO WHERE SYSDATE <![CDATA[<]]> DEAD_DATE AND P.STATUS = 'Y' ORDER BY POSITION_NO DESC
 	</select>
-	<select id="selectInterPositionList" parameterType="interests" resultType="position">
-		SELECT P.*, BUS_LOGO, BUS_IMAGES, BUS_ADDRESS, BUS_INDUSTRIAL, BUS_AREA, BUS_COUNTRY, (SELECT COUNT(*) FROM PO_LIKE WHERE LIKE_ID = P.LIKE_ID) AS LIKE_COUNT FROM ENROLL_POSITION P JOIN BUSINESS_INFO B ON P.BUS_NO = B.BUS_NO WHERE SYSDATE <![CDATA[<]]> DEAD_DATE
+	<select id="selectInterPositionList" parameterType="interests" resultType="position" resultMap="positionArray"> 
+		SELECT P.*, BUS_LOGO, BUS_IMAGES, BUS_ADDRESS, BUS_INDUSTRIAL, BUS_AREA, BUS_COUNTRY, (SELECT COUNT(*) FROM PO_LIKE WHERE LIKE_ID = P.LIKE_ID) AS LIKE_COUNT FROM ENROLL_POSITION P JOIN BUSINESS_INFO B ON P.BUS_NO = B.BUS_NO WHERE SYSDATE <![CDATA[<]]> DEAD_DATE AND P.STATUS = 'Y'
 		AND JOB_TYPE IN 
 		<foreach collection="duty" item="d" open="(" close=")" separator=",">
 			#{d}
 		</foreach>
 		ORDER BY POSITION_NO DESC
 	</select>
-	<select id="selectWeekPositionList" resultType="position">
-		SELECT P.*, BUS_LOGO, BUS_IMAGES, BUS_ADDRESS, BUS_INDUSTRIAL, BUS_AREA, BUS_COUNTRY, (SELECT COUNT(*) FROM PO_LIKE WHERE LIKE_ID = P.LIKE_ID) AS LIKE_COUNT FROM ENROLL_POSITION P JOIN BUSINESS_INFO B ON P.BUS_NO = B.BUS_NO WHERE DEAD_DATE <![CDATA[<]]> SYSDATE + 7 AND SYSDATE - 7 <![CDATA[<]]> DEAD_DATE ORDER BY POSITION_NO DESC 
+	<select id="selectWeekPositionList" resultType="position" resultMap="positionArray">
+		SELECT P.*, BUS_LOGO, BUS_IMAGES, BUS_ADDRESS, BUS_INDUSTRIAL, BUS_AREA, BUS_COUNTRY, (SELECT COUNT(*) FROM PO_LIKE WHERE LIKE_ID = P.LIKE_ID) AS LIKE_COUNT FROM ENROLL_POSITION P JOIN BUSINESS_INFO B ON P.BUS_NO = B.BUS_NO WHERE DEAD_DATE <![CDATA[<]]> SYSDATE + 7 AND SYSDATE - 7 <![CDATA[<]]> DEAD_DATE AND P.STATUS = 'Y' ORDER BY POSITION_NO DESC 
 	</select>
 	<select id="mainAdList" resultType="mainadcompany" resultMap="mainadcompanyArray">
 		SELECT B.BUS_NO, B.BUS_NAME, B.BUS_IMAGES, POSITION, 
@@ -233,6 +233,12 @@
 		JOIN ENROLL_POSITION P ON (A.POSITION_NO = P.POSITION_NO)
 		WHERE A.AD_TYPE = 'MAIN' AND SYSDATE <![CDATA[<]]> A.AD_END_DATE AND SYSDATE <![CDATA[<]]> P.DEAD_DATE AND P.STATUS = 'Y'
 	</select>
+	<resultMap type="position" id="positionArray">
+		<result column="job_type" property="job_type" typeHandler="StrArray"/>
+		<result column="tag" property="tag" typeHandler="StrArray"/>
+		<result column="bus_images" property="bus_images" typeHandler="StrArray"/>
+		<result column="position_salary" property="position_salary" typeHandler="StrArray"/>
+	</resultMap>
 	<resultMap type="mainadcompany" id="mainadcompanyArray">
 		<result column="bus_images" property="bus_images" typeHandler="StrArray"/>
 	</resultMap>

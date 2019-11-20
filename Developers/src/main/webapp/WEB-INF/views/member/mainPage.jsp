@@ -117,7 +117,7 @@
 			                    <li>
 			                        <div class="position-content-company">
 			                            <a href="${path }/search/companyInfo.do?positionNo=${p.position_no }&memNo=${loginMember.memNo}">
-			                                <div class="position-company-header" style="background-image: url(${path}${p.bus_images});">
+			                                <div class="position-company-header" style="background-image: url(${path}${p.bus_images[0]});">
 			                                    <button type="button" class="likeButton">
 			                                        <i class="fas fa-heart"></i>
 			                                        <c:out value="${p.like_count }"/>
@@ -148,7 +148,7 @@
 			                    <li>
 			                        <div class="position-content-company">
 			                            <a href="${path }/search/companyInfo.do?positionNo=${p.position_no }&memNo=${loginMember.memNo}">
-			                                <div class="position-company-header" style="background-image: url(${path}${p.bus_images});">
+			                                <div class="position-company-header" style="background-image: url(${path}${p.bus_images[0]});">
 			                                    <button type="button" class="likeButton">
 			                                        <i class="fas fa-heart"></i>
 			                                        <c:out value="${p.like_count }"/>
@@ -187,7 +187,7 @@
 		                    <li>
 		                        <div class="newCompany-company">
 		                            <a href="${path }/search/companyAllInfo?busNo=${f.bus_no}">
-		                                <div class="company-header" style="background-image: url(${path}${f.bus_images});"></div>
+		                                <div class="company-header" style="background-image: url(${path}${f.bus_images[0]});"></div>
 		                                <div class="company-content">
 		                                    <dl>
 		                                        <dt>
@@ -216,7 +216,7 @@
 			                    <li>
 			                        <div class="weekchoochun-company">
 			                            <a href="${path }/search/companyInfo.do?positionNo=${w.position_no }&memNo=${loginMember.memNo}">
-			                                <div class="weekchoochun-company-header" style="background-image:url(${path}${w.bus_images});">
+			                                <div class="weekchoochun-company-header" style="background-image:url(${path}${w.bus_images[0]});">
 			                                    <button type="button" class="likeButton">
 			                                        <i class="fas fa-heart"></i>
 			                                        <c:out value="${w.like_count }"/>
@@ -249,7 +249,7 @@
 			                    <li>
 			                        <div class="weekchoochun-company">
 			                            <a href="${path }/search/companyInfo.do?positionNo=${w.position_no }&memNo=${loginMember.memNo}">
-			                                <div class="weekchoochun-company-header" style="background-image:url(${path}${w.bus_images});">
+			                                <div class="weekchoochun-company-header" style="background-image:url(${path}${w.bus_images[0]});">
 			                                    <button type="button" class="likeButton">
 			                                        <i class="fas fa-heart"></i>
 			                                        <c:out value="${w.like_count }"/>
@@ -282,7 +282,7 @@
 			                    <li>
 			                        <div class="weekchoochun-company">
 			                            <a href="${path }/search/companyInfo.do?positionNo=${w.position_no }&memNo=${loginMember.memNo}">
-			                                <div class="weekchoochun-company-header" style="background-image:url(${path}${w.bus_images});">
+			                                <div class="weekchoochun-company-header" style="background-image:url(${path}${w.bus_images[0]});">
 			                                    <button type="button" class="likeButton">
 			                                        <i class="fas fa-heart"></i>
 			                                        <c:out value="${w.like_count }"/>
