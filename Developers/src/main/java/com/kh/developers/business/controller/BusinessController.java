@@ -743,13 +743,16 @@ public class BusinessController {
 		return jsonStr;
 	}
 	
-	@RequestMapping("/business/insertReaded")
-	public String insertReaded(@RequestParam(value="resumeNo",required=true)int  resumeNo,
+	@RequestMapping(value = "/business/insertToReaded", produces = "application/text; charset=utf-8")
+	@ResponseBody
+	public String insertToReaded(@RequestParam(value="resumeNo",required=true)int  resumeNo,
 			HttpServletRequest req,
 			HttpServletResponse res) {
 		Business bus=(Business)req.getSession().getAttribute("busInfo");
 		int busNo=Integer.parseInt(bus.getBusNo());
 		int memNo=bService.selectMemNo(resumeNo);
+		String jsonStr="";
+		ObjectMapper mapper=new ObjectMapper();
 		System.out.println("memNo : "+memNo);
 		System.out.println("busNO : "+busNo);
 		System.out.println("resumeNo : "+resumeNo);
@@ -765,8 +768,13 @@ public class BusinessController {
 		}else {
 			msg="이력서 상세 보기 도중 에러가 발생했습니다.";
 		}
-		
-		return msg;
+		try {
+			jsonStr=mapper.writeValueAsString(msg);
+		}catch(JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		res.setContentType("application/json;charset=utf-8");
+		return jsonStr;
 	}
 	
 	

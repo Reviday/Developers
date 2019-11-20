@@ -838,13 +838,12 @@ function useTicket(){
 
 
 function insertReaded(resumeNo){
-    console.log("insertReaded 실행");
     $.ajax({
-        url:path+"/business/insertReaded",
+        url:path+"/business/insertToReaded",
         type:"post",
         async: false,
         data:{
-            "reumeNo":resumeNo
+            "resumeNo":resumeNo
         },
         success:function(result){ 
             let res=JSON.parse(result);

@@ -182,10 +182,10 @@
 		UPDATE BUSINESS_INFO SET TICKET=TICKET-1 WHERE BUS_NO=#{busNo}
 	</update>
 	<select id="selectReaded" parameterType="map" resultType="integer">
-		SELECT COUNT(*) FROM TA_APPL_BUS WHERE BUS_NO=#{busNo} AND RESUME_NO=#{resumeNo} AND POSITION_NO=0;
+		SELECT COUNT(*) FROM TA_APPL_BUS WHERE BUS_NO=#{busNo} AND RESUME_NO=#{resumeNo} AND POSITION_NO=0
 	</select>
 	<insert id="insertReaded" parameterType="map">
-		INSERT INTO TA_APPL_BUS VALUES(SEQ_TAB_NO.NEXTVAL, #{busNo}, #{memNo}, 0, #{resumeNo}, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, NULL);
+		INSERT INTO TA_APPL_BUS VALUES(SEQ_TAB_NO.NEXTVAL, #{busNo}, #{memNo}, 0, #{resumeNo}, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, NULL)
 	</insert>
 	<select id="selectMemNo" parameterType="integer" resultType="integer">
 		SELECT MEM_NO FROM RESUME WHERE RESUME_NO = #{resumeNo}
