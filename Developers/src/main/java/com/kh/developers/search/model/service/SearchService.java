@@ -103,4 +103,5 @@ public interface SearchService {
 	List<Position> positionKeywordList(String text);
 	//신규채용회사
 	List<Position> firstPsList11();
+	int insertClick(int click);
 }

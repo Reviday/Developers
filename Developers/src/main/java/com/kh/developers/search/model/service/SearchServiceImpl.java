@@ -290,5 +290,10 @@ public class SearchServiceImpl implements SearchService {
 		return list;
 	}
 	
+	@Override
+	public int insertClick(int click) {
+		int update = dao.insertClick(session, click);
+		return update;
+	}
 	
 }

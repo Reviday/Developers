@@ -301,4 +301,10 @@ public class SearchDaoImpl implements SearchDao {
 		return session.selectList("search.firstPsList11");
 	}
 	
+	@Override
+	public int insertClick(SqlSessionTemplate session, int click) {
+		// TODO Auto-generated method stub
+		return session.update("search.insertClick", click);
+	}
+	
 }

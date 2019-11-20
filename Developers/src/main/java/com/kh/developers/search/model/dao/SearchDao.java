@@ -67,4 +67,5 @@ public interface SearchDao {
 	List<SearchCompany> companyKeywordList(SqlSessionTemplate session, String text);
 	List<Position> positionKeywordList(SqlSessionTemplate session, String text);
 	List<Position> firstPsList11(SqlSessionTemplate session);
+	int insertClick(SqlSessionTemplate session, int click);
 }

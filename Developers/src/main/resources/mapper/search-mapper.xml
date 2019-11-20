@@ -285,6 +285,9 @@
 	<select id="firstPsList11" resultMap="positionArray">
 		SELECT * FROM (SELECT ROWNUM AS RNUM, A.* FROM (SELECT (SELECT COUNT(BUS_NO) FROM ENROLL_POSITION) AS PO_COUNT, P.*, BUS_LOGO, BUS_IMAGES, BUS_ADDRESS, BUS_INDUSTRIAL, BUS_AREA, BUS_COUNTRY,(SELECT COUNT(*) FROM PO_LIKE WHERE LIKE_ID = P.LIKE_ID) AS LIKE_COUNT FROM ENROLL_POSITION P JOIN BUSINESS_INFO B ON P.BUS_NO = B.BUS_NO WHERE SYSDATE <![CDATA[<]]> DEAD_DATE AND STATUS = 'Y' ORDER BY 1)A) WHERE RNUM BETWEEN 1 AND 5
 	</select>
+	<update id="insertClick" parameterType="_int">
+		UPDATE ADVERTISEMENT SET CLICK_TIMES=CLICK_TIMES+1 WHERE AD_NO=#{click}
+	</update>
 	
 	<resultMap type="position" id="positionArray">
 		<result column="job_type" property="job_type" typeHandler="StrArray"/>

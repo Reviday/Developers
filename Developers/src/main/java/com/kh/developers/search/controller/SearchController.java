@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.kh.developers.business.controller.BusinessController;
+import com.kh.developers.business.model.service.BusinessServiceImpl;
 import com.kh.developers.business.model.vo.Applicant;
 import com.kh.developers.member.model.vo.Member;
 import com.kh.developers.recommend.model.vo.Recommend;
@@ -349,8 +349,8 @@ public class SearchController {
 	}
 	//탐색 -> 회사소개페이지로 전환
 	@RequestMapping("/search/companyAllInfo11")
-	public String companyAllInfo(int busNo, int click, Model model) {		
-		new BusinessController().adClick(click);
+	public String companyAllInfo(int busNo, int click, Model model) {
+		int update = service.insertClick(click);
 		//회사 포지션 리스트
 		List<Position> psList = service.companyPositionList(busNo);
 		model.addAttribute("psList", psList);
