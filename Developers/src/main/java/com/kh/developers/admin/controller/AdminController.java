@@ -48,15 +48,38 @@ public class AdminController {
 			@RequestParam (value="period", required=false, defaultValue="all") String period,
 			@RequestParam (value="term", required=false, defaultValue="all") int term,
 			@RequestParam (value="chart", required=false, defaultValue="bar") String chart) {
-		System.out.println("이거 실행돼?");
 		// period, term, term 에 따른 자료 select!
-		Map<Integer, Integer> resultMap=service.selectVisitorChartData(period, term);
+		List<Map<String, Integer>> resultList=service.selectVisitorChartData(period, term);
 		
 		model.addAttribute("period",period);
 		model.addAttribute("term", term);
 		model.addAttribute("chart", chart);
-		model.addAttribute("timeMap", resultMap);
+		model.addAttribute("timeList", resultList);
 		return "admin/visitorLogChartAjax";
+	}
+	
+	@RequestMapping("/admin/visitorLog.lac")
+	public ModelAndView visitorLog() {
+		ModelAndView mv=new ModelAndView();
+		
+		//전체,한 달,일주일,하루 통계를 가져온다.
+		List<Integer> visitorStats=service.selectVisitorStats();
+		
+		//최고 방문자 수, 날짜
+		Map<String, Object> highestVisitor=service.selectHighestVisitor();
+		System.out.println(highestVisitor);
+		
+		//시간별 차트 
+		// period, term, term 에 따른 자료 select!
+		List<Map<String, Integer>> resultList=service.selectVisitorChartData("A", 3);
+		mv.addObject("period","A");
+		mv.addObject("term", "3");
+		mv.addObject("chart", "line");
+		mv.addObject("timeList", resultList);
+		mv.addObject("visitorStats",visitorStats);
+		mv.addObject("highestVisitor",highestVisitor);
+		mv.setViewName("admin/visitorLog");
+		return mv;
 	}
 		
 	@RequestMapping("/admin/positionRejection.lac")
@@ -435,31 +458,6 @@ public class AdminController {
 		mv.addObject("numPerPage", pt.getNumPerPage());
 		mv.addObject("pageBar", pt.getPageBar());
 		mv.setViewName("admin/businessRequest");
-		return mv;
-	}
-	
-	@RequestMapping("/admin/visitorLog.lac")
-	public ModelAndView visitorLog() {
-		ModelAndView mv=new ModelAndView();
-		
-		//전체,한 달,일주일,하루 통계를 가져온다.
-		List<Integer> visitorStats=service.selectVisitorStats();
-		
-		//최고 방문자 수, 날짜
-		Map<String, Object> highestVisitor=service.selectHighestVisitor();
-		System.out.println(highestVisitor);
-		
-		//시간별 차트 
-		// period, term, term 에 따른 자료 select!
-		Map<Integer, Integer> resultMap=service.selectVisitorChartData("A", 4);
-				
-		mv.addObject("period","A");
-		mv.addObject("term", "4");
-		mv.addObject("chart", "Line");
-		mv.addObject("timeMap", resultMap);
-		mv.addObject("visitorStats",visitorStats);
-		mv.addObject("highestVisitor",highestVisitor);
-		mv.setViewName("admin/visitorLog");
 		return mv;
 	}
 	

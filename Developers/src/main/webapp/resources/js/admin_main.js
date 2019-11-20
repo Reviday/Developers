@@ -271,8 +271,8 @@ function visitor_chartChange(period, term, chart) {
 		},
 		success:function(result) {
 			if(result!=null) {
-				$('#chartArea').html("");
-				$('#chartArea').html(result);
+				$('#visitor-chart-time').html("");
+				$('#visitor-chart-time').html(result);
 			} else {
 				alert("요청이 정상적으로 처리되지 않았습니다.");
 			}

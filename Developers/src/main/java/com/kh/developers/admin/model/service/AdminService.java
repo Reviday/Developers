@@ -43,5 +43,5 @@ public interface AdminService {
 	List<Map<String, String>> selectJabField();
 	List<Integer> selectVisitorStats();
 	Map<String, Object> selectHighestVisitor();
-	Map<Integer, Integer> selectVisitorChartData(String period, int term);
+	List<Map<String, Integer>> selectVisitorChartData(String period, int term);
 }

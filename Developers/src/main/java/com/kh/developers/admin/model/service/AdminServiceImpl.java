@@ -29,7 +29,7 @@ public class AdminServiceImpl implements AdminService {
 	private SearchValuesTemplate svt;
 	
 	@Override
-	public Map<Integer, Integer> selectVisitorChartData(String period, int term) {
+	public List<Map<String, Integer>> selectVisitorChartData(String period, int term) {
 		Map<String, Object> map=new HashMap<String, Object>();
 		//period에 따른 분류(기간) - 동적쿼리에서 처리
 		map.put("period", period);
@@ -46,7 +46,7 @@ public class AdminServiceImpl implements AdminService {
 		};
 		
 		//검색용 front/back 저장
-		Map<Integer, Integer> resultMap=new HashMap<Integer, Integer>();
+		List<Map<String, Integer>> resultList=new ArrayList<Map<String, Integer>>();
 		int startTime=00;
 		int maxLength=(int)(24/term);
 		for(int i=0; i<maxLength; i++ ) {
@@ -61,11 +61,11 @@ public class AdminServiceImpl implements AdminService {
 				map.put("back",String.valueOf(startTime));
 			}
 			startTime+=term;
-			resultMap.put(i,dao.selectVisitorChartData(session, map));
+			resultList.add(dao.selectVisitorChartData(session, map));
 		}
 		
-		System.out.println(resultMap);
-		return resultMap;
+		System.out.println(resultList);
+		return resultList;
 	}
 	
 	@Override
