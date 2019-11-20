@@ -722,7 +722,7 @@ public class BusinessController2 {
 				.append("<span style=\"display: inline-block; width: 210px; height: 45px; margin: 30px 5px 40px; background-color: rgb(67,138,255); line-height: 45px; vertical-align: middle; font-size: 16px;\">제안 확인</span></a>")
 				.append("<div style=\"border-top: 1px solid #DDD; padding: 5px;\"></div>")
 				.toString());
-		sendMail.setFrom("sjl0614@gmail.com", "디벨로퍼스 ");
+		sendMail.setFrom("admin@developer.com", "디벨로퍼스 ");
 		//		sendMail.setTo(email);
 		sendMail.setTo("sjl0614@naver.com");
 		sendMail.send();
@@ -737,6 +737,7 @@ public class BusinessController2 {
 		ModelAndView mv=new ModelAndView();
 		Applicant appl=service.selectApplOne(applNo);
 		Member m=service.selectApplicant(appl.getMemNo());
+		Business bus=(Business)req.getSession().getAttribute("busInfo");
 		String email=m.getMemEmail();
 		String url=req.getRequestURL().toString();
 		int target=url.indexOf("developers");
@@ -755,7 +756,7 @@ public class BusinessController2 {
 				.append("<span style=\"color: rgb(67,138,255);\">합격여부</span> 안내입니다.</h1>")
 				.append("<p style=\"font-size: 16px; line-height: 26px; margin-top: 50px; padding: 0 5px;\">")
 				.append("안녕하세요.<br />")
-				.append(((Business)req.getSession().getAttribute("busInfo")).getBusName()+"기업의 "+poName+" 합격 여부가 전달되었습니다.<br/>")
+				.append(bus.getBusName()+"기업의 "+poName+" 합격 여부가 전달되었습니다.<br/>")
 				.append("아래 <b style=\"color: rgb(67,138,255);\">'합격여부 확인'</b> 버튼을 클릭하여 확인하세요.<br />")
 				.append("감사합니다.</p>")
 				.append("<a style=\"color: #FFF; text-decoration: none; text-align: center;\" href=\"")
@@ -765,7 +766,7 @@ public class BusinessController2 {
 				.append("<span style=\"display: inline-block; width: 210px; height: 45px; margin: 30px 5px 40px; background-color: rgb(67,138,255); line-height: 45px; vertical-align: middle; font-size: 16px;\">합격여부 확인</span></a>")
 				.append("<div style=\"border-top: 1px solid #DDD; padding: 5px;\"></div>")
 				.toString());
-		sendMail.setFrom("sjl0614@gmail.com", "디벨로퍼스 ");
+		sendMail.setFrom("admin@developer.com", "디벨로퍼스 ");
 		sendMail.setTo(email);
 		//		sendMail.setTo("sjl0614@naver.com");
 		sendMail.send();
@@ -809,7 +810,7 @@ public class BusinessController2 {
 			if(poList.size()>0) {
 				po3+="<div class='position_section'>";
 				if(s.equals("Y")) {
-					po3+="<h3>채용 진행중인 채용 공고</h3>";
+					po3+="<h3>진행 중 인 채용 공고</h3>";
 				}else if(s.equals("O")){
 					po3+="<h3>승인 요청된 채용 공고</h3>";
 				}else if(s.equals("M")){
@@ -1341,7 +1342,7 @@ public class BusinessController2 {
 		setHtml+="<div class='set_main'>";
 		setHtml+="<div class='set_header'>";
 		setHtml+="<div class='set_title'>계정 관리</div>";
-		setHtml+="<button type='button' class='set_invite_btn' onclick='fn_invite_member();'><i class='far fa-envelope'></i>계정 초대</button>";
+		setHtml+="<button type='button' class='set_invite_btn'><i class='far fa-envelope'></i>계정 초대</button>";
 		setHtml+="</div>";
 		setHtml+="<div class='set_main'>";
 		setHtml+="<div class='set_super_admin'>";
