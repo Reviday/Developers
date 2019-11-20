@@ -1,6 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="log">
+	<select id="mappingAuthCounterByAuthority" parameterType="map" resultType="_int">
+		SELECT COUNT(*),MAP_DIV FROM TA_REQUEST_MAPPING_LOG LEFT JOIN TA_MAPPING_DIV ON MAP_URL=RML_URL WHERE MAP_AUTHORITY IS NOT NULL AND MAP_AUTHORITY=#{authority} GROUP BY (MAP_AUTHORITY,MAP_DIV) ORDER BY 2
+	</select>
+	<select id="mappingAuthCounter" resultType="_int">
+		SELECT COUNT(*),MAP_AUTHORITY FROM TA_REQUEST_MAPPING_LOG LEFT JOIN TA_MAPPING_DIV ON MAP_URL=RML_URL WHERE MAP_AUTHORITY IS NOT NULL GROUP BY MAP_AUTHORITY ORDER BY 2
+	</select>
+	<select id="mappingDivCounter" resultType="_int">
+		SELECT COUNT(*), MAP_DIV FROM TA_REQUEST_MAPPING_LOG LEFT JOIN TA_MAPPING_DIV ON MAP_URL=RML_URL WHERE MAP_DIV IS NOT NULL GROUP BY MAP_DIV ORDER BY 2
+	</select>
+	<select id="mappingLogCounterSort" parameterType="map" resultMap="mcMap">
+		SELECT COUNT(*) AS "COUNT", NVL(MAP_URL,'[미등록]') AS "MAPPER", NVL(MAP_DIV, '[미등록]') AS "DIV", NVL(MAP_DETAIL,'[미등록]') AS "DETAIL", NVL(MAP_AUTHORITY,'[미등록]') AS "AUTHORITY" 
+		FROM TA_REQUEST_MAPPING_LOG LEFT JOIN TA_MAPPING_DIV ON MAP_URL=RML_URL GROUP BY (MAP_URL, MAP_DIV, MAP_DETAIL, MAP_AUTHORITY) ORDER BY 
+		<if test="order != null">${order}</if> 
+		<if test="sort != null">${sort}</if>
+	</select>
+	<select id="mappingLogCounter" resultMap="mcMap">
+		SELECT COUNT(*) AS "COUNT", NVL(MAP_URL,'[미등록]') AS "MAPPER", NVL(MAP_DIV, '[미등록]') AS "DIV", NVL(MAP_DETAIL,'[미등록]') AS "DETAIL", NVL(MAP_AUTHORITY,'[미등록]') AS "AUTHORITY" 
+		FROM TA_REQUEST_MAPPING_LOG LEFT JOIN TA_MAPPING_DIV ON MAP_URL=RML_URL GROUP BY (MAP_URL, MAP_DIV, MAP_DETAIL, MAP_AUTHORITY) ORDER BY 2
+	</select>
 	<select id="selectVisitorChartData" parameterType="map" resultType="map">
 		SELECT COUNT(*) AS "COUNT" FROM TB_VISITOR WHERE 1=1
 		<choose>
@@ -179,5 +198,12 @@
 		<result property="rmlUseragent" column="rml_useragent"/>
 		<result property="rmlUrl" column="rml_url"/>
 		<result property="rmlReferer" column="rml_referer"/>
+	</resultMap>
+	<resultMap type="mc" id="mcMap">
+		<result property="count" column="COUNT"/>
+		<result property="mapper" column="MAPPER"/>
+		<result property="mapDiv" column="DIV"/>
+		<result property="detail" column="DETAIL"/>
+		<result property="authority" column="AUTHORITY"/>
 	</resultMap>
 </mapper>

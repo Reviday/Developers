@@ -47,4 +47,7 @@ public interface AdminService {
 	List<Map<String, Integer>> selectVisitorChartData(String period, int term);
 	List<MappingCount> mappingLogCounter();
 	List<MappingCount> mappingLogCounterSort(int order, String sort);
+	List<Integer> mappingDivCounter();
+	List<Integer> mappingAuthCounter();
+	List<Integer> mappingAuthCounter(String authority);
 }

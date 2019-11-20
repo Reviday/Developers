@@ -52,4 +52,7 @@ public interface AdminDao {
 	Map<String, Integer> selectVisitorChartData(SqlSessionTemplate session, Map<String, Object> map);
 	List<MappingCount> mappingLogCounter(SqlSessionTemplate session);
 	List<MappingCount> mappingLogCounterSort(SqlSessionTemplate session, int order, String sort);
+	List<Integer> mappingDivCounter(SqlSessionTemplate session);
+	List<Integer> mappingAuthCounter(SqlSessionTemplate session);
+	List<Integer> mappingAuthCounter(SqlSessionTemplate session, String authority);
  }

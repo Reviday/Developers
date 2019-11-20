@@ -83,6 +83,22 @@ public class AdminController {
 		// 매핑 카운트 가져오기
 		List<MappingCount> mcList=service.mappingLogCounter();
 		
+		// 홈페이지 기능 통계 - 페이지 전환/기능 (0번이 기능, 1번이 페이지 전환)
+		List<Integer> divCount=service.mappingDivCounter();
+		// 홈페이지 기능 통계 - 권한 별 사용 횟수(0:관리자, 1:기업, 2:비회원, 3:회원)
+		List<Integer> authCount=service.mappingAuthCounter();
+		// 홈페이지 기능 통계 - 등급별 전환/기능 카운트
+		List<Integer> adminCount=service.mappingAuthCounter("관리자");
+		List<Integer> busCount=service.mappingAuthCounter("기업");
+		List<Integer> memCount=service.mappingAuthCounter("회원");
+		List<Integer> nonCount=service.mappingAuthCounter("비회원");
+		
+		mv.addObject("divCount", divCount);
+		mv.addObject("authCount", authCount);
+		mv.addObject("adminCount", adminCount);
+		mv.addObject("busCount", busCount);
+		mv.addObject("memCount", memCount);
+		mv.addObject("nonCount", nonCount);
 		mv.addObject("mcList", mcList);
 		mv.setViewName("admin/mappingLog");
 		return mv;

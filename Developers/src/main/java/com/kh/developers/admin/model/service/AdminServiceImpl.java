@@ -30,6 +30,21 @@ public class AdminServiceImpl implements AdminService {
 	private SearchValuesTemplate svt;
 	
 	@Override
+	public List<Integer> mappingAuthCounter(String authority) {
+		return dao.mappingAuthCounter(session, authority);
+	}
+	
+	@Override
+	public List<Integer> mappingAuthCounter() {
+		return dao.mappingAuthCounter(session);
+	}
+	
+	@Override
+	public List<Integer> mappingDivCounter() {
+		return dao.mappingDivCounter(session);
+	}
+	
+	@Override
 	public List<MappingCount> mappingLogCounterSort(int order, String sort) {
 		return dao.mappingLogCounterSort(session, order, sort);
 	}
