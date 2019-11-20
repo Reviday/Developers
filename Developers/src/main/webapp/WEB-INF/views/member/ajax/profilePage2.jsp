@@ -86,7 +86,6 @@
                                                 <span class="ResumeEntry-minor">${e.majorName }</span>
                                                </c:if> 
                                                 </div>
-                                               
                                                 </c:forEach>
                                     </div>
                                 </div>
