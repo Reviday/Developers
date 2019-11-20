@@ -9,6 +9,7 @@ import com.kh.developers.member.model.vo.Interests;
 import com.kh.developers.member.model.vo.Member;
 import com.kh.developers.member.model.vo.MyApp;
 import com.kh.developers.member.model.vo.Point;
+import com.kh.developers.search.model.vo.MainAdCompany;
 import com.kh.developers.search.model.vo.Position;
 
 public interface MemberService {
@@ -43,4 +44,5 @@ public interface MemberService {
 	Point selectaddPoint(int pointNo);
 	int updateMemberPoint(Point p);
 	int RealdeleteMember(int memNo);
+	List<MainAdCompany> mainAdList();
 }

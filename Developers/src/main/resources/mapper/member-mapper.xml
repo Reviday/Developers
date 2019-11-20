@@ -225,6 +225,17 @@
 	<select id="selectWeekPositionList" resultType="position">
 		SELECT P.*, BUS_LOGO, BUS_IMAGES, BUS_ADDRESS, BUS_INDUSTRIAL, BUS_AREA, BUS_COUNTRY, (SELECT COUNT(*) FROM PO_LIKE WHERE LIKE_ID = P.LIKE_ID) AS LIKE_COUNT FROM ENROLL_POSITION P JOIN BUSINESS_INFO B ON P.BUS_NO = B.BUS_NO WHERE DEAD_DATE <![CDATA[<]]> SYSDATE + 7 AND SYSDATE - 7 <![CDATA[<]]> DEAD_DATE ORDER BY POSITION_NO DESC 
 	</select>
+	<select id="mainAdList" resultType="mainadcompany" resultMap="mainadcompanyArray">
+		SELECT B.BUS_NO, B.BUS_NAME, B.BUS_IMAGES, POSITION, 
+	    (SELECT COUNT(B.BUS_NO) FROM ENROLL_POSITION WHERE SYSDATE <![CDATA[<]]> DEAD_DATE AND STATUS = 'Y') AS PO_COUNT 
+		FROM BUSINESS_INFO B
+		JOIN ADVERTISEMENT A ON (B.BUS_NO = A.BUS_NO)
+		JOIN ENROLL_POSITION P ON (A.POSITION_NO = P.POSITION_NO)
+		WHERE A.AD_TYPE = 'MAIN' AND SYSDATE <![CDATA[<]]> A.AD_END_DATE AND SYSDATE <![CDATA[<]]> P.DEAD_DATE AND P.STATUS = 'Y'
+	</select>
+	<resultMap type="mainadcompany" id="mainadcompanyArray">
+		<result column="bus_images" property="bus_images" typeHandler="StrArray"/>
+	</resultMap>
 	<resultMap type="position" id="positionMap">
 		<result column="position_no" property="position_no"/>
 		<result column="bus_name" property="bus_name" />

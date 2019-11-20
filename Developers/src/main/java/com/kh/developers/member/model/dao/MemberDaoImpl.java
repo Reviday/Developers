@@ -14,6 +14,7 @@ import com.kh.developers.member.model.vo.Interests;
 import com.kh.developers.member.model.vo.Member;
 import com.kh.developers.member.model.vo.MyApp;
 import com.kh.developers.member.model.vo.Point;
+import com.kh.developers.search.model.vo.MainAdCompany;
 import com.kh.developers.search.model.vo.Position;
 
 @Repository
@@ -215,5 +216,11 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public void insertLoginLog(SqlSessionTemplate session, MemberLoginLog mll) {
 		session.insert("member.insertLoginLog", mll);
+	}
+	
+	@Override
+	public List<MainAdCompany> mainAdList(SqlSessionTemplate session) {
+		// TODO Auto-generated method stub
+		return session.selectList("member.mainAdList");
 	}
 }

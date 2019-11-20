@@ -21,6 +21,7 @@ import com.kh.developers.member.model.vo.Interests;
 import com.kh.developers.member.model.vo.Member;
 import com.kh.developers.member.model.vo.MyApp;
 import com.kh.developers.member.model.vo.Point;
+import com.kh.developers.search.model.vo.MainAdCompany;
 import com.kh.developers.search.model.vo.Position;
 
 @Service
@@ -264,5 +265,11 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public void insertLoginLog(MemberLoginLog mll) {
 		dao.insertLoginLog(session, mll);
+	}
+	
+	@Override
+	public List<MainAdCompany> mainAdList() {
+		List<MainAdCompany> mList = dao.mainAdList(session);
+		return mList;
 	}
 }

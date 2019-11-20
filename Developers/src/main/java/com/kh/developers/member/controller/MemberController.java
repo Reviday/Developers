@@ -4,12 +4,10 @@ import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -58,6 +56,7 @@ import com.kh.developers.resume.model.vo.Lang;
 import com.kh.developers.resume.model.vo.Links;
 import com.kh.developers.resume.model.vo.Resume;
 import com.kh.developers.search.model.service.SearchService;
+import com.kh.developers.search.model.vo.MainAdCompany;
 import com.kh.developers.search.model.vo.Position;
 
 @SessionAttributes(value= {"loginMember","busInfo","REMOTE_ADDR"})
@@ -103,7 +102,9 @@ public class MemberController {
 	@RequestMapping("/member/main.lmc")
 	public ModelAndView memberMainPage(Member m, HttpServletRequest req) {
 		ModelAndView mv=new ModelAndView();
-		
+		//메인상단광고
+		List<MainAdCompany> mList = service.mainAdList();
+		mv.addObject("mList", mList);
 		//회원 관심분야 객체
 		Interests inter = service.selectInterests(((Member)req.getSession().getAttribute("loginMember")).getMemEmail());
 		if(inter == null) {
@@ -220,6 +221,9 @@ public class MemberController {
 				Business bus=bService.selectBusInfo(memberNo); //사업장 정보 불러오는 로직 
 				model.addAttribute("busInfo",bus);
 			}
+			//메인상단광고
+			List<MainAdCompany> mList = service.mainAdList();
+			mv.addObject("mList", mList);
 			//회원 관심분야 객체
 			Interests inter = service.selectInterests(result.getMemEmail());
 			if(inter == null) {

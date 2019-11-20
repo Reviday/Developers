@@ -19,8 +19,8 @@
                     <div class="slick-track">
                         <div class="slick-slide">
                             <div>
-                                <a href="">
-                                    <div class="slide-ficture">
+                                <a href="${path }/member/myPage.lmc?memEmail=${loginMember.memEmail }">
+                                    <div class="slide-ficture" style="background-image:url(${path}${'/resources/images/mainAd.jpg' });background-size:300px;background-repeat:no-repeat;">
                                         <div class="slide-ficture-msg showDesc">
                                             <div>
                                                 <h2>프로필만 등록하면 이직 준비 끝</h2>
@@ -36,44 +36,29 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="slick-slide">
-                            <div>
-                                <a href="">
-                                    <div class="slide-ficture">
-                                        <div class="slide-ficture-msg showDesc">
-                                            <div>
-                                                <h2>이건 다른거야</h2>
-                                                <h3>프로필 등록하기</h3>
-                                            </div>
-                                            <hr>
-                                            <button type="button">
-                                                <span>바로가기</span>
-                                                <i class="fas fa-chevron-right"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="slick-slide">
-                            <div>
-                                <a href="">
-                                    <div class="slide-ficture">
-                                        <div class="slide-ficture-msg showDesc">
-                                            <div>
-                                                <h2>이것도!</h2>
-                                                <h3>프로필 등록하기</h3>
-                                            </div>
-                                            <hr>
-                                            <button type="button">
-                                                <span>바로가기</span>
-                                                <i class="fas fa-chevron-right"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
+                        <c:if test="${not empty mList }">
+                        	<c:forEach var="m" items="${mList }">
+		                        <div class="slick-slide">
+		                            <div>
+		                                <a href="${path }/search/companyAllInfo?busNo=${m.bus_no}">
+		                                    <div class="slide-ficture" style="background-image:url(${path}${m.bus_images[0] });">
+		                                        <div class="slide-ficture-msg showDesc">
+		                                            <div>
+		                                                <h2><c:out value="${m.bus_name }"/></h2>
+		                                                <h3><c:out value="${m.position }"/> 외 <c:out value="${m.po_count }"/>개 포지션 채용 중</h3>
+		                                            </div>
+		                                            <hr>
+		                                            <button type="button">
+		                                                <span>바로가기</span>
+		                                                <i class="fas fa-chevron-right"></i>
+		                                            </button>
+		                                        </div>
+		                                    </div>
+		                                </a>
+		                            </div>
+		                        </div>
+	                        </c:forEach>
+                        </c:if>
                     </div>
                 </div>
                 <button type="button" class="slided-btn next">
