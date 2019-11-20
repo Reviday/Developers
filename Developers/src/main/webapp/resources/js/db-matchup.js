@@ -823,11 +823,15 @@ function useTicket(){
             success:function(result){    
                 let type=JSON.parse(result);            
                 if(type=="T"){
-                    alert("열람권 1개를 사용하셨습니다. 남은 갯수 : "+(num-1)+"개");
-                    updateNumOfTicket();
                     let resumeNo=document.querySelector("#hiddenResumeNo").value;
-                    insertReaded(resumeNo);
-                    openResume(resumeNo,2);
+                    let res=insertReaded(resumeNo);
+                    if(res!="T"){
+                        alert(res);
+                    }else{
+                        updateNumOfTicket();
+                        alert("열람권 1개를 사용하셨습니다. 남은 갯수 : "+(num-1)+"개");
+                        openResume(resumeNo,2);
+                    }
                 }else{
                     alert(result);
                 }
@@ -838,6 +842,7 @@ function useTicket(){
 
 
 function insertReaded(resumeNo){
+    let res="";
     $.ajax({
         url:path+"/business/insertToReaded",
         type:"post",
@@ -846,13 +851,10 @@ function insertReaded(resumeNo){
             "resumeNo":resumeNo
         },
         success:function(result){ 
-            let res=JSON.parse(result);
-            if(res!="T"){
-                console.log(res);
-                alert(res);
-            }
+            res=JSON.parse(result);
         }
     });
+    return res;
 }
 
 

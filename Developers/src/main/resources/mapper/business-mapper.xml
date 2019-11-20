@@ -195,9 +195,9 @@
 		SELECT MEM_NO FROM RESUME WHERE RESUME_NO = #{resumeNo}
 	</select>
 	
-	<insert id="insertClick" parameterType="integer">
+	<update id="insertClick" parameterType="integer">
 		UPDATE ADVERTISEMENT SET CLICK_TIMES=CLICK_TIMES+1 WHERE AD_NO=#{adNo}
-	</insert>
+	</update>
 	
 	
 	<resultMap type="com.kh.developers.business.model.vo.CareerInCard" id="careerMap">
