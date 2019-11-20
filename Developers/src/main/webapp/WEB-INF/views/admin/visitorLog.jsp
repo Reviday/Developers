@@ -61,7 +61,7 @@
 		        $(".num").counterUp({delay:10, time:1000});
 		    </script>
 		</div>
-		
+		<!-- 
 		<div class="row">
 			<h1 class="title">방문자 통계 - 차트(통합)
 				
@@ -74,6 +74,7 @@
 				</script>
 			</div>
 		</div>
+		 -->
 		
 		<div id="visitor-chart-time">
 			<div class="row">
