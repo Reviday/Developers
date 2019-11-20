@@ -20,7 +20,9 @@
                         <div class="slick-slide">
                             <div>
                                 <a href="${path }/member/myPage.lmc?memEmail=${loginMember.memEmail }">
-                                    <div class="slide-ficture" style="background-image:url(${path}${'/resources/images/mainnn.jpg' });background-size:300px;background-repeat:no-repeat;">
+                                    <div class="slide-ficture" style="background-image:url(${path}${'/resources/images/mainnn.jpg' });
+                                    background-size: cover;
+                                    background-repeat:no-repeat;">
                                         <div class="slide-ficture-msg showDesc">
                                             <div>
                                                 <h2>프로필만 등록하면 이직 준비 끝</h2>
