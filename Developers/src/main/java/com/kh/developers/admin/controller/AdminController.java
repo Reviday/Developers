@@ -43,6 +43,22 @@ public class AdminController {
 	private PaginationTemplate pt;
 	private PaginationTemplateFunction2nd ptf;
 	
+	@RequestMapping("/admin/visitorChangeChart.lac")
+	public String visitorChangeChart(Model model,
+			@RequestParam (value="period", required=false, defaultValue="all") String period,
+			@RequestParam (value="term", required=false, defaultValue="all") int term,
+			@RequestParam (value="chart", required=false, defaultValue="bar") String chart) {
+		System.out.println("이거 실행돼?");
+		// period, term, term 에 따른 자료 select!
+		Map<Integer, Integer> resultMap=service.selectVisitorChartData(period, term);
+		
+		model.addAttribute("period",period);
+		model.addAttribute("term", term);
+		model.addAttribute("chart", chart);
+		model.addAttribute("timeMap", resultMap);
+		return "admin/visitorLogChartAjax";
+	}
+		
 	@RequestMapping("/admin/positionRejection.lac")
 	public String positionRejection(HttpServletRequest req, Model model,
 			@RequestParam (value="positionNo", required=true) int positionNo,
@@ -432,6 +448,15 @@ public class AdminController {
 		//최고 방문자 수, 날짜
 		Map<String, Object> highestVisitor=service.selectHighestVisitor();
 		System.out.println(highestVisitor);
+		
+		//시간별 차트 
+		// period, term, term 에 따른 자료 select!
+		Map<Integer, Integer> resultMap=service.selectVisitorChartData("A", 4);
+				
+		mv.addObject("period","A");
+		mv.addObject("term", "4");
+		mv.addObject("chart", "Line");
+		mv.addObject("timeMap", resultMap);
 		mv.addObject("visitorStats",visitorStats);
 		mv.addObject("highestVisitor",highestVisitor);
 		mv.setViewName("admin/visitorLog");

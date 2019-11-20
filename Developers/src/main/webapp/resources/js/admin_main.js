@@ -259,6 +259,27 @@ $(".chartTrigger").on("change", function() {
 	mll_chartChange($("#chartDataSelect option:selected").val(), $("#chartSelect option:selected").val());
 });
 
+//방문자 통계 차트 변경
+function visitor_chartChange(period, term, chart) {
+	$.ajax({
+		url:path+"/admin/visitorChangeChart.lac",
+		type:"POST",
+		data:{
+			"period":period,
+			"term":term,
+			"chart":chart
+		},
+		success:function(result) {
+			if(result!=null) {
+				$('#chartArea').html("");
+				$('#chartArea').html(result);
+			} else {
+				alert("요청이 정상적으로 처리되지 않았습니다.");
+			}
+		}
+			
+	})
+};
 
 //기업등록 승인
 function bus_req_approval(requestNo, busNo, memNo) {

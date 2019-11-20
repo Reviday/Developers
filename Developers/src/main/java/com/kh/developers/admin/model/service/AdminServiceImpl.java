@@ -1,5 +1,6 @@
 package com.kh.developers.admin.model.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,6 +27,46 @@ public class AdminServiceImpl implements AdminService {
 	@Autowired
 	private SqlSessionTemplate session;
 	private SearchValuesTemplate svt;
+	
+	@Override
+	public Map<Integer, Integer> selectVisitorChartData(String period, int term) {
+		Map<String, Object> map=new HashMap<String, Object>();
+		//period에 따른 분류(기간) - 동적쿼리에서 처리
+		map.put("period", period);
+		//term 값에 따른 값 전환
+		switch(term) {
+			case 0:term=1;break;
+			case 1:term=2;break;
+			case 2:term=3;break;
+			case 3:term=4;break;
+			case 4:term=6;break;
+			case 5:term=8;break;
+			case 6:term=12;break;
+			case 7:term=24;break;
+		};
+		
+		//검색용 front/back 저장
+		Map<Integer, Integer> resultMap=new HashMap<Integer, Integer>();
+		int startTime=00;
+		int maxLength=(int)(24/term);
+		for(int i=0; i<maxLength; i++ ) {
+			if(startTime<10) {
+				map.put("front",String.valueOf("0"+(startTime-term)));
+				map.put("back",String.valueOf("0"+startTime));
+			} else if(startTime-term<10) {
+				map.put("front",String.valueOf("0"+(startTime-term)));
+				map.put("back",String.valueOf(startTime));
+			} else {
+				map.put("front",String.valueOf((startTime-term)));
+				map.put("back",String.valueOf(startTime));
+			}
+			startTime+=term;
+			resultMap.put(i,dao.selectVisitorChartData(session, map));
+		}
+		
+		System.out.println(resultMap);
+		return resultMap;
+	}
 	
 	@Override
 	public Map<String, Object> selectHighestVisitor() {

@@ -38,9 +38,16 @@
 							<input type="hidden" value="${l.applyEmail }" id="applyEmail_${l.positionNo }"/>
 						</td>
 						<td class="visible-over-md" data-th="직무">
-							<c:forEach items="${l.jobType }" var="j" varStatus="s">
-								${j }<c:if test="${!s.last}">,</c:if>
-							</c:forEach> 
+							<span class="hidden_mb">
+								<c:forEach items="${l.jobType }" var="j" varStatus="s">
+									${jobFiled[j] }<c:if test="${!s.last}"><br/></c:if>
+								</c:forEach>
+							</span> 
+							<span class="only_mb" style="display:none">
+								<c:forEach items="${l.jobType }" var="j" varStatus="s">
+									${jobFiled[j] }<c:if test="${!s.last}">,</c:if>
+								</c:forEach>
+							</span>
 						</td>
 						<td class="visible-only-lg" data-th="커리어">
 							<c:forEach items="${l.career }" var="j" varStatus="s">

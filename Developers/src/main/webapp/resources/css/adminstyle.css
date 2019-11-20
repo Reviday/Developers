@@ -282,4 +282,7 @@ select::-ms-expand {
 	}
 }
 
-
+.date {
+	font-size: 40px;
+    margin: 20px 0;
+}

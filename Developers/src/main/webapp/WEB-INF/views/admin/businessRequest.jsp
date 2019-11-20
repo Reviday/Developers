@@ -21,7 +21,7 @@
 				<thead>
 					<tr>
 						<th>등록기업명</th>
-						<th class="visible-over-md">기업주소</th>
+						<th style="display:none">기업주소</th>
 						<th class="visible-only-lg">산업</th>
 						<th class="visible-only-lg">연매출</th>
 						<th>요청회원정보</th>
@@ -39,7 +39,7 @@
 									</button>
 									<input type="hidden" value="${l.busName }" id="busName_${l.busNo }"/>
 								</td>
-								<td class="visible-over-md" data-th="기업주소">${l.busAddress }</td>
+								<td class="only_mb" style="display:none" data-th="기업주소">${l.busAddress }</td>
 								<td class="visible-only-lg" data-th="산업">${l.busIndustrial }</td>
 								<td class="visible-only-lg" data-th="연매출">${l.busIncome }</td>
 								<td data-th="요청회원정보">

@@ -48,4 +48,5 @@ public interface AdminDao {
 	List<Map<String, String>> selectJabField(SqlSessionTemplate session);
 	List<Integer> selectVisitorStats(SqlSessionTemplate session);
 	Map<String, Object> selectHighestVisitor(SqlSessionTemplate session);
+	int selectVisitorChartData(SqlSessionTemplate session, Map<String, Object> map);
  }

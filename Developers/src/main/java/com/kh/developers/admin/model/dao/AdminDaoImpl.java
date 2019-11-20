@@ -19,6 +19,11 @@ import com.kh.developers.member.model.vo.Member;
 public class AdminDaoImpl implements AdminDao{
 	
 	@Override
+	public int selectVisitorChartData(SqlSessionTemplate session, Map<String, Object> map) {
+		return session.selectOne("log.selectVisitorChartData", map);
+	}
+	
+	@Override
 	public Map<String, Object> selectHighestVisitor(SqlSessionTemplate session) {
 		return session.selectOne("log.selectHighestVisitor");
 	}

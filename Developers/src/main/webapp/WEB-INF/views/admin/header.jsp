@@ -147,34 +147,6 @@
 	                                	기업태그승인관리
 	                            </a>
 	                        </li>
-	                        <li>
-	                            <a href="javascript:;">
-	                                <i class="fa fa-amazon" aria-hidden="true"></i>
-	                                Sub Item Three							
-	                            </a>
-	                            <!-- Level Three-->
-	                            <ul>
-	                                <li><a href="#"><i class="fa fa-user" aria-hidden="true"></i>Sub Item Link 1</a></li>
-	                                <li>
-	                                    <a href="javascript:;">
-	                                        <i class="fa fa-diamond" aria-hidden="true"></i>Sub Item Link 2</a>
-	                                    <!-- Level Four-->
-	                                    <ul>
-	                                        <li><a href="#"><i class="fa fa-trash" aria-hidden="true"></i>Sub Item Link 1</a></li>
-	                                        <li><a href="#"><i class="fa fa-dashcube" aria-hidden="true"></i>Sub Item Link 2</a></li>
-	                                        <li><a href="#"><i class="fa fa-dropbox" aria-hidden="true"></i>Sub Item Link 3</a></li>
-	                                    </ul>
-	                                </li>
-	                                <li><a href="#"><i class="fa fa-user" aria-hidden="true"></i>Sub Item Link 3</a></li>
-	                            </ul>
-	                        </li>
-	    
-	                        <li>
-	                            <a href="#">
-	                                <i class="fa fa-database" aria-hidden="true"></i>
-	                                Sub Item Four
-	                            </a>
-	                        </li>
 	                    </ul>
 	                </li>
 	                <li>
@@ -193,26 +165,15 @@
 	                            </a>
 	                        </li>
 	                        <li>
-	                            <a href="javascript:;">Sub Item Two							
+	                            <a href="${path }/admin/">홈페이지 기능 로그				
 	                            </a>
+	                            <!-- 
 	                            <ul>
 	                                <li><a href="#">Sub Item Link 1</a></li>
 	                                <li><a href="#">Sub Item Link 2</a></li>
 	                                <li><a href="#">Sub Item Link 3</a></li>
 	                            </ul>
-	                        </li>
-	                        <li>
-	                            <a href="javascript:;">Sub Item Three							
-	                            </a>
-	                            <ul>
-	                                <li><a href="#">Sub Item Link 1</a></li>
-	                                <li><a href="#">Sub Item Link 1</a></li>
-	                                <li><a href="#">Sub Item Link 1</a></li>
-	                            </ul>
-	                        </li>
-	                        <li>
-	                            <a href="#">Sub Item Four
-	                            </a>
+	                             -->
 	                        </li>
 	                    </ul>
 	                </li>
