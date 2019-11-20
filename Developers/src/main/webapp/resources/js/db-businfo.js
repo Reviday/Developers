@@ -15,7 +15,7 @@ $(function(){
         var frm=new FormData($(this).parent()[0]);
         if($(this).parents('.add_img').length!=0){
             $.ajax({
-                url:path+"/business/busImgAdd",
+                url:path+"/business/busImgAdd.lbc",
                 data:frm,
                 type:"post",
                 processData:false,
@@ -42,7 +42,7 @@ $(function(){
             frm.append("imgIndex",$(this).parents('.modi_img').index()-1);
             var img=$(this).parent().siblings('.bi_img_busimg');
             $.ajax({
-                url:path+"/business/busImgModify",
+                url:path+"/business/busImgModify.lbc",
                 data:frm,
                 type:"post",
                 processData:false,
@@ -67,7 +67,7 @@ $(function(){
 
 function fn_del_img(event){
     $.ajax({
-        url:path+"/business/busImgDelete",
+        url:path+"/business/busImgDelete.lbc",
         data:{"imgIndex":($(event.target).parents('.modi_img').index())-1},
         type:"post",
         success:function(){

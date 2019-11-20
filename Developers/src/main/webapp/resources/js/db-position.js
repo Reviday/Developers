@@ -1,5 +1,5 @@
 $(function(){
-/////////////////////////////////////포지션메인
+/////////////////////////////////////채용 공고메인
     $(".position_info").on("click",function(){
         var position_no=$($(this).children('.position_no')).val();
         location.href=path+"/business/enrollPosition.lbc?poNo="+position_no;
@@ -19,7 +19,7 @@ $(function(){
 
 
 
-  //////////////////////////////////////포지션등록  
+  //////////////////////////////////////채용 공고등록  
     //연봉정보 0 고정
     $(".po_num").on("keydown",function(){
         if(($(this).val()).length<=1 && event.code=='Backspace'){
@@ -139,7 +139,7 @@ function fn_add_position(){
         || $('[name="benefit"]').val()==''
         || $('[name="apply_email"]').val()=='')){
             fn_null_check($('[name="po_frm"]')[0]);
-            fn_modi_finish("포지션 승인 요청 시 필요한 정보가 부족합니다.");
+            fn_modi_finish("채용 공고 승인 요청 시 필요한 정보가 부족합니다.");
     }else if($($('[name="po_career"]')[0]).val()-$($('[name="po_career"]')[1]).val()>0&&!$(".po_junior").prop("checked")){
         fn_modi_finish("입력된 경력을 확인하세요.");
         $("[name='po_career']").addClass("blinking_btn");

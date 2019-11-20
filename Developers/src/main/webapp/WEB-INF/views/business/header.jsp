@@ -205,8 +205,8 @@
 					<div class="mobile-menu">
 						<ul class="nav_us uwQaB">
 							<li class="ls4"><a class="as2" href="${path}/business/applicants.lbc">지원자</a></li>
-							<li class="ls4"><a class="as2" href="${path}/business/matchup.lbc">매치업</a></li>
-							<li class="ls4"><a class="as2" href="${path}/business/position.lbc">포지션</a></li>
+							<li class="ls4"><a class="as2" href="${path}/business/matchup.lbc">인재풀</a></li>
+							<li class="ls4"><a class="as2" href="${path}/business/position.lbc">채용 공고</a></li>
 							<li class="ls4"><a class="as2" href="${path}/business/ad.lbc">채용광고</a></li>
 							<li class="ls4"><a class="as2" href="${path}/business/busInfo.lbc">회사정보</a></li>
 							<li class="ls4"><a class="as2" href="${path}/business/settings.lbc">계정 관리</a></li>
@@ -247,7 +247,7 @@
 			$("#logoFile").on("change",function(){
 				var frm=new FormData($("#logoFrm")[0]);
 				$.ajax({
-					url:"${path}/business/logoChange",
+					url:"${path}/business/logoChange.lbc",
 					data:frm,
 					type:"post",
 					processData:false,

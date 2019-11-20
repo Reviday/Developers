@@ -88,7 +88,7 @@ public class BusinessController2 {
 		}
 	}
 
-	@RequestMapping("/business/logoChange")
+	@RequestMapping("/business/logoChange.lbc")
 	public ModelAndView logoChange(MultipartHttpServletRequest mReq) {
 		ModelAndView mv=new ModelAndView();
 		MultipartFile logo=mReq.getFile("logoFile");
@@ -124,7 +124,7 @@ public class BusinessController2 {
 		return mv;
 	}
 
-	@RequestMapping("/business/busImgAdd")
+	@RequestMapping("/business/busImgAdd.lbc")
 	public ModelAndView busImgAdd(MultipartHttpServletRequest mReq) {
 		ModelAndView mv=new ModelAndView();
 		MultipartFile busImg=mReq.getFile("bus_img");
@@ -160,7 +160,7 @@ public class BusinessController2 {
 		return mv;
 	}
 
-	@RequestMapping("/business/busImgModify")
+	@RequestMapping("/business/busImgModify.lbc")
 	public ModelAndView busImgModify(MultipartHttpServletRequest mReq) {
 		ModelAndView mv=new ModelAndView();
 		int imgIndex=Integer.parseInt(mReq.getParameter("imgIndex"));
@@ -195,7 +195,7 @@ public class BusinessController2 {
 		return mv;
 	}
 
-	@RequestMapping("business/busImgDelete")
+	@RequestMapping("business/busImgDelete.lbc")
 	public ModelAndView busImgDelete(HttpSession session, @RequestParam int imgIndex) {
 		ModelAndView mv= new ModelAndView();
 		Business bus=(Business)session.getAttribute("busInfo");			
@@ -261,13 +261,13 @@ public class BusinessController2 {
 		if(cPosition.equals("")) {			
 			applHtml+="aList-click'";
 		}
-		applHtml+="'><span class='aList-type'>포지션 전체</span> <span class='aList-count'>"+service.selectBusApplCount(map)+"</span></li>";
+		applHtml+="'><span class='aList-type'>채용 공고 전체</span> <span class='aList-count'>"+service.selectBusApplCount(map)+"</span></li>";
 		applHtml+="<li data='0' class='";
 		if(cPosition.equals("0")) {			
 			applHtml+="aList-click'";
 		}
 		map.put("applPosition", "0");
-		applHtml+="'><span class='aList-type'>매치업</span> <span class='aList-count'>"+service.selectBusApplCount(map)+"</span></li>";
+		applHtml+="'><span class='aList-type'>인재풀</span> <span class='aList-count'>"+service.selectBusApplCount(map)+"</span></li>";
 		map.put("status", "Y");
 		List<Position> poList=service.selectPositionList(map);
 		for(Position po:poList) {
@@ -284,7 +284,7 @@ public class BusinessController2 {
 		applHtml+="<ul>";
 		applHtml+="</ul>";
 		applHtml+="<br/>";
-		applHtml+="<h5 class='slide_btn'>마감된 포지션<i class='fas fa-angle-up'></i></h5>";
+		applHtml+="<h5 class='slide_btn'>마감된 채용 공고<i class='fas fa-angle-up'></i></h5>";
 		applHtml+="<hr/>";
 		applHtml+="<ul>";
 		map.put("status", "D");
@@ -339,7 +339,7 @@ public class BusinessController2 {
 		applHtml+="</li>";
 		applHtml+="</ul>";
 		applHtml+="<div class='li_input'>";
-		applHtml+="<input type='text' name='search_em' placeholder='지원자, 포지션 검색'/>";
+		applHtml+="<input type='text' name='search_em' placeholder='지원자, 채용 공고 검색'/>";
 		applHtml+="<label for='btn_search_em'>";
 		applHtml+="<i class='fas fa-search'></i>";
 		applHtml+="</label>";
@@ -405,8 +405,8 @@ public class BusinessController2 {
 
 			html+="<br/>";
 			html+="<div class='appl_no'>";
-			html+="<h4>포지션에 적합한 후보자가 없으신가요?</h4>";
-			html+="<h4><a href='"+path+"/business/matchup.lbc'>매치업</a> 탭에서 인재를 검색하고 직접 면접제안을 해보세요!</h4>";
+			html+="<h4>채용 공고에 적합한 후보자가 없으신가요?</h4>";
+			html+="<h4><a href='"+path+"/business/matchup.lbc'>인재풀</a> 탭에서 인재를 검색하고 직접 면접제안을 해보세요!</h4>";
 			html+="</div>";
 		}else {
 			for(Applicant appl : applList) {
@@ -689,7 +689,7 @@ public class BusinessController2 {
 		return mv;
 	}
 
-	@RequestMapping("business/applOffer.lbc")
+	@RequestMapping("/business/applOffer.lbc")
 	public ModelAndView applOffer(HttpServletRequest req, @RequestParam int applNo) throws MessagingException, UnsupportedEncodingException {
 		ModelAndView mv=new ModelAndView();
 		Applicant appl=service.selectApplOne(applNo);
@@ -785,7 +785,7 @@ public class BusinessController2 {
 
 
 
-	//비지니스 포지션
+	//비지니스 채용 공고
 	@RequestMapping("/business/position.lbc")
 	public ModelAndView dbBusPosition(HttpSession session) {
 		ModelAndView mv=new ModelAndView();
@@ -794,13 +794,13 @@ public class BusinessController2 {
 		map.put("busNo", bus.getBusNo());
 		String poHtml="";
 		String[] status= {"Y","M","O","T"};
-		poHtml+="<div class='position_title'>포지션</div>";
+		poHtml+="<div class='position_title'>채용 공고</div>";
 		poHtml+="<div class='position_header'>";
-		poHtml+="<button type='button' class='position_add_btn' onclick='fn_enroll_position();'>포지션 추가</button>";
+		poHtml+="<button type='button' class='position_add_btn' onclick='fn_enroll_position();'>채용 공고 추가</button>";
 		poHtml+="</div>";
 		String po2="";
 		po2+="<div class='position_section'>";
-		po2+="<div class='no_po'>등록된 포지션이 없습니다.</div>";
+		po2+="<div class='no_po'>등록된 채용 공고이 없습니다.</div>";
 		po2+="</div>";
 		String po3="";
 		for(String s:status) {
@@ -809,13 +809,13 @@ public class BusinessController2 {
 			if(poList.size()>0) {
 				po3+="<div class='position_section'>";
 				if(s.equals("Y")) {
-					po3+="<h3>채용 진행중인 포지션</h3>";
+					po3+="<h3>채용 진행중인 채용 공고</h3>";
 				}else if(s.equals("O")){
-					po3+="<h3>승인 요청된 포지션</h3>";
+					po3+="<h3>승인 요청된 채용 공고</h3>";
 				}else if(s.equals("M")){
-					po3+="<h3>수정 요청된 포지션</h3>";
+					po3+="<h3>수정 요청된 채용 공고</h3>";
 				}else {
-					po3+="<h3>임시 저장된 포지션</h3>";
+					po3+="<h3>임시 저장된 채용 공고</h3>";
 				}
 				po3+="<div class='position_list'>";
 				for(Position po:poList) {
@@ -825,7 +825,7 @@ public class BusinessController2 {
 					if(po.getPosition()!=null && !po.getPosition().equals("")) {
 						po3+=po.getPosition();
 					}else {
-						po3+="포지션명 등록";
+						po3+="채용 공고명 등록";
 					}
 					po3+="</div>";
 					po3+="<div class='position_date'>";
@@ -882,7 +882,7 @@ public class BusinessController2 {
 		String html="";
 		html="<div class='po_main'>";
 		html+="<div class='po_main_header'>";
-		html+="<div class='po_header_title'>포지션 추가</div>";
+		html+="<div class='po_header_title'>채용 공고 추가</div>";
 		html+="</div>";
 		html+="<form name='po_frm' class='po_frm'>";
 		html+="<input type='hidden' name='position_no' value='"+poNo+"'/>";
@@ -956,13 +956,13 @@ public class BusinessController2 {
 		html+="<div class='po_con1'>";
 		html+="<input type='text' class='form-control' name='' value='"+bus.getBusAddress()+"' disabled/>";
 		html+="</div>";
-		html+="<div class='po_title'>포지션 명</div>";
+		html+="<div class='po_title'>채용 공고 명</div>";
 		html+="<div class='po_con1'>";
 		html+="<input type='text' class='form-control' name='position' value='";
 		html+=po!=null&&po.getPosition()!=null?po.getPosition():"";
 		html+="'/>";
 		html+="</div>";
-		html+="<div class='po_title'>포지션 공고,서론</div>";
+		html+="<div class='po_title'>채용 공고 공고,서론</div>";
 		html+="<div class='po_con4'>";
 		html+="<textarea name='position_info' class='form-control'>";
 		html+=po!=null&&po.getPosition_info()!=null?po.getPosition_info():"";
@@ -1051,11 +1051,11 @@ public class BusinessController2 {
 		seHtml+="<div class='close-modal modal-background'></div>";
 		seHtml+="<div class='del-modal-content'>";
 		seHtml+="<div class='del-modal-header'>";
-		seHtml+="<span>포지션 삭제</span>";
+		seHtml+="<span>채용 공고 삭제</span>";
 		seHtml+="</div>";
 		seHtml+="<div class='del-modal-body'>";
 		seHtml+="<div>정말 삭제하시겠습니까?</div>";
-		seHtml+="<div class='warn'>*해당 포지션에 지원한 지원자 정보도 같이 삭제됩니다.</div>";
+		seHtml+="<div class='warn'>*해당 채용 공고에 지원한 지원자 정보도 같이 삭제됩니다.</div>";
 		seHtml+="</div>";
 		seHtml+="<div class='del-modal-footer'>";
 		seHtml+="<button class='del-modal-button' onclick='fn_del_position();'>삭제</button>";
@@ -1116,7 +1116,7 @@ public class BusinessController2 {
 		if(result>0) {
 			session.setAttribute("positionNo", -1);
 		}
-		mv.addObject("msg","해당 포지션이 삭제되었습니다.");
+		mv.addObject("msg","해당 채용 공고이 삭제되었습니다.");
 		mv.addObject("loc","/business/position.lbc");
 		mv.setViewName("common/msg");
 
@@ -1383,12 +1383,12 @@ public class BusinessController2 {
 		
 		setHtml+="<div class='set_semi_admin'>";
 		setHtml+="<div class='admin_header'>";
-		setHtml+="포지션 관리자";
+		setHtml+="채용 공고 관리자";
 		setHtml+="</div>";
 		if(count>0) {				
 			setHtml+=semiHtml;
 		}else {
-			setHtml+="<div class='semi_add' >포지션 관리자를 등록하세요</div>";
+			setHtml+="<div class='semi_add' >채용 공고 관리자를 등록하세요</div>";
 		}
 		setHtml+="</div>";
 
