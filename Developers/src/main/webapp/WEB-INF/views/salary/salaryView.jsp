@@ -270,6 +270,7 @@ select {
 <section id="salary-main">
 	<div class="chartPanel">
 		<div class="salary-header-mid">
+			<div style="margin-left: 60px; font-weight: bold; color: white; font-size: 18px; ">${salaryRateResult }</div>
 			<!--연봉 그래프 시작  -->
 			<div id="salary-chart"></div>
 		</div>
@@ -487,9 +488,6 @@ $("#salarySearch").keydown(function(key){
 		padding : {
 			top : 50
 		},
-		title: {
-		    text: "연봉정보"
-		  },
 		tooltip : {
 			grouped : false,
 			format : {
@@ -533,7 +531,7 @@ $("#salarySearch").keydown(function(key){
     	 point: {
 			    pattern: [
 				  
-			      "<polygon points='6 0 0 6 6 12 12 6 6 0'></polygon>"
+			      "<polygon points='6 6 0 6 6 12 12 6 6 6'></polygon>"
 
 			    ]
 	    },

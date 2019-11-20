@@ -22,7 +22,7 @@ import com.kh.developers.search.model.vo.ResumeSearch;
 import com.kh.developers.search.model.vo.Tag;
 
 @SessionAttributes(value = { "jobField", "salaryList", "jobYearsResultList", "jobYears", "rcList", "jobYearsResult",
-		"salarySearchResultList", "salarySearchResult"
+		"salarySearchResultList", "salarySearchResult", "salaryRateResult"
 })
 
 @Controller
@@ -40,7 +40,7 @@ public class SalaryController {
 
 		return "salary/salaryView";
 	}
-
+	//직무별 연봉정보 가지고 오기
 	@RequestMapping("/salary/salarySelectList.do")
 	public String salarySelectList(Salary s, String job_type, Model model) {
 
@@ -84,7 +84,7 @@ public class SalaryController {
 
 		return "salary/salaryView";
 	}
-
+	//연차별 연봉정보 가지고 오기
 	@RequestMapping("/salary/salaryYears.do")
 	public String salaryYears(Salary s, String job_type,int salarySearch, Model model) {
 
@@ -151,9 +151,43 @@ public class SalaryController {
 				salarySearchResultList.add(i, 0);
 			}
 		}
+		int temp=0;
+		String salaryRateResult="";
+		if(salarySearch>0) {
+			System.out.println("계산값 실행 :"+salarySearch+","+jobYearsResult);
+			System.out.println(type);
+			if((salarySearch>jobYearsResult)) {
+			temp=(int) ((((double)(salarySearch)-jobYearsResult)/jobYearsResult)*100);
+				if (salarySearch == 0) {
+					salaryRateResult = "";
+				} else if (s.getJobYears() != 0) {
+					salaryRateResult = "* "+s.getJobYears() + "년 경력 예상 연봉 대비 " + temp + "%" + " 높음";
+				} else {
+					salaryRateResult = "* 신입 예상 연봉 대비 " + temp + "%" + " 높음";
+				}
+			}else {
+				temp=(int) (((jobYearsResult-(double)(salarySearch))/jobYearsResult)*100);
+				if (salarySearch == 0) {
+					salaryRateResult = "";
+				} else if (s.getJobYears() != 0) {
+					salaryRateResult = "* "+s.getJobYears() + "년 경력 예상 연봉 대비 " + temp + "%" + " 낮음";
+				} else {
+					salaryRateResult = "* 신입 예상 연봉 대비 " + temp + "%" + " 낮음";
+				}
+			}
+			
+
+			
+			
+		}
+		
+		
+			
+		System.out.println("salaryRateResult:"+salaryRateResult);
 		
 		
 		
+		model.addAttribute("salaryRateResult", salaryRateResult);
 		model.addAttribute("rcList", rcList);
 		model.addAttribute("salaryList", salaryList);
 		model.addAttribute("jobField", jobField);
