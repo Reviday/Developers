@@ -165,7 +165,7 @@
 	                            </a>
 	                        </li>
 	                        <li>
-	                            <a href="${path }/admin/">홈페이지 기능 로그				
+	                            <a href="${path }/admin/mappingLog.lac">홈페이지 기능 로그				
 	                            </a>
 	                            <!-- 
 	                            <ul>

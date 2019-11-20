@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 
 import com.kh.developers.admin.model.vo.BusinessRequest;
 import com.kh.developers.admin.model.vo.EnrollPosition;
+import com.kh.developers.admin.model.vo.MappingCount;
 import com.kh.developers.admin.model.vo.MemberLoginLog;
 import com.kh.developers.admin.model.vo.RequestMappingLog;
 import com.kh.developers.business.model.vo.Business;
@@ -49,4 +50,6 @@ public interface AdminDao {
 	List<Integer> selectVisitorStats(SqlSessionTemplate session);
 	Map<String, Object> selectHighestVisitor(SqlSessionTemplate session);
 	Map<String, Integer> selectVisitorChartData(SqlSessionTemplate session, Map<String, Object> map);
+	List<MappingCount> mappingLogCounter(SqlSessionTemplate session);
+	List<MappingCount> mappingLogCounterSort(SqlSessionTemplate session, int order, String sort);
  }

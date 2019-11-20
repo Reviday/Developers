@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.developers.admin.model.vo.BusinessRequest;
 import com.kh.developers.admin.model.vo.EnrollPosition;
+import com.kh.developers.admin.model.vo.MappingCount;
 import com.kh.developers.admin.model.vo.MemberLoginLog;
 import com.kh.developers.admin.model.vo.RequestMappingLog;
 import com.kh.developers.business.model.vo.Business;
@@ -17,6 +18,19 @@ import com.kh.developers.member.model.vo.Member;
 
 @Repository
 public class AdminDaoImpl implements AdminDao{
+	
+	@Override
+	public List<MappingCount> mappingLogCounterSort(SqlSessionTemplate session, int order, String sort) {
+		Map<String, String> map=new HashMap<String, String>();
+		map.put("order", String.valueOf(order));
+		map.put("sort", sort);
+		return session.selectList("log.mappingLogCounterSort", map);
+	}
+	
+	@Override
+	public List<MappingCount> mappingLogCounter(SqlSessionTemplate session) {
+		return session.selectList("log.mappingLogCounter");
+	}
 	
 	@Override
 	public Map<String, Integer> selectVisitorChartData(SqlSessionTemplate session, Map<String, Object> map) {

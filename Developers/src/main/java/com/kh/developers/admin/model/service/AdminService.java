@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.kh.developers.admin.model.vo.BusinessRequest;
 import com.kh.developers.admin.model.vo.EnrollPosition;
+import com.kh.developers.admin.model.vo.MappingCount;
 import com.kh.developers.admin.model.vo.MemberLoginLog;
 import com.kh.developers.admin.model.vo.RequestMappingLog;
 import com.kh.developers.business.model.vo.Business;
@@ -44,4 +45,6 @@ public interface AdminService {
 	List<Integer> selectVisitorStats();
 	Map<String, Object> selectHighestVisitor();
 	List<Map<String, Integer>> selectVisitorChartData(String period, int term);
+	List<MappingCount> mappingLogCounter();
+	List<MappingCount> mappingLogCounterSort(int order, String sort);
 }

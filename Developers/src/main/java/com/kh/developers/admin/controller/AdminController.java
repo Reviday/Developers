@@ -1,6 +1,7 @@
 package com.kh.developers.admin.controller;
 
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,6 +26,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kh.developers.admin.model.service.AdminService;
 import com.kh.developers.admin.model.vo.BusinessRequest;
 import com.kh.developers.admin.model.vo.EnrollPosition;
+import com.kh.developers.admin.model.vo.MappingCount;
 import com.kh.developers.admin.model.vo.MemberLoginLog;
 import com.kh.developers.business.model.vo.Business;
 import com.kh.developers.common.authentication.MailHandler;
@@ -43,11 +45,54 @@ public class AdminController {
 	private PaginationTemplate pt;
 	private PaginationTemplateFunction2nd ptf;
 	
+	@RequestMapping("/admin/mapperCountSort.lac")
+	public String mapperCountSort(Model model,
+			@RequestParam (value="id", required=true) String id) {
+		List<MappingCount> mcList=new ArrayList<MappingCount>();
+		// id값 판별
+		String mapperId="";
+		String countId="";
+		if(id.equals("mapperASC")) {
+			mcList=service.mappingLogCounterSort(2,"ASC");
+			mapperId="mapperDESC";
+			countId="countASD";
+		} else if(id.equals("mapperDESC")) {
+			mcList=service.mappingLogCounterSort(2,"DESC");
+			mapperId="mapperASC";
+			countId="countASD";
+		} else if(id.equals("countASD")) {
+			mcList=service.mappingLogCounterSort(1,"ASC");
+			mapperId="mapperASC";
+			countId="countDESC";
+		} else if(id.equals("countDESC")) {
+			mcList=service.mappingLogCounterSort(1,"DESC");
+			mapperId="mapperASC";
+			countId="countASD";
+		}
+		
+		model.addAttribute("mapperId",mapperId);
+		model.addAttribute("countId",countId);
+		model.addAttribute("mcList", mcList);
+		return "admin/mappingCountTableAjax";
+	}
+	
+	@RequestMapping("/admin/mappingLog.lac")
+	public ModelAndView mappingLog() {
+		ModelAndView mv=new ModelAndView();
+		
+		// 매핑 카운트 가져오기
+		List<MappingCount> mcList=service.mappingLogCounter();
+		
+		mv.addObject("mcList", mcList);
+		mv.setViewName("admin/mappingLog");
+		return mv;
+	}
+	
 	@RequestMapping("/admin/visitorChangeChart.lac")
 	public String visitorChangeChart(Model model,
-			@RequestParam (value="period", required=false, defaultValue="all") String period,
-			@RequestParam (value="term", required=false, defaultValue="all") int term,
-			@RequestParam (value="chart", required=false, defaultValue="bar") String chart) {
+			@RequestParam (value="period", required=true) String period,
+			@RequestParam (value="term", required=true) int term,
+			@RequestParam (value="chart", required=true) String chart) {
 		// period, term, term 에 따른 자료 select!
 		List<Map<String, Integer>> resultList=service.selectVisitorChartData(period, term);
 		
@@ -67,7 +112,6 @@ public class AdminController {
 		
 		//최고 방문자 수, 날짜
 		Map<String, Object> highestVisitor=service.selectHighestVisitor();
-		System.out.println(highestVisitor);
 		
 		//시간별 차트 
 		// period, term, term 에 따른 자료 select!

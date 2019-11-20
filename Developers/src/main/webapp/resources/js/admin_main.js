@@ -373,3 +373,22 @@ function position_rejection(positionNo, busNo) {
 		}
 	})
 };
+
+// 매핑로그 정렬
+function mapperCountSort(id) {
+	$.ajax({
+		url:path+"/admin/mapperCountSort.lac",
+		type:"POST",
+		data:{
+			"id":id
+		},
+		success:function(result) {
+			if(result!=null) {
+				$('#mapperCounter').html("");
+				$('#mapperCounter').html(result);
+			} else {
+				alert("요청이 정상적으로 처리되지 않았습니다.");
+			}
+		}
+	});
+}

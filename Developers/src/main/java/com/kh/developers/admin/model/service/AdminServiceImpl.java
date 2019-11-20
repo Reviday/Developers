@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.kh.developers.admin.model.dao.AdminDao;
 import com.kh.developers.admin.model.vo.BusinessRequest;
 import com.kh.developers.admin.model.vo.EnrollPosition;
+import com.kh.developers.admin.model.vo.MappingCount;
 import com.kh.developers.admin.model.vo.MemberLoginLog;
 import com.kh.developers.admin.model.vo.RequestMappingLog;
 import com.kh.developers.business.model.vo.Business;
@@ -27,6 +28,16 @@ public class AdminServiceImpl implements AdminService {
 	@Autowired
 	private SqlSessionTemplate session;
 	private SearchValuesTemplate svt;
+	
+	@Override
+	public List<MappingCount> mappingLogCounterSort(int order, String sort) {
+		return dao.mappingLogCounterSort(session, order, sort);
+	}
+	
+	@Override
+	public List<MappingCount> mappingLogCounter() {
+		return dao.mappingLogCounter(session);
+	}
 	
 	@Override
 	public List<Map<String, Integer>> selectVisitorChartData(String period, int term) {
