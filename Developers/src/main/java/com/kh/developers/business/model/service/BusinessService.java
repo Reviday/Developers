@@ -77,4 +77,7 @@ public interface BusinessService {
 	int insertReaded(int busNo, int resumeNo, int memNo);
 	
 	int selectMemNo(int resumeNo);
+	
+//	클릭 
+	int insertClick(int adNo);
 }

@@ -603,10 +603,11 @@ public class BusinessController {
 	
 	
 //	광고 클릭 수 저장 함수 
-	public String adClick(@RequestParam(value="adNo", required=true) int adNo,HttpServletRequest req) {
-		
-		
-		return "";
+	public void adClick(int adNo) {
+		try {
+			bService.insertClick(adNo);			
+		}catch(Exception e){
+		}
 	}
 	
 
@@ -776,6 +777,7 @@ public class BusinessController {
 		res.setContentType("application/json;charset=utf-8");
 		return jsonStr;
 	}
+	
 	
 	
 	

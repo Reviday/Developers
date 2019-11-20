@@ -82,4 +82,6 @@ public interface BusinessDao {
 	int selectReaded(SqlSessionTemplate session,int busNo, int resumeNo);
 	int insertReaded(SqlSessionTemplate session,int busNo, int resumeNo, int memNo);
 	int selectMemNo(SqlSessionTemplate session, int resumeNo);
+	
+	int insertClick(SqlSessionTemplate session, int adNo);
 }

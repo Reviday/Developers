@@ -561,7 +561,7 @@ button#toTicketMo:hover{
 		  </div>
 			 <div class="modal-footer" style="justify-content: center; background-color: #FFFFFF; padding:0.5em;">
 				<input type="hidden" id="hiddenType">
-				<button class="btn btn-primary" id="ticket-pay"style="font-size:1.5em; padding:10px; width:7em; background-color: #F2F2F2; border-color: #F2F2F2;" onclick="fn_payment();" disabled>결재하기</button>
+				<button class="btn btn-primary" id="ticket-pay"style="font-size:1.5em; padding:10px; width:7em; background-color: #F2F2F2; border-color: #F2F2F2;" onclick="fn_payment();" disabled>결제하기</button>
 			  </div>
 		</div>
 	  </div>

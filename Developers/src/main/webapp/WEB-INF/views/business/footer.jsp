@@ -19,9 +19,9 @@
 					<img src="${path }/resources/images/Developers_black_logo.png" style="height:32px"/>
 				</div>
 				<div class="footer_nav_item" style="padding:1.5em;">
-					<a href="#" class="" style="color:#2E64FE;">서비스 소개</a>
-					<a href="#" class="" style="color:#2E64FE;">이용약관 및 정책</a>
-					<a href="#" class="" style="color:#2E64FE;">자주 묻는 질문</a>
+					<a href="#" class="" style="color:#2E64FE;">&nbsp서비스 소개&nbsp</a>
+					<a href="#" class="" style="color:#2E64FE;">&nbsp이용약관 및 정책&nbsp&nbsp</a>
+					<a href="#" class="" style="color:#2E64FE;">&nbsp자주 묻는 질문&nbsp</a>
 				</div>
 			</div>
 			<!-- <div class="footer_language">

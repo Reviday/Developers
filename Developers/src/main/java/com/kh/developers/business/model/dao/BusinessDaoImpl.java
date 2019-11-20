@@ -262,5 +262,10 @@ public class BusinessDaoImpl implements BusinessDao {
 			// TODO Auto-generated method stub
 			return session.selectOne("business.selectMemNo",resumeNo);
 		}
+		@Override
+		public int insertClick(SqlSessionTemplate session, int adNo) {
+			// TODO Auto-generated method stub
+			return session.insert("business.insertClick",adNo);
+		}
 
 }
