@@ -186,7 +186,7 @@ var path = "${path }";
                           <c:set value="${loginMember.memNo }" var="memNo"  />
                         	<input type="hidden" value="${memEmail }" name="memEmail" id="memEmail"/>
                         	<input type="hidden" value="${memNo }" name="memNo" id="memNo"/>
-                            <div class="childrenWrapper"><button type="button" onclick="saveInter('${memEmail }',${memNo } } );">다음 단계</button></div>
+                            <div class="childrenWrapper"><button type="button" onclick="saveInter('${memEmail }','${memNo }'  );">다음 단계</button></div>
                         </footer>
                     </div>
                 </section>
