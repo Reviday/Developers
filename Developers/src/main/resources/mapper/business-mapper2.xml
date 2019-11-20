@@ -264,7 +264,7 @@
 			CAREER=#{poCareer, typeHandler=strArray}, 
 		</if>
    		<if test="poDate!=null and poDate!=''">			
-			DEAD_DATE=#{poDate},
+			DEAD_DATE=(TO_DATE(#{poDate})+1-1/(24*3600)),
 		</if>
 		<if test="po.position!=null and po.position!=''">			
 			 POSITION= #{po.position},  

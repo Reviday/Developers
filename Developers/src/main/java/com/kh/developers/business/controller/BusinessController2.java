@@ -1064,13 +1064,9 @@ public class BusinessController2 {
 		map.put("poStatus",poStatus);
 		GregorianCalendar gc=null;
 		if(po_date.length()<1) {
-			gc=new GregorianCalendar(2999, 11, 31, 23, 59, 59);
-		}else {
-			String[] pd=po_date.split("-");
-			gc=new GregorianCalendar(Integer.parseInt(pd[0]), Integer.parseInt(pd[1])-1, Integer.parseInt(pd[2]), 23, 59, 59);
+			po_date="2999/12/31";
 		}
-//		map.put("poDate",new Date(gc.getTimeInMillis()));
-		map.put("poDate","2999/12/31");
+		map.put("poDate",po_date);
 		map.put("poSalary",po_salary);
 		if(po_career[0].equals("0")) {
 			po_career[0]="신입";
