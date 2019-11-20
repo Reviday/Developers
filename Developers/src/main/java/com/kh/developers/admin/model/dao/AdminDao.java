@@ -55,4 +55,5 @@ public interface AdminDao {
 	List<Integer> mappingDivCounter(SqlSessionTemplate session);
 	List<Integer> mappingAuthCounter(SqlSessionTemplate session);
 	List<Integer> mappingAuthCounter(SqlSessionTemplate session, String authority);
+	List<Map<String, Object>> mappingAuthUsedCounter(SqlSessionTemplate session, String authority);
  }

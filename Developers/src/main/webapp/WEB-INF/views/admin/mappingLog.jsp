@@ -132,7 +132,7 @@
 								</script>
 			                    <i class="far fa-smile-wink"></i>
 			                    <div class="num">${authCount[0]}</div>
-			                    	관리자 사용 횟수
+			                    	관리자권한 사용 횟수
 			                </div>
 			                <div class="col col-margin">
 								<canvas id="chartAreaMapBus" style="margin:auto; padding: 10px; height:40vh; max-height:205px; width:50vw; max-width:200px"></canvas>
@@ -268,10 +268,234 @@
 		        </div>
 		    </div>
 		
+		    
+		</div>
+		<div class="row">
+			<h1 class="title">홈페이지 기능 통계 - 권한 별 사용 기능(상위 5개)</h1>
+		</div>
+		<div class="row" style="margin-bottom: 20px">
+			<div class="middle">
+		        <div class="counting-sec">
+		            <div class="inner-width" style="height:auto">
+		            	<div class="row">
+			                <div class="col col-margin">
+			                	<span>관리자권한</span>
+			                	<canvas id="chartAreaMapAdminUse" style="padding: 10px; height: 40vh; max-height:400px; width:40vw; max-width:500px"></canvas>
+								<script>
+									//chart 작성
+									var ctx = document.getElementById('chartAreaMapAdminUse');
+									
+									var myChart = new Chart(ctx, {
+									    type: 'pie',
+									    data: {
+									        labels: ['${adminUsedCount[0].DETAIL}',
+									        	'${adminUsedCount[1].DETAIL}',
+									        	'${adminUsedCount[2].DETAIL}',
+									        	'${adminUsedCount[3].DETAIL}',
+									        	'${adminUsedCount[4].DETAIL}',],
+									        datasets: [{
+									            label: '관리자 권한 통계',
+									            data: [${adminUsedCount[0].COUNT},
+									            	${adminUsedCount[1].COUNT},
+									            	${adminUsedCount[2].COUNT},
+									            	${adminUsedCount[3].COUNT},
+									            	${adminUsedCount[4].COUNT}],
+									            backgroundColor: [
+									            	'rgba(255, 99, 132, 0.2)',
+									                'rgba(54, 162, 235, 0.2)',
+									                'rgba(255, 206, 86, 0.2)',
+									                'rgba(75, 192, 192, 0.2)',
+									                'rgba(153, 102, 255, 0.2)'
+									            ],
+									            borderColor: [
+									            	'rgba(255, 99, 132, 1)',
+									                'rgba(54, 162, 235, 1)',
+									                'rgba(255, 206, 86, 1)',
+									                'rgba(75, 192, 192, 1)',
+									                'rgba(153, 102, 255, 1)'
+									            ],
+									            borderWidth: 1
+									        }]
+									    },
+									    options: {
+									    	responsive: false,
+											scales: {
+												yAxes: [{
+													ticks: {
+														beginAtZero: true
+													}
+												}]
+											},
+									    }
+									});
+								</script>
+			                    
+			                </div>
+			                <div class="col col-margin">
+			                	<span>기업권한</span>
+								<canvas id="chartAreaMapBusUse" style="padding: 10px; height: 40vh; max-height:400px; width:40vw; max-width:500px"></canvas>
+								<script>
+									//chart 작성
+									var ctx = document.getElementById('chartAreaMapBusUse');
+									
+									var myChart = new Chart(ctx, {
+									    type: 'pie',
+									    data: {
+									        labels: ['${busUsedCount[0].DETAIL}',
+									        	'${busUsedCount[1].DETAIL}',
+									        	'${busUsedCount[2].DETAIL}',
+									        	'${busUsedCount[3].DETAIL}',
+									        	'${busUsedCount[4].DETAIL}',],
+									        datasets: [{
+									            label: '기업 권한 통계',
+									            data: [${busUsedCount[0].COUNT},
+									            	${busUsedCount[1].COUNT},
+									            	${busUsedCount[2].COUNT},
+									            	${busUsedCount[3].COUNT},
+									            	${busUsedCount[4].COUNT}],
+									            backgroundColor: [
+									            	'rgba(255, 99, 132, 0.2)',
+									                'rgba(54, 162, 235, 0.2)',
+									                'rgba(255, 206, 86, 0.2)',
+									                'rgba(75, 192, 192, 0.2)',
+									                'rgba(153, 102, 255, 0.2)'
+									            ],
+									            borderColor: [
+									            	'rgba(255, 99, 132, 1)',
+									                'rgba(54, 162, 235, 1)',
+									                'rgba(255, 206, 86, 1)',
+									                'rgba(75, 192, 192, 1)',
+									                'rgba(153, 102, 255, 1)'
+									            ],
+									            borderWidth: 1
+									        }]
+									    },
+									    options: {
+									    	responsive: false,
+											scales: {
+												yAxes: [{
+													ticks: {
+														beginAtZero: true
+													}
+												}]
+											},
+									    }
+									});
+								</script>
+			                </div>
+						</div>
+						<div class="row">
+			                <div class="col col-margin">
+			                	<span>멤버권한</span>
+			                	<canvas id="chartAreaMapMemUse" style="padding: 10px; height: 40vh; max-height:400px; width:40vw; max-width:500px"></canvas>
+								<script>
+									//chart 작성
+									var ctx = document.getElementById('chartAreaMapMemUse');
+									
+									var myChart = new Chart(ctx, {
+									    type: 'pie',
+									    data: {
+									        labels: ['${memUsedCount[0].DETAIL}',
+									        	'${memUsedCount[1].DETAIL}',
+									        	'${memUsedCount[2].DETAIL}',
+									        	'${memUsedCount[3].DETAIL}',
+									        	'${memUsedCount[4].DETAIL}',],
+									        datasets: [{
+									            label: '멤버 권한 통계',
+									            data: [${memUsedCount[0].COUNT},
+									            	${memUsedCount[1].COUNT},
+									            	${memUsedCount[2].COUNT},
+									            	${memUsedCount[3].COUNT},
+									            	${memUsedCount[4].COUNT}],
+									            backgroundColor: [
+									            	'rgba(255, 99, 132, 0.2)',
+									                'rgba(54, 162, 235, 0.2)',
+									                'rgba(255, 206, 86, 0.2)',
+									                'rgba(75, 192, 192, 0.2)',
+									                'rgba(153, 102, 255, 0.2)'
+									            ],
+									            borderColor: [
+									            	'rgba(255, 99, 132, 1)',
+									                'rgba(54, 162, 235, 1)',
+									                'rgba(255, 206, 86, 1)',
+									                'rgba(75, 192, 192, 1)',
+									                'rgba(153, 102, 255, 1)'
+									            ],
+									            borderWidth: 1
+									        }]
+									    },
+									    options: {
+									    	responsive: false,
+											scales: {
+												yAxes: [{
+													ticks: {
+														beginAtZero: true
+													}
+												}]
+											},
+									    }
+									});
+								</script>
+			                </div>
+			
+			                <div class="col col-margin">
+			                	<span>기본권한</span>
+			                	<canvas id="chartAreaMapNonUse" style="padding: 10px; height: 40vh; max-height:400px; width:40vw; max-width:500px"></canvas>
+								<script>
+									//chart 작성
+									var ctx = document.getElementById('chartAreaMapNonUse');
+									
+									var myChart = new Chart(ctx, {
+									    type: 'pie',
+									    data: {
+									        labels: ['${nonUsedCount[0].DETAIL}',
+									        	'${nonUsedCount[1].DETAIL}',
+									        	'${nonUsedCount[2].DETAIL}',
+									        	'${nonUsedCount[3].DETAIL}',
+									        	'${nonUsedCount[4].DETAIL}',],
+									        datasets: [{
+									            label: '기본 권한 통계',
+									            data: [${nonUsedCount[0].COUNT},
+									            	${nonUsedCount[1].COUNT},
+									            	${nonUsedCount[2].COUNT},
+									            	${nonUsedCount[3].COUNT},
+									            	${nonUsedCount[4].COUNT}],
+									            backgroundColor: [
+									            	'rgba(255, 99, 132, 0.2)',
+									                'rgba(54, 162, 235, 0.2)',
+									                'rgba(255, 206, 86, 0.2)',
+									                'rgba(75, 192, 192, 0.2)',
+									                'rgba(153, 102, 255, 0.2)'
+									            ],
+									            borderColor: [
+									            	'rgba(255, 99, 132, 1)',
+									                'rgba(54, 162, 235, 1)',
+									                'rgba(255, 206, 86, 1)',
+									                'rgba(75, 192, 192, 1)',
+									                'rgba(153, 102, 255, 1)'
+									            ],
+									            borderWidth: 1
+									        }]
+									    },
+									    options: {
+									    	responsive: false,
+											scales: {
+												yAxes: [{
+													ticks: {
+														beginAtZero: true
+													}
+												}]
+											},
+									    }
+									});
+								</script>
+		                </div>
+		            </div>
+		        </div>
+		    </div>
 		    <script>
 		        $(".num").counterUp({delay:10, time:1000});
 		    </script>
-		</div>
 	</div>
 	<div class="container" id="mapperCounter">
 		<div class="row">

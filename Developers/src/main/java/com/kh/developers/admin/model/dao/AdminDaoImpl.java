@@ -20,6 +20,13 @@ import com.kh.developers.member.model.vo.Member;
 public class AdminDaoImpl implements AdminDao{
 	
 	@Override
+	public List<Map<String, Object>> mappingAuthUsedCounter(SqlSessionTemplate session, String authority) {
+		Map<String, String> map=new HashMap<String, String>();
+		map.put("authority", authority);
+		return session.selectList("log.mappingAuthUsedCounter", map);
+	}
+	
+	@Override
 	public List<Integer> mappingAuthCounter(SqlSessionTemplate session, String authority) {
 		Map<String, String> map=new HashMap<String, String>();
 		map.put("authority", authority);

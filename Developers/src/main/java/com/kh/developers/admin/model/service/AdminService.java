@@ -50,4 +50,5 @@ public interface AdminService {
 	List<Integer> mappingDivCounter();
 	List<Integer> mappingAuthCounter();
 	List<Integer> mappingAuthCounter(String authority);
+	List<Map<String,Object>> mappingAuthUsedCounter(String authority);
 }

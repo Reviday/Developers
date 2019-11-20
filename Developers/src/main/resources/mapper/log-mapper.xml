@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="log">
+	<select id="mappingAuthUsedCounter" parameterType="map" resultType="map">
+		SELECT COUNT, DETAIL 
+		FROM(SELECT ROWNUM AS RNUM, A.* 
+			 FROM (SELECT COUNT(*) AS "COUNT" ,MAP_DETAIL AS "DETAIL" 
+			 	   FROM TA_REQUEST_MAPPING_LOG 
+			 	   LEFT JOIN TA_MAPPING_DIV 
+			 	   ON MAP_URL=RML_URL 
+			 	   WHERE MAP_AUTHORITY IS NOT NULL AND MAP_AUTHORITY=#{authority} 
+			 	   GROUP BY (MAP_AUTHORITY, MAP_DETAIL) ORDER BY 1 DESC) A) B WHERE RNUM<![CDATA[<=]]>5
+	</select>
 	<select id="mappingAuthCounterByAuthority" parameterType="map" resultType="_int">
 		SELECT COUNT(*),MAP_DIV FROM TA_REQUEST_MAPPING_LOG LEFT JOIN TA_MAPPING_DIV ON MAP_URL=RML_URL WHERE MAP_AUTHORITY IS NOT NULL AND MAP_AUTHORITY=#{authority} GROUP BY (MAP_AUTHORITY,MAP_DIV) ORDER BY 2
 	</select>

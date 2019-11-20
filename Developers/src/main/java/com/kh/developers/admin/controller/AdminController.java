@@ -93,12 +93,22 @@ public class AdminController {
 		List<Integer> memCount=service.mappingAuthCounter("회원");
 		List<Integer> nonCount=service.mappingAuthCounter("비회원");
 		
+		//권한 별 사용 기능
+		List<Map<String, Object>> adminUsedCount=service.mappingAuthUsedCounter("관리자"); 
+		List<Map<String, Object>> busUsedCount=service.mappingAuthUsedCounter("기업"); 
+		List<Map<String, Object>> memUsedCount=service.mappingAuthUsedCounter("회원"); 
+		List<Map<String, Object>> nonUsedCount=service.mappingAuthUsedCounter("비회원"); 
+		
 		mv.addObject("divCount", divCount);
 		mv.addObject("authCount", authCount);
 		mv.addObject("adminCount", adminCount);
 		mv.addObject("busCount", busCount);
 		mv.addObject("memCount", memCount);
 		mv.addObject("nonCount", nonCount);
+		mv.addObject("adminUsedCount", adminUsedCount);
+		mv.addObject("busUsedCount", busUsedCount);
+		mv.addObject("memUsedCount", memUsedCount);
+		mv.addObject("nonUsedCount", nonUsedCount);
 		mv.addObject("mcList", mcList);
 		mv.setViewName("admin/mappingLog");
 		return mv;
