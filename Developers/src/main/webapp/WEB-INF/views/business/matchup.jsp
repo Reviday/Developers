@@ -76,7 +76,9 @@ div.searchBar{
 }
 
 input#searchBox{
-	padding:20px;
+	height:2.6em;
+	font-size:1em;
+
 }
 
 .favBtn{
@@ -342,6 +344,11 @@ button#toTicketMo:hover{
 	border-color: #5F04B4 !important;
 }
 
+#useTicket{
+	font-size: 1em;
+    height: 4em;
+    width: 9em;
+}
 
 
 
@@ -497,7 +504,7 @@ button#toTicketMo:hover{
 	    		<div class="modal-footer">
 					<div class="resume-footer row" style="width:100%">
 						<div class="footer-intro col-12 col-sm-9" style="color: #fff; margin:auto auto;"><p style="font-size:20px;">이력서 상세보기 시, 열람권 1회가 차감됩니다.</p></div>
-						<div class="resumePayment col-12 col-sm-3"><button type="button" id="useTicket" color="#258BF7" class="btn btn-primary" style="font-size:18px; height:2.6em;" onclick="useTicket();">이력서 상세보기</button></div>
+						<div class="resumePayment col-12 col-sm-3"><button type="button" id="useTicket" color="#258BF7" class="btn btn-primary"  onclick="useTicket();">이력서 상세보기</button></div>
 					</div>	
 				</div>
 			</div>

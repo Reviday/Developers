@@ -80,4 +80,5 @@ public interface BusinessDao {
 	
 //	읽은거 가져오기 
 	String selectReaded(SqlSessionTemplate session,int busNo, int resumeNo);
+	int insertReaded(SqlSessionTemplate session,int busNo, int resumeNo);
 }

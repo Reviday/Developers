@@ -561,7 +561,11 @@ function favoriteList(cPage){
                         }
                         cardContainer+='</p>'
                         // 이력서 미리보기 버튼 
-                        cardContainer+='<a href="#" class="btn btn-primary favBtn openResume col-6 col-sm-4" data-toggle="modal" data-target="#openRoughResume" onclick="openResume('+icList[i].resumeNo+');">이력서 미리보기</a></div>';
+                        if(icList[i].readed=="T"){
+                            cardContainer+='<a href="#" class="btn btn-primary favBtn openResume col-6 col-sm-4" data-toggle="modal" data-target="#openRoughResume" onclick="openResume('+icList[i].resumeNo+","+2+');">이력서 상세보기</a></div>';
+                        }else{
+                            cardContainer+='<a href="#" class="btn btn-primary favBtn openResume col-6 col-sm-4" data-toggle="modal" data-target="#openRoughResume" onclick="openResume('+icList[i].resumeNo+","+1+');">이력서 미리보기</a></div>';
+                        }
                         cardContainer+='</div></div></div>';
                     }
                     cardContainer+='</div>';
@@ -809,9 +813,8 @@ function useTicket(){
                 if(type=="T"){
                     alert("열람권 1개를 사용하셨습니다. 남은 갯수 : "+(num-1)+"개");
                     updateNumOfTicket();
-                    // 티켓 하나 사용했한거암 
-                    //열람한 리스트에도 추가해야함 readed 를 true 로 
                     let resumeNo=document.querySelector("#hiddenResumeNo").value;
+                    insertReaded(resumeNo);
                     openResume(resumeNo,2);
                 }else{
                     alert(result);
@@ -822,6 +825,23 @@ function useTicket(){
 }
 
 
+function insertReaded(resumeNo){
+    $.ajax({
+        url:path+"/business/insertReaded",
+        type:"post",
+        async: false,
+        data:{
+            "reumeNo":resumeNo
+        },
+        success:function(result){ 
+            let res=JSON.parse(result);
+            if(res!="T"){
+                console.log(res);
+                alert(res);
+            }
+        }
+    });
+}
 
 
 // checkBox.forEach(function(e){

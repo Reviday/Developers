@@ -275,6 +275,11 @@ public class BusinessServiceImpl implements BusinessService {
 		// TODO Auto-generated method stub
 		return dao.selectReaded(session, busNo, resumeNo);
 	}
+	@Override
+	public int insertReaded(int busNo, int resumeNo) {
+		// TODO Auto-generated method stub
+		return dao.insertReaded(session,busNo,resumeNo);
+	}
 	
 
 }

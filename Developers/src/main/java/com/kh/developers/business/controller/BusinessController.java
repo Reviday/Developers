@@ -738,6 +738,28 @@ public class BusinessController {
 		return jsonStr;
 	}
 	
+	@RequestMapping("/business/insertReaded")
+	public String insertReaded(@RequestParam(value="resumeNo",required=true)int  resumeNo,
+			HttpServletRequest req,
+			HttpServletResponse res) {
+		Business bus=(Business)req.getSession().getAttribute("busInfo");
+		int busNo=Integer.parseInt(bus.getBusNo());
+		int result=0;
+		String msg="";
+		try {
+			result=bService.insertReaded(resumeNo,busNo);
+		}catch(Exception e) {
+			msg="이력서 상세 보기 도중 에러가 발생했습니다.";
+		}
+		if(result>0) {
+			msg="T";
+		}else {
+			msg="이력서 상세 보기 도중 에러가 발생했습니다.";
+		}
+		
+		return msg;
+	}
+	
 	
 	
 	

@@ -184,6 +184,9 @@
 	<select id="selectReaded" parameterType="map" resultType="String">
 		SELECT READED FROM MATCHUP_READED WHERE BUS_NO=#{busNo} AND RESUME_NO=#{resumeNo}
 	</select>
+	<insert id="insertReaded" parameterType="map">
+		INSERT INTO MATCHUP_READED VALUES(SEQ_MATCHUP_READED_NO.NEXTVAL, #{busNo},#{resumeNo},'T',DEFAULT)
+	</insert>
 	
 	
 	<resultMap type="com.kh.developers.business.model.vo.CareerInCard" id="careerMap">
