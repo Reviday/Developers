@@ -26,6 +26,6 @@ public class Applicant {
 	private Date finalDate;
 	private String busName;
 	private String busLogo;
-	private String postionName;
+	private String postion;
 	
 }
