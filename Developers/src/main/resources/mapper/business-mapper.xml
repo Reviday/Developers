@@ -186,7 +186,11 @@
 	</select>
 	<insert id="insertReaded" parameterType="map">
 		INSERT INTO TA_APPL_BUS VALUES(SEQ_TAB_NO.NEXTVAL, #{busNo}, #{memNo}, 0, #{resumeNo}, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, NULL)
+			<selectKey keyProperty="APPL_NO" resultType="string" order="AFTER">
+				SELECT SEQ_TAB_NO.CURRVAL FROM DUAL
+			</selectKey>
 	</insert>
+	
 	<select id="selectMemNo" parameterType="integer" resultType="integer">
 		SELECT MEM_NO FROM RESUME WHERE RESUME_NO = #{resumeNo}
 	</select>

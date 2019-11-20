@@ -265,7 +265,7 @@ public class BusinessDaoImpl implements BusinessDao {
 		@Override
 		public int insertClick(SqlSessionTemplate session, int adNo) {
 			// TODO Auto-generated method stub
-			return session.insert("business.insertClick",adNo);
+			return session.update("business.insertClick",adNo);
 		}
 
 }

@@ -604,10 +604,7 @@ public class BusinessController {
 	
 //	광고 클릭 수 저장 함수 
 	public void adClick(int adNo) {
-		try {
-			bService.insertClick(adNo);			
-		}catch(Exception e){
-		}
+		bService.insertClick(adNo);
 	}
 	
 
@@ -754,13 +751,10 @@ public class BusinessController {
 		int memNo=bService.selectMemNo(resumeNo);
 		String jsonStr="";
 		ObjectMapper mapper=new ObjectMapper();
-		System.out.println("memNo : "+memNo);
-		System.out.println("busNO : "+busNo);
-		System.out.println("resumeNo : "+resumeNo);
 		int result=0;
 		String msg="";
 		try {
-			result=bService.insertReaded(resumeNo,busNo,memNo);
+			result=bService.insertReaded(busNo,resumeNo,memNo);
 		}catch(Exception e) {
 			msg="이력서 상세 보기 도중 에러가 발생했습니다.";
 		}
