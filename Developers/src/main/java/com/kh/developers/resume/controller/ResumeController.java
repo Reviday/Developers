@@ -375,7 +375,6 @@ public class ResumeController {
 	@RequestMapping("/resume/updateResume.lmc")
 	public ModelAndView updateResume(Resume r) {
 		ModelAndView mv=new ModelAndView();
-		System.out.println(r.getStatus()+"모냐 넌");
 		int result=service.updateResume(r);
 		Member m=new Member();
 		m.setMemEmail(r.getMemEmail());
