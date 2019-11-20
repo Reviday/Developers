@@ -150,7 +150,7 @@ var path = "${path }";
                                     <h6 class="FormButton-label">현재 연봉</h6> 
                                     </div>
                                     <div class="col-8">
-                                    <input type="number" name="salary" class="form-control">
+                                    <input type="number" name="salary" class="form-control" maxlength="8" oninput="maxLengthCheck(this)" />
                                     </div>
                                 </div>
                                 <div class="FormButton _3I5bkI50gryaER31Iu7b4E selected " >
@@ -200,6 +200,13 @@ var path = "${path }";
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" type="text/javascript"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" type="text/javascript"></script>
 <script>	
+function maxLengthCheck(object){
+    if (object.value.length > object.maxLength){
+        object.value = object.value.slice(0, object.maxLength);
+    }    
+}
+
+
 	
 	var duty=[];
     function dutyview(){
