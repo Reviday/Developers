@@ -24,5 +24,6 @@ public class Resume  {
 	private String endCareer;
 	private String busName;
 	private String status;
+	private int memNo;
 	
 }

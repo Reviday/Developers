@@ -77,16 +77,16 @@
                   <div class="container">
                      <div class="row">
                         <div class="_3DlvRNfvccuhGRij2MuTUG">
-                           <a href="/wdlist/518" class=""><h2>
+                           <a href="#" class=""><h2>
                                  개발<i class="icon-arrow_right"></i>
-                              </h2></a><a href="/wdlist/518/873" class=""><h3>웹 개발자</h3></a><a
-                              href="/wdlist/518/872" class=""><h3>서버 개발자</h3></a><a
-                              href="/wdlist/518/669" class=""><h3>프론트엔드 개발자</h3></a><a
-                              href="/wdlist/518/660" class=""><h3>자바 개발자</h3></a><a
-                              href="/wdlist/518/677" class=""><h3>안드로이드 개발자</h3></a><a
-                              href="/wdlist/518/678" class=""><h3>iOS 개발자</h3></a><a
-                              href="/wdlist/518/899" class=""><h3>파이썬 개발자</h3></a><a
-                              href="/wdlist/518/665" class=""><h3>시스템,네트워크 관리자</h3></a>
+                              </h2></a><a href="#" class=""><h3>웹 개발자</h3></a><a
+                              href="#" class=""><h3>서버 개발자</h3></a><a
+                              href="#" class=""><h3>프론트엔드 개발자</h3></a><a
+                              href="#" class=""><h3>자바 개발자</h3></a><a
+                              href="#" class=""><h3>안드로이드 개발자</h3></a><a
+                              href="#" class=""><h3>iOS 개발자</h3></a><a
+                              href="#" class=""><h3>파이썬 개발자</h3></a><a
+                              href="#" class=""><h3>시스템,네트워크 관리자</h3></a>
                         </div>
                      </div>
                   </div>
@@ -105,7 +105,7 @@
                         <button class="xsSignUpButton suBtn" type="button">회원가입</button>
                      </li>
                      <li class="lgMoreVisible">
-                        <a href="/newintro" class="">서비스 소개</a>
+                        <a href="#" class="">서비스 소개</a>
                      </li>
                      <li class="smMoreVisible">
                         <a class="dashboardButton" href="${path }/business">기업 서비스</a>
@@ -142,7 +142,7 @@
                         <li class="xsOnly"><a href="/events" class="">커리어/이벤트</a></li>
                         <div class="divider xsOnly"></div>
                         <li class="xsOnly"><a href="${path }/business">기업 서비스</a></li>
-                        <li class="xsOnly"><a href="/newintro" class="">서비스 소개</a></li>
+                        <li class="xsOnly"><a href="#" class="">서비스 소개</a></li>
                      </ul>
                   </div>
                </aside>
@@ -215,7 +215,7 @@
                            <a href="${path }/resume/resumeList.lmc?memEmail=${loginMember.memEmail }" class="">이력서</a>
                         </li>
                         <li class="xsOnly">
-                           <a href="/referral" class="">추천</a>
+                           <a href="#" class="">추천</a>
                         </li>
                         <li class="">
                            <a href="${path }/member/dashBoard.lmc?memEmail=${loginMember.memEmail }" class="">지원 현황</a>
@@ -225,7 +225,7 @@
                            <a href="${path }/salary/salaryYears.do?jobField=f0&jobYears=0&job_type=전체&salarySearch=0" class="">직군별 연봉</a>
                         </li>
                         <li class="xsOnly">
-                           <a href="/events" class="">커리어/이벤트</a>
+                           <a href="#" class="">커리어/이벤트</a>
                         </li>
                         <div class="divider xsOnly"></div>
                         <li class="xsOnly">
@@ -237,7 +237,7 @@
                      	</c:if>
                         </li>
                         <li class="xsOnly">
-                           <a href="/newintro" class="">서비스 소개</a>
+                           <a href="#" class="">서비스 소개</a>
                         </li>
                         <li class="">
                            <a class="logOutAnchor" href="${path }/member/logout.do">로그아웃</a>

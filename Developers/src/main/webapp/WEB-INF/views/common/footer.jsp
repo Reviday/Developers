@@ -11,9 +11,9 @@
 					<img src="${path }/resources/images/Developers_logo.png" style="height:32px"/>
 				</div>
 				<div class="footer_nav_item">
-					<a href="/newintro" class="">서비스 소개</a>
-					<a href="/terms" class="">이용약관 및 정책</a>
-					<a href="/faq" class="">자주 묻는 질문</a>
+					<a href="#" class="">서비스 소개</a>
+					<a href="#" class="">이용약관 및 정책</a>
+					<a href="#" class="">자주 묻는 질문</a>
 				</div>
 			</div>
 			<div class="footer_language">
@@ -30,7 +30,7 @@
 			</div>
 		</div>
 		<div class="footer_int">
-			<p class="developers_int">(주)원티드랩 (대표이사:이복기) | 서울특별시 강남구 테헤란로 142 | 개인정보보호관리자 : 황리건 | 통신판매번호 : 2016-서울강남-00207<br>
+			<p class="developers_int">(주)Developers (대표이사:윤성윤) | 서울특별시 강남구 테헤란로 142 | 개인정보보호관리자 : 윤성윤 | 통신판매번호 : 2016-서울강남-00207<br>
 			유료직업소개사업등록번호 : (국내) 제2016-3220163-14-5-00001호 | (국외) F1201020170005 | 사업자등록번호 : 299-86-00021<br>
 			서비스 및 기업문의 02-539-7118<br>
 			© Wantedlab, Inc.</p>

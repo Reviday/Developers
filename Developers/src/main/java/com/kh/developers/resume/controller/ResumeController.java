@@ -39,7 +39,6 @@ public class ResumeController {
 	
 	@RequestMapping("/resume/resumeList.lmc")
 	public ModelAndView resumeList(Member m,Model model) {
-		System.out.println(m);
 		ModelAndView mv = new ModelAndView();
 		Member m2=mservice.selectMemberOne(m);
 		List<Resume> list=service.selectResume(m2);
@@ -107,7 +106,10 @@ public class ResumeController {
 		/*@ReponseBody이용*/
 		ObjectMapper mapper=new ObjectMapper();
 		//잭슨이 제공하는 객체 자바클래스하고 json자바스크립트 객체 매핑 시켜줌 
-		
+		Member m= new Member();
+		m.setMemEmail(r.getMemEmail());
+		m=mservice.selectMemberOne(m);
+		r.setMemNo(m.getMemNo());
 		Resume r2=service.selectResumeViewOne(r);
 		int result=service.insertCareer(r2);
 		String jsonStr="";
