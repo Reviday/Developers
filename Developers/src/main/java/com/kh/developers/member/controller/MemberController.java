@@ -85,7 +85,6 @@ public class MemberController {
 	public ModelAndView lastStepEnrollEnd(Member m, Model model) {
 		ModelAndView mv=new ModelAndView();
 		m.setMemReceiveEmail(m.getMemReceiveEmail().equals("true")?"Y":"N");
-		System.out.println(m);
 		Member result=service.lastStepEnrollEnd(m);
 		System.out.println("result :" +result);
 		if(result==null) {
