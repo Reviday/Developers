@@ -49,7 +49,7 @@ function ajaxLogic(flag){
             // category 상단 광고 
             var polist=resultMap.polist;
             AdCon+='<div>';
-            AdCon+='<div class="accordion" id="accordionExample" style="padding-top:2em;">';
+            AdCon+='<div class="accordion" id="accordionExample" style="padding-top:2em; margin-bottom:2em;">';
             AdCon+='<div class="card">';
             AdCon+='<div class="card-header" id="headingOne">';
             AdCon+='<h2 class="mb-0">';
@@ -161,7 +161,7 @@ function ajaxLogic(flag){
             // main 상단 광고
             var polist=resultMap.polist;
             AdCon+='<div>';
-            AdCon+='<div class="accordion" id="accordionExample" style="padding-top:2em;">';
+            AdCon+='<div class="accordion" id="accordionExample" style="padding-top:2em; margin-bottom:2em;">';
             AdCon+='<div class="card">';
             AdCon+='<div class="card-header" id="headingOne">';
             AdCon+='<h2 class="mb-0">';

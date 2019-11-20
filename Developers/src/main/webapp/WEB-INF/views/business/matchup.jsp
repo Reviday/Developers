@@ -401,8 +401,8 @@ button#toTicketMo:hover{
 		<div class="tag-header container-fluid" style="background-color:#0081C7;">
 			<div class="tag-container container-fluid">
 				<div class="intro-container container-fluid">
-					<a class="matchup-intro container" href="/bussiness/matchupintro">
-						<h2 class="container" style="color:#FFFFFF;">매치업 소개</h2>
+					<a class="matchup-intro container" href="#">
+						<h2 class="container" style="color:#FFFFFF;">인재풀 소개</h2>
 					</a>
 					<!-- <div color="#FFFFFF" class="category">개발</div> -->
 				</div>

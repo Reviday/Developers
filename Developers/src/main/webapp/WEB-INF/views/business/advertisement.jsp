@@ -14,7 +14,6 @@
 
 <style>
 div.ad{
-	padding:5%;
 	background-color: #FFFFFF;
 
 }
@@ -100,6 +99,9 @@ div#bottom-info>input{
 	margin-bottom:15px;
 	border-color: #0489B1;
 }
+div.category_ad>*, div.main_ad>*{
+	margin-bottom:15px;
+}
 
 
 
@@ -154,24 +156,24 @@ div#bottom-info>input{
 				</div>
 			</div>
 			<div id="ad-area" class="col-12 col-sm-8">
-				<div class="" style="text-align: center; padding:5%">
-					<div class="ad category_ad" >
+				<div class="" style="text-align: center;">
+					<div class="ad category_ad" style="margin-top:15px; padding-top:15px;">
 						<h4>회사 홍보를 특정 직무에 하고 싶으신가요?</h4>
-						<img>
+						<img  style="height:12em;" src="${path}/resources/images/categoryPageAd.png" alt="categoryAd">
 						<p>디벨로퍼스의 직무별 잠재 구직자들을 타겟팅하여
 							세분화된 직무마다 효율적으로 홍보할 수 있습니다.</p>
 						<button class="btn btn-primary" style="font-size:15px;" onclick="categoryAd('category');">직무 상단 광고</button>
 					</div>
-					<div class="ad main_ad" style="margin-top:20px;">
+					<div class="ad main_ad" style="margin-top:15px; padding-top:15px;">
 						<h4>회사 홍보를 메인 페이지에 하고 싶으신가요?</h4>
-						<img>
+						<img style="height:12em;" src="${path}/resources/images/mainPageAd.png" alt="mainAd">
 						<p>디벨로퍼스의 메인 페이지에 모든 직무에 구분 없이
 							노출하여 극도의 홍보효과를 누릴 수 있습니다.</p>
 						<button class="btn btn-primary" style="font-size:15px;" onclick="mainAd('main');">메인 페이지 광고</button>
 					</div>
 				</div>
 				<!-- 광고 노출 효과  -->
-				<div class="ad_result">
+				<div class="ad_result" style="margin-top:20px;">
 					<h4 style="background-color: #FFFFFF; font-weight:bold; text-align:center; padding:0.5em;">직무 상단 광고 결과</h4>
 					<div class="category_table" style="height: 11em; overflow:scroll;">
 						<table class="table table-sm table-dark" style="text-align:center;">
@@ -207,14 +209,14 @@ div#bottom-info>input{
 						</table>
 						<c:if test="${empty categoryList}">
 							<div class="emptyCategory" style="text-align: center; padding:5em;">
-								<p style="color:#585858">아직 집행중인 직무 상단 광고가 없습니다.<br>
+								<p style="color:#585858">아직 진행중인 직무 상단 광고가 없습니다.<br>
 									상단의 광고버튼으로 광고를 시작해보세요
 								</p>
 							</div>
 						</c:if>
 					</div>
 					<h4 style="background-color: #FFFFFF; font-weight:bold; text-align:center; padding:0.5em; margin-top:2em;">메인 상단 광고 결과</h4>
-						<div class="category_table" style="height: 11em; overflow:scroll;">
+						<div class="category_table" style="height: 11em; overflow:scroll; margin-bottom:15px;">
 							<table class="table table-sm table-dark" style="text-align:center;">
 								<thead>
 									<tr>
@@ -248,7 +250,7 @@ div#bottom-info>input{
 							</table>
 							<c:if test="${empty categoryList}">
 								<div class="emptyCategory" style="text-align: center; padding:5em;">
-									<p style="color:#585858">아직 집행중인 직무 상단 광고가 없습니다.<br>
+									<p style="color:#585858">아직 진행중인 직무 상단 광고가 없습니다.<br>
 										상단의 광고버튼으로 광고를 시작해보세요
 									</p>
 								</div>
