@@ -349,7 +349,7 @@ public class SearchController {
 	}
 	//탐색 -> 회사소개페이지로 전환
 	@RequestMapping("/search/companyAllInfo11")
-	public String companyAllInfo(int busNo, int click, Model model) {
+	public String companyAllInfo(int busNo, int click, Model model) {		
 		new BusinessController().adClick(click);
 		//회사 포지션 리스트
 		List<Position> psList = service.companyPositionList(busNo);
