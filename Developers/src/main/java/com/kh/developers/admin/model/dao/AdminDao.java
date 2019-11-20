@@ -46,4 +46,6 @@ public interface AdminDao {
 	int positionApproval(SqlSessionTemplate session, int positionNo);
 	int positionRejection(SqlSessionTemplate session, int positionNo);
 	List<Map<String, String>> selectJabField(SqlSessionTemplate session);
-}
+	List<Integer> selectVisitorStats(SqlSessionTemplate session);
+	Map<String, Object> selectHighestVisitor(SqlSessionTemplate session);
+ }

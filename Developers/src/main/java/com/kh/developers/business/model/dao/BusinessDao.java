@@ -77,4 +77,7 @@ public interface BusinessDao {
 	int numOfTicket(SqlSessionTemplate session, int busNo);
 	int insertTicket(SqlSessionTemplate sesion, int busNo, int num);
 	int useTicket(SqlSessionTemplate session, int busNo);
+	
+//	읽은거 가져오기 
+	String selectReaded(SqlSessionTemplate session,int busNo, int resumeNo);
 }

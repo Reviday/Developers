@@ -28,6 +28,16 @@ public class AdminServiceImpl implements AdminService {
 	private SearchValuesTemplate svt;
 	
 	@Override
+	public Map<String, Object> selectHighestVisitor() {
+		return dao.selectHighestVisitor(session);
+	}
+	
+	@Override
+	public List<Integer> selectVisitorStats() {
+		return dao.selectVisitorStats(session);
+	}
+	
+	@Override
 	public List<Map<String, String>> selectJabField() {
 		return dao.selectJabField(session);
 	}

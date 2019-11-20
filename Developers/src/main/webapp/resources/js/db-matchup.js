@@ -260,7 +260,11 @@ function ajaxLogic(searchPackage){
                         }
                         cardContainer+='</p>'
                         // 이력서 미리보기 버튼 
-                        cardContainer+='<a href="#" class="btn btn-primary favBtn openResume col-6 col-sm-4" data-toggle="modal" data-target="#openRoughResume" onclick="openResume('+icList[i].resumeNo+');">이력서 미리보기</a></div>';
+                        if(icList[i].readed=="T"){
+                            cardContainer+='<a href="#" class="btn btn-primary favBtn openResume col-6 col-sm-4" data-toggle="modal" data-target="#openRoughResume" onclick="openResume('+icList[i].resumeNo+","+2+');">이력서 상세보기</a></div>';
+                        }else{
+                            cardContainer+='<a href="#" class="btn btn-primary favBtn openResume col-6 col-sm-4" data-toggle="modal" data-target="#openRoughResume" onclick="openResume('+icList[i].resumeNo+","+1+');">이력서 미리보기</a></div>';
+                        }
                         cardContainer+='</div></div></div>';
                     }
                     cardContainer+='</div>';
@@ -306,17 +310,19 @@ $(function(){
 var info="";
 
 // 이력서 미리보기 로직
-function openResume(resumeNo){
+function openResume(resumeNo, level){
     if(resumeNo!=""||resumeNo!=null||resumeNo!=undefined){
         $.ajax({
             url:path+"/business/openResume",
             type:"post",
             async: false,
             data:{
-                "resumeNo":resumeNo
+                "resumeNo":resumeNo,
+                "level":level
             },
             success:function(result){
                 if(result!=null||result!=undefined){
+                    let hiddenA=$('div#ResumeNo');
                     let title=$('div#ResumeTitle');
                     let name=$('div#ResuMemName');
                     let email=$('div#ResuMemEmail');
@@ -333,14 +339,21 @@ function openResume(resumeNo){
                         fn[i]='◯ ';
                     }
                     fn=fn.join("");
+                    hiddenA.html('<input type="hidden" id="hiddenResumeNo" value="'+resumeNo +'">');
                     name.html('<div id="memName" ><p style="font-size:0.9em;">'+sirName+'<span id="firstName" style="margin-left:3px;">'+fn+'</span></p></div>');
                     //결제 했을경우 안했을 경우 분기처리 해야함 
                     // info.memEmail
-                    let finEmail="◯◯◯◯◯◯◯◯◯";
-                    email.html('<div class="personalInfo"><p>이메일: <span id="memEmail">'+finEmail+'</span></p></div>');
-                    // info.memPhone
-                    let finPhone="◯◯◯◯◯◯◯◯◯";
-                    phone.html('<div class="personalInfo"><p>전화번호: <span id="memPhone">'+finPhone+'</span></p></div>');
+                    if(level>1){
+                        email.html('<div class="personalInfo"><p>이메일: <span id="memEmail" style="background-color:#F7BE81; color:#FFFFFF;">후보자가 제안을 수락할 경우</span></p></div>');
+                        phone.html('<div class="personalInfo"><p>연락처: <span id="memPhone" style="background-color:#F7BE81; color:#FFFFFF;">이름과 연락처를 확인할 수 있습니다.</span></p></div>');
+                    }
+                    if(level<2){
+                        let finEmail="◯◯◯◯◯◯◯◯◯";
+                        email.html('<div class="personalInfo"><p>이메일: <span id="memEmail">'+finEmail+'</span></p></div>');
+                        // info.memPhone
+                        let finPhone="◯◯◯◯◯◯◯◯◯";
+                        phone.html('<div class="personalInfo"><p>연락처: <span id="memPhone">'+finPhone+'</span></p></div>');
+                    }
                     intro.html('<div id="memIntro"><p style="color:#848484;">'+info.intro+'</p></div>');
 
                     let careerss="";
@@ -635,6 +648,10 @@ function clickFav(e){
 
 
 $(function(){
+    updateNumOfTicket();
+})
+
+function updateNumOfTicket(){
     let num=getNumOfTicket();
     // let num=0;
     let ticketA="";
@@ -647,7 +664,7 @@ $(function(){
         ticketA='<button class="btn btn-success" id="toTicketMo" style="background-color: #8000FF; border-color: #8000FF; font-size:17px;" onclick="toTicketModal();">열람권 결제하기</button>';
         $('div#ticketArea').html(ticketA);
     }
-})
+}
 
 function getNumOfTicket(){
     let num=0;
@@ -787,12 +804,15 @@ function useTicket(){
             async: false,
             data:{
             },
-            success:function(result){
-                JSON.parse(result);
-                console.log(result);
-                if(result=="T"){
+            success:function(result){    
+                let type=JSON.parse(result);            
+                if(type=="T"){
+                    alert("열람권 1개를 사용하셨습니다. 남은 갯수 : "+(num-1)+"개");
+                    updateNumOfTicket();
                     // 티켓 하나 사용했한거암 
-                    openResume()
+                    //열람한 리스트에도 추가해야함 readed 를 true 로 
+                    let resumeNo=document.querySelector("#hiddenResumeNo").value;
+                    openResume(resumeNo,2);
                 }else{
                     alert(result);
                 }

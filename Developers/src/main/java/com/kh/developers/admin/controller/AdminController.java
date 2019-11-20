@@ -426,7 +426,14 @@ public class AdminController {
 	public ModelAndView visitorLog() {
 		ModelAndView mv=new ModelAndView();
 		
+		//전체,한 달,일주일,하루 통계를 가져온다.
+		List<Integer> visitorStats=service.selectVisitorStats();
 		
+		//최고 방문자 수, 날짜
+		Map<String, Object> highestVisitor=service.selectHighestVisitor();
+		System.out.println(highestVisitor);
+		mv.addObject("visitorStats",visitorStats);
+		mv.addObject("highestVisitor",highestVisitor);
 		mv.setViewName("admin/visitorLog");
 		return mv;
 	}
@@ -510,8 +517,6 @@ public class AdminController {
 		int totalData=service.selectTagOpinionCount() ;
 		pt=new PaginationTemplate(req, totalData, "/admin/selectTagOpinionList.lac");
 		List<Map<String, Object>> list=service.selectTagOpinionList(pt.getcPage(), pt.getNumPerPage());
-		
-		System.out.println(list);
 		
 		mv.addObject("resultList",list);
 		mv.addObject("cPage", pt.getcPage());

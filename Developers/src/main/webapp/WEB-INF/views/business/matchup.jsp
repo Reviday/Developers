@@ -482,6 +482,7 @@ button#toTicketMo:hover{
          		 <!-- <form id="login" action="${pageContext.request.contextPath}/business/login" onsubmit="return loginValidate()" method="post"> -->
 	    		<div class="modal-body" id="resumeBody">
 					<div class="modal-body-area" id="resumeBodyInside">
+						<div class="" id="ResumeNo"></div>
 						<div class="" id="ResumeTitle"></div>
 						<div class="" id="ResuMemName"></div>
 						<div class="" id="ResuMemEmail"></div>
@@ -524,9 +525,9 @@ button#toTicketMo:hover{
 						<label class="custom-control-label" for="basicPack">
 							<div class="hov packageEx">
 								<h2 class="hov">기본 패키지</h2> 
-								<h4 class="hov">300,000원 / 50건</h4>
+								<h4 class="hov">300,000원 / 20건</h4>
 								
-								<p class="hov">50건의 이력서 열람 및 면접 제안 가능</p>
+								<p class="hov">20건의 이력서 열람 및 면접 제안 가능</p>
 								<p>학력/경력 등 상세 정보 확인</p>
 								<p>20건의 이력서 상세보기</p>
 								<p>20건의 면접 제안 가능</p>
@@ -538,9 +539,9 @@ button#toTicketMo:hover{
 						<label class="custom-control-label" id="rightCheck" for="advancedPack">
 							<div class="hov packageEx">
 								<h2 class="hov">고급 패키지</h2> 
-								<h4 class="hov">500,000원 / 100건</h4>
+								<h4 class="hov">500,000원 / 50건</h4>
 								
-								<p class="hov">100건의 이력서 열람 및 면접 제안 가능</p>
+								<p class="hov">50건의 이력서 열람 및 면접 제안 가능</p>
 								<p>학력/경력 등 상세 정보 확인</p>
 								<p>50건의 이력서 상세보기</p>
 								<p>50건의 면접 제안 가능</p>
@@ -572,6 +573,7 @@ button#toTicketMo:hover{
 	var memEmail="${loginMember.memEmail}";
 	var memName="${loginMember.memName}";
 	var memPhone="${loginMember.memPhone}";
+
 
 </script>
 <!-- <script src="${path}/resources/js/db-main.js"></script>  -->

@@ -70,4 +70,7 @@ public interface BusinessService {
 	int insertTicket(int busNo, int num);
 //	열람권 사용 
 	int useTicket(int busNo);
+	
+//	읽은것들 불어오기 
+	String selectReaded(int busNo,int resumeNo);
 }
