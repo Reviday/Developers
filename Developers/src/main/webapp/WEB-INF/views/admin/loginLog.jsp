@@ -17,25 +17,25 @@
 		        <div class="counting-sec">
 		            <div class="inner-width">
 		                <div class="col">
-		                    <i class="far fa-smile-wink"></i>
+		                    <i class="fas fa-sign-in-alt"></i>
 		                    <div class="num">${statsList[3]}</div>
 		                    	로그인 시도<br>(누계)
 		                </div>
 		
 		                <div class="col">
-		                    <i class="fas fa-briefcase"></i>
+		                    <i class="fas fa-check-circle"></i>
 		                    <div class="num">${statsList[2]}</div>
 		                    	로그인 성공<br>(누계)
 		                </div>
 		
 		                <div class="col">
-		                    <i class="far fa-money-bill-alt"></i>
+		                    <i class="fas fa-sun"></i>
 		                    <div class="num">${statsList[1]}</div>
 		                    	로그인 시도<br>(금일)
 		                </div>
 		
 		                <div class="col">
-		                    <i class="far fa-object-group"></i>
+		                    <i class="far fa-check-circle"></i>
 		                    <div class="num">${statsList[0]}</div>
 		                    	로그인 성공<br>(금일)
 		                </div>

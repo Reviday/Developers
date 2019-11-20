@@ -41,7 +41,7 @@
 		        <div class="counting-sec">
 		            <div class="inner-width" style="margin-bottom: 20px">
 		                <div class="col">
-		                    <i class="far fa-smile-wink"></i>
+		                    <i class="fas fa-copy"></i>
 		                    <div class="num">${divCount[1]}</div>
 		                    	페이지 전환 횟수
 		                </div>
@@ -85,7 +85,7 @@
 							</script>
 						</div>
 		                <div class="col">
-		                    <i class="fas fa-briefcase"></i>
+		                    <i class="fab fa-google-wallet"></i>
 		                    <div class="num">${divCount[0]}</div>
 		                    	페이지 기능 횟수
 		                </div>
@@ -130,7 +130,7 @@
 									    }
 									});
 								</script>
-			                    <i class="far fa-smile-wink"></i>
+			                    <i class="fab fa-redhat"></i>
 			                    <div class="num">${authCount[0]}</div>
 			                    	관리자권한 사용 횟수
 			                </div>
@@ -172,7 +172,7 @@
 									    }
 									});
 								</script>
-			                    <i class="fas fa-briefcase"></i>
+			                    <i class="fas fa-building"></i>
 			                    <div class="num">${authCount[1]}</div>
 			                    	기업권한 사용 횟수
 			                </div>
@@ -216,7 +216,7 @@
 									    }
 									});
 								</script>
-			                    <i class="far fa-money-bill-alt"></i>
+			                    <i class="fas fa-user-tie"></i>
 			                    <div class="num">${authCount[3]}</div>
 			                    	회원권한 사용 횟수
 			                </div>
@@ -259,7 +259,7 @@
 									    }
 									});
 								</script>
-			                    <i class="far fa-object-group"></i>
+			                    <i class="fas fa-cubes"></i>
 			                    <div class="num">${authCount[2]}</div>
 			                    	기본권한 사용 횟수
 			                </div>

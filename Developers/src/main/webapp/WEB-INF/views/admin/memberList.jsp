@@ -20,25 +20,25 @@
 		        <div class="counting-sec">
 		            <div class="inner-width">
 		                <div class="col">
-		                    <i class="far fa-smile-wink"></i>
+		                    <i class="fas fa-users"></i>
 		                    <div class="num">${statsMap.total }</div>
 		                    	총 회원
 		                </div>
 		
 		                <div class="col">
-		                    <i class="fas fa-briefcase"></i>
+		                    <i class="fas fa-users-cog"></i>
 		                    <div class="num">${statsMap.business }</div>
 		                    	기업 회원
 		                </div>
 		
 		                <div class="col">
-		                    <i class="far fa-money-bill-alt"></i>
+		                    <<i class="fas fa-user-check"></i>
 		                    <div class="num">${statsMap.common }</div>
 		                    	일반 회원
 		                </div>
 		
 		                <div class="col">
-		                    <i class="far fa-object-group"></i>
+		                    <i class="fas fa-user-times"></i>
 		                    <div class="num">${statsMap.unfinished }</div>
 		                    	가입 미완료
 		                </div>

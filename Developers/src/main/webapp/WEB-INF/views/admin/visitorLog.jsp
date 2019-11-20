@@ -18,7 +18,7 @@
 		        <div class="counting-sec">
 		            <div class="inner-width" style="margin-bottom: 10px;">
 		                <div class="col">
-		                    <i class="far fa-smile-wink"></i>
+		                    <i class="fas fa-users"></i>
 		                    <div class="num">${visitorStats[3]}</div>
 		                    	전체 방문자
 		                </div>
@@ -30,7 +30,7 @@
 		                </div>
 		
 		                <div class="col">
-		                    <i class="far fa-money-bill-alt"></i>
+		                    <i class="far fa-smile-wink"></i>
 		                    <div class="num">${visitorStats[1]}</div>
 		                    	일주일 방문자
 		                </div>
@@ -43,13 +43,13 @@
 		            </div>
 		            <div class="inner-width">
 		                <div class="col">
-		                    <i class="far fa-smile-wink"></i>
+		                    <i class="fas fa-hand-peace"></i>
 		                    <div class="num">${highestVisitor.COUNT}</div>
 		                    	최고 방문자 수
 		                </div>
 		
 		                <div class="col">
-		                    <i class="fas fa-briefcase"></i>
+		                    <i class="far fa-hand-peace"></i>
 		                    <div class="date">${highestVisitor.DATE}</div>
 		                    	최고 방문 기록 일자
 		                </div>

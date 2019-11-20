@@ -93,6 +93,7 @@
 	                    <ul>
 	                        <li>
 	                           <a href="javascript:;">
+	                           <i class="fas fa-users" aria-hidden="true"></i>
 	                               	회원목록							
 	                           </a>
 	                           <!-- Level Three-->
@@ -101,6 +102,7 @@
 	                               		<i class="fa fa-user" aria-hidden="true"></i>
 	                               		기본정보</a>
 	                               	</li>
+	                               	<!-- 
 	                               <li>
 	                                   <a href="${path }/admin/memberList.lac">
 	                                       <i class="fa fa-diamond" aria-hidden="true"></i>부가정보</a>
@@ -109,6 +111,7 @@
 	                                   <a href="${path }/admin/memberList.lac">
 	                                       <i class="fa fa-diamond" aria-hidden="true"></i>상세정보</a>
 	                               </li>
+	                                -->
 	                           </ul>
 	                       </li>
 	                       <!-- 해당 기능은 동결
@@ -117,7 +120,9 @@
 	                        </li>
 	                         -->
 	                        <li>
-	                            <a href="${path }/admin/withdrawMemberList.lac">탈퇴회원목록</a>
+	                            <a href="${path }/admin/withdrawMemberList.lac">
+	                            	<i class="fas fa-user-cog"></i>
+	                            	탈퇴회원목록</a>
 	                        </li>
 	                    </ul>
 	                </li>
@@ -131,13 +136,13 @@
 	                    <ul>
 	                        <li>
 	                            <a href="${path }/admin/businessRequest.lac">
-	                                <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+	                                <i class="fas fa-building" aria-hidden="true"></i>
 	                                	기업등록승인관리
 	                            </a>
 	                        </li>
 	                        <li>
 	                            <a href="${path }/admin/enrollPosition.lac">
-	                                <i class="fa fa-database" aria-hidden="true"></i>
+	                                <i class="fa fa-graduation-cap" aria-hidden="true"></i>
 	                                	포지션등록승인관리
 	                            </a>
 	                        </li>
@@ -157,15 +162,21 @@
 	                    </a>
 	                    <ul>
 	                    	<li>
-	                            <a href="${path}/admin/visitorLog.lac">방문자 통계
+	                            <a href="${path}/admin/visitorLog.lac">
+	                            	<i class="fas fa-walking"></i>
+	                            	방문자 통계
 	                            </a>
 	                        </li>
 	                        <li>
-	                            <a href="${path}/admin/loginLog.lac">로그인 로그
+	                            <a href="${path}/admin/loginLog.lac">
+	                            	<i class="fas fa-sign-in-alt"></i>
+	                            	로그인 로그
 	                            </a>
 	                        </li>
 	                        <li>
-	                            <a href="${path }/admin/mappingLog.lac">홈페이지 기능 로그				
+	                            <a href="${path }/admin/mappingLog.lac">
+	                            <i class="fas fa-file-alt"></i>
+	                            	홈페이지 기능 로그				
 	                            </a>
 	                            <!-- 
 	                            <ul>
