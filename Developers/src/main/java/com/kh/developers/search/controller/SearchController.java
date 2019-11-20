@@ -235,7 +235,6 @@ public class SearchController {
 	// 회사를 눌렀을 때의 포지션정보 페이지(비로그인시)
 	@RequestMapping("/search/companyInfo1.do")
 	public String companyInfoList(int positionNo, Model model) {
-
 		Position p = service.companyInfoList(positionNo);
 		List<Tag> tagList = service.companyTagList(p.getBus_no());
 		List<Position> rcList = service.recommandPositionList(p);

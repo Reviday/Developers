@@ -359,33 +359,65 @@
                     <h5 class="choochun-title">추천 채용</h5>
                     <div class="choochun-content">
                         <ul class="clearfix">
-                        	<c:forEach var="c" items="${rcList }">
-	                            <li>
-	                                <div class="choochun-content-context">
-	                                    <a href="${path }/search/companyInfo1.do?positionNo=${c.position_no }">
-	                                        <div class="contextHeader" style="background-image:url(${path}${c.bus_images[0]});">
-	                                            <button class="likeButton">
-	                                                <i class="fas fa-heart" style="margin-right: 10px"></i>
-	                                                <c:out value="${c.like_count }"></c:out>
-	                                            </button>
-	                                        </div>
-	                                        <div class="body">
-	                                            <dl>
-	                                                <dt><c:out value="${c.position }"></c:out></dt>
-	                                                <dd>
-	                                                    <c:out value="${c.bus_name }"></c:out>
-	                                                    <br>
-	                                                    <span><c:out value="${c.bus_area }"></c:out></span>
-	                                                    <span class="addressDot">.</span>
-	                                                    <span><c:out value="${c.bus_country }"></c:out></span>
-	                                                </dd>
-	                                            </dl>
-	                                            <div class="reward">채용보상금 1,000,000원</div>
-	                                        </div>
-	                                    </a>
-	                                </div>
-	                            </li>
-                            </c:forEach>
+                        	
+                        	<c:if test="${not empty loginMember && not empty rcList }">
+	                        	<c:forEach var="c" items="${rcList }">
+		                            <li>
+		                                <div class="choochun-content-context">
+		                                    <a href="${path }/search/companyInfo.do?positionNo=${c.position_no }&memNo=${loginMember.memNo}">
+		                                        <div class="contextHeader" style="background-image:url(${path}${c.bus_images[0]});">
+		                                            <button class="likeButton">
+		                                                <i class="fas fa-heart" style="margin-right: 10px"></i>
+		                                                <c:out value="${c.like_count }"></c:out>
+		                                            </button>
+		                                        </div>
+		                                        <div class="body">
+		                                            <dl>
+		                                                <dt><c:out value="${c.position }"></c:out></dt>
+		                                                <dd>
+		                                                    <c:out value="${c.bus_name }"></c:out>
+		                                                    <br>
+		                                                    <span><c:out value="${c.bus_area }"></c:out></span>
+		                                                    <span class="addressDot">.</span>
+		                                                    <span><c:out value="${c.bus_country }"></c:out></span>
+		                                                </dd>
+		                                            </dl>
+		                                            <div class="reward">채용보상금 1,000,000원</div>
+		                                        </div>
+		                                    </a>
+		                                </div>
+		                            </li>
+                            	</c:forEach>
+                            </c:if>
+                            <c:if test="${empty loginMember && not empty rcList }">
+	                        	<c:forEach var="c" items="${rcList }">
+		                            <li>
+		                                <div class="choochun-content-context">
+		                                    <a href="${path }/search/companyInfo1.do?positionNo=${c.position_no }">
+		                                        <div class="contextHeader" style="background-image:url(${path}${c.bus_images[0]});">
+		                                            <button class="likeButton">
+		                                                <i class="fas fa-heart" style="margin-right: 10px"></i>
+		                                                <c:out value="${c.like_count }"></c:out>
+		                                            </button>
+		                                        </div>
+		                                        <div class="body">
+		                                            <dl>
+		                                                <dt><c:out value="${c.position }"></c:out></dt>
+		                                                <dd>
+		                                                    <c:out value="${c.bus_name }"></c:out>
+		                                                    <br>
+		                                                    <span><c:out value="${c.bus_area }"></c:out></span>
+		                                                    <span class="addressDot">.</span>
+		                                                    <span><c:out value="${c.bus_country }"></c:out></span>
+		                                                </dd>
+		                                            </dl>
+		                                            <div class="reward">채용보상금 1,000,000원</div>
+		                                        </div>
+		                                    </a>
+		                                </div>
+		                            </li>
+                            	</c:forEach>
+                            </c:if>
                         </ul>
                     </div>
                 </div>

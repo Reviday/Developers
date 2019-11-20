@@ -176,7 +176,7 @@
     	UPDATE TA_MEMBER SET MEM_LEVEL=#{memLevel}, MEM_ADMINMEMO=#{memAdminmemo} WHERE MEM_NO=#{memNo} 
     </update>
 	<insert id="insertInterests" parameterType="interests">
-		INSERT INTO interests VALUES(seq_intersts.NEXTVAL,#{memEmail},#{jobName},#{duty, typeHandler=strArray},#{experience},#{salary},#{skill, typeHandler=strArray},SYSDATE,DEFAULT,#{memNo})
+		INSERT INTO interests VALUES(seq_intersts.NEXTVAL,#{memEmail},#{jobName},#{duty, typeHandler=strArray},#{experience},#{salary},#{skill, typeHandler=strArray},SYSDATE,DEFAULT)
 	</insert>
 	<select id="selectMemberCount" resultType="_int">
 		SELECT COUNT(*) FROM TA_MEMBER WHERE MEM_STATUS='Y'
@@ -211,7 +211,7 @@
 	<select id="selectInterests" parameterType="string" resultMap="interMap">
 		SELECT * FROM INTERESTS WHERE MEM_EMAIL = #{memEmail}
 	</select>
-	<select id="selectPositionList" resultType="position" >
+	<select id="selectPositionList" resultType="position" resultMap="positionArray">
 		SELECT P.*, BUS_LOGO, BUS_IMAGES, BUS_ADDRESS, BUS_INDUSTRIAL, BUS_AREA, BUS_COUNTRY, (SELECT COUNT(*) FROM PO_LIKE WHERE LIKE_ID = P.LIKE_ID) AS LIKE_COUNT FROM ENROLL_POSITION P JOIN BUSINESS_INFO B ON P.BUS_NO = B.BUS_NO WHERE SYSDATE <![CDATA[<]]> DEAD_DATE AND P.STATUS = 'Y' ORDER BY POSITION_NO DESC
 	</select>
 	<select id="selectInterPositionList" parameterType="interests" resultType="position" resultMap="positionArray"> 
