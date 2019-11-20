@@ -22,7 +22,15 @@
 	.panel-body div {
 		margin:5px;
 	}
+	.info-image {
+		box-shadow: 4px 4px 10px #ccc;
+	    width: 130px;
+	    float: right;
+	    border-radius: 50%;
+	    height: 130px;
+	}
 </style>
+
 <div class="container">
 	<c:if test="${not empty business }">
     <div class="alert" role="alert">
@@ -35,11 +43,9 @@
             </div>
            
             <div class="panel-body">
-              <c:if test="${business.busLogo ne null }">
-	              <div class="col-md-3">
-	                <img src="${path }/${business.busLogo }" style="max-width: 50px; max-height: 50px;"/>
-	              </div>
-              </c:if>
+              <div class="col-md-3">
+                <img class="info-image" src="${path }${business.busLogo }" alt="기업이미지"/>
+              </div>
               <div class="col-md-3">
                 <strong>기업 번호 : </strong>
                 <span>${business.busNo }</span>
@@ -124,3 +130,10 @@
         </h3>
 	</c:if>
 </div><!-- .container -->
+<script>
+	$(document).ready(function() {
+	    $(".info-image").error(function() {
+	        $(this).attr("src", '${path}/resources/images/non_business_image.png');
+	    });
+	});
+</script>
