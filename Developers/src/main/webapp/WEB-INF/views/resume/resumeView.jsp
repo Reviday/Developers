@@ -604,6 +604,33 @@
 </div>
 </body>
 <script>
+
+$(('input[name=careerIntro]')).keydown(function(){
+	console.log("asdasd");
+	var startCareer=($('input[name=startCareer]')).val();
+	var endCareer=($('input[name=endCareer]')).val();
+	var careerIntro=($('textarea[name=careerIntro]')).val();
+	var careerNo=($('textarea[name=careerNo]')).val();
+	var resumeNo=($('textarea[name=resumeNo]')).val();
+	var memEmail=($('textarea[name=memEmail]')).val();
+	var param={
+			"startCareer":startCareer,
+			"endCareer":endCareer,
+			"careerIntro":careerIntro,
+			"careerNo":careerNo,
+			"resumeNo":resumeNo,
+			"memEmail":memEmail		
+	};
+	$.ajax({
+		url:"${path}/resume/updateCareer.lmc",
+		type:"POST",
+		data:param,
+		success:function(data){
+			console.log("성공");
+		}
+	});
+})
+
 	
     function careersplus(memEmail,resumeNo) {
         $.ajax({

@@ -105,7 +105,7 @@ var path = "${path }";
 										    <button type="button" class="_26Ms0F-WSvfKh16ALOIC20" value="데이터 엔지니어" disabled="">데이터엔지니어</button>
 										    <button type="button" class="_26Ms0F-WSvfKh16ALOIC20" value="시스템,네트워크 관리자" disabled="">시스템,네트워크 관리자</button>
 										    <button type="button" class="_26Ms0F-WSvfKh16ALOIC20" value="DevOps / 시스템 관리자" disabled="">DevOps / 시스템 관리자</button>
-										    <button type="button"class="_26Ms0F-WSvfKh16ALOIC20"  value="Node.js개발자" disabled="">Node.js개발자</button>
+										    <button type="button"class="_26Ms0F-WSvfKh16ALOIC20"  value="Node.js 개발자" disabled="">Node.js개발자</button>
 										    <button type="button" class="_26Ms0F-WSvfKh16ALOIC20" value="C/C++ 개발자" disabled="">C/C++ 개발자</button>
 										    <button type="button" class="_26Ms0F-WSvfKh16ALOIC20" value="데이터 사이언티스트" disabled="">데이터 사이언티스트</button>
 										    <button type="button" class="_26Ms0F-WSvfKh16ALOIC20" value="개발 매니저" disabled="">개발 매니저</button>
@@ -125,8 +125,8 @@ var path = "${path }";
 										    <button type="button" class="_26Ms0F-WSvfKh16ALOIC20" value="CTO/Chief TechnologyOfficer" disabled="">CTO/Chief TechnologyOfficer</button>
 										    <button type="button" class="_26Ms0F-WSvfKh16ALOIC20" value="영상,음성 엔지니어" disabled="">영상,음성 엔지니어</button>
 										    <button type="button" class="_26Ms0F-WSvfKh16ALOIC20" value="BI 엔지니어" disabled="">BI 엔지니어</button>
-										    <button type="button" class="_26Ms0F-WSvfKh16ALOIC20" value="그래픽스엔지니어" disabled="">그래픽스엔지니어</button>
-										    <button type="button" class="_26Ms0F-WSvfKh16ALOIC20" value="CIO,Chief InformationOfficer" disabled="">CIO,Chief InformationOfficer</button>
+										    <button type="button" class="_26Ms0F-WSvfKh16ALOIC20" value="그래픽스 엔지니어" disabled="">그래픽스 엔지니어</button>
+										    <button type="button" class="_26Ms0F-WSvfKh16ALOIC20" value="CIO/Chief InformationOfficer" disabled="">CIO,Chief InformationOfficer</button>
                                             <button type="button" class="toggleEditable" id="dutyview" onclick="dutyview();">+</button></div>
                                 </div>
                                 <div class="_1L31UYqre402LhtszG3_cE selected">
