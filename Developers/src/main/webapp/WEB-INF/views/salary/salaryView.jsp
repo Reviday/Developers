@@ -418,19 +418,19 @@ $("#jobField").change(function(){
 	var salarySearch=0;
 	var jobField= $(this).val();
 	var jobYears= $("#jobYears option:selected").val();
-	var type= $("#jobField option:selected").text();
+	var jobName= $("#jobField option:selected").text();
 	
-	location.href='${path }/salary/salaryYears.do?jobField='+jobField +'&jobYears='+jobYears+'&job_type='+type+'&salarySearch='+salarySearch;
+	location.href='${path }/salary/salaryYears.do?jobField='+jobField +'&jobYears='+jobYears+'&jobName='+jobName+'&salarySearch='+salarySearch;
 });
 
 $("#jobYears").change(function(){
 	var salarySearch=0;
 	var jobField= $("#jobField option:selected").val();
-	var type= $("#jobField option:selected").text();
+	var jobName= $("#jobField option:selected").text();
 	var jobYears= $(this).val();
 	
 	
-	location.href='${path }/salary/salaryYears.do?jobField='+jobField +'&jobYears='+jobYears+'&job_type='+type+'&salarySearch='+salarySearch;
+	location.href='${path }/salary/salaryYears.do?jobField='+jobField +'&jobYears='+jobYears+'&jobName='+jobName+'&salarySearch='+salarySearch;
 	/* location.href='${path }/search/companyInfo.do?positionNo='+${p.position_no }+'&memNo='+${loginMember.memNo}; */
 });
 
@@ -440,9 +440,9 @@ $("#salarySearch").keydown(function(key){
 	  var salarySearch= $(this).val();
 	  var jobYears= $("#jobYears option:selected").val();
 	  var jobField= $("#jobField option:selected").val();
-	  var type= $("#jobField option:selected").text();
+	  var jobName= $("#jobField option:selected").text();
 	
-	  location.href='${path }/salary/salaryYears.do?jobField='+jobField +'&jobYears='+jobYears+'&job_type='+type+'&salarySearch='+salarySearch;
+	  location.href='${path }/salary/salaryYears.do?jobField='+jobField +'&jobYears='+jobYears+'&jobName='+jobName+'&salarySearch='+salarySearch;
 	  /* location.href='${path }/search/companyInfo.do?positionNo='+${p.position_no }+'&memNo='+${loginMember.memNo}; */
 	 };
 	}else {

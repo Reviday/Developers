@@ -11,6 +11,6 @@ public interface SalaryService {
 
 	int selectedJobYears(Salary s);
 
-	List<Position> salaryRecommandPositionList(String type);
+	List<Position> salaryRecommandPositionList(String jobName1);
 
 }

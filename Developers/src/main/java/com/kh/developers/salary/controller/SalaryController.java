@@ -86,17 +86,54 @@ public class SalaryController {
 	}
 	//연차별 연봉정보 가지고 오기
 	@RequestMapping("/salary/salaryYears.do")
-	public String salaryYears(Salary s, String job_type,int salarySearch, Model model) {
+	public String salaryYears(Salary s, String jobName,int salarySearch, Model model) {
+		
+		String jobName1 = "";
+		switch(jobName) {
+		
+			case "전체" : jobName1 = ""; break;
+			case "서버 개발자" : jobName1 = "D1"; break;
+			case "프론트엔드 개발자" : jobName1 = "D2"; break;
+			case "자바 개발자" : jobName1 = "D3"; break;
+			case "안드로이드 개발자" : jobName1 = "D4"; break;
+			case "iOS 개발자" : jobName1 = "D5"; break;
+			case "파이썬 개발자" : jobName1 = "D6"; break;
+			case "데이터 엔지니어" : jobName1 = "D7"; break;
+			case "시스템,네트워크 관리자" : jobName1 = "D8"; break;
+			case "DevOps/시스템 관리자" : jobName1 = "D9"; break;
+			case "Node.js 개발자" : jobName1 = "D10"; break;
+			case "C,C++ 개발자" : jobName1 = "D11"; break;
+			case "데이터 사이언티스트" : jobName1 = "D12"; break;
+			case "개발 매니저" : jobName1 = "D13"; break;
+			case "PHP 개발자" : jobName1 = "D14"; break;
+			case "기술지원" : jobName1 = "D15"; break;
+			case "머신러닝 엔지니어" : jobName1 = "D16"; break;
+			case "보안 엔지니어" : jobName1 = "D17"; break;
+			case "QA,테스트 엔지니어" : jobName1 = "D18"; break;
+			case "프로덕트 매니저" : jobName1 = "D19"; break;
+			case "빅데이터 엔지니어" : jobName1 = "D20"; break;
+			case "루비온레일즈 개발자" : jobName1 = "D21"; break;
+			case ".NET 개발자" : jobName1 = "D22"; break;
+			case "웹 퍼블리셔" : jobName1 = "D23"; break;
+			case "임베디드 개발자" : jobName1 = "D24"; break;
+			case "블록체인 플랫폼 엔지니어" : jobName1 = "D25"; break;
+			case "하드웨어 엔지니어" : jobName1 = "D26"; break;
+			case "CTO,Chief Technology Officer" : jobName1 = "D27"; break;
+			case "영상,음성 엔지니어" : jobName1 = "D28"; break;
+			case "BI 엔지니어" : jobName1 = "D29"; break;
+			case "그래픽스 엔지니어" : jobName1 = "D30"; break;
+			case "CIO, Chief Information Officer" : jobName1 = "D31"; break;
+		}
 
 		String jobField = s.getJobField();
 		int jobYears = s.getJobYears();
-		String type = job_type;
 		int salarySearchResult=salarySearch;
 
 		List<Salary> list = service.salarySelectList(jobField);
 
 		System.out.println("jobField:" + jobField);
-		System.out.println("추천기업 포지션:" + type);
+		System.out.println("추천기업 포지션(jobName):" + jobName);
+		System.out.println("추천기업 포지션(jobName1):" + jobName1);
 
 		System.out.println(list);
 
@@ -136,7 +173,7 @@ public class SalaryController {
 		
 
 		// 포지션 추천 기업 가지고 오기
-		List<Position> rcList = service.salaryRecommandPositionList(type);
+		List<Position> rcList = service.salaryRecommandPositionList(jobName1);
 		System.out.println("rcList:" + rcList);
 		
 		//평균연봉 대비 내 연봉 검색하기
@@ -155,7 +192,6 @@ public class SalaryController {
 		String salaryRateResult="";
 		if(salarySearch>0) {
 			System.out.println("계산값 실행 :"+salarySearch+","+jobYearsResult);
-			System.out.println(type);
 			if((salarySearch>jobYearsResult)) {
 			temp=(int) ((((double)(salarySearch)-jobYearsResult)/jobYearsResult)*100);
 				if (salarySearch == 0) {

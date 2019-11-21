@@ -24,9 +24,9 @@ public class SalaryDaoImpl implements SalaryDao {
 	}
 
 	@Override
-	public List<Position> salaryRecommandPositionList(SqlSessionTemplate session, String type) {
+	public List<Position> salaryRecommandPositionList(SqlSessionTemplate session, String jobName1) {
 		// TODO Auto-generated method stub
-		return session.selectList("salary.salaryRecommandPositionList",type);
+		return session.selectList("salary.salaryRecommandPositionList",jobName1);
 	}
 	
 	

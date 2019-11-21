@@ -13,6 +13,6 @@ public interface SalaryDao {
 
 	int selectedJobYears(SqlSessionTemplate session, Salary s);
 
-	List<Position> salaryRecommandPositionList(SqlSessionTemplate session, String type);
+	List<Position> salaryRecommandPositionList(SqlSessionTemplate session, String jobName1);
 
 }

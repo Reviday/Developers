@@ -32,9 +32,9 @@ public class SalaryServiceImpl implements SalaryService {
 	}
 
 	@Override
-	public List<Position> salaryRecommandPositionList(String type) {
+	public List<Position> salaryRecommandPositionList(String jobName1) {
 		// TODO Auto-generated method stub
-		return dao.salaryRecommandPositionList(session,type);
+		return dao.salaryRecommandPositionList(session,jobName1);
 	}
 	
 	
