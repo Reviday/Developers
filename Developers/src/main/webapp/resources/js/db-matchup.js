@@ -377,9 +377,9 @@ function openResume(resumeNo, level,applNo){
                         let finalCareer="";
                         info.careers[i].careerIntro!=null?finalCareer=info.careers[i].careerIntro:finalCareer="";
                         if(finalCareer!=""&&finalCareer.slice(0,1)=="♥"){
-                            careerss+='<div class="careerIntro"><p id="careerIntro" style="width:fit-content;background-color:#D8D8D8;color:#D8D8D8;">'+finalCareer+'</p></div>';
+                            careerss+='<div class="careerIntro" ><p id="careerIntro" style="width:fit-content;background-color:#D8D8D8;color:#D8D8D8;">'+finalCareer+'</p></div>';
                         }else{
-                            careerss+='<div class="careerIntro"><p id="careerIntro">'+finalCareer+'</p></div>';
+                            careerss+='<div class="careerIntro" ><p id="careerIntro">'+finalCareer+'</p></div>';
                         }
                         careerss+='<hr style="width:95%;">';
                     }

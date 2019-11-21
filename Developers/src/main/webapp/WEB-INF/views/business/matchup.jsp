@@ -263,6 +263,7 @@ div#memIntro{
 } 
 .careerIntro,.subjectName{
 	padding:30px;
+	word-break: break-all;
 }
 button#buttonFav{
 	width:100%;
