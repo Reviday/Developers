@@ -377,7 +377,7 @@ button#toTicketMo:hover{
 							<a class="ei_a1" href="${path}/business/applicants.lbc">지원자</a>
 						</li>
 						<li class="ls1 ls3">
-							<a class="ei_a1" href="${path}/business/matchup.lbc">인재풀</a>
+							<a class="ei_a1" href="${path}/business/matchup.lbc">개발자 인재풀</a>
 						</li>
 						<li class="ls1 ls3">
 							<a class="ei_a1" href="${path}/business/position.lbc">채용 공고</a>
@@ -402,7 +402,7 @@ button#toTicketMo:hover{
 			<div class="tag-container container-fluid">
 				<div class="intro-container container-fluid">
 					<a class="matchup-intro container" href="#">
-						<h2 class="container" style="color:#FFFFFF;">인재풀 소개</h2>
+						<h2 class="container" style="color:#FFFFFF;">개발자 인재풀 소개</h2>
 					</a>
 					<!-- <div color="#FFFFFF" class="category">개발</div> -->
 				</div>
@@ -582,6 +582,10 @@ button#toTicketMo:hover{
 	var memEmail="${loginMember.memEmail}";
 	var memName="${loginMember.memName}";
 	var memPhone="${loginMember.memPhone}";
+
+	function moveToInterview(applNo){
+	location.href="${path}/business/applView.lbc?applNo="+applNo;
+}
 
 
 </script>

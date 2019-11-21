@@ -314,7 +314,7 @@ $(function(){
 var info="";
 
 // 이력서 미리보기 로직
-function openResume(resumeNo, level){
+function openResume(resumeNo, level,applNo){
     if(resumeNo!=""||resumeNo!=null||resumeNo!=undefined){
         $.ajax({
             url:path+"/business/openResume",
@@ -413,7 +413,7 @@ function openResume(resumeNo, level){
                     let resFooter="";
                     if(level>1){
                         resFooter+='<div class="footer-intro col-12 col-sm-9" style="color: #fff; margin:auto auto;"><p style="font-size:20px;">경력과 학력 확인 후 면접 제안을 할 수 있습니다.</p></div>';
-                        resFooter+='<div class="resumePayment col-12 col-sm-3"><button type="button" id="offerInterview" color="#258BF7" class="btn btn-primary"  onclick="offerInterview();">면접 제안하기</button></div>';
+                        resFooter+='<div class="resumePayment col-12 col-sm-3"><button type="button" id="offerInterview" color="#258BF7;" class="btn btn-primary" onclick="moveToInterview('+applNo+');">면접 제안하기</button></div>';
                     }
                     if(level<2){
                         resFooter+='<div class="footer-intro col-12 col-sm-9" style="color: #fff; margin:auto auto;"><p style="font-size:20px;">이력서 상세보기 시, 열람권 1회가 차감됩니다.</p></div>';
@@ -828,15 +828,15 @@ function useTicket(){
                 let type=JSON.parse(result);            
                 if(type=="T"){
                     let resumeNo=document.querySelector("#hiddenResumeNo").value;
-                    let res=insertReaded(resumeNo);
-                    console.log(res);
-                    let temp=JSON.parse(res);
-                    if(res.msg!="T"){
-                        alert(res.msg);
-                    }else if(res.msg=="T"&&res.applNo!=null){
+                    let mmap=insertReaded(resumeNo);
+                    
+                    
+                    if(mmap.msg!="T"){
+                    }else if(mmap.msg=="T"&&mmap.applNo>0){
+                        let applNo=mmap.applNo;
                         updateNumOfTicket();
                         alert("열람권 1개를 사용하셨습니다. 남은 갯수 : "+(num-1)+"개");
-                        openResume(resumeNo,2);
+                        openResume(resumeNo,2,applNo);
                     }
                 }else{
                     alert(result);
@@ -848,6 +848,7 @@ function useTicket(){
 
 
 function insertReaded(resumeNo){
+    let mmap="";
     let res="";
     $.ajax({
         url:path+"/business/insertToReaded",
@@ -857,11 +858,17 @@ function insertReaded(resumeNo){
             "resumeNo":resumeNo
         },
         success:function(result){ 
-            res=JSON.parse(result);
+            mmap=JSON.parse(result);
+
         }
     });
-    return res;
+    return mmap;
 }
+
+
+
+
+
 
 
 // checkBox.forEach(function(e){

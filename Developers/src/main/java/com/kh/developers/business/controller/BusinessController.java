@@ -758,6 +758,7 @@ public class BusinessController {
 		String msg="";
 		try {
 			result=bService.insertReaded(busNo,resumeNo,memNo);
+			System.out.println("리저트: "+result);
 		}catch(Exception e) {
 			msg="이력서 상세 보기 도중 에러가 발생했습니다.";
 		}

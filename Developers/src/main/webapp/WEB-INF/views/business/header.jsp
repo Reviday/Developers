@@ -205,9 +205,9 @@
 					<div class="mobile-menu">
 						<ul class="nav_us uwQaB">
 							<li class="ls4"><a class="as2" href="${path}/business/applicants.lbc">지원자</a></li>
-							<li class="ls4"><a class="as2" href="${path}/business/matchup.lbc">인재풀</a></li>
+							<li class="ls4"><a class="as2" href="${path}/business/matchup.lbc">개발자 인재풀</a></li>
 							<li class="ls4"><a class="as2" href="${path}/business/position.lbc">채용 공고</a></li>
-							<li class="ls4"><a class="as2" href="${path}/business/ad.lbc">채용광고</a></li>
+							<li class="ls4"><a class="as2" href="${path}/business/ad.lbc">네트워크 광고</a></li>
 							<li class="ls4"><a class="as2" href="${path}/business/busInfo.lbc">회사정보</a></li>
 							<li class="ls4"><a class="as2" href="${path}/business/settings.lbc">계정 관리</a></li>
 							<li class="ls4"><a class="as2" href="${path}/business/logout">로그아웃</a></li>

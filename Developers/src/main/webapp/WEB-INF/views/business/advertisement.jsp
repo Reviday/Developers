@@ -118,7 +118,7 @@ div.category_ad>*, div.main_ad>*{
 							<a class="ei_a1" href="${path}/business/applicants.lbc">지원자</a>
 						</li>
 						<li class="ls1 ls3">
-							<a class="ei_a1" href="${path}/business/matchup.lbc">인재풀</a>
+							<a class="ei_a1" href="${path}/business/matchup.lbc">개발자 인재풀</a>
 						</li>
 						<li class="ls1 ls3">
 							<a class="ei_a1" href="${path}/business/position.lbc">채용 공고</a>
@@ -398,6 +398,9 @@ div.category_ad>*, div.main_ad>*{
 	};
 
 	
+
+
+
 
 // $(function(){
 // 	let msg="${msg}";
