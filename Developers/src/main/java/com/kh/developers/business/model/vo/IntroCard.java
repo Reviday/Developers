@@ -32,5 +32,6 @@ public class IntroCard {
 	private String memPhone;
 	private String favorite;
 	private String readed;
+	private int applNo;
 
 }

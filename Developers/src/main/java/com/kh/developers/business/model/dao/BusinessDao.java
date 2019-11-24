@@ -84,4 +84,7 @@ public interface BusinessDao {
 	int selectMemNo(SqlSessionTemplate session, int resumeNo);
 	
 	int insertClick(SqlSessionTemplate session, int adNo);
+	
+//	applNo 가져오기 
+	int selectApplNo(SqlSessionTemplate session, int busNo,int resumeNo);
 }

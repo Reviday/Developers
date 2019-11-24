@@ -398,14 +398,22 @@ public class BusinessController {
 //	이력서 미리보기 로직 
 	@RequestMapping(value = "/business/openResume", produces = "application/text; charset=utf-8")
 	@ResponseBody
-	public String openResume(@RequestParam (value="resumeNo", required=true) int resumeNo, @RequestParam(value="level",required=true) int level, HttpServletResponse res) {
+	public String openResume(@RequestParam (value="resumeNo", required=true) int resumeNo, @RequestParam(value="level",required=true) int level, HttpServletResponse res, HttpServletRequest req) {
 		ObjectMapper mapper=new ObjectMapper(); //잭슨 객체 - json자바스크립트 객체 매핑시킴
 		String jsonStr="";
+		Business bus=(Business)req.getSession().getAttribute("busInfo");
+		int busNo=Integer.parseInt(bus.getBusNo());
 //		Map<String,Object>resultMap=new HashMap<String,Object>();
 		IntroCard ic=bService.selectOneIntroCard(resumeNo);
 		if(ic!=null) {
 			ic.setCareers(bService.selectCareers(resumeNo));
-			ic.setEducations(bService.selectEducations(resumeNo));			
+			ic.setEducations(bService.selectEducations(resumeNo));
+			if(level>1) {
+				int applTempNo=bService.selectApplNo(busNo,resumeNo);
+				if (applTempNo>0) {
+					ic.setApplNo(applTempNo);
+				}				
+			}
 		}
 		List<CareerInCard>ca=new ArrayList<CareerInCard>();
 		ca=ic.getCareers();

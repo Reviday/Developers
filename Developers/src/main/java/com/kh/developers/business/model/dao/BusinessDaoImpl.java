@@ -268,5 +268,14 @@ public class BusinessDaoImpl implements BusinessDao {
 			// TODO Auto-generated method stub
 			return session.update("business.insertClick",adNo);
 		}
+		
+		@Override
+		public int selectApplNo(SqlSessionTemplate session, int busNo, int resumeNo) {
+			// TODO Auto-generated method stub
+			Map<String,Object>map=new HashMap<String,Object>();
+			map.put("busNo",busNo);
+			map.put("resumeNo",resumeNo);
+			return session.selectOne("business.selectApplNo",map);
+		}
 
 }

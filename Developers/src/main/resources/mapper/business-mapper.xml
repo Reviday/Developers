@@ -199,6 +199,10 @@
 		UPDATE ADVERTISEMENT SET CLICK_TIMES=CLICK_TIMES+1 WHERE AD_NO=#{adNo}
 	</update>
 	
+	<select id="selectApplNo" parameterType="map" resultType="integer">
+		SELECT APPL_NO FROM TA_APPL_BUS WHERE BUS_NO=#{busNo} AND POSITION_NO=0 AND RESUME_NO=#{resumeNo}
+	</select>
+	
 	
 	<resultMap type="com.kh.developers.business.model.vo.CareerInCard" id="careerMap">
 		<result property="busName" column="BUS_NAME"></result>

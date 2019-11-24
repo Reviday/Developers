@@ -290,5 +290,11 @@ public class BusinessServiceImpl implements BusinessService {
 //		// TODO Auto-generated method stub
 //		return dao.insertClick(session,adNo);
 //	}
+	
+	@Override
+	public int selectApplNo(int busNo,int resumeNo) {
+		// TODO Auto-generated method stub
+		return dao.selectApplNo(session, busNo,resumeNo);
+	}
 
 }

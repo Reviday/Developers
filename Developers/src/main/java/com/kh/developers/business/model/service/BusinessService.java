@@ -80,4 +80,7 @@ public interface BusinessService {
 	
 //	클릭 
 //	int insertClick(int adNo);
+
+//	applNo가져오기
+	int selectApplNo(int busNo,int resumeNo);
 }
