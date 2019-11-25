@@ -192,7 +192,7 @@ public class MemberServiceImpl implements MemberService {
         sendMail.setText(
                 new StringBuffer().append("<div style=\"font-family: 'Apple SD Gothic Neo', 'sans-serif' !important; width: 540px; height: 600px; border-top: 4px solid rgb(67,138,255); margin: 100px auto; padding: 30px 0; box-sizing: border-box;\">")
                 .append("<h1 style=\"margin: 0; padding: 0 5px; font-size: 28px; font-weight: 400;\">")
-                .append("<span style=\"font-size: 15px; margin: 0 0 10px 3px;\"><img src=\""+url+"developers/resources/images/Developers_logo.png"+"\" style=\"height:40px;\"/></span><br />")
+                .append("<span style=\"font-size: 15px; margin: 0 0 10px 3px;\"><img src=\""+url+"/resources/images/Developers_logo.png"+"\" style=\"height:40px;\"/></span><br />")
                 .append("<span style=\"color: rgb(67,138,255);\">메일인증</span> 안내입니다.</h1>")
                 .append("<p style=\"font-size: 16px; line-height: 26px; margin-top: 50px; padding: 0 5px;\">")
                 .append("안녕하세요.<br />")
@@ -200,7 +200,7 @@ public class MemberServiceImpl implements MemberService {
                 .append("아래 <b style=\"color: rgb(67,138,255);\">'메일 인증'</b> 버튼을 클릭하여 회원가입을 완료해 주세요.<br />")
                 .append("감사합니다.</p>")
                 .append("<a style=\"color: #FFF; text-decoration: none; text-align: center;\" href=\"")
-                .append(url+"developers/member/emailConfirm?memNo=")
+                .append(url+"/member/emailConfirm?memNo=")
                 .append(m.getMemNo())
                 .append("&memEmail=")
                 .append(m.getMemEmail())
