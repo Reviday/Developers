@@ -163,17 +163,23 @@ public class AdminController {
 		// 승인 메일 송신 로직
 		if(result>0) {
 			String url=req.getRequestURL().toString();
-			int target=url.indexOf("developers");
-			String frontUrl="";url.substring(0,target);
+			String frontUrl="";
+			int target; 
 			if(req.getRequestURI().indexOf("/developers")>=0) {
 				//일반 로컬 서버
+				target=url.indexOf("developers");
+				url.substring(0,target);
 				frontUrl=url.substring(0,target)+"developers";
 			} else if(req.getRequestURI().indexOf("/19PM_Developers_final")>=0) {
 				//학원 서버용
+				target=url.indexOf("19PM_Developers_final");
+				url.substring(0,target);
 				frontUrl=url.substring(0,target)+"19PM_Developers_final";
 			} else {
 				//보통 있을 수 없지만 만약 위 두가지 중 예외가 존재한다면 
 				//server에서 설정을 기본값인 spring으로 했을 경우.
+				target=url.indexOf("spring");
+				url.substring(0,target);
 				frontUrl=url.substring(0,target)+"spring";
 				//위가 아닌 다른 예외 상황이 온다고 한다면, 기록은 하되 조인할때 기타 값이 null로 출력될 것임.
 			}
@@ -238,17 +244,23 @@ public class AdminController {
 		// 승인 메일 송신 로직
 		if(result>0) {
 			String url=req.getRequestURL().toString();
-			int target=url.indexOf("developers");
-			String frontUrl="";url.substring(0,target);
+			String frontUrl="";
+			int target; 
 			if(req.getRequestURI().indexOf("/developers")>=0) {
 				//일반 로컬 서버
+				target=url.indexOf("developers");
+				url.substring(0,target);
 				frontUrl=url.substring(0,target)+"developers";
 			} else if(req.getRequestURI().indexOf("/19PM_Developers_final")>=0) {
 				//학원 서버용
+				target=url.indexOf("19PM_Developers_final");
+				url.substring(0,target);
 				frontUrl=url.substring(0,target)+"19PM_Developers_final";
 			} else {
 				//보통 있을 수 없지만 만약 위 두가지 중 예외가 존재한다면 
 				//server에서 설정을 기본값인 spring으로 했을 경우.
+				target=url.indexOf("spring");
+				url.substring(0,target);
 				frontUrl=url.substring(0,target)+"spring";
 				//위가 아닌 다른 예외 상황이 온다고 한다면, 기록은 하되 조인할때 기타 값이 null로 출력될 것임.
 			}
@@ -363,17 +375,23 @@ public class AdminController {
 		// 승인 메일 송신 로직
 		if(result>0) {
 			String url=req.getRequestURL().toString();
-			int target=url.indexOf("developers");
-			String frontUrl="";url.substring(0,target);
+			String frontUrl="";
+			int target; 
 			if(req.getRequestURI().indexOf("/developers")>=0) {
 				//일반 로컬 서버
+				target=url.indexOf("developers");
+				url.substring(0,target);
 				frontUrl=url.substring(0,target)+"developers";
 			} else if(req.getRequestURI().indexOf("/19PM_Developers_final")>=0) {
 				//학원 서버용
+				target=url.indexOf("19PM_Developers_final");
+				url.substring(0,target);
 				frontUrl=url.substring(0,target)+"19PM_Developers_final";
 			} else {
 				//보통 있을 수 없지만 만약 위 두가지 중 예외가 존재한다면 
 				//server에서 설정을 기본값인 spring으로 했을 경우.
+				target=url.indexOf("spring");
+				url.substring(0,target);
 				frontUrl=url.substring(0,target)+"spring";
 				//위가 아닌 다른 예외 상황이 온다고 한다면, 기록은 하되 조인할때 기타 값이 null로 출력될 것임.
 			}
@@ -436,17 +454,23 @@ public class AdminController {
 		// 승인 메일 송신 로직
 		if(result>0) {
 			String url=req.getRequestURL().toString();
-			int target=url.indexOf("developers");
-			String frontUrl="";url.substring(0,target);
+			String frontUrl="";
+			int target; 
 			if(req.getRequestURI().indexOf("/developers")>=0) {
 				//일반 로컬 서버
+				target=url.indexOf("developers");
+				url.substring(0,target);
 				frontUrl=url.substring(0,target)+"developers";
 			} else if(req.getRequestURI().indexOf("/19PM_Developers_final")>=0) {
 				//학원 서버용
+				target=url.indexOf("19PM_Developers_final");
+				url.substring(0,target);
 				frontUrl=url.substring(0,target)+"19PM_Developers_final";
 			} else {
 				//보통 있을 수 없지만 만약 위 두가지 중 예외가 존재한다면 
 				//server에서 설정을 기본값인 spring으로 했을 경우.
+				target=url.indexOf("spring");
+				url.substring(0,target);
 				frontUrl=url.substring(0,target)+"spring";
 				//위가 아닌 다른 예외 상황이 온다고 한다면, 기록은 하되 조인할때 기타 값이 null로 출력될 것임.
 			}
