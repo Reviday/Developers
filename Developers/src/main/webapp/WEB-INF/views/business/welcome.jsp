@@ -186,7 +186,7 @@ button#startBtn{
 			<div class="modal fade" id="empEnrollModal" tabindex="-1" role="dialog" 
 			aria-labelledby="exampleModalLabel" aria-hidden="true">
 			  <div class="modal-dialog modal-dialog-centered" role="document">
-				<div class="modal-content" style="height:25em; overflow: scroll;">
+				<div class="modal-content" style="height:30em; overflow: scroll;">
 				  <div class="modal-header" style="background-color: #1C1C1C;">
 					<img src="${path }/resources/images/Developers_black_logo.png" style="height:30px; margin-left:10px;"/>
 					<h5 class="modal-title" style="color: #ffffff; margin: auto auto;" id="exampleModalLabel">Recruiting Developers</h5>
