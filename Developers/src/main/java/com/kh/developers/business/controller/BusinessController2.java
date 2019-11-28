@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import javax.inject.Inject;
 import javax.mail.MessagingException;
 import javax.servlet.AsyncContext;
 import javax.servlet.DispatcherType;
@@ -65,7 +66,7 @@ public class BusinessController2 {
 	@Autowired
 	private BusinessService2 service;
 
-	@Autowired
+	@Inject
 	private JavaMailSender jms;
 
 	private String saveDir;
@@ -696,7 +697,7 @@ public class BusinessController2 {
 		Member m=service.selectApplicant(appl.getMemNo());
 		String email=m.getMemEmail();
 		String url=req.getRequestURL().toString();
-		int target=url.indexOf("developers");
+		int target=url.indexOf(path);
 		String frontUrl=url.substring(0,target);
 		Map map=new HashMap();
 		map.put("busNo", appl.getBusNo());
@@ -740,7 +741,7 @@ public class BusinessController2 {
 		Business bus=(Business)req.getSession().getAttribute("busInfo");
 		String email=m.getMemEmail();
 		String url=req.getRequestURL().toString();
-		int target=url.indexOf("developers");
+		int target=url.indexOf(path);
 		String frontUrl=url.substring(0,target);
 		Map map=new HashMap();
 		map.put("busNo", appl.getBusNo());
@@ -963,7 +964,7 @@ public class BusinessController2 {
 		html+=po!=null&&po.getPosition()!=null?po.getPosition():"";
 		html+="'/>";
 		html+="</div>";
-		html+="<div class='po_title'>채용 공고 공고,서론</div>";
+		html+="<div class='po_title'>채용 공고 서론</div>";
 		html+="<div class='po_con4'>";
 		html+="<textarea name='position_info' class='form-control'>";
 		html+=po!=null&&po.getPosition_info()!=null?po.getPosition_info():"";
