@@ -947,6 +947,8 @@ public class BusinessController2 {
 		if(po!=null) {			
 			date=sdf.format(po.getDead_date());
 			html+=date.equals("2999-12-31")?"checked":"";
+		}else {
+			html+="checked";
 		}
 		html+="/>상시";
 		html+="</label>";

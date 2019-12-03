@@ -182,7 +182,7 @@
 									</c:if>
 									&nbsp;<c:out value="${loginMember.memName}"/>&nbsp;<i class="fas fa-angle-down"></i></button>
 								<div class="dropdown-menu ddm-log">
-									<a class="dropdown-item" href="#">내 프로필</a>
+									<a class="dropdown-item" href="${path }/member/myPage.lmc?memEmail=${loginMember.memEmail }">내 프로필</a>
 									<a class="dropdown-item" href="${path}/business/logout">로그아웃</a>
 								</div>
 							</div>

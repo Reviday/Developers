@@ -22,7 +22,7 @@ $(function(){
   //////////////////////////////////////채용 공고등록  
     //연봉정보 0 고정
     $(".po_num").on("keydown",function(){
-        if(($(this).val()).length<=1 && event.code=='Backspace'){
+        if(($(this).val()).length<=1 && (event.code=='Backspace' || event.code=='Delete')){
             event.returnValue=false;
             event.target.value=0;
         }
@@ -145,11 +145,16 @@ function fn_add_position(){
         $("[name='po_career']").addClass("blinking_btn");
                     setTimeout(function(){
                         $("[name='po_career']").removeClass("blinking_btn")},2000);
-    }else if(($(event.target).attr('data')=='O'||$(event.target).attr('data')=='M')&&$($('[name="po_career"]')[1]).val()==0){
+    }else if(($(event.target).attr('data')=='O'||$(event.target).attr('data')=='M')&&($($('[name="po_career"]')[1]).val()==0&&!$(".po_junior").prop("checked"))){
         fn_modi_finish("입력된 경력을 확인하세요.(경력이 0이면 신입을 체크!)");
         $($('[name="po_career"]')[1]).addClass("blinking_btn");
                     setTimeout(function(){
                         $($('[name="po_career"]')[1]).removeClass("blinking_btn")},2000);
+    }else if($($('[name="po_salary"]')[0]).val()-$($('[name="po_salary"]')[1]).val()>0){
+        fn_modi_finish("입력된 연봉을 확인하세요.");
+        $("[name='po_salary']").addClass("blinking_btn");
+                    setTimeout(function(){
+                        $("[name='po_salary']").removeClass("blinking_btn")},2000);
     }else {
         var fd=new FormData($('[name="po_frm"]')[0]);
         fd.append("poStatus",$(event.target).attr('data'));
